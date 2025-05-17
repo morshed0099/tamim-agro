@@ -18,6 +18,7 @@ model Location {
   id           String     @id @default(uuid())
   locationName String     @unique
   Customer     Customer[]
+  Brance       Brance?
 }
 
 model Customer {
@@ -28,6 +29,40 @@ model Customer {
   phoneNumber  String
   Farmtype     Custtype
   totalShed    Int
+  totalSqure   Int
+  capacity     Int
+  nid          String
+  Address      Address?
+}
+
+model Brance {
+  id           String      @id @default(uuid())
+  locationName String      @unique
+  branceName   String      @unique
+  location     Location    @relation(fields: [locationName], references: [locationName])
+  Executive    Executive[]
+}
+
+model Address {
+  id         String   @id @default(uuid())
+  village    String
+  post       String
+  union      String?
+  thana      String?
+  upazila    String
+  city       String
+  customerId String   @unique
+  customer   Customer @relation(fields: [id], references: [id])
+}
+
+model Executive {
+  id             String @id @default(ulid())
+  name           String
+  emplyeId       String
+  wokingLocation String
+  degicnation    String
+  branceName     String
+  brance         Brance @relation(fields: [branceName], references: [branceName])
 }
 
 enum Custtype {
