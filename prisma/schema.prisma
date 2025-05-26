@@ -14,58 +14,96 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Location {
-  id           String     @id @default(uuid())
-  locationName String     @unique
-  Customer     Customer[]
-  Brance       Brance?
+model Brance {
+  id                String              @id @default(uuid())
+  locationName      String              @unique
+  type              BranceType
+  branceCode        String              @unique
+  customer          Customer[]
+  emplyee           Emplyee[]
+  branceWithEmplyee BranceWithEmplyee[]
 }
 
 model Customer {
-  id           String   @id @default(uuid())
-  locationName String
-  location     Location @relation(fields: [locationName], references: [locationName])
-  name         String
-  phoneNumber  String
-  Farmtype     Custtype
-  totalShed    Int
-  totalSqure   Int
-  capacity     Int
-  nid          String
-  Address      Address?
-}
-
-model Brance {
-  id           String      @id @default(uuid())
-  locationName String      @unique
-  branceName   String      @unique
-  location     Location    @relation(fields: [locationName], references: [locationName])
-  Executive    Executive[]
+  id         String   @id @default(uuid())
+  brancCode  String
+  customerId String   @unique
+  Brance     Brance   @relation(fields: [brancCode], references: [branceCode])
+  name       String
+  Farmtype   Custtype
+  totalShed  Int
+  totalSqure Int
+  capacity   Int
+  nid        String
+  Address    Address?
 }
 
 model Address {
-  id         String   @id @default(uuid())
-  village    String
-  post       String
-  union      String?
-  thana      String?
-  upazila    String
-  city       String
-  customerId String   @unique
-  customer   Customer @relation(fields: [id], references: [id])
+  id          String    @id @default(uuid())
+  village     String
+  post        String
+  union       String?
+  thana       String?
+  upazila     String
+  phoneNumber String
+  city        String
+  emplyeId    String?   @unique
+  customerId  String?   @unique
+  emplyee     Emplyee?  @relation(fields: [emplyeId], references: [empleeId])
+  customer    Customer? @relation(fields: [customerId], references: [customerId])
 }
 
-model Executive {
-  id             String @id @default(ulid())
-  name           String
-  emplyeId       String
-  wokingLocation String
-  degicnation    String
-  branceName     String
-  brance         Brance @relation(fields: [branceName], references: [branceName])
+model BranceWithEmplyee {
+  id         String  @id @default(uuid())
+  emplyeeId  String
+  branceCode String
+  brance     Brance  @relation(fields: [branceCode], references: [branceCode])
+  emplyee    Emplyee @relation(fields: [emplyeeId], references: [empleeId])
+}
+
+model Emplyee {
+  id                String              @id @default(ulid())
+  empleeId          String              @unique
+  name              String
+  workingLocation   String
+  designation       String
+  branceId          String?
+  Brance            Brance?             @relation(fields: [branceId], references: [id])
+  BranceWithEmplyee BranceWithEmplyee[]
+  Address           Address?
+  Flock             Flock[]
+}
+
+model Flock {
+  id             String      @id @default(uuid())
+  flockStatus    FlockStatus @default(Pending)
+  startDate      String
+  endDate        String
+  executive      String
+  emplyee        Emplyee     @relation(fields: [executive], references: [empleeId])
+  docName        Int         @default(0)
+  docQuantity    Int         @default(0)
+  approvedBy     String
+  branceCode     String      @unique
+  totalFeedKg    Int         @default(0)
+  totalmedicine  Int         @default(0)
+  fcr            Int         @default(0)
+  totalsellBirds Int         @default(0)
 }
 
 enum Custtype {
   Broiler
   Color
+}
+
+enum BranceType {
+  HeadOffice
+  BranceOffice
+  BoguraOffice
+}
+
+enum FlockStatus {
+  Pending
+  Running
+  Close
 }
