@@ -14,28 +14,57 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Brance {
-  id                String              @id @default(uuid())
-  locationName      String              @unique
-  type              BranceType
-  branceCode        String              @unique
-  customer          Customer[]
-  emplyee           Emplyee[]
-  branceWithEmplyee BranceWithEmplyee[]
+// Refactored Prisma Schema for Poultry Management System
+
+enum FlockStatus {
+  PENDING
+  RUNNING
+  CLOSED
+}
+
+enum Custtype {
+  Broiler
+  Color
+}
+
+enum BranchType {
+  HeadOffice
+  BranchOffice
+  BoguraOffice
+}
+
+model Branch {
+  id              String           @id @default(uuid())
+  locationName    String           @unique
+  type            BranchType
+  branchCode      String           @unique
+  customers       Customer[]
+  employees       Employee[]
+  branchEmployees BranchEmployee[]
+  flocks          Flock[]
+
+  Feed             Feed[]
+  MedicineStock    MedicineStock[]
+  MedicinePurchess MedicinePurchess[]
+
+  @@map("branch")
 }
 
 model Customer {
-  id         String   @id @default(uuid())
-  brancCode  String
-  customerId String   @unique
-  Brance     Brance   @relation(fields: [brancCode], references: [branceCode])
-  name       String
-  Farmtype   Custtype
-  totalShed  Int
-  totalSqure Int
-  capacity   Int
-  nid        String
-  Address    Address?
+  id          String   @id @default(uuid())
+  branchCode  String
+  farmCode    String   @unique
+  branch      Branch   @relation(fields: [branchCode], references: [branchCode])
+  name        String
+  farmType    Custtype
+  totalShed   Int
+  totalSquare Int
+  capacity    Int
+  nid         String
+  address     Address?
+  flocks      Flock[]
+
+  @@map("customer")
 }
 
 model Address {
@@ -47,63 +76,137 @@ model Address {
   upazila     String
   phoneNumber String
   city        String
-  emplyeId    String?   @unique
-  customerId  String?   @unique
-  emplyee     Emplyee?  @relation(fields: [emplyeId], references: [empleeId])
-  customer    Customer? @relation(fields: [customerId], references: [customerId])
+  employeeId  String?   @unique
+  farmCode    String?   @unique
+  employee    Employee? @relation(fields: [employeeId], references: [employeeId])
+  customer    Customer? @relation(fields: [farmCode], references: [farmCode])
+
+  @@map("address")
 }
 
-model BranceWithEmplyee {
-  id         String  @id @default(uuid())
-  emplyeeId  String
-  branceCode String
-  brance     Brance  @relation(fields: [branceCode], references: [branceCode])
-  emplyee    Emplyee @relation(fields: [emplyeeId], references: [empleeId])
+model BranchEmployee {
+  id         String   @id @default(uuid())
+  employeeId String
+  branchCode String
+  branch     Branch   @relation(fields: [branchCode], references: [branchCode])
+  employee   Employee @relation(fields: [employeeId], references: [employeeId])
+
+  @@map("branchEmployee")
 }
 
-model Emplyee {
-  id                String              @id @default(ulid())
-  empleeId          String              @unique
-  name              String
-  workingLocation   String
-  designation       String
-  branceId          String?
-  Brance            Brance?             @relation(fields: [branceId], references: [id])
-  BranceWithEmplyee BranceWithEmplyee[]
-  Address           Address?
-  Flock             Flock[]
+model Employee {
+  id              String           @id @default(ulid())
+  employeeId      String           @unique
+  name            String
+  workingLocation String
+  designation     String
+  branchId        String?
+  branch          Branch?          @relation(fields: [branchId], references: [id])
+  branchEmployees BranchEmployee[]
+  address         Address?
+  flocks          Flock[]
+
+  @@map("employee")
 }
 
 model Flock {
   id             String      @id @default(uuid())
-  flockStatus    FlockStatus @default(Pending)
-  startDate      String
-  endDate        String
-  executive      String
-  emplyee        Emplyee     @relation(fields: [executive], references: [empleeId])
-  docName        Int         @default(0)
+  flockNumber    Int         @unique
+  flockStatus    FlockStatus @default(PENDING)
+  startDate      DateTime
+  endDate        DateTime?
+  executiveId    String
+  farmCode       String
+  docName        String
   docQuantity    Int         @default(0)
-  approvedBy     String
-  branceCode     String      @unique
+  approvedBy     String?
+  branchCode     String
   totalFeedKg    Int         @default(0)
-  totalmedicine  Int         @default(0)
-  fcr            Int         @default(0)
-  totalsellBirds Int         @default(0)
+  totalMedicine  Int         @default(0)
+  fcr            Float       @default(0)
+  totalSellBirds Int         @default(0)
+  mortality      Int         @default(0)
+
+  customer Customer @relation(fields: [farmCode], references: [farmCode])
+  employee Employee @relation(fields: [executiveId], references: [employeeId])
+  branch   Branch   @relation(fields: [branchCode], references: [branchCode])
+
+  @@map("flock")
 }
 
-enum Custtype {
-  Broiler
-  Color
+model FeedNameCategory {
+  id             String @id @default(uuid())
+  feedName       String @unique
+  feedCodeNumber Int    @unique
+  feeds          Feed[]
+
+  @@map("feedNameCategory")
 }
 
-enum BranceType {
-  HeadOffice
-  BranceOffice
-  BoguraOffice
+model Feed {
+  id               String           @id @default(uuid())
+  feedName         String
+  feedNameCategory FeedNameCategory @relation(fields: [feedName], references: [feedName])
+  stock            Int
+  branchCode       String?
+  branch           Branch?          @relation(fields: [branchCode], references: [branchCode])
+
+  @@map("feed")
 }
 
-enum FlockStatus {
-  Pending
-  Running
-  Close
+model MedicineNameCategory {
+  id          String @id @default(uuid())
+  genericName String @unique
+
+  medicineNameAdd  MedicineNameAdd[]
+  MedicineStock    MedicineStock[]
+  MedicinePurchess MedicinePurchess[]
+
+  @@map("medicineNameCategoy")
+}
+
+model MedicineNameAdd {
+  id               String               @id @default(uuid())
+  name             String               @unique
+  conpany          String
+  genericName      String
+  medicineCategory MedicineNameCategory @relation(fields: [genericName], references: [genericName])
+
+  MedicineStock    MedicineStock[]
+  MedicinePurchess MedicinePurchess[]
+
+  @@map("medicineNameAdd")
+}
+
+model MedicinePurchess {
+  id                 String               @id @default(uuid())
+  genericName        String
+  medicineCategory   MedicineNameCategory @relation(fields: [genericName], references: [genericName])
+  name               String
+  medicineNameAdd    MedicineNameAdd      @relation(fields: [name], references: [name])
+  purchaseUnitPrice  Int
+  sellUnitPrice      Int
+  purchaseQuantity   Int
+  mfgDate            String
+  expDate            String
+  bonusQuantity      Int?
+  purchaseTotalPrice Int
+  supplierInfo       String
+  branchCode         String
+  branch             Branch               @relation(fields: [branchCode], references: [branchCode])
+
+  @@map("medicinePurchess")
+}
+
+model MedicineStock {
+  id               String               @id @default(uuid())
+  genericName      String
+  medicineName     String
+  medicineNameAdd  MedicineNameAdd      @relation(fields: [medicineName], references: [name])
+  medicineCategory MedicineNameCategory @relation(fields: [genericName], references: [genericName])
+  branchCode       String
+  branch           Branch               @relation(fields: [branchCode], references: [branchCode])
+  totalStock       Int
+  price            Int
+   @@map("medicineStock")
 }
