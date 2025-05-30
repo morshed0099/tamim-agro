@@ -17082,18 +17082,19 @@ export namespace Prisma {
 
   export type MedicineStockWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    genericName?: string
+    medicineName?: string
+    genericName_medicineName?: MedicineStockGenericNameMedicineNameCompoundUniqueInput
     AND?: MedicineStockWhereInput | MedicineStockWhereInput[]
     OR?: MedicineStockWhereInput[]
     NOT?: MedicineStockWhereInput | MedicineStockWhereInput[]
-    genericName?: StringFilter<"MedicineStock"> | string
-    medicineName?: StringFilter<"MedicineStock"> | string
     branchCode?: StringFilter<"MedicineStock"> | string
     totalStock?: IntFilter<"MedicineStock"> | number
     price?: IntFilter<"MedicineStock"> | number
     medicineNameAdd?: XOR<MedicineNameAddScalarRelationFilter, MedicineNameAddWhereInput>
     medicineCategory?: XOR<MedicineNameCategoryScalarRelationFilter, MedicineNameCategoryWhereInput>
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
-  }, "id">
+  }, "id" | "genericName" | "medicineName" | "genericName_medicineName">
 
   export type MedicineStockOrderByWithAggregationInput = {
     id?: SortOrder
@@ -18743,6 +18744,11 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type MedicineStockGenericNameMedicineNameCompoundUniqueInput = {
+    genericName: string
+    medicineName: string
   }
 
   export type MedicineStockCountOrderByAggregateInput = {

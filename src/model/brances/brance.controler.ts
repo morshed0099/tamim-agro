@@ -5,10 +5,9 @@ import { branchService } from "./brance.service";
 const createBranch = catchAsync(async (req, res) => {
   const branceDate = req.body;
   const result = await branchService.createBranch(branceDate);
-
-  res.send(httpStatus.CREATED).json({
+  res.status(httpStatus.CREATED).json({
     success: true,
-    message: "Travel buddy request sent successfully ",
+    message: "Branch Created Successfully",
     data: result,
   });
 });

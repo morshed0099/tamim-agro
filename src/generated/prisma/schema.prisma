@@ -200,8 +200,8 @@ model MedicinePurchess {
 
 model MedicineStock {
   id               String               @id @default(uuid())
-  genericName      String
-  medicineName     String
+  genericName      String               @unique
+  medicineName     String               @unique
   medicineNameAdd  MedicineNameAdd      @relation(fields: [medicineName], references: [name])
   medicineCategory MedicineNameCategory @relation(fields: [genericName], references: [genericName])
   branchCode       String
@@ -209,5 +209,6 @@ model MedicineStock {
   totalStock       Int
   price            Int
 
+  @@unique([genericName, medicineName])
   @@map("medicineStock")
 }
