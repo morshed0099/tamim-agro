@@ -46,23 +46,25 @@ model Branch {
   Feed             Feed[]
   MedicineStock    MedicineStock[]
   MedicinePurchess MedicinePurchess[]
+  SellMedicine     SellMedicine[]
 
   @@map("branch")
 }
 
 model Customer {
-  id          String   @id @default(uuid())
-  branchCode  String
-  farmCode    String   @unique
-  branch      Branch   @relation(fields: [branchCode], references: [branchCode])
-  name        String
-  farmType    Custtype
-  totalShed   Int
-  totalSquare Int
-  capacity    Int
-  nid         String
-  address     Address?
-  flocks      Flock[]
+  id           String         @id @default(uuid())
+  branchCode   String
+  farmCode     String         @unique
+  branch       Branch         @relation(fields: [branchCode], references: [branchCode])
+  name         String
+  farmType     Custtype
+  totalShed    Int
+  totalSquare  Int
+  capacity     Int
+  nid          String
+  address      Address?
+  flocks       Flock[]
+  SellMedicine SellMedicine[]
 
   @@map("customer")
 }
@@ -127,9 +129,10 @@ model Flock {
   totalSellBirds Int         @default(0)
   mortality      Int         @default(0)
 
-  customer Customer @relation(fields: [farmCode], references: [farmCode])
-  employee Employee @relation(fields: [executiveId], references: [employeeId])
-  branch   Branch   @relation(fields: [branchCode], references: [branchCode])
+  customer     Customer       @relation(fields: [farmCode], references: [farmCode])
+  employee     Employee       @relation(fields: [executiveId], references: [employeeId])
+  branch       Branch         @relation(fields: [branchCode], references: [branchCode])
+  SellMedicine SellMedicine[]
 
   @@map("flock")
 }
@@ -214,12 +217,16 @@ model MedicineStock {
 }
 
 model SellMedicine {
-  id           String @id @default(uuid())
+  id           String   @id @default(uuid())
   farmcode     String
   flockNumer   Int
   genericName  String
   medicineName String
   sellQuantity Int
   sellPrice    Int
-  
+  sellDate     String
+  branchCode   String
+  flock        Flock    @relation(fields: [flockNumer], references: [flockNumber], onDelete: Cascade)
+  branch       Branch   @relation(fields: [branchCode], references: [branchCode], onDelete: Cascade)
+  customer     Customer @relation(fields: [farmcode], references: [farmCode], onDelete: Cascade)
 }
