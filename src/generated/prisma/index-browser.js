@@ -127,7 +127,7 @@ exports.Prisma.BranchScalarFieldEnum = {
   branchCode: 'branchCode'
 };
 
-exports.Prisma.CustomerScalarFieldEnum = {
+exports.Prisma.FarmerScalarFieldEnum = {
   id: 'id',
   branchCode: 'branchCode',
   farmCode: 'farmCode',
@@ -136,6 +136,7 @@ exports.Prisma.CustomerScalarFieldEnum = {
   totalShed: 'totalShed',
   totalSquare: 'totalSquare',
   capacity: 'capacity',
+  addressId: 'addressId',
   nid: 'nid'
 };
 
@@ -147,9 +148,7 @@ exports.Prisma.AddressScalarFieldEnum = {
   thana: 'thana',
   upazila: 'upazila',
   phoneNumber: 'phoneNumber',
-  city: 'city',
-  employeeId: 'employeeId',
-  farmCode: 'farmCode'
+  city: 'city'
 };
 
 exports.Prisma.BranchEmployeeScalarFieldEnum = {
@@ -164,7 +163,8 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   name: 'name',
   workingLocation: 'workingLocation',
   designation: 'designation',
-  branchId: 'branchId'
+  branchId: 'branchId',
+  addressId: 'addressId'
 };
 
 exports.Prisma.FlockScalarFieldEnum = {
@@ -174,7 +174,7 @@ exports.Prisma.FlockScalarFieldEnum = {
   startDate: 'startDate',
   endDate: 'endDate',
   executiveId: 'executiveId',
-  farmCode: 'farmCode',
+  farmId: 'farmId',
   docName: 'docName',
   docQuantity: 'docQuantity',
   approvedBy: 'approvedBy',
@@ -235,6 +235,31 @@ exports.Prisma.MedicineStockScalarFieldEnum = {
   price: 'price'
 };
 
+exports.Prisma.SellMedicineScalarFieldEnum = {
+  id: 'id',
+  farmId: 'farmId',
+  flockNumer: 'flockNumer',
+  genericName: 'genericName',
+  medicineName: 'medicineName',
+  sellQuantity: 'sellQuantity',
+  sellPrice: 'sellPrice',
+  Delivery: 'Delivery',
+  sellDate: 'sellDate',
+  branchCode: 'branchCode'
+};
+
+exports.Prisma.MedicineTransferScalarFieldEnum = {
+  id: 'id',
+  sellId: 'sellId',
+  flockId: 'flockId',
+  toFarmcode: 'toFarmcode',
+  fromBranch: 'fromBranch',
+  toBranch: 'toBranch',
+  medicineName: 'medicineName',
+  genericName: 'genericName',
+  branchCode: 'branchCode'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -266,9 +291,15 @@ exports.FlockStatus = exports.$Enums.FlockStatus = {
   CLOSED: 'CLOSED'
 };
 
+exports.DeliveryStatus = exports.$Enums.DeliveryStatus = {
+  RETURN: 'RETURN',
+  TRANSFER: 'TRANSFER',
+  DELIVER: 'DELIVER'
+};
+
 exports.Prisma.ModelName = {
   Branch: 'Branch',
-  Customer: 'Customer',
+  Farmer: 'Farmer',
   Address: 'Address',
   BranchEmployee: 'BranchEmployee',
   Employee: 'Employee',
@@ -278,7 +309,9 @@ exports.Prisma.ModelName = {
   MedicineNameCategory: 'MedicineNameCategory',
   MedicineNameAdd: 'MedicineNameAdd',
   MedicinePurchess: 'MedicinePurchess',
-  MedicineStock: 'MedicineStock'
+  MedicineStock: 'MedicineStock',
+  SellMedicine: 'SellMedicine',
+  MedicineTransfer: 'MedicineTransfer'
 };
 
 /**

@@ -19,10 +19,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type Branch = $Result.DefaultSelection<Prisma.$BranchPayload>
 /**
- * Model Customer
+ * Model Farmer
  * 
  */
-export type Customer = $Result.DefaultSelection<Prisma.$CustomerPayload>
+export type Farmer = $Result.DefaultSelection<Prisma.$FarmerPayload>
 /**
  * Model Address
  * 
@@ -73,6 +73,16 @@ export type MedicinePurchess = $Result.DefaultSelection<Prisma.$MedicinePurchess
  * 
  */
 export type MedicineStock = $Result.DefaultSelection<Prisma.$MedicineStockPayload>
+/**
+ * Model SellMedicine
+ * 
+ */
+export type SellMedicine = $Result.DefaultSelection<Prisma.$SellMedicinePayload>
+/**
+ * Model MedicineTransfer
+ * 
+ */
+export type MedicineTransfer = $Result.DefaultSelection<Prisma.$MedicineTransferPayload>
 
 /**
  * Enums
@@ -103,6 +113,15 @@ export const BranchType: {
 
 export type BranchType = (typeof BranchType)[keyof typeof BranchType]
 
+
+export const DeliveryStatus: {
+  RETURN: 'RETURN',
+  TRANSFER: 'TRANSFER',
+  DELIVER: 'DELIVER'
+};
+
+export type DeliveryStatus = (typeof DeliveryStatus)[keyof typeof DeliveryStatus]
+
 }
 
 export type FlockStatus = $Enums.FlockStatus
@@ -116,6 +135,10 @@ export const Custtype: typeof $Enums.Custtype
 export type BranchType = $Enums.BranchType
 
 export const BranchType: typeof $Enums.BranchType
+
+export type DeliveryStatus = $Enums.DeliveryStatus
+
+export const DeliveryStatus: typeof $Enums.DeliveryStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -253,14 +276,14 @@ export class PrismaClient<
   get branch(): Prisma.BranchDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.customer`: Exposes CRUD operations for the **Customer** model.
+   * `prisma.farmer`: Exposes CRUD operations for the **Farmer** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Customers
-    * const customers = await prisma.customer.findMany()
+    * // Fetch zero or more Farmers
+    * const farmers = await prisma.farmer.findMany()
     * ```
     */
-  get customer(): Prisma.CustomerDelegate<ExtArgs, ClientOptions>;
+  get farmer(): Prisma.FarmerDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.address`: Exposes CRUD operations for the **Address** model.
@@ -361,6 +384,26 @@ export class PrismaClient<
     * ```
     */
   get medicineStock(): Prisma.MedicineStockDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sellMedicine`: Exposes CRUD operations for the **SellMedicine** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SellMedicines
+    * const sellMedicines = await prisma.sellMedicine.findMany()
+    * ```
+    */
+  get sellMedicine(): Prisma.SellMedicineDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.medicineTransfer`: Exposes CRUD operations for the **MedicineTransfer** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MedicineTransfers
+    * const medicineTransfers = await prisma.medicineTransfer.findMany()
+    * ```
+    */
+  get medicineTransfer(): Prisma.MedicineTransferDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -802,7 +845,7 @@ export namespace Prisma {
 
   export const ModelName: {
     Branch: 'Branch',
-    Customer: 'Customer',
+    Farmer: 'Farmer',
     Address: 'Address',
     BranchEmployee: 'BranchEmployee',
     Employee: 'Employee',
@@ -812,7 +855,9 @@ export namespace Prisma {
     MedicineNameCategory: 'MedicineNameCategory',
     MedicineNameAdd: 'MedicineNameAdd',
     MedicinePurchess: 'MedicinePurchess',
-    MedicineStock: 'MedicineStock'
+    MedicineStock: 'MedicineStock',
+    SellMedicine: 'SellMedicine',
+    MedicineTransfer: 'MedicineTransfer'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -831,7 +876,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "branch" | "customer" | "address" | "branchEmployee" | "employee" | "flock" | "feedNameCategory" | "feed" | "medicineNameCategory" | "medicineNameAdd" | "medicinePurchess" | "medicineStock"
+      modelProps: "branch" | "farmer" | "address" | "branchEmployee" | "employee" | "flock" | "feedNameCategory" | "feed" | "medicineNameCategory" | "medicineNameAdd" | "medicinePurchess" | "medicineStock" | "sellMedicine" | "medicineTransfer"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -909,77 +954,77 @@ export namespace Prisma {
           }
         }
       }
-      Customer: {
-        payload: Prisma.$CustomerPayload<ExtArgs>
-        fields: Prisma.CustomerFieldRefs
+      Farmer: {
+        payload: Prisma.$FarmerPayload<ExtArgs>
+        fields: Prisma.FarmerFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.CustomerFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CustomerPayload> | null
+            args: Prisma.FarmerFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.CustomerFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CustomerPayload>
+            args: Prisma.FarmerFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>
           }
           findFirst: {
-            args: Prisma.CustomerFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CustomerPayload> | null
+            args: Prisma.FarmerFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.CustomerFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CustomerPayload>
+            args: Prisma.FarmerFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>
           }
           findMany: {
-            args: Prisma.CustomerFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CustomerPayload>[]
+            args: Prisma.FarmerFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>[]
           }
           create: {
-            args: Prisma.CustomerCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CustomerPayload>
+            args: Prisma.FarmerCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>
           }
           createMany: {
-            args: Prisma.CustomerCreateManyArgs<ExtArgs>
+            args: Prisma.FarmerCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.CustomerCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CustomerPayload>[]
+            args: Prisma.FarmerCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>[]
           }
           delete: {
-            args: Prisma.CustomerDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CustomerPayload>
+            args: Prisma.FarmerDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>
           }
           update: {
-            args: Prisma.CustomerUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CustomerPayload>
+            args: Prisma.FarmerUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>
           }
           deleteMany: {
-            args: Prisma.CustomerDeleteManyArgs<ExtArgs>
+            args: Prisma.FarmerDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.CustomerUpdateManyArgs<ExtArgs>
+            args: Prisma.FarmerUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.CustomerUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CustomerPayload>[]
+            args: Prisma.FarmerUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>[]
           }
           upsert: {
-            args: Prisma.CustomerUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CustomerPayload>
+            args: Prisma.FarmerUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>
           }
           aggregate: {
-            args: Prisma.CustomerAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateCustomer>
+            args: Prisma.FarmerAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFarmer>
           }
           groupBy: {
-            args: Prisma.CustomerGroupByArgs<ExtArgs>
-            result: $Utils.Optional<CustomerGroupByOutputType>[]
+            args: Prisma.FarmerGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FarmerGroupByOutputType>[]
           }
           count: {
-            args: Prisma.CustomerCountArgs<ExtArgs>
-            result: $Utils.Optional<CustomerCountAggregateOutputType> | number
+            args: Prisma.FarmerCountArgs<ExtArgs>
+            result: $Utils.Optional<FarmerCountAggregateOutputType> | number
           }
         }
       }
@@ -1723,6 +1768,154 @@ export namespace Prisma {
           }
         }
       }
+      SellMedicine: {
+        payload: Prisma.$SellMedicinePayload<ExtArgs>
+        fields: Prisma.SellMedicineFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SellMedicineFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SellMedicinePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SellMedicineFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SellMedicinePayload>
+          }
+          findFirst: {
+            args: Prisma.SellMedicineFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SellMedicinePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SellMedicineFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SellMedicinePayload>
+          }
+          findMany: {
+            args: Prisma.SellMedicineFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SellMedicinePayload>[]
+          }
+          create: {
+            args: Prisma.SellMedicineCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SellMedicinePayload>
+          }
+          createMany: {
+            args: Prisma.SellMedicineCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SellMedicineCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SellMedicinePayload>[]
+          }
+          delete: {
+            args: Prisma.SellMedicineDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SellMedicinePayload>
+          }
+          update: {
+            args: Prisma.SellMedicineUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SellMedicinePayload>
+          }
+          deleteMany: {
+            args: Prisma.SellMedicineDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SellMedicineUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SellMedicineUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SellMedicinePayload>[]
+          }
+          upsert: {
+            args: Prisma.SellMedicineUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SellMedicinePayload>
+          }
+          aggregate: {
+            args: Prisma.SellMedicineAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSellMedicine>
+          }
+          groupBy: {
+            args: Prisma.SellMedicineGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SellMedicineGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SellMedicineCountArgs<ExtArgs>
+            result: $Utils.Optional<SellMedicineCountAggregateOutputType> | number
+          }
+        }
+      }
+      MedicineTransfer: {
+        payload: Prisma.$MedicineTransferPayload<ExtArgs>
+        fields: Prisma.MedicineTransferFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MedicineTransferFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicineTransferPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MedicineTransferFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicineTransferPayload>
+          }
+          findFirst: {
+            args: Prisma.MedicineTransferFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicineTransferPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MedicineTransferFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicineTransferPayload>
+          }
+          findMany: {
+            args: Prisma.MedicineTransferFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicineTransferPayload>[]
+          }
+          create: {
+            args: Prisma.MedicineTransferCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicineTransferPayload>
+          }
+          createMany: {
+            args: Prisma.MedicineTransferCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MedicineTransferCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicineTransferPayload>[]
+          }
+          delete: {
+            args: Prisma.MedicineTransferDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicineTransferPayload>
+          }
+          update: {
+            args: Prisma.MedicineTransferUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicineTransferPayload>
+          }
+          deleteMany: {
+            args: Prisma.MedicineTransferDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MedicineTransferUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MedicineTransferUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicineTransferPayload>[]
+          }
+          upsert: {
+            args: Prisma.MedicineTransferUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicineTransferPayload>
+          }
+          aggregate: {
+            args: Prisma.MedicineTransferAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMedicineTransfer>
+          }
+          groupBy: {
+            args: Prisma.MedicineTransferGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MedicineTransferGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MedicineTransferCountArgs<ExtArgs>
+            result: $Utils.Optional<MedicineTransferCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1808,7 +2001,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     branch?: BranchOmit
-    customer?: CustomerOmit
+    farmer?: FarmerOmit
     address?: AddressOmit
     branchEmployee?: BranchEmployeeOmit
     employee?: EmployeeOmit
@@ -1819,6 +2012,8 @@ export namespace Prisma {
     medicineNameAdd?: MedicineNameAddOmit
     medicinePurchess?: MedicinePurchessOmit
     medicineStock?: MedicineStockOmit
+    sellMedicine?: SellMedicineOmit
+    medicineTransfer?: MedicineTransferOmit
   }
 
   /* Types for Logging */
@@ -1913,23 +2108,27 @@ export namespace Prisma {
    */
 
   export type BranchCountOutputType = {
-    customers: number
+    farmer: number
     employees: number
     branchEmployees: number
     flocks: number
     Feed: number
     MedicineStock: number
     MedicinePurchess: number
+    SellMedicine: number
+    MedicineTransfer: number
   }
 
   export type BranchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    customers?: boolean | BranchCountOutputTypeCountCustomersArgs
+    farmer?: boolean | BranchCountOutputTypeCountFarmerArgs
     employees?: boolean | BranchCountOutputTypeCountEmployeesArgs
     branchEmployees?: boolean | BranchCountOutputTypeCountBranchEmployeesArgs
     flocks?: boolean | BranchCountOutputTypeCountFlocksArgs
     Feed?: boolean | BranchCountOutputTypeCountFeedArgs
     MedicineStock?: boolean | BranchCountOutputTypeCountMedicineStockArgs
     MedicinePurchess?: boolean | BranchCountOutputTypeCountMedicinePurchessArgs
+    SellMedicine?: boolean | BranchCountOutputTypeCountSellMedicineArgs
+    MedicineTransfer?: boolean | BranchCountOutputTypeCountMedicineTransferArgs
   }
 
   // Custom InputTypes
@@ -1946,8 +2145,8 @@ export namespace Prisma {
   /**
    * BranchCountOutputType without action
    */
-  export type BranchCountOutputTypeCountCustomersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CustomerWhereInput
+  export type BranchCountOutputTypeCountFarmerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FarmerWhereInput
   }
 
   /**
@@ -1992,35 +2191,58 @@ export namespace Prisma {
     where?: MedicinePurchessWhereInput
   }
 
-
   /**
-   * Count Type CustomerCountOutputType
+   * BranchCountOutputType without action
    */
-
-  export type CustomerCountOutputType = {
-    flocks: number
+  export type BranchCountOutputTypeCountSellMedicineArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SellMedicineWhereInput
   }
 
-  export type CustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    flocks?: boolean | CustomerCountOutputTypeCountFlocksArgs
+  /**
+   * BranchCountOutputType without action
+   */
+  export type BranchCountOutputTypeCountMedicineTransferArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MedicineTransferWhereInput
+  }
+
+
+  /**
+   * Count Type FarmerCountOutputType
+   */
+
+  export type FarmerCountOutputType = {
+    flocks: number
+    SellMedicine: number
+  }
+
+  export type FarmerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flocks?: boolean | FarmerCountOutputTypeCountFlocksArgs
+    SellMedicine?: boolean | FarmerCountOutputTypeCountSellMedicineArgs
   }
 
   // Custom InputTypes
   /**
-   * CustomerCountOutputType without action
+   * FarmerCountOutputType without action
    */
-  export type CustomerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CustomerCountOutputType
+     * Select specific fields to fetch from the FarmerCountOutputType
      */
-    select?: CustomerCountOutputTypeSelect<ExtArgs> | null
+    select?: FarmerCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * CustomerCountOutputType without action
+   * FarmerCountOutputType without action
    */
-  export type CustomerCountOutputTypeCountFlocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerCountOutputTypeCountFlocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FlockWhereInput
+  }
+
+  /**
+   * FarmerCountOutputType without action
+   */
+  export type FarmerCountOutputTypeCountSellMedicineArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SellMedicineWhereInput
   }
 
 
@@ -2061,6 +2283,46 @@ export namespace Prisma {
    */
   export type EmployeeCountOutputTypeCountFlocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FlockWhereInput
+  }
+
+
+  /**
+   * Count Type FlockCountOutputType
+   */
+
+  export type FlockCountOutputType = {
+    SellMedicine: number
+    MedicineTransfer: number
+  }
+
+  export type FlockCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    SellMedicine?: boolean | FlockCountOutputTypeCountSellMedicineArgs
+    MedicineTransfer?: boolean | FlockCountOutputTypeCountMedicineTransferArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FlockCountOutputType without action
+   */
+  export type FlockCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockCountOutputType
+     */
+    select?: FlockCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FlockCountOutputType without action
+   */
+  export type FlockCountOutputTypeCountSellMedicineArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SellMedicineWhereInput
+  }
+
+  /**
+   * FlockCountOutputType without action
+   */
+  export type FlockCountOutputTypeCountMedicineTransferArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MedicineTransferWhereInput
   }
 
 
@@ -2181,6 +2443,37 @@ export namespace Prisma {
    */
   export type MedicineNameAddCountOutputTypeCountMedicinePurchessArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MedicinePurchessWhereInput
+  }
+
+
+  /**
+   * Count Type SellMedicineCountOutputType
+   */
+
+  export type SellMedicineCountOutputType = {
+    MedicineTransfer: number
+  }
+
+  export type SellMedicineCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MedicineTransfer?: boolean | SellMedicineCountOutputTypeCountMedicineTransferArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SellMedicineCountOutputType without action
+   */
+  export type SellMedicineCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicineCountOutputType
+     */
+    select?: SellMedicineCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SellMedicineCountOutputType without action
+   */
+  export type SellMedicineCountOutputTypeCountMedicineTransferArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MedicineTransferWhereInput
   }
 
 
@@ -2344,13 +2637,15 @@ export namespace Prisma {
     locationName?: boolean
     type?: boolean
     branchCode?: boolean
-    customers?: boolean | Branch$customersArgs<ExtArgs>
+    farmer?: boolean | Branch$farmerArgs<ExtArgs>
     employees?: boolean | Branch$employeesArgs<ExtArgs>
     branchEmployees?: boolean | Branch$branchEmployeesArgs<ExtArgs>
     flocks?: boolean | Branch$flocksArgs<ExtArgs>
     Feed?: boolean | Branch$FeedArgs<ExtArgs>
     MedicineStock?: boolean | Branch$MedicineStockArgs<ExtArgs>
     MedicinePurchess?: boolean | Branch$MedicinePurchessArgs<ExtArgs>
+    SellMedicine?: boolean | Branch$SellMedicineArgs<ExtArgs>
+    MedicineTransfer?: boolean | Branch$MedicineTransferArgs<ExtArgs>
     _count?: boolean | BranchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["branch"]>
 
@@ -2377,13 +2672,15 @@ export namespace Prisma {
 
   export type BranchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locationName" | "type" | "branchCode", ExtArgs["result"]["branch"]>
   export type BranchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    customers?: boolean | Branch$customersArgs<ExtArgs>
+    farmer?: boolean | Branch$farmerArgs<ExtArgs>
     employees?: boolean | Branch$employeesArgs<ExtArgs>
     branchEmployees?: boolean | Branch$branchEmployeesArgs<ExtArgs>
     flocks?: boolean | Branch$flocksArgs<ExtArgs>
     Feed?: boolean | Branch$FeedArgs<ExtArgs>
     MedicineStock?: boolean | Branch$MedicineStockArgs<ExtArgs>
     MedicinePurchess?: boolean | Branch$MedicinePurchessArgs<ExtArgs>
+    SellMedicine?: boolean | Branch$SellMedicineArgs<ExtArgs>
+    MedicineTransfer?: boolean | Branch$MedicineTransferArgs<ExtArgs>
     _count?: boolean | BranchCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BranchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2392,13 +2689,15 @@ export namespace Prisma {
   export type $BranchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Branch"
     objects: {
-      customers: Prisma.$CustomerPayload<ExtArgs>[]
+      farmer: Prisma.$FarmerPayload<ExtArgs>[]
       employees: Prisma.$EmployeePayload<ExtArgs>[]
       branchEmployees: Prisma.$BranchEmployeePayload<ExtArgs>[]
       flocks: Prisma.$FlockPayload<ExtArgs>[]
       Feed: Prisma.$FeedPayload<ExtArgs>[]
       MedicineStock: Prisma.$MedicineStockPayload<ExtArgs>[]
       MedicinePurchess: Prisma.$MedicinePurchessPayload<ExtArgs>[]
+      SellMedicine: Prisma.$SellMedicinePayload<ExtArgs>[]
+      MedicineTransfer: Prisma.$MedicineTransferPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2799,13 +3098,15 @@ export namespace Prisma {
    */
   export interface Prisma__BranchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    customers<T extends Branch$customersArgs<ExtArgs> = {}>(args?: Subset<T, Branch$customersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    farmer<T extends Branch$farmerArgs<ExtArgs> = {}>(args?: Subset<T, Branch$farmerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     employees<T extends Branch$employeesArgs<ExtArgs> = {}>(args?: Subset<T, Branch$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     branchEmployees<T extends Branch$branchEmployeesArgs<ExtArgs> = {}>(args?: Subset<T, Branch$branchEmployeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BranchEmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     flocks<T extends Branch$flocksArgs<ExtArgs> = {}>(args?: Subset<T, Branch$flocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Feed<T extends Branch$FeedArgs<ExtArgs> = {}>(args?: Subset<T, Branch$FeedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     MedicineStock<T extends Branch$MedicineStockArgs<ExtArgs> = {}>(args?: Subset<T, Branch$MedicineStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     MedicinePurchess<T extends Branch$MedicinePurchessArgs<ExtArgs> = {}>(args?: Subset<T, Branch$MedicinePurchessArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicinePurchessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    SellMedicine<T extends Branch$SellMedicineArgs<ExtArgs> = {}>(args?: Subset<T, Branch$SellMedicineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    MedicineTransfer<T extends Branch$MedicineTransferArgs<ExtArgs> = {}>(args?: Subset<T, Branch$MedicineTransferArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3227,27 +3528,27 @@ export namespace Prisma {
   }
 
   /**
-   * Branch.customers
+   * Branch.farmer
    */
-  export type Branch$customersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Branch$farmerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Customer
+     * Select specific fields to fetch from the Farmer
      */
-    select?: CustomerSelect<ExtArgs> | null
+    select?: FarmerSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Customer
+     * Omit specific fields from the Farmer
      */
-    omit?: CustomerOmit<ExtArgs> | null
+    omit?: FarmerOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CustomerInclude<ExtArgs> | null
-    where?: CustomerWhereInput
-    orderBy?: CustomerOrderByWithRelationInput | CustomerOrderByWithRelationInput[]
-    cursor?: CustomerWhereUniqueInput
+    include?: FarmerInclude<ExtArgs> | null
+    where?: FarmerWhereInput
+    orderBy?: FarmerOrderByWithRelationInput | FarmerOrderByWithRelationInput[]
+    cursor?: FarmerWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: CustomerScalarFieldEnum | CustomerScalarFieldEnum[]
+    distinct?: FarmerScalarFieldEnum | FarmerScalarFieldEnum[]
   }
 
   /**
@@ -3395,6 +3696,54 @@ export namespace Prisma {
   }
 
   /**
+   * Branch.SellMedicine
+   */
+  export type Branch$SellMedicineArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineInclude<ExtArgs> | null
+    where?: SellMedicineWhereInput
+    orderBy?: SellMedicineOrderByWithRelationInput | SellMedicineOrderByWithRelationInput[]
+    cursor?: SellMedicineWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SellMedicineScalarFieldEnum | SellMedicineScalarFieldEnum[]
+  }
+
+  /**
+   * Branch.MedicineTransfer
+   */
+  export type Branch$MedicineTransferArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferInclude<ExtArgs> | null
+    where?: MedicineTransferWhereInput
+    orderBy?: MedicineTransferOrderByWithRelationInput | MedicineTransferOrderByWithRelationInput[]
+    cursor?: MedicineTransferWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MedicineTransferScalarFieldEnum | MedicineTransferScalarFieldEnum[]
+  }
+
+  /**
    * Branch without action
    */
   export type BranchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3414,54 +3763,58 @@ export namespace Prisma {
 
 
   /**
-   * Model Customer
+   * Model Farmer
    */
 
-  export type AggregateCustomer = {
-    _count: CustomerCountAggregateOutputType | null
-    _avg: CustomerAvgAggregateOutputType | null
-    _sum: CustomerSumAggregateOutputType | null
-    _min: CustomerMinAggregateOutputType | null
-    _max: CustomerMaxAggregateOutputType | null
+  export type AggregateFarmer = {
+    _count: FarmerCountAggregateOutputType | null
+    _avg: FarmerAvgAggregateOutputType | null
+    _sum: FarmerSumAggregateOutputType | null
+    _min: FarmerMinAggregateOutputType | null
+    _max: FarmerMaxAggregateOutputType | null
   }
 
-  export type CustomerAvgAggregateOutputType = {
+  export type FarmerAvgAggregateOutputType = {
+    farmCode: number | null
     totalShed: number | null
     totalSquare: number | null
     capacity: number | null
   }
 
-  export type CustomerSumAggregateOutputType = {
+  export type FarmerSumAggregateOutputType = {
+    farmCode: number | null
     totalShed: number | null
     totalSquare: number | null
     capacity: number | null
   }
 
-  export type CustomerMinAggregateOutputType = {
+  export type FarmerMinAggregateOutputType = {
     id: string | null
     branchCode: string | null
-    farmCode: string | null
+    farmCode: number | null
     name: string | null
     farmType: $Enums.Custtype | null
     totalShed: number | null
     totalSquare: number | null
     capacity: number | null
+    addressId: string | null
     nid: string | null
   }
 
-  export type CustomerMaxAggregateOutputType = {
+  export type FarmerMaxAggregateOutputType = {
     id: string | null
     branchCode: string | null
-    farmCode: string | null
+    farmCode: number | null
     name: string | null
     farmType: $Enums.Custtype | null
     totalShed: number | null
     totalSquare: number | null
     capacity: number | null
+    addressId: string | null
     nid: string | null
   }
 
-  export type CustomerCountAggregateOutputType = {
+  export type FarmerCountAggregateOutputType = {
     id: number
     branchCode: number
     farmCode: number
@@ -3470,24 +3823,27 @@ export namespace Prisma {
     totalShed: number
     totalSquare: number
     capacity: number
+    addressId: number
     nid: number
     _all: number
   }
 
 
-  export type CustomerAvgAggregateInputType = {
+  export type FarmerAvgAggregateInputType = {
+    farmCode?: true
     totalShed?: true
     totalSquare?: true
     capacity?: true
   }
 
-  export type CustomerSumAggregateInputType = {
+  export type FarmerSumAggregateInputType = {
+    farmCode?: true
     totalShed?: true
     totalSquare?: true
     capacity?: true
   }
 
-  export type CustomerMinAggregateInputType = {
+  export type FarmerMinAggregateInputType = {
     id?: true
     branchCode?: true
     farmCode?: true
@@ -3496,10 +3852,11 @@ export namespace Prisma {
     totalShed?: true
     totalSquare?: true
     capacity?: true
+    addressId?: true
     nid?: true
   }
 
-  export type CustomerMaxAggregateInputType = {
+  export type FarmerMaxAggregateInputType = {
     id?: true
     branchCode?: true
     farmCode?: true
@@ -3508,10 +3865,11 @@ export namespace Prisma {
     totalShed?: true
     totalSquare?: true
     capacity?: true
+    addressId?: true
     nid?: true
   }
 
-  export type CustomerCountAggregateInputType = {
+  export type FarmerCountAggregateInputType = {
     id?: true
     branchCode?: true
     farmCode?: true
@@ -3520,128 +3878,130 @@ export namespace Prisma {
     totalShed?: true
     totalSquare?: true
     capacity?: true
+    addressId?: true
     nid?: true
     _all?: true
   }
 
-  export type CustomerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Customer to aggregate.
+     * Filter which Farmer to aggregate.
      */
-    where?: CustomerWhereInput
+    where?: FarmerWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Customers to fetch.
+     * Determine the order of Farmers to fetch.
      */
-    orderBy?: CustomerOrderByWithRelationInput | CustomerOrderByWithRelationInput[]
+    orderBy?: FarmerOrderByWithRelationInput | FarmerOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: CustomerWhereUniqueInput
+    cursor?: FarmerWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Customers from the position of the cursor.
+     * Take `±n` Farmers from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Customers.
+     * Skip the first `n` Farmers.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Customers
+     * Count returned Farmers
     **/
-    _count?: true | CustomerCountAggregateInputType
+    _count?: true | FarmerCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: CustomerAvgAggregateInputType
+    _avg?: FarmerAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: CustomerSumAggregateInputType
+    _sum?: FarmerSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: CustomerMinAggregateInputType
+    _min?: FarmerMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: CustomerMaxAggregateInputType
+    _max?: FarmerMaxAggregateInputType
   }
 
-  export type GetCustomerAggregateType<T extends CustomerAggregateArgs> = {
-        [P in keyof T & keyof AggregateCustomer]: P extends '_count' | 'count'
+  export type GetFarmerAggregateType<T extends FarmerAggregateArgs> = {
+        [P in keyof T & keyof AggregateFarmer]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateCustomer[P]>
-      : GetScalarType<T[P], AggregateCustomer[P]>
+        : GetScalarType<T[P], AggregateFarmer[P]>
+      : GetScalarType<T[P], AggregateFarmer[P]>
   }
 
 
 
 
-  export type CustomerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CustomerWhereInput
-    orderBy?: CustomerOrderByWithAggregationInput | CustomerOrderByWithAggregationInput[]
-    by: CustomerScalarFieldEnum[] | CustomerScalarFieldEnum
-    having?: CustomerScalarWhereWithAggregatesInput
+  export type FarmerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FarmerWhereInput
+    orderBy?: FarmerOrderByWithAggregationInput | FarmerOrderByWithAggregationInput[]
+    by: FarmerScalarFieldEnum[] | FarmerScalarFieldEnum
+    having?: FarmerScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: CustomerCountAggregateInputType | true
-    _avg?: CustomerAvgAggregateInputType
-    _sum?: CustomerSumAggregateInputType
-    _min?: CustomerMinAggregateInputType
-    _max?: CustomerMaxAggregateInputType
+    _count?: FarmerCountAggregateInputType | true
+    _avg?: FarmerAvgAggregateInputType
+    _sum?: FarmerSumAggregateInputType
+    _min?: FarmerMinAggregateInputType
+    _max?: FarmerMaxAggregateInputType
   }
 
-  export type CustomerGroupByOutputType = {
+  export type FarmerGroupByOutputType = {
     id: string
-    branchCode: string
-    farmCode: string
+    branchCode: string | null
+    farmCode: number
     name: string
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
     capacity: number
+    addressId: string | null
     nid: string
-    _count: CustomerCountAggregateOutputType | null
-    _avg: CustomerAvgAggregateOutputType | null
-    _sum: CustomerSumAggregateOutputType | null
-    _min: CustomerMinAggregateOutputType | null
-    _max: CustomerMaxAggregateOutputType | null
+    _count: FarmerCountAggregateOutputType | null
+    _avg: FarmerAvgAggregateOutputType | null
+    _sum: FarmerSumAggregateOutputType | null
+    _min: FarmerMinAggregateOutputType | null
+    _max: FarmerMaxAggregateOutputType | null
   }
 
-  type GetCustomerGroupByPayload<T extends CustomerGroupByArgs> = Prisma.PrismaPromise<
+  type GetFarmerGroupByPayload<T extends FarmerGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<CustomerGroupByOutputType, T['by']> &
+      PickEnumerable<FarmerGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof CustomerGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof FarmerGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], CustomerGroupByOutputType[P]>
-            : GetScalarType<T[P], CustomerGroupByOutputType[P]>
+              : GetScalarType<T[P], FarmerGroupByOutputType[P]>
+            : GetScalarType<T[P], FarmerGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type CustomerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FarmerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     branchCode?: boolean
     farmCode?: boolean
@@ -3650,14 +4010,16 @@ export namespace Prisma {
     totalShed?: boolean
     totalSquare?: boolean
     capacity?: boolean
+    addressId?: boolean
     nid?: boolean
-    branch?: boolean | BranchDefaultArgs<ExtArgs>
-    address?: boolean | Customer$addressArgs<ExtArgs>
-    flocks?: boolean | Customer$flocksArgs<ExtArgs>
-    _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["customer"]>
+    branch?: boolean | Farmer$branchArgs<ExtArgs>
+    address?: boolean | Farmer$addressArgs<ExtArgs>
+    flocks?: boolean | Farmer$flocksArgs<ExtArgs>
+    SellMedicine?: boolean | Farmer$SellMedicineArgs<ExtArgs>
+    _count?: boolean | FarmerCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["farmer"]>
 
-  export type CustomerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FarmerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     branchCode?: boolean
     farmCode?: boolean
@@ -3666,11 +4028,13 @@ export namespace Prisma {
     totalShed?: boolean
     totalSquare?: boolean
     capacity?: boolean
+    addressId?: boolean
     nid?: boolean
-    branch?: boolean | BranchDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["customer"]>
+    branch?: boolean | Farmer$branchArgs<ExtArgs>
+    address?: boolean | Farmer$addressArgs<ExtArgs>
+  }, ExtArgs["result"]["farmer"]>
 
-  export type CustomerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FarmerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     branchCode?: boolean
     farmCode?: boolean
@@ -3679,11 +4043,13 @@ export namespace Prisma {
     totalShed?: boolean
     totalSquare?: boolean
     capacity?: boolean
+    addressId?: boolean
     nid?: boolean
-    branch?: boolean | BranchDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["customer"]>
+    branch?: boolean | Farmer$branchArgs<ExtArgs>
+    address?: boolean | Farmer$addressArgs<ExtArgs>
+  }, ExtArgs["result"]["farmer"]>
 
-  export type CustomerSelectScalar = {
+  export type FarmerSelectScalar = {
     id?: boolean
     branchCode?: boolean
     farmCode?: boolean
@@ -3692,170 +4058,176 @@ export namespace Prisma {
     totalShed?: boolean
     totalSquare?: boolean
     capacity?: boolean
+    addressId?: boolean
     nid?: boolean
   }
 
-  export type CustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branchCode" | "farmCode" | "name" | "farmType" | "totalShed" | "totalSquare" | "capacity" | "nid", ExtArgs["result"]["customer"]>
-  export type CustomerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    branch?: boolean | BranchDefaultArgs<ExtArgs>
-    address?: boolean | Customer$addressArgs<ExtArgs>
-    flocks?: boolean | Customer$flocksArgs<ExtArgs>
-    _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
+  export type FarmerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branchCode" | "farmCode" | "name" | "farmType" | "totalShed" | "totalSquare" | "capacity" | "addressId" | "nid", ExtArgs["result"]["farmer"]>
+  export type FarmerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    branch?: boolean | Farmer$branchArgs<ExtArgs>
+    address?: boolean | Farmer$addressArgs<ExtArgs>
+    flocks?: boolean | Farmer$flocksArgs<ExtArgs>
+    SellMedicine?: boolean | Farmer$SellMedicineArgs<ExtArgs>
+    _count?: boolean | FarmerCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type CustomerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    branch?: boolean | BranchDefaultArgs<ExtArgs>
+  export type FarmerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    branch?: boolean | Farmer$branchArgs<ExtArgs>
+    address?: boolean | Farmer$addressArgs<ExtArgs>
   }
-  export type CustomerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    branch?: boolean | BranchDefaultArgs<ExtArgs>
+  export type FarmerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    branch?: boolean | Farmer$branchArgs<ExtArgs>
+    address?: boolean | Farmer$addressArgs<ExtArgs>
   }
 
-  export type $CustomerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Customer"
+  export type $FarmerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Farmer"
     objects: {
-      branch: Prisma.$BranchPayload<ExtArgs>
+      branch: Prisma.$BranchPayload<ExtArgs> | null
       address: Prisma.$AddressPayload<ExtArgs> | null
       flocks: Prisma.$FlockPayload<ExtArgs>[]
+      SellMedicine: Prisma.$SellMedicinePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      branchCode: string
-      farmCode: string
+      branchCode: string | null
+      farmCode: number
       name: string
       farmType: $Enums.Custtype
       totalShed: number
       totalSquare: number
       capacity: number
+      addressId: string | null
       nid: string
-    }, ExtArgs["result"]["customer"]>
+    }, ExtArgs["result"]["farmer"]>
     composites: {}
   }
 
-  type CustomerGetPayload<S extends boolean | null | undefined | CustomerDefaultArgs> = $Result.GetResult<Prisma.$CustomerPayload, S>
+  type FarmerGetPayload<S extends boolean | null | undefined | FarmerDefaultArgs> = $Result.GetResult<Prisma.$FarmerPayload, S>
 
-  type CustomerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<CustomerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: CustomerCountAggregateInputType | true
+  type FarmerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FarmerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FarmerCountAggregateInputType | true
     }
 
-  export interface CustomerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Customer'], meta: { name: 'Customer' } }
+  export interface FarmerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Farmer'], meta: { name: 'Farmer' } }
     /**
-     * Find zero or one Customer that matches the filter.
-     * @param {CustomerFindUniqueArgs} args - Arguments to find a Customer
+     * Find zero or one Farmer that matches the filter.
+     * @param {FarmerFindUniqueArgs} args - Arguments to find a Farmer
      * @example
-     * // Get one Customer
-     * const customer = await prisma.customer.findUnique({
+     * // Get one Farmer
+     * const farmer = await prisma.farmer.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends CustomerFindUniqueArgs>(args: SelectSubset<T, CustomerFindUniqueArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends FarmerFindUniqueArgs>(args: SelectSubset<T, FarmerFindUniqueArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Customer that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Farmer that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {CustomerFindUniqueOrThrowArgs} args - Arguments to find a Customer
+     * @param {FarmerFindUniqueOrThrowArgs} args - Arguments to find a Farmer
      * @example
-     * // Get one Customer
-     * const customer = await prisma.customer.findUniqueOrThrow({
+     * // Get one Farmer
+     * const farmer = await prisma.farmer.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends CustomerFindUniqueOrThrowArgs>(args: SelectSubset<T, CustomerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends FarmerFindUniqueOrThrowArgs>(args: SelectSubset<T, FarmerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Customer that matches the filter.
+     * Find the first Farmer that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CustomerFindFirstArgs} args - Arguments to find a Customer
+     * @param {FarmerFindFirstArgs} args - Arguments to find a Farmer
      * @example
-     * // Get one Customer
-     * const customer = await prisma.customer.findFirst({
+     * // Get one Farmer
+     * const farmer = await prisma.farmer.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends CustomerFindFirstArgs>(args?: SelectSubset<T, CustomerFindFirstArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends FarmerFindFirstArgs>(args?: SelectSubset<T, FarmerFindFirstArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Customer that matches the filter or
+     * Find the first Farmer that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CustomerFindFirstOrThrowArgs} args - Arguments to find a Customer
+     * @param {FarmerFindFirstOrThrowArgs} args - Arguments to find a Farmer
      * @example
-     * // Get one Customer
-     * const customer = await prisma.customer.findFirstOrThrow({
+     * // Get one Farmer
+     * const farmer = await prisma.farmer.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends CustomerFindFirstOrThrowArgs>(args?: SelectSubset<T, CustomerFindFirstOrThrowArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends FarmerFindFirstOrThrowArgs>(args?: SelectSubset<T, FarmerFindFirstOrThrowArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Customers that matches the filter.
+     * Find zero or more Farmers that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CustomerFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {FarmerFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Customers
-     * const customers = await prisma.customer.findMany()
+     * // Get all Farmers
+     * const farmers = await prisma.farmer.findMany()
      * 
-     * // Get first 10 Customers
-     * const customers = await prisma.customer.findMany({ take: 10 })
+     * // Get first 10 Farmers
+     * const farmers = await prisma.farmer.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const customerWithIdOnly = await prisma.customer.findMany({ select: { id: true } })
+     * const farmerWithIdOnly = await prisma.farmer.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends CustomerFindManyArgs>(args?: SelectSubset<T, CustomerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends FarmerFindManyArgs>(args?: SelectSubset<T, FarmerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Customer.
-     * @param {CustomerCreateArgs} args - Arguments to create a Customer.
+     * Create a Farmer.
+     * @param {FarmerCreateArgs} args - Arguments to create a Farmer.
      * @example
-     * // Create one Customer
-     * const Customer = await prisma.customer.create({
+     * // Create one Farmer
+     * const Farmer = await prisma.farmer.create({
      *   data: {
-     *     // ... data to create a Customer
+     *     // ... data to create a Farmer
      *   }
      * })
      * 
      */
-    create<T extends CustomerCreateArgs>(args: SelectSubset<T, CustomerCreateArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends FarmerCreateArgs>(args: SelectSubset<T, FarmerCreateArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Customers.
-     * @param {CustomerCreateManyArgs} args - Arguments to create many Customers.
+     * Create many Farmers.
+     * @param {FarmerCreateManyArgs} args - Arguments to create many Farmers.
      * @example
-     * // Create many Customers
-     * const customer = await prisma.customer.createMany({
+     * // Create many Farmers
+     * const farmer = await prisma.farmer.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends CustomerCreateManyArgs>(args?: SelectSubset<T, CustomerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends FarmerCreateManyArgs>(args?: SelectSubset<T, FarmerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Customers and returns the data saved in the database.
-     * @param {CustomerCreateManyAndReturnArgs} args - Arguments to create many Customers.
+     * Create many Farmers and returns the data saved in the database.
+     * @param {FarmerCreateManyAndReturnArgs} args - Arguments to create many Farmers.
      * @example
-     * // Create many Customers
-     * const customer = await prisma.customer.createManyAndReturn({
+     * // Create many Farmers
+     * const farmer = await prisma.farmer.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Customers and only return the `id`
-     * const customerWithIdOnly = await prisma.customer.createManyAndReturn({
+     * // Create many Farmers and only return the `id`
+     * const farmerWithIdOnly = await prisma.farmer.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -3865,28 +4237,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends CustomerCreateManyAndReturnArgs>(args?: SelectSubset<T, CustomerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends FarmerCreateManyAndReturnArgs>(args?: SelectSubset<T, FarmerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Customer.
-     * @param {CustomerDeleteArgs} args - Arguments to delete one Customer.
+     * Delete a Farmer.
+     * @param {FarmerDeleteArgs} args - Arguments to delete one Farmer.
      * @example
-     * // Delete one Customer
-     * const Customer = await prisma.customer.delete({
+     * // Delete one Farmer
+     * const Farmer = await prisma.farmer.delete({
      *   where: {
-     *     // ... filter to delete one Customer
+     *     // ... filter to delete one Farmer
      *   }
      * })
      * 
      */
-    delete<T extends CustomerDeleteArgs>(args: SelectSubset<T, CustomerDeleteArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends FarmerDeleteArgs>(args: SelectSubset<T, FarmerDeleteArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Customer.
-     * @param {CustomerUpdateArgs} args - Arguments to update one Customer.
+     * Update one Farmer.
+     * @param {FarmerUpdateArgs} args - Arguments to update one Farmer.
      * @example
-     * // Update one Customer
-     * const customer = await prisma.customer.update({
+     * // Update one Farmer
+     * const farmer = await prisma.farmer.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3896,30 +4268,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends CustomerUpdateArgs>(args: SelectSubset<T, CustomerUpdateArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends FarmerUpdateArgs>(args: SelectSubset<T, FarmerUpdateArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Customers.
-     * @param {CustomerDeleteManyArgs} args - Arguments to filter Customers to delete.
+     * Delete zero or more Farmers.
+     * @param {FarmerDeleteManyArgs} args - Arguments to filter Farmers to delete.
      * @example
-     * // Delete a few Customers
-     * const { count } = await prisma.customer.deleteMany({
+     * // Delete a few Farmers
+     * const { count } = await prisma.farmer.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends CustomerDeleteManyArgs>(args?: SelectSubset<T, CustomerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends FarmerDeleteManyArgs>(args?: SelectSubset<T, FarmerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Customers.
+     * Update zero or more Farmers.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CustomerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {FarmerUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Customers
-     * const customer = await prisma.customer.updateMany({
+     * // Update many Farmers
+     * const farmer = await prisma.farmer.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3929,14 +4301,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends CustomerUpdateManyArgs>(args: SelectSubset<T, CustomerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends FarmerUpdateManyArgs>(args: SelectSubset<T, FarmerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Customers and returns the data updated in the database.
-     * @param {CustomerUpdateManyAndReturnArgs} args - Arguments to update many Customers.
+     * Update zero or more Farmers and returns the data updated in the database.
+     * @param {FarmerUpdateManyAndReturnArgs} args - Arguments to update many Farmers.
      * @example
-     * // Update many Customers
-     * const customer = await prisma.customer.updateManyAndReturn({
+     * // Update many Farmers
+     * const farmer = await prisma.farmer.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3945,8 +4317,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Customers and only return the `id`
-     * const customerWithIdOnly = await prisma.customer.updateManyAndReturn({
+     * // Update zero or more Farmers and only return the `id`
+     * const farmerWithIdOnly = await prisma.farmer.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -3959,56 +4331,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends CustomerUpdateManyAndReturnArgs>(args: SelectSubset<T, CustomerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends FarmerUpdateManyAndReturnArgs>(args: SelectSubset<T, FarmerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Customer.
-     * @param {CustomerUpsertArgs} args - Arguments to update or create a Customer.
+     * Create or update one Farmer.
+     * @param {FarmerUpsertArgs} args - Arguments to update or create a Farmer.
      * @example
-     * // Update or create a Customer
-     * const customer = await prisma.customer.upsert({
+     * // Update or create a Farmer
+     * const farmer = await prisma.farmer.upsert({
      *   create: {
-     *     // ... data to create a Customer
+     *     // ... data to create a Farmer
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Customer we want to update
+     *     // ... the filter for the Farmer we want to update
      *   }
      * })
      */
-    upsert<T extends CustomerUpsertArgs>(args: SelectSubset<T, CustomerUpsertArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends FarmerUpsertArgs>(args: SelectSubset<T, FarmerUpsertArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Customers.
+     * Count the number of Farmers.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CustomerCountArgs} args - Arguments to filter Customers to count.
+     * @param {FarmerCountArgs} args - Arguments to filter Farmers to count.
      * @example
-     * // Count the number of Customers
-     * const count = await prisma.customer.count({
+     * // Count the number of Farmers
+     * const count = await prisma.farmer.count({
      *   where: {
-     *     // ... the filter for the Customers we want to count
+     *     // ... the filter for the Farmers we want to count
      *   }
      * })
     **/
-    count<T extends CustomerCountArgs>(
-      args?: Subset<T, CustomerCountArgs>,
+    count<T extends FarmerCountArgs>(
+      args?: Subset<T, FarmerCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], CustomerCountAggregateOutputType>
+          : GetScalarType<T['select'], FarmerCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Customer.
+     * Allows you to perform aggregations operations on a Farmer.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CustomerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {FarmerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -4028,13 +4400,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends CustomerAggregateArgs>(args: Subset<T, CustomerAggregateArgs>): Prisma.PrismaPromise<GetCustomerAggregateType<T>>
+    aggregate<T extends FarmerAggregateArgs>(args: Subset<T, FarmerAggregateArgs>): Prisma.PrismaPromise<GetFarmerAggregateType<T>>
 
     /**
-     * Group by Customer.
+     * Group by Farmer.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CustomerGroupByArgs} args - Group by arguments.
+     * @param {FarmerGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -4049,14 +4421,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends CustomerGroupByArgs,
+      T extends FarmerGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: CustomerGroupByArgs['orderBy'] }
-        : { orderBy?: CustomerGroupByArgs['orderBy'] },
+        ? { orderBy: FarmerGroupByArgs['orderBy'] }
+        : { orderBy?: FarmerGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -4105,24 +4477,25 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, CustomerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCustomerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, FarmerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFarmerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Customer model
+   * Fields of the Farmer model
    */
-  readonly fields: CustomerFieldRefs;
+  readonly fields: FarmerFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Customer.
+   * The delegate class that acts as a "Promise-like" for Farmer.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__CustomerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__FarmerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    branch<T extends BranchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BranchDefaultArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    address<T extends Customer$addressArgs<ExtArgs> = {}>(args?: Subset<T, Customer$addressArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    flocks<T extends Customer$flocksArgs<ExtArgs> = {}>(args?: Subset<T, Customer$flocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    branch<T extends Farmer$branchArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$branchArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    address<T extends Farmer$addressArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$addressArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    flocks<T extends Farmer$flocksArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$flocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    SellMedicine<T extends Farmer$SellMedicineArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$SellMedicineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4149,417 +4522,437 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Customer model
+   * Fields of the Farmer model
    */
-  interface CustomerFieldRefs {
-    readonly id: FieldRef<"Customer", 'String'>
-    readonly branchCode: FieldRef<"Customer", 'String'>
-    readonly farmCode: FieldRef<"Customer", 'String'>
-    readonly name: FieldRef<"Customer", 'String'>
-    readonly farmType: FieldRef<"Customer", 'Custtype'>
-    readonly totalShed: FieldRef<"Customer", 'Int'>
-    readonly totalSquare: FieldRef<"Customer", 'Int'>
-    readonly capacity: FieldRef<"Customer", 'Int'>
-    readonly nid: FieldRef<"Customer", 'String'>
+  interface FarmerFieldRefs {
+    readonly id: FieldRef<"Farmer", 'String'>
+    readonly branchCode: FieldRef<"Farmer", 'String'>
+    readonly farmCode: FieldRef<"Farmer", 'Int'>
+    readonly name: FieldRef<"Farmer", 'String'>
+    readonly farmType: FieldRef<"Farmer", 'Custtype'>
+    readonly totalShed: FieldRef<"Farmer", 'Int'>
+    readonly totalSquare: FieldRef<"Farmer", 'Int'>
+    readonly capacity: FieldRef<"Farmer", 'Int'>
+    readonly addressId: FieldRef<"Farmer", 'String'>
+    readonly nid: FieldRef<"Farmer", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * Customer findUnique
+   * Farmer findUnique
    */
-  export type CustomerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Customer
+     * Select specific fields to fetch from the Farmer
      */
-    select?: CustomerSelect<ExtArgs> | null
+    select?: FarmerSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Customer
+     * Omit specific fields from the Farmer
      */
-    omit?: CustomerOmit<ExtArgs> | null
+    omit?: FarmerOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CustomerInclude<ExtArgs> | null
+    include?: FarmerInclude<ExtArgs> | null
     /**
-     * Filter, which Customer to fetch.
+     * Filter, which Farmer to fetch.
      */
-    where: CustomerWhereUniqueInput
+    where: FarmerWhereUniqueInput
   }
 
   /**
-   * Customer findUniqueOrThrow
+   * Farmer findUniqueOrThrow
    */
-  export type CustomerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Customer
+     * Select specific fields to fetch from the Farmer
      */
-    select?: CustomerSelect<ExtArgs> | null
+    select?: FarmerSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Customer
+     * Omit specific fields from the Farmer
      */
-    omit?: CustomerOmit<ExtArgs> | null
+    omit?: FarmerOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CustomerInclude<ExtArgs> | null
+    include?: FarmerInclude<ExtArgs> | null
     /**
-     * Filter, which Customer to fetch.
+     * Filter, which Farmer to fetch.
      */
-    where: CustomerWhereUniqueInput
+    where: FarmerWhereUniqueInput
   }
 
   /**
-   * Customer findFirst
+   * Farmer findFirst
    */
-  export type CustomerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Customer
+     * Select specific fields to fetch from the Farmer
      */
-    select?: CustomerSelect<ExtArgs> | null
+    select?: FarmerSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Customer
+     * Omit specific fields from the Farmer
      */
-    omit?: CustomerOmit<ExtArgs> | null
+    omit?: FarmerOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CustomerInclude<ExtArgs> | null
+    include?: FarmerInclude<ExtArgs> | null
     /**
-     * Filter, which Customer to fetch.
+     * Filter, which Farmer to fetch.
      */
-    where?: CustomerWhereInput
+    where?: FarmerWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Customers to fetch.
+     * Determine the order of Farmers to fetch.
      */
-    orderBy?: CustomerOrderByWithRelationInput | CustomerOrderByWithRelationInput[]
+    orderBy?: FarmerOrderByWithRelationInput | FarmerOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Customers.
+     * Sets the position for searching for Farmers.
      */
-    cursor?: CustomerWhereUniqueInput
+    cursor?: FarmerWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Customers from the position of the cursor.
+     * Take `±n` Farmers from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Customers.
+     * Skip the first `n` Farmers.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Customers.
+     * Filter by unique combinations of Farmers.
      */
-    distinct?: CustomerScalarFieldEnum | CustomerScalarFieldEnum[]
+    distinct?: FarmerScalarFieldEnum | FarmerScalarFieldEnum[]
   }
 
   /**
-   * Customer findFirstOrThrow
+   * Farmer findFirstOrThrow
    */
-  export type CustomerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Customer
+     * Select specific fields to fetch from the Farmer
      */
-    select?: CustomerSelect<ExtArgs> | null
+    select?: FarmerSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Customer
+     * Omit specific fields from the Farmer
      */
-    omit?: CustomerOmit<ExtArgs> | null
+    omit?: FarmerOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CustomerInclude<ExtArgs> | null
+    include?: FarmerInclude<ExtArgs> | null
     /**
-     * Filter, which Customer to fetch.
+     * Filter, which Farmer to fetch.
      */
-    where?: CustomerWhereInput
+    where?: FarmerWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Customers to fetch.
+     * Determine the order of Farmers to fetch.
      */
-    orderBy?: CustomerOrderByWithRelationInput | CustomerOrderByWithRelationInput[]
+    orderBy?: FarmerOrderByWithRelationInput | FarmerOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Customers.
+     * Sets the position for searching for Farmers.
      */
-    cursor?: CustomerWhereUniqueInput
+    cursor?: FarmerWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Customers from the position of the cursor.
+     * Take `±n` Farmers from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Customers.
+     * Skip the first `n` Farmers.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Customers.
+     * Filter by unique combinations of Farmers.
      */
-    distinct?: CustomerScalarFieldEnum | CustomerScalarFieldEnum[]
+    distinct?: FarmerScalarFieldEnum | FarmerScalarFieldEnum[]
   }
 
   /**
-   * Customer findMany
+   * Farmer findMany
    */
-  export type CustomerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Customer
+     * Select specific fields to fetch from the Farmer
      */
-    select?: CustomerSelect<ExtArgs> | null
+    select?: FarmerSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Customer
+     * Omit specific fields from the Farmer
      */
-    omit?: CustomerOmit<ExtArgs> | null
+    omit?: FarmerOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CustomerInclude<ExtArgs> | null
+    include?: FarmerInclude<ExtArgs> | null
     /**
-     * Filter, which Customers to fetch.
+     * Filter, which Farmers to fetch.
      */
-    where?: CustomerWhereInput
+    where?: FarmerWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Customers to fetch.
+     * Determine the order of Farmers to fetch.
      */
-    orderBy?: CustomerOrderByWithRelationInput | CustomerOrderByWithRelationInput[]
+    orderBy?: FarmerOrderByWithRelationInput | FarmerOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Customers.
+     * Sets the position for listing Farmers.
      */
-    cursor?: CustomerWhereUniqueInput
+    cursor?: FarmerWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Customers from the position of the cursor.
+     * Take `±n` Farmers from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Customers.
+     * Skip the first `n` Farmers.
      */
     skip?: number
-    distinct?: CustomerScalarFieldEnum | CustomerScalarFieldEnum[]
+    distinct?: FarmerScalarFieldEnum | FarmerScalarFieldEnum[]
   }
 
   /**
-   * Customer create
+   * Farmer create
    */
-  export type CustomerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Customer
+     * Select specific fields to fetch from the Farmer
      */
-    select?: CustomerSelect<ExtArgs> | null
+    select?: FarmerSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Customer
+     * Omit specific fields from the Farmer
      */
-    omit?: CustomerOmit<ExtArgs> | null
+    omit?: FarmerOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CustomerInclude<ExtArgs> | null
+    include?: FarmerInclude<ExtArgs> | null
     /**
-     * The data needed to create a Customer.
+     * The data needed to create a Farmer.
      */
-    data: XOR<CustomerCreateInput, CustomerUncheckedCreateInput>
+    data: XOR<FarmerCreateInput, FarmerUncheckedCreateInput>
   }
 
   /**
-   * Customer createMany
+   * Farmer createMany
    */
-  export type CustomerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Customers.
+     * The data used to create many Farmers.
      */
-    data: CustomerCreateManyInput | CustomerCreateManyInput[]
+    data: FarmerCreateManyInput | FarmerCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Customer createManyAndReturn
+   * Farmer createManyAndReturn
    */
-  export type CustomerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Customer
+     * Select specific fields to fetch from the Farmer
      */
-    select?: CustomerSelectCreateManyAndReturn<ExtArgs> | null
+    select?: FarmerSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Customer
+     * Omit specific fields from the Farmer
      */
-    omit?: CustomerOmit<ExtArgs> | null
+    omit?: FarmerOmit<ExtArgs> | null
     /**
-     * The data used to create many Customers.
+     * The data used to create many Farmers.
      */
-    data: CustomerCreateManyInput | CustomerCreateManyInput[]
+    data: FarmerCreateManyInput | FarmerCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CustomerIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: FarmerIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Customer update
+   * Farmer update
    */
-  export type CustomerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Customer
+     * Select specific fields to fetch from the Farmer
      */
-    select?: CustomerSelect<ExtArgs> | null
+    select?: FarmerSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Customer
+     * Omit specific fields from the Farmer
      */
-    omit?: CustomerOmit<ExtArgs> | null
+    omit?: FarmerOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CustomerInclude<ExtArgs> | null
+    include?: FarmerInclude<ExtArgs> | null
     /**
-     * The data needed to update a Customer.
+     * The data needed to update a Farmer.
      */
-    data: XOR<CustomerUpdateInput, CustomerUncheckedUpdateInput>
+    data: XOR<FarmerUpdateInput, FarmerUncheckedUpdateInput>
     /**
-     * Choose, which Customer to update.
+     * Choose, which Farmer to update.
      */
-    where: CustomerWhereUniqueInput
+    where: FarmerWhereUniqueInput
   }
 
   /**
-   * Customer updateMany
+   * Farmer updateMany
    */
-  export type CustomerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Customers.
+     * The data used to update Farmers.
      */
-    data: XOR<CustomerUpdateManyMutationInput, CustomerUncheckedUpdateManyInput>
+    data: XOR<FarmerUpdateManyMutationInput, FarmerUncheckedUpdateManyInput>
     /**
-     * Filter which Customers to update
+     * Filter which Farmers to update
      */
-    where?: CustomerWhereInput
+    where?: FarmerWhereInput
     /**
-     * Limit how many Customers to update.
+     * Limit how many Farmers to update.
      */
     limit?: number
   }
 
   /**
-   * Customer updateManyAndReturn
+   * Farmer updateManyAndReturn
    */
-  export type CustomerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Customer
+     * Select specific fields to fetch from the Farmer
      */
-    select?: CustomerSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: FarmerSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Customer
+     * Omit specific fields from the Farmer
      */
-    omit?: CustomerOmit<ExtArgs> | null
+    omit?: FarmerOmit<ExtArgs> | null
     /**
-     * The data used to update Customers.
+     * The data used to update Farmers.
      */
-    data: XOR<CustomerUpdateManyMutationInput, CustomerUncheckedUpdateManyInput>
+    data: XOR<FarmerUpdateManyMutationInput, FarmerUncheckedUpdateManyInput>
     /**
-     * Filter which Customers to update
+     * Filter which Farmers to update
      */
-    where?: CustomerWhereInput
+    where?: FarmerWhereInput
     /**
-     * Limit how many Customers to update.
+     * Limit how many Farmers to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CustomerIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: FarmerIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Customer upsert
+   * Farmer upsert
    */
-  export type CustomerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Customer
+     * Select specific fields to fetch from the Farmer
      */
-    select?: CustomerSelect<ExtArgs> | null
+    select?: FarmerSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Customer
+     * Omit specific fields from the Farmer
      */
-    omit?: CustomerOmit<ExtArgs> | null
+    omit?: FarmerOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CustomerInclude<ExtArgs> | null
+    include?: FarmerInclude<ExtArgs> | null
     /**
-     * The filter to search for the Customer to update in case it exists.
+     * The filter to search for the Farmer to update in case it exists.
      */
-    where: CustomerWhereUniqueInput
+    where: FarmerWhereUniqueInput
     /**
-     * In case the Customer found by the `where` argument doesn't exist, create a new Customer with this data.
+     * In case the Farmer found by the `where` argument doesn't exist, create a new Farmer with this data.
      */
-    create: XOR<CustomerCreateInput, CustomerUncheckedCreateInput>
+    create: XOR<FarmerCreateInput, FarmerUncheckedCreateInput>
     /**
-     * In case the Customer was found with the provided `where` argument, update it with this data.
+     * In case the Farmer was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<CustomerUpdateInput, CustomerUncheckedUpdateInput>
+    update: XOR<FarmerUpdateInput, FarmerUncheckedUpdateInput>
   }
 
   /**
-   * Customer delete
+   * Farmer delete
    */
-  export type CustomerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Customer
+     * Select specific fields to fetch from the Farmer
      */
-    select?: CustomerSelect<ExtArgs> | null
+    select?: FarmerSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Customer
+     * Omit specific fields from the Farmer
      */
-    omit?: CustomerOmit<ExtArgs> | null
+    omit?: FarmerOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CustomerInclude<ExtArgs> | null
+    include?: FarmerInclude<ExtArgs> | null
     /**
-     * Filter which Customer to delete.
+     * Filter which Farmer to delete.
      */
-    where: CustomerWhereUniqueInput
+    where: FarmerWhereUniqueInput
   }
 
   /**
-   * Customer deleteMany
+   * Farmer deleteMany
    */
-  export type CustomerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FarmerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Customers to delete
+     * Filter which Farmers to delete
      */
-    where?: CustomerWhereInput
+    where?: FarmerWhereInput
     /**
-     * Limit how many Customers to delete.
+     * Limit how many Farmers to delete.
      */
     limit?: number
   }
 
   /**
-   * Customer.address
+   * Farmer.branch
    */
-  export type Customer$addressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Farmer$branchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Branch
+     */
+    select?: BranchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Branch
+     */
+    omit?: BranchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BranchInclude<ExtArgs> | null
+    where?: BranchWhereInput
+  }
+
+  /**
+   * Farmer.address
+   */
+  export type Farmer$addressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Address
      */
@@ -4576,9 +4969,9 @@ export namespace Prisma {
   }
 
   /**
-   * Customer.flocks
+   * Farmer.flocks
    */
-  export type Customer$flocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Farmer$flocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Flock
      */
@@ -4600,21 +4993,45 @@ export namespace Prisma {
   }
 
   /**
-   * Customer without action
+   * Farmer.SellMedicine
    */
-  export type CustomerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Farmer$SellMedicineArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Customer
+     * Select specific fields to fetch from the SellMedicine
      */
-    select?: CustomerSelect<ExtArgs> | null
+    select?: SellMedicineSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Customer
+     * Omit specific fields from the SellMedicine
      */
-    omit?: CustomerOmit<ExtArgs> | null
+    omit?: SellMedicineOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CustomerInclude<ExtArgs> | null
+    include?: SellMedicineInclude<ExtArgs> | null
+    where?: SellMedicineWhereInput
+    orderBy?: SellMedicineOrderByWithRelationInput | SellMedicineOrderByWithRelationInput[]
+    cursor?: SellMedicineWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SellMedicineScalarFieldEnum | SellMedicineScalarFieldEnum[]
+  }
+
+  /**
+   * Farmer without action
+   */
+  export type FarmerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Farmer
+     */
+    select?: FarmerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Farmer
+     */
+    omit?: FarmerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmerInclude<ExtArgs> | null
   }
 
 
@@ -4637,8 +5054,6 @@ export namespace Prisma {
     upazila: string | null
     phoneNumber: string | null
     city: string | null
-    employeeId: string | null
-    farmCode: string | null
   }
 
   export type AddressMaxAggregateOutputType = {
@@ -4650,8 +5065,6 @@ export namespace Prisma {
     upazila: string | null
     phoneNumber: string | null
     city: string | null
-    employeeId: string | null
-    farmCode: string | null
   }
 
   export type AddressCountAggregateOutputType = {
@@ -4663,8 +5076,6 @@ export namespace Prisma {
     upazila: number
     phoneNumber: number
     city: number
-    employeeId: number
-    farmCode: number
     _all: number
   }
 
@@ -4678,8 +5089,6 @@ export namespace Prisma {
     upazila?: true
     phoneNumber?: true
     city?: true
-    employeeId?: true
-    farmCode?: true
   }
 
   export type AddressMaxAggregateInputType = {
@@ -4691,8 +5100,6 @@ export namespace Prisma {
     upazila?: true
     phoneNumber?: true
     city?: true
-    employeeId?: true
-    farmCode?: true
   }
 
   export type AddressCountAggregateInputType = {
@@ -4704,8 +5111,6 @@ export namespace Prisma {
     upazila?: true
     phoneNumber?: true
     city?: true
-    employeeId?: true
-    farmCode?: true
     _all?: true
   }
 
@@ -4790,8 +5195,6 @@ export namespace Prisma {
     upazila: string
     phoneNumber: string
     city: string
-    employeeId: string | null
-    farmCode: string | null
     _count: AddressCountAggregateOutputType | null
     _min: AddressMinAggregateOutputType | null
     _max: AddressMaxAggregateOutputType | null
@@ -4820,10 +5223,8 @@ export namespace Prisma {
     upazila?: boolean
     phoneNumber?: boolean
     city?: boolean
-    employeeId?: boolean
-    farmCode?: boolean
-    employee?: boolean | Address$employeeArgs<ExtArgs>
-    customer?: boolean | Address$customerArgs<ExtArgs>
+    Farmer?: boolean | Address$FarmerArgs<ExtArgs>
+    Employee?: boolean | Address$EmployeeArgs<ExtArgs>
   }, ExtArgs["result"]["address"]>
 
   export type AddressSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4835,10 +5236,6 @@ export namespace Prisma {
     upazila?: boolean
     phoneNumber?: boolean
     city?: boolean
-    employeeId?: boolean
-    farmCode?: boolean
-    employee?: boolean | Address$employeeArgs<ExtArgs>
-    customer?: boolean | Address$customerArgs<ExtArgs>
   }, ExtArgs["result"]["address"]>
 
   export type AddressSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4850,10 +5247,6 @@ export namespace Prisma {
     upazila?: boolean
     phoneNumber?: boolean
     city?: boolean
-    employeeId?: boolean
-    farmCode?: boolean
-    employee?: boolean | Address$employeeArgs<ExtArgs>
-    customer?: boolean | Address$customerArgs<ExtArgs>
   }, ExtArgs["result"]["address"]>
 
   export type AddressSelectScalar = {
@@ -4865,29 +5258,21 @@ export namespace Prisma {
     upazila?: boolean
     phoneNumber?: boolean
     city?: boolean
-    employeeId?: boolean
-    farmCode?: boolean
   }
 
-  export type AddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "village" | "post" | "union" | "thana" | "upazila" | "phoneNumber" | "city" | "employeeId" | "farmCode", ExtArgs["result"]["address"]>
+  export type AddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "village" | "post" | "union" | "thana" | "upazila" | "phoneNumber" | "city", ExtArgs["result"]["address"]>
   export type AddressInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | Address$employeeArgs<ExtArgs>
-    customer?: boolean | Address$customerArgs<ExtArgs>
+    Farmer?: boolean | Address$FarmerArgs<ExtArgs>
+    Employee?: boolean | Address$EmployeeArgs<ExtArgs>
   }
-  export type AddressIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | Address$employeeArgs<ExtArgs>
-    customer?: boolean | Address$customerArgs<ExtArgs>
-  }
-  export type AddressIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | Address$employeeArgs<ExtArgs>
-    customer?: boolean | Address$customerArgs<ExtArgs>
-  }
+  export type AddressIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type AddressIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $AddressPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Address"
     objects: {
-      employee: Prisma.$EmployeePayload<ExtArgs> | null
-      customer: Prisma.$CustomerPayload<ExtArgs> | null
+      Farmer: Prisma.$FarmerPayload<ExtArgs> | null
+      Employee: Prisma.$EmployeePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4898,8 +5283,6 @@ export namespace Prisma {
       upazila: string
       phoneNumber: string
       city: string
-      employeeId: string | null
-      farmCode: string | null
     }, ExtArgs["result"]["address"]>
     composites: {}
   }
@@ -5294,8 +5677,8 @@ export namespace Prisma {
    */
   export interface Prisma__AddressClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    employee<T extends Address$employeeArgs<ExtArgs> = {}>(args?: Subset<T, Address$employeeArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    customer<T extends Address$customerArgs<ExtArgs> = {}>(args?: Subset<T, Address$customerArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Farmer<T extends Address$FarmerArgs<ExtArgs> = {}>(args?: Subset<T, Address$FarmerArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Employee<T extends Address$EmployeeArgs<ExtArgs> = {}>(args?: Subset<T, Address$EmployeeArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5333,8 +5716,6 @@ export namespace Prisma {
     readonly upazila: FieldRef<"Address", 'String'>
     readonly phoneNumber: FieldRef<"Address", 'String'>
     readonly city: FieldRef<"Address", 'String'>
-    readonly employeeId: FieldRef<"Address", 'String'>
-    readonly farmCode: FieldRef<"Address", 'String'>
   }
     
 
@@ -5584,10 +5965,6 @@ export namespace Prisma {
      */
     data: AddressCreateManyInput | AddressCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AddressIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -5658,10 +6035,6 @@ export namespace Prisma {
      * Limit how many Addresses to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AddressIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -5731,9 +6104,28 @@ export namespace Prisma {
   }
 
   /**
-   * Address.employee
+   * Address.Farmer
    */
-  export type Address$employeeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Address$FarmerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Farmer
+     */
+    select?: FarmerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Farmer
+     */
+    omit?: FarmerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmerInclude<ExtArgs> | null
+    where?: FarmerWhereInput
+  }
+
+  /**
+   * Address.Employee
+   */
+  export type Address$EmployeeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Employee
      */
@@ -5747,25 +6139,6 @@ export namespace Prisma {
      */
     include?: EmployeeInclude<ExtArgs> | null
     where?: EmployeeWhereInput
-  }
-
-  /**
-   * Address.customer
-   */
-  export type Address$customerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Customer
-     */
-    select?: CustomerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Customer
-     */
-    omit?: CustomerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CustomerInclude<ExtArgs> | null
-    where?: CustomerWhereInput
   }
 
   /**
@@ -6844,6 +7217,7 @@ export namespace Prisma {
     workingLocation: string | null
     designation: string | null
     branchId: string | null
+    addressId: string | null
   }
 
   export type EmployeeMaxAggregateOutputType = {
@@ -6853,6 +7227,7 @@ export namespace Prisma {
     workingLocation: string | null
     designation: string | null
     branchId: string | null
+    addressId: string | null
   }
 
   export type EmployeeCountAggregateOutputType = {
@@ -6862,6 +7237,7 @@ export namespace Prisma {
     workingLocation: number
     designation: number
     branchId: number
+    addressId: number
     _all: number
   }
 
@@ -6873,6 +7249,7 @@ export namespace Prisma {
     workingLocation?: true
     designation?: true
     branchId?: true
+    addressId?: true
   }
 
   export type EmployeeMaxAggregateInputType = {
@@ -6882,6 +7259,7 @@ export namespace Prisma {
     workingLocation?: true
     designation?: true
     branchId?: true
+    addressId?: true
   }
 
   export type EmployeeCountAggregateInputType = {
@@ -6891,6 +7269,7 @@ export namespace Prisma {
     workingLocation?: true
     designation?: true
     branchId?: true
+    addressId?: true
     _all?: true
   }
 
@@ -6972,7 +7351,8 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branchId: string | null
+    branchId: string
+    addressId: string | null
     _count: EmployeeCountAggregateOutputType | null
     _min: EmployeeMinAggregateOutputType | null
     _max: EmployeeMaxAggregateOutputType | null
@@ -6999,7 +7379,8 @@ export namespace Prisma {
     workingLocation?: boolean
     designation?: boolean
     branchId?: boolean
-    branch?: boolean | Employee$branchArgs<ExtArgs>
+    addressId?: boolean
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
     branchEmployees?: boolean | Employee$branchEmployeesArgs<ExtArgs>
     address?: boolean | Employee$addressArgs<ExtArgs>
     flocks?: boolean | Employee$flocksArgs<ExtArgs>
@@ -7013,7 +7394,9 @@ export namespace Prisma {
     workingLocation?: boolean
     designation?: boolean
     branchId?: boolean
-    branch?: boolean | Employee$branchArgs<ExtArgs>
+    addressId?: boolean
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    address?: boolean | Employee$addressArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
   export type EmployeeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7023,7 +7406,9 @@ export namespace Prisma {
     workingLocation?: boolean
     designation?: boolean
     branchId?: boolean
-    branch?: boolean | Employee$branchArgs<ExtArgs>
+    addressId?: boolean
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    address?: boolean | Employee$addressArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
   export type EmployeeSelectScalar = {
@@ -7033,27 +7418,30 @@ export namespace Prisma {
     workingLocation?: boolean
     designation?: boolean
     branchId?: boolean
+    addressId?: boolean
   }
 
-  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "name" | "workingLocation" | "designation" | "branchId", ExtArgs["result"]["employee"]>
+  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "name" | "workingLocation" | "designation" | "branchId" | "addressId", ExtArgs["result"]["employee"]>
   export type EmployeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    branch?: boolean | Employee$branchArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
     branchEmployees?: boolean | Employee$branchEmployeesArgs<ExtArgs>
     address?: boolean | Employee$addressArgs<ExtArgs>
     flocks?: boolean | Employee$flocksArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    branch?: boolean | Employee$branchArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    address?: boolean | Employee$addressArgs<ExtArgs>
   }
   export type EmployeeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    branch?: boolean | Employee$branchArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    address?: boolean | Employee$addressArgs<ExtArgs>
   }
 
   export type $EmployeePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Employee"
     objects: {
-      branch: Prisma.$BranchPayload<ExtArgs> | null
+      branch: Prisma.$BranchPayload<ExtArgs>
       branchEmployees: Prisma.$BranchEmployeePayload<ExtArgs>[]
       address: Prisma.$AddressPayload<ExtArgs> | null
       flocks: Prisma.$FlockPayload<ExtArgs>[]
@@ -7064,7 +7452,8 @@ export namespace Prisma {
       name: string
       workingLocation: string
       designation: string
-      branchId: string | null
+      branchId: string
+      addressId: string | null
     }, ExtArgs["result"]["employee"]>
     composites: {}
   }
@@ -7459,7 +7848,7 @@ export namespace Prisma {
    */
   export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    branch<T extends Employee$branchArgs<ExtArgs> = {}>(args?: Subset<T, Employee$branchArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    branch<T extends BranchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BranchDefaultArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     branchEmployees<T extends Employee$branchEmployeesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$branchEmployeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BranchEmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     address<T extends Employee$addressArgs<ExtArgs> = {}>(args?: Subset<T, Employee$addressArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     flocks<T extends Employee$flocksArgs<ExtArgs> = {}>(args?: Subset<T, Employee$flocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -7498,6 +7887,7 @@ export namespace Prisma {
     readonly workingLocation: FieldRef<"Employee", 'String'>
     readonly designation: FieldRef<"Employee", 'String'>
     readonly branchId: FieldRef<"Employee", 'String'>
+    readonly addressId: FieldRef<"Employee", 'String'>
   }
     
 
@@ -7894,25 +8284,6 @@ export namespace Prisma {
   }
 
   /**
-   * Employee.branch
-   */
-  export type Employee$branchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Branch
-     */
-    select?: BranchSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Branch
-     */
-    omit?: BranchOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BranchInclude<ExtArgs> | null
-    where?: BranchWhereInput
-  }
-
-  /**
    * Employee.branchEmployees
    */
   export type Employee$branchEmployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8037,7 +8408,7 @@ export namespace Prisma {
     startDate: Date | null
     endDate: Date | null
     executiveId: string | null
-    farmCode: string | null
+    farmId: string | null
     docName: string | null
     docQuantity: number | null
     approvedBy: string | null
@@ -8056,7 +8427,7 @@ export namespace Prisma {
     startDate: Date | null
     endDate: Date | null
     executiveId: string | null
-    farmCode: string | null
+    farmId: string | null
     docName: string | null
     docQuantity: number | null
     approvedBy: string | null
@@ -8075,7 +8446,7 @@ export namespace Prisma {
     startDate: number
     endDate: number
     executiveId: number
-    farmCode: number
+    farmId: number
     docName: number
     docQuantity: number
     approvedBy: number
@@ -8116,7 +8487,7 @@ export namespace Prisma {
     startDate?: true
     endDate?: true
     executiveId?: true
-    farmCode?: true
+    farmId?: true
     docName?: true
     docQuantity?: true
     approvedBy?: true
@@ -8135,7 +8506,7 @@ export namespace Prisma {
     startDate?: true
     endDate?: true
     executiveId?: true
-    farmCode?: true
+    farmId?: true
     docName?: true
     docQuantity?: true
     approvedBy?: true
@@ -8154,7 +8525,7 @@ export namespace Prisma {
     startDate?: true
     endDate?: true
     executiveId?: true
-    farmCode?: true
+    farmId?: true
     docName?: true
     docQuantity?: true
     approvedBy?: true
@@ -8260,7 +8631,7 @@ export namespace Prisma {
     startDate: Date
     endDate: Date | null
     executiveId: string
-    farmCode: string
+    farmId: string
     docName: string
     docQuantity: number
     approvedBy: string | null
@@ -8298,7 +8669,7 @@ export namespace Prisma {
     startDate?: boolean
     endDate?: boolean
     executiveId?: boolean
-    farmCode?: boolean
+    farmId?: boolean
     docName?: boolean
     docQuantity?: boolean
     approvedBy?: boolean
@@ -8308,9 +8679,12 @@ export namespace Prisma {
     fcr?: boolean
     totalSellBirds?: boolean
     mortality?: boolean
-    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    SellMedicine?: boolean | Flock$SellMedicineArgs<ExtArgs>
+    MedicineTransfer?: boolean | Flock$MedicineTransferArgs<ExtArgs>
+    _count?: boolean | FlockCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["flock"]>
 
   export type FlockSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8320,7 +8694,7 @@ export namespace Prisma {
     startDate?: boolean
     endDate?: boolean
     executiveId?: boolean
-    farmCode?: boolean
+    farmId?: boolean
     docName?: boolean
     docQuantity?: boolean
     approvedBy?: boolean
@@ -8330,7 +8704,7 @@ export namespace Prisma {
     fcr?: boolean
     totalSellBirds?: boolean
     mortality?: boolean
-    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["flock"]>
@@ -8342,7 +8716,7 @@ export namespace Prisma {
     startDate?: boolean
     endDate?: boolean
     executiveId?: boolean
-    farmCode?: boolean
+    farmId?: boolean
     docName?: boolean
     docQuantity?: boolean
     approvedBy?: boolean
@@ -8352,7 +8726,7 @@ export namespace Prisma {
     fcr?: boolean
     totalSellBirds?: boolean
     mortality?: boolean
-    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["flock"]>
@@ -8364,7 +8738,7 @@ export namespace Prisma {
     startDate?: boolean
     endDate?: boolean
     executiveId?: boolean
-    farmCode?: boolean
+    farmId?: boolean
     docName?: boolean
     docQuantity?: boolean
     approvedBy?: boolean
@@ -8376,19 +8750,22 @@ export namespace Prisma {
     mortality?: boolean
   }
 
-  export type FlockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "flockNumber" | "flockStatus" | "startDate" | "endDate" | "executiveId" | "farmCode" | "docName" | "docQuantity" | "approvedBy" | "branchCode" | "totalFeedKg" | "totalMedicine" | "fcr" | "totalSellBirds" | "mortality", ExtArgs["result"]["flock"]>
+  export type FlockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "flockNumber" | "flockStatus" | "startDate" | "endDate" | "executiveId" | "farmId" | "docName" | "docQuantity" | "approvedBy" | "branchCode" | "totalFeedKg" | "totalMedicine" | "fcr" | "totalSellBirds" | "mortality", ExtArgs["result"]["flock"]>
   export type FlockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
+    SellMedicine?: boolean | Flock$SellMedicineArgs<ExtArgs>
+    MedicineTransfer?: boolean | Flock$MedicineTransferArgs<ExtArgs>
+    _count?: boolean | FlockCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FlockIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
   }
   export type FlockIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
   }
@@ -8396,9 +8773,11 @@ export namespace Prisma {
   export type $FlockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Flock"
     objects: {
-      customer: Prisma.$CustomerPayload<ExtArgs>
+      farmer: Prisma.$FarmerPayload<ExtArgs>
       employee: Prisma.$EmployeePayload<ExtArgs>
       branch: Prisma.$BranchPayload<ExtArgs>
+      SellMedicine: Prisma.$SellMedicinePayload<ExtArgs>[]
+      MedicineTransfer: Prisma.$MedicineTransferPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8407,7 +8786,7 @@ export namespace Prisma {
       startDate: Date
       endDate: Date | null
       executiveId: string
-      farmCode: string
+      farmId: string
       docName: string
       docQuantity: number
       approvedBy: string | null
@@ -8811,9 +9190,11 @@ export namespace Prisma {
    */
   export interface Prisma__FlockClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    customer<T extends CustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CustomerDefaultArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    farmer<T extends FarmerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FarmerDefaultArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     branch<T extends BranchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BranchDefaultArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    SellMedicine<T extends Flock$SellMedicineArgs<ExtArgs> = {}>(args?: Subset<T, Flock$SellMedicineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    MedicineTransfer<T extends Flock$MedicineTransferArgs<ExtArgs> = {}>(args?: Subset<T, Flock$MedicineTransferArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8849,7 +9230,7 @@ export namespace Prisma {
     readonly startDate: FieldRef<"Flock", 'DateTime'>
     readonly endDate: FieldRef<"Flock", 'DateTime'>
     readonly executiveId: FieldRef<"Flock", 'String'>
-    readonly farmCode: FieldRef<"Flock", 'String'>
+    readonly farmId: FieldRef<"Flock", 'String'>
     readonly docName: FieldRef<"Flock", 'String'>
     readonly docQuantity: FieldRef<"Flock", 'Int'>
     readonly approvedBy: FieldRef<"Flock", 'String'>
@@ -9252,6 +9633,54 @@ export namespace Prisma {
      * Limit how many Flocks to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Flock.SellMedicine
+   */
+  export type Flock$SellMedicineArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineInclude<ExtArgs> | null
+    where?: SellMedicineWhereInput
+    orderBy?: SellMedicineOrderByWithRelationInput | SellMedicineOrderByWithRelationInput[]
+    cursor?: SellMedicineWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SellMedicineScalarFieldEnum | SellMedicineScalarFieldEnum[]
+  }
+
+  /**
+   * Flock.MedicineTransfer
+   */
+  export type Flock$MedicineTransferArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferInclude<ExtArgs> | null
+    where?: MedicineTransferWhereInput
+    orderBy?: MedicineTransferOrderByWithRelationInput | MedicineTransferOrderByWithRelationInput[]
+    cursor?: MedicineTransferWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MedicineTransferScalarFieldEnum | MedicineTransferScalarFieldEnum[]
   }
 
   /**
@@ -15988,6 +16417,2343 @@ export namespace Prisma {
 
 
   /**
+   * Model SellMedicine
+   */
+
+  export type AggregateSellMedicine = {
+    _count: SellMedicineCountAggregateOutputType | null
+    _avg: SellMedicineAvgAggregateOutputType | null
+    _sum: SellMedicineSumAggregateOutputType | null
+    _min: SellMedicineMinAggregateOutputType | null
+    _max: SellMedicineMaxAggregateOutputType | null
+  }
+
+  export type SellMedicineAvgAggregateOutputType = {
+    flockNumer: number | null
+    sellQuantity: number | null
+    sellPrice: number | null
+  }
+
+  export type SellMedicineSumAggregateOutputType = {
+    flockNumer: number | null
+    sellQuantity: number | null
+    sellPrice: number | null
+  }
+
+  export type SellMedicineMinAggregateOutputType = {
+    id: string | null
+    farmId: string | null
+    flockNumer: number | null
+    genericName: string | null
+    medicineName: string | null
+    sellQuantity: number | null
+    sellPrice: number | null
+    Delivery: $Enums.DeliveryStatus | null
+    sellDate: string | null
+    branchCode: string | null
+  }
+
+  export type SellMedicineMaxAggregateOutputType = {
+    id: string | null
+    farmId: string | null
+    flockNumer: number | null
+    genericName: string | null
+    medicineName: string | null
+    sellQuantity: number | null
+    sellPrice: number | null
+    Delivery: $Enums.DeliveryStatus | null
+    sellDate: string | null
+    branchCode: string | null
+  }
+
+  export type SellMedicineCountAggregateOutputType = {
+    id: number
+    farmId: number
+    flockNumer: number
+    genericName: number
+    medicineName: number
+    sellQuantity: number
+    sellPrice: number
+    Delivery: number
+    sellDate: number
+    branchCode: number
+    _all: number
+  }
+
+
+  export type SellMedicineAvgAggregateInputType = {
+    flockNumer?: true
+    sellQuantity?: true
+    sellPrice?: true
+  }
+
+  export type SellMedicineSumAggregateInputType = {
+    flockNumer?: true
+    sellQuantity?: true
+    sellPrice?: true
+  }
+
+  export type SellMedicineMinAggregateInputType = {
+    id?: true
+    farmId?: true
+    flockNumer?: true
+    genericName?: true
+    medicineName?: true
+    sellQuantity?: true
+    sellPrice?: true
+    Delivery?: true
+    sellDate?: true
+    branchCode?: true
+  }
+
+  export type SellMedicineMaxAggregateInputType = {
+    id?: true
+    farmId?: true
+    flockNumer?: true
+    genericName?: true
+    medicineName?: true
+    sellQuantity?: true
+    sellPrice?: true
+    Delivery?: true
+    sellDate?: true
+    branchCode?: true
+  }
+
+  export type SellMedicineCountAggregateInputType = {
+    id?: true
+    farmId?: true
+    flockNumer?: true
+    genericName?: true
+    medicineName?: true
+    sellQuantity?: true
+    sellPrice?: true
+    Delivery?: true
+    sellDate?: true
+    branchCode?: true
+    _all?: true
+  }
+
+  export type SellMedicineAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SellMedicine to aggregate.
+     */
+    where?: SellMedicineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SellMedicines to fetch.
+     */
+    orderBy?: SellMedicineOrderByWithRelationInput | SellMedicineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SellMedicineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SellMedicines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SellMedicines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SellMedicines
+    **/
+    _count?: true | SellMedicineCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SellMedicineAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SellMedicineSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SellMedicineMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SellMedicineMaxAggregateInputType
+  }
+
+  export type GetSellMedicineAggregateType<T extends SellMedicineAggregateArgs> = {
+        [P in keyof T & keyof AggregateSellMedicine]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSellMedicine[P]>
+      : GetScalarType<T[P], AggregateSellMedicine[P]>
+  }
+
+
+
+
+  export type SellMedicineGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SellMedicineWhereInput
+    orderBy?: SellMedicineOrderByWithAggregationInput | SellMedicineOrderByWithAggregationInput[]
+    by: SellMedicineScalarFieldEnum[] | SellMedicineScalarFieldEnum
+    having?: SellMedicineScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SellMedicineCountAggregateInputType | true
+    _avg?: SellMedicineAvgAggregateInputType
+    _sum?: SellMedicineSumAggregateInputType
+    _min?: SellMedicineMinAggregateInputType
+    _max?: SellMedicineMaxAggregateInputType
+  }
+
+  export type SellMedicineGroupByOutputType = {
+    id: string
+    farmId: string
+    flockNumer: number
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery: $Enums.DeliveryStatus
+    sellDate: string
+    branchCode: string
+    _count: SellMedicineCountAggregateOutputType | null
+    _avg: SellMedicineAvgAggregateOutputType | null
+    _sum: SellMedicineSumAggregateOutputType | null
+    _min: SellMedicineMinAggregateOutputType | null
+    _max: SellMedicineMaxAggregateOutputType | null
+  }
+
+  type GetSellMedicineGroupByPayload<T extends SellMedicineGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SellMedicineGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SellMedicineGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SellMedicineGroupByOutputType[P]>
+            : GetScalarType<T[P], SellMedicineGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SellMedicineSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    farmId?: boolean
+    flockNumer?: boolean
+    genericName?: boolean
+    medicineName?: boolean
+    sellQuantity?: boolean
+    sellPrice?: boolean
+    Delivery?: boolean
+    sellDate?: boolean
+    branchCode?: boolean
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+    MedicineTransfer?: boolean | SellMedicine$MedicineTransferArgs<ExtArgs>
+    _count?: boolean | SellMedicineCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sellMedicine"]>
+
+  export type SellMedicineSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    farmId?: boolean
+    flockNumer?: boolean
+    genericName?: boolean
+    medicineName?: boolean
+    sellQuantity?: boolean
+    sellPrice?: boolean
+    Delivery?: boolean
+    sellDate?: boolean
+    branchCode?: boolean
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sellMedicine"]>
+
+  export type SellMedicineSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    farmId?: boolean
+    flockNumer?: boolean
+    genericName?: boolean
+    medicineName?: boolean
+    sellQuantity?: boolean
+    sellPrice?: boolean
+    Delivery?: boolean
+    sellDate?: boolean
+    branchCode?: boolean
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sellMedicine"]>
+
+  export type SellMedicineSelectScalar = {
+    id?: boolean
+    farmId?: boolean
+    flockNumer?: boolean
+    genericName?: boolean
+    medicineName?: boolean
+    sellQuantity?: boolean
+    sellPrice?: boolean
+    Delivery?: boolean
+    sellDate?: boolean
+    branchCode?: boolean
+  }
+
+  export type SellMedicineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "farmId" | "flockNumer" | "genericName" | "medicineName" | "sellQuantity" | "sellPrice" | "Delivery" | "sellDate" | "branchCode", ExtArgs["result"]["sellMedicine"]>
+  export type SellMedicineInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+    MedicineTransfer?: boolean | SellMedicine$MedicineTransferArgs<ExtArgs>
+    _count?: boolean | SellMedicineCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SellMedicineIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+  }
+  export type SellMedicineIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+  }
+
+  export type $SellMedicinePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SellMedicine"
+    objects: {
+      flock: Prisma.$FlockPayload<ExtArgs>
+      branch: Prisma.$BranchPayload<ExtArgs>
+      farmer: Prisma.$FarmerPayload<ExtArgs>
+      MedicineTransfer: Prisma.$MedicineTransferPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      farmId: string
+      flockNumer: number
+      genericName: string
+      medicineName: string
+      sellQuantity: number
+      sellPrice: number
+      Delivery: $Enums.DeliveryStatus
+      sellDate: string
+      branchCode: string
+    }, ExtArgs["result"]["sellMedicine"]>
+    composites: {}
+  }
+
+  type SellMedicineGetPayload<S extends boolean | null | undefined | SellMedicineDefaultArgs> = $Result.GetResult<Prisma.$SellMedicinePayload, S>
+
+  type SellMedicineCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SellMedicineFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SellMedicineCountAggregateInputType | true
+    }
+
+  export interface SellMedicineDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SellMedicine'], meta: { name: 'SellMedicine' } }
+    /**
+     * Find zero or one SellMedicine that matches the filter.
+     * @param {SellMedicineFindUniqueArgs} args - Arguments to find a SellMedicine
+     * @example
+     * // Get one SellMedicine
+     * const sellMedicine = await prisma.sellMedicine.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SellMedicineFindUniqueArgs>(args: SelectSubset<T, SellMedicineFindUniqueArgs<ExtArgs>>): Prisma__SellMedicineClient<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SellMedicine that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SellMedicineFindUniqueOrThrowArgs} args - Arguments to find a SellMedicine
+     * @example
+     * // Get one SellMedicine
+     * const sellMedicine = await prisma.sellMedicine.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SellMedicineFindUniqueOrThrowArgs>(args: SelectSubset<T, SellMedicineFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SellMedicineClient<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SellMedicine that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SellMedicineFindFirstArgs} args - Arguments to find a SellMedicine
+     * @example
+     * // Get one SellMedicine
+     * const sellMedicine = await prisma.sellMedicine.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SellMedicineFindFirstArgs>(args?: SelectSubset<T, SellMedicineFindFirstArgs<ExtArgs>>): Prisma__SellMedicineClient<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SellMedicine that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SellMedicineFindFirstOrThrowArgs} args - Arguments to find a SellMedicine
+     * @example
+     * // Get one SellMedicine
+     * const sellMedicine = await prisma.sellMedicine.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SellMedicineFindFirstOrThrowArgs>(args?: SelectSubset<T, SellMedicineFindFirstOrThrowArgs<ExtArgs>>): Prisma__SellMedicineClient<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SellMedicines that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SellMedicineFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SellMedicines
+     * const sellMedicines = await prisma.sellMedicine.findMany()
+     * 
+     * // Get first 10 SellMedicines
+     * const sellMedicines = await prisma.sellMedicine.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sellMedicineWithIdOnly = await prisma.sellMedicine.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SellMedicineFindManyArgs>(args?: SelectSubset<T, SellMedicineFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SellMedicine.
+     * @param {SellMedicineCreateArgs} args - Arguments to create a SellMedicine.
+     * @example
+     * // Create one SellMedicine
+     * const SellMedicine = await prisma.sellMedicine.create({
+     *   data: {
+     *     // ... data to create a SellMedicine
+     *   }
+     * })
+     * 
+     */
+    create<T extends SellMedicineCreateArgs>(args: SelectSubset<T, SellMedicineCreateArgs<ExtArgs>>): Prisma__SellMedicineClient<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SellMedicines.
+     * @param {SellMedicineCreateManyArgs} args - Arguments to create many SellMedicines.
+     * @example
+     * // Create many SellMedicines
+     * const sellMedicine = await prisma.sellMedicine.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SellMedicineCreateManyArgs>(args?: SelectSubset<T, SellMedicineCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SellMedicines and returns the data saved in the database.
+     * @param {SellMedicineCreateManyAndReturnArgs} args - Arguments to create many SellMedicines.
+     * @example
+     * // Create many SellMedicines
+     * const sellMedicine = await prisma.sellMedicine.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SellMedicines and only return the `id`
+     * const sellMedicineWithIdOnly = await prisma.sellMedicine.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SellMedicineCreateManyAndReturnArgs>(args?: SelectSubset<T, SellMedicineCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SellMedicine.
+     * @param {SellMedicineDeleteArgs} args - Arguments to delete one SellMedicine.
+     * @example
+     * // Delete one SellMedicine
+     * const SellMedicine = await prisma.sellMedicine.delete({
+     *   where: {
+     *     // ... filter to delete one SellMedicine
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SellMedicineDeleteArgs>(args: SelectSubset<T, SellMedicineDeleteArgs<ExtArgs>>): Prisma__SellMedicineClient<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SellMedicine.
+     * @param {SellMedicineUpdateArgs} args - Arguments to update one SellMedicine.
+     * @example
+     * // Update one SellMedicine
+     * const sellMedicine = await prisma.sellMedicine.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SellMedicineUpdateArgs>(args: SelectSubset<T, SellMedicineUpdateArgs<ExtArgs>>): Prisma__SellMedicineClient<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SellMedicines.
+     * @param {SellMedicineDeleteManyArgs} args - Arguments to filter SellMedicines to delete.
+     * @example
+     * // Delete a few SellMedicines
+     * const { count } = await prisma.sellMedicine.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SellMedicineDeleteManyArgs>(args?: SelectSubset<T, SellMedicineDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SellMedicines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SellMedicineUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SellMedicines
+     * const sellMedicine = await prisma.sellMedicine.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SellMedicineUpdateManyArgs>(args: SelectSubset<T, SellMedicineUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SellMedicines and returns the data updated in the database.
+     * @param {SellMedicineUpdateManyAndReturnArgs} args - Arguments to update many SellMedicines.
+     * @example
+     * // Update many SellMedicines
+     * const sellMedicine = await prisma.sellMedicine.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SellMedicines and only return the `id`
+     * const sellMedicineWithIdOnly = await prisma.sellMedicine.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SellMedicineUpdateManyAndReturnArgs>(args: SelectSubset<T, SellMedicineUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SellMedicine.
+     * @param {SellMedicineUpsertArgs} args - Arguments to update or create a SellMedicine.
+     * @example
+     * // Update or create a SellMedicine
+     * const sellMedicine = await prisma.sellMedicine.upsert({
+     *   create: {
+     *     // ... data to create a SellMedicine
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SellMedicine we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SellMedicineUpsertArgs>(args: SelectSubset<T, SellMedicineUpsertArgs<ExtArgs>>): Prisma__SellMedicineClient<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SellMedicines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SellMedicineCountArgs} args - Arguments to filter SellMedicines to count.
+     * @example
+     * // Count the number of SellMedicines
+     * const count = await prisma.sellMedicine.count({
+     *   where: {
+     *     // ... the filter for the SellMedicines we want to count
+     *   }
+     * })
+    **/
+    count<T extends SellMedicineCountArgs>(
+      args?: Subset<T, SellMedicineCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SellMedicineCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SellMedicine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SellMedicineAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SellMedicineAggregateArgs>(args: Subset<T, SellMedicineAggregateArgs>): Prisma.PrismaPromise<GetSellMedicineAggregateType<T>>
+
+    /**
+     * Group by SellMedicine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SellMedicineGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SellMedicineGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SellMedicineGroupByArgs['orderBy'] }
+        : { orderBy?: SellMedicineGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SellMedicineGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSellMedicineGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SellMedicine model
+   */
+  readonly fields: SellMedicineFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SellMedicine.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SellMedicineClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    flock<T extends FlockDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FlockDefaultArgs<ExtArgs>>): Prisma__FlockClient<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    branch<T extends BranchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BranchDefaultArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    farmer<T extends FarmerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FarmerDefaultArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    MedicineTransfer<T extends SellMedicine$MedicineTransferArgs<ExtArgs> = {}>(args?: Subset<T, SellMedicine$MedicineTransferArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SellMedicine model
+   */
+  interface SellMedicineFieldRefs {
+    readonly id: FieldRef<"SellMedicine", 'String'>
+    readonly farmId: FieldRef<"SellMedicine", 'String'>
+    readonly flockNumer: FieldRef<"SellMedicine", 'Int'>
+    readonly genericName: FieldRef<"SellMedicine", 'String'>
+    readonly medicineName: FieldRef<"SellMedicine", 'String'>
+    readonly sellQuantity: FieldRef<"SellMedicine", 'Int'>
+    readonly sellPrice: FieldRef<"SellMedicine", 'Int'>
+    readonly Delivery: FieldRef<"SellMedicine", 'DeliveryStatus'>
+    readonly sellDate: FieldRef<"SellMedicine", 'String'>
+    readonly branchCode: FieldRef<"SellMedicine", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SellMedicine findUnique
+   */
+  export type SellMedicineFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineInclude<ExtArgs> | null
+    /**
+     * Filter, which SellMedicine to fetch.
+     */
+    where: SellMedicineWhereUniqueInput
+  }
+
+  /**
+   * SellMedicine findUniqueOrThrow
+   */
+  export type SellMedicineFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineInclude<ExtArgs> | null
+    /**
+     * Filter, which SellMedicine to fetch.
+     */
+    where: SellMedicineWhereUniqueInput
+  }
+
+  /**
+   * SellMedicine findFirst
+   */
+  export type SellMedicineFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineInclude<ExtArgs> | null
+    /**
+     * Filter, which SellMedicine to fetch.
+     */
+    where?: SellMedicineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SellMedicines to fetch.
+     */
+    orderBy?: SellMedicineOrderByWithRelationInput | SellMedicineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SellMedicines.
+     */
+    cursor?: SellMedicineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SellMedicines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SellMedicines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SellMedicines.
+     */
+    distinct?: SellMedicineScalarFieldEnum | SellMedicineScalarFieldEnum[]
+  }
+
+  /**
+   * SellMedicine findFirstOrThrow
+   */
+  export type SellMedicineFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineInclude<ExtArgs> | null
+    /**
+     * Filter, which SellMedicine to fetch.
+     */
+    where?: SellMedicineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SellMedicines to fetch.
+     */
+    orderBy?: SellMedicineOrderByWithRelationInput | SellMedicineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SellMedicines.
+     */
+    cursor?: SellMedicineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SellMedicines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SellMedicines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SellMedicines.
+     */
+    distinct?: SellMedicineScalarFieldEnum | SellMedicineScalarFieldEnum[]
+  }
+
+  /**
+   * SellMedicine findMany
+   */
+  export type SellMedicineFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineInclude<ExtArgs> | null
+    /**
+     * Filter, which SellMedicines to fetch.
+     */
+    where?: SellMedicineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SellMedicines to fetch.
+     */
+    orderBy?: SellMedicineOrderByWithRelationInput | SellMedicineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SellMedicines.
+     */
+    cursor?: SellMedicineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SellMedicines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SellMedicines.
+     */
+    skip?: number
+    distinct?: SellMedicineScalarFieldEnum | SellMedicineScalarFieldEnum[]
+  }
+
+  /**
+   * SellMedicine create
+   */
+  export type SellMedicineCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SellMedicine.
+     */
+    data: XOR<SellMedicineCreateInput, SellMedicineUncheckedCreateInput>
+  }
+
+  /**
+   * SellMedicine createMany
+   */
+  export type SellMedicineCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SellMedicines.
+     */
+    data: SellMedicineCreateManyInput | SellMedicineCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SellMedicine createManyAndReturn
+   */
+  export type SellMedicineCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * The data used to create many SellMedicines.
+     */
+    data: SellMedicineCreateManyInput | SellMedicineCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SellMedicine update
+   */
+  export type SellMedicineUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SellMedicine.
+     */
+    data: XOR<SellMedicineUpdateInput, SellMedicineUncheckedUpdateInput>
+    /**
+     * Choose, which SellMedicine to update.
+     */
+    where: SellMedicineWhereUniqueInput
+  }
+
+  /**
+   * SellMedicine updateMany
+   */
+  export type SellMedicineUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SellMedicines.
+     */
+    data: XOR<SellMedicineUpdateManyMutationInput, SellMedicineUncheckedUpdateManyInput>
+    /**
+     * Filter which SellMedicines to update
+     */
+    where?: SellMedicineWhereInput
+    /**
+     * Limit how many SellMedicines to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SellMedicine updateManyAndReturn
+   */
+  export type SellMedicineUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * The data used to update SellMedicines.
+     */
+    data: XOR<SellMedicineUpdateManyMutationInput, SellMedicineUncheckedUpdateManyInput>
+    /**
+     * Filter which SellMedicines to update
+     */
+    where?: SellMedicineWhereInput
+    /**
+     * Limit how many SellMedicines to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SellMedicine upsert
+   */
+  export type SellMedicineUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SellMedicine to update in case it exists.
+     */
+    where: SellMedicineWhereUniqueInput
+    /**
+     * In case the SellMedicine found by the `where` argument doesn't exist, create a new SellMedicine with this data.
+     */
+    create: XOR<SellMedicineCreateInput, SellMedicineUncheckedCreateInput>
+    /**
+     * In case the SellMedicine was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SellMedicineUpdateInput, SellMedicineUncheckedUpdateInput>
+  }
+
+  /**
+   * SellMedicine delete
+   */
+  export type SellMedicineDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineInclude<ExtArgs> | null
+    /**
+     * Filter which SellMedicine to delete.
+     */
+    where: SellMedicineWhereUniqueInput
+  }
+
+  /**
+   * SellMedicine deleteMany
+   */
+  export type SellMedicineDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SellMedicines to delete
+     */
+    where?: SellMedicineWhereInput
+    /**
+     * Limit how many SellMedicines to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SellMedicine.MedicineTransfer
+   */
+  export type SellMedicine$MedicineTransferArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferInclude<ExtArgs> | null
+    where?: MedicineTransferWhereInput
+    orderBy?: MedicineTransferOrderByWithRelationInput | MedicineTransferOrderByWithRelationInput[]
+    cursor?: MedicineTransferWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MedicineTransferScalarFieldEnum | MedicineTransferScalarFieldEnum[]
+  }
+
+  /**
+   * SellMedicine without action
+   */
+  export type SellMedicineDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SellMedicine
+     */
+    select?: SellMedicineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SellMedicine
+     */
+    omit?: SellMedicineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SellMedicineInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MedicineTransfer
+   */
+
+  export type AggregateMedicineTransfer = {
+    _count: MedicineTransferCountAggregateOutputType | null
+    _min: MedicineTransferMinAggregateOutputType | null
+    _max: MedicineTransferMaxAggregateOutputType | null
+  }
+
+  export type MedicineTransferMinAggregateOutputType = {
+    id: string | null
+    sellId: string | null
+    flockId: string | null
+    toFarmcode: string | null
+    fromBranch: string | null
+    toBranch: string | null
+    medicineName: string | null
+    genericName: string | null
+    branchCode: string | null
+  }
+
+  export type MedicineTransferMaxAggregateOutputType = {
+    id: string | null
+    sellId: string | null
+    flockId: string | null
+    toFarmcode: string | null
+    fromBranch: string | null
+    toBranch: string | null
+    medicineName: string | null
+    genericName: string | null
+    branchCode: string | null
+  }
+
+  export type MedicineTransferCountAggregateOutputType = {
+    id: number
+    sellId: number
+    flockId: number
+    toFarmcode: number
+    fromBranch: number
+    toBranch: number
+    medicineName: number
+    genericName: number
+    branchCode: number
+    _all: number
+  }
+
+
+  export type MedicineTransferMinAggregateInputType = {
+    id?: true
+    sellId?: true
+    flockId?: true
+    toFarmcode?: true
+    fromBranch?: true
+    toBranch?: true
+    medicineName?: true
+    genericName?: true
+    branchCode?: true
+  }
+
+  export type MedicineTransferMaxAggregateInputType = {
+    id?: true
+    sellId?: true
+    flockId?: true
+    toFarmcode?: true
+    fromBranch?: true
+    toBranch?: true
+    medicineName?: true
+    genericName?: true
+    branchCode?: true
+  }
+
+  export type MedicineTransferCountAggregateInputType = {
+    id?: true
+    sellId?: true
+    flockId?: true
+    toFarmcode?: true
+    fromBranch?: true
+    toBranch?: true
+    medicineName?: true
+    genericName?: true
+    branchCode?: true
+    _all?: true
+  }
+
+  export type MedicineTransferAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MedicineTransfer to aggregate.
+     */
+    where?: MedicineTransferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MedicineTransfers to fetch.
+     */
+    orderBy?: MedicineTransferOrderByWithRelationInput | MedicineTransferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MedicineTransferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MedicineTransfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MedicineTransfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MedicineTransfers
+    **/
+    _count?: true | MedicineTransferCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MedicineTransferMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MedicineTransferMaxAggregateInputType
+  }
+
+  export type GetMedicineTransferAggregateType<T extends MedicineTransferAggregateArgs> = {
+        [P in keyof T & keyof AggregateMedicineTransfer]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMedicineTransfer[P]>
+      : GetScalarType<T[P], AggregateMedicineTransfer[P]>
+  }
+
+
+
+
+  export type MedicineTransferGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MedicineTransferWhereInput
+    orderBy?: MedicineTransferOrderByWithAggregationInput | MedicineTransferOrderByWithAggregationInput[]
+    by: MedicineTransferScalarFieldEnum[] | MedicineTransferScalarFieldEnum
+    having?: MedicineTransferScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MedicineTransferCountAggregateInputType | true
+    _min?: MedicineTransferMinAggregateInputType
+    _max?: MedicineTransferMaxAggregateInputType
+  }
+
+  export type MedicineTransferGroupByOutputType = {
+    id: string
+    sellId: string
+    flockId: string
+    toFarmcode: string | null
+    fromBranch: string | null
+    toBranch: string | null
+    medicineName: string
+    genericName: string
+    branchCode: string
+    _count: MedicineTransferCountAggregateOutputType | null
+    _min: MedicineTransferMinAggregateOutputType | null
+    _max: MedicineTransferMaxAggregateOutputType | null
+  }
+
+  type GetMedicineTransferGroupByPayload<T extends MedicineTransferGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MedicineTransferGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MedicineTransferGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MedicineTransferGroupByOutputType[P]>
+            : GetScalarType<T[P], MedicineTransferGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MedicineTransferSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sellId?: boolean
+    flockId?: boolean
+    toFarmcode?: boolean
+    fromBranch?: boolean
+    toBranch?: boolean
+    medicineName?: boolean
+    genericName?: boolean
+    branchCode?: boolean
+    sellmedicine?: boolean | SellMedicineDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    baranch?: boolean | BranchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["medicineTransfer"]>
+
+  export type MedicineTransferSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sellId?: boolean
+    flockId?: boolean
+    toFarmcode?: boolean
+    fromBranch?: boolean
+    toBranch?: boolean
+    medicineName?: boolean
+    genericName?: boolean
+    branchCode?: boolean
+    sellmedicine?: boolean | SellMedicineDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    baranch?: boolean | BranchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["medicineTransfer"]>
+
+  export type MedicineTransferSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sellId?: boolean
+    flockId?: boolean
+    toFarmcode?: boolean
+    fromBranch?: boolean
+    toBranch?: boolean
+    medicineName?: boolean
+    genericName?: boolean
+    branchCode?: boolean
+    sellmedicine?: boolean | SellMedicineDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    baranch?: boolean | BranchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["medicineTransfer"]>
+
+  export type MedicineTransferSelectScalar = {
+    id?: boolean
+    sellId?: boolean
+    flockId?: boolean
+    toFarmcode?: boolean
+    fromBranch?: boolean
+    toBranch?: boolean
+    medicineName?: boolean
+    genericName?: boolean
+    branchCode?: boolean
+  }
+
+  export type MedicineTransferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sellId" | "flockId" | "toFarmcode" | "fromBranch" | "toBranch" | "medicineName" | "genericName" | "branchCode", ExtArgs["result"]["medicineTransfer"]>
+  export type MedicineTransferInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sellmedicine?: boolean | SellMedicineDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    baranch?: boolean | BranchDefaultArgs<ExtArgs>
+  }
+  export type MedicineTransferIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sellmedicine?: boolean | SellMedicineDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    baranch?: boolean | BranchDefaultArgs<ExtArgs>
+  }
+  export type MedicineTransferIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sellmedicine?: boolean | SellMedicineDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    baranch?: boolean | BranchDefaultArgs<ExtArgs>
+  }
+
+  export type $MedicineTransferPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MedicineTransfer"
+    objects: {
+      sellmedicine: Prisma.$SellMedicinePayload<ExtArgs>
+      flock: Prisma.$FlockPayload<ExtArgs>
+      baranch: Prisma.$BranchPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sellId: string
+      flockId: string
+      toFarmcode: string | null
+      fromBranch: string | null
+      toBranch: string | null
+      medicineName: string
+      genericName: string
+      branchCode: string
+    }, ExtArgs["result"]["medicineTransfer"]>
+    composites: {}
+  }
+
+  type MedicineTransferGetPayload<S extends boolean | null | undefined | MedicineTransferDefaultArgs> = $Result.GetResult<Prisma.$MedicineTransferPayload, S>
+
+  type MedicineTransferCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MedicineTransferFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MedicineTransferCountAggregateInputType | true
+    }
+
+  export interface MedicineTransferDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MedicineTransfer'], meta: { name: 'MedicineTransfer' } }
+    /**
+     * Find zero or one MedicineTransfer that matches the filter.
+     * @param {MedicineTransferFindUniqueArgs} args - Arguments to find a MedicineTransfer
+     * @example
+     * // Get one MedicineTransfer
+     * const medicineTransfer = await prisma.medicineTransfer.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MedicineTransferFindUniqueArgs>(args: SelectSubset<T, MedicineTransferFindUniqueArgs<ExtArgs>>): Prisma__MedicineTransferClient<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MedicineTransfer that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MedicineTransferFindUniqueOrThrowArgs} args - Arguments to find a MedicineTransfer
+     * @example
+     * // Get one MedicineTransfer
+     * const medicineTransfer = await prisma.medicineTransfer.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MedicineTransferFindUniqueOrThrowArgs>(args: SelectSubset<T, MedicineTransferFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MedicineTransferClient<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MedicineTransfer that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicineTransferFindFirstArgs} args - Arguments to find a MedicineTransfer
+     * @example
+     * // Get one MedicineTransfer
+     * const medicineTransfer = await prisma.medicineTransfer.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MedicineTransferFindFirstArgs>(args?: SelectSubset<T, MedicineTransferFindFirstArgs<ExtArgs>>): Prisma__MedicineTransferClient<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MedicineTransfer that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicineTransferFindFirstOrThrowArgs} args - Arguments to find a MedicineTransfer
+     * @example
+     * // Get one MedicineTransfer
+     * const medicineTransfer = await prisma.medicineTransfer.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MedicineTransferFindFirstOrThrowArgs>(args?: SelectSubset<T, MedicineTransferFindFirstOrThrowArgs<ExtArgs>>): Prisma__MedicineTransferClient<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MedicineTransfers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicineTransferFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MedicineTransfers
+     * const medicineTransfers = await prisma.medicineTransfer.findMany()
+     * 
+     * // Get first 10 MedicineTransfers
+     * const medicineTransfers = await prisma.medicineTransfer.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const medicineTransferWithIdOnly = await prisma.medicineTransfer.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MedicineTransferFindManyArgs>(args?: SelectSubset<T, MedicineTransferFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MedicineTransfer.
+     * @param {MedicineTransferCreateArgs} args - Arguments to create a MedicineTransfer.
+     * @example
+     * // Create one MedicineTransfer
+     * const MedicineTransfer = await prisma.medicineTransfer.create({
+     *   data: {
+     *     // ... data to create a MedicineTransfer
+     *   }
+     * })
+     * 
+     */
+    create<T extends MedicineTransferCreateArgs>(args: SelectSubset<T, MedicineTransferCreateArgs<ExtArgs>>): Prisma__MedicineTransferClient<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MedicineTransfers.
+     * @param {MedicineTransferCreateManyArgs} args - Arguments to create many MedicineTransfers.
+     * @example
+     * // Create many MedicineTransfers
+     * const medicineTransfer = await prisma.medicineTransfer.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MedicineTransferCreateManyArgs>(args?: SelectSubset<T, MedicineTransferCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MedicineTransfers and returns the data saved in the database.
+     * @param {MedicineTransferCreateManyAndReturnArgs} args - Arguments to create many MedicineTransfers.
+     * @example
+     * // Create many MedicineTransfers
+     * const medicineTransfer = await prisma.medicineTransfer.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MedicineTransfers and only return the `id`
+     * const medicineTransferWithIdOnly = await prisma.medicineTransfer.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MedicineTransferCreateManyAndReturnArgs>(args?: SelectSubset<T, MedicineTransferCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MedicineTransfer.
+     * @param {MedicineTransferDeleteArgs} args - Arguments to delete one MedicineTransfer.
+     * @example
+     * // Delete one MedicineTransfer
+     * const MedicineTransfer = await prisma.medicineTransfer.delete({
+     *   where: {
+     *     // ... filter to delete one MedicineTransfer
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MedicineTransferDeleteArgs>(args: SelectSubset<T, MedicineTransferDeleteArgs<ExtArgs>>): Prisma__MedicineTransferClient<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MedicineTransfer.
+     * @param {MedicineTransferUpdateArgs} args - Arguments to update one MedicineTransfer.
+     * @example
+     * // Update one MedicineTransfer
+     * const medicineTransfer = await prisma.medicineTransfer.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MedicineTransferUpdateArgs>(args: SelectSubset<T, MedicineTransferUpdateArgs<ExtArgs>>): Prisma__MedicineTransferClient<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MedicineTransfers.
+     * @param {MedicineTransferDeleteManyArgs} args - Arguments to filter MedicineTransfers to delete.
+     * @example
+     * // Delete a few MedicineTransfers
+     * const { count } = await prisma.medicineTransfer.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MedicineTransferDeleteManyArgs>(args?: SelectSubset<T, MedicineTransferDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MedicineTransfers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicineTransferUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MedicineTransfers
+     * const medicineTransfer = await prisma.medicineTransfer.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MedicineTransferUpdateManyArgs>(args: SelectSubset<T, MedicineTransferUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MedicineTransfers and returns the data updated in the database.
+     * @param {MedicineTransferUpdateManyAndReturnArgs} args - Arguments to update many MedicineTransfers.
+     * @example
+     * // Update many MedicineTransfers
+     * const medicineTransfer = await prisma.medicineTransfer.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MedicineTransfers and only return the `id`
+     * const medicineTransferWithIdOnly = await prisma.medicineTransfer.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MedicineTransferUpdateManyAndReturnArgs>(args: SelectSubset<T, MedicineTransferUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MedicineTransfer.
+     * @param {MedicineTransferUpsertArgs} args - Arguments to update or create a MedicineTransfer.
+     * @example
+     * // Update or create a MedicineTransfer
+     * const medicineTransfer = await prisma.medicineTransfer.upsert({
+     *   create: {
+     *     // ... data to create a MedicineTransfer
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MedicineTransfer we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MedicineTransferUpsertArgs>(args: SelectSubset<T, MedicineTransferUpsertArgs<ExtArgs>>): Prisma__MedicineTransferClient<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MedicineTransfers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicineTransferCountArgs} args - Arguments to filter MedicineTransfers to count.
+     * @example
+     * // Count the number of MedicineTransfers
+     * const count = await prisma.medicineTransfer.count({
+     *   where: {
+     *     // ... the filter for the MedicineTransfers we want to count
+     *   }
+     * })
+    **/
+    count<T extends MedicineTransferCountArgs>(
+      args?: Subset<T, MedicineTransferCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MedicineTransferCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MedicineTransfer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicineTransferAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MedicineTransferAggregateArgs>(args: Subset<T, MedicineTransferAggregateArgs>): Prisma.PrismaPromise<GetMedicineTransferAggregateType<T>>
+
+    /**
+     * Group by MedicineTransfer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicineTransferGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MedicineTransferGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MedicineTransferGroupByArgs['orderBy'] }
+        : { orderBy?: MedicineTransferGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MedicineTransferGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMedicineTransferGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MedicineTransfer model
+   */
+  readonly fields: MedicineTransferFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MedicineTransfer.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MedicineTransferClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    sellmedicine<T extends SellMedicineDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SellMedicineDefaultArgs<ExtArgs>>): Prisma__SellMedicineClient<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    flock<T extends FlockDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FlockDefaultArgs<ExtArgs>>): Prisma__FlockClient<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    baranch<T extends BranchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BranchDefaultArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MedicineTransfer model
+   */
+  interface MedicineTransferFieldRefs {
+    readonly id: FieldRef<"MedicineTransfer", 'String'>
+    readonly sellId: FieldRef<"MedicineTransfer", 'String'>
+    readonly flockId: FieldRef<"MedicineTransfer", 'String'>
+    readonly toFarmcode: FieldRef<"MedicineTransfer", 'String'>
+    readonly fromBranch: FieldRef<"MedicineTransfer", 'String'>
+    readonly toBranch: FieldRef<"MedicineTransfer", 'String'>
+    readonly medicineName: FieldRef<"MedicineTransfer", 'String'>
+    readonly genericName: FieldRef<"MedicineTransfer", 'String'>
+    readonly branchCode: FieldRef<"MedicineTransfer", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MedicineTransfer findUnique
+   */
+  export type MedicineTransferFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicineTransfer to fetch.
+     */
+    where: MedicineTransferWhereUniqueInput
+  }
+
+  /**
+   * MedicineTransfer findUniqueOrThrow
+   */
+  export type MedicineTransferFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicineTransfer to fetch.
+     */
+    where: MedicineTransferWhereUniqueInput
+  }
+
+  /**
+   * MedicineTransfer findFirst
+   */
+  export type MedicineTransferFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicineTransfer to fetch.
+     */
+    where?: MedicineTransferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MedicineTransfers to fetch.
+     */
+    orderBy?: MedicineTransferOrderByWithRelationInput | MedicineTransferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MedicineTransfers.
+     */
+    cursor?: MedicineTransferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MedicineTransfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MedicineTransfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MedicineTransfers.
+     */
+    distinct?: MedicineTransferScalarFieldEnum | MedicineTransferScalarFieldEnum[]
+  }
+
+  /**
+   * MedicineTransfer findFirstOrThrow
+   */
+  export type MedicineTransferFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicineTransfer to fetch.
+     */
+    where?: MedicineTransferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MedicineTransfers to fetch.
+     */
+    orderBy?: MedicineTransferOrderByWithRelationInput | MedicineTransferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MedicineTransfers.
+     */
+    cursor?: MedicineTransferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MedicineTransfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MedicineTransfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MedicineTransfers.
+     */
+    distinct?: MedicineTransferScalarFieldEnum | MedicineTransferScalarFieldEnum[]
+  }
+
+  /**
+   * MedicineTransfer findMany
+   */
+  export type MedicineTransferFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicineTransfers to fetch.
+     */
+    where?: MedicineTransferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MedicineTransfers to fetch.
+     */
+    orderBy?: MedicineTransferOrderByWithRelationInput | MedicineTransferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MedicineTransfers.
+     */
+    cursor?: MedicineTransferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MedicineTransfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MedicineTransfers.
+     */
+    skip?: number
+    distinct?: MedicineTransferScalarFieldEnum | MedicineTransferScalarFieldEnum[]
+  }
+
+  /**
+   * MedicineTransfer create
+   */
+  export type MedicineTransferCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MedicineTransfer.
+     */
+    data: XOR<MedicineTransferCreateInput, MedicineTransferUncheckedCreateInput>
+  }
+
+  /**
+   * MedicineTransfer createMany
+   */
+  export type MedicineTransferCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MedicineTransfers.
+     */
+    data: MedicineTransferCreateManyInput | MedicineTransferCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MedicineTransfer createManyAndReturn
+   */
+  export type MedicineTransferCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * The data used to create many MedicineTransfers.
+     */
+    data: MedicineTransferCreateManyInput | MedicineTransferCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MedicineTransfer update
+   */
+  export type MedicineTransferUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MedicineTransfer.
+     */
+    data: XOR<MedicineTransferUpdateInput, MedicineTransferUncheckedUpdateInput>
+    /**
+     * Choose, which MedicineTransfer to update.
+     */
+    where: MedicineTransferWhereUniqueInput
+  }
+
+  /**
+   * MedicineTransfer updateMany
+   */
+  export type MedicineTransferUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MedicineTransfers.
+     */
+    data: XOR<MedicineTransferUpdateManyMutationInput, MedicineTransferUncheckedUpdateManyInput>
+    /**
+     * Filter which MedicineTransfers to update
+     */
+    where?: MedicineTransferWhereInput
+    /**
+     * Limit how many MedicineTransfers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MedicineTransfer updateManyAndReturn
+   */
+  export type MedicineTransferUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * The data used to update MedicineTransfers.
+     */
+    data: XOR<MedicineTransferUpdateManyMutationInput, MedicineTransferUncheckedUpdateManyInput>
+    /**
+     * Filter which MedicineTransfers to update
+     */
+    where?: MedicineTransferWhereInput
+    /**
+     * Limit how many MedicineTransfers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MedicineTransfer upsert
+   */
+  export type MedicineTransferUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MedicineTransfer to update in case it exists.
+     */
+    where: MedicineTransferWhereUniqueInput
+    /**
+     * In case the MedicineTransfer found by the `where` argument doesn't exist, create a new MedicineTransfer with this data.
+     */
+    create: XOR<MedicineTransferCreateInput, MedicineTransferUncheckedCreateInput>
+    /**
+     * In case the MedicineTransfer was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MedicineTransferUpdateInput, MedicineTransferUncheckedUpdateInput>
+  }
+
+  /**
+   * MedicineTransfer delete
+   */
+  export type MedicineTransferDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferInclude<ExtArgs> | null
+    /**
+     * Filter which MedicineTransfer to delete.
+     */
+    where: MedicineTransferWhereUniqueInput
+  }
+
+  /**
+   * MedicineTransfer deleteMany
+   */
+  export type MedicineTransferDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MedicineTransfers to delete
+     */
+    where?: MedicineTransferWhereInput
+    /**
+     * Limit how many MedicineTransfers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MedicineTransfer without action
+   */
+  export type MedicineTransferDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicineTransfer
+     */
+    select?: MedicineTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MedicineTransfer
+     */
+    omit?: MedicineTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicineTransferInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -16011,7 +18777,7 @@ export namespace Prisma {
   export type BranchScalarFieldEnum = (typeof BranchScalarFieldEnum)[keyof typeof BranchScalarFieldEnum]
 
 
-  export const CustomerScalarFieldEnum: {
+  export const FarmerScalarFieldEnum: {
     id: 'id',
     branchCode: 'branchCode',
     farmCode: 'farmCode',
@@ -16020,10 +18786,11 @@ export namespace Prisma {
     totalShed: 'totalShed',
     totalSquare: 'totalSquare',
     capacity: 'capacity',
+    addressId: 'addressId',
     nid: 'nid'
   };
 
-  export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum]
+  export type FarmerScalarFieldEnum = (typeof FarmerScalarFieldEnum)[keyof typeof FarmerScalarFieldEnum]
 
 
   export const AddressScalarFieldEnum: {
@@ -16034,9 +18801,7 @@ export namespace Prisma {
     thana: 'thana',
     upazila: 'upazila',
     phoneNumber: 'phoneNumber',
-    city: 'city',
-    employeeId: 'employeeId',
-    farmCode: 'farmCode'
+    city: 'city'
   };
 
   export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
@@ -16057,7 +18822,8 @@ export namespace Prisma {
     name: 'name',
     workingLocation: 'workingLocation',
     designation: 'designation',
-    branchId: 'branchId'
+    branchId: 'branchId',
+    addressId: 'addressId'
   };
 
   export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
@@ -16070,7 +18836,7 @@ export namespace Prisma {
     startDate: 'startDate',
     endDate: 'endDate',
     executiveId: 'executiveId',
-    farmCode: 'farmCode',
+    farmId: 'farmId',
     docName: 'docName',
     docQuantity: 'docQuantity',
     approvedBy: 'approvedBy',
@@ -16152,6 +18918,37 @@ export namespace Prisma {
   export type MedicineStockScalarFieldEnum = (typeof MedicineStockScalarFieldEnum)[keyof typeof MedicineStockScalarFieldEnum]
 
 
+  export const SellMedicineScalarFieldEnum: {
+    id: 'id',
+    farmId: 'farmId',
+    flockNumer: 'flockNumer',
+    genericName: 'genericName',
+    medicineName: 'medicineName',
+    sellQuantity: 'sellQuantity',
+    sellPrice: 'sellPrice',
+    Delivery: 'Delivery',
+    sellDate: 'sellDate',
+    branchCode: 'branchCode'
+  };
+
+  export type SellMedicineScalarFieldEnum = (typeof SellMedicineScalarFieldEnum)[keyof typeof SellMedicineScalarFieldEnum]
+
+
+  export const MedicineTransferScalarFieldEnum: {
+    id: 'id',
+    sellId: 'sellId',
+    flockId: 'flockId',
+    toFarmcode: 'toFarmcode',
+    fromBranch: 'fromBranch',
+    toBranch: 'toBranch',
+    medicineName: 'medicineName',
+    genericName: 'genericName',
+    branchCode: 'branchCode'
+  };
+
+  export type MedicineTransferScalarFieldEnum = (typeof MedicineTransferScalarFieldEnum)[keyof typeof MedicineTransferScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -16210,20 +19007,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Custtype'
-   */
-  export type EnumCusttypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Custtype'>
-    
-
-
-  /**
-   * Reference to a field of type 'Custtype[]'
-   */
-  export type ListEnumCusttypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Custtype[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -16234,6 +19017,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Custtype'
+   */
+  export type EnumCusttypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Custtype'>
+    
+
+
+  /**
+   * Reference to a field of type 'Custtype[]'
+   */
+  export type ListEnumCusttypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Custtype[]'>
     
 
 
@@ -16277,6 +19074,20 @@ export namespace Prisma {
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
+
+
+  /**
+   * Reference to a field of type 'DeliveryStatus'
+   */
+  export type EnumDeliveryStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeliveryStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'DeliveryStatus[]'
+   */
+  export type ListEnumDeliveryStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeliveryStatus[]'>
+    
   /**
    * Deep Input Types
    */
@@ -16290,13 +19101,15 @@ export namespace Prisma {
     locationName?: StringFilter<"Branch"> | string
     type?: EnumBranchTypeFilter<"Branch"> | $Enums.BranchType
     branchCode?: StringFilter<"Branch"> | string
-    customers?: CustomerListRelationFilter
+    farmer?: FarmerListRelationFilter
     employees?: EmployeeListRelationFilter
     branchEmployees?: BranchEmployeeListRelationFilter
     flocks?: FlockListRelationFilter
     Feed?: FeedListRelationFilter
     MedicineStock?: MedicineStockListRelationFilter
     MedicinePurchess?: MedicinePurchessListRelationFilter
+    SellMedicine?: SellMedicineListRelationFilter
+    MedicineTransfer?: MedicineTransferListRelationFilter
   }
 
   export type BranchOrderByWithRelationInput = {
@@ -16304,13 +19117,15 @@ export namespace Prisma {
     locationName?: SortOrder
     type?: SortOrder
     branchCode?: SortOrder
-    customers?: CustomerOrderByRelationAggregateInput
+    farmer?: FarmerOrderByRelationAggregateInput
     employees?: EmployeeOrderByRelationAggregateInput
     branchEmployees?: BranchEmployeeOrderByRelationAggregateInput
     flocks?: FlockOrderByRelationAggregateInput
     Feed?: FeedOrderByRelationAggregateInput
     MedicineStock?: MedicineStockOrderByRelationAggregateInput
     MedicinePurchess?: MedicinePurchessOrderByRelationAggregateInput
+    SellMedicine?: SellMedicineOrderByRelationAggregateInput
+    MedicineTransfer?: MedicineTransferOrderByRelationAggregateInput
   }
 
   export type BranchWhereUniqueInput = Prisma.AtLeast<{
@@ -16321,13 +19136,15 @@ export namespace Prisma {
     OR?: BranchWhereInput[]
     NOT?: BranchWhereInput | BranchWhereInput[]
     type?: EnumBranchTypeFilter<"Branch"> | $Enums.BranchType
-    customers?: CustomerListRelationFilter
+    farmer?: FarmerListRelationFilter
     employees?: EmployeeListRelationFilter
     branchEmployees?: BranchEmployeeListRelationFilter
     flocks?: FlockListRelationFilter
     Feed?: FeedListRelationFilter
     MedicineStock?: MedicineStockListRelationFilter
     MedicinePurchess?: MedicinePurchessListRelationFilter
+    SellMedicine?: SellMedicineListRelationFilter
+    MedicineTransfer?: MedicineTransferListRelationFilter
   }, "id" | "locationName" | "branchCode">
 
   export type BranchOrderByWithAggregationInput = {
@@ -16350,87 +19167,96 @@ export namespace Prisma {
     branchCode?: StringWithAggregatesFilter<"Branch"> | string
   }
 
-  export type CustomerWhereInput = {
-    AND?: CustomerWhereInput | CustomerWhereInput[]
-    OR?: CustomerWhereInput[]
-    NOT?: CustomerWhereInput | CustomerWhereInput[]
-    id?: StringFilter<"Customer"> | string
-    branchCode?: StringFilter<"Customer"> | string
-    farmCode?: StringFilter<"Customer"> | string
-    name?: StringFilter<"Customer"> | string
-    farmType?: EnumCusttypeFilter<"Customer"> | $Enums.Custtype
-    totalShed?: IntFilter<"Customer"> | number
-    totalSquare?: IntFilter<"Customer"> | number
-    capacity?: IntFilter<"Customer"> | number
-    nid?: StringFilter<"Customer"> | string
-    branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+  export type FarmerWhereInput = {
+    AND?: FarmerWhereInput | FarmerWhereInput[]
+    OR?: FarmerWhereInput[]
+    NOT?: FarmerWhereInput | FarmerWhereInput[]
+    id?: StringFilter<"Farmer"> | string
+    branchCode?: StringNullableFilter<"Farmer"> | string | null
+    farmCode?: IntFilter<"Farmer"> | number
+    name?: StringFilter<"Farmer"> | string
+    farmType?: EnumCusttypeFilter<"Farmer"> | $Enums.Custtype
+    totalShed?: IntFilter<"Farmer"> | number
+    totalSquare?: IntFilter<"Farmer"> | number
+    capacity?: IntFilter<"Farmer"> | number
+    addressId?: StringNullableFilter<"Farmer"> | string | null
+    nid?: StringFilter<"Farmer"> | string
+    branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     flocks?: FlockListRelationFilter
+    SellMedicine?: SellMedicineListRelationFilter
   }
 
-  export type CustomerOrderByWithRelationInput = {
+  export type FarmerOrderByWithRelationInput = {
     id?: SortOrder
-    branchCode?: SortOrder
+    branchCode?: SortOrderInput | SortOrder
     farmCode?: SortOrder
     name?: SortOrder
     farmType?: SortOrder
     totalShed?: SortOrder
     totalSquare?: SortOrder
     capacity?: SortOrder
+    addressId?: SortOrderInput | SortOrder
     nid?: SortOrder
     branch?: BranchOrderByWithRelationInput
     address?: AddressOrderByWithRelationInput
     flocks?: FlockOrderByRelationAggregateInput
+    SellMedicine?: SellMedicineOrderByRelationAggregateInput
   }
 
-  export type CustomerWhereUniqueInput = Prisma.AtLeast<{
+  export type FarmerWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    farmCode?: string
-    AND?: CustomerWhereInput | CustomerWhereInput[]
-    OR?: CustomerWhereInput[]
-    NOT?: CustomerWhereInput | CustomerWhereInput[]
-    branchCode?: StringFilter<"Customer"> | string
-    name?: StringFilter<"Customer"> | string
-    farmType?: EnumCusttypeFilter<"Customer"> | $Enums.Custtype
-    totalShed?: IntFilter<"Customer"> | number
-    totalSquare?: IntFilter<"Customer"> | number
-    capacity?: IntFilter<"Customer"> | number
-    nid?: StringFilter<"Customer"> | string
-    branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    farmCode?: number
+    addressId?: string
+    branchCode_farmCode?: FarmerBranchCodeFarmCodeCompoundUniqueInput
+    AND?: FarmerWhereInput | FarmerWhereInput[]
+    OR?: FarmerWhereInput[]
+    NOT?: FarmerWhereInput | FarmerWhereInput[]
+    branchCode?: StringNullableFilter<"Farmer"> | string | null
+    name?: StringFilter<"Farmer"> | string
+    farmType?: EnumCusttypeFilter<"Farmer"> | $Enums.Custtype
+    totalShed?: IntFilter<"Farmer"> | number
+    totalSquare?: IntFilter<"Farmer"> | number
+    capacity?: IntFilter<"Farmer"> | number
+    nid?: StringFilter<"Farmer"> | string
+    branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     flocks?: FlockListRelationFilter
-  }, "id" | "farmCode">
+    SellMedicine?: SellMedicineListRelationFilter
+  }, "id" | "farmCode" | "addressId" | "branchCode_farmCode">
 
-  export type CustomerOrderByWithAggregationInput = {
+  export type FarmerOrderByWithAggregationInput = {
     id?: SortOrder
-    branchCode?: SortOrder
+    branchCode?: SortOrderInput | SortOrder
     farmCode?: SortOrder
     name?: SortOrder
     farmType?: SortOrder
     totalShed?: SortOrder
     totalSquare?: SortOrder
     capacity?: SortOrder
+    addressId?: SortOrderInput | SortOrder
     nid?: SortOrder
-    _count?: CustomerCountOrderByAggregateInput
-    _avg?: CustomerAvgOrderByAggregateInput
-    _max?: CustomerMaxOrderByAggregateInput
-    _min?: CustomerMinOrderByAggregateInput
-    _sum?: CustomerSumOrderByAggregateInput
+    _count?: FarmerCountOrderByAggregateInput
+    _avg?: FarmerAvgOrderByAggregateInput
+    _max?: FarmerMaxOrderByAggregateInput
+    _min?: FarmerMinOrderByAggregateInput
+    _sum?: FarmerSumOrderByAggregateInput
   }
 
-  export type CustomerScalarWhereWithAggregatesInput = {
-    AND?: CustomerScalarWhereWithAggregatesInput | CustomerScalarWhereWithAggregatesInput[]
-    OR?: CustomerScalarWhereWithAggregatesInput[]
-    NOT?: CustomerScalarWhereWithAggregatesInput | CustomerScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Customer"> | string
-    branchCode?: StringWithAggregatesFilter<"Customer"> | string
-    farmCode?: StringWithAggregatesFilter<"Customer"> | string
-    name?: StringWithAggregatesFilter<"Customer"> | string
-    farmType?: EnumCusttypeWithAggregatesFilter<"Customer"> | $Enums.Custtype
-    totalShed?: IntWithAggregatesFilter<"Customer"> | number
-    totalSquare?: IntWithAggregatesFilter<"Customer"> | number
-    capacity?: IntWithAggregatesFilter<"Customer"> | number
-    nid?: StringWithAggregatesFilter<"Customer"> | string
+  export type FarmerScalarWhereWithAggregatesInput = {
+    AND?: FarmerScalarWhereWithAggregatesInput | FarmerScalarWhereWithAggregatesInput[]
+    OR?: FarmerScalarWhereWithAggregatesInput[]
+    NOT?: FarmerScalarWhereWithAggregatesInput | FarmerScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Farmer"> | string
+    branchCode?: StringNullableWithAggregatesFilter<"Farmer"> | string | null
+    farmCode?: IntWithAggregatesFilter<"Farmer"> | number
+    name?: StringWithAggregatesFilter<"Farmer"> | string
+    farmType?: EnumCusttypeWithAggregatesFilter<"Farmer"> | $Enums.Custtype
+    totalShed?: IntWithAggregatesFilter<"Farmer"> | number
+    totalSquare?: IntWithAggregatesFilter<"Farmer"> | number
+    capacity?: IntWithAggregatesFilter<"Farmer"> | number
+    addressId?: StringNullableWithAggregatesFilter<"Farmer"> | string | null
+    nid?: StringWithAggregatesFilter<"Farmer"> | string
   }
 
   export type AddressWhereInput = {
@@ -16445,10 +19271,8 @@ export namespace Prisma {
     upazila?: StringFilter<"Address"> | string
     phoneNumber?: StringFilter<"Address"> | string
     city?: StringFilter<"Address"> | string
-    employeeId?: StringNullableFilter<"Address"> | string | null
-    farmCode?: StringNullableFilter<"Address"> | string | null
-    employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
-    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+    Farmer?: XOR<FarmerNullableScalarRelationFilter, FarmerWhereInput> | null
+    Employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
   }
 
   export type AddressOrderByWithRelationInput = {
@@ -16460,16 +19284,12 @@ export namespace Prisma {
     upazila?: SortOrder
     phoneNumber?: SortOrder
     city?: SortOrder
-    employeeId?: SortOrderInput | SortOrder
-    farmCode?: SortOrderInput | SortOrder
-    employee?: EmployeeOrderByWithRelationInput
-    customer?: CustomerOrderByWithRelationInput
+    Farmer?: FarmerOrderByWithRelationInput
+    Employee?: EmployeeOrderByWithRelationInput
   }
 
   export type AddressWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    employeeId?: string
-    farmCode?: string
     AND?: AddressWhereInput | AddressWhereInput[]
     OR?: AddressWhereInput[]
     NOT?: AddressWhereInput | AddressWhereInput[]
@@ -16480,9 +19300,9 @@ export namespace Prisma {
     upazila?: StringFilter<"Address"> | string
     phoneNumber?: StringFilter<"Address"> | string
     city?: StringFilter<"Address"> | string
-    employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
-    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
-  }, "id" | "employeeId" | "farmCode">
+    Farmer?: XOR<FarmerNullableScalarRelationFilter, FarmerWhereInput> | null
+    Employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
+  }, "id">
 
   export type AddressOrderByWithAggregationInput = {
     id?: SortOrder
@@ -16493,8 +19313,6 @@ export namespace Prisma {
     upazila?: SortOrder
     phoneNumber?: SortOrder
     city?: SortOrder
-    employeeId?: SortOrderInput | SortOrder
-    farmCode?: SortOrderInput | SortOrder
     _count?: AddressCountOrderByAggregateInput
     _max?: AddressMaxOrderByAggregateInput
     _min?: AddressMinOrderByAggregateInput
@@ -16512,8 +19330,6 @@ export namespace Prisma {
     upazila?: StringWithAggregatesFilter<"Address"> | string
     phoneNumber?: StringWithAggregatesFilter<"Address"> | string
     city?: StringWithAggregatesFilter<"Address"> | string
-    employeeId?: StringNullableWithAggregatesFilter<"Address"> | string | null
-    farmCode?: StringNullableWithAggregatesFilter<"Address"> | string | null
   }
 
   export type BranchEmployeeWhereInput = {
@@ -16573,8 +19389,9 @@ export namespace Prisma {
     name?: StringFilter<"Employee"> | string
     workingLocation?: StringFilter<"Employee"> | string
     designation?: StringFilter<"Employee"> | string
-    branchId?: StringNullableFilter<"Employee"> | string | null
-    branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
+    branchId?: StringFilter<"Employee"> | string
+    addressId?: StringNullableFilter<"Employee"> | string | null
+    branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
     branchEmployees?: BranchEmployeeListRelationFilter
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     flocks?: FlockListRelationFilter
@@ -16586,7 +19403,8 @@ export namespace Prisma {
     name?: SortOrder
     workingLocation?: SortOrder
     designation?: SortOrder
-    branchId?: SortOrderInput | SortOrder
+    branchId?: SortOrder
+    addressId?: SortOrderInput | SortOrder
     branch?: BranchOrderByWithRelationInput
     branchEmployees?: BranchEmployeeOrderByRelationAggregateInput
     address?: AddressOrderByWithRelationInput
@@ -16596,18 +19414,19 @@ export namespace Prisma {
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     employeeId?: string
+    addressId?: string
     AND?: EmployeeWhereInput | EmployeeWhereInput[]
     OR?: EmployeeWhereInput[]
     NOT?: EmployeeWhereInput | EmployeeWhereInput[]
     name?: StringFilter<"Employee"> | string
     workingLocation?: StringFilter<"Employee"> | string
     designation?: StringFilter<"Employee"> | string
-    branchId?: StringNullableFilter<"Employee"> | string | null
-    branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
+    branchId?: StringFilter<"Employee"> | string
+    branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
     branchEmployees?: BranchEmployeeListRelationFilter
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     flocks?: FlockListRelationFilter
-  }, "id" | "employeeId">
+  }, "id" | "employeeId" | "addressId">
 
   export type EmployeeOrderByWithAggregationInput = {
     id?: SortOrder
@@ -16615,7 +19434,8 @@ export namespace Prisma {
     name?: SortOrder
     workingLocation?: SortOrder
     designation?: SortOrder
-    branchId?: SortOrderInput | SortOrder
+    branchId?: SortOrder
+    addressId?: SortOrderInput | SortOrder
     _count?: EmployeeCountOrderByAggregateInput
     _max?: EmployeeMaxOrderByAggregateInput
     _min?: EmployeeMinOrderByAggregateInput
@@ -16630,7 +19450,8 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Employee"> | string
     workingLocation?: StringWithAggregatesFilter<"Employee"> | string
     designation?: StringWithAggregatesFilter<"Employee"> | string
-    branchId?: StringNullableWithAggregatesFilter<"Employee"> | string | null
+    branchId?: StringWithAggregatesFilter<"Employee"> | string
+    addressId?: StringNullableWithAggregatesFilter<"Employee"> | string | null
   }
 
   export type FlockWhereInput = {
@@ -16643,7 +19464,7 @@ export namespace Prisma {
     startDate?: DateTimeFilter<"Flock"> | Date | string
     endDate?: DateTimeNullableFilter<"Flock"> | Date | string | null
     executiveId?: StringFilter<"Flock"> | string
-    farmCode?: StringFilter<"Flock"> | string
+    farmId?: StringFilter<"Flock"> | string
     docName?: StringFilter<"Flock"> | string
     docQuantity?: IntFilter<"Flock"> | number
     approvedBy?: StringNullableFilter<"Flock"> | string | null
@@ -16653,9 +19474,11 @@ export namespace Prisma {
     fcr?: FloatFilter<"Flock"> | number
     totalSellBirds?: IntFilter<"Flock"> | number
     mortality?: IntFilter<"Flock"> | number
-    customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
+    farmer?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    SellMedicine?: SellMedicineListRelationFilter
+    MedicineTransfer?: MedicineTransferListRelationFilter
   }
 
   export type FlockOrderByWithRelationInput = {
@@ -16665,7 +19488,7 @@ export namespace Prisma {
     startDate?: SortOrder
     endDate?: SortOrderInput | SortOrder
     executiveId?: SortOrder
-    farmCode?: SortOrder
+    farmId?: SortOrder
     docName?: SortOrder
     docQuantity?: SortOrder
     approvedBy?: SortOrderInput | SortOrder
@@ -16675,9 +19498,11 @@ export namespace Prisma {
     fcr?: SortOrder
     totalSellBirds?: SortOrder
     mortality?: SortOrder
-    customer?: CustomerOrderByWithRelationInput
+    farmer?: FarmerOrderByWithRelationInput
     employee?: EmployeeOrderByWithRelationInput
     branch?: BranchOrderByWithRelationInput
+    SellMedicine?: SellMedicineOrderByRelationAggregateInput
+    MedicineTransfer?: MedicineTransferOrderByRelationAggregateInput
   }
 
   export type FlockWhereUniqueInput = Prisma.AtLeast<{
@@ -16690,7 +19515,7 @@ export namespace Prisma {
     startDate?: DateTimeFilter<"Flock"> | Date | string
     endDate?: DateTimeNullableFilter<"Flock"> | Date | string | null
     executiveId?: StringFilter<"Flock"> | string
-    farmCode?: StringFilter<"Flock"> | string
+    farmId?: StringFilter<"Flock"> | string
     docName?: StringFilter<"Flock"> | string
     docQuantity?: IntFilter<"Flock"> | number
     approvedBy?: StringNullableFilter<"Flock"> | string | null
@@ -16700,9 +19525,11 @@ export namespace Prisma {
     fcr?: FloatFilter<"Flock"> | number
     totalSellBirds?: IntFilter<"Flock"> | number
     mortality?: IntFilter<"Flock"> | number
-    customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
+    farmer?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    SellMedicine?: SellMedicineListRelationFilter
+    MedicineTransfer?: MedicineTransferListRelationFilter
   }, "id" | "flockNumber">
 
   export type FlockOrderByWithAggregationInput = {
@@ -16712,7 +19539,7 @@ export namespace Prisma {
     startDate?: SortOrder
     endDate?: SortOrderInput | SortOrder
     executiveId?: SortOrder
-    farmCode?: SortOrder
+    farmId?: SortOrder
     docName?: SortOrder
     docQuantity?: SortOrder
     approvedBy?: SortOrderInput | SortOrder
@@ -16739,7 +19566,7 @@ export namespace Prisma {
     startDate?: DateTimeWithAggregatesFilter<"Flock"> | Date | string
     endDate?: DateTimeNullableWithAggregatesFilter<"Flock"> | Date | string | null
     executiveId?: StringWithAggregatesFilter<"Flock"> | string
-    farmCode?: StringWithAggregatesFilter<"Flock"> | string
+    farmId?: StringWithAggregatesFilter<"Flock"> | string
     docName?: StringWithAggregatesFilter<"Flock"> | string
     docQuantity?: IntWithAggregatesFilter<"Flock"> | number
     approvedBy?: StringNullableWithAggregatesFilter<"Flock"> | string | null
@@ -17122,18 +19949,192 @@ export namespace Prisma {
     price?: IntWithAggregatesFilter<"MedicineStock"> | number
   }
 
+  export type SellMedicineWhereInput = {
+    AND?: SellMedicineWhereInput | SellMedicineWhereInput[]
+    OR?: SellMedicineWhereInput[]
+    NOT?: SellMedicineWhereInput | SellMedicineWhereInput[]
+    id?: StringFilter<"SellMedicine"> | string
+    farmId?: StringFilter<"SellMedicine"> | string
+    flockNumer?: IntFilter<"SellMedicine"> | number
+    genericName?: StringFilter<"SellMedicine"> | string
+    medicineName?: StringFilter<"SellMedicine"> | string
+    sellQuantity?: IntFilter<"SellMedicine"> | number
+    sellPrice?: IntFilter<"SellMedicine"> | number
+    Delivery?: EnumDeliveryStatusFilter<"SellMedicine"> | $Enums.DeliveryStatus
+    sellDate?: StringFilter<"SellMedicine"> | string
+    branchCode?: StringFilter<"SellMedicine"> | string
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+    branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    farmer?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
+    MedicineTransfer?: MedicineTransferListRelationFilter
+  }
+
+  export type SellMedicineOrderByWithRelationInput = {
+    id?: SortOrder
+    farmId?: SortOrder
+    flockNumer?: SortOrder
+    genericName?: SortOrder
+    medicineName?: SortOrder
+    sellQuantity?: SortOrder
+    sellPrice?: SortOrder
+    Delivery?: SortOrder
+    sellDate?: SortOrder
+    branchCode?: SortOrder
+    flock?: FlockOrderByWithRelationInput
+    branch?: BranchOrderByWithRelationInput
+    farmer?: FarmerOrderByWithRelationInput
+    MedicineTransfer?: MedicineTransferOrderByRelationAggregateInput
+  }
+
+  export type SellMedicineWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SellMedicineWhereInput | SellMedicineWhereInput[]
+    OR?: SellMedicineWhereInput[]
+    NOT?: SellMedicineWhereInput | SellMedicineWhereInput[]
+    farmId?: StringFilter<"SellMedicine"> | string
+    flockNumer?: IntFilter<"SellMedicine"> | number
+    genericName?: StringFilter<"SellMedicine"> | string
+    medicineName?: StringFilter<"SellMedicine"> | string
+    sellQuantity?: IntFilter<"SellMedicine"> | number
+    sellPrice?: IntFilter<"SellMedicine"> | number
+    Delivery?: EnumDeliveryStatusFilter<"SellMedicine"> | $Enums.DeliveryStatus
+    sellDate?: StringFilter<"SellMedicine"> | string
+    branchCode?: StringFilter<"SellMedicine"> | string
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+    branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    farmer?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
+    MedicineTransfer?: MedicineTransferListRelationFilter
+  }, "id">
+
+  export type SellMedicineOrderByWithAggregationInput = {
+    id?: SortOrder
+    farmId?: SortOrder
+    flockNumer?: SortOrder
+    genericName?: SortOrder
+    medicineName?: SortOrder
+    sellQuantity?: SortOrder
+    sellPrice?: SortOrder
+    Delivery?: SortOrder
+    sellDate?: SortOrder
+    branchCode?: SortOrder
+    _count?: SellMedicineCountOrderByAggregateInput
+    _avg?: SellMedicineAvgOrderByAggregateInput
+    _max?: SellMedicineMaxOrderByAggregateInput
+    _min?: SellMedicineMinOrderByAggregateInput
+    _sum?: SellMedicineSumOrderByAggregateInput
+  }
+
+  export type SellMedicineScalarWhereWithAggregatesInput = {
+    AND?: SellMedicineScalarWhereWithAggregatesInput | SellMedicineScalarWhereWithAggregatesInput[]
+    OR?: SellMedicineScalarWhereWithAggregatesInput[]
+    NOT?: SellMedicineScalarWhereWithAggregatesInput | SellMedicineScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SellMedicine"> | string
+    farmId?: StringWithAggregatesFilter<"SellMedicine"> | string
+    flockNumer?: IntWithAggregatesFilter<"SellMedicine"> | number
+    genericName?: StringWithAggregatesFilter<"SellMedicine"> | string
+    medicineName?: StringWithAggregatesFilter<"SellMedicine"> | string
+    sellQuantity?: IntWithAggregatesFilter<"SellMedicine"> | number
+    sellPrice?: IntWithAggregatesFilter<"SellMedicine"> | number
+    Delivery?: EnumDeliveryStatusWithAggregatesFilter<"SellMedicine"> | $Enums.DeliveryStatus
+    sellDate?: StringWithAggregatesFilter<"SellMedicine"> | string
+    branchCode?: StringWithAggregatesFilter<"SellMedicine"> | string
+  }
+
+  export type MedicineTransferWhereInput = {
+    AND?: MedicineTransferWhereInput | MedicineTransferWhereInput[]
+    OR?: MedicineTransferWhereInput[]
+    NOT?: MedicineTransferWhereInput | MedicineTransferWhereInput[]
+    id?: StringFilter<"MedicineTransfer"> | string
+    sellId?: StringFilter<"MedicineTransfer"> | string
+    flockId?: StringFilter<"MedicineTransfer"> | string
+    toFarmcode?: StringNullableFilter<"MedicineTransfer"> | string | null
+    fromBranch?: StringNullableFilter<"MedicineTransfer"> | string | null
+    toBranch?: StringNullableFilter<"MedicineTransfer"> | string | null
+    medicineName?: StringFilter<"MedicineTransfer"> | string
+    genericName?: StringFilter<"MedicineTransfer"> | string
+    branchCode?: StringFilter<"MedicineTransfer"> | string
+    sellmedicine?: XOR<SellMedicineScalarRelationFilter, SellMedicineWhereInput>
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+    baranch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+  }
+
+  export type MedicineTransferOrderByWithRelationInput = {
+    id?: SortOrder
+    sellId?: SortOrder
+    flockId?: SortOrder
+    toFarmcode?: SortOrderInput | SortOrder
+    fromBranch?: SortOrderInput | SortOrder
+    toBranch?: SortOrderInput | SortOrder
+    medicineName?: SortOrder
+    genericName?: SortOrder
+    branchCode?: SortOrder
+    sellmedicine?: SellMedicineOrderByWithRelationInput
+    flock?: FlockOrderByWithRelationInput
+    baranch?: BranchOrderByWithRelationInput
+  }
+
+  export type MedicineTransferWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MedicineTransferWhereInput | MedicineTransferWhereInput[]
+    OR?: MedicineTransferWhereInput[]
+    NOT?: MedicineTransferWhereInput | MedicineTransferWhereInput[]
+    sellId?: StringFilter<"MedicineTransfer"> | string
+    flockId?: StringFilter<"MedicineTransfer"> | string
+    toFarmcode?: StringNullableFilter<"MedicineTransfer"> | string | null
+    fromBranch?: StringNullableFilter<"MedicineTransfer"> | string | null
+    toBranch?: StringNullableFilter<"MedicineTransfer"> | string | null
+    medicineName?: StringFilter<"MedicineTransfer"> | string
+    genericName?: StringFilter<"MedicineTransfer"> | string
+    branchCode?: StringFilter<"MedicineTransfer"> | string
+    sellmedicine?: XOR<SellMedicineScalarRelationFilter, SellMedicineWhereInput>
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+    baranch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+  }, "id">
+
+  export type MedicineTransferOrderByWithAggregationInput = {
+    id?: SortOrder
+    sellId?: SortOrder
+    flockId?: SortOrder
+    toFarmcode?: SortOrderInput | SortOrder
+    fromBranch?: SortOrderInput | SortOrder
+    toBranch?: SortOrderInput | SortOrder
+    medicineName?: SortOrder
+    genericName?: SortOrder
+    branchCode?: SortOrder
+    _count?: MedicineTransferCountOrderByAggregateInput
+    _max?: MedicineTransferMaxOrderByAggregateInput
+    _min?: MedicineTransferMinOrderByAggregateInput
+  }
+
+  export type MedicineTransferScalarWhereWithAggregatesInput = {
+    AND?: MedicineTransferScalarWhereWithAggregatesInput | MedicineTransferScalarWhereWithAggregatesInput[]
+    OR?: MedicineTransferScalarWhereWithAggregatesInput[]
+    NOT?: MedicineTransferScalarWhereWithAggregatesInput | MedicineTransferScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MedicineTransfer"> | string
+    sellId?: StringWithAggregatesFilter<"MedicineTransfer"> | string
+    flockId?: StringWithAggregatesFilter<"MedicineTransfer"> | string
+    toFarmcode?: StringNullableWithAggregatesFilter<"MedicineTransfer"> | string | null
+    fromBranch?: StringNullableWithAggregatesFilter<"MedicineTransfer"> | string | null
+    toBranch?: StringNullableWithAggregatesFilter<"MedicineTransfer"> | string | null
+    medicineName?: StringWithAggregatesFilter<"MedicineTransfer"> | string
+    genericName?: StringWithAggregatesFilter<"MedicineTransfer"> | string
+    branchCode?: StringWithAggregatesFilter<"MedicineTransfer"> | string
+  }
+
   export type BranchCreateInput = {
     id?: string
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerCreateNestedManyWithoutBranchInput
+    farmer?: FarmerCreateNestedManyWithoutBranchInput
     employees?: EmployeeCreateNestedManyWithoutBranchInput
     branchEmployees?: BranchEmployeeCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     Feed?: FeedCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchUncheckedCreateInput = {
@@ -17141,13 +20142,15 @@ export namespace Prisma {
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerUncheckedCreateNestedManyWithoutBranchInput
+    farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     employees?: EmployeeUncheckedCreateNestedManyWithoutBranchInput
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     Feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchUpdateInput = {
@@ -17155,13 +20158,15 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUpdateManyWithoutBranchNestedInput
     employees?: EmployeeUpdateManyWithoutBranchNestedInput
     branchEmployees?: BranchEmployeeUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     Feed?: FeedUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
   }
 
   export type BranchUncheckedUpdateInput = {
@@ -17169,13 +20174,15 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUncheckedUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     employees?: EmployeeUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     Feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
   }
 
   export type BranchCreateManyInput = {
@@ -17199,77 +20206,82 @@ export namespace Prisma {
     branchCode?: StringFieldUpdateOperationsInput | string
   }
 
-  export type CustomerCreateInput = {
+  export type FarmerCreateInput = {
     id?: string
-    farmCode: string
+    farmCode: number
     name: string
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
     capacity: number
     nid: string
-    branch: BranchCreateNestedOneWithoutCustomersInput
-    address?: AddressCreateNestedOneWithoutCustomerInput
-    flocks?: FlockCreateNestedManyWithoutCustomerInput
+    branch?: BranchCreateNestedOneWithoutFarmerInput
+    address?: AddressCreateNestedOneWithoutFarmerInput
+    flocks?: FlockCreateNestedManyWithoutFarmerInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
   }
 
-  export type CustomerUncheckedCreateInput = {
+  export type FarmerUncheckedCreateInput = {
     id?: string
-    branchCode: string
-    farmCode: string
+    branchCode?: string | null
+    farmCode: number
     name: string
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
     capacity: number
+    addressId?: string | null
     nid: string
-    address?: AddressUncheckedCreateNestedOneWithoutCustomerInput
-    flocks?: FlockUncheckedCreateNestedManyWithoutCustomerInput
+    flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
   }
 
-  export type CustomerUpdateInput = {
+  export type FarmerUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
     nid?: StringFieldUpdateOperationsInput | string
-    branch?: BranchUpdateOneRequiredWithoutCustomersNestedInput
-    address?: AddressUpdateOneWithoutCustomerNestedInput
-    flocks?: FlockUpdateManyWithoutCustomerNestedInput
+    branch?: BranchUpdateOneWithoutFarmerNestedInput
+    address?: AddressUpdateOneWithoutFarmerNestedInput
+    flocks?: FlockUpdateManyWithoutFarmerNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
   }
 
-  export type CustomerUncheckedUpdateInput = {
+  export type FarmerUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    branchCode?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
+    branchCode?: NullableStringFieldUpdateOperationsInput | string | null
+    farmCode?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     nid?: StringFieldUpdateOperationsInput | string
-    address?: AddressUncheckedUpdateOneWithoutCustomerNestedInput
-    flocks?: FlockUncheckedUpdateManyWithoutCustomerNestedInput
+    flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
-  export type CustomerCreateManyInput = {
+  export type FarmerCreateManyInput = {
     id?: string
-    branchCode: string
-    farmCode: string
+    branchCode?: string | null
+    farmCode: number
     name: string
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
     capacity: number
+    addressId?: string | null
     nid: string
   }
 
-  export type CustomerUpdateManyMutationInput = {
+  export type FarmerUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
@@ -17278,15 +20290,16 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
   }
 
-  export type CustomerUncheckedUpdateManyInput = {
+  export type FarmerUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    branchCode?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
+    branchCode?: NullableStringFieldUpdateOperationsInput | string | null
+    farmCode?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     nid?: StringFieldUpdateOperationsInput | string
   }
 
@@ -17299,8 +20312,8 @@ export namespace Prisma {
     upazila: string
     phoneNumber: string
     city: string
-    employee?: EmployeeCreateNestedOneWithoutAddressInput
-    customer?: CustomerCreateNestedOneWithoutAddressInput
+    Farmer?: FarmerCreateNestedOneWithoutAddressInput
+    Employee?: EmployeeCreateNestedOneWithoutAddressInput
   }
 
   export type AddressUncheckedCreateInput = {
@@ -17312,8 +20325,8 @@ export namespace Prisma {
     upazila: string
     phoneNumber: string
     city: string
-    employeeId?: string | null
-    farmCode?: string | null
+    Farmer?: FarmerUncheckedCreateNestedOneWithoutAddressInput
+    Employee?: EmployeeUncheckedCreateNestedOneWithoutAddressInput
   }
 
   export type AddressUpdateInput = {
@@ -17325,8 +20338,8 @@ export namespace Prisma {
     upazila?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
-    employee?: EmployeeUpdateOneWithoutAddressNestedInput
-    customer?: CustomerUpdateOneWithoutAddressNestedInput
+    Farmer?: FarmerUpdateOneWithoutAddressNestedInput
+    Employee?: EmployeeUpdateOneWithoutAddressNestedInput
   }
 
   export type AddressUncheckedUpdateInput = {
@@ -17338,8 +20351,8 @@ export namespace Prisma {
     upazila?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    farmCode?: NullableStringFieldUpdateOperationsInput | string | null
+    Farmer?: FarmerUncheckedUpdateOneWithoutAddressNestedInput
+    Employee?: EmployeeUncheckedUpdateOneWithoutAddressNestedInput
   }
 
   export type AddressCreateManyInput = {
@@ -17351,8 +20364,6 @@ export namespace Prisma {
     upazila: string
     phoneNumber: string
     city: string
-    employeeId?: string | null
-    farmCode?: string | null
   }
 
   export type AddressUpdateManyMutationInput = {
@@ -17375,8 +20386,6 @@ export namespace Prisma {
     upazila?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    farmCode?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type BranchEmployeeCreateInput = {
@@ -17425,7 +20434,7 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branch?: BranchCreateNestedOneWithoutEmployeesInput
+    branch: BranchCreateNestedOneWithoutEmployeesInput
     branchEmployees?: BranchEmployeeCreateNestedManyWithoutEmployeeInput
     address?: AddressCreateNestedOneWithoutEmployeeInput
     flocks?: FlockCreateNestedManyWithoutEmployeeInput
@@ -17437,9 +20446,9 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branchId?: string | null
+    branchId: string
+    addressId?: string | null
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutEmployeeInput
-    address?: AddressUncheckedCreateNestedOneWithoutEmployeeInput
     flocks?: FlockUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
@@ -17449,7 +20458,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branch?: BranchUpdateOneWithoutEmployeesNestedInput
+    branch?: BranchUpdateOneRequiredWithoutEmployeesNestedInput
     branchEmployees?: BranchEmployeeUpdateManyWithoutEmployeeNestedInput
     address?: AddressUpdateOneWithoutEmployeeNestedInput
     flocks?: FlockUpdateManyWithoutEmployeeNestedInput
@@ -17461,9 +20470,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: StringFieldUpdateOperationsInput | string
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutEmployeeNestedInput
-    address?: AddressUncheckedUpdateOneWithoutEmployeeNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -17473,7 +20482,8 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branchId?: string | null
+    branchId: string
+    addressId?: string | null
   }
 
   export type EmployeeUpdateManyMutationInput = {
@@ -17490,7 +20500,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: StringFieldUpdateOperationsInput | string
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FlockCreateInput = {
@@ -17507,9 +20518,11 @@ export namespace Prisma {
     fcr?: number
     totalSellBirds?: number
     mortality?: number
-    customer: CustomerCreateNestedOneWithoutFlocksInput
+    farmer: FarmerCreateNestedOneWithoutFlocksInput
     employee: EmployeeCreateNestedOneWithoutFlocksInput
     branch: BranchCreateNestedOneWithoutFlocksInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateInput = {
@@ -17519,7 +20532,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate?: Date | string | null
     executiveId: string
-    farmCode: string
+    farmId: string
     docName: string
     docQuantity?: number
     approvedBy?: string | null
@@ -17529,6 +20542,8 @@ export namespace Prisma {
     fcr?: number
     totalSellBirds?: number
     mortality?: number
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUpdateInput = {
@@ -17545,9 +20560,11 @@ export namespace Prisma {
     fcr?: FloatFieldUpdateOperationsInput | number
     totalSellBirds?: IntFieldUpdateOperationsInput | number
     mortality?: IntFieldUpdateOperationsInput | number
-    customer?: CustomerUpdateOneRequiredWithoutFlocksNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
     employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
     branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateInput = {
@@ -17557,7 +20574,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     executiveId?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
     docName?: StringFieldUpdateOperationsInput | string
     docQuantity?: IntFieldUpdateOperationsInput | number
     approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17567,6 +20584,8 @@ export namespace Prisma {
     fcr?: FloatFieldUpdateOperationsInput | number
     totalSellBirds?: IntFieldUpdateOperationsInput | number
     mortality?: IntFieldUpdateOperationsInput | number
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockCreateManyInput = {
@@ -17576,7 +20595,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate?: Date | string | null
     executiveId: string
-    farmCode: string
+    farmId: string
     docName: string
     docQuantity?: number
     approvedBy?: string | null
@@ -17611,7 +20630,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     executiveId?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
     docName?: StringFieldUpdateOperationsInput | string
     docQuantity?: IntFieldUpdateOperationsInput | number
     approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17981,6 +21000,179 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
   }
 
+  export type SellMedicineCreateInput = {
+    id?: string
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+    flock: FlockCreateNestedOneWithoutSellMedicineInput
+    branch: BranchCreateNestedOneWithoutSellMedicineInput
+    farmer: FarmerCreateNestedOneWithoutSellMedicineInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutSellmedicineInput
+  }
+
+  export type SellMedicineUncheckedCreateInput = {
+    id?: string
+    farmId: string
+    flockNumer: number
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+    branchCode: string
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutSellmedicineInput
+  }
+
+  export type SellMedicineUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
+    flock?: FlockUpdateOneRequiredWithoutSellMedicineNestedInput
+    branch?: BranchUpdateOneRequiredWithoutSellMedicineNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutSellMedicineNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutSellmedicineNestedInput
+  }
+
+  export type SellMedicineUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockNumer?: IntFieldUpdateOperationsInput | number
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutSellmedicineNestedInput
+  }
+
+  export type SellMedicineCreateManyInput = {
+    id?: string
+    farmId: string
+    flockNumer: number
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+    branchCode: string
+  }
+
+  export type SellMedicineUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SellMedicineUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockNumer?: IntFieldUpdateOperationsInput | number
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MedicineTransferCreateInput = {
+    id?: string
+    toFarmcode?: string | null
+    fromBranch?: string | null
+    toBranch?: string | null
+    medicineName: string
+    genericName: string
+    sellmedicine: SellMedicineCreateNestedOneWithoutMedicineTransferInput
+    flock: FlockCreateNestedOneWithoutMedicineTransferInput
+    baranch: BranchCreateNestedOneWithoutMedicineTransferInput
+  }
+
+  export type MedicineTransferUncheckedCreateInput = {
+    id?: string
+    sellId: string
+    flockId: string
+    toFarmcode?: string | null
+    fromBranch?: string | null
+    toBranch?: string | null
+    medicineName: string
+    genericName: string
+    branchCode: string
+  }
+
+  export type MedicineTransferUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
+    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    medicineName?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    sellmedicine?: SellMedicineUpdateOneRequiredWithoutMedicineTransferNestedInput
+    flock?: FlockUpdateOneRequiredWithoutMedicineTransferNestedInput
+    baranch?: BranchUpdateOneRequiredWithoutMedicineTransferNestedInput
+  }
+
+  export type MedicineTransferUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sellId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
+    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    medicineName?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MedicineTransferCreateManyInput = {
+    id?: string
+    sellId: string
+    flockId: string
+    toFarmcode?: string | null
+    fromBranch?: string | null
+    toBranch?: string | null
+    medicineName: string
+    genericName: string
+    branchCode: string
+  }
+
+  export type MedicineTransferUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
+    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    medicineName?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MedicineTransferUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sellId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
+    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    medicineName?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -18003,10 +21195,10 @@ export namespace Prisma {
     not?: NestedEnumBranchTypeFilter<$PrismaModel> | $Enums.BranchType
   }
 
-  export type CustomerListRelationFilter = {
-    every?: CustomerWhereInput
-    some?: CustomerWhereInput
-    none?: CustomerWhereInput
+  export type FarmerListRelationFilter = {
+    every?: FarmerWhereInput
+    some?: FarmerWhereInput
+    none?: FarmerWhereInput
   }
 
   export type EmployeeListRelationFilter = {
@@ -18045,7 +21237,19 @@ export namespace Prisma {
     none?: MedicinePurchessWhereInput
   }
 
-  export type CustomerOrderByRelationAggregateInput = {
+  export type SellMedicineListRelationFilter = {
+    every?: SellMedicineWhereInput
+    some?: SellMedicineWhereInput
+    none?: SellMedicineWhereInput
+  }
+
+  export type MedicineTransferListRelationFilter = {
+    every?: MedicineTransferWhereInput
+    some?: MedicineTransferWhereInput
+    none?: MedicineTransferWhereInput
+  }
+
+  export type FarmerOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18070,6 +21274,14 @@ export namespace Prisma {
   }
 
   export type MedicinePurchessOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SellMedicineOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MedicineTransferOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18122,108 +21334,6 @@ export namespace Prisma {
     _max?: NestedEnumBranchTypeFilter<$PrismaModel>
   }
 
-  export type EnumCusttypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.Custtype | EnumCusttypeFieldRefInput<$PrismaModel>
-    in?: $Enums.Custtype[] | ListEnumCusttypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Custtype[] | ListEnumCusttypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumCusttypeFilter<$PrismaModel> | $Enums.Custtype
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type BranchScalarRelationFilter = {
-    is?: BranchWhereInput
-    isNot?: BranchWhereInput
-  }
-
-  export type AddressNullableScalarRelationFilter = {
-    is?: AddressWhereInput | null
-    isNot?: AddressWhereInput | null
-  }
-
-  export type CustomerCountOrderByAggregateInput = {
-    id?: SortOrder
-    branchCode?: SortOrder
-    farmCode?: SortOrder
-    name?: SortOrder
-    farmType?: SortOrder
-    totalShed?: SortOrder
-    totalSquare?: SortOrder
-    capacity?: SortOrder
-    nid?: SortOrder
-  }
-
-  export type CustomerAvgOrderByAggregateInput = {
-    totalShed?: SortOrder
-    totalSquare?: SortOrder
-    capacity?: SortOrder
-  }
-
-  export type CustomerMaxOrderByAggregateInput = {
-    id?: SortOrder
-    branchCode?: SortOrder
-    farmCode?: SortOrder
-    name?: SortOrder
-    farmType?: SortOrder
-    totalShed?: SortOrder
-    totalSquare?: SortOrder
-    capacity?: SortOrder
-    nid?: SortOrder
-  }
-
-  export type CustomerMinOrderByAggregateInput = {
-    id?: SortOrder
-    branchCode?: SortOrder
-    farmCode?: SortOrder
-    name?: SortOrder
-    farmType?: SortOrder
-    totalShed?: SortOrder
-    totalSquare?: SortOrder
-    capacity?: SortOrder
-    nid?: SortOrder
-  }
-
-  export type CustomerSumOrderByAggregateInput = {
-    totalShed?: SortOrder
-    totalSquare?: SortOrder
-    capacity?: SortOrder
-  }
-
-  export type EnumCusttypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Custtype | EnumCusttypeFieldRefInput<$PrismaModel>
-    in?: $Enums.Custtype[] | ListEnumCusttypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Custtype[] | ListEnumCusttypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumCusttypeWithAggregatesFilter<$PrismaModel> | $Enums.Custtype
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCusttypeFilter<$PrismaModel>
-    _max?: NestedEnumCusttypeFilter<$PrismaModel>
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -18239,14 +21349,32 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type EmployeeNullableScalarRelationFilter = {
-    is?: EmployeeWhereInput | null
-    isNot?: EmployeeWhereInput | null
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type CustomerNullableScalarRelationFilter = {
-    is?: CustomerWhereInput | null
-    isNot?: CustomerWhereInput | null
+  export type EnumCusttypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.Custtype | EnumCusttypeFieldRefInput<$PrismaModel>
+    in?: $Enums.Custtype[] | ListEnumCusttypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Custtype[] | ListEnumCusttypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCusttypeFilter<$PrismaModel> | $Enums.Custtype
+  }
+
+  export type BranchNullableScalarRelationFilter = {
+    is?: BranchWhereInput | null
+    isNot?: BranchWhereInput | null
+  }
+
+  export type AddressNullableScalarRelationFilter = {
+    is?: AddressWhereInput | null
+    isNot?: AddressWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -18254,43 +21382,62 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type AddressCountOrderByAggregateInput = {
-    id?: SortOrder
-    village?: SortOrder
-    post?: SortOrder
-    union?: SortOrder
-    thana?: SortOrder
-    upazila?: SortOrder
-    phoneNumber?: SortOrder
-    city?: SortOrder
-    employeeId?: SortOrder
-    farmCode?: SortOrder
+  export type FarmerBranchCodeFarmCodeCompoundUniqueInput = {
+    branchCode: string
+    farmCode: number
   }
 
-  export type AddressMaxOrderByAggregateInput = {
+  export type FarmerCountOrderByAggregateInput = {
     id?: SortOrder
-    village?: SortOrder
-    post?: SortOrder
-    union?: SortOrder
-    thana?: SortOrder
-    upazila?: SortOrder
-    phoneNumber?: SortOrder
-    city?: SortOrder
-    employeeId?: SortOrder
+    branchCode?: SortOrder
     farmCode?: SortOrder
+    name?: SortOrder
+    farmType?: SortOrder
+    totalShed?: SortOrder
+    totalSquare?: SortOrder
+    capacity?: SortOrder
+    addressId?: SortOrder
+    nid?: SortOrder
   }
 
-  export type AddressMinOrderByAggregateInput = {
-    id?: SortOrder
-    village?: SortOrder
-    post?: SortOrder
-    union?: SortOrder
-    thana?: SortOrder
-    upazila?: SortOrder
-    phoneNumber?: SortOrder
-    city?: SortOrder
-    employeeId?: SortOrder
+  export type FarmerAvgOrderByAggregateInput = {
     farmCode?: SortOrder
+    totalShed?: SortOrder
+    totalSquare?: SortOrder
+    capacity?: SortOrder
+  }
+
+  export type FarmerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    branchCode?: SortOrder
+    farmCode?: SortOrder
+    name?: SortOrder
+    farmType?: SortOrder
+    totalShed?: SortOrder
+    totalSquare?: SortOrder
+    capacity?: SortOrder
+    addressId?: SortOrder
+    nid?: SortOrder
+  }
+
+  export type FarmerMinOrderByAggregateInput = {
+    id?: SortOrder
+    branchCode?: SortOrder
+    farmCode?: SortOrder
+    name?: SortOrder
+    farmType?: SortOrder
+    totalShed?: SortOrder
+    totalSquare?: SortOrder
+    capacity?: SortOrder
+    addressId?: SortOrder
+    nid?: SortOrder
+  }
+
+  export type FarmerSumOrderByAggregateInput = {
+    farmCode?: SortOrder
+    totalShed?: SortOrder
+    totalSquare?: SortOrder
+    capacity?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -18309,6 +21456,80 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type EnumCusttypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Custtype | EnumCusttypeFieldRefInput<$PrismaModel>
+    in?: $Enums.Custtype[] | ListEnumCusttypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Custtype[] | ListEnumCusttypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCusttypeWithAggregatesFilter<$PrismaModel> | $Enums.Custtype
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCusttypeFilter<$PrismaModel>
+    _max?: NestedEnumCusttypeFilter<$PrismaModel>
+  }
+
+  export type FarmerNullableScalarRelationFilter = {
+    is?: FarmerWhereInput | null
+    isNot?: FarmerWhereInput | null
+  }
+
+  export type EmployeeNullableScalarRelationFilter = {
+    is?: EmployeeWhereInput | null
+    isNot?: EmployeeWhereInput | null
+  }
+
+  export type AddressCountOrderByAggregateInput = {
+    id?: SortOrder
+    village?: SortOrder
+    post?: SortOrder
+    union?: SortOrder
+    thana?: SortOrder
+    upazila?: SortOrder
+    phoneNumber?: SortOrder
+    city?: SortOrder
+  }
+
+  export type AddressMaxOrderByAggregateInput = {
+    id?: SortOrder
+    village?: SortOrder
+    post?: SortOrder
+    union?: SortOrder
+    thana?: SortOrder
+    upazila?: SortOrder
+    phoneNumber?: SortOrder
+    city?: SortOrder
+  }
+
+  export type AddressMinOrderByAggregateInput = {
+    id?: SortOrder
+    village?: SortOrder
+    post?: SortOrder
+    union?: SortOrder
+    thana?: SortOrder
+    upazila?: SortOrder
+    phoneNumber?: SortOrder
+    city?: SortOrder
+  }
+
+  export type BranchScalarRelationFilter = {
+    is?: BranchWhereInput
+    isNot?: BranchWhereInput
   }
 
   export type EmployeeScalarRelationFilter = {
@@ -18334,11 +21555,6 @@ export namespace Prisma {
     branchCode?: SortOrder
   }
 
-  export type BranchNullableScalarRelationFilter = {
-    is?: BranchWhereInput | null
-    isNot?: BranchWhereInput | null
-  }
-
   export type EmployeeCountOrderByAggregateInput = {
     id?: SortOrder
     employeeId?: SortOrder
@@ -18346,6 +21562,7 @@ export namespace Prisma {
     workingLocation?: SortOrder
     designation?: SortOrder
     branchId?: SortOrder
+    addressId?: SortOrder
   }
 
   export type EmployeeMaxOrderByAggregateInput = {
@@ -18355,6 +21572,7 @@ export namespace Prisma {
     workingLocation?: SortOrder
     designation?: SortOrder
     branchId?: SortOrder
+    addressId?: SortOrder
   }
 
   export type EmployeeMinOrderByAggregateInput = {
@@ -18364,6 +21582,7 @@ export namespace Prisma {
     workingLocation?: SortOrder
     designation?: SortOrder
     branchId?: SortOrder
+    addressId?: SortOrder
   }
 
   export type EnumFlockStatusFilter<$PrismaModel = never> = {
@@ -18406,9 +21625,9 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type CustomerScalarRelationFilter = {
-    is?: CustomerWhereInput
-    isNot?: CustomerWhereInput
+  export type FarmerScalarRelationFilter = {
+    is?: FarmerWhereInput
+    isNot?: FarmerWhereInput
   }
 
   export type FlockCountOrderByAggregateInput = {
@@ -18418,7 +21637,7 @@ export namespace Prisma {
     startDate?: SortOrder
     endDate?: SortOrder
     executiveId?: SortOrder
-    farmCode?: SortOrder
+    farmId?: SortOrder
     docName?: SortOrder
     docQuantity?: SortOrder
     approvedBy?: SortOrder
@@ -18447,7 +21666,7 @@ export namespace Prisma {
     startDate?: SortOrder
     endDate?: SortOrder
     executiveId?: SortOrder
-    farmCode?: SortOrder
+    farmId?: SortOrder
     docName?: SortOrder
     docQuantity?: SortOrder
     approvedBy?: SortOrder
@@ -18466,7 +21685,7 @@ export namespace Prisma {
     startDate?: SortOrder
     endDate?: SortOrder
     executiveId?: SortOrder
-    farmCode?: SortOrder
+    farmId?: SortOrder
     docName?: SortOrder
     docQuantity?: SortOrder
     approvedBy?: SortOrder
@@ -18788,11 +22007,125 @@ export namespace Prisma {
     price?: SortOrder
   }
 
-  export type CustomerCreateNestedManyWithoutBranchInput = {
-    create?: XOR<CustomerCreateWithoutBranchInput, CustomerUncheckedCreateWithoutBranchInput> | CustomerCreateWithoutBranchInput[] | CustomerUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: CustomerCreateOrConnectWithoutBranchInput | CustomerCreateOrConnectWithoutBranchInput[]
-    createMany?: CustomerCreateManyBranchInputEnvelope
-    connect?: CustomerWhereUniqueInput | CustomerWhereUniqueInput[]
+  export type EnumDeliveryStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumDeliveryStatusFilter<$PrismaModel> | $Enums.DeliveryStatus
+  }
+
+  export type FlockScalarRelationFilter = {
+    is?: FlockWhereInput
+    isNot?: FlockWhereInput
+  }
+
+  export type SellMedicineCountOrderByAggregateInput = {
+    id?: SortOrder
+    farmId?: SortOrder
+    flockNumer?: SortOrder
+    genericName?: SortOrder
+    medicineName?: SortOrder
+    sellQuantity?: SortOrder
+    sellPrice?: SortOrder
+    Delivery?: SortOrder
+    sellDate?: SortOrder
+    branchCode?: SortOrder
+  }
+
+  export type SellMedicineAvgOrderByAggregateInput = {
+    flockNumer?: SortOrder
+    sellQuantity?: SortOrder
+    sellPrice?: SortOrder
+  }
+
+  export type SellMedicineMaxOrderByAggregateInput = {
+    id?: SortOrder
+    farmId?: SortOrder
+    flockNumer?: SortOrder
+    genericName?: SortOrder
+    medicineName?: SortOrder
+    sellQuantity?: SortOrder
+    sellPrice?: SortOrder
+    Delivery?: SortOrder
+    sellDate?: SortOrder
+    branchCode?: SortOrder
+  }
+
+  export type SellMedicineMinOrderByAggregateInput = {
+    id?: SortOrder
+    farmId?: SortOrder
+    flockNumer?: SortOrder
+    genericName?: SortOrder
+    medicineName?: SortOrder
+    sellQuantity?: SortOrder
+    sellPrice?: SortOrder
+    Delivery?: SortOrder
+    sellDate?: SortOrder
+    branchCode?: SortOrder
+  }
+
+  export type SellMedicineSumOrderByAggregateInput = {
+    flockNumer?: SortOrder
+    sellQuantity?: SortOrder
+    sellPrice?: SortOrder
+  }
+
+  export type EnumDeliveryStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumDeliveryStatusWithAggregatesFilter<$PrismaModel> | $Enums.DeliveryStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumDeliveryStatusFilter<$PrismaModel>
+    _max?: NestedEnumDeliveryStatusFilter<$PrismaModel>
+  }
+
+  export type SellMedicineScalarRelationFilter = {
+    is?: SellMedicineWhereInput
+    isNot?: SellMedicineWhereInput
+  }
+
+  export type MedicineTransferCountOrderByAggregateInput = {
+    id?: SortOrder
+    sellId?: SortOrder
+    flockId?: SortOrder
+    toFarmcode?: SortOrder
+    fromBranch?: SortOrder
+    toBranch?: SortOrder
+    medicineName?: SortOrder
+    genericName?: SortOrder
+    branchCode?: SortOrder
+  }
+
+  export type MedicineTransferMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sellId?: SortOrder
+    flockId?: SortOrder
+    toFarmcode?: SortOrder
+    fromBranch?: SortOrder
+    toBranch?: SortOrder
+    medicineName?: SortOrder
+    genericName?: SortOrder
+    branchCode?: SortOrder
+  }
+
+  export type MedicineTransferMinOrderByAggregateInput = {
+    id?: SortOrder
+    sellId?: SortOrder
+    flockId?: SortOrder
+    toFarmcode?: SortOrder
+    fromBranch?: SortOrder
+    toBranch?: SortOrder
+    medicineName?: SortOrder
+    genericName?: SortOrder
+    branchCode?: SortOrder
+  }
+
+  export type FarmerCreateNestedManyWithoutBranchInput = {
+    create?: XOR<FarmerCreateWithoutBranchInput, FarmerUncheckedCreateWithoutBranchInput> | FarmerCreateWithoutBranchInput[] | FarmerUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: FarmerCreateOrConnectWithoutBranchInput | FarmerCreateOrConnectWithoutBranchInput[]
+    createMany?: FarmerCreateManyBranchInputEnvelope
+    connect?: FarmerWhereUniqueInput | FarmerWhereUniqueInput[]
   }
 
   export type EmployeeCreateNestedManyWithoutBranchInput = {
@@ -18837,11 +22170,25 @@ export namespace Prisma {
     connect?: MedicinePurchessWhereUniqueInput | MedicinePurchessWhereUniqueInput[]
   }
 
-  export type CustomerUncheckedCreateNestedManyWithoutBranchInput = {
-    create?: XOR<CustomerCreateWithoutBranchInput, CustomerUncheckedCreateWithoutBranchInput> | CustomerCreateWithoutBranchInput[] | CustomerUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: CustomerCreateOrConnectWithoutBranchInput | CustomerCreateOrConnectWithoutBranchInput[]
-    createMany?: CustomerCreateManyBranchInputEnvelope
-    connect?: CustomerWhereUniqueInput | CustomerWhereUniqueInput[]
+  export type SellMedicineCreateNestedManyWithoutBranchInput = {
+    create?: XOR<SellMedicineCreateWithoutBranchInput, SellMedicineUncheckedCreateWithoutBranchInput> | SellMedicineCreateWithoutBranchInput[] | SellMedicineUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutBranchInput | SellMedicineCreateOrConnectWithoutBranchInput[]
+    createMany?: SellMedicineCreateManyBranchInputEnvelope
+    connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+  }
+
+  export type MedicineTransferCreateNestedManyWithoutBaranchInput = {
+    create?: XOR<MedicineTransferCreateWithoutBaranchInput, MedicineTransferUncheckedCreateWithoutBaranchInput> | MedicineTransferCreateWithoutBaranchInput[] | MedicineTransferUncheckedCreateWithoutBaranchInput[]
+    connectOrCreate?: MedicineTransferCreateOrConnectWithoutBaranchInput | MedicineTransferCreateOrConnectWithoutBaranchInput[]
+    createMany?: MedicineTransferCreateManyBaranchInputEnvelope
+    connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+  }
+
+  export type FarmerUncheckedCreateNestedManyWithoutBranchInput = {
+    create?: XOR<FarmerCreateWithoutBranchInput, FarmerUncheckedCreateWithoutBranchInput> | FarmerCreateWithoutBranchInput[] | FarmerUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: FarmerCreateOrConnectWithoutBranchInput | FarmerCreateOrConnectWithoutBranchInput[]
+    createMany?: FarmerCreateManyBranchInputEnvelope
+    connect?: FarmerWhereUniqueInput | FarmerWhereUniqueInput[]
   }
 
   export type EmployeeUncheckedCreateNestedManyWithoutBranchInput = {
@@ -18886,6 +22233,20 @@ export namespace Prisma {
     connect?: MedicinePurchessWhereUniqueInput | MedicinePurchessWhereUniqueInput[]
   }
 
+  export type SellMedicineUncheckedCreateNestedManyWithoutBranchInput = {
+    create?: XOR<SellMedicineCreateWithoutBranchInput, SellMedicineUncheckedCreateWithoutBranchInput> | SellMedicineCreateWithoutBranchInput[] | SellMedicineUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutBranchInput | SellMedicineCreateOrConnectWithoutBranchInput[]
+    createMany?: SellMedicineCreateManyBranchInputEnvelope
+    connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+  }
+
+  export type MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput = {
+    create?: XOR<MedicineTransferCreateWithoutBaranchInput, MedicineTransferUncheckedCreateWithoutBaranchInput> | MedicineTransferCreateWithoutBaranchInput[] | MedicineTransferUncheckedCreateWithoutBaranchInput[]
+    connectOrCreate?: MedicineTransferCreateOrConnectWithoutBaranchInput | MedicineTransferCreateOrConnectWithoutBaranchInput[]
+    createMany?: MedicineTransferCreateManyBaranchInputEnvelope
+    connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -18894,18 +22255,18 @@ export namespace Prisma {
     set?: $Enums.BranchType
   }
 
-  export type CustomerUpdateManyWithoutBranchNestedInput = {
-    create?: XOR<CustomerCreateWithoutBranchInput, CustomerUncheckedCreateWithoutBranchInput> | CustomerCreateWithoutBranchInput[] | CustomerUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: CustomerCreateOrConnectWithoutBranchInput | CustomerCreateOrConnectWithoutBranchInput[]
-    upsert?: CustomerUpsertWithWhereUniqueWithoutBranchInput | CustomerUpsertWithWhereUniqueWithoutBranchInput[]
-    createMany?: CustomerCreateManyBranchInputEnvelope
-    set?: CustomerWhereUniqueInput | CustomerWhereUniqueInput[]
-    disconnect?: CustomerWhereUniqueInput | CustomerWhereUniqueInput[]
-    delete?: CustomerWhereUniqueInput | CustomerWhereUniqueInput[]
-    connect?: CustomerWhereUniqueInput | CustomerWhereUniqueInput[]
-    update?: CustomerUpdateWithWhereUniqueWithoutBranchInput | CustomerUpdateWithWhereUniqueWithoutBranchInput[]
-    updateMany?: CustomerUpdateManyWithWhereWithoutBranchInput | CustomerUpdateManyWithWhereWithoutBranchInput[]
-    deleteMany?: CustomerScalarWhereInput | CustomerScalarWhereInput[]
+  export type FarmerUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<FarmerCreateWithoutBranchInput, FarmerUncheckedCreateWithoutBranchInput> | FarmerCreateWithoutBranchInput[] | FarmerUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: FarmerCreateOrConnectWithoutBranchInput | FarmerCreateOrConnectWithoutBranchInput[]
+    upsert?: FarmerUpsertWithWhereUniqueWithoutBranchInput | FarmerUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: FarmerCreateManyBranchInputEnvelope
+    set?: FarmerWhereUniqueInput | FarmerWhereUniqueInput[]
+    disconnect?: FarmerWhereUniqueInput | FarmerWhereUniqueInput[]
+    delete?: FarmerWhereUniqueInput | FarmerWhereUniqueInput[]
+    connect?: FarmerWhereUniqueInput | FarmerWhereUniqueInput[]
+    update?: FarmerUpdateWithWhereUniqueWithoutBranchInput | FarmerUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: FarmerUpdateManyWithWhereWithoutBranchInput | FarmerUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: FarmerScalarWhereInput | FarmerScalarWhereInput[]
   }
 
   export type EmployeeUpdateManyWithoutBranchNestedInput = {
@@ -18992,18 +22353,46 @@ export namespace Prisma {
     deleteMany?: MedicinePurchessScalarWhereInput | MedicinePurchessScalarWhereInput[]
   }
 
-  export type CustomerUncheckedUpdateManyWithoutBranchNestedInput = {
-    create?: XOR<CustomerCreateWithoutBranchInput, CustomerUncheckedCreateWithoutBranchInput> | CustomerCreateWithoutBranchInput[] | CustomerUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: CustomerCreateOrConnectWithoutBranchInput | CustomerCreateOrConnectWithoutBranchInput[]
-    upsert?: CustomerUpsertWithWhereUniqueWithoutBranchInput | CustomerUpsertWithWhereUniqueWithoutBranchInput[]
-    createMany?: CustomerCreateManyBranchInputEnvelope
-    set?: CustomerWhereUniqueInput | CustomerWhereUniqueInput[]
-    disconnect?: CustomerWhereUniqueInput | CustomerWhereUniqueInput[]
-    delete?: CustomerWhereUniqueInput | CustomerWhereUniqueInput[]
-    connect?: CustomerWhereUniqueInput | CustomerWhereUniqueInput[]
-    update?: CustomerUpdateWithWhereUniqueWithoutBranchInput | CustomerUpdateWithWhereUniqueWithoutBranchInput[]
-    updateMany?: CustomerUpdateManyWithWhereWithoutBranchInput | CustomerUpdateManyWithWhereWithoutBranchInput[]
-    deleteMany?: CustomerScalarWhereInput | CustomerScalarWhereInput[]
+  export type SellMedicineUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<SellMedicineCreateWithoutBranchInput, SellMedicineUncheckedCreateWithoutBranchInput> | SellMedicineCreateWithoutBranchInput[] | SellMedicineUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutBranchInput | SellMedicineCreateOrConnectWithoutBranchInput[]
+    upsert?: SellMedicineUpsertWithWhereUniqueWithoutBranchInput | SellMedicineUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: SellMedicineCreateManyBranchInputEnvelope
+    set?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    disconnect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    delete?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    update?: SellMedicineUpdateWithWhereUniqueWithoutBranchInput | SellMedicineUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: SellMedicineUpdateManyWithWhereWithoutBranchInput | SellMedicineUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
+  }
+
+  export type MedicineTransferUpdateManyWithoutBaranchNestedInput = {
+    create?: XOR<MedicineTransferCreateWithoutBaranchInput, MedicineTransferUncheckedCreateWithoutBaranchInput> | MedicineTransferCreateWithoutBaranchInput[] | MedicineTransferUncheckedCreateWithoutBaranchInput[]
+    connectOrCreate?: MedicineTransferCreateOrConnectWithoutBaranchInput | MedicineTransferCreateOrConnectWithoutBaranchInput[]
+    upsert?: MedicineTransferUpsertWithWhereUniqueWithoutBaranchInput | MedicineTransferUpsertWithWhereUniqueWithoutBaranchInput[]
+    createMany?: MedicineTransferCreateManyBaranchInputEnvelope
+    set?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    disconnect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    delete?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    update?: MedicineTransferUpdateWithWhereUniqueWithoutBaranchInput | MedicineTransferUpdateWithWhereUniqueWithoutBaranchInput[]
+    updateMany?: MedicineTransferUpdateManyWithWhereWithoutBaranchInput | MedicineTransferUpdateManyWithWhereWithoutBaranchInput[]
+    deleteMany?: MedicineTransferScalarWhereInput | MedicineTransferScalarWhereInput[]
+  }
+
+  export type FarmerUncheckedUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<FarmerCreateWithoutBranchInput, FarmerUncheckedCreateWithoutBranchInput> | FarmerCreateWithoutBranchInput[] | FarmerUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: FarmerCreateOrConnectWithoutBranchInput | FarmerCreateOrConnectWithoutBranchInput[]
+    upsert?: FarmerUpsertWithWhereUniqueWithoutBranchInput | FarmerUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: FarmerCreateManyBranchInputEnvelope
+    set?: FarmerWhereUniqueInput | FarmerWhereUniqueInput[]
+    disconnect?: FarmerWhereUniqueInput | FarmerWhereUniqueInput[]
+    delete?: FarmerWhereUniqueInput | FarmerWhereUniqueInput[]
+    connect?: FarmerWhereUniqueInput | FarmerWhereUniqueInput[]
+    update?: FarmerUpdateWithWhereUniqueWithoutBranchInput | FarmerUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: FarmerUpdateManyWithWhereWithoutBranchInput | FarmerUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: FarmerScalarWhereInput | FarmerScalarWhereInput[]
   }
 
   export type EmployeeUncheckedUpdateManyWithoutBranchNestedInput = {
@@ -19090,40 +22479,72 @@ export namespace Prisma {
     deleteMany?: MedicinePurchessScalarWhereInput | MedicinePurchessScalarWhereInput[]
   }
 
-  export type BranchCreateNestedOneWithoutCustomersInput = {
-    create?: XOR<BranchCreateWithoutCustomersInput, BranchUncheckedCreateWithoutCustomersInput>
-    connectOrCreate?: BranchCreateOrConnectWithoutCustomersInput
+  export type SellMedicineUncheckedUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<SellMedicineCreateWithoutBranchInput, SellMedicineUncheckedCreateWithoutBranchInput> | SellMedicineCreateWithoutBranchInput[] | SellMedicineUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutBranchInput | SellMedicineCreateOrConnectWithoutBranchInput[]
+    upsert?: SellMedicineUpsertWithWhereUniqueWithoutBranchInput | SellMedicineUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: SellMedicineCreateManyBranchInputEnvelope
+    set?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    disconnect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    delete?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    update?: SellMedicineUpdateWithWhereUniqueWithoutBranchInput | SellMedicineUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: SellMedicineUpdateManyWithWhereWithoutBranchInput | SellMedicineUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
+  }
+
+  export type MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput = {
+    create?: XOR<MedicineTransferCreateWithoutBaranchInput, MedicineTransferUncheckedCreateWithoutBaranchInput> | MedicineTransferCreateWithoutBaranchInput[] | MedicineTransferUncheckedCreateWithoutBaranchInput[]
+    connectOrCreate?: MedicineTransferCreateOrConnectWithoutBaranchInput | MedicineTransferCreateOrConnectWithoutBaranchInput[]
+    upsert?: MedicineTransferUpsertWithWhereUniqueWithoutBaranchInput | MedicineTransferUpsertWithWhereUniqueWithoutBaranchInput[]
+    createMany?: MedicineTransferCreateManyBaranchInputEnvelope
+    set?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    disconnect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    delete?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    update?: MedicineTransferUpdateWithWhereUniqueWithoutBaranchInput | MedicineTransferUpdateWithWhereUniqueWithoutBaranchInput[]
+    updateMany?: MedicineTransferUpdateManyWithWhereWithoutBaranchInput | MedicineTransferUpdateManyWithWhereWithoutBaranchInput[]
+    deleteMany?: MedicineTransferScalarWhereInput | MedicineTransferScalarWhereInput[]
+  }
+
+  export type BranchCreateNestedOneWithoutFarmerInput = {
+    create?: XOR<BranchCreateWithoutFarmerInput, BranchUncheckedCreateWithoutFarmerInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutFarmerInput
     connect?: BranchWhereUniqueInput
   }
 
-  export type AddressCreateNestedOneWithoutCustomerInput = {
-    create?: XOR<AddressCreateWithoutCustomerInput, AddressUncheckedCreateWithoutCustomerInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutCustomerInput
+  export type AddressCreateNestedOneWithoutFarmerInput = {
+    create?: XOR<AddressCreateWithoutFarmerInput, AddressUncheckedCreateWithoutFarmerInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutFarmerInput
     connect?: AddressWhereUniqueInput
   }
 
-  export type FlockCreateNestedManyWithoutCustomerInput = {
-    create?: XOR<FlockCreateWithoutCustomerInput, FlockUncheckedCreateWithoutCustomerInput> | FlockCreateWithoutCustomerInput[] | FlockUncheckedCreateWithoutCustomerInput[]
-    connectOrCreate?: FlockCreateOrConnectWithoutCustomerInput | FlockCreateOrConnectWithoutCustomerInput[]
-    createMany?: FlockCreateManyCustomerInputEnvelope
+  export type FlockCreateNestedManyWithoutFarmerInput = {
+    create?: XOR<FlockCreateWithoutFarmerInput, FlockUncheckedCreateWithoutFarmerInput> | FlockCreateWithoutFarmerInput[] | FlockUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: FlockCreateOrConnectWithoutFarmerInput | FlockCreateOrConnectWithoutFarmerInput[]
+    createMany?: FlockCreateManyFarmerInputEnvelope
     connect?: FlockWhereUniqueInput | FlockWhereUniqueInput[]
   }
 
-  export type AddressUncheckedCreateNestedOneWithoutCustomerInput = {
-    create?: XOR<AddressCreateWithoutCustomerInput, AddressUncheckedCreateWithoutCustomerInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutCustomerInput
-    connect?: AddressWhereUniqueInput
+  export type SellMedicineCreateNestedManyWithoutFarmerInput = {
+    create?: XOR<SellMedicineCreateWithoutFarmerInput, SellMedicineUncheckedCreateWithoutFarmerInput> | SellMedicineCreateWithoutFarmerInput[] | SellMedicineUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutFarmerInput | SellMedicineCreateOrConnectWithoutFarmerInput[]
+    createMany?: SellMedicineCreateManyFarmerInputEnvelope
+    connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
   }
 
-  export type FlockUncheckedCreateNestedManyWithoutCustomerInput = {
-    create?: XOR<FlockCreateWithoutCustomerInput, FlockUncheckedCreateWithoutCustomerInput> | FlockCreateWithoutCustomerInput[] | FlockUncheckedCreateWithoutCustomerInput[]
-    connectOrCreate?: FlockCreateOrConnectWithoutCustomerInput | FlockCreateOrConnectWithoutCustomerInput[]
-    createMany?: FlockCreateManyCustomerInputEnvelope
+  export type FlockUncheckedCreateNestedManyWithoutFarmerInput = {
+    create?: XOR<FlockCreateWithoutFarmerInput, FlockUncheckedCreateWithoutFarmerInput> | FlockCreateWithoutFarmerInput[] | FlockUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: FlockCreateOrConnectWithoutFarmerInput | FlockCreateOrConnectWithoutFarmerInput[]
+    createMany?: FlockCreateManyFarmerInputEnvelope
     connect?: FlockWhereUniqueInput | FlockWhereUniqueInput[]
   }
 
-  export type EnumCusttypeFieldUpdateOperationsInput = {
-    set?: $Enums.Custtype
+  export type SellMedicineUncheckedCreateNestedManyWithoutFarmerInput = {
+    create?: XOR<SellMedicineCreateWithoutFarmerInput, SellMedicineUncheckedCreateWithoutFarmerInput> | SellMedicineCreateWithoutFarmerInput[] | SellMedicineUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutFarmerInput | SellMedicineCreateOrConnectWithoutFarmerInput[]
+    createMany?: SellMedicineCreateManyFarmerInputEnvelope
+    connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -19134,60 +22555,94 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type BranchUpdateOneRequiredWithoutCustomersNestedInput = {
-    create?: XOR<BranchCreateWithoutCustomersInput, BranchUncheckedCreateWithoutCustomersInput>
-    connectOrCreate?: BranchCreateOrConnectWithoutCustomersInput
-    upsert?: BranchUpsertWithoutCustomersInput
+  export type EnumCusttypeFieldUpdateOperationsInput = {
+    set?: $Enums.Custtype
+  }
+
+  export type BranchUpdateOneWithoutFarmerNestedInput = {
+    create?: XOR<BranchCreateWithoutFarmerInput, BranchUncheckedCreateWithoutFarmerInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutFarmerInput
+    upsert?: BranchUpsertWithoutFarmerInput
+    disconnect?: BranchWhereInput | boolean
+    delete?: BranchWhereInput | boolean
     connect?: BranchWhereUniqueInput
-    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutCustomersInput, BranchUpdateWithoutCustomersInput>, BranchUncheckedUpdateWithoutCustomersInput>
+    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutFarmerInput, BranchUpdateWithoutFarmerInput>, BranchUncheckedUpdateWithoutFarmerInput>
   }
 
-  export type AddressUpdateOneWithoutCustomerNestedInput = {
-    create?: XOR<AddressCreateWithoutCustomerInput, AddressUncheckedCreateWithoutCustomerInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutCustomerInput
-    upsert?: AddressUpsertWithoutCustomerInput
+  export type AddressUpdateOneWithoutFarmerNestedInput = {
+    create?: XOR<AddressCreateWithoutFarmerInput, AddressUncheckedCreateWithoutFarmerInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutFarmerInput
+    upsert?: AddressUpsertWithoutFarmerInput
     disconnect?: AddressWhereInput | boolean
     delete?: AddressWhereInput | boolean
     connect?: AddressWhereUniqueInput
-    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutCustomerInput, AddressUpdateWithoutCustomerInput>, AddressUncheckedUpdateWithoutCustomerInput>
+    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutFarmerInput, AddressUpdateWithoutFarmerInput>, AddressUncheckedUpdateWithoutFarmerInput>
   }
 
-  export type FlockUpdateManyWithoutCustomerNestedInput = {
-    create?: XOR<FlockCreateWithoutCustomerInput, FlockUncheckedCreateWithoutCustomerInput> | FlockCreateWithoutCustomerInput[] | FlockUncheckedCreateWithoutCustomerInput[]
-    connectOrCreate?: FlockCreateOrConnectWithoutCustomerInput | FlockCreateOrConnectWithoutCustomerInput[]
-    upsert?: FlockUpsertWithWhereUniqueWithoutCustomerInput | FlockUpsertWithWhereUniqueWithoutCustomerInput[]
-    createMany?: FlockCreateManyCustomerInputEnvelope
+  export type FlockUpdateManyWithoutFarmerNestedInput = {
+    create?: XOR<FlockCreateWithoutFarmerInput, FlockUncheckedCreateWithoutFarmerInput> | FlockCreateWithoutFarmerInput[] | FlockUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: FlockCreateOrConnectWithoutFarmerInput | FlockCreateOrConnectWithoutFarmerInput[]
+    upsert?: FlockUpsertWithWhereUniqueWithoutFarmerInput | FlockUpsertWithWhereUniqueWithoutFarmerInput[]
+    createMany?: FlockCreateManyFarmerInputEnvelope
     set?: FlockWhereUniqueInput | FlockWhereUniqueInput[]
     disconnect?: FlockWhereUniqueInput | FlockWhereUniqueInput[]
     delete?: FlockWhereUniqueInput | FlockWhereUniqueInput[]
     connect?: FlockWhereUniqueInput | FlockWhereUniqueInput[]
-    update?: FlockUpdateWithWhereUniqueWithoutCustomerInput | FlockUpdateWithWhereUniqueWithoutCustomerInput[]
-    updateMany?: FlockUpdateManyWithWhereWithoutCustomerInput | FlockUpdateManyWithWhereWithoutCustomerInput[]
+    update?: FlockUpdateWithWhereUniqueWithoutFarmerInput | FlockUpdateWithWhereUniqueWithoutFarmerInput[]
+    updateMany?: FlockUpdateManyWithWhereWithoutFarmerInput | FlockUpdateManyWithWhereWithoutFarmerInput[]
     deleteMany?: FlockScalarWhereInput | FlockScalarWhereInput[]
   }
 
-  export type AddressUncheckedUpdateOneWithoutCustomerNestedInput = {
-    create?: XOR<AddressCreateWithoutCustomerInput, AddressUncheckedCreateWithoutCustomerInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutCustomerInput
-    upsert?: AddressUpsertWithoutCustomerInput
-    disconnect?: AddressWhereInput | boolean
-    delete?: AddressWhereInput | boolean
-    connect?: AddressWhereUniqueInput
-    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutCustomerInput, AddressUpdateWithoutCustomerInput>, AddressUncheckedUpdateWithoutCustomerInput>
+  export type SellMedicineUpdateManyWithoutFarmerNestedInput = {
+    create?: XOR<SellMedicineCreateWithoutFarmerInput, SellMedicineUncheckedCreateWithoutFarmerInput> | SellMedicineCreateWithoutFarmerInput[] | SellMedicineUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutFarmerInput | SellMedicineCreateOrConnectWithoutFarmerInput[]
+    upsert?: SellMedicineUpsertWithWhereUniqueWithoutFarmerInput | SellMedicineUpsertWithWhereUniqueWithoutFarmerInput[]
+    createMany?: SellMedicineCreateManyFarmerInputEnvelope
+    set?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    disconnect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    delete?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    update?: SellMedicineUpdateWithWhereUniqueWithoutFarmerInput | SellMedicineUpdateWithWhereUniqueWithoutFarmerInput[]
+    updateMany?: SellMedicineUpdateManyWithWhereWithoutFarmerInput | SellMedicineUpdateManyWithWhereWithoutFarmerInput[]
+    deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
   }
 
-  export type FlockUncheckedUpdateManyWithoutCustomerNestedInput = {
-    create?: XOR<FlockCreateWithoutCustomerInput, FlockUncheckedCreateWithoutCustomerInput> | FlockCreateWithoutCustomerInput[] | FlockUncheckedCreateWithoutCustomerInput[]
-    connectOrCreate?: FlockCreateOrConnectWithoutCustomerInput | FlockCreateOrConnectWithoutCustomerInput[]
-    upsert?: FlockUpsertWithWhereUniqueWithoutCustomerInput | FlockUpsertWithWhereUniqueWithoutCustomerInput[]
-    createMany?: FlockCreateManyCustomerInputEnvelope
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type FlockUncheckedUpdateManyWithoutFarmerNestedInput = {
+    create?: XOR<FlockCreateWithoutFarmerInput, FlockUncheckedCreateWithoutFarmerInput> | FlockCreateWithoutFarmerInput[] | FlockUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: FlockCreateOrConnectWithoutFarmerInput | FlockCreateOrConnectWithoutFarmerInput[]
+    upsert?: FlockUpsertWithWhereUniqueWithoutFarmerInput | FlockUpsertWithWhereUniqueWithoutFarmerInput[]
+    createMany?: FlockCreateManyFarmerInputEnvelope
     set?: FlockWhereUniqueInput | FlockWhereUniqueInput[]
     disconnect?: FlockWhereUniqueInput | FlockWhereUniqueInput[]
     delete?: FlockWhereUniqueInput | FlockWhereUniqueInput[]
     connect?: FlockWhereUniqueInput | FlockWhereUniqueInput[]
-    update?: FlockUpdateWithWhereUniqueWithoutCustomerInput | FlockUpdateWithWhereUniqueWithoutCustomerInput[]
-    updateMany?: FlockUpdateManyWithWhereWithoutCustomerInput | FlockUpdateManyWithWhereWithoutCustomerInput[]
+    update?: FlockUpdateWithWhereUniqueWithoutFarmerInput | FlockUpdateWithWhereUniqueWithoutFarmerInput[]
+    updateMany?: FlockUpdateManyWithWhereWithoutFarmerInput | FlockUpdateManyWithWhereWithoutFarmerInput[]
     deleteMany?: FlockScalarWhereInput | FlockScalarWhereInput[]
+  }
+
+  export type SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput = {
+    create?: XOR<SellMedicineCreateWithoutFarmerInput, SellMedicineUncheckedCreateWithoutFarmerInput> | SellMedicineCreateWithoutFarmerInput[] | SellMedicineUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutFarmerInput | SellMedicineCreateOrConnectWithoutFarmerInput[]
+    upsert?: SellMedicineUpsertWithWhereUniqueWithoutFarmerInput | SellMedicineUpsertWithWhereUniqueWithoutFarmerInput[]
+    createMany?: SellMedicineCreateManyFarmerInputEnvelope
+    set?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    disconnect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    delete?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    update?: SellMedicineUpdateWithWhereUniqueWithoutFarmerInput | SellMedicineUpdateWithWhereUniqueWithoutFarmerInput[]
+    updateMany?: SellMedicineUpdateManyWithWhereWithoutFarmerInput | SellMedicineUpdateManyWithWhereWithoutFarmerInput[]
+    deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
+  }
+
+  export type FarmerCreateNestedOneWithoutAddressInput = {
+    create?: XOR<FarmerCreateWithoutAddressInput, FarmerUncheckedCreateWithoutAddressInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutAddressInput
+    connect?: FarmerWhereUniqueInput
   }
 
   export type EmployeeCreateNestedOneWithoutAddressInput = {
@@ -19196,14 +22651,26 @@ export namespace Prisma {
     connect?: EmployeeWhereUniqueInput
   }
 
-  export type CustomerCreateNestedOneWithoutAddressInput = {
-    create?: XOR<CustomerCreateWithoutAddressInput, CustomerUncheckedCreateWithoutAddressInput>
-    connectOrCreate?: CustomerCreateOrConnectWithoutAddressInput
-    connect?: CustomerWhereUniqueInput
+  export type FarmerUncheckedCreateNestedOneWithoutAddressInput = {
+    create?: XOR<FarmerCreateWithoutAddressInput, FarmerUncheckedCreateWithoutAddressInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutAddressInput
+    connect?: FarmerWhereUniqueInput
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type EmployeeUncheckedCreateNestedOneWithoutAddressInput = {
+    create?: XOR<EmployeeCreateWithoutAddressInput, EmployeeUncheckedCreateWithoutAddressInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutAddressInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type FarmerUpdateOneWithoutAddressNestedInput = {
+    create?: XOR<FarmerCreateWithoutAddressInput, FarmerUncheckedCreateWithoutAddressInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutAddressInput
+    upsert?: FarmerUpsertWithoutAddressInput
+    disconnect?: FarmerWhereInput | boolean
+    delete?: FarmerWhereInput | boolean
+    connect?: FarmerWhereUniqueInput
+    update?: XOR<XOR<FarmerUpdateToOneWithWhereWithoutAddressInput, FarmerUpdateWithoutAddressInput>, FarmerUncheckedUpdateWithoutAddressInput>
   }
 
   export type EmployeeUpdateOneWithoutAddressNestedInput = {
@@ -19216,14 +22683,24 @@ export namespace Prisma {
     update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutAddressInput, EmployeeUpdateWithoutAddressInput>, EmployeeUncheckedUpdateWithoutAddressInput>
   }
 
-  export type CustomerUpdateOneWithoutAddressNestedInput = {
-    create?: XOR<CustomerCreateWithoutAddressInput, CustomerUncheckedCreateWithoutAddressInput>
-    connectOrCreate?: CustomerCreateOrConnectWithoutAddressInput
-    upsert?: CustomerUpsertWithoutAddressInput
-    disconnect?: CustomerWhereInput | boolean
-    delete?: CustomerWhereInput | boolean
-    connect?: CustomerWhereUniqueInput
-    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutAddressInput, CustomerUpdateWithoutAddressInput>, CustomerUncheckedUpdateWithoutAddressInput>
+  export type FarmerUncheckedUpdateOneWithoutAddressNestedInput = {
+    create?: XOR<FarmerCreateWithoutAddressInput, FarmerUncheckedCreateWithoutAddressInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutAddressInput
+    upsert?: FarmerUpsertWithoutAddressInput
+    disconnect?: FarmerWhereInput | boolean
+    delete?: FarmerWhereInput | boolean
+    connect?: FarmerWhereUniqueInput
+    update?: XOR<XOR<FarmerUpdateToOneWithWhereWithoutAddressInput, FarmerUpdateWithoutAddressInput>, FarmerUncheckedUpdateWithoutAddressInput>
+  }
+
+  export type EmployeeUncheckedUpdateOneWithoutAddressNestedInput = {
+    create?: XOR<EmployeeCreateWithoutAddressInput, EmployeeUncheckedCreateWithoutAddressInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutAddressInput
+    upsert?: EmployeeUpsertWithoutAddressInput
+    disconnect?: EmployeeWhereInput | boolean
+    delete?: EmployeeWhereInput | boolean
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutAddressInput, EmployeeUpdateWithoutAddressInput>, EmployeeUncheckedUpdateWithoutAddressInput>
   }
 
   export type BranchCreateNestedOneWithoutBranchEmployeesInput = {
@@ -19287,12 +22764,6 @@ export namespace Prisma {
     connect?: BranchEmployeeWhereUniqueInput | BranchEmployeeWhereUniqueInput[]
   }
 
-  export type AddressUncheckedCreateNestedOneWithoutEmployeeInput = {
-    create?: XOR<AddressCreateWithoutEmployeeInput, AddressUncheckedCreateWithoutEmployeeInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutEmployeeInput
-    connect?: AddressWhereUniqueInput
-  }
-
   export type FlockUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<FlockCreateWithoutEmployeeInput, FlockUncheckedCreateWithoutEmployeeInput> | FlockCreateWithoutEmployeeInput[] | FlockUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: FlockCreateOrConnectWithoutEmployeeInput | FlockCreateOrConnectWithoutEmployeeInput[]
@@ -19300,12 +22771,10 @@ export namespace Prisma {
     connect?: FlockWhereUniqueInput | FlockWhereUniqueInput[]
   }
 
-  export type BranchUpdateOneWithoutEmployeesNestedInput = {
+  export type BranchUpdateOneRequiredWithoutEmployeesNestedInput = {
     create?: XOR<BranchCreateWithoutEmployeesInput, BranchUncheckedCreateWithoutEmployeesInput>
     connectOrCreate?: BranchCreateOrConnectWithoutEmployeesInput
     upsert?: BranchUpsertWithoutEmployeesInput
-    disconnect?: BranchWhereInput | boolean
-    delete?: BranchWhereInput | boolean
     connect?: BranchWhereUniqueInput
     update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutEmployeesInput, BranchUpdateWithoutEmployeesInput>, BranchUncheckedUpdateWithoutEmployeesInput>
   }
@@ -19362,16 +22831,6 @@ export namespace Prisma {
     deleteMany?: BranchEmployeeScalarWhereInput | BranchEmployeeScalarWhereInput[]
   }
 
-  export type AddressUncheckedUpdateOneWithoutEmployeeNestedInput = {
-    create?: XOR<AddressCreateWithoutEmployeeInput, AddressUncheckedCreateWithoutEmployeeInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutEmployeeInput
-    upsert?: AddressUpsertWithoutEmployeeInput
-    disconnect?: AddressWhereInput | boolean
-    delete?: AddressWhereInput | boolean
-    connect?: AddressWhereUniqueInput
-    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutEmployeeInput, AddressUpdateWithoutEmployeeInput>, AddressUncheckedUpdateWithoutEmployeeInput>
-  }
-
   export type FlockUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<FlockCreateWithoutEmployeeInput, FlockUncheckedCreateWithoutEmployeeInput> | FlockCreateWithoutEmployeeInput[] | FlockUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: FlockCreateOrConnectWithoutEmployeeInput | FlockCreateOrConnectWithoutEmployeeInput[]
@@ -19386,10 +22845,10 @@ export namespace Prisma {
     deleteMany?: FlockScalarWhereInput | FlockScalarWhereInput[]
   }
 
-  export type CustomerCreateNestedOneWithoutFlocksInput = {
-    create?: XOR<CustomerCreateWithoutFlocksInput, CustomerUncheckedCreateWithoutFlocksInput>
-    connectOrCreate?: CustomerCreateOrConnectWithoutFlocksInput
-    connect?: CustomerWhereUniqueInput
+  export type FarmerCreateNestedOneWithoutFlocksInput = {
+    create?: XOR<FarmerCreateWithoutFlocksInput, FarmerUncheckedCreateWithoutFlocksInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutFlocksInput
+    connect?: FarmerWhereUniqueInput
   }
 
   export type EmployeeCreateNestedOneWithoutFlocksInput = {
@@ -19402,6 +22861,34 @@ export namespace Prisma {
     create?: XOR<BranchCreateWithoutFlocksInput, BranchUncheckedCreateWithoutFlocksInput>
     connectOrCreate?: BranchCreateOrConnectWithoutFlocksInput
     connect?: BranchWhereUniqueInput
+  }
+
+  export type SellMedicineCreateNestedManyWithoutFlockInput = {
+    create?: XOR<SellMedicineCreateWithoutFlockInput, SellMedicineUncheckedCreateWithoutFlockInput> | SellMedicineCreateWithoutFlockInput[] | SellMedicineUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutFlockInput | SellMedicineCreateOrConnectWithoutFlockInput[]
+    createMany?: SellMedicineCreateManyFlockInputEnvelope
+    connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+  }
+
+  export type MedicineTransferCreateNestedManyWithoutFlockInput = {
+    create?: XOR<MedicineTransferCreateWithoutFlockInput, MedicineTransferUncheckedCreateWithoutFlockInput> | MedicineTransferCreateWithoutFlockInput[] | MedicineTransferUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: MedicineTransferCreateOrConnectWithoutFlockInput | MedicineTransferCreateOrConnectWithoutFlockInput[]
+    createMany?: MedicineTransferCreateManyFlockInputEnvelope
+    connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+  }
+
+  export type SellMedicineUncheckedCreateNestedManyWithoutFlockInput = {
+    create?: XOR<SellMedicineCreateWithoutFlockInput, SellMedicineUncheckedCreateWithoutFlockInput> | SellMedicineCreateWithoutFlockInput[] | SellMedicineUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutFlockInput | SellMedicineCreateOrConnectWithoutFlockInput[]
+    createMany?: SellMedicineCreateManyFlockInputEnvelope
+    connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+  }
+
+  export type MedicineTransferUncheckedCreateNestedManyWithoutFlockInput = {
+    create?: XOR<MedicineTransferCreateWithoutFlockInput, MedicineTransferUncheckedCreateWithoutFlockInput> | MedicineTransferCreateWithoutFlockInput[] | MedicineTransferUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: MedicineTransferCreateOrConnectWithoutFlockInput | MedicineTransferCreateOrConnectWithoutFlockInput[]
+    createMany?: MedicineTransferCreateManyFlockInputEnvelope
+    connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
   }
 
   export type EnumFlockStatusFieldUpdateOperationsInput = {
@@ -19424,12 +22911,12 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type CustomerUpdateOneRequiredWithoutFlocksNestedInput = {
-    create?: XOR<CustomerCreateWithoutFlocksInput, CustomerUncheckedCreateWithoutFlocksInput>
-    connectOrCreate?: CustomerCreateOrConnectWithoutFlocksInput
-    upsert?: CustomerUpsertWithoutFlocksInput
-    connect?: CustomerWhereUniqueInput
-    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutFlocksInput, CustomerUpdateWithoutFlocksInput>, CustomerUncheckedUpdateWithoutFlocksInput>
+  export type FarmerUpdateOneRequiredWithoutFlocksNestedInput = {
+    create?: XOR<FarmerCreateWithoutFlocksInput, FarmerUncheckedCreateWithoutFlocksInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutFlocksInput
+    upsert?: FarmerUpsertWithoutFlocksInput
+    connect?: FarmerWhereUniqueInput
+    update?: XOR<XOR<FarmerUpdateToOneWithWhereWithoutFlocksInput, FarmerUpdateWithoutFlocksInput>, FarmerUncheckedUpdateWithoutFlocksInput>
   }
 
   export type EmployeeUpdateOneRequiredWithoutFlocksNestedInput = {
@@ -19446,6 +22933,62 @@ export namespace Prisma {
     upsert?: BranchUpsertWithoutFlocksInput
     connect?: BranchWhereUniqueInput
     update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutFlocksInput, BranchUpdateWithoutFlocksInput>, BranchUncheckedUpdateWithoutFlocksInput>
+  }
+
+  export type SellMedicineUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<SellMedicineCreateWithoutFlockInput, SellMedicineUncheckedCreateWithoutFlockInput> | SellMedicineCreateWithoutFlockInput[] | SellMedicineUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutFlockInput | SellMedicineCreateOrConnectWithoutFlockInput[]
+    upsert?: SellMedicineUpsertWithWhereUniqueWithoutFlockInput | SellMedicineUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: SellMedicineCreateManyFlockInputEnvelope
+    set?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    disconnect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    delete?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    update?: SellMedicineUpdateWithWhereUniqueWithoutFlockInput | SellMedicineUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: SellMedicineUpdateManyWithWhereWithoutFlockInput | SellMedicineUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
+  }
+
+  export type MedicineTransferUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<MedicineTransferCreateWithoutFlockInput, MedicineTransferUncheckedCreateWithoutFlockInput> | MedicineTransferCreateWithoutFlockInput[] | MedicineTransferUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: MedicineTransferCreateOrConnectWithoutFlockInput | MedicineTransferCreateOrConnectWithoutFlockInput[]
+    upsert?: MedicineTransferUpsertWithWhereUniqueWithoutFlockInput | MedicineTransferUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: MedicineTransferCreateManyFlockInputEnvelope
+    set?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    disconnect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    delete?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    update?: MedicineTransferUpdateWithWhereUniqueWithoutFlockInput | MedicineTransferUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: MedicineTransferUpdateManyWithWhereWithoutFlockInput | MedicineTransferUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: MedicineTransferScalarWhereInput | MedicineTransferScalarWhereInput[]
+  }
+
+  export type SellMedicineUncheckedUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<SellMedicineCreateWithoutFlockInput, SellMedicineUncheckedCreateWithoutFlockInput> | SellMedicineCreateWithoutFlockInput[] | SellMedicineUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutFlockInput | SellMedicineCreateOrConnectWithoutFlockInput[]
+    upsert?: SellMedicineUpsertWithWhereUniqueWithoutFlockInput | SellMedicineUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: SellMedicineCreateManyFlockInputEnvelope
+    set?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    disconnect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    delete?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+    update?: SellMedicineUpdateWithWhereUniqueWithoutFlockInput | SellMedicineUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: SellMedicineUpdateManyWithWhereWithoutFlockInput | SellMedicineUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
+  }
+
+  export type MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<MedicineTransferCreateWithoutFlockInput, MedicineTransferUncheckedCreateWithoutFlockInput> | MedicineTransferCreateWithoutFlockInput[] | MedicineTransferUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: MedicineTransferCreateOrConnectWithoutFlockInput | MedicineTransferCreateOrConnectWithoutFlockInput[]
+    upsert?: MedicineTransferUpsertWithWhereUniqueWithoutFlockInput | MedicineTransferUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: MedicineTransferCreateManyFlockInputEnvelope
+    set?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    disconnect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    delete?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    update?: MedicineTransferUpdateWithWhereUniqueWithoutFlockInput | MedicineTransferUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: MedicineTransferUpdateManyWithWhereWithoutFlockInput | MedicineTransferUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: MedicineTransferScalarWhereInput | MedicineTransferScalarWhereInput[]
   }
 
   export type FeedCreateNestedManyWithoutFeedNameCategoryInput = {
@@ -19836,6 +23379,136 @@ export namespace Prisma {
     update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutMedicineStockInput, BranchUpdateWithoutMedicineStockInput>, BranchUncheckedUpdateWithoutMedicineStockInput>
   }
 
+  export type FlockCreateNestedOneWithoutSellMedicineInput = {
+    create?: XOR<FlockCreateWithoutSellMedicineInput, FlockUncheckedCreateWithoutSellMedicineInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutSellMedicineInput
+    connect?: FlockWhereUniqueInput
+  }
+
+  export type BranchCreateNestedOneWithoutSellMedicineInput = {
+    create?: XOR<BranchCreateWithoutSellMedicineInput, BranchUncheckedCreateWithoutSellMedicineInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutSellMedicineInput
+    connect?: BranchWhereUniqueInput
+  }
+
+  export type FarmerCreateNestedOneWithoutSellMedicineInput = {
+    create?: XOR<FarmerCreateWithoutSellMedicineInput, FarmerUncheckedCreateWithoutSellMedicineInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutSellMedicineInput
+    connect?: FarmerWhereUniqueInput
+  }
+
+  export type MedicineTransferCreateNestedManyWithoutSellmedicineInput = {
+    create?: XOR<MedicineTransferCreateWithoutSellmedicineInput, MedicineTransferUncheckedCreateWithoutSellmedicineInput> | MedicineTransferCreateWithoutSellmedicineInput[] | MedicineTransferUncheckedCreateWithoutSellmedicineInput[]
+    connectOrCreate?: MedicineTransferCreateOrConnectWithoutSellmedicineInput | MedicineTransferCreateOrConnectWithoutSellmedicineInput[]
+    createMany?: MedicineTransferCreateManySellmedicineInputEnvelope
+    connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+  }
+
+  export type MedicineTransferUncheckedCreateNestedManyWithoutSellmedicineInput = {
+    create?: XOR<MedicineTransferCreateWithoutSellmedicineInput, MedicineTransferUncheckedCreateWithoutSellmedicineInput> | MedicineTransferCreateWithoutSellmedicineInput[] | MedicineTransferUncheckedCreateWithoutSellmedicineInput[]
+    connectOrCreate?: MedicineTransferCreateOrConnectWithoutSellmedicineInput | MedicineTransferCreateOrConnectWithoutSellmedicineInput[]
+    createMany?: MedicineTransferCreateManySellmedicineInputEnvelope
+    connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+  }
+
+  export type EnumDeliveryStatusFieldUpdateOperationsInput = {
+    set?: $Enums.DeliveryStatus
+  }
+
+  export type FlockUpdateOneRequiredWithoutSellMedicineNestedInput = {
+    create?: XOR<FlockCreateWithoutSellMedicineInput, FlockUncheckedCreateWithoutSellMedicineInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutSellMedicineInput
+    upsert?: FlockUpsertWithoutSellMedicineInput
+    connect?: FlockWhereUniqueInput
+    update?: XOR<XOR<FlockUpdateToOneWithWhereWithoutSellMedicineInput, FlockUpdateWithoutSellMedicineInput>, FlockUncheckedUpdateWithoutSellMedicineInput>
+  }
+
+  export type BranchUpdateOneRequiredWithoutSellMedicineNestedInput = {
+    create?: XOR<BranchCreateWithoutSellMedicineInput, BranchUncheckedCreateWithoutSellMedicineInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutSellMedicineInput
+    upsert?: BranchUpsertWithoutSellMedicineInput
+    connect?: BranchWhereUniqueInput
+    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutSellMedicineInput, BranchUpdateWithoutSellMedicineInput>, BranchUncheckedUpdateWithoutSellMedicineInput>
+  }
+
+  export type FarmerUpdateOneRequiredWithoutSellMedicineNestedInput = {
+    create?: XOR<FarmerCreateWithoutSellMedicineInput, FarmerUncheckedCreateWithoutSellMedicineInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutSellMedicineInput
+    upsert?: FarmerUpsertWithoutSellMedicineInput
+    connect?: FarmerWhereUniqueInput
+    update?: XOR<XOR<FarmerUpdateToOneWithWhereWithoutSellMedicineInput, FarmerUpdateWithoutSellMedicineInput>, FarmerUncheckedUpdateWithoutSellMedicineInput>
+  }
+
+  export type MedicineTransferUpdateManyWithoutSellmedicineNestedInput = {
+    create?: XOR<MedicineTransferCreateWithoutSellmedicineInput, MedicineTransferUncheckedCreateWithoutSellmedicineInput> | MedicineTransferCreateWithoutSellmedicineInput[] | MedicineTransferUncheckedCreateWithoutSellmedicineInput[]
+    connectOrCreate?: MedicineTransferCreateOrConnectWithoutSellmedicineInput | MedicineTransferCreateOrConnectWithoutSellmedicineInput[]
+    upsert?: MedicineTransferUpsertWithWhereUniqueWithoutSellmedicineInput | MedicineTransferUpsertWithWhereUniqueWithoutSellmedicineInput[]
+    createMany?: MedicineTransferCreateManySellmedicineInputEnvelope
+    set?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    disconnect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    delete?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    update?: MedicineTransferUpdateWithWhereUniqueWithoutSellmedicineInput | MedicineTransferUpdateWithWhereUniqueWithoutSellmedicineInput[]
+    updateMany?: MedicineTransferUpdateManyWithWhereWithoutSellmedicineInput | MedicineTransferUpdateManyWithWhereWithoutSellmedicineInput[]
+    deleteMany?: MedicineTransferScalarWhereInput | MedicineTransferScalarWhereInput[]
+  }
+
+  export type MedicineTransferUncheckedUpdateManyWithoutSellmedicineNestedInput = {
+    create?: XOR<MedicineTransferCreateWithoutSellmedicineInput, MedicineTransferUncheckedCreateWithoutSellmedicineInput> | MedicineTransferCreateWithoutSellmedicineInput[] | MedicineTransferUncheckedCreateWithoutSellmedicineInput[]
+    connectOrCreate?: MedicineTransferCreateOrConnectWithoutSellmedicineInput | MedicineTransferCreateOrConnectWithoutSellmedicineInput[]
+    upsert?: MedicineTransferUpsertWithWhereUniqueWithoutSellmedicineInput | MedicineTransferUpsertWithWhereUniqueWithoutSellmedicineInput[]
+    createMany?: MedicineTransferCreateManySellmedicineInputEnvelope
+    set?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    disconnect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    delete?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+    update?: MedicineTransferUpdateWithWhereUniqueWithoutSellmedicineInput | MedicineTransferUpdateWithWhereUniqueWithoutSellmedicineInput[]
+    updateMany?: MedicineTransferUpdateManyWithWhereWithoutSellmedicineInput | MedicineTransferUpdateManyWithWhereWithoutSellmedicineInput[]
+    deleteMany?: MedicineTransferScalarWhereInput | MedicineTransferScalarWhereInput[]
+  }
+
+  export type SellMedicineCreateNestedOneWithoutMedicineTransferInput = {
+    create?: XOR<SellMedicineCreateWithoutMedicineTransferInput, SellMedicineUncheckedCreateWithoutMedicineTransferInput>
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutMedicineTransferInput
+    connect?: SellMedicineWhereUniqueInput
+  }
+
+  export type FlockCreateNestedOneWithoutMedicineTransferInput = {
+    create?: XOR<FlockCreateWithoutMedicineTransferInput, FlockUncheckedCreateWithoutMedicineTransferInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutMedicineTransferInput
+    connect?: FlockWhereUniqueInput
+  }
+
+  export type BranchCreateNestedOneWithoutMedicineTransferInput = {
+    create?: XOR<BranchCreateWithoutMedicineTransferInput, BranchUncheckedCreateWithoutMedicineTransferInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutMedicineTransferInput
+    connect?: BranchWhereUniqueInput
+  }
+
+  export type SellMedicineUpdateOneRequiredWithoutMedicineTransferNestedInput = {
+    create?: XOR<SellMedicineCreateWithoutMedicineTransferInput, SellMedicineUncheckedCreateWithoutMedicineTransferInput>
+    connectOrCreate?: SellMedicineCreateOrConnectWithoutMedicineTransferInput
+    upsert?: SellMedicineUpsertWithoutMedicineTransferInput
+    connect?: SellMedicineWhereUniqueInput
+    update?: XOR<XOR<SellMedicineUpdateToOneWithWhereWithoutMedicineTransferInput, SellMedicineUpdateWithoutMedicineTransferInput>, SellMedicineUncheckedUpdateWithoutMedicineTransferInput>
+  }
+
+  export type FlockUpdateOneRequiredWithoutMedicineTransferNestedInput = {
+    create?: XOR<FlockCreateWithoutMedicineTransferInput, FlockUncheckedCreateWithoutMedicineTransferInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutMedicineTransferInput
+    upsert?: FlockUpsertWithoutMedicineTransferInput
+    connect?: FlockWhereUniqueInput
+    update?: XOR<XOR<FlockUpdateToOneWithWhereWithoutMedicineTransferInput, FlockUpdateWithoutMedicineTransferInput>, FlockUncheckedUpdateWithoutMedicineTransferInput>
+  }
+
+  export type BranchUpdateOneRequiredWithoutMedicineTransferNestedInput = {
+    create?: XOR<BranchCreateWithoutMedicineTransferInput, BranchUncheckedCreateWithoutMedicineTransferInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutMedicineTransferInput
+    upsert?: BranchUpsertWithoutMedicineTransferInput
+    connect?: BranchWhereUniqueInput
+    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutMedicineTransferInput, BranchUpdateWithoutMedicineTransferInput>, BranchUncheckedUpdateWithoutMedicineTransferInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -19895,6 +23568,20 @@ export namespace Prisma {
     _max?: NestedEnumBranchTypeFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedEnumCusttypeFilter<$PrismaModel = never> = {
     equals?: $Enums.Custtype | EnumCusttypeFieldRefInput<$PrismaModel>
     in?: $Enums.Custtype[] | ListEnumCusttypeFieldRefInput<$PrismaModel>
@@ -19902,14 +23589,32 @@ export namespace Prisma {
     not?: NestedEnumCusttypeFilter<$PrismaModel> | $Enums.Custtype
   }
 
-  export type NestedEnumCusttypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Custtype | EnumCusttypeFieldRefInput<$PrismaModel>
-    in?: $Enums.Custtype[] | ListEnumCusttypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Custtype[] | ListEnumCusttypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumCusttypeWithAggregatesFilter<$PrismaModel> | $Enums.Custtype
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCusttypeFilter<$PrismaModel>
-    _max?: NestedEnumCusttypeFilter<$PrismaModel>
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -19939,46 +23644,14 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  export type NestedEnumCusttypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Custtype | EnumCusttypeFieldRefInput<$PrismaModel>
+    in?: $Enums.Custtype[] | ListEnumCusttypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Custtype[] | ListEnumCusttypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCusttypeWithAggregatesFilter<$PrismaModel> | $Enums.Custtype
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCusttypeFilter<$PrismaModel>
+    _max?: NestedEnumCusttypeFilter<$PrismaModel>
   }
 
   export type NestedEnumFlockStatusFilter<$PrismaModel = never> = {
@@ -20091,39 +23764,58 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type CustomerCreateWithoutBranchInput = {
+  export type NestedEnumDeliveryStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumDeliveryStatusFilter<$PrismaModel> | $Enums.DeliveryStatus
+  }
+
+  export type NestedEnumDeliveryStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumDeliveryStatusWithAggregatesFilter<$PrismaModel> | $Enums.DeliveryStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumDeliveryStatusFilter<$PrismaModel>
+    _max?: NestedEnumDeliveryStatusFilter<$PrismaModel>
+  }
+
+  export type FarmerCreateWithoutBranchInput = {
     id?: string
-    farmCode: string
+    farmCode: number
     name: string
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
     capacity: number
     nid: string
-    address?: AddressCreateNestedOneWithoutCustomerInput
-    flocks?: FlockCreateNestedManyWithoutCustomerInput
+    address?: AddressCreateNestedOneWithoutFarmerInput
+    flocks?: FlockCreateNestedManyWithoutFarmerInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
   }
 
-  export type CustomerUncheckedCreateWithoutBranchInput = {
+  export type FarmerUncheckedCreateWithoutBranchInput = {
     id?: string
-    farmCode: string
+    farmCode: number
     name: string
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
     capacity: number
+    addressId?: string | null
     nid: string
-    address?: AddressUncheckedCreateNestedOneWithoutCustomerInput
-    flocks?: FlockUncheckedCreateNestedManyWithoutCustomerInput
+    flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
   }
 
-  export type CustomerCreateOrConnectWithoutBranchInput = {
-    where: CustomerWhereUniqueInput
-    create: XOR<CustomerCreateWithoutBranchInput, CustomerUncheckedCreateWithoutBranchInput>
+  export type FarmerCreateOrConnectWithoutBranchInput = {
+    where: FarmerWhereUniqueInput
+    create: XOR<FarmerCreateWithoutBranchInput, FarmerUncheckedCreateWithoutBranchInput>
   }
 
-  export type CustomerCreateManyBranchInputEnvelope = {
-    data: CustomerCreateManyBranchInput | CustomerCreateManyBranchInput[]
+  export type FarmerCreateManyBranchInputEnvelope = {
+    data: FarmerCreateManyBranchInput | FarmerCreateManyBranchInput[]
     skipDuplicates?: boolean
   }
 
@@ -20144,8 +23836,8 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
+    addressId?: string | null
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutEmployeeInput
-    address?: AddressUncheckedCreateNestedOneWithoutEmployeeInput
     flocks?: FlockUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
@@ -20193,8 +23885,10 @@ export namespace Prisma {
     fcr?: number
     totalSellBirds?: number
     mortality?: number
-    customer: CustomerCreateNestedOneWithoutFlocksInput
+    farmer: FarmerCreateNestedOneWithoutFlocksInput
     employee: EmployeeCreateNestedOneWithoutFlocksInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutBranchInput = {
@@ -20204,7 +23898,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate?: Date | string | null
     executiveId: string
-    farmCode: string
+    farmId: string
     docName: string
     docQuantity?: number
     approvedBy?: string | null
@@ -20213,6 +23907,8 @@ export namespace Prisma {
     fcr?: number
     totalSellBirds?: number
     mortality?: number
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutBranchInput = {
@@ -20311,35 +24007,104 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type CustomerUpsertWithWhereUniqueWithoutBranchInput = {
-    where: CustomerWhereUniqueInput
-    update: XOR<CustomerUpdateWithoutBranchInput, CustomerUncheckedUpdateWithoutBranchInput>
-    create: XOR<CustomerCreateWithoutBranchInput, CustomerUncheckedCreateWithoutBranchInput>
+  export type SellMedicineCreateWithoutBranchInput = {
+    id?: string
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+    flock: FlockCreateNestedOneWithoutSellMedicineInput
+    farmer: FarmerCreateNestedOneWithoutSellMedicineInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutSellmedicineInput
   }
 
-  export type CustomerUpdateWithWhereUniqueWithoutBranchInput = {
-    where: CustomerWhereUniqueInput
-    data: XOR<CustomerUpdateWithoutBranchInput, CustomerUncheckedUpdateWithoutBranchInput>
+  export type SellMedicineUncheckedCreateWithoutBranchInput = {
+    id?: string
+    farmId: string
+    flockNumer: number
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutSellmedicineInput
   }
 
-  export type CustomerUpdateManyWithWhereWithoutBranchInput = {
-    where: CustomerScalarWhereInput
-    data: XOR<CustomerUpdateManyMutationInput, CustomerUncheckedUpdateManyWithoutBranchInput>
+  export type SellMedicineCreateOrConnectWithoutBranchInput = {
+    where: SellMedicineWhereUniqueInput
+    create: XOR<SellMedicineCreateWithoutBranchInput, SellMedicineUncheckedCreateWithoutBranchInput>
   }
 
-  export type CustomerScalarWhereInput = {
-    AND?: CustomerScalarWhereInput | CustomerScalarWhereInput[]
-    OR?: CustomerScalarWhereInput[]
-    NOT?: CustomerScalarWhereInput | CustomerScalarWhereInput[]
-    id?: StringFilter<"Customer"> | string
-    branchCode?: StringFilter<"Customer"> | string
-    farmCode?: StringFilter<"Customer"> | string
-    name?: StringFilter<"Customer"> | string
-    farmType?: EnumCusttypeFilter<"Customer"> | $Enums.Custtype
-    totalShed?: IntFilter<"Customer"> | number
-    totalSquare?: IntFilter<"Customer"> | number
-    capacity?: IntFilter<"Customer"> | number
-    nid?: StringFilter<"Customer"> | string
+  export type SellMedicineCreateManyBranchInputEnvelope = {
+    data: SellMedicineCreateManyBranchInput | SellMedicineCreateManyBranchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MedicineTransferCreateWithoutBaranchInput = {
+    id?: string
+    toFarmcode?: string | null
+    fromBranch?: string | null
+    toBranch?: string | null
+    medicineName: string
+    genericName: string
+    sellmedicine: SellMedicineCreateNestedOneWithoutMedicineTransferInput
+    flock: FlockCreateNestedOneWithoutMedicineTransferInput
+  }
+
+  export type MedicineTransferUncheckedCreateWithoutBaranchInput = {
+    id?: string
+    sellId: string
+    flockId: string
+    toFarmcode?: string | null
+    fromBranch?: string | null
+    toBranch?: string | null
+    medicineName: string
+    genericName: string
+  }
+
+  export type MedicineTransferCreateOrConnectWithoutBaranchInput = {
+    where: MedicineTransferWhereUniqueInput
+    create: XOR<MedicineTransferCreateWithoutBaranchInput, MedicineTransferUncheckedCreateWithoutBaranchInput>
+  }
+
+  export type MedicineTransferCreateManyBaranchInputEnvelope = {
+    data: MedicineTransferCreateManyBaranchInput | MedicineTransferCreateManyBaranchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FarmerUpsertWithWhereUniqueWithoutBranchInput = {
+    where: FarmerWhereUniqueInput
+    update: XOR<FarmerUpdateWithoutBranchInput, FarmerUncheckedUpdateWithoutBranchInput>
+    create: XOR<FarmerCreateWithoutBranchInput, FarmerUncheckedCreateWithoutBranchInput>
+  }
+
+  export type FarmerUpdateWithWhereUniqueWithoutBranchInput = {
+    where: FarmerWhereUniqueInput
+    data: XOR<FarmerUpdateWithoutBranchInput, FarmerUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type FarmerUpdateManyWithWhereWithoutBranchInput = {
+    where: FarmerScalarWhereInput
+    data: XOR<FarmerUpdateManyMutationInput, FarmerUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type FarmerScalarWhereInput = {
+    AND?: FarmerScalarWhereInput | FarmerScalarWhereInput[]
+    OR?: FarmerScalarWhereInput[]
+    NOT?: FarmerScalarWhereInput | FarmerScalarWhereInput[]
+    id?: StringFilter<"Farmer"> | string
+    branchCode?: StringNullableFilter<"Farmer"> | string | null
+    farmCode?: IntFilter<"Farmer"> | number
+    name?: StringFilter<"Farmer"> | string
+    farmType?: EnumCusttypeFilter<"Farmer"> | $Enums.Custtype
+    totalShed?: IntFilter<"Farmer"> | number
+    totalSquare?: IntFilter<"Farmer"> | number
+    capacity?: IntFilter<"Farmer"> | number
+    addressId?: StringNullableFilter<"Farmer"> | string | null
+    nid?: StringFilter<"Farmer"> | string
   }
 
   export type EmployeeUpsertWithWhereUniqueWithoutBranchInput = {
@@ -20367,7 +24132,8 @@ export namespace Prisma {
     name?: StringFilter<"Employee"> | string
     workingLocation?: StringFilter<"Employee"> | string
     designation?: StringFilter<"Employee"> | string
-    branchId?: StringNullableFilter<"Employee"> | string | null
+    branchId?: StringFilter<"Employee"> | string
+    addressId?: StringNullableFilter<"Employee"> | string | null
   }
 
   export type BranchEmployeeUpsertWithWhereUniqueWithoutBranchInput = {
@@ -20421,7 +24187,7 @@ export namespace Prisma {
     startDate?: DateTimeFilter<"Flock"> | Date | string
     endDate?: DateTimeNullableFilter<"Flock"> | Date | string | null
     executiveId?: StringFilter<"Flock"> | string
-    farmCode?: StringFilter<"Flock"> | string
+    farmId?: StringFilter<"Flock"> | string
     docName?: StringFilter<"Flock"> | string
     docQuantity?: IntFilter<"Flock"> | number
     approvedBy?: StringNullableFilter<"Flock"> | string | null
@@ -20521,7 +24287,70 @@ export namespace Prisma {
     branchCode?: StringFilter<"MedicinePurchess"> | string
   }
 
-  export type BranchCreateWithoutCustomersInput = {
+  export type SellMedicineUpsertWithWhereUniqueWithoutBranchInput = {
+    where: SellMedicineWhereUniqueInput
+    update: XOR<SellMedicineUpdateWithoutBranchInput, SellMedicineUncheckedUpdateWithoutBranchInput>
+    create: XOR<SellMedicineCreateWithoutBranchInput, SellMedicineUncheckedCreateWithoutBranchInput>
+  }
+
+  export type SellMedicineUpdateWithWhereUniqueWithoutBranchInput = {
+    where: SellMedicineWhereUniqueInput
+    data: XOR<SellMedicineUpdateWithoutBranchInput, SellMedicineUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type SellMedicineUpdateManyWithWhereWithoutBranchInput = {
+    where: SellMedicineScalarWhereInput
+    data: XOR<SellMedicineUpdateManyMutationInput, SellMedicineUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type SellMedicineScalarWhereInput = {
+    AND?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
+    OR?: SellMedicineScalarWhereInput[]
+    NOT?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
+    id?: StringFilter<"SellMedicine"> | string
+    farmId?: StringFilter<"SellMedicine"> | string
+    flockNumer?: IntFilter<"SellMedicine"> | number
+    genericName?: StringFilter<"SellMedicine"> | string
+    medicineName?: StringFilter<"SellMedicine"> | string
+    sellQuantity?: IntFilter<"SellMedicine"> | number
+    sellPrice?: IntFilter<"SellMedicine"> | number
+    Delivery?: EnumDeliveryStatusFilter<"SellMedicine"> | $Enums.DeliveryStatus
+    sellDate?: StringFilter<"SellMedicine"> | string
+    branchCode?: StringFilter<"SellMedicine"> | string
+  }
+
+  export type MedicineTransferUpsertWithWhereUniqueWithoutBaranchInput = {
+    where: MedicineTransferWhereUniqueInput
+    update: XOR<MedicineTransferUpdateWithoutBaranchInput, MedicineTransferUncheckedUpdateWithoutBaranchInput>
+    create: XOR<MedicineTransferCreateWithoutBaranchInput, MedicineTransferUncheckedCreateWithoutBaranchInput>
+  }
+
+  export type MedicineTransferUpdateWithWhereUniqueWithoutBaranchInput = {
+    where: MedicineTransferWhereUniqueInput
+    data: XOR<MedicineTransferUpdateWithoutBaranchInput, MedicineTransferUncheckedUpdateWithoutBaranchInput>
+  }
+
+  export type MedicineTransferUpdateManyWithWhereWithoutBaranchInput = {
+    where: MedicineTransferScalarWhereInput
+    data: XOR<MedicineTransferUpdateManyMutationInput, MedicineTransferUncheckedUpdateManyWithoutBaranchInput>
+  }
+
+  export type MedicineTransferScalarWhereInput = {
+    AND?: MedicineTransferScalarWhereInput | MedicineTransferScalarWhereInput[]
+    OR?: MedicineTransferScalarWhereInput[]
+    NOT?: MedicineTransferScalarWhereInput | MedicineTransferScalarWhereInput[]
+    id?: StringFilter<"MedicineTransfer"> | string
+    sellId?: StringFilter<"MedicineTransfer"> | string
+    flockId?: StringFilter<"MedicineTransfer"> | string
+    toFarmcode?: StringNullableFilter<"MedicineTransfer"> | string | null
+    fromBranch?: StringNullableFilter<"MedicineTransfer"> | string | null
+    toBranch?: StringNullableFilter<"MedicineTransfer"> | string | null
+    medicineName?: StringFilter<"MedicineTransfer"> | string
+    genericName?: StringFilter<"MedicineTransfer"> | string
+    branchCode?: StringFilter<"MedicineTransfer"> | string
+  }
+
+  export type BranchCreateWithoutFarmerInput = {
     id?: string
     locationName: string
     type: $Enums.BranchType
@@ -20532,9 +24361,11 @@ export namespace Prisma {
     Feed?: FeedCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
   }
 
-  export type BranchUncheckedCreateWithoutCustomersInput = {
+  export type BranchUncheckedCreateWithoutFarmerInput = {
     id?: string
     locationName: string
     type: $Enums.BranchType
@@ -20545,14 +24376,16 @@ export namespace Prisma {
     Feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
   }
 
-  export type BranchCreateOrConnectWithoutCustomersInput = {
+  export type BranchCreateOrConnectWithoutFarmerInput = {
     where: BranchWhereUniqueInput
-    create: XOR<BranchCreateWithoutCustomersInput, BranchUncheckedCreateWithoutCustomersInput>
+    create: XOR<BranchCreateWithoutFarmerInput, BranchUncheckedCreateWithoutFarmerInput>
   }
 
-  export type AddressCreateWithoutCustomerInput = {
+  export type AddressCreateWithoutFarmerInput = {
     id?: string
     village: string
     post: string
@@ -20561,10 +24394,10 @@ export namespace Prisma {
     upazila: string
     phoneNumber: string
     city: string
-    employee?: EmployeeCreateNestedOneWithoutAddressInput
+    Employee?: EmployeeCreateNestedOneWithoutAddressInput
   }
 
-  export type AddressUncheckedCreateWithoutCustomerInput = {
+  export type AddressUncheckedCreateWithoutFarmerInput = {
     id?: string
     village: string
     post: string
@@ -20573,15 +24406,15 @@ export namespace Prisma {
     upazila: string
     phoneNumber: string
     city: string
-    employeeId?: string | null
+    Employee?: EmployeeUncheckedCreateNestedOneWithoutAddressInput
   }
 
-  export type AddressCreateOrConnectWithoutCustomerInput = {
+  export type AddressCreateOrConnectWithoutFarmerInput = {
     where: AddressWhereUniqueInput
-    create: XOR<AddressCreateWithoutCustomerInput, AddressUncheckedCreateWithoutCustomerInput>
+    create: XOR<AddressCreateWithoutFarmerInput, AddressUncheckedCreateWithoutFarmerInput>
   }
 
-  export type FlockCreateWithoutCustomerInput = {
+  export type FlockCreateWithoutFarmerInput = {
     id?: string
     flockNumber: number
     flockStatus?: $Enums.FlockStatus
@@ -20597,9 +24430,11 @@ export namespace Prisma {
     mortality?: number
     employee: EmployeeCreateNestedOneWithoutFlocksInput
     branch: BranchCreateNestedOneWithoutFlocksInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
   }
 
-  export type FlockUncheckedCreateWithoutCustomerInput = {
+  export type FlockUncheckedCreateWithoutFarmerInput = {
     id?: string
     flockNumber: number
     flockStatus?: $Enums.FlockStatus
@@ -20615,30 +24450,68 @@ export namespace Prisma {
     fcr?: number
     totalSellBirds?: number
     mortality?: number
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
   }
 
-  export type FlockCreateOrConnectWithoutCustomerInput = {
+  export type FlockCreateOrConnectWithoutFarmerInput = {
     where: FlockWhereUniqueInput
-    create: XOR<FlockCreateWithoutCustomerInput, FlockUncheckedCreateWithoutCustomerInput>
+    create: XOR<FlockCreateWithoutFarmerInput, FlockUncheckedCreateWithoutFarmerInput>
   }
 
-  export type FlockCreateManyCustomerInputEnvelope = {
-    data: FlockCreateManyCustomerInput | FlockCreateManyCustomerInput[]
+  export type FlockCreateManyFarmerInputEnvelope = {
+    data: FlockCreateManyFarmerInput | FlockCreateManyFarmerInput[]
     skipDuplicates?: boolean
   }
 
-  export type BranchUpsertWithoutCustomersInput = {
-    update: XOR<BranchUpdateWithoutCustomersInput, BranchUncheckedUpdateWithoutCustomersInput>
-    create: XOR<BranchCreateWithoutCustomersInput, BranchUncheckedCreateWithoutCustomersInput>
+  export type SellMedicineCreateWithoutFarmerInput = {
+    id?: string
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+    flock: FlockCreateNestedOneWithoutSellMedicineInput
+    branch: BranchCreateNestedOneWithoutSellMedicineInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutSellmedicineInput
+  }
+
+  export type SellMedicineUncheckedCreateWithoutFarmerInput = {
+    id?: string
+    flockNumer: number
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+    branchCode: string
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutSellmedicineInput
+  }
+
+  export type SellMedicineCreateOrConnectWithoutFarmerInput = {
+    where: SellMedicineWhereUniqueInput
+    create: XOR<SellMedicineCreateWithoutFarmerInput, SellMedicineUncheckedCreateWithoutFarmerInput>
+  }
+
+  export type SellMedicineCreateManyFarmerInputEnvelope = {
+    data: SellMedicineCreateManyFarmerInput | SellMedicineCreateManyFarmerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BranchUpsertWithoutFarmerInput = {
+    update: XOR<BranchUpdateWithoutFarmerInput, BranchUncheckedUpdateWithoutFarmerInput>
+    create: XOR<BranchCreateWithoutFarmerInput, BranchUncheckedCreateWithoutFarmerInput>
     where?: BranchWhereInput
   }
 
-  export type BranchUpdateToOneWithWhereWithoutCustomersInput = {
+  export type BranchUpdateToOneWithWhereWithoutFarmerInput = {
     where?: BranchWhereInput
-    data: XOR<BranchUpdateWithoutCustomersInput, BranchUncheckedUpdateWithoutCustomersInput>
+    data: XOR<BranchUpdateWithoutFarmerInput, BranchUncheckedUpdateWithoutFarmerInput>
   }
 
-  export type BranchUpdateWithoutCustomersInput = {
+  export type BranchUpdateWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
@@ -20649,9 +24522,11 @@ export namespace Prisma {
     Feed?: FeedUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
   }
 
-  export type BranchUncheckedUpdateWithoutCustomersInput = {
+  export type BranchUncheckedUpdateWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
@@ -20662,20 +24537,22 @@ export namespace Prisma {
     Feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
   }
 
-  export type AddressUpsertWithoutCustomerInput = {
-    update: XOR<AddressUpdateWithoutCustomerInput, AddressUncheckedUpdateWithoutCustomerInput>
-    create: XOR<AddressCreateWithoutCustomerInput, AddressUncheckedCreateWithoutCustomerInput>
+  export type AddressUpsertWithoutFarmerInput = {
+    update: XOR<AddressUpdateWithoutFarmerInput, AddressUncheckedUpdateWithoutFarmerInput>
+    create: XOR<AddressCreateWithoutFarmerInput, AddressUncheckedCreateWithoutFarmerInput>
     where?: AddressWhereInput
   }
 
-  export type AddressUpdateToOneWithWhereWithoutCustomerInput = {
+  export type AddressUpdateToOneWithWhereWithoutFarmerInput = {
     where?: AddressWhereInput
-    data: XOR<AddressUpdateWithoutCustomerInput, AddressUncheckedUpdateWithoutCustomerInput>
+    data: XOR<AddressUpdateWithoutFarmerInput, AddressUncheckedUpdateWithoutFarmerInput>
   }
 
-  export type AddressUpdateWithoutCustomerInput = {
+  export type AddressUpdateWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
     village?: StringFieldUpdateOperationsInput | string
     post?: StringFieldUpdateOperationsInput | string
@@ -20684,10 +24561,10 @@ export namespace Prisma {
     upazila?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
-    employee?: EmployeeUpdateOneWithoutAddressNestedInput
+    Employee?: EmployeeUpdateOneWithoutAddressNestedInput
   }
 
-  export type AddressUncheckedUpdateWithoutCustomerInput = {
+  export type AddressUncheckedUpdateWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
     village?: StringFieldUpdateOperationsInput | string
     post?: StringFieldUpdateOperationsInput | string
@@ -20696,23 +24573,72 @@ export namespace Prisma {
     upazila?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    Employee?: EmployeeUncheckedUpdateOneWithoutAddressNestedInput
   }
 
-  export type FlockUpsertWithWhereUniqueWithoutCustomerInput = {
+  export type FlockUpsertWithWhereUniqueWithoutFarmerInput = {
     where: FlockWhereUniqueInput
-    update: XOR<FlockUpdateWithoutCustomerInput, FlockUncheckedUpdateWithoutCustomerInput>
-    create: XOR<FlockCreateWithoutCustomerInput, FlockUncheckedCreateWithoutCustomerInput>
+    update: XOR<FlockUpdateWithoutFarmerInput, FlockUncheckedUpdateWithoutFarmerInput>
+    create: XOR<FlockCreateWithoutFarmerInput, FlockUncheckedCreateWithoutFarmerInput>
   }
 
-  export type FlockUpdateWithWhereUniqueWithoutCustomerInput = {
+  export type FlockUpdateWithWhereUniqueWithoutFarmerInput = {
     where: FlockWhereUniqueInput
-    data: XOR<FlockUpdateWithoutCustomerInput, FlockUncheckedUpdateWithoutCustomerInput>
+    data: XOR<FlockUpdateWithoutFarmerInput, FlockUncheckedUpdateWithoutFarmerInput>
   }
 
-  export type FlockUpdateManyWithWhereWithoutCustomerInput = {
+  export type FlockUpdateManyWithWhereWithoutFarmerInput = {
     where: FlockScalarWhereInput
-    data: XOR<FlockUpdateManyMutationInput, FlockUncheckedUpdateManyWithoutCustomerInput>
+    data: XOR<FlockUpdateManyMutationInput, FlockUncheckedUpdateManyWithoutFarmerInput>
+  }
+
+  export type SellMedicineUpsertWithWhereUniqueWithoutFarmerInput = {
+    where: SellMedicineWhereUniqueInput
+    update: XOR<SellMedicineUpdateWithoutFarmerInput, SellMedicineUncheckedUpdateWithoutFarmerInput>
+    create: XOR<SellMedicineCreateWithoutFarmerInput, SellMedicineUncheckedCreateWithoutFarmerInput>
+  }
+
+  export type SellMedicineUpdateWithWhereUniqueWithoutFarmerInput = {
+    where: SellMedicineWhereUniqueInput
+    data: XOR<SellMedicineUpdateWithoutFarmerInput, SellMedicineUncheckedUpdateWithoutFarmerInput>
+  }
+
+  export type SellMedicineUpdateManyWithWhereWithoutFarmerInput = {
+    where: SellMedicineScalarWhereInput
+    data: XOR<SellMedicineUpdateManyMutationInput, SellMedicineUncheckedUpdateManyWithoutFarmerInput>
+  }
+
+  export type FarmerCreateWithoutAddressInput = {
+    id?: string
+    farmCode: number
+    name: string
+    farmType: $Enums.Custtype
+    totalShed: number
+    totalSquare: number
+    capacity: number
+    nid: string
+    branch?: BranchCreateNestedOneWithoutFarmerInput
+    flocks?: FlockCreateNestedManyWithoutFarmerInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+  }
+
+  export type FarmerUncheckedCreateWithoutAddressInput = {
+    id?: string
+    branchCode?: string | null
+    farmCode: number
+    name: string
+    farmType: $Enums.Custtype
+    totalShed: number
+    totalSquare: number
+    capacity: number
+    nid: string
+    flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+  }
+
+  export type FarmerCreateOrConnectWithoutAddressInput = {
+    where: FarmerWhereUniqueInput
+    create: XOR<FarmerCreateWithoutAddressInput, FarmerUncheckedCreateWithoutAddressInput>
   }
 
   export type EmployeeCreateWithoutAddressInput = {
@@ -20721,7 +24647,7 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branch?: BranchCreateNestedOneWithoutEmployeesInput
+    branch: BranchCreateNestedOneWithoutEmployeesInput
     branchEmployees?: BranchEmployeeCreateNestedManyWithoutEmployeeInput
     flocks?: FlockCreateNestedManyWithoutEmployeeInput
   }
@@ -20732,7 +24658,7 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branchId?: string | null
+    branchId: string
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutEmployeeInput
     flocks?: FlockUncheckedCreateNestedManyWithoutEmployeeInput
   }
@@ -20742,35 +24668,43 @@ export namespace Prisma {
     create: XOR<EmployeeCreateWithoutAddressInput, EmployeeUncheckedCreateWithoutAddressInput>
   }
 
-  export type CustomerCreateWithoutAddressInput = {
-    id?: string
-    farmCode: string
-    name: string
-    farmType: $Enums.Custtype
-    totalShed: number
-    totalSquare: number
-    capacity: number
-    nid: string
-    branch: BranchCreateNestedOneWithoutCustomersInput
-    flocks?: FlockCreateNestedManyWithoutCustomerInput
+  export type FarmerUpsertWithoutAddressInput = {
+    update: XOR<FarmerUpdateWithoutAddressInput, FarmerUncheckedUpdateWithoutAddressInput>
+    create: XOR<FarmerCreateWithoutAddressInput, FarmerUncheckedCreateWithoutAddressInput>
+    where?: FarmerWhereInput
   }
 
-  export type CustomerUncheckedCreateWithoutAddressInput = {
-    id?: string
-    branchCode: string
-    farmCode: string
-    name: string
-    farmType: $Enums.Custtype
-    totalShed: number
-    totalSquare: number
-    capacity: number
-    nid: string
-    flocks?: FlockUncheckedCreateNestedManyWithoutCustomerInput
+  export type FarmerUpdateToOneWithWhereWithoutAddressInput = {
+    where?: FarmerWhereInput
+    data: XOR<FarmerUpdateWithoutAddressInput, FarmerUncheckedUpdateWithoutAddressInput>
   }
 
-  export type CustomerCreateOrConnectWithoutAddressInput = {
-    where: CustomerWhereUniqueInput
-    create: XOR<CustomerCreateWithoutAddressInput, CustomerUncheckedCreateWithoutAddressInput>
+  export type FarmerUpdateWithoutAddressInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
+    totalShed?: IntFieldUpdateOperationsInput | number
+    totalSquare?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    nid?: StringFieldUpdateOperationsInput | string
+    branch?: BranchUpdateOneWithoutFarmerNestedInput
+    flocks?: FlockUpdateManyWithoutFarmerNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+  }
+
+  export type FarmerUncheckedUpdateWithoutAddressInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: NullableStringFieldUpdateOperationsInput | string | null
+    farmCode?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
+    totalShed?: IntFieldUpdateOperationsInput | number
+    totalSquare?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    nid?: StringFieldUpdateOperationsInput | string
+    flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type EmployeeUpsertWithoutAddressInput = {
@@ -20790,7 +24724,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branch?: BranchUpdateOneWithoutEmployeesNestedInput
+    branch?: BranchUpdateOneRequiredWithoutEmployeesNestedInput
     branchEmployees?: BranchEmployeeUpdateManyWithoutEmployeeNestedInput
     flocks?: FlockUpdateManyWithoutEmployeeNestedInput
   }
@@ -20801,46 +24735,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: StringFieldUpdateOperationsInput | string
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutEmployeeNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutEmployeeNestedInput
-  }
-
-  export type CustomerUpsertWithoutAddressInput = {
-    update: XOR<CustomerUpdateWithoutAddressInput, CustomerUncheckedUpdateWithoutAddressInput>
-    create: XOR<CustomerCreateWithoutAddressInput, CustomerUncheckedCreateWithoutAddressInput>
-    where?: CustomerWhereInput
-  }
-
-  export type CustomerUpdateToOneWithWhereWithoutAddressInput = {
-    where?: CustomerWhereInput
-    data: XOR<CustomerUpdateWithoutAddressInput, CustomerUncheckedUpdateWithoutAddressInput>
-  }
-
-  export type CustomerUpdateWithoutAddressInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
-    totalShed?: IntFieldUpdateOperationsInput | number
-    totalSquare?: IntFieldUpdateOperationsInput | number
-    capacity?: IntFieldUpdateOperationsInput | number
-    nid?: StringFieldUpdateOperationsInput | string
-    branch?: BranchUpdateOneRequiredWithoutCustomersNestedInput
-    flocks?: FlockUpdateManyWithoutCustomerNestedInput
-  }
-
-  export type CustomerUncheckedUpdateWithoutAddressInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    branchCode?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
-    totalShed?: IntFieldUpdateOperationsInput | number
-    totalSquare?: IntFieldUpdateOperationsInput | number
-    capacity?: IntFieldUpdateOperationsInput | number
-    nid?: StringFieldUpdateOperationsInput | string
-    flocks?: FlockUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type BranchCreateWithoutBranchEmployeesInput = {
@@ -20848,12 +24745,14 @@ export namespace Prisma {
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerCreateNestedManyWithoutBranchInput
+    farmer?: FarmerCreateNestedManyWithoutBranchInput
     employees?: EmployeeCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     Feed?: FeedCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchUncheckedCreateWithoutBranchEmployeesInput = {
@@ -20861,12 +24760,14 @@ export namespace Prisma {
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerUncheckedCreateNestedManyWithoutBranchInput
+    farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     employees?: EmployeeUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     Feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchCreateOrConnectWithoutBranchEmployeesInput = {
@@ -20880,7 +24781,7 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branch?: BranchCreateNestedOneWithoutEmployeesInput
+    branch: BranchCreateNestedOneWithoutEmployeesInput
     address?: AddressCreateNestedOneWithoutEmployeeInput
     flocks?: FlockCreateNestedManyWithoutEmployeeInput
   }
@@ -20891,8 +24792,8 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branchId?: string | null
-    address?: AddressUncheckedCreateNestedOneWithoutEmployeeInput
+    branchId: string
+    addressId?: string | null
     flocks?: FlockUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
@@ -20917,12 +24818,14 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUpdateManyWithoutBranchNestedInput
     employees?: EmployeeUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     Feed?: FeedUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutBranchEmployeesInput = {
@@ -20930,12 +24833,14 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUncheckedUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     employees?: EmployeeUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     Feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
   }
 
   export type EmployeeUpsertWithoutBranchEmployeesInput = {
@@ -20955,7 +24860,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branch?: BranchUpdateOneWithoutEmployeesNestedInput
+    branch?: BranchUpdateOneRequiredWithoutEmployeesNestedInput
     address?: AddressUpdateOneWithoutEmployeeNestedInput
     flocks?: FlockUpdateManyWithoutEmployeeNestedInput
   }
@@ -20966,8 +24871,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: AddressUncheckedUpdateOneWithoutEmployeeNestedInput
+    branchId?: StringFieldUpdateOperationsInput | string
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     flocks?: FlockUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -20976,12 +24881,14 @@ export namespace Prisma {
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerCreateNestedManyWithoutBranchInput
+    farmer?: FarmerCreateNestedManyWithoutBranchInput
     branchEmployees?: BranchEmployeeCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     Feed?: FeedCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchUncheckedCreateWithoutEmployeesInput = {
@@ -20989,12 +24896,14 @@ export namespace Prisma {
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerUncheckedCreateNestedManyWithoutBranchInput
+    farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     Feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchCreateOrConnectWithoutEmployeesInput = {
@@ -21031,7 +24940,7 @@ export namespace Prisma {
     upazila: string
     phoneNumber: string
     city: string
-    customer?: CustomerCreateNestedOneWithoutAddressInput
+    Farmer?: FarmerCreateNestedOneWithoutAddressInput
   }
 
   export type AddressUncheckedCreateWithoutEmployeeInput = {
@@ -21043,7 +24952,7 @@ export namespace Prisma {
     upazila: string
     phoneNumber: string
     city: string
-    farmCode?: string | null
+    Farmer?: FarmerUncheckedCreateNestedOneWithoutAddressInput
   }
 
   export type AddressCreateOrConnectWithoutEmployeeInput = {
@@ -21065,8 +24974,10 @@ export namespace Prisma {
     fcr?: number
     totalSellBirds?: number
     mortality?: number
-    customer: CustomerCreateNestedOneWithoutFlocksInput
+    farmer: FarmerCreateNestedOneWithoutFlocksInput
     branch: BranchCreateNestedOneWithoutFlocksInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutEmployeeInput = {
@@ -21075,7 +24986,7 @@ export namespace Prisma {
     flockStatus?: $Enums.FlockStatus
     startDate: Date | string
     endDate?: Date | string | null
-    farmCode: string
+    farmId: string
     docName: string
     docQuantity?: number
     approvedBy?: string | null
@@ -21085,6 +24996,8 @@ export namespace Prisma {
     fcr?: number
     totalSellBirds?: number
     mortality?: number
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutEmployeeInput = {
@@ -21113,12 +25026,14 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUpdateManyWithoutBranchNestedInput
     branchEmployees?: BranchEmployeeUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     Feed?: FeedUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutEmployeesInput = {
@@ -21126,12 +25041,14 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUncheckedUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     Feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
   }
 
   export type BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeInput = {
@@ -21170,7 +25087,7 @@ export namespace Prisma {
     upazila?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
-    customer?: CustomerUpdateOneWithoutAddressNestedInput
+    Farmer?: FarmerUpdateOneWithoutAddressNestedInput
   }
 
   export type AddressUncheckedUpdateWithoutEmployeeInput = {
@@ -21182,7 +25099,7 @@ export namespace Prisma {
     upazila?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
-    farmCode?: NullableStringFieldUpdateOperationsInput | string | null
+    Farmer?: FarmerUncheckedUpdateOneWithoutAddressNestedInput
   }
 
   export type FlockUpsertWithWhereUniqueWithoutEmployeeInput = {
@@ -21201,35 +25118,37 @@ export namespace Prisma {
     data: XOR<FlockUpdateManyMutationInput, FlockUncheckedUpdateManyWithoutEmployeeInput>
   }
 
-  export type CustomerCreateWithoutFlocksInput = {
+  export type FarmerCreateWithoutFlocksInput = {
     id?: string
-    farmCode: string
+    farmCode: number
     name: string
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
     capacity: number
     nid: string
-    branch: BranchCreateNestedOneWithoutCustomersInput
-    address?: AddressCreateNestedOneWithoutCustomerInput
+    branch?: BranchCreateNestedOneWithoutFarmerInput
+    address?: AddressCreateNestedOneWithoutFarmerInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
   }
 
-  export type CustomerUncheckedCreateWithoutFlocksInput = {
+  export type FarmerUncheckedCreateWithoutFlocksInput = {
     id?: string
-    branchCode: string
-    farmCode: string
+    branchCode?: string | null
+    farmCode: number
     name: string
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
     capacity: number
+    addressId?: string | null
     nid: string
-    address?: AddressUncheckedCreateNestedOneWithoutCustomerInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
   }
 
-  export type CustomerCreateOrConnectWithoutFlocksInput = {
-    where: CustomerWhereUniqueInput
-    create: XOR<CustomerCreateWithoutFlocksInput, CustomerUncheckedCreateWithoutFlocksInput>
+  export type FarmerCreateOrConnectWithoutFlocksInput = {
+    where: FarmerWhereUniqueInput
+    create: XOR<FarmerCreateWithoutFlocksInput, FarmerUncheckedCreateWithoutFlocksInput>
   }
 
   export type EmployeeCreateWithoutFlocksInput = {
@@ -21238,7 +25157,7 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branch?: BranchCreateNestedOneWithoutEmployeesInput
+    branch: BranchCreateNestedOneWithoutEmployeesInput
     branchEmployees?: BranchEmployeeCreateNestedManyWithoutEmployeeInput
     address?: AddressCreateNestedOneWithoutEmployeeInput
   }
@@ -21249,9 +25168,9 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branchId?: string | null
+    branchId: string
+    addressId?: string | null
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutEmployeeInput
-    address?: AddressUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutFlocksInput = {
@@ -21264,12 +25183,14 @@ export namespace Prisma {
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerCreateNestedManyWithoutBranchInput
+    farmer?: FarmerCreateNestedManyWithoutBranchInput
     employees?: EmployeeCreateNestedManyWithoutBranchInput
     branchEmployees?: BranchEmployeeCreateNestedManyWithoutBranchInput
     Feed?: FeedCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchUncheckedCreateWithoutFlocksInput = {
@@ -21277,12 +25198,14 @@ export namespace Prisma {
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerUncheckedCreateNestedManyWithoutBranchInput
+    farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     employees?: EmployeeUncheckedCreateNestedManyWithoutBranchInput
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutBranchInput
     Feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchCreateOrConnectWithoutFlocksInput = {
@@ -21290,41 +25213,111 @@ export namespace Prisma {
     create: XOR<BranchCreateWithoutFlocksInput, BranchUncheckedCreateWithoutFlocksInput>
   }
 
-  export type CustomerUpsertWithoutFlocksInput = {
-    update: XOR<CustomerUpdateWithoutFlocksInput, CustomerUncheckedUpdateWithoutFlocksInput>
-    create: XOR<CustomerCreateWithoutFlocksInput, CustomerUncheckedCreateWithoutFlocksInput>
-    where?: CustomerWhereInput
+  export type SellMedicineCreateWithoutFlockInput = {
+    id?: string
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+    branch: BranchCreateNestedOneWithoutSellMedicineInput
+    farmer: FarmerCreateNestedOneWithoutSellMedicineInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutSellmedicineInput
   }
 
-  export type CustomerUpdateToOneWithWhereWithoutFlocksInput = {
-    where?: CustomerWhereInput
-    data: XOR<CustomerUpdateWithoutFlocksInput, CustomerUncheckedUpdateWithoutFlocksInput>
+  export type SellMedicineUncheckedCreateWithoutFlockInput = {
+    id?: string
+    farmId: string
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+    branchCode: string
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutSellmedicineInput
   }
 
-  export type CustomerUpdateWithoutFlocksInput = {
+  export type SellMedicineCreateOrConnectWithoutFlockInput = {
+    where: SellMedicineWhereUniqueInput
+    create: XOR<SellMedicineCreateWithoutFlockInput, SellMedicineUncheckedCreateWithoutFlockInput>
+  }
+
+  export type SellMedicineCreateManyFlockInputEnvelope = {
+    data: SellMedicineCreateManyFlockInput | SellMedicineCreateManyFlockInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MedicineTransferCreateWithoutFlockInput = {
+    id?: string
+    toFarmcode?: string | null
+    fromBranch?: string | null
+    toBranch?: string | null
+    medicineName: string
+    genericName: string
+    sellmedicine: SellMedicineCreateNestedOneWithoutMedicineTransferInput
+    baranch: BranchCreateNestedOneWithoutMedicineTransferInput
+  }
+
+  export type MedicineTransferUncheckedCreateWithoutFlockInput = {
+    id?: string
+    sellId: string
+    toFarmcode?: string | null
+    fromBranch?: string | null
+    toBranch?: string | null
+    medicineName: string
+    genericName: string
+    branchCode: string
+  }
+
+  export type MedicineTransferCreateOrConnectWithoutFlockInput = {
+    where: MedicineTransferWhereUniqueInput
+    create: XOR<MedicineTransferCreateWithoutFlockInput, MedicineTransferUncheckedCreateWithoutFlockInput>
+  }
+
+  export type MedicineTransferCreateManyFlockInputEnvelope = {
+    data: MedicineTransferCreateManyFlockInput | MedicineTransferCreateManyFlockInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FarmerUpsertWithoutFlocksInput = {
+    update: XOR<FarmerUpdateWithoutFlocksInput, FarmerUncheckedUpdateWithoutFlocksInput>
+    create: XOR<FarmerCreateWithoutFlocksInput, FarmerUncheckedCreateWithoutFlocksInput>
+    where?: FarmerWhereInput
+  }
+
+  export type FarmerUpdateToOneWithWhereWithoutFlocksInput = {
+    where?: FarmerWhereInput
+    data: XOR<FarmerUpdateWithoutFlocksInput, FarmerUncheckedUpdateWithoutFlocksInput>
+  }
+
+  export type FarmerUpdateWithoutFlocksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
     nid?: StringFieldUpdateOperationsInput | string
-    branch?: BranchUpdateOneRequiredWithoutCustomersNestedInput
-    address?: AddressUpdateOneWithoutCustomerNestedInput
+    branch?: BranchUpdateOneWithoutFarmerNestedInput
+    address?: AddressUpdateOneWithoutFarmerNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
   }
 
-  export type CustomerUncheckedUpdateWithoutFlocksInput = {
+  export type FarmerUncheckedUpdateWithoutFlocksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    branchCode?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
+    branchCode?: NullableStringFieldUpdateOperationsInput | string | null
+    farmCode?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     nid?: StringFieldUpdateOperationsInput | string
-    address?: AddressUncheckedUpdateOneWithoutCustomerNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type EmployeeUpsertWithoutFlocksInput = {
@@ -21344,7 +25337,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branch?: BranchUpdateOneWithoutEmployeesNestedInput
+    branch?: BranchUpdateOneRequiredWithoutEmployeesNestedInput
     branchEmployees?: BranchEmployeeUpdateManyWithoutEmployeeNestedInput
     address?: AddressUpdateOneWithoutEmployeeNestedInput
   }
@@ -21355,9 +25348,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
+    branchId?: StringFieldUpdateOperationsInput | string
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutEmployeeNestedInput
-    address?: AddressUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type BranchUpsertWithoutFlocksInput = {
@@ -21376,12 +25369,14 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUpdateManyWithoutBranchNestedInput
     employees?: EmployeeUpdateManyWithoutBranchNestedInput
     branchEmployees?: BranchEmployeeUpdateManyWithoutBranchNestedInput
     Feed?: FeedUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutFlocksInput = {
@@ -21389,12 +25384,46 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUncheckedUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     employees?: EmployeeUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutBranchNestedInput
     Feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+  }
+
+  export type SellMedicineUpsertWithWhereUniqueWithoutFlockInput = {
+    where: SellMedicineWhereUniqueInput
+    update: XOR<SellMedicineUpdateWithoutFlockInput, SellMedicineUncheckedUpdateWithoutFlockInput>
+    create: XOR<SellMedicineCreateWithoutFlockInput, SellMedicineUncheckedCreateWithoutFlockInput>
+  }
+
+  export type SellMedicineUpdateWithWhereUniqueWithoutFlockInput = {
+    where: SellMedicineWhereUniqueInput
+    data: XOR<SellMedicineUpdateWithoutFlockInput, SellMedicineUncheckedUpdateWithoutFlockInput>
+  }
+
+  export type SellMedicineUpdateManyWithWhereWithoutFlockInput = {
+    where: SellMedicineScalarWhereInput
+    data: XOR<SellMedicineUpdateManyMutationInput, SellMedicineUncheckedUpdateManyWithoutFlockInput>
+  }
+
+  export type MedicineTransferUpsertWithWhereUniqueWithoutFlockInput = {
+    where: MedicineTransferWhereUniqueInput
+    update: XOR<MedicineTransferUpdateWithoutFlockInput, MedicineTransferUncheckedUpdateWithoutFlockInput>
+    create: XOR<MedicineTransferCreateWithoutFlockInput, MedicineTransferUncheckedCreateWithoutFlockInput>
+  }
+
+  export type MedicineTransferUpdateWithWhereUniqueWithoutFlockInput = {
+    where: MedicineTransferWhereUniqueInput
+    data: XOR<MedicineTransferUpdateWithoutFlockInput, MedicineTransferUncheckedUpdateWithoutFlockInput>
+  }
+
+  export type MedicineTransferUpdateManyWithWhereWithoutFlockInput = {
+    where: MedicineTransferScalarWhereInput
+    data: XOR<MedicineTransferUpdateManyMutationInput, MedicineTransferUncheckedUpdateManyWithoutFlockInput>
   }
 
   export type FeedCreateWithoutFeedNameCategoryInput = {
@@ -21457,12 +25486,14 @@ export namespace Prisma {
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerCreateNestedManyWithoutBranchInput
+    farmer?: FarmerCreateNestedManyWithoutBranchInput
     employees?: EmployeeCreateNestedManyWithoutBranchInput
     branchEmployees?: BranchEmployeeCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchUncheckedCreateWithoutFeedInput = {
@@ -21470,12 +25501,14 @@ export namespace Prisma {
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerUncheckedCreateNestedManyWithoutBranchInput
+    farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     employees?: EmployeeUncheckedCreateNestedManyWithoutBranchInput
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchCreateOrConnectWithoutFeedInput = {
@@ -21522,12 +25555,14 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUpdateManyWithoutBranchNestedInput
     employees?: EmployeeUpdateManyWithoutBranchNestedInput
     branchEmployees?: BranchEmployeeUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutFeedInput = {
@@ -21535,12 +25570,14 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUncheckedUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     employees?: EmployeeUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
   }
 
   export type MedicineNameAddCreateWithoutMedicineCategoryInput = {
@@ -21876,12 +25913,14 @@ export namespace Prisma {
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerCreateNestedManyWithoutBranchInput
+    farmer?: FarmerCreateNestedManyWithoutBranchInput
     employees?: EmployeeCreateNestedManyWithoutBranchInput
     branchEmployees?: BranchEmployeeCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     Feed?: FeedCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchUncheckedCreateWithoutMedicinePurchessInput = {
@@ -21889,12 +25928,14 @@ export namespace Prisma {
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerUncheckedCreateNestedManyWithoutBranchInput
+    farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     employees?: EmployeeUncheckedCreateNestedManyWithoutBranchInput
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     Feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     MedicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchCreateOrConnectWithoutMedicinePurchessInput = {
@@ -21970,12 +26011,14 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUpdateManyWithoutBranchNestedInput
     employees?: EmployeeUpdateManyWithoutBranchNestedInput
     branchEmployees?: BranchEmployeeUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     Feed?: FeedUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutMedicinePurchessInput = {
@@ -21983,12 +26026,14 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUncheckedUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     employees?: EmployeeUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     Feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     MedicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
   }
 
   export type MedicineNameAddCreateWithoutMedicineStockInput = {
@@ -22036,12 +26081,14 @@ export namespace Prisma {
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerCreateNestedManyWithoutBranchInput
+    farmer?: FarmerCreateNestedManyWithoutBranchInput
     employees?: EmployeeCreateNestedManyWithoutBranchInput
     branchEmployees?: BranchEmployeeCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     Feed?: FeedCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchUncheckedCreateWithoutMedicineStockInput = {
@@ -22049,12 +26096,14 @@ export namespace Prisma {
     locationName: string
     type: $Enums.BranchType
     branchCode: string
-    customers?: CustomerUncheckedCreateNestedManyWithoutBranchInput
+    farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     employees?: EmployeeUncheckedCreateNestedManyWithoutBranchInput
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     Feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
   }
 
   export type BranchCreateOrConnectWithoutMedicineStockInput = {
@@ -22130,12 +26179,14 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUpdateManyWithoutBranchNestedInput
     employees?: EmployeeUpdateManyWithoutBranchNestedInput
     branchEmployees?: BranchEmployeeUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     Feed?: FeedUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutMedicineStockInput = {
@@ -22143,22 +26194,557 @@ export namespace Prisma {
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
     branchCode?: StringFieldUpdateOperationsInput | string
-    customers?: CustomerUncheckedUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     employees?: EmployeeUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     Feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
   }
 
-  export type CustomerCreateManyBranchInput = {
+  export type FlockCreateWithoutSellMedicineInput = {
     id?: string
-    farmCode: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    farmer: FarmerCreateNestedOneWithoutFlocksInput
+    employee: EmployeeCreateNestedOneWithoutFlocksInput
+    branch: BranchCreateNestedOneWithoutFlocksInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockUncheckedCreateWithoutSellMedicineInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    executiveId: string
+    farmId: string
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    branchCode: string
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockCreateOrConnectWithoutSellMedicineInput = {
+    where: FlockWhereUniqueInput
+    create: XOR<FlockCreateWithoutSellMedicineInput, FlockUncheckedCreateWithoutSellMedicineInput>
+  }
+
+  export type BranchCreateWithoutSellMedicineInput = {
+    id?: string
+    locationName: string
+    type: $Enums.BranchType
+    branchCode: string
+    farmer?: FarmerCreateNestedManyWithoutBranchInput
+    employees?: EmployeeCreateNestedManyWithoutBranchInput
+    branchEmployees?: BranchEmployeeCreateNestedManyWithoutBranchInput
+    flocks?: FlockCreateNestedManyWithoutBranchInput
+    Feed?: FeedCreateNestedManyWithoutBranchInput
+    MedicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
+    MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+  }
+
+  export type BranchUncheckedCreateWithoutSellMedicineInput = {
+    id?: string
+    locationName: string
+    type: $Enums.BranchType
+    branchCode: string
+    farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutBranchInput
+    branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutBranchInput
+    flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
+    Feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
+    MedicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
+    MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+  }
+
+  export type BranchCreateOrConnectWithoutSellMedicineInput = {
+    where: BranchWhereUniqueInput
+    create: XOR<BranchCreateWithoutSellMedicineInput, BranchUncheckedCreateWithoutSellMedicineInput>
+  }
+
+  export type FarmerCreateWithoutSellMedicineInput = {
+    id?: string
+    farmCode: number
     name: string
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
     capacity: number
+    nid: string
+    branch?: BranchCreateNestedOneWithoutFarmerInput
+    address?: AddressCreateNestedOneWithoutFarmerInput
+    flocks?: FlockCreateNestedManyWithoutFarmerInput
+  }
+
+  export type FarmerUncheckedCreateWithoutSellMedicineInput = {
+    id?: string
+    branchCode?: string | null
+    farmCode: number
+    name: string
+    farmType: $Enums.Custtype
+    totalShed: number
+    totalSquare: number
+    capacity: number
+    addressId?: string | null
+    nid: string
+    flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
+  }
+
+  export type FarmerCreateOrConnectWithoutSellMedicineInput = {
+    where: FarmerWhereUniqueInput
+    create: XOR<FarmerCreateWithoutSellMedicineInput, FarmerUncheckedCreateWithoutSellMedicineInput>
+  }
+
+  export type MedicineTransferCreateWithoutSellmedicineInput = {
+    id?: string
+    toFarmcode?: string | null
+    fromBranch?: string | null
+    toBranch?: string | null
+    medicineName: string
+    genericName: string
+    flock: FlockCreateNestedOneWithoutMedicineTransferInput
+    baranch: BranchCreateNestedOneWithoutMedicineTransferInput
+  }
+
+  export type MedicineTransferUncheckedCreateWithoutSellmedicineInput = {
+    id?: string
+    flockId: string
+    toFarmcode?: string | null
+    fromBranch?: string | null
+    toBranch?: string | null
+    medicineName: string
+    genericName: string
+    branchCode: string
+  }
+
+  export type MedicineTransferCreateOrConnectWithoutSellmedicineInput = {
+    where: MedicineTransferWhereUniqueInput
+    create: XOR<MedicineTransferCreateWithoutSellmedicineInput, MedicineTransferUncheckedCreateWithoutSellmedicineInput>
+  }
+
+  export type MedicineTransferCreateManySellmedicineInputEnvelope = {
+    data: MedicineTransferCreateManySellmedicineInput | MedicineTransferCreateManySellmedicineInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FlockUpsertWithoutSellMedicineInput = {
+    update: XOR<FlockUpdateWithoutSellMedicineInput, FlockUncheckedUpdateWithoutSellMedicineInput>
+    create: XOR<FlockCreateWithoutSellMedicineInput, FlockUncheckedCreateWithoutSellMedicineInput>
+    where?: FlockWhereInput
+  }
+
+  export type FlockUpdateToOneWithWhereWithoutSellMedicineInput = {
+    where?: FlockWhereInput
+    data: XOR<FlockUpdateWithoutSellMedicineInput, FlockUncheckedUpdateWithoutSellMedicineInput>
+  }
+
+  export type FlockUpdateWithoutSellMedicineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
+    employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
+    branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FlockUncheckedUpdateWithoutSellMedicineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    executiveId?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    branchCode?: StringFieldUpdateOperationsInput | string
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+  }
+
+  export type BranchUpsertWithoutSellMedicineInput = {
+    update: XOR<BranchUpdateWithoutSellMedicineInput, BranchUncheckedUpdateWithoutSellMedicineInput>
+    create: XOR<BranchCreateWithoutSellMedicineInput, BranchUncheckedCreateWithoutSellMedicineInput>
+    where?: BranchWhereInput
+  }
+
+  export type BranchUpdateToOneWithWhereWithoutSellMedicineInput = {
+    where?: BranchWhereInput
+    data: XOR<BranchUpdateWithoutSellMedicineInput, BranchUncheckedUpdateWithoutSellMedicineInput>
+  }
+
+  export type BranchUpdateWithoutSellMedicineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    branchCode?: StringFieldUpdateOperationsInput | string
+    farmer?: FarmerUpdateManyWithoutBranchNestedInput
+    employees?: EmployeeUpdateManyWithoutBranchNestedInput
+    branchEmployees?: BranchEmployeeUpdateManyWithoutBranchNestedInput
+    flocks?: FlockUpdateManyWithoutBranchNestedInput
+    Feed?: FeedUpdateManyWithoutBranchNestedInput
+    MedicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
+    MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+  }
+
+  export type BranchUncheckedUpdateWithoutSellMedicineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    branchCode?: StringFieldUpdateOperationsInput | string
+    farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutBranchNestedInput
+    branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutBranchNestedInput
+    flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
+    Feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
+    MedicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
+    MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+  }
+
+  export type FarmerUpsertWithoutSellMedicineInput = {
+    update: XOR<FarmerUpdateWithoutSellMedicineInput, FarmerUncheckedUpdateWithoutSellMedicineInput>
+    create: XOR<FarmerCreateWithoutSellMedicineInput, FarmerUncheckedCreateWithoutSellMedicineInput>
+    where?: FarmerWhereInput
+  }
+
+  export type FarmerUpdateToOneWithWhereWithoutSellMedicineInput = {
+    where?: FarmerWhereInput
+    data: XOR<FarmerUpdateWithoutSellMedicineInput, FarmerUncheckedUpdateWithoutSellMedicineInput>
+  }
+
+  export type FarmerUpdateWithoutSellMedicineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
+    totalShed?: IntFieldUpdateOperationsInput | number
+    totalSquare?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    nid?: StringFieldUpdateOperationsInput | string
+    branch?: BranchUpdateOneWithoutFarmerNestedInput
+    address?: AddressUpdateOneWithoutFarmerNestedInput
+    flocks?: FlockUpdateManyWithoutFarmerNestedInput
+  }
+
+  export type FarmerUncheckedUpdateWithoutSellMedicineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: NullableStringFieldUpdateOperationsInput | string | null
+    farmCode?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
+    totalShed?: IntFieldUpdateOperationsInput | number
+    totalSquare?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
+    nid?: StringFieldUpdateOperationsInput | string
+    flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
+  }
+
+  export type MedicineTransferUpsertWithWhereUniqueWithoutSellmedicineInput = {
+    where: MedicineTransferWhereUniqueInput
+    update: XOR<MedicineTransferUpdateWithoutSellmedicineInput, MedicineTransferUncheckedUpdateWithoutSellmedicineInput>
+    create: XOR<MedicineTransferCreateWithoutSellmedicineInput, MedicineTransferUncheckedCreateWithoutSellmedicineInput>
+  }
+
+  export type MedicineTransferUpdateWithWhereUniqueWithoutSellmedicineInput = {
+    where: MedicineTransferWhereUniqueInput
+    data: XOR<MedicineTransferUpdateWithoutSellmedicineInput, MedicineTransferUncheckedUpdateWithoutSellmedicineInput>
+  }
+
+  export type MedicineTransferUpdateManyWithWhereWithoutSellmedicineInput = {
+    where: MedicineTransferScalarWhereInput
+    data: XOR<MedicineTransferUpdateManyMutationInput, MedicineTransferUncheckedUpdateManyWithoutSellmedicineInput>
+  }
+
+  export type SellMedicineCreateWithoutMedicineTransferInput = {
+    id?: string
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+    flock: FlockCreateNestedOneWithoutSellMedicineInput
+    branch: BranchCreateNestedOneWithoutSellMedicineInput
+    farmer: FarmerCreateNestedOneWithoutSellMedicineInput
+  }
+
+  export type SellMedicineUncheckedCreateWithoutMedicineTransferInput = {
+    id?: string
+    farmId: string
+    flockNumer: number
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+    branchCode: string
+  }
+
+  export type SellMedicineCreateOrConnectWithoutMedicineTransferInput = {
+    where: SellMedicineWhereUniqueInput
+    create: XOR<SellMedicineCreateWithoutMedicineTransferInput, SellMedicineUncheckedCreateWithoutMedicineTransferInput>
+  }
+
+  export type FlockCreateWithoutMedicineTransferInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    farmer: FarmerCreateNestedOneWithoutFlocksInput
+    employee: EmployeeCreateNestedOneWithoutFlocksInput
+    branch: BranchCreateNestedOneWithoutFlocksInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockUncheckedCreateWithoutMedicineTransferInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    executiveId: string
+    farmId: string
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    branchCode: string
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockCreateOrConnectWithoutMedicineTransferInput = {
+    where: FlockWhereUniqueInput
+    create: XOR<FlockCreateWithoutMedicineTransferInput, FlockUncheckedCreateWithoutMedicineTransferInput>
+  }
+
+  export type BranchCreateWithoutMedicineTransferInput = {
+    id?: string
+    locationName: string
+    type: $Enums.BranchType
+    branchCode: string
+    farmer?: FarmerCreateNestedManyWithoutBranchInput
+    employees?: EmployeeCreateNestedManyWithoutBranchInput
+    branchEmployees?: BranchEmployeeCreateNestedManyWithoutBranchInput
+    flocks?: FlockCreateNestedManyWithoutBranchInput
+    Feed?: FeedCreateNestedManyWithoutBranchInput
+    MedicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
+    MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchUncheckedCreateWithoutMedicineTransferInput = {
+    id?: string
+    locationName: string
+    type: $Enums.BranchType
+    branchCode: string
+    farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutBranchInput
+    branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutBranchInput
+    flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
+    Feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
+    MedicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
+    MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchCreateOrConnectWithoutMedicineTransferInput = {
+    where: BranchWhereUniqueInput
+    create: XOR<BranchCreateWithoutMedicineTransferInput, BranchUncheckedCreateWithoutMedicineTransferInput>
+  }
+
+  export type SellMedicineUpsertWithoutMedicineTransferInput = {
+    update: XOR<SellMedicineUpdateWithoutMedicineTransferInput, SellMedicineUncheckedUpdateWithoutMedicineTransferInput>
+    create: XOR<SellMedicineCreateWithoutMedicineTransferInput, SellMedicineUncheckedCreateWithoutMedicineTransferInput>
+    where?: SellMedicineWhereInput
+  }
+
+  export type SellMedicineUpdateToOneWithWhereWithoutMedicineTransferInput = {
+    where?: SellMedicineWhereInput
+    data: XOR<SellMedicineUpdateWithoutMedicineTransferInput, SellMedicineUncheckedUpdateWithoutMedicineTransferInput>
+  }
+
+  export type SellMedicineUpdateWithoutMedicineTransferInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
+    flock?: FlockUpdateOneRequiredWithoutSellMedicineNestedInput
+    branch?: BranchUpdateOneRequiredWithoutSellMedicineNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutSellMedicineNestedInput
+  }
+
+  export type SellMedicineUncheckedUpdateWithoutMedicineTransferInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockNumer?: IntFieldUpdateOperationsInput | number
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FlockUpsertWithoutMedicineTransferInput = {
+    update: XOR<FlockUpdateWithoutMedicineTransferInput, FlockUncheckedUpdateWithoutMedicineTransferInput>
+    create: XOR<FlockCreateWithoutMedicineTransferInput, FlockUncheckedCreateWithoutMedicineTransferInput>
+    where?: FlockWhereInput
+  }
+
+  export type FlockUpdateToOneWithWhereWithoutMedicineTransferInput = {
+    where?: FlockWhereInput
+    data: XOR<FlockUpdateWithoutMedicineTransferInput, FlockUncheckedUpdateWithoutMedicineTransferInput>
+  }
+
+  export type FlockUpdateWithoutMedicineTransferInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
+    employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
+    branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FlockUncheckedUpdateWithoutMedicineTransferInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    executiveId?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    branchCode?: StringFieldUpdateOperationsInput | string
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+  }
+
+  export type BranchUpsertWithoutMedicineTransferInput = {
+    update: XOR<BranchUpdateWithoutMedicineTransferInput, BranchUncheckedUpdateWithoutMedicineTransferInput>
+    create: XOR<BranchCreateWithoutMedicineTransferInput, BranchUncheckedCreateWithoutMedicineTransferInput>
+    where?: BranchWhereInput
+  }
+
+  export type BranchUpdateToOneWithWhereWithoutMedicineTransferInput = {
+    where?: BranchWhereInput
+    data: XOR<BranchUpdateWithoutMedicineTransferInput, BranchUncheckedUpdateWithoutMedicineTransferInput>
+  }
+
+  export type BranchUpdateWithoutMedicineTransferInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    branchCode?: StringFieldUpdateOperationsInput | string
+    farmer?: FarmerUpdateManyWithoutBranchNestedInput
+    employees?: EmployeeUpdateManyWithoutBranchNestedInput
+    branchEmployees?: BranchEmployeeUpdateManyWithoutBranchNestedInput
+    flocks?: FlockUpdateManyWithoutBranchNestedInput
+    Feed?: FeedUpdateManyWithoutBranchNestedInput
+    MedicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
+    MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+  }
+
+  export type BranchUncheckedUpdateWithoutMedicineTransferInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    branchCode?: StringFieldUpdateOperationsInput | string
+    farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutBranchNestedInput
+    branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutBranchNestedInput
+    flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
+    Feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
+    MedicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
+    MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+  }
+
+  export type FarmerCreateManyBranchInput = {
+    id?: string
+    farmCode: number
+    name: string
+    farmType: $Enums.Custtype
+    totalShed: number
+    totalSquare: number
+    capacity: number
+    addressId?: string | null
     nid: string
   }
 
@@ -22168,6 +26754,7 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
+    addressId?: string | null
   }
 
   export type BranchEmployeeCreateManyBranchInput = {
@@ -22182,7 +26769,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate?: Date | string | null
     executiveId: string
-    farmCode: string
+    farmId: string
     docName: string
     docQuantity?: number
     approvedBy?: string | null
@@ -22221,40 +26808,66 @@ export namespace Prisma {
     supplierInfo: string
   }
 
-  export type CustomerUpdateWithoutBranchInput = {
+  export type SellMedicineCreateManyBranchInput = {
+    id?: string
+    farmId: string
+    flockNumer: number
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+  }
+
+  export type MedicineTransferCreateManyBaranchInput = {
+    id?: string
+    sellId: string
+    flockId: string
+    toFarmcode?: string | null
+    fromBranch?: string | null
+    toBranch?: string | null
+    medicineName: string
+    genericName: string
+  }
+
+  export type FarmerUpdateWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
     nid?: StringFieldUpdateOperationsInput | string
-    address?: AddressUpdateOneWithoutCustomerNestedInput
-    flocks?: FlockUpdateManyWithoutCustomerNestedInput
+    address?: AddressUpdateOneWithoutFarmerNestedInput
+    flocks?: FlockUpdateManyWithoutFarmerNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
   }
 
-  export type CustomerUncheckedUpdateWithoutBranchInput = {
+  export type FarmerUncheckedUpdateWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     nid?: StringFieldUpdateOperationsInput | string
-    address?: AddressUncheckedUpdateOneWithoutCustomerNestedInput
-    flocks?: FlockUncheckedUpdateManyWithoutCustomerNestedInput
+    flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
-  export type CustomerUncheckedUpdateManyWithoutBranchInput = {
+  export type FarmerUncheckedUpdateManyWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     nid?: StringFieldUpdateOperationsInput | string
   }
 
@@ -22275,8 +26888,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutEmployeeNestedInput
-    address?: AddressUncheckedUpdateOneWithoutEmployeeNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -22286,6 +26899,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type BranchEmployeeUpdateWithoutBranchInput = {
@@ -22317,8 +26931,10 @@ export namespace Prisma {
     fcr?: FloatFieldUpdateOperationsInput | number
     totalSellBirds?: IntFieldUpdateOperationsInput | number
     mortality?: IntFieldUpdateOperationsInput | number
-    customer?: CustomerUpdateOneRequiredWithoutFlocksNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
     employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutBranchInput = {
@@ -22328,7 +26944,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     executiveId?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
     docName?: StringFieldUpdateOperationsInput | string
     docQuantity?: IntFieldUpdateOperationsInput | number
     approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22337,6 +26953,8 @@ export namespace Prisma {
     fcr?: FloatFieldUpdateOperationsInput | number
     totalSellBirds?: IntFieldUpdateOperationsInput | number
     mortality?: IntFieldUpdateOperationsInput | number
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateManyWithoutBranchInput = {
@@ -22346,7 +26964,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     executiveId?: StringFieldUpdateOperationsInput | string
-    farmCode?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
     docName?: StringFieldUpdateOperationsInput | string
     docQuantity?: IntFieldUpdateOperationsInput | number
     approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22441,7 +27059,78 @@ export namespace Prisma {
     supplierInfo?: StringFieldUpdateOperationsInput | string
   }
 
-  export type FlockCreateManyCustomerInput = {
+  export type SellMedicineUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
+    flock?: FlockUpdateOneRequiredWithoutSellMedicineNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutSellMedicineNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutSellmedicineNestedInput
+  }
+
+  export type SellMedicineUncheckedUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockNumer?: IntFieldUpdateOperationsInput | number
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutSellmedicineNestedInput
+  }
+
+  export type SellMedicineUncheckedUpdateManyWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockNumer?: IntFieldUpdateOperationsInput | number
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MedicineTransferUpdateWithoutBaranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
+    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    medicineName?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    sellmedicine?: SellMedicineUpdateOneRequiredWithoutMedicineTransferNestedInput
+    flock?: FlockUpdateOneRequiredWithoutMedicineTransferNestedInput
+  }
+
+  export type MedicineTransferUncheckedUpdateWithoutBaranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sellId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
+    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    medicineName?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MedicineTransferUncheckedUpdateManyWithoutBaranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sellId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
+    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    medicineName?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FlockCreateManyFarmerInput = {
     id?: string
     flockNumber: number
     flockStatus?: $Enums.FlockStatus
@@ -22459,7 +27148,19 @@ export namespace Prisma {
     mortality?: number
   }
 
-  export type FlockUpdateWithoutCustomerInput = {
+  export type SellMedicineCreateManyFarmerInput = {
+    id?: string
+    flockNumer: number
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+    branchCode: string
+  }
+
+  export type FlockUpdateWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
     flockNumber?: IntFieldUpdateOperationsInput | number
     flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
@@ -22475,9 +27176,31 @@ export namespace Prisma {
     mortality?: IntFieldUpdateOperationsInput | number
     employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
     branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
   }
 
-  export type FlockUncheckedUpdateWithoutCustomerInput = {
+  export type FlockUncheckedUpdateWithoutFarmerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    executiveId?: StringFieldUpdateOperationsInput | string
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    branchCode?: StringFieldUpdateOperationsInput | string
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FlockUncheckedUpdateManyWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
     flockNumber?: IntFieldUpdateOperationsInput | number
     flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
@@ -22495,22 +27218,42 @@ export namespace Prisma {
     mortality?: IntFieldUpdateOperationsInput | number
   }
 
-  export type FlockUncheckedUpdateManyWithoutCustomerInput = {
+  export type SellMedicineUpdateWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
-    flockNumber?: IntFieldUpdateOperationsInput | number
-    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    executiveId?: StringFieldUpdateOperationsInput | string
-    docName?: StringFieldUpdateOperationsInput | string
-    docQuantity?: IntFieldUpdateOperationsInput | number
-    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
+    flock?: FlockUpdateOneRequiredWithoutSellMedicineNestedInput
+    branch?: BranchUpdateOneRequiredWithoutSellMedicineNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutSellmedicineNestedInput
+  }
+
+  export type SellMedicineUncheckedUpdateWithoutFarmerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumer?: IntFieldUpdateOperationsInput | number
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
     branchCode?: StringFieldUpdateOperationsInput | string
-    totalFeedKg?: IntFieldUpdateOperationsInput | number
-    totalMedicine?: IntFieldUpdateOperationsInput | number
-    fcr?: FloatFieldUpdateOperationsInput | number
-    totalSellBirds?: IntFieldUpdateOperationsInput | number
-    mortality?: IntFieldUpdateOperationsInput | number
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutSellmedicineNestedInput
+  }
+
+  export type SellMedicineUncheckedUpdateManyWithoutFarmerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumer?: IntFieldUpdateOperationsInput | number
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
   }
 
   export type BranchEmployeeCreateManyEmployeeInput = {
@@ -22524,7 +27267,7 @@ export namespace Prisma {
     flockStatus?: $Enums.FlockStatus
     startDate: Date | string
     endDate?: Date | string | null
-    farmCode: string
+    farmId: string
     docName: string
     docQuantity?: number
     approvedBy?: string | null
@@ -22565,8 +27308,10 @@ export namespace Prisma {
     fcr?: FloatFieldUpdateOperationsInput | number
     totalSellBirds?: IntFieldUpdateOperationsInput | number
     mortality?: IntFieldUpdateOperationsInput | number
-    customer?: CustomerUpdateOneRequiredWithoutFlocksNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
     branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutEmployeeInput = {
@@ -22575,7 +27320,27 @@ export namespace Prisma {
     flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    farmCode?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    branchCode?: StringFieldUpdateOperationsInput | string
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FlockUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    farmId?: StringFieldUpdateOperationsInput | string
     docName?: StringFieldUpdateOperationsInput | string
     docQuantity?: IntFieldUpdateOperationsInput | number
     approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22587,22 +27352,98 @@ export namespace Prisma {
     mortality?: IntFieldUpdateOperationsInput | number
   }
 
-  export type FlockUncheckedUpdateManyWithoutEmployeeInput = {
+  export type SellMedicineCreateManyFlockInput = {
+    id?: string
+    farmId: string
+    genericName: string
+    medicineName: string
+    sellQuantity: number
+    sellPrice: number
+    Delivery?: $Enums.DeliveryStatus
+    sellDate: string
+    branchCode: string
+  }
+
+  export type MedicineTransferCreateManyFlockInput = {
+    id?: string
+    sellId: string
+    toFarmcode?: string | null
+    fromBranch?: string | null
+    toBranch?: string | null
+    medicineName: string
+    genericName: string
+    branchCode: string
+  }
+
+  export type SellMedicineUpdateWithoutFlockInput = {
     id?: StringFieldUpdateOperationsInput | string
-    flockNumber?: IntFieldUpdateOperationsInput | number
-    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    farmCode?: StringFieldUpdateOperationsInput | string
-    docName?: StringFieldUpdateOperationsInput | string
-    docQuantity?: IntFieldUpdateOperationsInput | number
-    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
+    branch?: BranchUpdateOneRequiredWithoutSellMedicineNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutSellMedicineNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutSellmedicineNestedInput
+  }
+
+  export type SellMedicineUncheckedUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
     branchCode?: StringFieldUpdateOperationsInput | string
-    totalFeedKg?: IntFieldUpdateOperationsInput | number
-    totalMedicine?: IntFieldUpdateOperationsInput | number
-    fcr?: FloatFieldUpdateOperationsInput | number
-    totalSellBirds?: IntFieldUpdateOperationsInput | number
-    mortality?: IntFieldUpdateOperationsInput | number
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutSellmedicineNestedInput
+  }
+
+  export type SellMedicineUncheckedUpdateManyWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    medicineName?: StringFieldUpdateOperationsInput | string
+    sellQuantity?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    sellDate?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MedicineTransferUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
+    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    medicineName?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    sellmedicine?: SellMedicineUpdateOneRequiredWithoutMedicineTransferNestedInput
+    baranch?: BranchUpdateOneRequiredWithoutMedicineTransferNestedInput
+  }
+
+  export type MedicineTransferUncheckedUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sellId?: StringFieldUpdateOperationsInput | string
+    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
+    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    medicineName?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MedicineTransferUncheckedUpdateManyWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sellId?: StringFieldUpdateOperationsInput | string
+    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
+    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    medicineName?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
   }
 
   export type FeedCreateManyFeedNameCategoryInput = {
@@ -22830,6 +27671,50 @@ export namespace Prisma {
     bonusQuantity?: NullableIntFieldUpdateOperationsInput | number | null
     purchaseTotalPrice?: IntFieldUpdateOperationsInput | number
     supplierInfo?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MedicineTransferCreateManySellmedicineInput = {
+    id?: string
+    flockId: string
+    toFarmcode?: string | null
+    fromBranch?: string | null
+    toBranch?: string | null
+    medicineName: string
+    genericName: string
+    branchCode: string
+  }
+
+  export type MedicineTransferUpdateWithoutSellmedicineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
+    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    medicineName?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    flock?: FlockUpdateOneRequiredWithoutMedicineTransferNestedInput
+    baranch?: BranchUpdateOneRequiredWithoutMedicineTransferNestedInput
+  }
+
+  export type MedicineTransferUncheckedUpdateWithoutSellmedicineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
+    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    medicineName?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MedicineTransferUncheckedUpdateManyWithoutSellmedicineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
+    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    medicineName?: StringFieldUpdateOperationsInput | string
+    genericName?: StringFieldUpdateOperationsInput | string
     branchCode?: StringFieldUpdateOperationsInput | string
   }
 

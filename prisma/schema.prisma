@@ -38,7 +38,7 @@ model Branch {
   locationName    String           @unique
   type            BranchType
   branchCode      String           @unique
-  customers       Customer[]
+  farmer          Farmer[]
   employees       Employee[]
   branchEmployees BranchEmployee[]
   flocks          Flock[]
@@ -47,26 +47,29 @@ model Branch {
   MedicineStock    MedicineStock[]
   MedicinePurchess MedicinePurchess[]
   SellMedicine     SellMedicine[]
+  MedicineTransfer MedicineTransfer[]
 
   @@map("branch")
 }
 
-model Customer {
+model Farmer {
   id           String         @id @default(uuid())
-  branchCode   String
-  farmCode     String         @unique
-  branch       Branch         @relation(fields: [branchCode], references: [branchCode])
+  branchCode   String?
+  farmCode     Int            @unique
+  branch       Branch?        @relation(fields: [branchCode], references: [branchCode])
   name         String
   farmType     Custtype
   totalShed    Int
   totalSquare  Int
   capacity     Int
+  addressId    String?        @unique
   nid          String
-  address      Address?
+  address      Address?       @relation(fields: [addressId], references: [id])
   flocks       Flock[]
   SellMedicine SellMedicine[]
 
-  @@map("customer")
+  @@unique([branchCode, farmCode])
+  @@map("farmer")
 }
 
 model Address {
@@ -78,10 +81,8 @@ model Address {
   upazila     String
   phoneNumber String
   city        String
-  employeeId  String?   @unique
-  farmCode    String?   @unique
-  employee    Employee? @relation(fields: [employeeId], references: [employeeId])
-  customer    Customer? @relation(fields: [farmCode], references: [farmCode])
+  Farmer      Farmer?
+  Employee    Employee?
 
   @@map("address")
 }
@@ -102,37 +103,38 @@ model Employee {
   name            String
   workingLocation String
   designation     String
-  branchId        String?
-  branch          Branch?          @relation(fields: [branchId], references: [id])
+  branchId        String
+  addressId       String?          @unique
+  branch          Branch           @relation(fields: [branchId], references: [id])
   branchEmployees BranchEmployee[]
-  address         Address?
+  address         Address?         @relation(fields: [addressId], references: [id])
   flocks          Flock[]
 
   @@map("employee")
 }
 
 model Flock {
-  id             String      @id @default(uuid())
-  flockNumber    Int         @unique
-  flockStatus    FlockStatus @default(PENDING)
-  startDate      DateTime
-  endDate        DateTime?
-  executiveId    String
-  farmCode       String
-  docName        String
-  docQuantity    Int         @default(0)
-  approvedBy     String?
-  branchCode     String
-  totalFeedKg    Int         @default(0)
-  totalMedicine  Int         @default(0)
-  fcr            Float       @default(0)
-  totalSellBirds Int         @default(0)
-  mortality      Int         @default(0)
-
-  customer     Customer       @relation(fields: [farmCode], references: [farmCode])
-  employee     Employee       @relation(fields: [executiveId], references: [employeeId])
-  branch       Branch         @relation(fields: [branchCode], references: [branchCode])
-  SellMedicine SellMedicine[]
+  id               String             @id @default(uuid())
+  flockNumber      Int                @unique
+  flockStatus      FlockStatus        @default(PENDING)
+  startDate        DateTime
+  endDate          DateTime?
+  executiveId      String
+  farmId           String
+  docName          String
+  docQuantity      Int                @default(0)
+  approvedBy       String?
+  branchCode       String
+  totalFeedKg      Int                @default(0)
+  totalMedicine    Int                @default(0)
+  fcr              Float              @default(0)
+  totalSellBirds   Int                @default(0)
+  mortality        Int                @default(0)
+  farmer           Farmer             @relation(fields: [farmId], references: [id])
+  employee         Employee           @relation(fields: [executiveId], references: [employeeId])
+  branch           Branch             @relation(fields: [branchCode], references: [branchCode])
+  SellMedicine     SellMedicine[]
+  MedicineTransfer MedicineTransfer[]
 
   @@map("flock")
 }
@@ -217,16 +219,39 @@ model MedicineStock {
 }
 
 model SellMedicine {
-  id           String   @id @default(uuid())
-  farmcode     String
-  flockNumer   Int
-  genericName  String
+  id               String             @id @default(uuid())
+  farmId           String
+  flockNumer       Int
+  genericName      String
+  medicineName     String
+  sellQuantity     Int
+  sellPrice        Int
+  Delivery         DeliveryStatus     @default(DELIVER)
+  sellDate         String
+  branchCode       String
+  flock            Flock              @relation(fields: [flockNumer], references: [flockNumber], onDelete: Cascade)
+  branch           Branch             @relation(fields: [branchCode], references: [branchCode], onDelete: Cascade)
+  farmer           Farmer             @relation(fields: [farmId], references: [id], onDelete: Cascade)
+  MedicineTransfer MedicineTransfer[]
+}
+
+model MedicineTransfer {
+  id           String       @id @default(uuid())
+  sellId       String
+  sellmedicine SellMedicine @relation(fields: [sellId], references: [id])
+  flockId      String
+  flock        Flock        @relation(fields: [flockId], references: [id])
+  toFarmcode   String?
+  fromBranch   String?
+  toBranch     String?
   medicineName String
-  sellQuantity Int
-  sellPrice    Int
-  sellDate     String
+  genericName  String
   branchCode   String
-  flock        Flock    @relation(fields: [flockNumer], references: [flockNumber], onDelete: Cascade)
-  branch       Branch   @relation(fields: [branchCode], references: [branchCode], onDelete: Cascade)
-  customer     Customer @relation(fields: [farmcode], references: [farmCode], onDelete: Cascade)
+  baranch      Branch       @relation(fields: [branchCode], references: [branchCode])
+}
+
+enum DeliveryStatus {
+  RETURN
+  TRANSFER
+  DELIVER
 }
