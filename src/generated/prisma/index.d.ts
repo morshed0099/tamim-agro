@@ -3796,6 +3796,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype | null
     totalShed: number | null
     totalSquare: number | null
+    phoneNumber: string | null
     capacity: number | null
     addressId: string | null
     nid: string | null
@@ -3809,6 +3810,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype | null
     totalShed: number | null
     totalSquare: number | null
+    phoneNumber: string | null
     capacity: number | null
     addressId: string | null
     nid: string | null
@@ -3822,6 +3824,7 @@ export namespace Prisma {
     farmType: number
     totalShed: number
     totalSquare: number
+    phoneNumber: number
     capacity: number
     addressId: number
     nid: number
@@ -3851,6 +3854,7 @@ export namespace Prisma {
     farmType?: true
     totalShed?: true
     totalSquare?: true
+    phoneNumber?: true
     capacity?: true
     addressId?: true
     nid?: true
@@ -3864,6 +3868,7 @@ export namespace Prisma {
     farmType?: true
     totalShed?: true
     totalSquare?: true
+    phoneNumber?: true
     capacity?: true
     addressId?: true
     nid?: true
@@ -3877,6 +3882,7 @@ export namespace Prisma {
     farmType?: true
     totalShed?: true
     totalSquare?: true
+    phoneNumber?: true
     capacity?: true
     addressId?: true
     nid?: true
@@ -3977,6 +3983,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
+    phoneNumber: string
     capacity: number
     addressId: string | null
     nid: string
@@ -4009,6 +4016,7 @@ export namespace Prisma {
     farmType?: boolean
     totalShed?: boolean
     totalSquare?: boolean
+    phoneNumber?: boolean
     capacity?: boolean
     addressId?: boolean
     nid?: boolean
@@ -4027,6 +4035,7 @@ export namespace Prisma {
     farmType?: boolean
     totalShed?: boolean
     totalSquare?: boolean
+    phoneNumber?: boolean
     capacity?: boolean
     addressId?: boolean
     nid?: boolean
@@ -4042,6 +4051,7 @@ export namespace Prisma {
     farmType?: boolean
     totalShed?: boolean
     totalSquare?: boolean
+    phoneNumber?: boolean
     capacity?: boolean
     addressId?: boolean
     nid?: boolean
@@ -4057,12 +4067,13 @@ export namespace Prisma {
     farmType?: boolean
     totalShed?: boolean
     totalSquare?: boolean
+    phoneNumber?: boolean
     capacity?: boolean
     addressId?: boolean
     nid?: boolean
   }
 
-  export type FarmerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branchCode" | "farmCode" | "name" | "farmType" | "totalShed" | "totalSquare" | "capacity" | "addressId" | "nid", ExtArgs["result"]["farmer"]>
+  export type FarmerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branchCode" | "farmCode" | "name" | "farmType" | "totalShed" | "totalSquare" | "phoneNumber" | "capacity" | "addressId" | "nid", ExtArgs["result"]["farmer"]>
   export type FarmerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     branch?: boolean | Farmer$branchArgs<ExtArgs>
     address?: boolean | Farmer$addressArgs<ExtArgs>
@@ -4095,6 +4106,7 @@ export namespace Prisma {
       farmType: $Enums.Custtype
       totalShed: number
       totalSquare: number
+      phoneNumber: string
       capacity: number
       addressId: string | null
       nid: string
@@ -4532,6 +4544,7 @@ export namespace Prisma {
     readonly farmType: FieldRef<"Farmer", 'Custtype'>
     readonly totalShed: FieldRef<"Farmer", 'Int'>
     readonly totalSquare: FieldRef<"Farmer", 'Int'>
+    readonly phoneNumber: FieldRef<"Farmer", 'String'>
     readonly capacity: FieldRef<"Farmer", 'Int'>
     readonly addressId: FieldRef<"Farmer", 'String'>
     readonly nid: FieldRef<"Farmer", 'String'>
@@ -5052,7 +5065,6 @@ export namespace Prisma {
     union: string | null
     thana: string | null
     upazila: string | null
-    phoneNumber: string | null
     city: string | null
   }
 
@@ -5063,7 +5075,6 @@ export namespace Prisma {
     union: string | null
     thana: string | null
     upazila: string | null
-    phoneNumber: string | null
     city: string | null
   }
 
@@ -5074,7 +5085,6 @@ export namespace Prisma {
     union: number
     thana: number
     upazila: number
-    phoneNumber: number
     city: number
     _all: number
   }
@@ -5087,7 +5097,6 @@ export namespace Prisma {
     union?: true
     thana?: true
     upazila?: true
-    phoneNumber?: true
     city?: true
   }
 
@@ -5098,7 +5107,6 @@ export namespace Prisma {
     union?: true
     thana?: true
     upazila?: true
-    phoneNumber?: true
     city?: true
   }
 
@@ -5109,7 +5117,6 @@ export namespace Prisma {
     union?: true
     thana?: true
     upazila?: true
-    phoneNumber?: true
     city?: true
     _all?: true
   }
@@ -5193,7 +5200,6 @@ export namespace Prisma {
     union: string | null
     thana: string | null
     upazila: string
-    phoneNumber: string
     city: string
     _count: AddressCountAggregateOutputType | null
     _min: AddressMinAggregateOutputType | null
@@ -5221,7 +5227,6 @@ export namespace Prisma {
     union?: boolean
     thana?: boolean
     upazila?: boolean
-    phoneNumber?: boolean
     city?: boolean
     Farmer?: boolean | Address$FarmerArgs<ExtArgs>
     Employee?: boolean | Address$EmployeeArgs<ExtArgs>
@@ -5234,7 +5239,6 @@ export namespace Prisma {
     union?: boolean
     thana?: boolean
     upazila?: boolean
-    phoneNumber?: boolean
     city?: boolean
   }, ExtArgs["result"]["address"]>
 
@@ -5245,7 +5249,6 @@ export namespace Prisma {
     union?: boolean
     thana?: boolean
     upazila?: boolean
-    phoneNumber?: boolean
     city?: boolean
   }, ExtArgs["result"]["address"]>
 
@@ -5256,11 +5259,10 @@ export namespace Prisma {
     union?: boolean
     thana?: boolean
     upazila?: boolean
-    phoneNumber?: boolean
     city?: boolean
   }
 
-  export type AddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "village" | "post" | "union" | "thana" | "upazila" | "phoneNumber" | "city", ExtArgs["result"]["address"]>
+  export type AddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "village" | "post" | "union" | "thana" | "upazila" | "city", ExtArgs["result"]["address"]>
   export type AddressInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Farmer?: boolean | Address$FarmerArgs<ExtArgs>
     Employee?: boolean | Address$EmployeeArgs<ExtArgs>
@@ -5281,7 +5283,6 @@ export namespace Prisma {
       union: string | null
       thana: string | null
       upazila: string
-      phoneNumber: string
       city: string
     }, ExtArgs["result"]["address"]>
     composites: {}
@@ -5714,7 +5715,6 @@ export namespace Prisma {
     readonly union: FieldRef<"Address", 'String'>
     readonly thana: FieldRef<"Address", 'String'>
     readonly upazila: FieldRef<"Address", 'String'>
-    readonly phoneNumber: FieldRef<"Address", 'String'>
     readonly city: FieldRef<"Address", 'String'>
   }
     
@@ -7216,7 +7216,8 @@ export namespace Prisma {
     name: string | null
     workingLocation: string | null
     designation: string | null
-    branchId: string | null
+    branchCode: string | null
+    phoneNumber: string | null
     addressId: string | null
   }
 
@@ -7226,7 +7227,8 @@ export namespace Prisma {
     name: string | null
     workingLocation: string | null
     designation: string | null
-    branchId: string | null
+    branchCode: string | null
+    phoneNumber: string | null
     addressId: string | null
   }
 
@@ -7236,7 +7238,8 @@ export namespace Prisma {
     name: number
     workingLocation: number
     designation: number
-    branchId: number
+    branchCode: number
+    phoneNumber: number
     addressId: number
     _all: number
   }
@@ -7248,7 +7251,8 @@ export namespace Prisma {
     name?: true
     workingLocation?: true
     designation?: true
-    branchId?: true
+    branchCode?: true
+    phoneNumber?: true
     addressId?: true
   }
 
@@ -7258,7 +7262,8 @@ export namespace Prisma {
     name?: true
     workingLocation?: true
     designation?: true
-    branchId?: true
+    branchCode?: true
+    phoneNumber?: true
     addressId?: true
   }
 
@@ -7268,7 +7273,8 @@ export namespace Prisma {
     name?: true
     workingLocation?: true
     designation?: true
-    branchId?: true
+    branchCode?: true
+    phoneNumber?: true
     addressId?: true
     _all?: true
   }
@@ -7351,7 +7357,8 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branchId: string
+    branchCode: string
+    phoneNumber: string
     addressId: string | null
     _count: EmployeeCountAggregateOutputType | null
     _min: EmployeeMinAggregateOutputType | null
@@ -7378,7 +7385,8 @@ export namespace Prisma {
     name?: boolean
     workingLocation?: boolean
     designation?: boolean
-    branchId?: boolean
+    branchCode?: boolean
+    phoneNumber?: boolean
     addressId?: boolean
     branch?: boolean | BranchDefaultArgs<ExtArgs>
     branchEmployees?: boolean | Employee$branchEmployeesArgs<ExtArgs>
@@ -7393,7 +7401,8 @@ export namespace Prisma {
     name?: boolean
     workingLocation?: boolean
     designation?: boolean
-    branchId?: boolean
+    branchCode?: boolean
+    phoneNumber?: boolean
     addressId?: boolean
     branch?: boolean | BranchDefaultArgs<ExtArgs>
     address?: boolean | Employee$addressArgs<ExtArgs>
@@ -7405,7 +7414,8 @@ export namespace Prisma {
     name?: boolean
     workingLocation?: boolean
     designation?: boolean
-    branchId?: boolean
+    branchCode?: boolean
+    phoneNumber?: boolean
     addressId?: boolean
     branch?: boolean | BranchDefaultArgs<ExtArgs>
     address?: boolean | Employee$addressArgs<ExtArgs>
@@ -7417,11 +7427,12 @@ export namespace Prisma {
     name?: boolean
     workingLocation?: boolean
     designation?: boolean
-    branchId?: boolean
+    branchCode?: boolean
+    phoneNumber?: boolean
     addressId?: boolean
   }
 
-  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "name" | "workingLocation" | "designation" | "branchId" | "addressId", ExtArgs["result"]["employee"]>
+  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "name" | "workingLocation" | "designation" | "branchCode" | "phoneNumber" | "addressId", ExtArgs["result"]["employee"]>
   export type EmployeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     branch?: boolean | BranchDefaultArgs<ExtArgs>
     branchEmployees?: boolean | Employee$branchEmployeesArgs<ExtArgs>
@@ -7452,7 +7463,8 @@ export namespace Prisma {
       name: string
       workingLocation: string
       designation: string
-      branchId: string
+      branchCode: string
+      phoneNumber: string
       addressId: string | null
     }, ExtArgs["result"]["employee"]>
     composites: {}
@@ -7886,7 +7898,8 @@ export namespace Prisma {
     readonly name: FieldRef<"Employee", 'String'>
     readonly workingLocation: FieldRef<"Employee", 'String'>
     readonly designation: FieldRef<"Employee", 'String'>
-    readonly branchId: FieldRef<"Employee", 'String'>
+    readonly branchCode: FieldRef<"Employee", 'String'>
+    readonly phoneNumber: FieldRef<"Employee", 'String'>
     readonly addressId: FieldRef<"Employee", 'String'>
   }
     
@@ -18785,6 +18798,7 @@ export namespace Prisma {
     farmType: 'farmType',
     totalShed: 'totalShed',
     totalSquare: 'totalSquare',
+    phoneNumber: 'phoneNumber',
     capacity: 'capacity',
     addressId: 'addressId',
     nid: 'nid'
@@ -18800,7 +18814,6 @@ export namespace Prisma {
     union: 'union',
     thana: 'thana',
     upazila: 'upazila',
-    phoneNumber: 'phoneNumber',
     city: 'city'
   };
 
@@ -18822,7 +18835,8 @@ export namespace Prisma {
     name: 'name',
     workingLocation: 'workingLocation',
     designation: 'designation',
-    branchId: 'branchId',
+    branchCode: 'branchCode',
+    phoneNumber: 'phoneNumber',
     addressId: 'addressId'
   };
 
@@ -19178,6 +19192,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFilter<"Farmer"> | $Enums.Custtype
     totalShed?: IntFilter<"Farmer"> | number
     totalSquare?: IntFilter<"Farmer"> | number
+    phoneNumber?: StringFilter<"Farmer"> | string
     capacity?: IntFilter<"Farmer"> | number
     addressId?: StringNullableFilter<"Farmer"> | string | null
     nid?: StringFilter<"Farmer"> | string
@@ -19195,6 +19210,7 @@ export namespace Prisma {
     farmType?: SortOrder
     totalShed?: SortOrder
     totalSquare?: SortOrder
+    phoneNumber?: SortOrder
     capacity?: SortOrder
     addressId?: SortOrderInput | SortOrder
     nid?: SortOrder
@@ -19206,24 +19222,25 @@ export namespace Prisma {
 
   export type FarmerWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    farmCode?: number
     addressId?: string
     branchCode_farmCode?: FarmerBranchCodeFarmCodeCompoundUniqueInput
     AND?: FarmerWhereInput | FarmerWhereInput[]
     OR?: FarmerWhereInput[]
     NOT?: FarmerWhereInput | FarmerWhereInput[]
     branchCode?: StringNullableFilter<"Farmer"> | string | null
+    farmCode?: IntFilter<"Farmer"> | number
     name?: StringFilter<"Farmer"> | string
     farmType?: EnumCusttypeFilter<"Farmer"> | $Enums.Custtype
     totalShed?: IntFilter<"Farmer"> | number
     totalSquare?: IntFilter<"Farmer"> | number
+    phoneNumber?: StringFilter<"Farmer"> | string
     capacity?: IntFilter<"Farmer"> | number
     nid?: StringFilter<"Farmer"> | string
     branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     flocks?: FlockListRelationFilter
     SellMedicine?: SellMedicineListRelationFilter
-  }, "id" | "farmCode" | "addressId" | "branchCode_farmCode">
+  }, "id" | "addressId" | "branchCode_farmCode">
 
   export type FarmerOrderByWithAggregationInput = {
     id?: SortOrder
@@ -19233,6 +19250,7 @@ export namespace Prisma {
     farmType?: SortOrder
     totalShed?: SortOrder
     totalSquare?: SortOrder
+    phoneNumber?: SortOrder
     capacity?: SortOrder
     addressId?: SortOrderInput | SortOrder
     nid?: SortOrder
@@ -19254,6 +19272,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeWithAggregatesFilter<"Farmer"> | $Enums.Custtype
     totalShed?: IntWithAggregatesFilter<"Farmer"> | number
     totalSquare?: IntWithAggregatesFilter<"Farmer"> | number
+    phoneNumber?: StringWithAggregatesFilter<"Farmer"> | string
     capacity?: IntWithAggregatesFilter<"Farmer"> | number
     addressId?: StringNullableWithAggregatesFilter<"Farmer"> | string | null
     nid?: StringWithAggregatesFilter<"Farmer"> | string
@@ -19269,7 +19288,6 @@ export namespace Prisma {
     union?: StringNullableFilter<"Address"> | string | null
     thana?: StringNullableFilter<"Address"> | string | null
     upazila?: StringFilter<"Address"> | string
-    phoneNumber?: StringFilter<"Address"> | string
     city?: StringFilter<"Address"> | string
     Farmer?: XOR<FarmerNullableScalarRelationFilter, FarmerWhereInput> | null
     Employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
@@ -19282,7 +19300,6 @@ export namespace Prisma {
     union?: SortOrderInput | SortOrder
     thana?: SortOrderInput | SortOrder
     upazila?: SortOrder
-    phoneNumber?: SortOrder
     city?: SortOrder
     Farmer?: FarmerOrderByWithRelationInput
     Employee?: EmployeeOrderByWithRelationInput
@@ -19298,7 +19315,6 @@ export namespace Prisma {
     union?: StringNullableFilter<"Address"> | string | null
     thana?: StringNullableFilter<"Address"> | string | null
     upazila?: StringFilter<"Address"> | string
-    phoneNumber?: StringFilter<"Address"> | string
     city?: StringFilter<"Address"> | string
     Farmer?: XOR<FarmerNullableScalarRelationFilter, FarmerWhereInput> | null
     Employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
@@ -19311,7 +19327,6 @@ export namespace Prisma {
     union?: SortOrderInput | SortOrder
     thana?: SortOrderInput | SortOrder
     upazila?: SortOrder
-    phoneNumber?: SortOrder
     city?: SortOrder
     _count?: AddressCountOrderByAggregateInput
     _max?: AddressMaxOrderByAggregateInput
@@ -19328,7 +19343,6 @@ export namespace Prisma {
     union?: StringNullableWithAggregatesFilter<"Address"> | string | null
     thana?: StringNullableWithAggregatesFilter<"Address"> | string | null
     upazila?: StringWithAggregatesFilter<"Address"> | string
-    phoneNumber?: StringWithAggregatesFilter<"Address"> | string
     city?: StringWithAggregatesFilter<"Address"> | string
   }
 
@@ -19353,6 +19367,7 @@ export namespace Prisma {
 
   export type BranchEmployeeWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    employeeId_branchCode?: BranchEmployeeEmployeeIdBranchCodeCompoundUniqueInput
     AND?: BranchEmployeeWhereInput | BranchEmployeeWhereInput[]
     OR?: BranchEmployeeWhereInput[]
     NOT?: BranchEmployeeWhereInput | BranchEmployeeWhereInput[]
@@ -19360,7 +19375,7 @@ export namespace Prisma {
     branchCode?: StringFilter<"BranchEmployee"> | string
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
-  }, "id">
+  }, "id" | "employeeId_branchCode">
 
   export type BranchEmployeeOrderByWithAggregationInput = {
     id?: SortOrder
@@ -19389,7 +19404,8 @@ export namespace Prisma {
     name?: StringFilter<"Employee"> | string
     workingLocation?: StringFilter<"Employee"> | string
     designation?: StringFilter<"Employee"> | string
-    branchId?: StringFilter<"Employee"> | string
+    branchCode?: StringFilter<"Employee"> | string
+    phoneNumber?: StringFilter<"Employee"> | string
     addressId?: StringNullableFilter<"Employee"> | string | null
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
     branchEmployees?: BranchEmployeeListRelationFilter
@@ -19403,7 +19419,8 @@ export namespace Prisma {
     name?: SortOrder
     workingLocation?: SortOrder
     designation?: SortOrder
-    branchId?: SortOrder
+    branchCode?: SortOrder
+    phoneNumber?: SortOrder
     addressId?: SortOrderInput | SortOrder
     branch?: BranchOrderByWithRelationInput
     branchEmployees?: BranchEmployeeOrderByRelationAggregateInput
@@ -19421,7 +19438,8 @@ export namespace Prisma {
     name?: StringFilter<"Employee"> | string
     workingLocation?: StringFilter<"Employee"> | string
     designation?: StringFilter<"Employee"> | string
-    branchId?: StringFilter<"Employee"> | string
+    branchCode?: StringFilter<"Employee"> | string
+    phoneNumber?: StringFilter<"Employee"> | string
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
     branchEmployees?: BranchEmployeeListRelationFilter
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
@@ -19434,7 +19452,8 @@ export namespace Prisma {
     name?: SortOrder
     workingLocation?: SortOrder
     designation?: SortOrder
-    branchId?: SortOrder
+    branchCode?: SortOrder
+    phoneNumber?: SortOrder
     addressId?: SortOrderInput | SortOrder
     _count?: EmployeeCountOrderByAggregateInput
     _max?: EmployeeMaxOrderByAggregateInput
@@ -19450,7 +19469,8 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Employee"> | string
     workingLocation?: StringWithAggregatesFilter<"Employee"> | string
     designation?: StringWithAggregatesFilter<"Employee"> | string
-    branchId?: StringWithAggregatesFilter<"Employee"> | string
+    branchCode?: StringWithAggregatesFilter<"Employee"> | string
+    phoneNumber?: StringWithAggregatesFilter<"Employee"> | string
     addressId?: StringNullableWithAggregatesFilter<"Employee"> | string | null
   }
 
@@ -20213,6 +20233,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
+    phoneNumber: string
     capacity: number
     nid: string
     branch?: BranchCreateNestedOneWithoutFarmerInput
@@ -20229,6 +20250,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
+    phoneNumber: string
     capacity: number
     addressId?: string | null
     nid: string
@@ -20243,6 +20265,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     nid?: StringFieldUpdateOperationsInput | string
     branch?: BranchUpdateOneWithoutFarmerNestedInput
@@ -20259,6 +20282,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     nid?: StringFieldUpdateOperationsInput | string
@@ -20274,6 +20298,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
+    phoneNumber: string
     capacity: number
     addressId?: string | null
     nid: string
@@ -20286,6 +20311,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     nid?: StringFieldUpdateOperationsInput | string
   }
@@ -20298,6 +20324,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     nid?: StringFieldUpdateOperationsInput | string
@@ -20310,7 +20337,6 @@ export namespace Prisma {
     union?: string | null
     thana?: string | null
     upazila: string
-    phoneNumber: string
     city: string
     Farmer?: FarmerCreateNestedOneWithoutAddressInput
     Employee?: EmployeeCreateNestedOneWithoutAddressInput
@@ -20323,7 +20349,6 @@ export namespace Prisma {
     union?: string | null
     thana?: string | null
     upazila: string
-    phoneNumber: string
     city: string
     Farmer?: FarmerUncheckedCreateNestedOneWithoutAddressInput
     Employee?: EmployeeUncheckedCreateNestedOneWithoutAddressInput
@@ -20336,7 +20361,6 @@ export namespace Prisma {
     union?: NullableStringFieldUpdateOperationsInput | string | null
     thana?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     Farmer?: FarmerUpdateOneWithoutAddressNestedInput
     Employee?: EmployeeUpdateOneWithoutAddressNestedInput
@@ -20349,7 +20373,6 @@ export namespace Prisma {
     union?: NullableStringFieldUpdateOperationsInput | string | null
     thana?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     Farmer?: FarmerUncheckedUpdateOneWithoutAddressNestedInput
     Employee?: EmployeeUncheckedUpdateOneWithoutAddressNestedInput
@@ -20362,7 +20385,6 @@ export namespace Prisma {
     union?: string | null
     thana?: string | null
     upazila: string
-    phoneNumber: string
     city: string
   }
 
@@ -20373,7 +20395,6 @@ export namespace Prisma {
     union?: NullableStringFieldUpdateOperationsInput | string | null
     thana?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
   }
 
@@ -20384,7 +20405,6 @@ export namespace Prisma {
     union?: NullableStringFieldUpdateOperationsInput | string | null
     thana?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
   }
 
@@ -20434,6 +20454,7 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
+    phoneNumber: string
     branch: BranchCreateNestedOneWithoutEmployeesInput
     branchEmployees?: BranchEmployeeCreateNestedManyWithoutEmployeeInput
     address?: AddressCreateNestedOneWithoutEmployeeInput
@@ -20446,7 +20467,8 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branchId: string
+    branchCode: string
+    phoneNumber: string
     addressId?: string | null
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutEmployeeInput
     flocks?: FlockUncheckedCreateNestedManyWithoutEmployeeInput
@@ -20458,6 +20480,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     branch?: BranchUpdateOneRequiredWithoutEmployeesNestedInput
     branchEmployees?: BranchEmployeeUpdateManyWithoutEmployeeNestedInput
     address?: AddressUpdateOneWithoutEmployeeNestedInput
@@ -20470,7 +20493,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branchId?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutEmployeeNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -20482,7 +20506,8 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branchId: string
+    branchCode: string
+    phoneNumber: string
     addressId?: string | null
   }
 
@@ -20492,6 +20517,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
   }
 
   export type EmployeeUncheckedUpdateManyInput = {
@@ -20500,7 +20526,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branchId?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -21395,6 +21422,7 @@ export namespace Prisma {
     farmType?: SortOrder
     totalShed?: SortOrder
     totalSquare?: SortOrder
+    phoneNumber?: SortOrder
     capacity?: SortOrder
     addressId?: SortOrder
     nid?: SortOrder
@@ -21415,6 +21443,7 @@ export namespace Prisma {
     farmType?: SortOrder
     totalShed?: SortOrder
     totalSquare?: SortOrder
+    phoneNumber?: SortOrder
     capacity?: SortOrder
     addressId?: SortOrder
     nid?: SortOrder
@@ -21428,6 +21457,7 @@ export namespace Prisma {
     farmType?: SortOrder
     totalShed?: SortOrder
     totalSquare?: SortOrder
+    phoneNumber?: SortOrder
     capacity?: SortOrder
     addressId?: SortOrder
     nid?: SortOrder
@@ -21501,7 +21531,6 @@ export namespace Prisma {
     union?: SortOrder
     thana?: SortOrder
     upazila?: SortOrder
-    phoneNumber?: SortOrder
     city?: SortOrder
   }
 
@@ -21512,7 +21541,6 @@ export namespace Prisma {
     union?: SortOrder
     thana?: SortOrder
     upazila?: SortOrder
-    phoneNumber?: SortOrder
     city?: SortOrder
   }
 
@@ -21523,7 +21551,6 @@ export namespace Prisma {
     union?: SortOrder
     thana?: SortOrder
     upazila?: SortOrder
-    phoneNumber?: SortOrder
     city?: SortOrder
   }
 
@@ -21535,6 +21562,11 @@ export namespace Prisma {
   export type EmployeeScalarRelationFilter = {
     is?: EmployeeWhereInput
     isNot?: EmployeeWhereInput
+  }
+
+  export type BranchEmployeeEmployeeIdBranchCodeCompoundUniqueInput = {
+    employeeId: string
+    branchCode: string
   }
 
   export type BranchEmployeeCountOrderByAggregateInput = {
@@ -21561,7 +21593,8 @@ export namespace Prisma {
     name?: SortOrder
     workingLocation?: SortOrder
     designation?: SortOrder
-    branchId?: SortOrder
+    branchCode?: SortOrder
+    phoneNumber?: SortOrder
     addressId?: SortOrder
   }
 
@@ -21571,7 +21604,8 @@ export namespace Prisma {
     name?: SortOrder
     workingLocation?: SortOrder
     designation?: SortOrder
-    branchId?: SortOrder
+    branchCode?: SortOrder
+    phoneNumber?: SortOrder
     addressId?: SortOrder
   }
 
@@ -21581,7 +21615,8 @@ export namespace Prisma {
     name?: SortOrder
     workingLocation?: SortOrder
     designation?: SortOrder
-    branchId?: SortOrder
+    branchCode?: SortOrder
+    phoneNumber?: SortOrder
     addressId?: SortOrder
   }
 
@@ -23788,6 +23823,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
+    phoneNumber: string
     capacity: number
     nid: string
     address?: AddressCreateNestedOneWithoutFarmerInput
@@ -23802,6 +23838,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
+    phoneNumber: string
     capacity: number
     addressId?: string | null
     nid: string
@@ -23825,6 +23862,7 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
+    phoneNumber: string
     branchEmployees?: BranchEmployeeCreateNestedManyWithoutEmployeeInput
     address?: AddressCreateNestedOneWithoutEmployeeInput
     flocks?: FlockCreateNestedManyWithoutEmployeeInput
@@ -23836,6 +23874,7 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
+    phoneNumber: string
     addressId?: string | null
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutEmployeeInput
     flocks?: FlockUncheckedCreateNestedManyWithoutEmployeeInput
@@ -24102,6 +24141,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFilter<"Farmer"> | $Enums.Custtype
     totalShed?: IntFilter<"Farmer"> | number
     totalSquare?: IntFilter<"Farmer"> | number
+    phoneNumber?: StringFilter<"Farmer"> | string
     capacity?: IntFilter<"Farmer"> | number
     addressId?: StringNullableFilter<"Farmer"> | string | null
     nid?: StringFilter<"Farmer"> | string
@@ -24132,7 +24172,8 @@ export namespace Prisma {
     name?: StringFilter<"Employee"> | string
     workingLocation?: StringFilter<"Employee"> | string
     designation?: StringFilter<"Employee"> | string
-    branchId?: StringFilter<"Employee"> | string
+    branchCode?: StringFilter<"Employee"> | string
+    phoneNumber?: StringFilter<"Employee"> | string
     addressId?: StringNullableFilter<"Employee"> | string | null
   }
 
@@ -24392,7 +24433,6 @@ export namespace Prisma {
     union?: string | null
     thana?: string | null
     upazila: string
-    phoneNumber: string
     city: string
     Employee?: EmployeeCreateNestedOneWithoutAddressInput
   }
@@ -24404,7 +24444,6 @@ export namespace Prisma {
     union?: string | null
     thana?: string | null
     upazila: string
-    phoneNumber: string
     city: string
     Employee?: EmployeeUncheckedCreateNestedOneWithoutAddressInput
   }
@@ -24559,7 +24598,6 @@ export namespace Prisma {
     union?: NullableStringFieldUpdateOperationsInput | string | null
     thana?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     Employee?: EmployeeUpdateOneWithoutAddressNestedInput
   }
@@ -24571,7 +24609,6 @@ export namespace Prisma {
     union?: NullableStringFieldUpdateOperationsInput | string | null
     thana?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     Employee?: EmployeeUncheckedUpdateOneWithoutAddressNestedInput
   }
@@ -24615,6 +24652,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
+    phoneNumber: string
     capacity: number
     nid: string
     branch?: BranchCreateNestedOneWithoutFarmerInput
@@ -24630,6 +24668,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
+    phoneNumber: string
     capacity: number
     nid: string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
@@ -24647,6 +24686,7 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
+    phoneNumber: string
     branch: BranchCreateNestedOneWithoutEmployeesInput
     branchEmployees?: BranchEmployeeCreateNestedManyWithoutEmployeeInput
     flocks?: FlockCreateNestedManyWithoutEmployeeInput
@@ -24658,7 +24698,8 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branchId: string
+    branchCode: string
+    phoneNumber: string
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutEmployeeInput
     flocks?: FlockUncheckedCreateNestedManyWithoutEmployeeInput
   }
@@ -24686,6 +24727,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     nid?: StringFieldUpdateOperationsInput | string
     branch?: BranchUpdateOneWithoutFarmerNestedInput
@@ -24701,6 +24743,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     nid?: StringFieldUpdateOperationsInput | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
@@ -24724,6 +24767,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     branch?: BranchUpdateOneRequiredWithoutEmployeesNestedInput
     branchEmployees?: BranchEmployeeUpdateManyWithoutEmployeeNestedInput
     flocks?: FlockUpdateManyWithoutEmployeeNestedInput
@@ -24735,7 +24779,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branchId?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutEmployeeNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutEmployeeNestedInput
   }
@@ -24781,6 +24826,7 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
+    phoneNumber: string
     branch: BranchCreateNestedOneWithoutEmployeesInput
     address?: AddressCreateNestedOneWithoutEmployeeInput
     flocks?: FlockCreateNestedManyWithoutEmployeeInput
@@ -24792,7 +24838,8 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branchId: string
+    branchCode: string
+    phoneNumber: string
     addressId?: string | null
     flocks?: FlockUncheckedCreateNestedManyWithoutEmployeeInput
   }
@@ -24860,6 +24907,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     branch?: BranchUpdateOneRequiredWithoutEmployeesNestedInput
     address?: AddressUpdateOneWithoutEmployeeNestedInput
     flocks?: FlockUpdateManyWithoutEmployeeNestedInput
@@ -24871,7 +24919,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branchId?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     flocks?: FlockUncheckedUpdateManyWithoutEmployeeNestedInput
   }
@@ -24938,7 +24987,6 @@ export namespace Prisma {
     union?: string | null
     thana?: string | null
     upazila: string
-    phoneNumber: string
     city: string
     Farmer?: FarmerCreateNestedOneWithoutAddressInput
   }
@@ -24950,7 +24998,6 @@ export namespace Prisma {
     union?: string | null
     thana?: string | null
     upazila: string
-    phoneNumber: string
     city: string
     Farmer?: FarmerUncheckedCreateNestedOneWithoutAddressInput
   }
@@ -25085,7 +25132,6 @@ export namespace Prisma {
     union?: NullableStringFieldUpdateOperationsInput | string | null
     thana?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     Farmer?: FarmerUpdateOneWithoutAddressNestedInput
   }
@@ -25097,7 +25143,6 @@ export namespace Prisma {
     union?: NullableStringFieldUpdateOperationsInput | string | null
     thana?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     Farmer?: FarmerUncheckedUpdateOneWithoutAddressNestedInput
   }
@@ -25125,6 +25170,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
+    phoneNumber: string
     capacity: number
     nid: string
     branch?: BranchCreateNestedOneWithoutFarmerInput
@@ -25140,6 +25186,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
+    phoneNumber: string
     capacity: number
     addressId?: string | null
     nid: string
@@ -25157,6 +25204,7 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
+    phoneNumber: string
     branch: BranchCreateNestedOneWithoutEmployeesInput
     branchEmployees?: BranchEmployeeCreateNestedManyWithoutEmployeeInput
     address?: AddressCreateNestedOneWithoutEmployeeInput
@@ -25168,7 +25216,8 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
-    branchId: string
+    branchCode: string
+    phoneNumber: string
     addressId?: string | null
     branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutEmployeeInput
   }
@@ -25299,6 +25348,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     nid?: StringFieldUpdateOperationsInput | string
     branch?: BranchUpdateOneWithoutFarmerNestedInput
@@ -25314,6 +25364,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     nid?: StringFieldUpdateOperationsInput | string
@@ -25337,6 +25388,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     branch?: BranchUpdateOneRequiredWithoutEmployeesNestedInput
     branchEmployees?: BranchEmployeeUpdateManyWithoutEmployeeNestedInput
     address?: AddressUpdateOneWithoutEmployeeNestedInput
@@ -25348,7 +25400,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
-    branchId?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutEmployeeNestedInput
   }
@@ -26291,6 +26344,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
+    phoneNumber: string
     capacity: number
     nid: string
     branch?: BranchCreateNestedOneWithoutFarmerInput
@@ -26306,6 +26360,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
+    phoneNumber: string
     capacity: number
     addressId?: string | null
     nid: string
@@ -26459,6 +26514,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     nid?: StringFieldUpdateOperationsInput | string
     branch?: BranchUpdateOneWithoutFarmerNestedInput
@@ -26474,6 +26530,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     nid?: StringFieldUpdateOperationsInput | string
@@ -26743,6 +26800,7 @@ export namespace Prisma {
     farmType: $Enums.Custtype
     totalShed: number
     totalSquare: number
+    phoneNumber: string
     capacity: number
     addressId?: string | null
     nid: string
@@ -26754,6 +26812,7 @@ export namespace Prisma {
     name: string
     workingLocation: string
     designation: string
+    phoneNumber: string
     addressId?: string | null
   }
 
@@ -26838,6 +26897,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     nid?: StringFieldUpdateOperationsInput | string
     address?: AddressUpdateOneWithoutFarmerNestedInput
@@ -26852,6 +26912,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     nid?: StringFieldUpdateOperationsInput | string
@@ -26866,6 +26927,7 @@ export namespace Prisma {
     farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
     totalShed?: IntFieldUpdateOperationsInput | number
     totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     nid?: StringFieldUpdateOperationsInput | string
@@ -26877,6 +26939,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     branchEmployees?: BranchEmployeeUpdateManyWithoutEmployeeNestedInput
     address?: AddressUpdateOneWithoutEmployeeNestedInput
     flocks?: FlockUpdateManyWithoutEmployeeNestedInput
@@ -26888,6 +26951,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutEmployeeNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -26899,6 +26963,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     workingLocation?: StringFieldUpdateOperationsInput | string
     designation?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 

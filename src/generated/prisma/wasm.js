@@ -135,6 +135,7 @@ exports.Prisma.FarmerScalarFieldEnum = {
   farmType: 'farmType',
   totalShed: 'totalShed',
   totalSquare: 'totalSquare',
+  phoneNumber: 'phoneNumber',
   capacity: 'capacity',
   addressId: 'addressId',
   nid: 'nid'
@@ -147,7 +148,6 @@ exports.Prisma.AddressScalarFieldEnum = {
   union: 'union',
   thana: 'thana',
   upazila: 'upazila',
-  phoneNumber: 'phoneNumber',
   city: 'city'
 };
 
@@ -163,7 +163,8 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   name: 'name',
   workingLocation: 'workingLocation',
   designation: 'designation',
-  branchId: 'branchId',
+  branchCode: 'branchCode',
+  phoneNumber: 'phoneNumber',
   addressId: 'addressId'
 };
 

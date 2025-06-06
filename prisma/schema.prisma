@@ -55,12 +55,13 @@ model Branch {
 model Farmer {
   id           String         @id @default(uuid())
   branchCode   String?
-  farmCode     Int            @unique
+  farmCode     Int
   branch       Branch?        @relation(fields: [branchCode], references: [branchCode])
   name         String
   farmType     Custtype
   totalShed    Int
   totalSquare  Int
+  phoneNumber  String
   capacity     Int
   addressId    String?        @unique
   nid          String
@@ -69,20 +70,20 @@ model Farmer {
   SellMedicine SellMedicine[]
 
   @@unique([branchCode, farmCode])
+  @@index([farmCode])
   @@map("farmer")
 }
 
 model Address {
-  id          String    @id @default(uuid())
-  village     String
-  post        String
-  union       String?
-  thana       String?
-  upazila     String
-  phoneNumber String
-  city        String
-  Farmer      Farmer?
-  Employee    Employee?
+  id       String    @id @default(uuid())
+  village  String
+  post     String
+  union    String?
+  thana    String?
+  upazila  String
+  city     String
+  Farmer   Farmer?
+  Employee Employee?
 
   @@map("address")
 }
@@ -94,6 +95,7 @@ model BranchEmployee {
   branch     Branch   @relation(fields: [branchCode], references: [branchCode])
   employee   Employee @relation(fields: [employeeId], references: [employeeId])
 
+  @@unique([employeeId, branchCode])
   @@map("branchEmployee")
 }
 
@@ -103,9 +105,10 @@ model Employee {
   name            String
   workingLocation String
   designation     String
-  branchId        String
+  branchCode      String
+  phoneNumber     String
   addressId       String?          @unique
-  branch          Branch           @relation(fields: [branchId], references: [id])
+  branch          Branch           @relation(fields: [branchCode], references: [branchCode])
   branchEmployees BranchEmployee[]
   address         Address?         @relation(fields: [addressId], references: [id])
   flocks          Flock[]

@@ -13,7 +13,7 @@ const createFarm = catchAsync(async (req, res) => {
 });
 
 const getFarmer = catchAsync(async (req, res) => {
-  const farmer = await farmService.getFarmer();
+  const farmer = await farmService.getFarmer(req.query);
   res.status(httpStatus.OK).json({
     success: true,
     message: "farmer retive successfully",
