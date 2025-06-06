@@ -48,6 +48,7 @@ model Branch {
   MedicinePurchess MedicinePurchess[]
   SellMedicine     SellMedicine[]
   MedicineTransfer MedicineTransfer[]
+  FlockReport      FlockReport[]
 
   @@map("branch")
 }
@@ -68,6 +69,7 @@ model Farmer {
   address      Address?       @relation(fields: [addressId], references: [id])
   flocks       Flock[]
   SellMedicine SellMedicine[]
+  FlockReport  FlockReport[]
 
   @@unique([branchCode, farmCode])
   @@index([farmCode])
@@ -138,8 +140,34 @@ model Flock {
   branch           Branch             @relation(fields: [branchCode], references: [branchCode])
   SellMedicine     SellMedicine[]
   MedicineTransfer MedicineTransfer[]
+  FlockReport      FlockReport[]
 
   @@map("flock")
+}
+
+model FlockReport {
+  id               String   @id @default(uuid())
+  fcr              Float
+  executiveId      String
+  mortality        Int
+  mortalityPercent Float
+  bodyWeight       Float
+  feedStock        Int
+  diseases         String
+  condition        String
+  description      String
+  age              Int
+  imagesOne        String?
+  imageTwo         String?
+  imageThree       String?
+  visitedDate      DateTime @default(now())
+  locationLink     String
+  farmId           String
+  flockId          String
+  branchCode       String
+  branch           Branch   @relation(fields: [branchCode], references: [branchCode])
+  flock            Flock    @relation(fields: [flockId], references: [id])
+  farmer           Farmer   @relation(fields: [farmId], references: [id])
 }
 
 model FeedNameCategory {
