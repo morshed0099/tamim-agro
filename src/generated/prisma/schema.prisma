@@ -95,7 +95,6 @@ model BranchEmployee {
   branch     Branch   @relation(fields: [branchCode], references: [branchCode])
   employee   Employee @relation(fields: [employeeId], references: [employeeId])
 
-  @@unique([employeeId, branchCode])
   @@map("branchEmployee")
 }
 
@@ -108,11 +107,12 @@ model Employee {
   branchCode      String
   phoneNumber     String
   addressId       String?          @unique
-  branch          Branch           @relation(fields: [branchCode], references: [id])
+  branch          Branch           @relation(fields: [branchCode], references: [branchCode])
   branchEmployees BranchEmployee[]
   address         Address?         @relation(fields: [addressId], references: [id])
   flocks          Flock[]
 
+  @@unique([employeeId, branchCode])
   @@map("employee")
 }
 

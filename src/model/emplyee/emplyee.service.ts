@@ -1,6 +1,5 @@
 import { Prisma } from "../../generated/prisma";
 import prismaClient from "../../helper/prismaClient";
-import { EmployeeType } from "../../type";
 
 const createEmployee = async (payload: any) => {
   const result = await prismaClient.$transaction(async (tncClient) => {
@@ -60,6 +59,9 @@ const getEmployee = async (params: any) => {
   const whereCondition: Prisma.EmployeeWhereInput = { AND: andCondition };
   const result = await prismaClient.employee.findMany({
     where: whereCondition,
+    include: {
+      flocks: true,
+    },
   });
   return result;
 };

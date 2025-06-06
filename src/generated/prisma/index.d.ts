@@ -19367,7 +19367,6 @@ export namespace Prisma {
 
   export type BranchEmployeeWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    employeeId_branchCode?: BranchEmployeeEmployeeIdBranchCodeCompoundUniqueInput
     AND?: BranchEmployeeWhereInput | BranchEmployeeWhereInput[]
     OR?: BranchEmployeeWhereInput[]
     NOT?: BranchEmployeeWhereInput | BranchEmployeeWhereInput[]
@@ -19375,7 +19374,7 @@ export namespace Prisma {
     branchCode?: StringFilter<"BranchEmployee"> | string
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
-  }, "id" | "employeeId_branchCode">
+  }, "id">
 
   export type BranchEmployeeOrderByWithAggregationInput = {
     id?: SortOrder
@@ -19432,6 +19431,7 @@ export namespace Prisma {
     id?: string
     employeeId?: string
     addressId?: string
+    employeeId_branchCode?: EmployeeEmployeeIdBranchCodeCompoundUniqueInput
     AND?: EmployeeWhereInput | EmployeeWhereInput[]
     OR?: EmployeeWhereInput[]
     NOT?: EmployeeWhereInput | EmployeeWhereInput[]
@@ -19444,7 +19444,7 @@ export namespace Prisma {
     branchEmployees?: BranchEmployeeListRelationFilter
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     flocks?: FlockListRelationFilter
-  }, "id" | "employeeId" | "addressId">
+  }, "id" | "employeeId" | "addressId" | "employeeId_branchCode">
 
   export type EmployeeOrderByWithAggregationInput = {
     id?: SortOrder
@@ -21564,11 +21564,6 @@ export namespace Prisma {
     isNot?: EmployeeWhereInput
   }
 
-  export type BranchEmployeeEmployeeIdBranchCodeCompoundUniqueInput = {
-    employeeId: string
-    branchCode: string
-  }
-
   export type BranchEmployeeCountOrderByAggregateInput = {
     id?: SortOrder
     employeeId?: SortOrder
@@ -21585,6 +21580,11 @@ export namespace Prisma {
     id?: SortOrder
     employeeId?: SortOrder
     branchCode?: SortOrder
+  }
+
+  export type EmployeeEmployeeIdBranchCodeCompoundUniqueInput = {
+    employeeId: string
+    branchCode: string
   }
 
   export type EmployeeCountOrderByAggregateInput = {
