@@ -187,6 +187,28 @@ exports.Prisma.FlockScalarFieldEnum = {
   mortality: 'mortality'
 };
 
+exports.Prisma.FlockReportScalarFieldEnum = {
+  id: 'id',
+  fcr: 'fcr',
+  executiveId: 'executiveId',
+  mortality: 'mortality',
+  mortalityPercent: 'mortalityPercent',
+  bodyWeight: 'bodyWeight',
+  feedStock: 'feedStock',
+  diseases: 'diseases',
+  condition: 'condition',
+  description: 'description',
+  age: 'age',
+  imagesOne: 'imagesOne',
+  imageTwo: 'imageTwo',
+  imageThree: 'imageThree',
+  visitedDate: 'visitedDate',
+  locationLink: 'locationLink',
+  farmId: 'farmId',
+  flockId: 'flockId',
+  branchCode: 'branchCode'
+};
+
 exports.Prisma.FeedNameCategoryScalarFieldEnum = {
   id: 'id',
   feedName: 'feedName',
@@ -305,6 +327,7 @@ exports.Prisma.ModelName = {
   BranchEmployee: 'BranchEmployee',
   Employee: 'Employee',
   Flock: 'Flock',
+  FlockReport: 'FlockReport',
   FeedNameCategory: 'FeedNameCategory',
   Feed: 'Feed',
   MedicineNameCategory: 'MedicineNameCategory',

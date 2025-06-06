@@ -44,6 +44,11 @@ export type Employee = $Result.DefaultSelection<Prisma.$EmployeePayload>
  */
 export type Flock = $Result.DefaultSelection<Prisma.$FlockPayload>
 /**
+ * Model FlockReport
+ * 
+ */
+export type FlockReport = $Result.DefaultSelection<Prisma.$FlockReportPayload>
+/**
  * Model FeedNameCategory
  * 
  */
@@ -324,6 +329,16 @@ export class PrismaClient<
     * ```
     */
   get flock(): Prisma.FlockDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.flockReport`: Exposes CRUD operations for the **FlockReport** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FlockReports
+    * const flockReports = await prisma.flockReport.findMany()
+    * ```
+    */
+  get flockReport(): Prisma.FlockReportDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.feedNameCategory`: Exposes CRUD operations for the **FeedNameCategory** model.
@@ -850,6 +865,7 @@ export namespace Prisma {
     BranchEmployee: 'BranchEmployee',
     Employee: 'Employee',
     Flock: 'Flock',
+    FlockReport: 'FlockReport',
     FeedNameCategory: 'FeedNameCategory',
     Feed: 'Feed',
     MedicineNameCategory: 'MedicineNameCategory',
@@ -876,7 +892,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "branch" | "farmer" | "address" | "branchEmployee" | "employee" | "flock" | "feedNameCategory" | "feed" | "medicineNameCategory" | "medicineNameAdd" | "medicinePurchess" | "medicineStock" | "sellMedicine" | "medicineTransfer"
+      modelProps: "branch" | "farmer" | "address" | "branchEmployee" | "employee" | "flock" | "flockReport" | "feedNameCategory" | "feed" | "medicineNameCategory" | "medicineNameAdd" | "medicinePurchess" | "medicineStock" | "sellMedicine" | "medicineTransfer"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1321,6 +1337,80 @@ export namespace Prisma {
           count: {
             args: Prisma.FlockCountArgs<ExtArgs>
             result: $Utils.Optional<FlockCountAggregateOutputType> | number
+          }
+        }
+      }
+      FlockReport: {
+        payload: Prisma.$FlockReportPayload<ExtArgs>
+        fields: Prisma.FlockReportFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FlockReportFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlockReportPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FlockReportFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlockReportPayload>
+          }
+          findFirst: {
+            args: Prisma.FlockReportFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlockReportPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FlockReportFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlockReportPayload>
+          }
+          findMany: {
+            args: Prisma.FlockReportFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlockReportPayload>[]
+          }
+          create: {
+            args: Prisma.FlockReportCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlockReportPayload>
+          }
+          createMany: {
+            args: Prisma.FlockReportCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FlockReportCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlockReportPayload>[]
+          }
+          delete: {
+            args: Prisma.FlockReportDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlockReportPayload>
+          }
+          update: {
+            args: Prisma.FlockReportUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlockReportPayload>
+          }
+          deleteMany: {
+            args: Prisma.FlockReportDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FlockReportUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FlockReportUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlockReportPayload>[]
+          }
+          upsert: {
+            args: Prisma.FlockReportUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FlockReportPayload>
+          }
+          aggregate: {
+            args: Prisma.FlockReportAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFlockReport>
+          }
+          groupBy: {
+            args: Prisma.FlockReportGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FlockReportGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FlockReportCountArgs<ExtArgs>
+            result: $Utils.Optional<FlockReportCountAggregateOutputType> | number
           }
         }
       }
@@ -2006,6 +2096,7 @@ export namespace Prisma {
     branchEmployee?: BranchEmployeeOmit
     employee?: EmployeeOmit
     flock?: FlockOmit
+    flockReport?: FlockReportOmit
     feedNameCategory?: FeedNameCategoryOmit
     feed?: FeedOmit
     medicineNameCategory?: MedicineNameCategoryOmit
@@ -2117,6 +2208,7 @@ export namespace Prisma {
     MedicinePurchess: number
     SellMedicine: number
     MedicineTransfer: number
+    FlockReport: number
   }
 
   export type BranchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2129,6 +2221,7 @@ export namespace Prisma {
     MedicinePurchess?: boolean | BranchCountOutputTypeCountMedicinePurchessArgs
     SellMedicine?: boolean | BranchCountOutputTypeCountSellMedicineArgs
     MedicineTransfer?: boolean | BranchCountOutputTypeCountMedicineTransferArgs
+    FlockReport?: boolean | BranchCountOutputTypeCountFlockReportArgs
   }
 
   // Custom InputTypes
@@ -2205,6 +2298,13 @@ export namespace Prisma {
     where?: MedicineTransferWhereInput
   }
 
+  /**
+   * BranchCountOutputType without action
+   */
+  export type BranchCountOutputTypeCountFlockReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FlockReportWhereInput
+  }
+
 
   /**
    * Count Type FarmerCountOutputType
@@ -2213,11 +2313,13 @@ export namespace Prisma {
   export type FarmerCountOutputType = {
     flocks: number
     SellMedicine: number
+    FlockReport: number
   }
 
   export type FarmerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     flocks?: boolean | FarmerCountOutputTypeCountFlocksArgs
     SellMedicine?: boolean | FarmerCountOutputTypeCountSellMedicineArgs
+    FlockReport?: boolean | FarmerCountOutputTypeCountFlockReportArgs
   }
 
   // Custom InputTypes
@@ -2243,6 +2345,13 @@ export namespace Prisma {
    */
   export type FarmerCountOutputTypeCountSellMedicineArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SellMedicineWhereInput
+  }
+
+  /**
+   * FarmerCountOutputType without action
+   */
+  export type FarmerCountOutputTypeCountFlockReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FlockReportWhereInput
   }
 
 
@@ -2293,11 +2402,13 @@ export namespace Prisma {
   export type FlockCountOutputType = {
     SellMedicine: number
     MedicineTransfer: number
+    FlockReport: number
   }
 
   export type FlockCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     SellMedicine?: boolean | FlockCountOutputTypeCountSellMedicineArgs
     MedicineTransfer?: boolean | FlockCountOutputTypeCountMedicineTransferArgs
+    FlockReport?: boolean | FlockCountOutputTypeCountFlockReportArgs
   }
 
   // Custom InputTypes
@@ -2323,6 +2434,13 @@ export namespace Prisma {
    */
   export type FlockCountOutputTypeCountMedicineTransferArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MedicineTransferWhereInput
+  }
+
+  /**
+   * FlockCountOutputType without action
+   */
+  export type FlockCountOutputTypeCountFlockReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FlockReportWhereInput
   }
 
 
@@ -2646,6 +2764,7 @@ export namespace Prisma {
     MedicinePurchess?: boolean | Branch$MedicinePurchessArgs<ExtArgs>
     SellMedicine?: boolean | Branch$SellMedicineArgs<ExtArgs>
     MedicineTransfer?: boolean | Branch$MedicineTransferArgs<ExtArgs>
+    FlockReport?: boolean | Branch$FlockReportArgs<ExtArgs>
     _count?: boolean | BranchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["branch"]>
 
@@ -2681,6 +2800,7 @@ export namespace Prisma {
     MedicinePurchess?: boolean | Branch$MedicinePurchessArgs<ExtArgs>
     SellMedicine?: boolean | Branch$SellMedicineArgs<ExtArgs>
     MedicineTransfer?: boolean | Branch$MedicineTransferArgs<ExtArgs>
+    FlockReport?: boolean | Branch$FlockReportArgs<ExtArgs>
     _count?: boolean | BranchCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BranchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2698,6 +2818,7 @@ export namespace Prisma {
       MedicinePurchess: Prisma.$MedicinePurchessPayload<ExtArgs>[]
       SellMedicine: Prisma.$SellMedicinePayload<ExtArgs>[]
       MedicineTransfer: Prisma.$MedicineTransferPayload<ExtArgs>[]
+      FlockReport: Prisma.$FlockReportPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3107,6 +3228,7 @@ export namespace Prisma {
     MedicinePurchess<T extends Branch$MedicinePurchessArgs<ExtArgs> = {}>(args?: Subset<T, Branch$MedicinePurchessArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicinePurchessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     SellMedicine<T extends Branch$SellMedicineArgs<ExtArgs> = {}>(args?: Subset<T, Branch$SellMedicineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     MedicineTransfer<T extends Branch$MedicineTransferArgs<ExtArgs> = {}>(args?: Subset<T, Branch$MedicineTransferArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FlockReport<T extends Branch$FlockReportArgs<ExtArgs> = {}>(args?: Subset<T, Branch$FlockReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3744,6 +3866,30 @@ export namespace Prisma {
   }
 
   /**
+   * Branch.FlockReport
+   */
+  export type Branch$FlockReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportInclude<ExtArgs> | null
+    where?: FlockReportWhereInput
+    orderBy?: FlockReportOrderByWithRelationInput | FlockReportOrderByWithRelationInput[]
+    cursor?: FlockReportWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FlockReportScalarFieldEnum | FlockReportScalarFieldEnum[]
+  }
+
+  /**
    * Branch without action
    */
   export type BranchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4024,6 +4170,7 @@ export namespace Prisma {
     address?: boolean | Farmer$addressArgs<ExtArgs>
     flocks?: boolean | Farmer$flocksArgs<ExtArgs>
     SellMedicine?: boolean | Farmer$SellMedicineArgs<ExtArgs>
+    FlockReport?: boolean | Farmer$FlockReportArgs<ExtArgs>
     _count?: boolean | FarmerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["farmer"]>
 
@@ -4079,6 +4226,7 @@ export namespace Prisma {
     address?: boolean | Farmer$addressArgs<ExtArgs>
     flocks?: boolean | Farmer$flocksArgs<ExtArgs>
     SellMedicine?: boolean | Farmer$SellMedicineArgs<ExtArgs>
+    FlockReport?: boolean | Farmer$FlockReportArgs<ExtArgs>
     _count?: boolean | FarmerCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FarmerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4097,6 +4245,7 @@ export namespace Prisma {
       address: Prisma.$AddressPayload<ExtArgs> | null
       flocks: Prisma.$FlockPayload<ExtArgs>[]
       SellMedicine: Prisma.$SellMedicinePayload<ExtArgs>[]
+      FlockReport: Prisma.$FlockReportPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4508,6 +4657,7 @@ export namespace Prisma {
     address<T extends Farmer$addressArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$addressArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     flocks<T extends Farmer$flocksArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$flocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     SellMedicine<T extends Farmer$SellMedicineArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$SellMedicineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FlockReport<T extends Farmer$FlockReportArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$FlockReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5027,6 +5177,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SellMedicineScalarFieldEnum | SellMedicineScalarFieldEnum[]
+  }
+
+  /**
+   * Farmer.FlockReport
+   */
+  export type Farmer$FlockReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportInclude<ExtArgs> | null
+    where?: FlockReportWhereInput
+    orderBy?: FlockReportOrderByWithRelationInput | FlockReportOrderByWithRelationInput[]
+    cursor?: FlockReportWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FlockReportScalarFieldEnum | FlockReportScalarFieldEnum[]
   }
 
   /**
@@ -8697,6 +8871,7 @@ export namespace Prisma {
     branch?: boolean | BranchDefaultArgs<ExtArgs>
     SellMedicine?: boolean | Flock$SellMedicineArgs<ExtArgs>
     MedicineTransfer?: boolean | Flock$MedicineTransferArgs<ExtArgs>
+    FlockReport?: boolean | Flock$FlockReportArgs<ExtArgs>
     _count?: boolean | FlockCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["flock"]>
 
@@ -8770,6 +8945,7 @@ export namespace Prisma {
     branch?: boolean | BranchDefaultArgs<ExtArgs>
     SellMedicine?: boolean | Flock$SellMedicineArgs<ExtArgs>
     MedicineTransfer?: boolean | Flock$MedicineTransferArgs<ExtArgs>
+    FlockReport?: boolean | Flock$FlockReportArgs<ExtArgs>
     _count?: boolean | FlockCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FlockIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8791,6 +8967,7 @@ export namespace Prisma {
       branch: Prisma.$BranchPayload<ExtArgs>
       SellMedicine: Prisma.$SellMedicinePayload<ExtArgs>[]
       MedicineTransfer: Prisma.$MedicineTransferPayload<ExtArgs>[]
+      FlockReport: Prisma.$FlockReportPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9208,6 +9385,7 @@ export namespace Prisma {
     branch<T extends BranchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BranchDefaultArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     SellMedicine<T extends Flock$SellMedicineArgs<ExtArgs> = {}>(args?: Subset<T, Flock$SellMedicineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     MedicineTransfer<T extends Flock$MedicineTransferArgs<ExtArgs> = {}>(args?: Subset<T, Flock$MedicineTransferArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FlockReport<T extends Flock$FlockReportArgs<ExtArgs> = {}>(args?: Subset<T, Flock$FlockReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9697,6 +9875,30 @@ export namespace Prisma {
   }
 
   /**
+   * Flock.FlockReport
+   */
+  export type Flock$FlockReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportInclude<ExtArgs> | null
+    where?: FlockReportWhereInput
+    orderBy?: FlockReportOrderByWithRelationInput | FlockReportOrderByWithRelationInput[]
+    cursor?: FlockReportWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FlockReportScalarFieldEnum | FlockReportScalarFieldEnum[]
+  }
+
+  /**
    * Flock without action
    */
   export type FlockDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9712,6 +9914,1316 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: FlockInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FlockReport
+   */
+
+  export type AggregateFlockReport = {
+    _count: FlockReportCountAggregateOutputType | null
+    _avg: FlockReportAvgAggregateOutputType | null
+    _sum: FlockReportSumAggregateOutputType | null
+    _min: FlockReportMinAggregateOutputType | null
+    _max: FlockReportMaxAggregateOutputType | null
+  }
+
+  export type FlockReportAvgAggregateOutputType = {
+    fcr: number | null
+    mortality: number | null
+    mortalityPercent: number | null
+    bodyWeight: number | null
+    feedStock: number | null
+    age: number | null
+  }
+
+  export type FlockReportSumAggregateOutputType = {
+    fcr: number | null
+    mortality: number | null
+    mortalityPercent: number | null
+    bodyWeight: number | null
+    feedStock: number | null
+    age: number | null
+  }
+
+  export type FlockReportMinAggregateOutputType = {
+    id: string | null
+    fcr: number | null
+    executiveId: string | null
+    mortality: number | null
+    mortalityPercent: number | null
+    bodyWeight: number | null
+    feedStock: number | null
+    diseases: string | null
+    condition: string | null
+    description: string | null
+    age: number | null
+    imagesOne: string | null
+    imageTwo: string | null
+    imageThree: string | null
+    visitedDate: Date | null
+    locationLink: string | null
+    farmId: string | null
+    flockId: string | null
+    branchCode: string | null
+  }
+
+  export type FlockReportMaxAggregateOutputType = {
+    id: string | null
+    fcr: number | null
+    executiveId: string | null
+    mortality: number | null
+    mortalityPercent: number | null
+    bodyWeight: number | null
+    feedStock: number | null
+    diseases: string | null
+    condition: string | null
+    description: string | null
+    age: number | null
+    imagesOne: string | null
+    imageTwo: string | null
+    imageThree: string | null
+    visitedDate: Date | null
+    locationLink: string | null
+    farmId: string | null
+    flockId: string | null
+    branchCode: string | null
+  }
+
+  export type FlockReportCountAggregateOutputType = {
+    id: number
+    fcr: number
+    executiveId: number
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: number
+    condition: number
+    description: number
+    age: number
+    imagesOne: number
+    imageTwo: number
+    imageThree: number
+    visitedDate: number
+    locationLink: number
+    farmId: number
+    flockId: number
+    branchCode: number
+    _all: number
+  }
+
+
+  export type FlockReportAvgAggregateInputType = {
+    fcr?: true
+    mortality?: true
+    mortalityPercent?: true
+    bodyWeight?: true
+    feedStock?: true
+    age?: true
+  }
+
+  export type FlockReportSumAggregateInputType = {
+    fcr?: true
+    mortality?: true
+    mortalityPercent?: true
+    bodyWeight?: true
+    feedStock?: true
+    age?: true
+  }
+
+  export type FlockReportMinAggregateInputType = {
+    id?: true
+    fcr?: true
+    executiveId?: true
+    mortality?: true
+    mortalityPercent?: true
+    bodyWeight?: true
+    feedStock?: true
+    diseases?: true
+    condition?: true
+    description?: true
+    age?: true
+    imagesOne?: true
+    imageTwo?: true
+    imageThree?: true
+    visitedDate?: true
+    locationLink?: true
+    farmId?: true
+    flockId?: true
+    branchCode?: true
+  }
+
+  export type FlockReportMaxAggregateInputType = {
+    id?: true
+    fcr?: true
+    executiveId?: true
+    mortality?: true
+    mortalityPercent?: true
+    bodyWeight?: true
+    feedStock?: true
+    diseases?: true
+    condition?: true
+    description?: true
+    age?: true
+    imagesOne?: true
+    imageTwo?: true
+    imageThree?: true
+    visitedDate?: true
+    locationLink?: true
+    farmId?: true
+    flockId?: true
+    branchCode?: true
+  }
+
+  export type FlockReportCountAggregateInputType = {
+    id?: true
+    fcr?: true
+    executiveId?: true
+    mortality?: true
+    mortalityPercent?: true
+    bodyWeight?: true
+    feedStock?: true
+    diseases?: true
+    condition?: true
+    description?: true
+    age?: true
+    imagesOne?: true
+    imageTwo?: true
+    imageThree?: true
+    visitedDate?: true
+    locationLink?: true
+    farmId?: true
+    flockId?: true
+    branchCode?: true
+    _all?: true
+  }
+
+  export type FlockReportAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FlockReport to aggregate.
+     */
+    where?: FlockReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlockReports to fetch.
+     */
+    orderBy?: FlockReportOrderByWithRelationInput | FlockReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FlockReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlockReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlockReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FlockReports
+    **/
+    _count?: true | FlockReportCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FlockReportAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FlockReportSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FlockReportMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FlockReportMaxAggregateInputType
+  }
+
+  export type GetFlockReportAggregateType<T extends FlockReportAggregateArgs> = {
+        [P in keyof T & keyof AggregateFlockReport]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFlockReport[P]>
+      : GetScalarType<T[P], AggregateFlockReport[P]>
+  }
+
+
+
+
+  export type FlockReportGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FlockReportWhereInput
+    orderBy?: FlockReportOrderByWithAggregationInput | FlockReportOrderByWithAggregationInput[]
+    by: FlockReportScalarFieldEnum[] | FlockReportScalarFieldEnum
+    having?: FlockReportScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FlockReportCountAggregateInputType | true
+    _avg?: FlockReportAvgAggregateInputType
+    _sum?: FlockReportSumAggregateInputType
+    _min?: FlockReportMinAggregateInputType
+    _max?: FlockReportMaxAggregateInputType
+  }
+
+  export type FlockReportGroupByOutputType = {
+    id: string
+    fcr: number
+    executiveId: string
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: string
+    condition: string
+    description: string
+    age: number
+    imagesOne: string | null
+    imageTwo: string | null
+    imageThree: string | null
+    visitedDate: Date
+    locationLink: string
+    farmId: string
+    flockId: string
+    branchCode: string
+    _count: FlockReportCountAggregateOutputType | null
+    _avg: FlockReportAvgAggregateOutputType | null
+    _sum: FlockReportSumAggregateOutputType | null
+    _min: FlockReportMinAggregateOutputType | null
+    _max: FlockReportMaxAggregateOutputType | null
+  }
+
+  type GetFlockReportGroupByPayload<T extends FlockReportGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FlockReportGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FlockReportGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FlockReportGroupByOutputType[P]>
+            : GetScalarType<T[P], FlockReportGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FlockReportSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fcr?: boolean
+    executiveId?: boolean
+    mortality?: boolean
+    mortalityPercent?: boolean
+    bodyWeight?: boolean
+    feedStock?: boolean
+    diseases?: boolean
+    condition?: boolean
+    description?: boolean
+    age?: boolean
+    imagesOne?: boolean
+    imageTwo?: boolean
+    imageThree?: boolean
+    visitedDate?: boolean
+    locationLink?: boolean
+    farmId?: boolean
+    flockId?: boolean
+    branchCode?: boolean
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["flockReport"]>
+
+  export type FlockReportSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fcr?: boolean
+    executiveId?: boolean
+    mortality?: boolean
+    mortalityPercent?: boolean
+    bodyWeight?: boolean
+    feedStock?: boolean
+    diseases?: boolean
+    condition?: boolean
+    description?: boolean
+    age?: boolean
+    imagesOne?: boolean
+    imageTwo?: boolean
+    imageThree?: boolean
+    visitedDate?: boolean
+    locationLink?: boolean
+    farmId?: boolean
+    flockId?: boolean
+    branchCode?: boolean
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["flockReport"]>
+
+  export type FlockReportSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fcr?: boolean
+    executiveId?: boolean
+    mortality?: boolean
+    mortalityPercent?: boolean
+    bodyWeight?: boolean
+    feedStock?: boolean
+    diseases?: boolean
+    condition?: boolean
+    description?: boolean
+    age?: boolean
+    imagesOne?: boolean
+    imageTwo?: boolean
+    imageThree?: boolean
+    visitedDate?: boolean
+    locationLink?: boolean
+    farmId?: boolean
+    flockId?: boolean
+    branchCode?: boolean
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["flockReport"]>
+
+  export type FlockReportSelectScalar = {
+    id?: boolean
+    fcr?: boolean
+    executiveId?: boolean
+    mortality?: boolean
+    mortalityPercent?: boolean
+    bodyWeight?: boolean
+    feedStock?: boolean
+    diseases?: boolean
+    condition?: boolean
+    description?: boolean
+    age?: boolean
+    imagesOne?: boolean
+    imageTwo?: boolean
+    imageThree?: boolean
+    visitedDate?: boolean
+    locationLink?: boolean
+    farmId?: boolean
+    flockId?: boolean
+    branchCode?: boolean
+  }
+
+  export type FlockReportOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fcr" | "executiveId" | "mortality" | "mortalityPercent" | "bodyWeight" | "feedStock" | "diseases" | "condition" | "description" | "age" | "imagesOne" | "imageTwo" | "imageThree" | "visitedDate" | "locationLink" | "farmId" | "flockId" | "branchCode", ExtArgs["result"]["flockReport"]>
+  export type FlockReportInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+  }
+  export type FlockReportIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+  }
+  export type FlockReportIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+  }
+
+  export type $FlockReportPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FlockReport"
+    objects: {
+      branch: Prisma.$BranchPayload<ExtArgs>
+      flock: Prisma.$FlockPayload<ExtArgs>
+      farmer: Prisma.$FarmerPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      fcr: number
+      executiveId: string
+      mortality: number
+      mortalityPercent: number
+      bodyWeight: number
+      feedStock: number
+      diseases: string
+      condition: string
+      description: string
+      age: number
+      imagesOne: string | null
+      imageTwo: string | null
+      imageThree: string | null
+      visitedDate: Date
+      locationLink: string
+      farmId: string
+      flockId: string
+      branchCode: string
+    }, ExtArgs["result"]["flockReport"]>
+    composites: {}
+  }
+
+  type FlockReportGetPayload<S extends boolean | null | undefined | FlockReportDefaultArgs> = $Result.GetResult<Prisma.$FlockReportPayload, S>
+
+  type FlockReportCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FlockReportFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FlockReportCountAggregateInputType | true
+    }
+
+  export interface FlockReportDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FlockReport'], meta: { name: 'FlockReport' } }
+    /**
+     * Find zero or one FlockReport that matches the filter.
+     * @param {FlockReportFindUniqueArgs} args - Arguments to find a FlockReport
+     * @example
+     * // Get one FlockReport
+     * const flockReport = await prisma.flockReport.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FlockReportFindUniqueArgs>(args: SelectSubset<T, FlockReportFindUniqueArgs<ExtArgs>>): Prisma__FlockReportClient<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FlockReport that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FlockReportFindUniqueOrThrowArgs} args - Arguments to find a FlockReport
+     * @example
+     * // Get one FlockReport
+     * const flockReport = await prisma.flockReport.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FlockReportFindUniqueOrThrowArgs>(args: SelectSubset<T, FlockReportFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FlockReportClient<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FlockReport that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlockReportFindFirstArgs} args - Arguments to find a FlockReport
+     * @example
+     * // Get one FlockReport
+     * const flockReport = await prisma.flockReport.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FlockReportFindFirstArgs>(args?: SelectSubset<T, FlockReportFindFirstArgs<ExtArgs>>): Prisma__FlockReportClient<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FlockReport that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlockReportFindFirstOrThrowArgs} args - Arguments to find a FlockReport
+     * @example
+     * // Get one FlockReport
+     * const flockReport = await prisma.flockReport.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FlockReportFindFirstOrThrowArgs>(args?: SelectSubset<T, FlockReportFindFirstOrThrowArgs<ExtArgs>>): Prisma__FlockReportClient<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FlockReports that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlockReportFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FlockReports
+     * const flockReports = await prisma.flockReport.findMany()
+     * 
+     * // Get first 10 FlockReports
+     * const flockReports = await prisma.flockReport.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const flockReportWithIdOnly = await prisma.flockReport.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FlockReportFindManyArgs>(args?: SelectSubset<T, FlockReportFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FlockReport.
+     * @param {FlockReportCreateArgs} args - Arguments to create a FlockReport.
+     * @example
+     * // Create one FlockReport
+     * const FlockReport = await prisma.flockReport.create({
+     *   data: {
+     *     // ... data to create a FlockReport
+     *   }
+     * })
+     * 
+     */
+    create<T extends FlockReportCreateArgs>(args: SelectSubset<T, FlockReportCreateArgs<ExtArgs>>): Prisma__FlockReportClient<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FlockReports.
+     * @param {FlockReportCreateManyArgs} args - Arguments to create many FlockReports.
+     * @example
+     * // Create many FlockReports
+     * const flockReport = await prisma.flockReport.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FlockReportCreateManyArgs>(args?: SelectSubset<T, FlockReportCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FlockReports and returns the data saved in the database.
+     * @param {FlockReportCreateManyAndReturnArgs} args - Arguments to create many FlockReports.
+     * @example
+     * // Create many FlockReports
+     * const flockReport = await prisma.flockReport.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FlockReports and only return the `id`
+     * const flockReportWithIdOnly = await prisma.flockReport.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FlockReportCreateManyAndReturnArgs>(args?: SelectSubset<T, FlockReportCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FlockReport.
+     * @param {FlockReportDeleteArgs} args - Arguments to delete one FlockReport.
+     * @example
+     * // Delete one FlockReport
+     * const FlockReport = await prisma.flockReport.delete({
+     *   where: {
+     *     // ... filter to delete one FlockReport
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FlockReportDeleteArgs>(args: SelectSubset<T, FlockReportDeleteArgs<ExtArgs>>): Prisma__FlockReportClient<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FlockReport.
+     * @param {FlockReportUpdateArgs} args - Arguments to update one FlockReport.
+     * @example
+     * // Update one FlockReport
+     * const flockReport = await prisma.flockReport.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FlockReportUpdateArgs>(args: SelectSubset<T, FlockReportUpdateArgs<ExtArgs>>): Prisma__FlockReportClient<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FlockReports.
+     * @param {FlockReportDeleteManyArgs} args - Arguments to filter FlockReports to delete.
+     * @example
+     * // Delete a few FlockReports
+     * const { count } = await prisma.flockReport.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FlockReportDeleteManyArgs>(args?: SelectSubset<T, FlockReportDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FlockReports.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlockReportUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FlockReports
+     * const flockReport = await prisma.flockReport.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FlockReportUpdateManyArgs>(args: SelectSubset<T, FlockReportUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FlockReports and returns the data updated in the database.
+     * @param {FlockReportUpdateManyAndReturnArgs} args - Arguments to update many FlockReports.
+     * @example
+     * // Update many FlockReports
+     * const flockReport = await prisma.flockReport.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FlockReports and only return the `id`
+     * const flockReportWithIdOnly = await prisma.flockReport.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FlockReportUpdateManyAndReturnArgs>(args: SelectSubset<T, FlockReportUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FlockReport.
+     * @param {FlockReportUpsertArgs} args - Arguments to update or create a FlockReport.
+     * @example
+     * // Update or create a FlockReport
+     * const flockReport = await prisma.flockReport.upsert({
+     *   create: {
+     *     // ... data to create a FlockReport
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FlockReport we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FlockReportUpsertArgs>(args: SelectSubset<T, FlockReportUpsertArgs<ExtArgs>>): Prisma__FlockReportClient<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FlockReports.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlockReportCountArgs} args - Arguments to filter FlockReports to count.
+     * @example
+     * // Count the number of FlockReports
+     * const count = await prisma.flockReport.count({
+     *   where: {
+     *     // ... the filter for the FlockReports we want to count
+     *   }
+     * })
+    **/
+    count<T extends FlockReportCountArgs>(
+      args?: Subset<T, FlockReportCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FlockReportCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FlockReport.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlockReportAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FlockReportAggregateArgs>(args: Subset<T, FlockReportAggregateArgs>): Prisma.PrismaPromise<GetFlockReportAggregateType<T>>
+
+    /**
+     * Group by FlockReport.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlockReportGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FlockReportGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FlockReportGroupByArgs['orderBy'] }
+        : { orderBy?: FlockReportGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FlockReportGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFlockReportGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FlockReport model
+   */
+  readonly fields: FlockReportFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FlockReport.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FlockReportClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    branch<T extends BranchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BranchDefaultArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    flock<T extends FlockDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FlockDefaultArgs<ExtArgs>>): Prisma__FlockClient<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    farmer<T extends FarmerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FarmerDefaultArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FlockReport model
+   */
+  interface FlockReportFieldRefs {
+    readonly id: FieldRef<"FlockReport", 'String'>
+    readonly fcr: FieldRef<"FlockReport", 'Float'>
+    readonly executiveId: FieldRef<"FlockReport", 'String'>
+    readonly mortality: FieldRef<"FlockReport", 'Int'>
+    readonly mortalityPercent: FieldRef<"FlockReport", 'Float'>
+    readonly bodyWeight: FieldRef<"FlockReport", 'Float'>
+    readonly feedStock: FieldRef<"FlockReport", 'Int'>
+    readonly diseases: FieldRef<"FlockReport", 'String'>
+    readonly condition: FieldRef<"FlockReport", 'String'>
+    readonly description: FieldRef<"FlockReport", 'String'>
+    readonly age: FieldRef<"FlockReport", 'Int'>
+    readonly imagesOne: FieldRef<"FlockReport", 'String'>
+    readonly imageTwo: FieldRef<"FlockReport", 'String'>
+    readonly imageThree: FieldRef<"FlockReport", 'String'>
+    readonly visitedDate: FieldRef<"FlockReport", 'DateTime'>
+    readonly locationLink: FieldRef<"FlockReport", 'String'>
+    readonly farmId: FieldRef<"FlockReport", 'String'>
+    readonly flockId: FieldRef<"FlockReport", 'String'>
+    readonly branchCode: FieldRef<"FlockReport", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FlockReport findUnique
+   */
+  export type FlockReportFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportInclude<ExtArgs> | null
+    /**
+     * Filter, which FlockReport to fetch.
+     */
+    where: FlockReportWhereUniqueInput
+  }
+
+  /**
+   * FlockReport findUniqueOrThrow
+   */
+  export type FlockReportFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportInclude<ExtArgs> | null
+    /**
+     * Filter, which FlockReport to fetch.
+     */
+    where: FlockReportWhereUniqueInput
+  }
+
+  /**
+   * FlockReport findFirst
+   */
+  export type FlockReportFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportInclude<ExtArgs> | null
+    /**
+     * Filter, which FlockReport to fetch.
+     */
+    where?: FlockReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlockReports to fetch.
+     */
+    orderBy?: FlockReportOrderByWithRelationInput | FlockReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FlockReports.
+     */
+    cursor?: FlockReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlockReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlockReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FlockReports.
+     */
+    distinct?: FlockReportScalarFieldEnum | FlockReportScalarFieldEnum[]
+  }
+
+  /**
+   * FlockReport findFirstOrThrow
+   */
+  export type FlockReportFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportInclude<ExtArgs> | null
+    /**
+     * Filter, which FlockReport to fetch.
+     */
+    where?: FlockReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlockReports to fetch.
+     */
+    orderBy?: FlockReportOrderByWithRelationInput | FlockReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FlockReports.
+     */
+    cursor?: FlockReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlockReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlockReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FlockReports.
+     */
+    distinct?: FlockReportScalarFieldEnum | FlockReportScalarFieldEnum[]
+  }
+
+  /**
+   * FlockReport findMany
+   */
+  export type FlockReportFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportInclude<ExtArgs> | null
+    /**
+     * Filter, which FlockReports to fetch.
+     */
+    where?: FlockReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FlockReports to fetch.
+     */
+    orderBy?: FlockReportOrderByWithRelationInput | FlockReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FlockReports.
+     */
+    cursor?: FlockReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FlockReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FlockReports.
+     */
+    skip?: number
+    distinct?: FlockReportScalarFieldEnum | FlockReportScalarFieldEnum[]
+  }
+
+  /**
+   * FlockReport create
+   */
+  export type FlockReportCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FlockReport.
+     */
+    data: XOR<FlockReportCreateInput, FlockReportUncheckedCreateInput>
+  }
+
+  /**
+   * FlockReport createMany
+   */
+  export type FlockReportCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FlockReports.
+     */
+    data: FlockReportCreateManyInput | FlockReportCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FlockReport createManyAndReturn
+   */
+  export type FlockReportCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * The data used to create many FlockReports.
+     */
+    data: FlockReportCreateManyInput | FlockReportCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FlockReport update
+   */
+  export type FlockReportUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FlockReport.
+     */
+    data: XOR<FlockReportUpdateInput, FlockReportUncheckedUpdateInput>
+    /**
+     * Choose, which FlockReport to update.
+     */
+    where: FlockReportWhereUniqueInput
+  }
+
+  /**
+   * FlockReport updateMany
+   */
+  export type FlockReportUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FlockReports.
+     */
+    data: XOR<FlockReportUpdateManyMutationInput, FlockReportUncheckedUpdateManyInput>
+    /**
+     * Filter which FlockReports to update
+     */
+    where?: FlockReportWhereInput
+    /**
+     * Limit how many FlockReports to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FlockReport updateManyAndReturn
+   */
+  export type FlockReportUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * The data used to update FlockReports.
+     */
+    data: XOR<FlockReportUpdateManyMutationInput, FlockReportUncheckedUpdateManyInput>
+    /**
+     * Filter which FlockReports to update
+     */
+    where?: FlockReportWhereInput
+    /**
+     * Limit how many FlockReports to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FlockReport upsert
+   */
+  export type FlockReportUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FlockReport to update in case it exists.
+     */
+    where: FlockReportWhereUniqueInput
+    /**
+     * In case the FlockReport found by the `where` argument doesn't exist, create a new FlockReport with this data.
+     */
+    create: XOR<FlockReportCreateInput, FlockReportUncheckedCreateInput>
+    /**
+     * In case the FlockReport was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FlockReportUpdateInput, FlockReportUncheckedUpdateInput>
+  }
+
+  /**
+   * FlockReport delete
+   */
+  export type FlockReportDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportInclude<ExtArgs> | null
+    /**
+     * Filter which FlockReport to delete.
+     */
+    where: FlockReportWhereUniqueInput
+  }
+
+  /**
+   * FlockReport deleteMany
+   */
+  export type FlockReportDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FlockReports to delete
+     */
+    where?: FlockReportWhereInput
+    /**
+     * Limit how many FlockReports to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FlockReport without action
+   */
+  export type FlockReportDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FlockReport
+     */
+    select?: FlockReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FlockReport
+     */
+    omit?: FlockReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FlockReportInclude<ExtArgs> | null
   }
 
 
@@ -18865,6 +20377,31 @@ export namespace Prisma {
   export type FlockScalarFieldEnum = (typeof FlockScalarFieldEnum)[keyof typeof FlockScalarFieldEnum]
 
 
+  export const FlockReportScalarFieldEnum: {
+    id: 'id',
+    fcr: 'fcr',
+    executiveId: 'executiveId',
+    mortality: 'mortality',
+    mortalityPercent: 'mortalityPercent',
+    bodyWeight: 'bodyWeight',
+    feedStock: 'feedStock',
+    diseases: 'diseases',
+    condition: 'condition',
+    description: 'description',
+    age: 'age',
+    imagesOne: 'imagesOne',
+    imageTwo: 'imageTwo',
+    imageThree: 'imageThree',
+    visitedDate: 'visitedDate',
+    locationLink: 'locationLink',
+    farmId: 'farmId',
+    flockId: 'flockId',
+    branchCode: 'branchCode'
+  };
+
+  export type FlockReportScalarFieldEnum = (typeof FlockReportScalarFieldEnum)[keyof typeof FlockReportScalarFieldEnum]
+
+
   export const FeedNameCategoryScalarFieldEnum: {
     id: 'id',
     feedName: 'feedName',
@@ -19124,6 +20661,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessListRelationFilter
     SellMedicine?: SellMedicineListRelationFilter
     MedicineTransfer?: MedicineTransferListRelationFilter
+    FlockReport?: FlockReportListRelationFilter
   }
 
   export type BranchOrderByWithRelationInput = {
@@ -19140,6 +20678,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessOrderByRelationAggregateInput
     SellMedicine?: SellMedicineOrderByRelationAggregateInput
     MedicineTransfer?: MedicineTransferOrderByRelationAggregateInput
+    FlockReport?: FlockReportOrderByRelationAggregateInput
   }
 
   export type BranchWhereUniqueInput = Prisma.AtLeast<{
@@ -19159,6 +20698,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessListRelationFilter
     SellMedicine?: SellMedicineListRelationFilter
     MedicineTransfer?: MedicineTransferListRelationFilter
+    FlockReport?: FlockReportListRelationFilter
   }, "id" | "locationName" | "branchCode">
 
   export type BranchOrderByWithAggregationInput = {
@@ -19200,6 +20740,7 @@ export namespace Prisma {
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     flocks?: FlockListRelationFilter
     SellMedicine?: SellMedicineListRelationFilter
+    FlockReport?: FlockReportListRelationFilter
   }
 
   export type FarmerOrderByWithRelationInput = {
@@ -19218,6 +20759,7 @@ export namespace Prisma {
     address?: AddressOrderByWithRelationInput
     flocks?: FlockOrderByRelationAggregateInput
     SellMedicine?: SellMedicineOrderByRelationAggregateInput
+    FlockReport?: FlockReportOrderByRelationAggregateInput
   }
 
   export type FarmerWhereUniqueInput = Prisma.AtLeast<{
@@ -19240,6 +20782,7 @@ export namespace Prisma {
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     flocks?: FlockListRelationFilter
     SellMedicine?: SellMedicineListRelationFilter
+    FlockReport?: FlockReportListRelationFilter
   }, "id" | "addressId" | "branchCode_farmCode">
 
   export type FarmerOrderByWithAggregationInput = {
@@ -19499,6 +21042,7 @@ export namespace Prisma {
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
     SellMedicine?: SellMedicineListRelationFilter
     MedicineTransfer?: MedicineTransferListRelationFilter
+    FlockReport?: FlockReportListRelationFilter
   }
 
   export type FlockOrderByWithRelationInput = {
@@ -19523,6 +21067,7 @@ export namespace Prisma {
     branch?: BranchOrderByWithRelationInput
     SellMedicine?: SellMedicineOrderByRelationAggregateInput
     MedicineTransfer?: MedicineTransferOrderByRelationAggregateInput
+    FlockReport?: FlockReportOrderByRelationAggregateInput
   }
 
   export type FlockWhereUniqueInput = Prisma.AtLeast<{
@@ -19550,6 +21095,7 @@ export namespace Prisma {
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
     SellMedicine?: SellMedicineListRelationFilter
     MedicineTransfer?: MedicineTransferListRelationFilter
+    FlockReport?: FlockReportListRelationFilter
   }, "id" | "flockNumber">
 
   export type FlockOrderByWithAggregationInput = {
@@ -19596,6 +21142,139 @@ export namespace Prisma {
     fcr?: FloatWithAggregatesFilter<"Flock"> | number
     totalSellBirds?: IntWithAggregatesFilter<"Flock"> | number
     mortality?: IntWithAggregatesFilter<"Flock"> | number
+  }
+
+  export type FlockReportWhereInput = {
+    AND?: FlockReportWhereInput | FlockReportWhereInput[]
+    OR?: FlockReportWhereInput[]
+    NOT?: FlockReportWhereInput | FlockReportWhereInput[]
+    id?: StringFilter<"FlockReport"> | string
+    fcr?: FloatFilter<"FlockReport"> | number
+    executiveId?: StringFilter<"FlockReport"> | string
+    mortality?: IntFilter<"FlockReport"> | number
+    mortalityPercent?: FloatFilter<"FlockReport"> | number
+    bodyWeight?: FloatFilter<"FlockReport"> | number
+    feedStock?: IntFilter<"FlockReport"> | number
+    diseases?: StringFilter<"FlockReport"> | string
+    condition?: StringFilter<"FlockReport"> | string
+    description?: StringFilter<"FlockReport"> | string
+    age?: IntFilter<"FlockReport"> | number
+    imagesOne?: StringNullableFilter<"FlockReport"> | string | null
+    imageTwo?: StringNullableFilter<"FlockReport"> | string | null
+    imageThree?: StringNullableFilter<"FlockReport"> | string | null
+    visitedDate?: DateTimeFilter<"FlockReport"> | Date | string
+    locationLink?: StringFilter<"FlockReport"> | string
+    farmId?: StringFilter<"FlockReport"> | string
+    flockId?: StringFilter<"FlockReport"> | string
+    branchCode?: StringFilter<"FlockReport"> | string
+    branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+    farmer?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
+  }
+
+  export type FlockReportOrderByWithRelationInput = {
+    id?: SortOrder
+    fcr?: SortOrder
+    executiveId?: SortOrder
+    mortality?: SortOrder
+    mortalityPercent?: SortOrder
+    bodyWeight?: SortOrder
+    feedStock?: SortOrder
+    diseases?: SortOrder
+    condition?: SortOrder
+    description?: SortOrder
+    age?: SortOrder
+    imagesOne?: SortOrderInput | SortOrder
+    imageTwo?: SortOrderInput | SortOrder
+    imageThree?: SortOrderInput | SortOrder
+    visitedDate?: SortOrder
+    locationLink?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    branchCode?: SortOrder
+    branch?: BranchOrderByWithRelationInput
+    flock?: FlockOrderByWithRelationInput
+    farmer?: FarmerOrderByWithRelationInput
+  }
+
+  export type FlockReportWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FlockReportWhereInput | FlockReportWhereInput[]
+    OR?: FlockReportWhereInput[]
+    NOT?: FlockReportWhereInput | FlockReportWhereInput[]
+    fcr?: FloatFilter<"FlockReport"> | number
+    executiveId?: StringFilter<"FlockReport"> | string
+    mortality?: IntFilter<"FlockReport"> | number
+    mortalityPercent?: FloatFilter<"FlockReport"> | number
+    bodyWeight?: FloatFilter<"FlockReport"> | number
+    feedStock?: IntFilter<"FlockReport"> | number
+    diseases?: StringFilter<"FlockReport"> | string
+    condition?: StringFilter<"FlockReport"> | string
+    description?: StringFilter<"FlockReport"> | string
+    age?: IntFilter<"FlockReport"> | number
+    imagesOne?: StringNullableFilter<"FlockReport"> | string | null
+    imageTwo?: StringNullableFilter<"FlockReport"> | string | null
+    imageThree?: StringNullableFilter<"FlockReport"> | string | null
+    visitedDate?: DateTimeFilter<"FlockReport"> | Date | string
+    locationLink?: StringFilter<"FlockReport"> | string
+    farmId?: StringFilter<"FlockReport"> | string
+    flockId?: StringFilter<"FlockReport"> | string
+    branchCode?: StringFilter<"FlockReport"> | string
+    branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+    farmer?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
+  }, "id">
+
+  export type FlockReportOrderByWithAggregationInput = {
+    id?: SortOrder
+    fcr?: SortOrder
+    executiveId?: SortOrder
+    mortality?: SortOrder
+    mortalityPercent?: SortOrder
+    bodyWeight?: SortOrder
+    feedStock?: SortOrder
+    diseases?: SortOrder
+    condition?: SortOrder
+    description?: SortOrder
+    age?: SortOrder
+    imagesOne?: SortOrderInput | SortOrder
+    imageTwo?: SortOrderInput | SortOrder
+    imageThree?: SortOrderInput | SortOrder
+    visitedDate?: SortOrder
+    locationLink?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    branchCode?: SortOrder
+    _count?: FlockReportCountOrderByAggregateInput
+    _avg?: FlockReportAvgOrderByAggregateInput
+    _max?: FlockReportMaxOrderByAggregateInput
+    _min?: FlockReportMinOrderByAggregateInput
+    _sum?: FlockReportSumOrderByAggregateInput
+  }
+
+  export type FlockReportScalarWhereWithAggregatesInput = {
+    AND?: FlockReportScalarWhereWithAggregatesInput | FlockReportScalarWhereWithAggregatesInput[]
+    OR?: FlockReportScalarWhereWithAggregatesInput[]
+    NOT?: FlockReportScalarWhereWithAggregatesInput | FlockReportScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FlockReport"> | string
+    fcr?: FloatWithAggregatesFilter<"FlockReport"> | number
+    executiveId?: StringWithAggregatesFilter<"FlockReport"> | string
+    mortality?: IntWithAggregatesFilter<"FlockReport"> | number
+    mortalityPercent?: FloatWithAggregatesFilter<"FlockReport"> | number
+    bodyWeight?: FloatWithAggregatesFilter<"FlockReport"> | number
+    feedStock?: IntWithAggregatesFilter<"FlockReport"> | number
+    diseases?: StringWithAggregatesFilter<"FlockReport"> | string
+    condition?: StringWithAggregatesFilter<"FlockReport"> | string
+    description?: StringWithAggregatesFilter<"FlockReport"> | string
+    age?: IntWithAggregatesFilter<"FlockReport"> | number
+    imagesOne?: StringNullableWithAggregatesFilter<"FlockReport"> | string | null
+    imageTwo?: StringNullableWithAggregatesFilter<"FlockReport"> | string | null
+    imageThree?: StringNullableWithAggregatesFilter<"FlockReport"> | string | null
+    visitedDate?: DateTimeWithAggregatesFilter<"FlockReport"> | Date | string
+    locationLink?: StringWithAggregatesFilter<"FlockReport"> | string
+    farmId?: StringWithAggregatesFilter<"FlockReport"> | string
+    flockId?: StringWithAggregatesFilter<"FlockReport"> | string
+    branchCode?: StringWithAggregatesFilter<"FlockReport"> | string
   }
 
   export type FeedNameCategoryWhereInput = {
@@ -20155,6 +21834,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateInput = {
@@ -20171,6 +21851,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUpdateInput = {
@@ -20187,6 +21868,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateInput = {
@@ -20203,6 +21885,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchCreateManyInput = {
@@ -20240,6 +21923,7 @@ export namespace Prisma {
     address?: AddressCreateNestedOneWithoutFarmerInput
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+    FlockReport?: FlockReportCreateNestedManyWithoutFarmerInput
   }
 
   export type FarmerUncheckedCreateInput = {
@@ -20256,6 +21940,7 @@ export namespace Prisma {
     nid: string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type FarmerUpdateInput = {
@@ -20272,6 +21957,7 @@ export namespace Prisma {
     address?: AddressUpdateOneWithoutFarmerNestedInput
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
   }
 
   export type FarmerUncheckedUpdateInput = {
@@ -20288,6 +21974,7 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type FarmerCreateManyInput = {
@@ -20550,6 +22237,7 @@ export namespace Prisma {
     branch: BranchCreateNestedOneWithoutFlocksInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
+    FlockReport?: FlockReportCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateInput = {
@@ -20571,6 +22259,7 @@ export namespace Prisma {
     mortality?: number
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUpdateInput = {
@@ -20592,6 +22281,7 @@ export namespace Prisma {
     branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateInput = {
@@ -20613,6 +22303,7 @@ export namespace Prisma {
     mortality?: IntFieldUpdateOperationsInput | number
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockCreateManyInput = {
@@ -20667,6 +22358,157 @@ export namespace Prisma {
     fcr?: FloatFieldUpdateOperationsInput | number
     totalSellBirds?: IntFieldUpdateOperationsInput | number
     mortality?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FlockReportCreateInput = {
+    id?: string
+    fcr: number
+    executiveId: string
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: string
+    condition: string
+    description: string
+    age: number
+    imagesOne?: string | null
+    imageTwo?: string | null
+    imageThree?: string | null
+    visitedDate?: Date | string
+    locationLink: string
+    branch: BranchCreateNestedOneWithoutFlockReportInput
+    flock: FlockCreateNestedOneWithoutFlockReportInput
+    farmer: FarmerCreateNestedOneWithoutFlockReportInput
+  }
+
+  export type FlockReportUncheckedCreateInput = {
+    id?: string
+    fcr: number
+    executiveId: string
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: string
+    condition: string
+    description: string
+    age: number
+    imagesOne?: string | null
+    imageTwo?: string | null
+    imageThree?: string | null
+    visitedDate?: Date | string
+    locationLink: string
+    farmId: string
+    flockId: string
+    branchCode: string
+  }
+
+  export type FlockReportUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fcr?: FloatFieldUpdateOperationsInput | number
+    executiveId?: StringFieldUpdateOperationsInput | string
+    mortality?: IntFieldUpdateOperationsInput | number
+    mortalityPercent?: FloatFieldUpdateOperationsInput | number
+    bodyWeight?: FloatFieldUpdateOperationsInput | number
+    feedStock?: IntFieldUpdateOperationsInput | number
+    diseases?: StringFieldUpdateOperationsInput | string
+    condition?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
+    imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
+    imageThree?: NullableStringFieldUpdateOperationsInput | string | null
+    visitedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationLink?: StringFieldUpdateOperationsInput | string
+    branch?: BranchUpdateOneRequiredWithoutFlockReportNestedInput
+    flock?: FlockUpdateOneRequiredWithoutFlockReportNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutFlockReportNestedInput
+  }
+
+  export type FlockReportUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fcr?: FloatFieldUpdateOperationsInput | number
+    executiveId?: StringFieldUpdateOperationsInput | string
+    mortality?: IntFieldUpdateOperationsInput | number
+    mortalityPercent?: FloatFieldUpdateOperationsInput | number
+    bodyWeight?: FloatFieldUpdateOperationsInput | number
+    feedStock?: IntFieldUpdateOperationsInput | number
+    diseases?: StringFieldUpdateOperationsInput | string
+    condition?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
+    imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
+    imageThree?: NullableStringFieldUpdateOperationsInput | string | null
+    visitedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationLink?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FlockReportCreateManyInput = {
+    id?: string
+    fcr: number
+    executiveId: string
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: string
+    condition: string
+    description: string
+    age: number
+    imagesOne?: string | null
+    imageTwo?: string | null
+    imageThree?: string | null
+    visitedDate?: Date | string
+    locationLink: string
+    farmId: string
+    flockId: string
+    branchCode: string
+  }
+
+  export type FlockReportUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fcr?: FloatFieldUpdateOperationsInput | number
+    executiveId?: StringFieldUpdateOperationsInput | string
+    mortality?: IntFieldUpdateOperationsInput | number
+    mortalityPercent?: FloatFieldUpdateOperationsInput | number
+    bodyWeight?: FloatFieldUpdateOperationsInput | number
+    feedStock?: IntFieldUpdateOperationsInput | number
+    diseases?: StringFieldUpdateOperationsInput | string
+    condition?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
+    imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
+    imageThree?: NullableStringFieldUpdateOperationsInput | string | null
+    visitedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationLink?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FlockReportUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fcr?: FloatFieldUpdateOperationsInput | number
+    executiveId?: StringFieldUpdateOperationsInput | string
+    mortality?: IntFieldUpdateOperationsInput | number
+    mortalityPercent?: FloatFieldUpdateOperationsInput | number
+    bodyWeight?: FloatFieldUpdateOperationsInput | number
+    feedStock?: IntFieldUpdateOperationsInput | number
+    diseases?: StringFieldUpdateOperationsInput | string
+    condition?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
+    imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
+    imageThree?: NullableStringFieldUpdateOperationsInput | string | null
+    visitedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationLink?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
   }
 
   export type FeedNameCategoryCreateInput = {
@@ -21276,6 +23118,12 @@ export namespace Prisma {
     none?: MedicineTransferWhereInput
   }
 
+  export type FlockReportListRelationFilter = {
+    every?: FlockReportWhereInput
+    some?: FlockReportWhereInput
+    none?: FlockReportWhereInput
+  }
+
   export type FarmerOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -21309,6 +23157,10 @@ export namespace Prisma {
   }
 
   export type MedicineTransferOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FlockReportOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -21796,6 +23648,95 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type FlockScalarRelationFilter = {
+    is?: FlockWhereInput
+    isNot?: FlockWhereInput
+  }
+
+  export type FlockReportCountOrderByAggregateInput = {
+    id?: SortOrder
+    fcr?: SortOrder
+    executiveId?: SortOrder
+    mortality?: SortOrder
+    mortalityPercent?: SortOrder
+    bodyWeight?: SortOrder
+    feedStock?: SortOrder
+    diseases?: SortOrder
+    condition?: SortOrder
+    description?: SortOrder
+    age?: SortOrder
+    imagesOne?: SortOrder
+    imageTwo?: SortOrder
+    imageThree?: SortOrder
+    visitedDate?: SortOrder
+    locationLink?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    branchCode?: SortOrder
+  }
+
+  export type FlockReportAvgOrderByAggregateInput = {
+    fcr?: SortOrder
+    mortality?: SortOrder
+    mortalityPercent?: SortOrder
+    bodyWeight?: SortOrder
+    feedStock?: SortOrder
+    age?: SortOrder
+  }
+
+  export type FlockReportMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fcr?: SortOrder
+    executiveId?: SortOrder
+    mortality?: SortOrder
+    mortalityPercent?: SortOrder
+    bodyWeight?: SortOrder
+    feedStock?: SortOrder
+    diseases?: SortOrder
+    condition?: SortOrder
+    description?: SortOrder
+    age?: SortOrder
+    imagesOne?: SortOrder
+    imageTwo?: SortOrder
+    imageThree?: SortOrder
+    visitedDate?: SortOrder
+    locationLink?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    branchCode?: SortOrder
+  }
+
+  export type FlockReportMinOrderByAggregateInput = {
+    id?: SortOrder
+    fcr?: SortOrder
+    executiveId?: SortOrder
+    mortality?: SortOrder
+    mortalityPercent?: SortOrder
+    bodyWeight?: SortOrder
+    feedStock?: SortOrder
+    diseases?: SortOrder
+    condition?: SortOrder
+    description?: SortOrder
+    age?: SortOrder
+    imagesOne?: SortOrder
+    imageTwo?: SortOrder
+    imageThree?: SortOrder
+    visitedDate?: SortOrder
+    locationLink?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    branchCode?: SortOrder
+  }
+
+  export type FlockReportSumOrderByAggregateInput = {
+    fcr?: SortOrder
+    mortality?: SortOrder
+    mortalityPercent?: SortOrder
+    bodyWeight?: SortOrder
+    feedStock?: SortOrder
+    age?: SortOrder
+  }
+
   export type FeedNameCategoryCountOrderByAggregateInput = {
     id?: SortOrder
     feedName?: SortOrder
@@ -22049,11 +23990,6 @@ export namespace Prisma {
     not?: NestedEnumDeliveryStatusFilter<$PrismaModel> | $Enums.DeliveryStatus
   }
 
-  export type FlockScalarRelationFilter = {
-    is?: FlockWhereInput
-    isNot?: FlockWhereInput
-  }
-
   export type SellMedicineCountOrderByAggregateInput = {
     id?: SortOrder
     farmId?: SortOrder
@@ -22219,6 +24155,13 @@ export namespace Prisma {
     connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
   }
 
+  export type FlockReportCreateNestedManyWithoutBranchInput = {
+    create?: XOR<FlockReportCreateWithoutBranchInput, FlockReportUncheckedCreateWithoutBranchInput> | FlockReportCreateWithoutBranchInput[] | FlockReportUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: FlockReportCreateOrConnectWithoutBranchInput | FlockReportCreateOrConnectWithoutBranchInput[]
+    createMany?: FlockReportCreateManyBranchInputEnvelope
+    connect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+  }
+
   export type FarmerUncheckedCreateNestedManyWithoutBranchInput = {
     create?: XOR<FarmerCreateWithoutBranchInput, FarmerUncheckedCreateWithoutBranchInput> | FarmerCreateWithoutBranchInput[] | FarmerUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: FarmerCreateOrConnectWithoutBranchInput | FarmerCreateOrConnectWithoutBranchInput[]
@@ -22280,6 +24223,13 @@ export namespace Prisma {
     connectOrCreate?: MedicineTransferCreateOrConnectWithoutBaranchInput | MedicineTransferCreateOrConnectWithoutBaranchInput[]
     createMany?: MedicineTransferCreateManyBaranchInputEnvelope
     connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+  }
+
+  export type FlockReportUncheckedCreateNestedManyWithoutBranchInput = {
+    create?: XOR<FlockReportCreateWithoutBranchInput, FlockReportUncheckedCreateWithoutBranchInput> | FlockReportCreateWithoutBranchInput[] | FlockReportUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: FlockReportCreateOrConnectWithoutBranchInput | FlockReportCreateOrConnectWithoutBranchInput[]
+    createMany?: FlockReportCreateManyBranchInputEnvelope
+    connect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -22416,6 +24366,20 @@ export namespace Prisma {
     deleteMany?: MedicineTransferScalarWhereInput | MedicineTransferScalarWhereInput[]
   }
 
+  export type FlockReportUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<FlockReportCreateWithoutBranchInput, FlockReportUncheckedCreateWithoutBranchInput> | FlockReportCreateWithoutBranchInput[] | FlockReportUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: FlockReportCreateOrConnectWithoutBranchInput | FlockReportCreateOrConnectWithoutBranchInput[]
+    upsert?: FlockReportUpsertWithWhereUniqueWithoutBranchInput | FlockReportUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: FlockReportCreateManyBranchInputEnvelope
+    set?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    disconnect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    delete?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    connect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    update?: FlockReportUpdateWithWhereUniqueWithoutBranchInput | FlockReportUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: FlockReportUpdateManyWithWhereWithoutBranchInput | FlockReportUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: FlockReportScalarWhereInput | FlockReportScalarWhereInput[]
+  }
+
   export type FarmerUncheckedUpdateManyWithoutBranchNestedInput = {
     create?: XOR<FarmerCreateWithoutBranchInput, FarmerUncheckedCreateWithoutBranchInput> | FarmerCreateWithoutBranchInput[] | FarmerUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: FarmerCreateOrConnectWithoutBranchInput | FarmerCreateOrConnectWithoutBranchInput[]
@@ -22542,6 +24506,20 @@ export namespace Prisma {
     deleteMany?: MedicineTransferScalarWhereInput | MedicineTransferScalarWhereInput[]
   }
 
+  export type FlockReportUncheckedUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<FlockReportCreateWithoutBranchInput, FlockReportUncheckedCreateWithoutBranchInput> | FlockReportCreateWithoutBranchInput[] | FlockReportUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: FlockReportCreateOrConnectWithoutBranchInput | FlockReportCreateOrConnectWithoutBranchInput[]
+    upsert?: FlockReportUpsertWithWhereUniqueWithoutBranchInput | FlockReportUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: FlockReportCreateManyBranchInputEnvelope
+    set?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    disconnect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    delete?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    connect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    update?: FlockReportUpdateWithWhereUniqueWithoutBranchInput | FlockReportUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: FlockReportUpdateManyWithWhereWithoutBranchInput | FlockReportUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: FlockReportScalarWhereInput | FlockReportScalarWhereInput[]
+  }
+
   export type BranchCreateNestedOneWithoutFarmerInput = {
     create?: XOR<BranchCreateWithoutFarmerInput, BranchUncheckedCreateWithoutFarmerInput>
     connectOrCreate?: BranchCreateOrConnectWithoutFarmerInput
@@ -22568,6 +24546,13 @@ export namespace Prisma {
     connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
   }
 
+  export type FlockReportCreateNestedManyWithoutFarmerInput = {
+    create?: XOR<FlockReportCreateWithoutFarmerInput, FlockReportUncheckedCreateWithoutFarmerInput> | FlockReportCreateWithoutFarmerInput[] | FlockReportUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: FlockReportCreateOrConnectWithoutFarmerInput | FlockReportCreateOrConnectWithoutFarmerInput[]
+    createMany?: FlockReportCreateManyFarmerInputEnvelope
+    connect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+  }
+
   export type FlockUncheckedCreateNestedManyWithoutFarmerInput = {
     create?: XOR<FlockCreateWithoutFarmerInput, FlockUncheckedCreateWithoutFarmerInput> | FlockCreateWithoutFarmerInput[] | FlockUncheckedCreateWithoutFarmerInput[]
     connectOrCreate?: FlockCreateOrConnectWithoutFarmerInput | FlockCreateOrConnectWithoutFarmerInput[]
@@ -22580,6 +24565,13 @@ export namespace Prisma {
     connectOrCreate?: SellMedicineCreateOrConnectWithoutFarmerInput | SellMedicineCreateOrConnectWithoutFarmerInput[]
     createMany?: SellMedicineCreateManyFarmerInputEnvelope
     connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+  }
+
+  export type FlockReportUncheckedCreateNestedManyWithoutFarmerInput = {
+    create?: XOR<FlockReportCreateWithoutFarmerInput, FlockReportUncheckedCreateWithoutFarmerInput> | FlockReportCreateWithoutFarmerInput[] | FlockReportUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: FlockReportCreateOrConnectWithoutFarmerInput | FlockReportCreateOrConnectWithoutFarmerInput[]
+    createMany?: FlockReportCreateManyFarmerInputEnvelope
+    connect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -22642,6 +24634,20 @@ export namespace Prisma {
     deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
   }
 
+  export type FlockReportUpdateManyWithoutFarmerNestedInput = {
+    create?: XOR<FlockReportCreateWithoutFarmerInput, FlockReportUncheckedCreateWithoutFarmerInput> | FlockReportCreateWithoutFarmerInput[] | FlockReportUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: FlockReportCreateOrConnectWithoutFarmerInput | FlockReportCreateOrConnectWithoutFarmerInput[]
+    upsert?: FlockReportUpsertWithWhereUniqueWithoutFarmerInput | FlockReportUpsertWithWhereUniqueWithoutFarmerInput[]
+    createMany?: FlockReportCreateManyFarmerInputEnvelope
+    set?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    disconnect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    delete?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    connect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    update?: FlockReportUpdateWithWhereUniqueWithoutFarmerInput | FlockReportUpdateWithWhereUniqueWithoutFarmerInput[]
+    updateMany?: FlockReportUpdateManyWithWhereWithoutFarmerInput | FlockReportUpdateManyWithWhereWithoutFarmerInput[]
+    deleteMany?: FlockReportScalarWhereInput | FlockReportScalarWhereInput[]
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
@@ -22672,6 +24678,20 @@ export namespace Prisma {
     update?: SellMedicineUpdateWithWhereUniqueWithoutFarmerInput | SellMedicineUpdateWithWhereUniqueWithoutFarmerInput[]
     updateMany?: SellMedicineUpdateManyWithWhereWithoutFarmerInput | SellMedicineUpdateManyWithWhereWithoutFarmerInput[]
     deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
+  }
+
+  export type FlockReportUncheckedUpdateManyWithoutFarmerNestedInput = {
+    create?: XOR<FlockReportCreateWithoutFarmerInput, FlockReportUncheckedCreateWithoutFarmerInput> | FlockReportCreateWithoutFarmerInput[] | FlockReportUncheckedCreateWithoutFarmerInput[]
+    connectOrCreate?: FlockReportCreateOrConnectWithoutFarmerInput | FlockReportCreateOrConnectWithoutFarmerInput[]
+    upsert?: FlockReportUpsertWithWhereUniqueWithoutFarmerInput | FlockReportUpsertWithWhereUniqueWithoutFarmerInput[]
+    createMany?: FlockReportCreateManyFarmerInputEnvelope
+    set?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    disconnect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    delete?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    connect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    update?: FlockReportUpdateWithWhereUniqueWithoutFarmerInput | FlockReportUpdateWithWhereUniqueWithoutFarmerInput[]
+    updateMany?: FlockReportUpdateManyWithWhereWithoutFarmerInput | FlockReportUpdateManyWithWhereWithoutFarmerInput[]
+    deleteMany?: FlockReportScalarWhereInput | FlockReportScalarWhereInput[]
   }
 
   export type FarmerCreateNestedOneWithoutAddressInput = {
@@ -22912,6 +24932,13 @@ export namespace Prisma {
     connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
   }
 
+  export type FlockReportCreateNestedManyWithoutFlockInput = {
+    create?: XOR<FlockReportCreateWithoutFlockInput, FlockReportUncheckedCreateWithoutFlockInput> | FlockReportCreateWithoutFlockInput[] | FlockReportUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FlockReportCreateOrConnectWithoutFlockInput | FlockReportCreateOrConnectWithoutFlockInput[]
+    createMany?: FlockReportCreateManyFlockInputEnvelope
+    connect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+  }
+
   export type SellMedicineUncheckedCreateNestedManyWithoutFlockInput = {
     create?: XOR<SellMedicineCreateWithoutFlockInput, SellMedicineUncheckedCreateWithoutFlockInput> | SellMedicineCreateWithoutFlockInput[] | SellMedicineUncheckedCreateWithoutFlockInput[]
     connectOrCreate?: SellMedicineCreateOrConnectWithoutFlockInput | SellMedicineCreateOrConnectWithoutFlockInput[]
@@ -22924,6 +24951,13 @@ export namespace Prisma {
     connectOrCreate?: MedicineTransferCreateOrConnectWithoutFlockInput | MedicineTransferCreateOrConnectWithoutFlockInput[]
     createMany?: MedicineTransferCreateManyFlockInputEnvelope
     connect?: MedicineTransferWhereUniqueInput | MedicineTransferWhereUniqueInput[]
+  }
+
+  export type FlockReportUncheckedCreateNestedManyWithoutFlockInput = {
+    create?: XOR<FlockReportCreateWithoutFlockInput, FlockReportUncheckedCreateWithoutFlockInput> | FlockReportCreateWithoutFlockInput[] | FlockReportUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FlockReportCreateOrConnectWithoutFlockInput | FlockReportCreateOrConnectWithoutFlockInput[]
+    createMany?: FlockReportCreateManyFlockInputEnvelope
+    connect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
   }
 
   export type EnumFlockStatusFieldUpdateOperationsInput = {
@@ -22998,6 +25032,20 @@ export namespace Prisma {
     deleteMany?: MedicineTransferScalarWhereInput | MedicineTransferScalarWhereInput[]
   }
 
+  export type FlockReportUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<FlockReportCreateWithoutFlockInput, FlockReportUncheckedCreateWithoutFlockInput> | FlockReportCreateWithoutFlockInput[] | FlockReportUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FlockReportCreateOrConnectWithoutFlockInput | FlockReportCreateOrConnectWithoutFlockInput[]
+    upsert?: FlockReportUpsertWithWhereUniqueWithoutFlockInput | FlockReportUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: FlockReportCreateManyFlockInputEnvelope
+    set?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    disconnect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    delete?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    connect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    update?: FlockReportUpdateWithWhereUniqueWithoutFlockInput | FlockReportUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: FlockReportUpdateManyWithWhereWithoutFlockInput | FlockReportUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: FlockReportScalarWhereInput | FlockReportScalarWhereInput[]
+  }
+
   export type SellMedicineUncheckedUpdateManyWithoutFlockNestedInput = {
     create?: XOR<SellMedicineCreateWithoutFlockInput, SellMedicineUncheckedCreateWithoutFlockInput> | SellMedicineCreateWithoutFlockInput[] | SellMedicineUncheckedCreateWithoutFlockInput[]
     connectOrCreate?: SellMedicineCreateOrConnectWithoutFlockInput | SellMedicineCreateOrConnectWithoutFlockInput[]
@@ -23024,6 +25072,62 @@ export namespace Prisma {
     update?: MedicineTransferUpdateWithWhereUniqueWithoutFlockInput | MedicineTransferUpdateWithWhereUniqueWithoutFlockInput[]
     updateMany?: MedicineTransferUpdateManyWithWhereWithoutFlockInput | MedicineTransferUpdateManyWithWhereWithoutFlockInput[]
     deleteMany?: MedicineTransferScalarWhereInput | MedicineTransferScalarWhereInput[]
+  }
+
+  export type FlockReportUncheckedUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<FlockReportCreateWithoutFlockInput, FlockReportUncheckedCreateWithoutFlockInput> | FlockReportCreateWithoutFlockInput[] | FlockReportUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FlockReportCreateOrConnectWithoutFlockInput | FlockReportCreateOrConnectWithoutFlockInput[]
+    upsert?: FlockReportUpsertWithWhereUniqueWithoutFlockInput | FlockReportUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: FlockReportCreateManyFlockInputEnvelope
+    set?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    disconnect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    delete?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    connect?: FlockReportWhereUniqueInput | FlockReportWhereUniqueInput[]
+    update?: FlockReportUpdateWithWhereUniqueWithoutFlockInput | FlockReportUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: FlockReportUpdateManyWithWhereWithoutFlockInput | FlockReportUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: FlockReportScalarWhereInput | FlockReportScalarWhereInput[]
+  }
+
+  export type BranchCreateNestedOneWithoutFlockReportInput = {
+    create?: XOR<BranchCreateWithoutFlockReportInput, BranchUncheckedCreateWithoutFlockReportInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutFlockReportInput
+    connect?: BranchWhereUniqueInput
+  }
+
+  export type FlockCreateNestedOneWithoutFlockReportInput = {
+    create?: XOR<FlockCreateWithoutFlockReportInput, FlockUncheckedCreateWithoutFlockReportInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutFlockReportInput
+    connect?: FlockWhereUniqueInput
+  }
+
+  export type FarmerCreateNestedOneWithoutFlockReportInput = {
+    create?: XOR<FarmerCreateWithoutFlockReportInput, FarmerUncheckedCreateWithoutFlockReportInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutFlockReportInput
+    connect?: FarmerWhereUniqueInput
+  }
+
+  export type BranchUpdateOneRequiredWithoutFlockReportNestedInput = {
+    create?: XOR<BranchCreateWithoutFlockReportInput, BranchUncheckedCreateWithoutFlockReportInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutFlockReportInput
+    upsert?: BranchUpsertWithoutFlockReportInput
+    connect?: BranchWhereUniqueInput
+    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutFlockReportInput, BranchUpdateWithoutFlockReportInput>, BranchUncheckedUpdateWithoutFlockReportInput>
+  }
+
+  export type FlockUpdateOneRequiredWithoutFlockReportNestedInput = {
+    create?: XOR<FlockCreateWithoutFlockReportInput, FlockUncheckedCreateWithoutFlockReportInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutFlockReportInput
+    upsert?: FlockUpsertWithoutFlockReportInput
+    connect?: FlockWhereUniqueInput
+    update?: XOR<XOR<FlockUpdateToOneWithWhereWithoutFlockReportInput, FlockUpdateWithoutFlockReportInput>, FlockUncheckedUpdateWithoutFlockReportInput>
+  }
+
+  export type FarmerUpdateOneRequiredWithoutFlockReportNestedInput = {
+    create?: XOR<FarmerCreateWithoutFlockReportInput, FarmerUncheckedCreateWithoutFlockReportInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutFlockReportInput
+    upsert?: FarmerUpsertWithoutFlockReportInput
+    connect?: FarmerWhereUniqueInput
+    update?: XOR<XOR<FarmerUpdateToOneWithWhereWithoutFlockReportInput, FarmerUpdateWithoutFlockReportInput>, FarmerUncheckedUpdateWithoutFlockReportInput>
   }
 
   export type FeedCreateNestedManyWithoutFeedNameCategoryInput = {
@@ -23829,6 +25933,7 @@ export namespace Prisma {
     address?: AddressCreateNestedOneWithoutFarmerInput
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+    FlockReport?: FlockReportCreateNestedManyWithoutFarmerInput
   }
 
   export type FarmerUncheckedCreateWithoutBranchInput = {
@@ -23844,6 +25949,7 @@ export namespace Prisma {
     nid: string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type FarmerCreateOrConnectWithoutBranchInput = {
@@ -23928,6 +26034,7 @@ export namespace Prisma {
     employee: EmployeeCreateNestedOneWithoutFlocksInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
+    FlockReport?: FlockReportCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutBranchInput = {
@@ -23948,6 +26055,7 @@ export namespace Prisma {
     mortality?: number
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutBranchInput = {
@@ -24111,6 +26219,58 @@ export namespace Prisma {
 
   export type MedicineTransferCreateManyBaranchInputEnvelope = {
     data: MedicineTransferCreateManyBaranchInput | MedicineTransferCreateManyBaranchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FlockReportCreateWithoutBranchInput = {
+    id?: string
+    fcr: number
+    executiveId: string
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: string
+    condition: string
+    description: string
+    age: number
+    imagesOne?: string | null
+    imageTwo?: string | null
+    imageThree?: string | null
+    visitedDate?: Date | string
+    locationLink: string
+    flock: FlockCreateNestedOneWithoutFlockReportInput
+    farmer: FarmerCreateNestedOneWithoutFlockReportInput
+  }
+
+  export type FlockReportUncheckedCreateWithoutBranchInput = {
+    id?: string
+    fcr: number
+    executiveId: string
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: string
+    condition: string
+    description: string
+    age: number
+    imagesOne?: string | null
+    imageTwo?: string | null
+    imageThree?: string | null
+    visitedDate?: Date | string
+    locationLink: string
+    farmId: string
+    flockId: string
+  }
+
+  export type FlockReportCreateOrConnectWithoutBranchInput = {
+    where: FlockReportWhereUniqueInput
+    create: XOR<FlockReportCreateWithoutBranchInput, FlockReportUncheckedCreateWithoutBranchInput>
+  }
+
+  export type FlockReportCreateManyBranchInputEnvelope = {
+    data: FlockReportCreateManyBranchInput | FlockReportCreateManyBranchInput[]
     skipDuplicates?: boolean
   }
 
@@ -24391,6 +26551,47 @@ export namespace Prisma {
     branchCode?: StringFilter<"MedicineTransfer"> | string
   }
 
+  export type FlockReportUpsertWithWhereUniqueWithoutBranchInput = {
+    where: FlockReportWhereUniqueInput
+    update: XOR<FlockReportUpdateWithoutBranchInput, FlockReportUncheckedUpdateWithoutBranchInput>
+    create: XOR<FlockReportCreateWithoutBranchInput, FlockReportUncheckedCreateWithoutBranchInput>
+  }
+
+  export type FlockReportUpdateWithWhereUniqueWithoutBranchInput = {
+    where: FlockReportWhereUniqueInput
+    data: XOR<FlockReportUpdateWithoutBranchInput, FlockReportUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type FlockReportUpdateManyWithWhereWithoutBranchInput = {
+    where: FlockReportScalarWhereInput
+    data: XOR<FlockReportUpdateManyMutationInput, FlockReportUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type FlockReportScalarWhereInput = {
+    AND?: FlockReportScalarWhereInput | FlockReportScalarWhereInput[]
+    OR?: FlockReportScalarWhereInput[]
+    NOT?: FlockReportScalarWhereInput | FlockReportScalarWhereInput[]
+    id?: StringFilter<"FlockReport"> | string
+    fcr?: FloatFilter<"FlockReport"> | number
+    executiveId?: StringFilter<"FlockReport"> | string
+    mortality?: IntFilter<"FlockReport"> | number
+    mortalityPercent?: FloatFilter<"FlockReport"> | number
+    bodyWeight?: FloatFilter<"FlockReport"> | number
+    feedStock?: IntFilter<"FlockReport"> | number
+    diseases?: StringFilter<"FlockReport"> | string
+    condition?: StringFilter<"FlockReport"> | string
+    description?: StringFilter<"FlockReport"> | string
+    age?: IntFilter<"FlockReport"> | number
+    imagesOne?: StringNullableFilter<"FlockReport"> | string | null
+    imageTwo?: StringNullableFilter<"FlockReport"> | string | null
+    imageThree?: StringNullableFilter<"FlockReport"> | string | null
+    visitedDate?: DateTimeFilter<"FlockReport"> | Date | string
+    locationLink?: StringFilter<"FlockReport"> | string
+    farmId?: StringFilter<"FlockReport"> | string
+    flockId?: StringFilter<"FlockReport"> | string
+    branchCode?: StringFilter<"FlockReport"> | string
+  }
+
   export type BranchCreateWithoutFarmerInput = {
     id?: string
     locationName: string
@@ -24404,6 +26605,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutFarmerInput = {
@@ -24419,6 +26621,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutFarmerInput = {
@@ -24471,6 +26674,7 @@ export namespace Prisma {
     branch: BranchCreateNestedOneWithoutFlocksInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
+    FlockReport?: FlockReportCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutFarmerInput = {
@@ -24491,6 +26695,7 @@ export namespace Prisma {
     mortality?: number
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutFarmerInput = {
@@ -24539,6 +26744,58 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type FlockReportCreateWithoutFarmerInput = {
+    id?: string
+    fcr: number
+    executiveId: string
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: string
+    condition: string
+    description: string
+    age: number
+    imagesOne?: string | null
+    imageTwo?: string | null
+    imageThree?: string | null
+    visitedDate?: Date | string
+    locationLink: string
+    branch: BranchCreateNestedOneWithoutFlockReportInput
+    flock: FlockCreateNestedOneWithoutFlockReportInput
+  }
+
+  export type FlockReportUncheckedCreateWithoutFarmerInput = {
+    id?: string
+    fcr: number
+    executiveId: string
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: string
+    condition: string
+    description: string
+    age: number
+    imagesOne?: string | null
+    imageTwo?: string | null
+    imageThree?: string | null
+    visitedDate?: Date | string
+    locationLink: string
+    flockId: string
+    branchCode: string
+  }
+
+  export type FlockReportCreateOrConnectWithoutFarmerInput = {
+    where: FlockReportWhereUniqueInput
+    create: XOR<FlockReportCreateWithoutFarmerInput, FlockReportUncheckedCreateWithoutFarmerInput>
+  }
+
+  export type FlockReportCreateManyFarmerInputEnvelope = {
+    data: FlockReportCreateManyFarmerInput | FlockReportCreateManyFarmerInput[]
+    skipDuplicates?: boolean
+  }
+
   export type BranchUpsertWithoutFarmerInput = {
     update: XOR<BranchUpdateWithoutFarmerInput, BranchUncheckedUpdateWithoutFarmerInput>
     create: XOR<BranchCreateWithoutFarmerInput, BranchUncheckedCreateWithoutFarmerInput>
@@ -24563,6 +26820,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutFarmerInput = {
@@ -24578,6 +26836,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type AddressUpsertWithoutFarmerInput = {
@@ -24645,6 +26904,22 @@ export namespace Prisma {
     data: XOR<SellMedicineUpdateManyMutationInput, SellMedicineUncheckedUpdateManyWithoutFarmerInput>
   }
 
+  export type FlockReportUpsertWithWhereUniqueWithoutFarmerInput = {
+    where: FlockReportWhereUniqueInput
+    update: XOR<FlockReportUpdateWithoutFarmerInput, FlockReportUncheckedUpdateWithoutFarmerInput>
+    create: XOR<FlockReportCreateWithoutFarmerInput, FlockReportUncheckedCreateWithoutFarmerInput>
+  }
+
+  export type FlockReportUpdateWithWhereUniqueWithoutFarmerInput = {
+    where: FlockReportWhereUniqueInput
+    data: XOR<FlockReportUpdateWithoutFarmerInput, FlockReportUncheckedUpdateWithoutFarmerInput>
+  }
+
+  export type FlockReportUpdateManyWithWhereWithoutFarmerInput = {
+    where: FlockReportScalarWhereInput
+    data: XOR<FlockReportUpdateManyMutationInput, FlockReportUncheckedUpdateManyWithoutFarmerInput>
+  }
+
   export type FarmerCreateWithoutAddressInput = {
     id?: string
     farmCode: number
@@ -24658,6 +26933,7 @@ export namespace Prisma {
     branch?: BranchCreateNestedOneWithoutFarmerInput
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+    FlockReport?: FlockReportCreateNestedManyWithoutFarmerInput
   }
 
   export type FarmerUncheckedCreateWithoutAddressInput = {
@@ -24673,6 +26949,7 @@ export namespace Prisma {
     nid: string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type FarmerCreateOrConnectWithoutAddressInput = {
@@ -24733,6 +27010,7 @@ export namespace Prisma {
     branch?: BranchUpdateOneWithoutFarmerNestedInput
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutAddressInput = {
@@ -24748,6 +27026,7 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type EmployeeUpsertWithoutAddressInput = {
@@ -24798,6 +27077,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutBranchEmployeesInput = {
@@ -24813,6 +27093,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutBranchEmployeesInput = {
@@ -24873,6 +27154,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutBranchEmployeesInput = {
@@ -24888,6 +27170,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type EmployeeUpsertWithoutBranchEmployeesInput = {
@@ -24938,6 +27221,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutEmployeesInput = {
@@ -24953,6 +27237,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutEmployeesInput = {
@@ -25025,6 +27310,7 @@ export namespace Prisma {
     branch: BranchCreateNestedOneWithoutFlocksInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
+    FlockReport?: FlockReportCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutEmployeeInput = {
@@ -25045,6 +27331,7 @@ export namespace Prisma {
     mortality?: number
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutEmployeeInput = {
@@ -25081,6 +27368,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutEmployeesInput = {
@@ -25096,6 +27384,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeInput = {
@@ -25176,6 +27465,7 @@ export namespace Prisma {
     branch?: BranchCreateNestedOneWithoutFarmerInput
     address?: AddressCreateNestedOneWithoutFarmerInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+    FlockReport?: FlockReportCreateNestedManyWithoutFarmerInput
   }
 
   export type FarmerUncheckedCreateWithoutFlocksInput = {
@@ -25191,6 +27481,7 @@ export namespace Prisma {
     addressId?: string | null
     nid: string
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type FarmerCreateOrConnectWithoutFlocksInput = {
@@ -25240,6 +27531,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutFlocksInput = {
@@ -25255,6 +27547,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutFlocksInput = {
@@ -25330,6 +27623,58 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type FlockReportCreateWithoutFlockInput = {
+    id?: string
+    fcr: number
+    executiveId: string
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: string
+    condition: string
+    description: string
+    age: number
+    imagesOne?: string | null
+    imageTwo?: string | null
+    imageThree?: string | null
+    visitedDate?: Date | string
+    locationLink: string
+    branch: BranchCreateNestedOneWithoutFlockReportInput
+    farmer: FarmerCreateNestedOneWithoutFlockReportInput
+  }
+
+  export type FlockReportUncheckedCreateWithoutFlockInput = {
+    id?: string
+    fcr: number
+    executiveId: string
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: string
+    condition: string
+    description: string
+    age: number
+    imagesOne?: string | null
+    imageTwo?: string | null
+    imageThree?: string | null
+    visitedDate?: Date | string
+    locationLink: string
+    farmId: string
+    branchCode: string
+  }
+
+  export type FlockReportCreateOrConnectWithoutFlockInput = {
+    where: FlockReportWhereUniqueInput
+    create: XOR<FlockReportCreateWithoutFlockInput, FlockReportUncheckedCreateWithoutFlockInput>
+  }
+
+  export type FlockReportCreateManyFlockInputEnvelope = {
+    data: FlockReportCreateManyFlockInput | FlockReportCreateManyFlockInput[]
+    skipDuplicates?: boolean
+  }
+
   export type FarmerUpsertWithoutFlocksInput = {
     update: XOR<FarmerUpdateWithoutFlocksInput, FarmerUncheckedUpdateWithoutFlocksInput>
     create: XOR<FarmerCreateWithoutFlocksInput, FarmerUncheckedCreateWithoutFlocksInput>
@@ -25354,6 +27699,7 @@ export namespace Prisma {
     branch?: BranchUpdateOneWithoutFarmerNestedInput
     address?: AddressUpdateOneWithoutFarmerNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutFlocksInput = {
@@ -25369,6 +27715,7 @@ export namespace Prisma {
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     nid?: StringFieldUpdateOperationsInput | string
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type EmployeeUpsertWithoutFlocksInput = {
@@ -25430,6 +27777,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutFlocksInput = {
@@ -25445,6 +27793,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type SellMedicineUpsertWithWhereUniqueWithoutFlockInput = {
@@ -25477,6 +27826,282 @@ export namespace Prisma {
   export type MedicineTransferUpdateManyWithWhereWithoutFlockInput = {
     where: MedicineTransferScalarWhereInput
     data: XOR<MedicineTransferUpdateManyMutationInput, MedicineTransferUncheckedUpdateManyWithoutFlockInput>
+  }
+
+  export type FlockReportUpsertWithWhereUniqueWithoutFlockInput = {
+    where: FlockReportWhereUniqueInput
+    update: XOR<FlockReportUpdateWithoutFlockInput, FlockReportUncheckedUpdateWithoutFlockInput>
+    create: XOR<FlockReportCreateWithoutFlockInput, FlockReportUncheckedCreateWithoutFlockInput>
+  }
+
+  export type FlockReportUpdateWithWhereUniqueWithoutFlockInput = {
+    where: FlockReportWhereUniqueInput
+    data: XOR<FlockReportUpdateWithoutFlockInput, FlockReportUncheckedUpdateWithoutFlockInput>
+  }
+
+  export type FlockReportUpdateManyWithWhereWithoutFlockInput = {
+    where: FlockReportScalarWhereInput
+    data: XOR<FlockReportUpdateManyMutationInput, FlockReportUncheckedUpdateManyWithoutFlockInput>
+  }
+
+  export type BranchCreateWithoutFlockReportInput = {
+    id?: string
+    locationName: string
+    type: $Enums.BranchType
+    branchCode: string
+    farmer?: FarmerCreateNestedManyWithoutBranchInput
+    employees?: EmployeeCreateNestedManyWithoutBranchInput
+    branchEmployees?: BranchEmployeeCreateNestedManyWithoutBranchInput
+    flocks?: FlockCreateNestedManyWithoutBranchInput
+    Feed?: FeedCreateNestedManyWithoutBranchInput
+    MedicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
+    MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+  }
+
+  export type BranchUncheckedCreateWithoutFlockReportInput = {
+    id?: string
+    locationName: string
+    type: $Enums.BranchType
+    branchCode: string
+    farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutBranchInput
+    branchEmployees?: BranchEmployeeUncheckedCreateNestedManyWithoutBranchInput
+    flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
+    Feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
+    MedicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
+    MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+  }
+
+  export type BranchCreateOrConnectWithoutFlockReportInput = {
+    where: BranchWhereUniqueInput
+    create: XOR<BranchCreateWithoutFlockReportInput, BranchUncheckedCreateWithoutFlockReportInput>
+  }
+
+  export type FlockCreateWithoutFlockReportInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    farmer: FarmerCreateNestedOneWithoutFlocksInput
+    employee: EmployeeCreateNestedOneWithoutFlocksInput
+    branch: BranchCreateNestedOneWithoutFlocksInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    MedicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockUncheckedCreateWithoutFlockReportInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    executiveId: string
+    farmId: string
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    branchCode: string
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockCreateOrConnectWithoutFlockReportInput = {
+    where: FlockWhereUniqueInput
+    create: XOR<FlockCreateWithoutFlockReportInput, FlockUncheckedCreateWithoutFlockReportInput>
+  }
+
+  export type FarmerCreateWithoutFlockReportInput = {
+    id?: string
+    farmCode: number
+    name: string
+    farmType: $Enums.Custtype
+    totalShed: number
+    totalSquare: number
+    phoneNumber: string
+    capacity: number
+    nid: string
+    branch?: BranchCreateNestedOneWithoutFarmerInput
+    address?: AddressCreateNestedOneWithoutFarmerInput
+    flocks?: FlockCreateNestedManyWithoutFarmerInput
+    SellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+  }
+
+  export type FarmerUncheckedCreateWithoutFlockReportInput = {
+    id?: string
+    branchCode?: string | null
+    farmCode: number
+    name: string
+    farmType: $Enums.Custtype
+    totalShed: number
+    totalSquare: number
+    phoneNumber: string
+    capacity: number
+    addressId?: string | null
+    nid: string
+    flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
+    SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+  }
+
+  export type FarmerCreateOrConnectWithoutFlockReportInput = {
+    where: FarmerWhereUniqueInput
+    create: XOR<FarmerCreateWithoutFlockReportInput, FarmerUncheckedCreateWithoutFlockReportInput>
+  }
+
+  export type BranchUpsertWithoutFlockReportInput = {
+    update: XOR<BranchUpdateWithoutFlockReportInput, BranchUncheckedUpdateWithoutFlockReportInput>
+    create: XOR<BranchCreateWithoutFlockReportInput, BranchUncheckedCreateWithoutFlockReportInput>
+    where?: BranchWhereInput
+  }
+
+  export type BranchUpdateToOneWithWhereWithoutFlockReportInput = {
+    where?: BranchWhereInput
+    data: XOR<BranchUpdateWithoutFlockReportInput, BranchUncheckedUpdateWithoutFlockReportInput>
+  }
+
+  export type BranchUpdateWithoutFlockReportInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    branchCode?: StringFieldUpdateOperationsInput | string
+    farmer?: FarmerUpdateManyWithoutBranchNestedInput
+    employees?: EmployeeUpdateManyWithoutBranchNestedInput
+    branchEmployees?: BranchEmployeeUpdateManyWithoutBranchNestedInput
+    flocks?: FlockUpdateManyWithoutBranchNestedInput
+    Feed?: FeedUpdateManyWithoutBranchNestedInput
+    MedicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
+    MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+  }
+
+  export type BranchUncheckedUpdateWithoutFlockReportInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    branchCode?: StringFieldUpdateOperationsInput | string
+    farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutBranchNestedInput
+    branchEmployees?: BranchEmployeeUncheckedUpdateManyWithoutBranchNestedInput
+    flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
+    Feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
+    MedicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
+    MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+  }
+
+  export type FlockUpsertWithoutFlockReportInput = {
+    update: XOR<FlockUpdateWithoutFlockReportInput, FlockUncheckedUpdateWithoutFlockReportInput>
+    create: XOR<FlockCreateWithoutFlockReportInput, FlockUncheckedCreateWithoutFlockReportInput>
+    where?: FlockWhereInput
+  }
+
+  export type FlockUpdateToOneWithWhereWithoutFlockReportInput = {
+    where?: FlockWhereInput
+    data: XOR<FlockUpdateWithoutFlockReportInput, FlockUncheckedUpdateWithoutFlockReportInput>
+  }
+
+  export type FlockUpdateWithoutFlockReportInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
+    employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
+    branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    MedicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FlockUncheckedUpdateWithoutFlockReportInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    executiveId?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    branchCode?: StringFieldUpdateOperationsInput | string
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FarmerUpsertWithoutFlockReportInput = {
+    update: XOR<FarmerUpdateWithoutFlockReportInput, FarmerUncheckedUpdateWithoutFlockReportInput>
+    create: XOR<FarmerCreateWithoutFlockReportInput, FarmerUncheckedCreateWithoutFlockReportInput>
+    where?: FarmerWhereInput
+  }
+
+  export type FarmerUpdateToOneWithWhereWithoutFlockReportInput = {
+    where?: FarmerWhereInput
+    data: XOR<FarmerUpdateWithoutFlockReportInput, FarmerUncheckedUpdateWithoutFlockReportInput>
+  }
+
+  export type FarmerUpdateWithoutFlockReportInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
+    totalShed?: IntFieldUpdateOperationsInput | number
+    totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    nid?: StringFieldUpdateOperationsInput | string
+    branch?: BranchUpdateOneWithoutFarmerNestedInput
+    address?: AddressUpdateOneWithoutFarmerNestedInput
+    flocks?: FlockUpdateManyWithoutFarmerNestedInput
+    SellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+  }
+
+  export type FarmerUncheckedUpdateWithoutFlockReportInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: NullableStringFieldUpdateOperationsInput | string | null
+    farmCode?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
+    totalShed?: IntFieldUpdateOperationsInput | number
+    totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
+    nid?: StringFieldUpdateOperationsInput | string
+    flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
+    SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type FeedCreateWithoutFeedNameCategoryInput = {
@@ -25547,6 +28172,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutFeedInput = {
@@ -25562,6 +28188,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutFeedInput = {
@@ -25616,6 +28243,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutFeedInput = {
@@ -25631,6 +28259,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type MedicineNameAddCreateWithoutMedicineCategoryInput = {
@@ -25974,6 +28603,7 @@ export namespace Prisma {
     MedicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutMedicinePurchessInput = {
@@ -25989,6 +28619,7 @@ export namespace Prisma {
     MedicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutMedicinePurchessInput = {
@@ -26072,6 +28703,7 @@ export namespace Prisma {
     MedicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutMedicinePurchessInput = {
@@ -26087,6 +28719,7 @@ export namespace Prisma {
     MedicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type MedicineNameAddCreateWithoutMedicineStockInput = {
@@ -26142,6 +28775,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutMedicineStockInput = {
@@ -26157,6 +28791,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutMedicineStockInput = {
@@ -26240,6 +28875,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutMedicineStockInput = {
@@ -26255,6 +28891,7 @@ export namespace Prisma {
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type FlockCreateWithoutSellMedicineInput = {
@@ -26275,6 +28912,7 @@ export namespace Prisma {
     employee: EmployeeCreateNestedOneWithoutFlocksInput
     branch: BranchCreateNestedOneWithoutFlocksInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
+    FlockReport?: FlockReportCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutSellMedicineInput = {
@@ -26295,6 +28933,7 @@ export namespace Prisma {
     totalSellBirds?: number
     mortality?: number
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutSellMedicineInput = {
@@ -26315,6 +28954,7 @@ export namespace Prisma {
     MedicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutSellMedicineInput = {
@@ -26330,6 +28970,7 @@ export namespace Prisma {
     MedicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     MedicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutSellMedicineInput = {
@@ -26350,6 +28991,7 @@ export namespace Prisma {
     branch?: BranchCreateNestedOneWithoutFarmerInput
     address?: AddressCreateNestedOneWithoutFarmerInput
     flocks?: FlockCreateNestedManyWithoutFarmerInput
+    FlockReport?: FlockReportCreateNestedManyWithoutFarmerInput
   }
 
   export type FarmerUncheckedCreateWithoutSellMedicineInput = {
@@ -26365,6 +29007,7 @@ export namespace Prisma {
     addressId?: string | null
     nid: string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
   }
 
   export type FarmerCreateOrConnectWithoutSellMedicineInput = {
@@ -26433,6 +29076,7 @@ export namespace Prisma {
     employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
     branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutSellMedicineInput = {
@@ -26453,6 +29097,7 @@ export namespace Prisma {
     totalSellBirds?: IntFieldUpdateOperationsInput | number
     mortality?: IntFieldUpdateOperationsInput | number
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type BranchUpsertWithoutSellMedicineInput = {
@@ -26479,6 +29124,7 @@ export namespace Prisma {
     MedicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutSellMedicineInput = {
@@ -26494,6 +29140,7 @@ export namespace Prisma {
     MedicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type FarmerUpsertWithoutSellMedicineInput = {
@@ -26520,6 +29167,7 @@ export namespace Prisma {
     branch?: BranchUpdateOneWithoutFarmerNestedInput
     address?: AddressUpdateOneWithoutFarmerNestedInput
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutSellMedicineInput = {
@@ -26535,6 +29183,7 @@ export namespace Prisma {
     addressId?: NullableStringFieldUpdateOperationsInput | string | null
     nid?: StringFieldUpdateOperationsInput | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type MedicineTransferUpsertWithWhereUniqueWithoutSellmedicineInput = {
@@ -26602,6 +29251,7 @@ export namespace Prisma {
     employee: EmployeeCreateNestedOneWithoutFlocksInput
     branch: BranchCreateNestedOneWithoutFlocksInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    FlockReport?: FlockReportCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutMedicineTransferInput = {
@@ -26622,6 +29272,7 @@ export namespace Prisma {
     totalSellBirds?: number
     mortality?: number
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutMedicineTransferInput = {
@@ -26642,6 +29293,7 @@ export namespace Prisma {
     MedicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    FlockReport?: FlockReportCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutMedicineTransferInput = {
@@ -26657,6 +29309,7 @@ export namespace Prisma {
     MedicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     MedicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     SellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    FlockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutMedicineTransferInput = {
@@ -26730,6 +29383,7 @@ export namespace Prisma {
     employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
     branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutMedicineTransferInput = {
@@ -26750,6 +29404,7 @@ export namespace Prisma {
     totalSellBirds?: IntFieldUpdateOperationsInput | number
     mortality?: IntFieldUpdateOperationsInput | number
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type BranchUpsertWithoutMedicineTransferInput = {
@@ -26776,6 +29431,7 @@ export namespace Prisma {
     MedicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutMedicineTransferInput = {
@@ -26791,6 +29447,7 @@ export namespace Prisma {
     MedicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     MedicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type FarmerCreateManyBranchInput = {
@@ -26890,6 +29547,27 @@ export namespace Prisma {
     genericName: string
   }
 
+  export type FlockReportCreateManyBranchInput = {
+    id?: string
+    fcr: number
+    executiveId: string
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: string
+    condition: string
+    description: string
+    age: number
+    imagesOne?: string | null
+    imageTwo?: string | null
+    imageThree?: string | null
+    visitedDate?: Date | string
+    locationLink: string
+    farmId: string
+    flockId: string
+  }
+
   export type FarmerUpdateWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
     farmCode?: IntFieldUpdateOperationsInput | number
@@ -26903,6 +29581,7 @@ export namespace Prisma {
     address?: AddressUpdateOneWithoutFarmerNestedInput
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutBranchInput = {
@@ -26918,6 +29597,7 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
   export type FarmerUncheckedUpdateManyWithoutBranchInput = {
@@ -27000,6 +29680,7 @@ export namespace Prisma {
     employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutBranchInput = {
@@ -27020,6 +29701,7 @@ export namespace Prisma {
     mortality?: IntFieldUpdateOperationsInput | number
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateManyWithoutBranchInput = {
@@ -27195,6 +29877,69 @@ export namespace Prisma {
     genericName?: StringFieldUpdateOperationsInput | string
   }
 
+  export type FlockReportUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fcr?: FloatFieldUpdateOperationsInput | number
+    executiveId?: StringFieldUpdateOperationsInput | string
+    mortality?: IntFieldUpdateOperationsInput | number
+    mortalityPercent?: FloatFieldUpdateOperationsInput | number
+    bodyWeight?: FloatFieldUpdateOperationsInput | number
+    feedStock?: IntFieldUpdateOperationsInput | number
+    diseases?: StringFieldUpdateOperationsInput | string
+    condition?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
+    imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
+    imageThree?: NullableStringFieldUpdateOperationsInput | string | null
+    visitedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationLink?: StringFieldUpdateOperationsInput | string
+    flock?: FlockUpdateOneRequiredWithoutFlockReportNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutFlockReportNestedInput
+  }
+
+  export type FlockReportUncheckedUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fcr?: FloatFieldUpdateOperationsInput | number
+    executiveId?: StringFieldUpdateOperationsInput | string
+    mortality?: IntFieldUpdateOperationsInput | number
+    mortalityPercent?: FloatFieldUpdateOperationsInput | number
+    bodyWeight?: FloatFieldUpdateOperationsInput | number
+    feedStock?: IntFieldUpdateOperationsInput | number
+    diseases?: StringFieldUpdateOperationsInput | string
+    condition?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
+    imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
+    imageThree?: NullableStringFieldUpdateOperationsInput | string | null
+    visitedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationLink?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FlockReportUncheckedUpdateManyWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fcr?: FloatFieldUpdateOperationsInput | number
+    executiveId?: StringFieldUpdateOperationsInput | string
+    mortality?: IntFieldUpdateOperationsInput | number
+    mortalityPercent?: FloatFieldUpdateOperationsInput | number
+    bodyWeight?: FloatFieldUpdateOperationsInput | number
+    feedStock?: IntFieldUpdateOperationsInput | number
+    diseases?: StringFieldUpdateOperationsInput | string
+    condition?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
+    imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
+    imageThree?: NullableStringFieldUpdateOperationsInput | string | null
+    visitedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationLink?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type FlockCreateManyFarmerInput = {
     id?: string
     flockNumber: number
@@ -27225,6 +29970,27 @@ export namespace Prisma {
     branchCode: string
   }
 
+  export type FlockReportCreateManyFarmerInput = {
+    id?: string
+    fcr: number
+    executiveId: string
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: string
+    condition: string
+    description: string
+    age: number
+    imagesOne?: string | null
+    imageTwo?: string | null
+    imageThree?: string | null
+    visitedDate?: Date | string
+    locationLink: string
+    flockId: string
+    branchCode: string
+  }
+
   export type FlockUpdateWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
     flockNumber?: IntFieldUpdateOperationsInput | number
@@ -27243,6 +30009,7 @@ export namespace Prisma {
     branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutFarmerInput = {
@@ -27263,6 +30030,7 @@ export namespace Prisma {
     mortality?: IntFieldUpdateOperationsInput | number
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateManyWithoutFarmerInput = {
@@ -27318,6 +30086,69 @@ export namespace Prisma {
     sellPrice?: IntFieldUpdateOperationsInput | number
     Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     sellDate?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FlockReportUpdateWithoutFarmerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fcr?: FloatFieldUpdateOperationsInput | number
+    executiveId?: StringFieldUpdateOperationsInput | string
+    mortality?: IntFieldUpdateOperationsInput | number
+    mortalityPercent?: FloatFieldUpdateOperationsInput | number
+    bodyWeight?: FloatFieldUpdateOperationsInput | number
+    feedStock?: IntFieldUpdateOperationsInput | number
+    diseases?: StringFieldUpdateOperationsInput | string
+    condition?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
+    imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
+    imageThree?: NullableStringFieldUpdateOperationsInput | string | null
+    visitedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationLink?: StringFieldUpdateOperationsInput | string
+    branch?: BranchUpdateOneRequiredWithoutFlockReportNestedInput
+    flock?: FlockUpdateOneRequiredWithoutFlockReportNestedInput
+  }
+
+  export type FlockReportUncheckedUpdateWithoutFarmerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fcr?: FloatFieldUpdateOperationsInput | number
+    executiveId?: StringFieldUpdateOperationsInput | string
+    mortality?: IntFieldUpdateOperationsInput | number
+    mortalityPercent?: FloatFieldUpdateOperationsInput | number
+    bodyWeight?: FloatFieldUpdateOperationsInput | number
+    feedStock?: IntFieldUpdateOperationsInput | number
+    diseases?: StringFieldUpdateOperationsInput | string
+    condition?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
+    imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
+    imageThree?: NullableStringFieldUpdateOperationsInput | string | null
+    visitedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationLink?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FlockReportUncheckedUpdateManyWithoutFarmerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fcr?: FloatFieldUpdateOperationsInput | number
+    executiveId?: StringFieldUpdateOperationsInput | string
+    mortality?: IntFieldUpdateOperationsInput | number
+    mortalityPercent?: FloatFieldUpdateOperationsInput | number
+    bodyWeight?: FloatFieldUpdateOperationsInput | number
+    feedStock?: IntFieldUpdateOperationsInput | number
+    diseases?: StringFieldUpdateOperationsInput | string
+    condition?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
+    imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
+    imageThree?: NullableStringFieldUpdateOperationsInput | string | null
+    visitedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationLink?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
     branchCode?: StringFieldUpdateOperationsInput | string
   }
 
@@ -27377,6 +30208,7 @@ export namespace Prisma {
     branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
     SellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
     MedicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
+    FlockReport?: FlockReportUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutEmployeeInput = {
@@ -27397,6 +30229,7 @@ export namespace Prisma {
     mortality?: IntFieldUpdateOperationsInput | number
     SellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
     MedicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+    FlockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateManyWithoutEmployeeInput = {
@@ -27437,6 +30270,27 @@ export namespace Prisma {
     toBranch?: string | null
     medicineName: string
     genericName: string
+    branchCode: string
+  }
+
+  export type FlockReportCreateManyFlockInput = {
+    id?: string
+    fcr: number
+    executiveId: string
+    mortality: number
+    mortalityPercent: number
+    bodyWeight: number
+    feedStock: number
+    diseases: string
+    condition: string
+    description: string
+    age: number
+    imagesOne?: string | null
+    imageTwo?: string | null
+    imageThree?: string | null
+    visitedDate?: Date | string
+    locationLink: string
+    farmId: string
     branchCode: string
   }
 
@@ -27508,6 +30362,69 @@ export namespace Prisma {
     toBranch?: NullableStringFieldUpdateOperationsInput | string | null
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FlockReportUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fcr?: FloatFieldUpdateOperationsInput | number
+    executiveId?: StringFieldUpdateOperationsInput | string
+    mortality?: IntFieldUpdateOperationsInput | number
+    mortalityPercent?: FloatFieldUpdateOperationsInput | number
+    bodyWeight?: FloatFieldUpdateOperationsInput | number
+    feedStock?: IntFieldUpdateOperationsInput | number
+    diseases?: StringFieldUpdateOperationsInput | string
+    condition?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
+    imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
+    imageThree?: NullableStringFieldUpdateOperationsInput | string | null
+    visitedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationLink?: StringFieldUpdateOperationsInput | string
+    branch?: BranchUpdateOneRequiredWithoutFlockReportNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutFlockReportNestedInput
+  }
+
+  export type FlockReportUncheckedUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fcr?: FloatFieldUpdateOperationsInput | number
+    executiveId?: StringFieldUpdateOperationsInput | string
+    mortality?: IntFieldUpdateOperationsInput | number
+    mortalityPercent?: FloatFieldUpdateOperationsInput | number
+    bodyWeight?: FloatFieldUpdateOperationsInput | number
+    feedStock?: IntFieldUpdateOperationsInput | number
+    diseases?: StringFieldUpdateOperationsInput | string
+    condition?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
+    imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
+    imageThree?: NullableStringFieldUpdateOperationsInput | string | null
+    visitedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationLink?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FlockReportUncheckedUpdateManyWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fcr?: FloatFieldUpdateOperationsInput | number
+    executiveId?: StringFieldUpdateOperationsInput | string
+    mortality?: IntFieldUpdateOperationsInput | number
+    mortalityPercent?: FloatFieldUpdateOperationsInput | number
+    bodyWeight?: FloatFieldUpdateOperationsInput | number
+    feedStock?: IntFieldUpdateOperationsInput | number
+    diseases?: StringFieldUpdateOperationsInput | string
+    condition?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
+    imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
+    imageThree?: NullableStringFieldUpdateOperationsInput | string | null
+    visitedDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationLink?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
     branchCode?: StringFieldUpdateOperationsInput | string
   }
 
