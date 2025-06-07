@@ -34,20 +34,22 @@ enum BranchType {
 }
 
 model Branch {
-  id              String           @id @default(uuid())
-  locationName    String           @unique
-  type            BranchType
-  branchCode      String           @unique
-  farmer          Farmer[]
-  employees       Employee[]
-  branchEmployees BranchEmployee[]
-  flocks          Flock[]
+  id                    String                  @id @default(uuid())
+  locationName          String                  @unique
+  type                  BranchType
+  branchCode            String                  @unique
+  farmer                Farmer[]
+  flocks                Flock[]
+  feed                  Feed[]
+  medicineStock         MedicineStock[]
+  medicinePurchess      MedicinePurchess[]
+  sellMedicine          SellMedicine[]
+  medicineTransfer      MedicineTransfer[]
+  flockReport           FlockReport[]
+  branchEmployeeHistory BranchEmployeeHistory[]
 
-  Feed             Feed[]
-  MedicineStock    MedicineStock[]
-  MedicinePurchess MedicinePurchess[]
-  SellMedicine     SellMedicine[]
-  MedicineTransfer MedicineTransfer[]
+  createdAt DateTime
+  updatedAt DateTime @default(now())
 
   @@map("branch")
 }
@@ -67,7 +69,10 @@ model Farmer {
   nid          String
   address      Address?       @relation(fields: [addressId], references: [id])
   flocks       Flock[]
-  SellMedicine SellMedicine[]
+  sellMedicine SellMedicine[]
+  flockReport  FlockReport[]
+  createdAt    DateTime
+  updatedAt    DateTime       @default(now())
 
   @@unique([branchCode, farmCode])
   @@index([farmCode])
@@ -75,44 +80,54 @@ model Farmer {
 }
 
 model Address {
-  id       String    @id @default(uuid())
-  village  String
-  post     String
-  union    String?
-  thana    String?
-  upazila  String
-  city     String
-  Farmer   Farmer?
-  Employee Employee?
+  id        String    @id @default(uuid())
+  village   String
+  post      String
+  union     String?
+  thana     String?
+  upazila   String
+  city      String
+  Farmer    Farmer?
+  Employee  Employee?
+  createdAt DateTime
+  updatedAt DateTime  @default(now())
 
   @@map("address")
 }
 
-model BranchEmployee {
-  id         String   @id @default(uuid())
+model BranchEmployeeHistory {
+  id         String    @id @default(uuid())
   employeeId String
+  startDate  DateTime  @default(now())
+  endDate    DateTime?
+  isActive   Boolean   @default(true)
   branchCode String
-  branch     Branch   @relation(fields: [branchCode], references: [branchCode])
-  employee   Employee @relation(fields: [employeeId], references: [employeeId])
+  branch     Branch    @relation(fields: [branchCode], references: [branchCode])
+  employee   Employee  @relation(fields: [employeeId], references: [employeeId])
+  createdAt  DateTime
+  updatedAt  DateTime  @default(now())
 
   @@map("branchEmployee")
 }
 
+//When employee transfer any other brance then have change to table "BranchEmployeeHistory"->branceCode and also  table  
+
 model Employee {
-  id              String           @id @default(ulid())
-  employeeId      String           @unique
+  id              String  @id @default(ulid())
+  employeeId      String  @unique
   name            String
   workingLocation String
   designation     String
-  branchCode      String
   phoneNumber     String
-  addressId       String?          @unique
-  branch          Branch           @relation(fields: [branchCode], references: [branchCode])
-  branchEmployees BranchEmployee[]
-  address         Address?         @relation(fields: [addressId], references: [id])
-  flocks          Flock[]
+  addressId       String? @unique
 
-  @@unique([employeeId, branchCode])
+  address               Address?                @relation(fields: [addressId], references: [id])
+  flocks                Flock[]
+  branchEmployeeHistory BranchEmployeeHistory[]
+  branchId              String?
+  createdAt             DateTime
+  updatedAt             DateTime                @default(now())
+
   @@map("employee")
 }
 
@@ -136,17 +151,59 @@ model Flock {
   farmer           Farmer             @relation(fields: [farmId], references: [id])
   employee         Employee           @relation(fields: [executiveId], references: [employeeId])
   branch           Branch             @relation(fields: [branchCode], references: [branchCode])
-  SellMedicine     SellMedicine[]
-  MedicineTransfer MedicineTransfer[]
+  sellMedicine     SellMedicine[]
+  medicineTransfer MedicineTransfer[]
+  flockReport      FlockReport[]
+
+  createdAt DateTime
+  updatedAt DateTime @default(now())
 
   @@map("flock")
 }
 
+model FlockReport {
+  id                       String   @id @default(uuid())
+  fcr                      Float
+  executiveId              String
+  totalMortality           Int
+  todayMortality           Int
+  todayMortalityPercent    Float
+  totalMortalityPercentage Float
+  bodyWeight               Float
+  todayWeightGain          Int
+  feedStock                Int
+  diseases                 String
+  condition                String
+  description              String
+  executiveName            String
+  flockNumber              String
+  age                      Int
+  imagesOne                String?
+  imageTwo                 String?
+  imageThree               String?
+  visitedDate              DateTime @default(now())
+  locationLink             String
+  farmId                   String
+  flockId                  String
+  birdsSalesStart          Boolean  @default(false)
+  birdsSalesEnd            Boolean  @default(false)
+  branchCode               String
+  branch                   Branch   @relation(fields: [branchCode], references: [branchCode])
+  flock                    Flock    @relation(fields: [flockId], references: [id])
+  farmer                   Farmer   @relation(fields: [farmId], references: [id])
+  createdAt                DateTime
+  updatedAt                DateTime @default(now())
+
+  @@map("flockReport")
+}
+
 model FeedNameCategory {
-  id             String @id @default(uuid())
-  feedName       String @unique
-  feedCodeNumber Int    @unique
+  id             String   @id @default(uuid())
+  feedName       String   @unique
+  feedCodeNumber Int      @unique
   feeds          Feed[]
+  createdAt      DateTime
+  updatedAt      DateTime @default(now())
 
   @@map("feedNameCategory")
 }
@@ -158,40 +215,46 @@ model Feed {
   stock            Int
   branchCode       String?
   branch           Branch?          @relation(fields: [branchCode], references: [branchCode])
+  createdAt        DateTime
+  updatedAt        DateTime         @default(now())
 
   @@map("feed")
 }
 
-model MedicineNameCategory {
+model AllGenericMedicin {
   id          String @id @default(uuid())
   genericName String @unique
 
   medicineNameAdd  MedicineNameAdd[]
-  MedicineStock    MedicineStock[]
-  MedicinePurchess MedicinePurchess[]
+  medicineStock    MedicineStock[]
+  medicinePurchess MedicinePurchess[]
+  createdAt        DateTime
+  updatedAt        DateTime           @default(now())
 
   @@map("medicineNameCategoy")
 }
 
 model MedicineNameAdd {
-  id               String               @id @default(uuid())
-  name             String               @unique
+  id               String            @id @default(uuid())
+  name             String            @unique
   conpany          String
   genericName      String
-  medicineCategory MedicineNameCategory @relation(fields: [genericName], references: [genericName])
+  medicineCategory AllGenericMedicin @relation(fields: [genericName], references: [genericName])
 
-  MedicineStock    MedicineStock[]
-  MedicinePurchess MedicinePurchess[]
+  medicineStock    MedicineStock[]
+  medicinePurchess MedicinePurchess[]
+  createdAt        DateTime
+  updatedAt        DateTime           @default(now())
 
   @@map("medicineNameAdd")
 }
 
 model MedicinePurchess {
-  id                 String               @id @default(uuid())
+  id                 String            @id @default(uuid())
   genericName        String
-  medicineCategory   MedicineNameCategory @relation(fields: [genericName], references: [genericName])
+  medicineCategory   AllGenericMedicin @relation(fields: [genericName], references: [genericName])
   name               String
-  medicineNameAdd    MedicineNameAdd      @relation(fields: [name], references: [name])
+  medicineNameAdd    MedicineNameAdd   @relation(fields: [name], references: [name])
   purchaseUnitPrice  Int
   sellUnitPrice      Int
   purchaseQuantity   Int
@@ -200,22 +263,27 @@ model MedicinePurchess {
   bonusQuantity      Int?
   purchaseTotalPrice Int
   supplierInfo       String
+  stored             Stored            @default(FACTORY)
   branchCode         String
-  branch             Branch               @relation(fields: [branchCode], references: [branchCode])
+  branch             Branch            @relation(fields: [branchCode], references: [branchCode])
+  createdAt          DateTime
+  updatedAt          DateTime          @default(now())
 
   @@map("medicinePurchess")
 }
 
 model MedicineStock {
-  id               String               @id @default(uuid())
-  genericName      String               @unique
-  medicineName     String               @unique
-  medicineNameAdd  MedicineNameAdd      @relation(fields: [medicineName], references: [name])
-  medicineCategory MedicineNameCategory @relation(fields: [genericName], references: [genericName])
+  id               String            @id @default(uuid())
+  genericName      String            @unique
+  medicineName     String            @unique
+  medicineNameAdd  MedicineNameAdd   @relation(fields: [medicineName], references: [name])
+  medicineCategory AllGenericMedicin @relation(fields: [genericName], references: [genericName])
   branchCode       String
-  branch           Branch               @relation(fields: [branchCode], references: [branchCode])
+  branch           Branch            @relation(fields: [branchCode], references: [branchCode])
   totalStock       Int
   price            Int
+  createdAt        DateTime
+  updatedAt        DateTime          @default(now())
 
   @@unique([genericName, medicineName])
   @@map("medicineStock")
@@ -236,6 +304,10 @@ model SellMedicine {
   branch           Branch             @relation(fields: [branchCode], references: [branchCode], onDelete: Cascade)
   farmer           Farmer             @relation(fields: [farmId], references: [id], onDelete: Cascade)
   MedicineTransfer MedicineTransfer[]
+  createdAt        DateTime
+  updatedAt        DateTime           @default(now())
+
+  @@map("sellMedicine")
 }
 
 model MedicineTransfer {
@@ -251,6 +323,15 @@ model MedicineTransfer {
   genericName  String
   branchCode   String
   baranch      Branch       @relation(fields: [branchCode], references: [branchCode])
+  createdAt    DateTime
+  updatedAt    DateTime     @default(now())
+
+  @@map("medicineTransfer")
+}
+
+enum Stored {
+  FACTORY
+  DEPOT
 }
 
 enum DeliveryStatus {

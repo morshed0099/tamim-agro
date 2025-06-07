@@ -124,7 +124,9 @@ exports.Prisma.BranchScalarFieldEnum = {
   id: 'id',
   locationName: 'locationName',
   type: 'type',
-  branchCode: 'branchCode'
+  branchCode: 'branchCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.FarmerScalarFieldEnum = {
@@ -138,7 +140,9 @@ exports.Prisma.FarmerScalarFieldEnum = {
   phoneNumber: 'phoneNumber',
   capacity: 'capacity',
   addressId: 'addressId',
-  nid: 'nid'
+  nid: 'nid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.AddressScalarFieldEnum = {
@@ -148,13 +152,20 @@ exports.Prisma.AddressScalarFieldEnum = {
   union: 'union',
   thana: 'thana',
   upazila: 'upazila',
-  city: 'city'
+  city: 'city',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
-exports.Prisma.BranchEmployeeScalarFieldEnum = {
+exports.Prisma.BranchEmployeeHistoryScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
-  branchCode: 'branchCode'
+  startDate: 'startDate',
+  endDate: 'endDate',
+  isActive: 'isActive',
+  branchCode: 'branchCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.EmployeeScalarFieldEnum = {
@@ -163,9 +174,11 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   name: 'name',
   workingLocation: 'workingLocation',
   designation: 'designation',
-  branchCode: 'branchCode',
   phoneNumber: 'phoneNumber',
-  addressId: 'addressId'
+  addressId: 'addressId',
+  branchId: 'branchId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.FlockScalarFieldEnum = {
@@ -184,20 +197,28 @@ exports.Prisma.FlockScalarFieldEnum = {
   totalMedicine: 'totalMedicine',
   fcr: 'fcr',
   totalSellBirds: 'totalSellBirds',
-  mortality: 'mortality'
+  mortality: 'mortality',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.FlockReportScalarFieldEnum = {
   id: 'id',
+  housedBirds: 'housedBirds',
   fcr: 'fcr',
   executiveId: 'executiveId',
-  mortality: 'mortality',
-  mortalityPercent: 'mortalityPercent',
+  totalMortality: 'totalMortality',
+  todayMortality: 'todayMortality',
+  todayMortalityPercent: 'todayMortalityPercent',
+  totalMortalityPercentage: 'totalMortalityPercentage',
   bodyWeight: 'bodyWeight',
+  todayWeightGain: 'todayWeightGain',
   feedStock: 'feedStock',
   diseases: 'diseases',
   condition: 'condition',
   description: 'description',
+  executiveName: 'executiveName',
+  flockNumber: 'flockNumber',
   age: 'age',
   imagesOne: 'imagesOne',
   imageTwo: 'imageTwo',
@@ -206,32 +227,44 @@ exports.Prisma.FlockReportScalarFieldEnum = {
   locationLink: 'locationLink',
   farmId: 'farmId',
   flockId: 'flockId',
-  branchCode: 'branchCode'
+  birdsSalesStart: 'birdsSalesStart',
+  birdsSalesEnd: 'birdsSalesEnd',
+  branchCode: 'branchCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.FeedNameCategoryScalarFieldEnum = {
   id: 'id',
   feedName: 'feedName',
-  feedCodeNumber: 'feedCodeNumber'
+  feedCodeNumber: 'feedCodeNumber',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.FeedScalarFieldEnum = {
   id: 'id',
   feedName: 'feedName',
   stock: 'stock',
-  branchCode: 'branchCode'
+  branchCode: 'branchCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
-exports.Prisma.MedicineNameCategoryScalarFieldEnum = {
+exports.Prisma.AllGenericMedicinScalarFieldEnum = {
   id: 'id',
-  genericName: 'genericName'
+  genericName: 'genericName',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.MedicineNameAddScalarFieldEnum = {
   id: 'id',
   name: 'name',
   conpany: 'conpany',
-  genericName: 'genericName'
+  genericName: 'genericName',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.MedicinePurchessScalarFieldEnum = {
@@ -246,7 +279,10 @@ exports.Prisma.MedicinePurchessScalarFieldEnum = {
   bonusQuantity: 'bonusQuantity',
   purchaseTotalPrice: 'purchaseTotalPrice',
   supplierInfo: 'supplierInfo',
-  branchCode: 'branchCode'
+  stored: 'stored',
+  branchCode: 'branchCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.MedicineStockScalarFieldEnum = {
@@ -255,7 +291,9 @@ exports.Prisma.MedicineStockScalarFieldEnum = {
   medicineName: 'medicineName',
   branchCode: 'branchCode',
   totalStock: 'totalStock',
-  price: 'price'
+  price: 'price',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SellMedicineScalarFieldEnum = {
@@ -268,7 +306,9 @@ exports.Prisma.SellMedicineScalarFieldEnum = {
   sellPrice: 'sellPrice',
   Delivery: 'Delivery',
   sellDate: 'sellDate',
-  branchCode: 'branchCode'
+  branchCode: 'branchCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.MedicineTransferScalarFieldEnum = {
@@ -280,7 +320,9 @@ exports.Prisma.MedicineTransferScalarFieldEnum = {
   toBranch: 'toBranch',
   medicineName: 'medicineName',
   genericName: 'genericName',
-  branchCode: 'branchCode'
+  branchCode: 'branchCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -314,6 +356,11 @@ exports.FlockStatus = exports.$Enums.FlockStatus = {
   CLOSED: 'CLOSED'
 };
 
+exports.Stored = exports.$Enums.Stored = {
+  FACTORY: 'FACTORY',
+  DEPOT: 'DEPOT'
+};
+
 exports.DeliveryStatus = exports.$Enums.DeliveryStatus = {
   RETURN: 'RETURN',
   TRANSFER: 'TRANSFER',
@@ -324,13 +371,13 @@ exports.Prisma.ModelName = {
   Branch: 'Branch',
   Farmer: 'Farmer',
   Address: 'Address',
-  BranchEmployee: 'BranchEmployee',
+  BranchEmployeeHistory: 'BranchEmployeeHistory',
   Employee: 'Employee',
   Flock: 'Flock',
   FlockReport: 'FlockReport',
   FeedNameCategory: 'FeedNameCategory',
   Feed: 'Feed',
-  MedicineNameCategory: 'MedicineNameCategory',
+  AllGenericMedicin: 'AllGenericMedicin',
   MedicineNameAdd: 'MedicineNameAdd',
   MedicinePurchess: 'MedicinePurchess',
   MedicineStock: 'MedicineStock',

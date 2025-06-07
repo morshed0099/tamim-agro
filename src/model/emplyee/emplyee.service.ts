@@ -19,7 +19,7 @@ const createEmployee = async (payload: any) => {
         phoneNumber: payload.phoneNumber,
         workingLocation: payload.workingLocation,
         addressId: addressCreate.id,
-        branchCode: branchcode.branchCode,
+        createdAt: payload.createdAt,
       },
       include: {
         address: true,
