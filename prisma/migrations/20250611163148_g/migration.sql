@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "flockReport" ALTER COLUMN "createdAt" SET DEFAULT CURRENT_TIMESTAMP;

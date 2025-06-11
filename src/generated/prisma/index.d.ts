@@ -10492,7 +10492,7 @@ export namespace Prisma {
     description: string
     executiveName: string
     flockNumber: string
-    age: number
+    age: number | null
     imagesOne: string | null
     imageTwo: string | null
     imageThree: string | null
@@ -10729,7 +10729,7 @@ export namespace Prisma {
       description: string
       executiveName: string
       flockNumber: string
-      age: number
+      age: number | null
       imagesOne: string | null
       imageTwo: string | null
       imageThree: string | null
@@ -11180,7 +11180,7 @@ export namespace Prisma {
     readonly todayWeightGain: FieldRef<"FlockReport", 'Int'>
     readonly todayFeedEting: FieldRef<"FlockReport", 'Int'>
     readonly suggestTosell: FieldRef<"FlockReport", 'Boolean'>
-    readonly averageBodyWight: FieldRef<"FlockReport", 'Int'>
+    readonly averageBodyWight: FieldRef<"FlockReport", 'Float'>
     readonly totalFeedEting: FieldRef<"FlockReport", 'Int'>
     readonly feedStock: FieldRef<"FlockReport", 'Int'>
     readonly diseases: FieldRef<"FlockReport", 'String'>
@@ -21906,7 +21906,7 @@ export namespace Prisma {
     todayWeightGain?: IntFilter<"FlockReport"> | number
     todayFeedEting?: IntFilter<"FlockReport"> | number
     suggestTosell?: BoolFilter<"FlockReport"> | boolean
-    averageBodyWight?: IntNullableFilter<"FlockReport"> | number | null
+    averageBodyWight?: FloatNullableFilter<"FlockReport"> | number | null
     totalFeedEting?: IntFilter<"FlockReport"> | number
     feedStock?: IntFilter<"FlockReport"> | number
     diseases?: StringFilter<"FlockReport"> | string
@@ -21915,7 +21915,7 @@ export namespace Prisma {
     description?: StringFilter<"FlockReport"> | string
     executiveName?: StringFilter<"FlockReport"> | string
     flockNumber?: StringFilter<"FlockReport"> | string
-    age?: IntFilter<"FlockReport"> | number
+    age?: IntNullableFilter<"FlockReport"> | number | null
     imagesOne?: StringNullableFilter<"FlockReport"> | string | null
     imageTwo?: StringNullableFilter<"FlockReport"> | string | null
     imageThree?: StringNullableFilter<"FlockReport"> | string | null
@@ -21955,7 +21955,7 @@ export namespace Prisma {
     description?: SortOrder
     executiveName?: SortOrder
     flockNumber?: SortOrder
-    age?: SortOrder
+    age?: SortOrderInput | SortOrder
     imagesOne?: SortOrderInput | SortOrder
     imageTwo?: SortOrderInput | SortOrder
     imageThree?: SortOrderInput | SortOrder
@@ -21989,7 +21989,7 @@ export namespace Prisma {
     todayWeightGain?: IntFilter<"FlockReport"> | number
     todayFeedEting?: IntFilter<"FlockReport"> | number
     suggestTosell?: BoolFilter<"FlockReport"> | boolean
-    averageBodyWight?: IntNullableFilter<"FlockReport"> | number | null
+    averageBodyWight?: FloatNullableFilter<"FlockReport"> | number | null
     totalFeedEting?: IntFilter<"FlockReport"> | number
     feedStock?: IntFilter<"FlockReport"> | number
     diseases?: StringFilter<"FlockReport"> | string
@@ -21998,7 +21998,7 @@ export namespace Prisma {
     description?: StringFilter<"FlockReport"> | string
     executiveName?: StringFilter<"FlockReport"> | string
     flockNumber?: StringFilter<"FlockReport"> | string
-    age?: IntFilter<"FlockReport"> | number
+    age?: IntNullableFilter<"FlockReport"> | number | null
     imagesOne?: StringNullableFilter<"FlockReport"> | string | null
     imageTwo?: StringNullableFilter<"FlockReport"> | string | null
     imageThree?: StringNullableFilter<"FlockReport"> | string | null
@@ -22038,7 +22038,7 @@ export namespace Prisma {
     description?: SortOrder
     executiveName?: SortOrder
     flockNumber?: SortOrder
-    age?: SortOrder
+    age?: SortOrderInput | SortOrder
     imagesOne?: SortOrderInput | SortOrder
     imageTwo?: SortOrderInput | SortOrder
     imageThree?: SortOrderInput | SortOrder
@@ -22074,7 +22074,7 @@ export namespace Prisma {
     todayWeightGain?: IntWithAggregatesFilter<"FlockReport"> | number
     todayFeedEting?: IntWithAggregatesFilter<"FlockReport"> | number
     suggestTosell?: BoolWithAggregatesFilter<"FlockReport"> | boolean
-    averageBodyWight?: IntNullableWithAggregatesFilter<"FlockReport"> | number | null
+    averageBodyWight?: FloatNullableWithAggregatesFilter<"FlockReport"> | number | null
     totalFeedEting?: IntWithAggregatesFilter<"FlockReport"> | number
     feedStock?: IntWithAggregatesFilter<"FlockReport"> | number
     diseases?: StringWithAggregatesFilter<"FlockReport"> | string
@@ -22083,7 +22083,7 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"FlockReport"> | string
     executiveName?: StringWithAggregatesFilter<"FlockReport"> | string
     flockNumber?: StringWithAggregatesFilter<"FlockReport"> | string
-    age?: IntWithAggregatesFilter<"FlockReport"> | number
+    age?: IntNullableWithAggregatesFilter<"FlockReport"> | number | null
     imagesOne?: StringNullableWithAggregatesFilter<"FlockReport"> | string | null
     imageTwo?: StringNullableWithAggregatesFilter<"FlockReport"> | string | null
     imageThree?: StringNullableWithAggregatesFilter<"FlockReport"> | string | null
@@ -23390,7 +23390,7 @@ export namespace Prisma {
     description: string
     executiveName: string
     flockNumber: string
-    age: number
+    age?: number | null
     imagesOne?: string | null
     imageTwo?: string | null
     imageThree?: string | null
@@ -23398,7 +23398,7 @@ export namespace Prisma {
     locationLink: string
     birdsSalesStart?: boolean
     birdsSalesEnd?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
     updatedAt?: Date | string
     branch: BranchCreateNestedOneWithoutFlockReportInput
     flock: FlockCreateNestedOneWithoutFlockReportInput
@@ -23427,7 +23427,7 @@ export namespace Prisma {
     description: string
     executiveName: string
     flockNumber: string
-    age: number
+    age?: number | null
     imagesOne?: string | null
     imageTwo?: string | null
     imageThree?: string | null
@@ -23438,7 +23438,7 @@ export namespace Prisma {
     birdsSalesStart?: boolean
     birdsSalesEnd?: boolean
     branchCode: string
-    createdAt: Date | string
+    createdAt?: Date | string
     updatedAt?: Date | string
   }
 
@@ -23455,7 +23455,7 @@ export namespace Prisma {
     todayWeightGain?: IntFieldUpdateOperationsInput | number
     todayFeedEting?: IntFieldUpdateOperationsInput | number
     suggestTosell?: BoolFieldUpdateOperationsInput | boolean
-    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    averageBodyWight?: NullableFloatFieldUpdateOperationsInput | number | null
     totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
@@ -23464,7 +23464,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
     flockNumber?: StringFieldUpdateOperationsInput | string
-    age?: IntFieldUpdateOperationsInput | number
+    age?: NullableIntFieldUpdateOperationsInput | number | null
     imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
     imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
     imageThree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23492,7 +23492,7 @@ export namespace Prisma {
     todayWeightGain?: IntFieldUpdateOperationsInput | number
     todayFeedEting?: IntFieldUpdateOperationsInput | number
     suggestTosell?: BoolFieldUpdateOperationsInput | boolean
-    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    averageBodyWight?: NullableFloatFieldUpdateOperationsInput | number | null
     totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
@@ -23501,7 +23501,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
     flockNumber?: StringFieldUpdateOperationsInput | string
-    age?: IntFieldUpdateOperationsInput | number
+    age?: NullableIntFieldUpdateOperationsInput | number | null
     imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
     imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
     imageThree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23538,7 +23538,7 @@ export namespace Prisma {
     description: string
     executiveName: string
     flockNumber: string
-    age: number
+    age?: number | null
     imagesOne?: string | null
     imageTwo?: string | null
     imageThree?: string | null
@@ -23549,7 +23549,7 @@ export namespace Prisma {
     birdsSalesStart?: boolean
     birdsSalesEnd?: boolean
     branchCode: string
-    createdAt: Date | string
+    createdAt?: Date | string
     updatedAt?: Date | string
   }
 
@@ -23566,7 +23566,7 @@ export namespace Prisma {
     todayWeightGain?: IntFieldUpdateOperationsInput | number
     todayFeedEting?: IntFieldUpdateOperationsInput | number
     suggestTosell?: BoolFieldUpdateOperationsInput | boolean
-    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    averageBodyWight?: NullableFloatFieldUpdateOperationsInput | number | null
     totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
@@ -23575,7 +23575,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
     flockNumber?: StringFieldUpdateOperationsInput | string
-    age?: IntFieldUpdateOperationsInput | number
+    age?: NullableIntFieldUpdateOperationsInput | number | null
     imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
     imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
     imageThree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23600,7 +23600,7 @@ export namespace Prisma {
     todayWeightGain?: IntFieldUpdateOperationsInput | number
     todayFeedEting?: IntFieldUpdateOperationsInput | number
     suggestTosell?: BoolFieldUpdateOperationsInput | boolean
-    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    averageBodyWight?: NullableFloatFieldUpdateOperationsInput | number | null
     totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
@@ -23609,7 +23609,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
     flockNumber?: StringFieldUpdateOperationsInput | string
-    age?: IntFieldUpdateOperationsInput | number
+    age?: NullableIntFieldUpdateOperationsInput | number | null
     imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
     imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
     imageThree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27657,7 +27657,7 @@ export namespace Prisma {
     description: string
     executiveName: string
     flockNumber: string
-    age: number
+    age?: number | null
     imagesOne?: string | null
     imageTwo?: string | null
     imageThree?: string | null
@@ -27665,7 +27665,7 @@ export namespace Prisma {
     locationLink: string
     birdsSalesStart?: boolean
     birdsSalesEnd?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
     updatedAt?: Date | string
     flock: FlockCreateNestedOneWithoutFlockReportInput
     farmer: FarmerCreateNestedOneWithoutFlockReportInput
@@ -27693,7 +27693,7 @@ export namespace Prisma {
     description: string
     executiveName: string
     flockNumber: string
-    age: number
+    age?: number | null
     imagesOne?: string | null
     imageTwo?: string | null
     imageThree?: string | null
@@ -27703,7 +27703,7 @@ export namespace Prisma {
     flockId: string
     birdsSalesStart?: boolean
     birdsSalesEnd?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
     updatedAt?: Date | string
   }
 
@@ -28016,7 +28016,7 @@ export namespace Prisma {
     todayWeightGain?: IntFilter<"FlockReport"> | number
     todayFeedEting?: IntFilter<"FlockReport"> | number
     suggestTosell?: BoolFilter<"FlockReport"> | boolean
-    averageBodyWight?: IntNullableFilter<"FlockReport"> | number | null
+    averageBodyWight?: FloatNullableFilter<"FlockReport"> | number | null
     totalFeedEting?: IntFilter<"FlockReport"> | number
     feedStock?: IntFilter<"FlockReport"> | number
     diseases?: StringFilter<"FlockReport"> | string
@@ -28025,7 +28025,7 @@ export namespace Prisma {
     description?: StringFilter<"FlockReport"> | string
     executiveName?: StringFilter<"FlockReport"> | string
     flockNumber?: StringFilter<"FlockReport"> | string
-    age?: IntFilter<"FlockReport"> | number
+    age?: IntNullableFilter<"FlockReport"> | number | null
     imagesOne?: StringNullableFilter<"FlockReport"> | string | null
     imageTwo?: StringNullableFilter<"FlockReport"> | string | null
     imageThree?: StringNullableFilter<"FlockReport"> | string | null
@@ -28258,7 +28258,7 @@ export namespace Prisma {
     description: string
     executiveName: string
     flockNumber: string
-    age: number
+    age?: number | null
     imagesOne?: string | null
     imageTwo?: string | null
     imageThree?: string | null
@@ -28266,7 +28266,7 @@ export namespace Prisma {
     locationLink: string
     birdsSalesStart?: boolean
     birdsSalesEnd?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
     updatedAt?: Date | string
     branch: BranchCreateNestedOneWithoutFlockReportInput
     flock: FlockCreateNestedOneWithoutFlockReportInput
@@ -28294,7 +28294,7 @@ export namespace Prisma {
     description: string
     executiveName: string
     flockNumber: string
-    age: number
+    age?: number | null
     imagesOne?: string | null
     imageTwo?: string | null
     imageThree?: string | null
@@ -28304,7 +28304,7 @@ export namespace Prisma {
     birdsSalesStart?: boolean
     birdsSalesEnd?: boolean
     branchCode: string
-    createdAt: Date | string
+    createdAt?: Date | string
     updatedAt?: Date | string
   }
 
@@ -29161,7 +29161,7 @@ export namespace Prisma {
     description: string
     executiveName: string
     flockNumber: string
-    age: number
+    age?: number | null
     imagesOne?: string | null
     imageTwo?: string | null
     imageThree?: string | null
@@ -29169,7 +29169,7 @@ export namespace Prisma {
     locationLink: string
     birdsSalesStart?: boolean
     birdsSalesEnd?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
     updatedAt?: Date | string
     branch: BranchCreateNestedOneWithoutFlockReportInput
     farmer: FarmerCreateNestedOneWithoutFlockReportInput
@@ -29197,7 +29197,7 @@ export namespace Prisma {
     description: string
     executiveName: string
     flockNumber: string
-    age: number
+    age?: number | null
     imagesOne?: string | null
     imageTwo?: string | null
     imageThree?: string | null
@@ -29207,7 +29207,7 @@ export namespace Prisma {
     birdsSalesStart?: boolean
     birdsSalesEnd?: boolean
     branchCode: string
-    createdAt: Date | string
+    createdAt?: Date | string
     updatedAt?: Date | string
   }
 
@@ -31279,7 +31279,7 @@ export namespace Prisma {
     description: string
     executiveName: string
     flockNumber: string
-    age: number
+    age?: number | null
     imagesOne?: string | null
     imageTwo?: string | null
     imageThree?: string | null
@@ -31289,7 +31289,7 @@ export namespace Prisma {
     flockId: string
     birdsSalesStart?: boolean
     birdsSalesEnd?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
     updatedAt?: Date | string
   }
 
@@ -31621,7 +31621,7 @@ export namespace Prisma {
     todayWeightGain?: IntFieldUpdateOperationsInput | number
     todayFeedEting?: IntFieldUpdateOperationsInput | number
     suggestTosell?: BoolFieldUpdateOperationsInput | boolean
-    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    averageBodyWight?: NullableFloatFieldUpdateOperationsInput | number | null
     totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
@@ -31630,7 +31630,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
     flockNumber?: StringFieldUpdateOperationsInput | string
-    age?: IntFieldUpdateOperationsInput | number
+    age?: NullableIntFieldUpdateOperationsInput | number | null
     imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
     imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
     imageThree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31657,7 +31657,7 @@ export namespace Prisma {
     todayWeightGain?: IntFieldUpdateOperationsInput | number
     todayFeedEting?: IntFieldUpdateOperationsInput | number
     suggestTosell?: BoolFieldUpdateOperationsInput | boolean
-    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    averageBodyWight?: NullableFloatFieldUpdateOperationsInput | number | null
     totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
@@ -31666,7 +31666,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
     flockNumber?: StringFieldUpdateOperationsInput | string
-    age?: IntFieldUpdateOperationsInput | number
+    age?: NullableIntFieldUpdateOperationsInput | number | null
     imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
     imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
     imageThree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31693,7 +31693,7 @@ export namespace Prisma {
     todayWeightGain?: IntFieldUpdateOperationsInput | number
     todayFeedEting?: IntFieldUpdateOperationsInput | number
     suggestTosell?: BoolFieldUpdateOperationsInput | boolean
-    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    averageBodyWight?: NullableFloatFieldUpdateOperationsInput | number | null
     totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
@@ -31702,7 +31702,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
     flockNumber?: StringFieldUpdateOperationsInput | string
-    age?: IntFieldUpdateOperationsInput | number
+    age?: NullableIntFieldUpdateOperationsInput | number | null
     imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
     imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
     imageThree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31802,7 +31802,7 @@ export namespace Prisma {
     description: string
     executiveName: string
     flockNumber: string
-    age: number
+    age?: number | null
     imagesOne?: string | null
     imageTwo?: string | null
     imageThree?: string | null
@@ -31812,7 +31812,7 @@ export namespace Prisma {
     birdsSalesStart?: boolean
     birdsSalesEnd?: boolean
     branchCode: string
-    createdAt: Date | string
+    createdAt?: Date | string
     updatedAt?: Date | string
   }
 
@@ -31939,7 +31939,7 @@ export namespace Prisma {
     todayWeightGain?: IntFieldUpdateOperationsInput | number
     todayFeedEting?: IntFieldUpdateOperationsInput | number
     suggestTosell?: BoolFieldUpdateOperationsInput | boolean
-    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    averageBodyWight?: NullableFloatFieldUpdateOperationsInput | number | null
     totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
@@ -31948,7 +31948,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
     flockNumber?: StringFieldUpdateOperationsInput | string
-    age?: IntFieldUpdateOperationsInput | number
+    age?: NullableIntFieldUpdateOperationsInput | number | null
     imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
     imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
     imageThree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31975,7 +31975,7 @@ export namespace Prisma {
     todayWeightGain?: IntFieldUpdateOperationsInput | number
     todayFeedEting?: IntFieldUpdateOperationsInput | number
     suggestTosell?: BoolFieldUpdateOperationsInput | boolean
-    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    averageBodyWight?: NullableFloatFieldUpdateOperationsInput | number | null
     totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
@@ -31984,7 +31984,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
     flockNumber?: StringFieldUpdateOperationsInput | string
-    age?: IntFieldUpdateOperationsInput | number
+    age?: NullableIntFieldUpdateOperationsInput | number | null
     imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
     imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
     imageThree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32011,7 +32011,7 @@ export namespace Prisma {
     todayWeightGain?: IntFieldUpdateOperationsInput | number
     todayFeedEting?: IntFieldUpdateOperationsInput | number
     suggestTosell?: BoolFieldUpdateOperationsInput | boolean
-    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    averageBodyWight?: NullableFloatFieldUpdateOperationsInput | number | null
     totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
@@ -32020,7 +32020,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
     flockNumber?: StringFieldUpdateOperationsInput | string
-    age?: IntFieldUpdateOperationsInput | number
+    age?: NullableIntFieldUpdateOperationsInput | number | null
     imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
     imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
     imageThree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32209,7 +32209,7 @@ export namespace Prisma {
     description: string
     executiveName: string
     flockNumber: string
-    age: number
+    age?: number | null
     imagesOne?: string | null
     imageTwo?: string | null
     imageThree?: string | null
@@ -32219,7 +32219,7 @@ export namespace Prisma {
     birdsSalesStart?: boolean
     birdsSalesEnd?: boolean
     branchCode: string
-    createdAt: Date | string
+    createdAt?: Date | string
     updatedAt?: Date | string
   }
 
@@ -32319,7 +32319,7 @@ export namespace Prisma {
     todayWeightGain?: IntFieldUpdateOperationsInput | number
     todayFeedEting?: IntFieldUpdateOperationsInput | number
     suggestTosell?: BoolFieldUpdateOperationsInput | boolean
-    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    averageBodyWight?: NullableFloatFieldUpdateOperationsInput | number | null
     totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
@@ -32328,7 +32328,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
     flockNumber?: StringFieldUpdateOperationsInput | string
-    age?: IntFieldUpdateOperationsInput | number
+    age?: NullableIntFieldUpdateOperationsInput | number | null
     imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
     imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
     imageThree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32355,7 +32355,7 @@ export namespace Prisma {
     todayWeightGain?: IntFieldUpdateOperationsInput | number
     todayFeedEting?: IntFieldUpdateOperationsInput | number
     suggestTosell?: BoolFieldUpdateOperationsInput | boolean
-    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    averageBodyWight?: NullableFloatFieldUpdateOperationsInput | number | null
     totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
@@ -32364,7 +32364,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
     flockNumber?: StringFieldUpdateOperationsInput | string
-    age?: IntFieldUpdateOperationsInput | number
+    age?: NullableIntFieldUpdateOperationsInput | number | null
     imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
     imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
     imageThree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32391,7 +32391,7 @@ export namespace Prisma {
     todayWeightGain?: IntFieldUpdateOperationsInput | number
     todayFeedEting?: IntFieldUpdateOperationsInput | number
     suggestTosell?: BoolFieldUpdateOperationsInput | boolean
-    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    averageBodyWight?: NullableFloatFieldUpdateOperationsInput | number | null
     totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
@@ -32400,7 +32400,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
     flockNumber?: StringFieldUpdateOperationsInput | string
-    age?: IntFieldUpdateOperationsInput | number
+    age?: NullableIntFieldUpdateOperationsInput | number | null
     imagesOne?: NullableStringFieldUpdateOperationsInput | string | null
     imageTwo?: NullableStringFieldUpdateOperationsInput | string | null
     imageThree?: NullableStringFieldUpdateOperationsInput | string | null

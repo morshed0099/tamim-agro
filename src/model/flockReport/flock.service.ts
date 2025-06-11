@@ -5,31 +5,63 @@ import { TFlockReport } from "../../type";
 const createFlockReport = async (payload: TFlockReport) => {
   const findFlockLast = await prismaClient.flockReport.findFirst({
     where: {
-      flockId: payload.flockId,
+      executiveId: payload.executiveId,
     },
     orderBy: {
-      visitedDate: "desc",
+      createdAt: "desc",
     },
   });
+
   if (findFlockLast) {
-    payload.totalMortality =
-      findFlockLast.todayMortality + payload.todayMortality;
-    payload.birdsStock = findFlockLast.housedBirds - payload.totalMortality;
-    payload.todayMortalityPercent =
-      (payload.todayMortality / payload.birdsStock) * 100;
-    payload.totalMortalityPercentage =
-      (findFlockLast.housedBirds / payload.totalMortality) * 100;
-    payload.bodyWeight = (payload.birdsStock * payload.bodyWeight) / 1000;
-    payload.averageBodyWight = payload.bodyWeight / payload.birdsStock;
-    payload.totalFeedEting =
+    const totalMortality: number =
+      findFlockLast.totalMortality! + payload.todayMortality;
+
+    const birdsStock: number = findFlockLast.housedBirds - totalMortality;
+
+    const todayMortalityPercent: number =
+      (payload.todayMortality / birdsStock) * 100;
+
+    const totalMortalityPercentage: number =
+      (totalMortality / findFlockLast.housedBirds) * 100;
+    const bodyWeight: number = (birdsStock * payload.bodyWeight) / 1000;
+
+    const averageBodyWight: number = bodyWeight / birdsStock;
+    console.log(averageBodyWight);
+    const totalFeedEting: number =
       findFlockLast.totalFeedEting + payload.todayFeedEting;
-    payload.age = payload.age + findFlockLast.age + 1;
-    payload.fcr = payload.totalFeedEting / payload.bodyWeight;
 
+    const age: number = findFlockLast.age ? findFlockLast.age! + 1 : 1;
 
-    console.log(payload);
+    const fcr = totalFeedEting / bodyWeight;
+
     const result = await prismaClient.flockReport.create({
-      data: payload as any,
+      data: {
+        age,
+        birdsStock,
+        bodyWeight,
+        condition: payload.condition,
+        diseases: payload.diseases,
+        description: payload.description,
+        executiveId: payload.executiveId,
+        executiveName: payload.executiveName,
+        feedStock: payload.feedStock,
+        flockNumber: payload.flockNumber,
+        housedBirds: payload.housedBirds,
+        todayFeedEting: payload.todayFeedEting,
+        todayMortality: payload.todayMortality,
+        todayWeightGain: payload.todayWeightGain,
+        totalFeedEting,
+        todayMortalityPercent,
+        branchCode: payload.branchCode,
+        farmId: payload.farmId,
+        fcr,
+        flockId: payload.flockId,
+        averageBodyWight,
+        totalMortality,
+        totalMortalityPercentage,
+        visitedDate: payload.visitedDate,
+        locationLink: payload.locationLink,
+      },
     });
     return result;
   } else {
@@ -39,7 +71,6 @@ const createFlockReport = async (payload: TFlockReport) => {
     });
     return result;
   }
-
 };
 
 const getAllFclockReport = async (params: any) => {
