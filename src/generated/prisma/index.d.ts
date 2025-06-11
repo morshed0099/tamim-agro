@@ -10100,7 +10100,11 @@ export namespace Prisma {
     totalMortalityPercentage: number | null
     bodyWeight: number | null
     todayWeightGain: number | null
+    todayFeedEting: number | null
+    averageBodyWight: number | null
+    totalFeedEting: number | null
     feedStock: number | null
+    birdsStock: number | null
     age: number | null
   }
 
@@ -10113,7 +10117,11 @@ export namespace Prisma {
     totalMortalityPercentage: number | null
     bodyWeight: number | null
     todayWeightGain: number | null
+    todayFeedEting: number | null
+    averageBodyWight: number | null
+    totalFeedEting: number | null
     feedStock: number | null
+    birdsStock: number | null
     age: number | null
   }
 
@@ -10128,8 +10136,13 @@ export namespace Prisma {
     totalMortalityPercentage: number | null
     bodyWeight: number | null
     todayWeightGain: number | null
+    todayFeedEting: number | null
+    suggestTosell: boolean | null
+    averageBodyWight: number | null
+    totalFeedEting: number | null
     feedStock: number | null
     diseases: string | null
+    birdsStock: number | null
     condition: string | null
     description: string | null
     executiveName: string | null
@@ -10160,8 +10173,13 @@ export namespace Prisma {
     totalMortalityPercentage: number | null
     bodyWeight: number | null
     todayWeightGain: number | null
+    todayFeedEting: number | null
+    suggestTosell: boolean | null
+    averageBodyWight: number | null
+    totalFeedEting: number | null
     feedStock: number | null
     diseases: string | null
+    birdsStock: number | null
     condition: string | null
     description: string | null
     executiveName: string | null
@@ -10192,8 +10210,13 @@ export namespace Prisma {
     totalMortalityPercentage: number
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell: number
+    averageBodyWight: number
+    totalFeedEting: number
     feedStock: number
     diseases: number
+    birdsStock: number
     condition: number
     description: number
     executiveName: number
@@ -10224,7 +10247,11 @@ export namespace Prisma {
     totalMortalityPercentage?: true
     bodyWeight?: true
     todayWeightGain?: true
+    todayFeedEting?: true
+    averageBodyWight?: true
+    totalFeedEting?: true
     feedStock?: true
+    birdsStock?: true
     age?: true
   }
 
@@ -10237,7 +10264,11 @@ export namespace Prisma {
     totalMortalityPercentage?: true
     bodyWeight?: true
     todayWeightGain?: true
+    todayFeedEting?: true
+    averageBodyWight?: true
+    totalFeedEting?: true
     feedStock?: true
+    birdsStock?: true
     age?: true
   }
 
@@ -10252,8 +10283,13 @@ export namespace Prisma {
     totalMortalityPercentage?: true
     bodyWeight?: true
     todayWeightGain?: true
+    todayFeedEting?: true
+    suggestTosell?: true
+    averageBodyWight?: true
+    totalFeedEting?: true
     feedStock?: true
     diseases?: true
+    birdsStock?: true
     condition?: true
     description?: true
     executiveName?: true
@@ -10284,8 +10320,13 @@ export namespace Prisma {
     totalMortalityPercentage?: true
     bodyWeight?: true
     todayWeightGain?: true
+    todayFeedEting?: true
+    suggestTosell?: true
+    averageBodyWight?: true
+    totalFeedEting?: true
     feedStock?: true
     diseases?: true
+    birdsStock?: true
     condition?: true
     description?: true
     executiveName?: true
@@ -10316,8 +10357,13 @@ export namespace Prisma {
     totalMortalityPercentage?: true
     bodyWeight?: true
     todayWeightGain?: true
+    todayFeedEting?: true
+    suggestTosell?: true
+    averageBodyWight?: true
+    totalFeedEting?: true
     feedStock?: true
     diseases?: true
+    birdsStock?: true
     condition?: true
     description?: true
     executiveName?: true
@@ -10435,8 +10481,13 @@ export namespace Prisma {
     totalMortalityPercentage: number | null
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell: boolean
+    averageBodyWight: number | null
+    totalFeedEting: number
     feedStock: number
     diseases: string
+    birdsStock: number
     condition: string
     description: string
     executiveName: string
@@ -10486,8 +10537,13 @@ export namespace Prisma {
     totalMortalityPercentage?: boolean
     bodyWeight?: boolean
     todayWeightGain?: boolean
+    todayFeedEting?: boolean
+    suggestTosell?: boolean
+    averageBodyWight?: boolean
+    totalFeedEting?: boolean
     feedStock?: boolean
     diseases?: boolean
+    birdsStock?: boolean
     condition?: boolean
     description?: boolean
     executiveName?: boolean
@@ -10521,8 +10577,13 @@ export namespace Prisma {
     totalMortalityPercentage?: boolean
     bodyWeight?: boolean
     todayWeightGain?: boolean
+    todayFeedEting?: boolean
+    suggestTosell?: boolean
+    averageBodyWight?: boolean
+    totalFeedEting?: boolean
     feedStock?: boolean
     diseases?: boolean
+    birdsStock?: boolean
     condition?: boolean
     description?: boolean
     executiveName?: boolean
@@ -10556,8 +10617,13 @@ export namespace Prisma {
     totalMortalityPercentage?: boolean
     bodyWeight?: boolean
     todayWeightGain?: boolean
+    todayFeedEting?: boolean
+    suggestTosell?: boolean
+    averageBodyWight?: boolean
+    totalFeedEting?: boolean
     feedStock?: boolean
     diseases?: boolean
+    birdsStock?: boolean
     condition?: boolean
     description?: boolean
     executiveName?: boolean
@@ -10591,8 +10657,13 @@ export namespace Prisma {
     totalMortalityPercentage?: boolean
     bodyWeight?: boolean
     todayWeightGain?: boolean
+    todayFeedEting?: boolean
+    suggestTosell?: boolean
+    averageBodyWight?: boolean
+    totalFeedEting?: boolean
     feedStock?: boolean
     diseases?: boolean
+    birdsStock?: boolean
     condition?: boolean
     description?: boolean
     executiveName?: boolean
@@ -10612,7 +10683,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type FlockReportOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "housedBirds" | "fcr" | "executiveId" | "totalMortality" | "todayMortality" | "todayMortalityPercent" | "totalMortalityPercentage" | "bodyWeight" | "todayWeightGain" | "feedStock" | "diseases" | "condition" | "description" | "executiveName" | "flockNumber" | "age" | "imagesOne" | "imageTwo" | "imageThree" | "visitedDate" | "locationLink" | "farmId" | "flockId" | "birdsSalesStart" | "birdsSalesEnd" | "branchCode" | "createdAt" | "updatedAt", ExtArgs["result"]["flockReport"]>
+  export type FlockReportOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "housedBirds" | "fcr" | "executiveId" | "totalMortality" | "todayMortality" | "todayMortalityPercent" | "totalMortalityPercentage" | "bodyWeight" | "todayWeightGain" | "todayFeedEting" | "suggestTosell" | "averageBodyWight" | "totalFeedEting" | "feedStock" | "diseases" | "birdsStock" | "condition" | "description" | "executiveName" | "flockNumber" | "age" | "imagesOne" | "imageTwo" | "imageThree" | "visitedDate" | "locationLink" | "farmId" | "flockId" | "birdsSalesStart" | "birdsSalesEnd" | "branchCode" | "createdAt" | "updatedAt", ExtArgs["result"]["flockReport"]>
   export type FlockReportInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     branch?: boolean | BranchDefaultArgs<ExtArgs>
     flock?: boolean | FlockDefaultArgs<ExtArgs>
@@ -10647,8 +10718,13 @@ export namespace Prisma {
       totalMortalityPercentage: number | null
       bodyWeight: number
       todayWeightGain: number
+      todayFeedEting: number
+      suggestTosell: boolean
+      averageBodyWight: number | null
+      totalFeedEting: number
       feedStock: number
       diseases: string
+      birdsStock: number
       condition: string
       description: string
       executiveName: string
@@ -11102,8 +11178,13 @@ export namespace Prisma {
     readonly totalMortalityPercentage: FieldRef<"FlockReport", 'Float'>
     readonly bodyWeight: FieldRef<"FlockReport", 'Float'>
     readonly todayWeightGain: FieldRef<"FlockReport", 'Int'>
+    readonly todayFeedEting: FieldRef<"FlockReport", 'Int'>
+    readonly suggestTosell: FieldRef<"FlockReport", 'Boolean'>
+    readonly averageBodyWight: FieldRef<"FlockReport", 'Int'>
+    readonly totalFeedEting: FieldRef<"FlockReport", 'Int'>
     readonly feedStock: FieldRef<"FlockReport", 'Int'>
     readonly diseases: FieldRef<"FlockReport", 'String'>
+    readonly birdsStock: FieldRef<"FlockReport", 'Int'>
     readonly condition: FieldRef<"FlockReport", 'String'>
     readonly description: FieldRef<"FlockReport", 'String'>
     readonly executiveName: FieldRef<"FlockReport", 'String'>
@@ -20932,8 +21013,13 @@ export namespace Prisma {
     totalMortalityPercentage: 'totalMortalityPercentage',
     bodyWeight: 'bodyWeight',
     todayWeightGain: 'todayWeightGain',
+    todayFeedEting: 'todayFeedEting',
+    suggestTosell: 'suggestTosell',
+    averageBodyWight: 'averageBodyWight',
+    totalFeedEting: 'totalFeedEting',
     feedStock: 'feedStock',
     diseases: 'diseases',
+    birdsStock: 'birdsStock',
     condition: 'condition',
     description: 'description',
     executiveName: 'executiveName',
@@ -21818,8 +21904,13 @@ export namespace Prisma {
     totalMortalityPercentage?: FloatNullableFilter<"FlockReport"> | number | null
     bodyWeight?: FloatFilter<"FlockReport"> | number
     todayWeightGain?: IntFilter<"FlockReport"> | number
+    todayFeedEting?: IntFilter<"FlockReport"> | number
+    suggestTosell?: BoolFilter<"FlockReport"> | boolean
+    averageBodyWight?: IntNullableFilter<"FlockReport"> | number | null
+    totalFeedEting?: IntFilter<"FlockReport"> | number
     feedStock?: IntFilter<"FlockReport"> | number
     diseases?: StringFilter<"FlockReport"> | string
+    birdsStock?: IntFilter<"FlockReport"> | number
     condition?: StringFilter<"FlockReport"> | string
     description?: StringFilter<"FlockReport"> | string
     executiveName?: StringFilter<"FlockReport"> | string
@@ -21853,8 +21944,13 @@ export namespace Prisma {
     totalMortalityPercentage?: SortOrderInput | SortOrder
     bodyWeight?: SortOrder
     todayWeightGain?: SortOrder
+    todayFeedEting?: SortOrder
+    suggestTosell?: SortOrder
+    averageBodyWight?: SortOrderInput | SortOrder
+    totalFeedEting?: SortOrder
     feedStock?: SortOrder
     diseases?: SortOrder
+    birdsStock?: SortOrder
     condition?: SortOrder
     description?: SortOrder
     executiveName?: SortOrder
@@ -21891,8 +21987,13 @@ export namespace Prisma {
     totalMortalityPercentage?: FloatNullableFilter<"FlockReport"> | number | null
     bodyWeight?: FloatFilter<"FlockReport"> | number
     todayWeightGain?: IntFilter<"FlockReport"> | number
+    todayFeedEting?: IntFilter<"FlockReport"> | number
+    suggestTosell?: BoolFilter<"FlockReport"> | boolean
+    averageBodyWight?: IntNullableFilter<"FlockReport"> | number | null
+    totalFeedEting?: IntFilter<"FlockReport"> | number
     feedStock?: IntFilter<"FlockReport"> | number
     diseases?: StringFilter<"FlockReport"> | string
+    birdsStock?: IntFilter<"FlockReport"> | number
     condition?: StringFilter<"FlockReport"> | string
     description?: StringFilter<"FlockReport"> | string
     executiveName?: StringFilter<"FlockReport"> | string
@@ -21926,8 +22027,13 @@ export namespace Prisma {
     totalMortalityPercentage?: SortOrderInput | SortOrder
     bodyWeight?: SortOrder
     todayWeightGain?: SortOrder
+    todayFeedEting?: SortOrder
+    suggestTosell?: SortOrder
+    averageBodyWight?: SortOrderInput | SortOrder
+    totalFeedEting?: SortOrder
     feedStock?: SortOrder
     diseases?: SortOrder
+    birdsStock?: SortOrder
     condition?: SortOrder
     description?: SortOrder
     executiveName?: SortOrder
@@ -21966,8 +22072,13 @@ export namespace Prisma {
     totalMortalityPercentage?: FloatNullableWithAggregatesFilter<"FlockReport"> | number | null
     bodyWeight?: FloatWithAggregatesFilter<"FlockReport"> | number
     todayWeightGain?: IntWithAggregatesFilter<"FlockReport"> | number
+    todayFeedEting?: IntWithAggregatesFilter<"FlockReport"> | number
+    suggestTosell?: BoolWithAggregatesFilter<"FlockReport"> | boolean
+    averageBodyWight?: IntNullableWithAggregatesFilter<"FlockReport"> | number | null
+    totalFeedEting?: IntWithAggregatesFilter<"FlockReport"> | number
     feedStock?: IntWithAggregatesFilter<"FlockReport"> | number
     diseases?: StringWithAggregatesFilter<"FlockReport"> | string
+    birdsStock?: IntWithAggregatesFilter<"FlockReport"> | number
     condition?: StringWithAggregatesFilter<"FlockReport"> | string
     description?: StringWithAggregatesFilter<"FlockReport"> | string
     executiveName?: StringWithAggregatesFilter<"FlockReport"> | string
@@ -23268,8 +23379,13 @@ export namespace Prisma {
     totalMortalityPercentage?: number | null
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell?: boolean
+    averageBodyWight?: number | null
+    totalFeedEting: number
     feedStock: number
     diseases: string
+    birdsStock: number
     condition: string
     description: string
     executiveName: string
@@ -23300,8 +23416,13 @@ export namespace Prisma {
     totalMortalityPercentage?: number | null
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell?: boolean
+    averageBodyWight?: number | null
+    totalFeedEting: number
     feedStock: number
     diseases: string
+    birdsStock: number
     condition: string
     description: string
     executiveName: string
@@ -23332,8 +23453,13 @@ export namespace Prisma {
     totalMortalityPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     bodyWeight?: FloatFieldUpdateOperationsInput | number
     todayWeightGain?: IntFieldUpdateOperationsInput | number
+    todayFeedEting?: IntFieldUpdateOperationsInput | number
+    suggestTosell?: BoolFieldUpdateOperationsInput | boolean
+    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
+    birdsStock?: IntFieldUpdateOperationsInput | number
     condition?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
@@ -23364,8 +23490,13 @@ export namespace Prisma {
     totalMortalityPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     bodyWeight?: FloatFieldUpdateOperationsInput | number
     todayWeightGain?: IntFieldUpdateOperationsInput | number
+    todayFeedEting?: IntFieldUpdateOperationsInput | number
+    suggestTosell?: BoolFieldUpdateOperationsInput | boolean
+    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
+    birdsStock?: IntFieldUpdateOperationsInput | number
     condition?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
@@ -23396,8 +23527,13 @@ export namespace Prisma {
     totalMortalityPercentage?: number | null
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell?: boolean
+    averageBodyWight?: number | null
+    totalFeedEting: number
     feedStock: number
     diseases: string
+    birdsStock: number
     condition: string
     description: string
     executiveName: string
@@ -23428,8 +23564,13 @@ export namespace Prisma {
     totalMortalityPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     bodyWeight?: FloatFieldUpdateOperationsInput | number
     todayWeightGain?: IntFieldUpdateOperationsInput | number
+    todayFeedEting?: IntFieldUpdateOperationsInput | number
+    suggestTosell?: BoolFieldUpdateOperationsInput | boolean
+    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
+    birdsStock?: IntFieldUpdateOperationsInput | number
     condition?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
@@ -23457,8 +23598,13 @@ export namespace Prisma {
     totalMortalityPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     bodyWeight?: FloatFieldUpdateOperationsInput | number
     todayWeightGain?: IntFieldUpdateOperationsInput | number
+    todayFeedEting?: IntFieldUpdateOperationsInput | number
+    suggestTosell?: BoolFieldUpdateOperationsInput | boolean
+    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
+    birdsStock?: IntFieldUpdateOperationsInput | number
     condition?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
@@ -24815,8 +24961,13 @@ export namespace Prisma {
     totalMortalityPercentage?: SortOrder
     bodyWeight?: SortOrder
     todayWeightGain?: SortOrder
+    todayFeedEting?: SortOrder
+    suggestTosell?: SortOrder
+    averageBodyWight?: SortOrder
+    totalFeedEting?: SortOrder
     feedStock?: SortOrder
     diseases?: SortOrder
+    birdsStock?: SortOrder
     condition?: SortOrder
     description?: SortOrder
     executiveName?: SortOrder
@@ -24845,7 +24996,11 @@ export namespace Prisma {
     totalMortalityPercentage?: SortOrder
     bodyWeight?: SortOrder
     todayWeightGain?: SortOrder
+    todayFeedEting?: SortOrder
+    averageBodyWight?: SortOrder
+    totalFeedEting?: SortOrder
     feedStock?: SortOrder
+    birdsStock?: SortOrder
     age?: SortOrder
   }
 
@@ -24860,8 +25015,13 @@ export namespace Prisma {
     totalMortalityPercentage?: SortOrder
     bodyWeight?: SortOrder
     todayWeightGain?: SortOrder
+    todayFeedEting?: SortOrder
+    suggestTosell?: SortOrder
+    averageBodyWight?: SortOrder
+    totalFeedEting?: SortOrder
     feedStock?: SortOrder
     diseases?: SortOrder
+    birdsStock?: SortOrder
     condition?: SortOrder
     description?: SortOrder
     executiveName?: SortOrder
@@ -24892,8 +25052,13 @@ export namespace Prisma {
     totalMortalityPercentage?: SortOrder
     bodyWeight?: SortOrder
     todayWeightGain?: SortOrder
+    todayFeedEting?: SortOrder
+    suggestTosell?: SortOrder
+    averageBodyWight?: SortOrder
+    totalFeedEting?: SortOrder
     feedStock?: SortOrder
     diseases?: SortOrder
+    birdsStock?: SortOrder
     condition?: SortOrder
     description?: SortOrder
     executiveName?: SortOrder
@@ -24922,7 +25087,11 @@ export namespace Prisma {
     totalMortalityPercentage?: SortOrder
     bodyWeight?: SortOrder
     todayWeightGain?: SortOrder
+    todayFeedEting?: SortOrder
+    averageBodyWight?: SortOrder
+    totalFeedEting?: SortOrder
     feedStock?: SortOrder
+    birdsStock?: SortOrder
     age?: SortOrder
   }
 
@@ -27477,8 +27646,13 @@ export namespace Prisma {
     totalMortalityPercentage?: number | null
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell?: boolean
+    averageBodyWight?: number | null
+    totalFeedEting: number
     feedStock: number
     diseases: string
+    birdsStock: number
     condition: string
     description: string
     executiveName: string
@@ -27508,8 +27682,13 @@ export namespace Prisma {
     totalMortalityPercentage?: number | null
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell?: boolean
+    averageBodyWight?: number | null
+    totalFeedEting: number
     feedStock: number
     diseases: string
+    birdsStock: number
     condition: string
     description: string
     executiveName: string
@@ -27835,8 +28014,13 @@ export namespace Prisma {
     totalMortalityPercentage?: FloatNullableFilter<"FlockReport"> | number | null
     bodyWeight?: FloatFilter<"FlockReport"> | number
     todayWeightGain?: IntFilter<"FlockReport"> | number
+    todayFeedEting?: IntFilter<"FlockReport"> | number
+    suggestTosell?: BoolFilter<"FlockReport"> | boolean
+    averageBodyWight?: IntNullableFilter<"FlockReport"> | number | null
+    totalFeedEting?: IntFilter<"FlockReport"> | number
     feedStock?: IntFilter<"FlockReport"> | number
     diseases?: StringFilter<"FlockReport"> | string
+    birdsStock?: IntFilter<"FlockReport"> | number
     condition?: StringFilter<"FlockReport"> | string
     description?: StringFilter<"FlockReport"> | string
     executiveName?: StringFilter<"FlockReport"> | string
@@ -28063,8 +28247,13 @@ export namespace Prisma {
     totalMortalityPercentage?: number | null
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell?: boolean
+    averageBodyWight?: number | null
+    totalFeedEting: number
     feedStock: number
     diseases: string
+    birdsStock: number
     condition: string
     description: string
     executiveName: string
@@ -28094,8 +28283,13 @@ export namespace Prisma {
     totalMortalityPercentage?: number | null
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell?: boolean
+    averageBodyWight?: number | null
+    totalFeedEting: number
     feedStock: number
     diseases: string
+    birdsStock: number
     condition: string
     description: string
     executiveName: string
@@ -28956,8 +29150,13 @@ export namespace Prisma {
     totalMortalityPercentage?: number | null
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell?: boolean
+    averageBodyWight?: number | null
+    totalFeedEting: number
     feedStock: number
     diseases: string
+    birdsStock: number
     condition: string
     description: string
     executiveName: string
@@ -28987,8 +29186,13 @@ export namespace Prisma {
     totalMortalityPercentage?: number | null
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell?: boolean
+    averageBodyWight?: number | null
+    totalFeedEting: number
     feedStock: number
     diseases: string
+    birdsStock: number
     condition: string
     description: string
     executiveName: string
@@ -31064,8 +31268,13 @@ export namespace Prisma {
     totalMortalityPercentage?: number | null
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell?: boolean
+    averageBodyWight?: number | null
+    totalFeedEting: number
     feedStock: number
     diseases: string
+    birdsStock: number
     condition: string
     description: string
     executiveName: string
@@ -31410,8 +31619,13 @@ export namespace Prisma {
     totalMortalityPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     bodyWeight?: FloatFieldUpdateOperationsInput | number
     todayWeightGain?: IntFieldUpdateOperationsInput | number
+    todayFeedEting?: IntFieldUpdateOperationsInput | number
+    suggestTosell?: BoolFieldUpdateOperationsInput | boolean
+    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
+    birdsStock?: IntFieldUpdateOperationsInput | number
     condition?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
@@ -31441,8 +31655,13 @@ export namespace Prisma {
     totalMortalityPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     bodyWeight?: FloatFieldUpdateOperationsInput | number
     todayWeightGain?: IntFieldUpdateOperationsInput | number
+    todayFeedEting?: IntFieldUpdateOperationsInput | number
+    suggestTosell?: BoolFieldUpdateOperationsInput | boolean
+    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
+    birdsStock?: IntFieldUpdateOperationsInput | number
     condition?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
@@ -31472,8 +31691,13 @@ export namespace Prisma {
     totalMortalityPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     bodyWeight?: FloatFieldUpdateOperationsInput | number
     todayWeightGain?: IntFieldUpdateOperationsInput | number
+    todayFeedEting?: IntFieldUpdateOperationsInput | number
+    suggestTosell?: BoolFieldUpdateOperationsInput | boolean
+    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
+    birdsStock?: IntFieldUpdateOperationsInput | number
     condition?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
@@ -31567,8 +31791,13 @@ export namespace Prisma {
     totalMortalityPercentage?: number | null
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell?: boolean
+    averageBodyWight?: number | null
+    totalFeedEting: number
     feedStock: number
     diseases: string
+    birdsStock: number
     condition: string
     description: string
     executiveName: string
@@ -31708,8 +31937,13 @@ export namespace Prisma {
     totalMortalityPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     bodyWeight?: FloatFieldUpdateOperationsInput | number
     todayWeightGain?: IntFieldUpdateOperationsInput | number
+    todayFeedEting?: IntFieldUpdateOperationsInput | number
+    suggestTosell?: BoolFieldUpdateOperationsInput | boolean
+    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
+    birdsStock?: IntFieldUpdateOperationsInput | number
     condition?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
@@ -31739,8 +31973,13 @@ export namespace Prisma {
     totalMortalityPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     bodyWeight?: FloatFieldUpdateOperationsInput | number
     todayWeightGain?: IntFieldUpdateOperationsInput | number
+    todayFeedEting?: IntFieldUpdateOperationsInput | number
+    suggestTosell?: BoolFieldUpdateOperationsInput | boolean
+    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
+    birdsStock?: IntFieldUpdateOperationsInput | number
     condition?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
@@ -31770,8 +32009,13 @@ export namespace Prisma {
     totalMortalityPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     bodyWeight?: FloatFieldUpdateOperationsInput | number
     todayWeightGain?: IntFieldUpdateOperationsInput | number
+    todayFeedEting?: IntFieldUpdateOperationsInput | number
+    suggestTosell?: BoolFieldUpdateOperationsInput | boolean
+    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
+    birdsStock?: IntFieldUpdateOperationsInput | number
     condition?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
@@ -31954,8 +32198,13 @@ export namespace Prisma {
     totalMortalityPercentage?: number | null
     bodyWeight: number
     todayWeightGain: number
+    todayFeedEting: number
+    suggestTosell?: boolean
+    averageBodyWight?: number | null
+    totalFeedEting: number
     feedStock: number
     diseases: string
+    birdsStock: number
     condition: string
     description: string
     executiveName: string
@@ -32068,8 +32317,13 @@ export namespace Prisma {
     totalMortalityPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     bodyWeight?: FloatFieldUpdateOperationsInput | number
     todayWeightGain?: IntFieldUpdateOperationsInput | number
+    todayFeedEting?: IntFieldUpdateOperationsInput | number
+    suggestTosell?: BoolFieldUpdateOperationsInput | boolean
+    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
+    birdsStock?: IntFieldUpdateOperationsInput | number
     condition?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
@@ -32099,8 +32353,13 @@ export namespace Prisma {
     totalMortalityPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     bodyWeight?: FloatFieldUpdateOperationsInput | number
     todayWeightGain?: IntFieldUpdateOperationsInput | number
+    todayFeedEting?: IntFieldUpdateOperationsInput | number
+    suggestTosell?: BoolFieldUpdateOperationsInput | boolean
+    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
+    birdsStock?: IntFieldUpdateOperationsInput | number
     condition?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string
@@ -32130,8 +32389,13 @@ export namespace Prisma {
     totalMortalityPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     bodyWeight?: FloatFieldUpdateOperationsInput | number
     todayWeightGain?: IntFieldUpdateOperationsInput | number
+    todayFeedEting?: IntFieldUpdateOperationsInput | number
+    suggestTosell?: BoolFieldUpdateOperationsInput | boolean
+    averageBodyWight?: NullableIntFieldUpdateOperationsInput | number | null
+    totalFeedEting?: IntFieldUpdateOperationsInput | number
     feedStock?: IntFieldUpdateOperationsInput | number
     diseases?: StringFieldUpdateOperationsInput | string
+    birdsStock?: IntFieldUpdateOperationsInput | number
     condition?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     executiveName?: StringFieldUpdateOperationsInput | string

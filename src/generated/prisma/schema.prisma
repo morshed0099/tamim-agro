@@ -163,16 +163,22 @@ model Flock {
 
 model FlockReport {
   id                       String   @id @default(uuid())
-  fcr                      Float
+  housedBirds              Int
+  fcr                      Float?
   executiveId              String
-  totalMortality           Int
+  totalMortality           Int?
   todayMortality           Int
-  todayMortalityPercent    Float
-  totalMortalityPercentage Float
+  todayMortalityPercent    Float?
+  totalMortalityPercentage Float?
   bodyWeight               Float
   todayWeightGain          Int
+  todayFeedEting           Int
+  suggestTosell            Boolean  @default(false)
+  averageBodyWight         Int?
+  totalFeedEting           Int
   feedStock                Int
   diseases                 String
+  birdsStock               Int
   condition                String
   description              String
   executiveName            String

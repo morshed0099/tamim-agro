@@ -5,6 +5,7 @@ import { employleeRouter } from "../model/emplyee/emplyee.router";
 import { flockRouter } from "../model/flog/flog.router";
 import { flockReportRouter } from "../model/flockReport/flock.router";
 import { farmRouter } from "../model/farmar/farmar.router";
+import { branchAssinEmployeeRouter } from "../model/branceAssinEmployee/branceAssinEmployee.service";
 
 const router = Router();
 
@@ -32,6 +33,10 @@ const moduleRouter = [
   {
     path: "/flock-report",
     route: flockReportRouter,
+  },
+  {
+    path: "/bracnh",
+    route: branchAssinEmployeeRouter,
   },
 ];
 

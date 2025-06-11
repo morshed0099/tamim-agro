@@ -172,8 +172,13 @@ model FlockReport {
   totalMortalityPercentage Float?
   bodyWeight               Float
   todayWeightGain          Int
+  todayFeedEting           Int
+  suggestTosell            Boolean  @default(false)
+  averageBodyWight         Int?
+  totalFeedEting           Int
   feedStock                Int
   diseases                 String
+  birdsStock              Int
   condition                String
   description              String
   executiveName            String
