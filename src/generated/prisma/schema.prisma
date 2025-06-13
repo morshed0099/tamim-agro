@@ -238,7 +238,7 @@ model AllGenericMedicin {
   createdAt        DateTime
   updatedAt        DateTime           @default(now())
 
-  @@map("medicineNameCategoy")
+  @@map("allGenericMedicin")
 }
 
 model MedicineNameAdd {
@@ -281,7 +281,7 @@ model MedicinePurchess {
 
 model MedicineStock {
   id               String            @id @default(uuid())
-  genericName      String            @unique
+  genericName      String
   medicineName     String            @unique
   medicineNameAdd  MedicineNameAdd   @relation(fields: [medicineName], references: [name])
   medicineCategory AllGenericMedicin @relation(fields: [genericName], references: [genericName])
@@ -298,6 +298,7 @@ model MedicineStock {
 
 model SellMedicine {
   id               String             @id @default(uuid())
+  billNumber       Int?               @unique @default(autoincrement())
   farmId           String
   flockNumer       Int
   genericName      String
@@ -314,18 +315,18 @@ model SellMedicine {
   createdAt        DateTime
   updatedAt        DateTime           @default(now())
 
+  @@index([billNumber])
   @@map("sellMedicine")
 }
 
 model MedicineTransfer {
   id           String       @id @default(uuid())
-  sellId       String
-  sellmedicine SellMedicine @relation(fields: [sellId], references: [id])
+  billNumber   Int
+  sellmedicine SellMedicine @relation(fields: [billNumber], references: [billNumber])
   flockId      String
   flock        Flock        @relation(fields: [flockId], references: [id])
-  toFarmcode   String?
-  fromBranch   String?
-  toBranch     String?
+  fromFarmcode Int?
+  toFarmcode   Int
   medicineName String
   genericName  String
   branchCode   String

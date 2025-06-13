@@ -52,10 +52,20 @@ const findPurchess = catchAsync(async (req, res) => {
   });
 });
 
+const addMedicineStock = catchAsync(async (req, res) => {
+  const result = await medicineSercive.addStockMedicine(req.body);
+  res.status(httpStatus.CREATED).json({
+    success: true,
+    message: "medicine stock added successfully !!",
+    data: result,
+  });
+});
+
 export const medicineControler = {
   createMedicineGeneric,
   findMedicineGeneric,
   createMedicineName,
   medicinePurchess,
   findPurchess,
+  addMedicineStock,
 };

@@ -18512,12 +18512,14 @@ export namespace Prisma {
   }
 
   export type SellMedicineAvgAggregateOutputType = {
+    billNumber: number | null
     flockNumer: number | null
     sellQuantity: number | null
     sellPrice: number | null
   }
 
   export type SellMedicineSumAggregateOutputType = {
+    billNumber: number | null
     flockNumer: number | null
     sellQuantity: number | null
     sellPrice: number | null
@@ -18525,6 +18527,7 @@ export namespace Prisma {
 
   export type SellMedicineMinAggregateOutputType = {
     id: string | null
+    billNumber: number | null
     farmId: string | null
     flockNumer: number | null
     genericName: string | null
@@ -18540,6 +18543,7 @@ export namespace Prisma {
 
   export type SellMedicineMaxAggregateOutputType = {
     id: string | null
+    billNumber: number | null
     farmId: string | null
     flockNumer: number | null
     genericName: string | null
@@ -18555,6 +18559,7 @@ export namespace Prisma {
 
   export type SellMedicineCountAggregateOutputType = {
     id: number
+    billNumber: number
     farmId: number
     flockNumer: number
     genericName: number
@@ -18571,12 +18576,14 @@ export namespace Prisma {
 
 
   export type SellMedicineAvgAggregateInputType = {
+    billNumber?: true
     flockNumer?: true
     sellQuantity?: true
     sellPrice?: true
   }
 
   export type SellMedicineSumAggregateInputType = {
+    billNumber?: true
     flockNumer?: true
     sellQuantity?: true
     sellPrice?: true
@@ -18584,6 +18591,7 @@ export namespace Prisma {
 
   export type SellMedicineMinAggregateInputType = {
     id?: true
+    billNumber?: true
     farmId?: true
     flockNumer?: true
     genericName?: true
@@ -18599,6 +18607,7 @@ export namespace Prisma {
 
   export type SellMedicineMaxAggregateInputType = {
     id?: true
+    billNumber?: true
     farmId?: true
     flockNumer?: true
     genericName?: true
@@ -18614,6 +18623,7 @@ export namespace Prisma {
 
   export type SellMedicineCountAggregateInputType = {
     id?: true
+    billNumber?: true
     farmId?: true
     flockNumer?: true
     genericName?: true
@@ -18716,6 +18726,7 @@ export namespace Prisma {
 
   export type SellMedicineGroupByOutputType = {
     id: string
+    billNumber: number | null
     farmId: string
     flockNumer: number
     genericName: string
@@ -18750,6 +18761,7 @@ export namespace Prisma {
 
   export type SellMedicineSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    billNumber?: boolean
     farmId?: boolean
     flockNumer?: boolean
     genericName?: boolean
@@ -18770,6 +18782,7 @@ export namespace Prisma {
 
   export type SellMedicineSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    billNumber?: boolean
     farmId?: boolean
     flockNumer?: boolean
     genericName?: boolean
@@ -18788,6 +18801,7 @@ export namespace Prisma {
 
   export type SellMedicineSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    billNumber?: boolean
     farmId?: boolean
     flockNumer?: boolean
     genericName?: boolean
@@ -18806,6 +18820,7 @@ export namespace Prisma {
 
   export type SellMedicineSelectScalar = {
     id?: boolean
+    billNumber?: boolean
     farmId?: boolean
     flockNumer?: boolean
     genericName?: boolean
@@ -18819,7 +18834,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type SellMedicineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "farmId" | "flockNumer" | "genericName" | "medicineName" | "sellQuantity" | "sellPrice" | "Delivery" | "sellDate" | "branchCode" | "createdAt" | "updatedAt", ExtArgs["result"]["sellMedicine"]>
+  export type SellMedicineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "billNumber" | "farmId" | "flockNumer" | "genericName" | "medicineName" | "sellQuantity" | "sellPrice" | "Delivery" | "sellDate" | "branchCode" | "createdAt" | "updatedAt", ExtArgs["result"]["sellMedicine"]>
   export type SellMedicineInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     flock?: boolean | FlockDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
@@ -18848,6 +18863,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      billNumber: number | null
       farmId: string
       flockNumer: number
       genericName: string
@@ -19287,6 +19303,7 @@ export namespace Prisma {
    */
   interface SellMedicineFieldRefs {
     readonly id: FieldRef<"SellMedicine", 'String'>
+    readonly billNumber: FieldRef<"SellMedicine", 'Int'>
     readonly farmId: FieldRef<"SellMedicine", 'String'>
     readonly flockNumer: FieldRef<"SellMedicine", 'Int'>
     readonly genericName: FieldRef<"SellMedicine", 'String'>
@@ -19742,17 +19759,30 @@ export namespace Prisma {
 
   export type AggregateMedicineTransfer = {
     _count: MedicineTransferCountAggregateOutputType | null
+    _avg: MedicineTransferAvgAggregateOutputType | null
+    _sum: MedicineTransferSumAggregateOutputType | null
     _min: MedicineTransferMinAggregateOutputType | null
     _max: MedicineTransferMaxAggregateOutputType | null
   }
 
+  export type MedicineTransferAvgAggregateOutputType = {
+    billNumber: number | null
+    fromFarmcode: number | null
+    toFarmcode: number | null
+  }
+
+  export type MedicineTransferSumAggregateOutputType = {
+    billNumber: number | null
+    fromFarmcode: number | null
+    toFarmcode: number | null
+  }
+
   export type MedicineTransferMinAggregateOutputType = {
     id: string | null
-    sellId: string | null
+    billNumber: number | null
     flockId: string | null
-    toFarmcode: string | null
-    fromBranch: string | null
-    toBranch: string | null
+    fromFarmcode: number | null
+    toFarmcode: number | null
     medicineName: string | null
     genericName: string | null
     branchCode: string | null
@@ -19762,11 +19792,10 @@ export namespace Prisma {
 
   export type MedicineTransferMaxAggregateOutputType = {
     id: string | null
-    sellId: string | null
+    billNumber: number | null
     flockId: string | null
-    toFarmcode: string | null
-    fromBranch: string | null
-    toBranch: string | null
+    fromFarmcode: number | null
+    toFarmcode: number | null
     medicineName: string | null
     genericName: string | null
     branchCode: string | null
@@ -19776,11 +19805,10 @@ export namespace Prisma {
 
   export type MedicineTransferCountAggregateOutputType = {
     id: number
-    sellId: number
+    billNumber: number
     flockId: number
+    fromFarmcode: number
     toFarmcode: number
-    fromBranch: number
-    toBranch: number
     medicineName: number
     genericName: number
     branchCode: number
@@ -19790,13 +19818,24 @@ export namespace Prisma {
   }
 
 
+  export type MedicineTransferAvgAggregateInputType = {
+    billNumber?: true
+    fromFarmcode?: true
+    toFarmcode?: true
+  }
+
+  export type MedicineTransferSumAggregateInputType = {
+    billNumber?: true
+    fromFarmcode?: true
+    toFarmcode?: true
+  }
+
   export type MedicineTransferMinAggregateInputType = {
     id?: true
-    sellId?: true
+    billNumber?: true
     flockId?: true
+    fromFarmcode?: true
     toFarmcode?: true
-    fromBranch?: true
-    toBranch?: true
     medicineName?: true
     genericName?: true
     branchCode?: true
@@ -19806,11 +19845,10 @@ export namespace Prisma {
 
   export type MedicineTransferMaxAggregateInputType = {
     id?: true
-    sellId?: true
+    billNumber?: true
     flockId?: true
+    fromFarmcode?: true
     toFarmcode?: true
-    fromBranch?: true
-    toBranch?: true
     medicineName?: true
     genericName?: true
     branchCode?: true
@@ -19820,11 +19858,10 @@ export namespace Prisma {
 
   export type MedicineTransferCountAggregateInputType = {
     id?: true
-    sellId?: true
+    billNumber?: true
     flockId?: true
+    fromFarmcode?: true
     toFarmcode?: true
-    fromBranch?: true
-    toBranch?: true
     medicineName?: true
     genericName?: true
     branchCode?: true
@@ -19871,6 +19908,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: MedicineTransferAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MedicineTransferSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: MedicineTransferMinAggregateInputType
@@ -19901,23 +19950,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: MedicineTransferCountAggregateInputType | true
+    _avg?: MedicineTransferAvgAggregateInputType
+    _sum?: MedicineTransferSumAggregateInputType
     _min?: MedicineTransferMinAggregateInputType
     _max?: MedicineTransferMaxAggregateInputType
   }
 
   export type MedicineTransferGroupByOutputType = {
     id: string
-    sellId: string
+    billNumber: number
     flockId: string
-    toFarmcode: string | null
-    fromBranch: string | null
-    toBranch: string | null
+    fromFarmcode: number | null
+    toFarmcode: number
     medicineName: string
     genericName: string
     branchCode: string
     createdAt: Date
     updatedAt: Date
     _count: MedicineTransferCountAggregateOutputType | null
+    _avg: MedicineTransferAvgAggregateOutputType | null
+    _sum: MedicineTransferSumAggregateOutputType | null
     _min: MedicineTransferMinAggregateOutputType | null
     _max: MedicineTransferMaxAggregateOutputType | null
   }
@@ -19938,11 +19990,10 @@ export namespace Prisma {
 
   export type MedicineTransferSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    sellId?: boolean
+    billNumber?: boolean
     flockId?: boolean
+    fromFarmcode?: boolean
     toFarmcode?: boolean
-    fromBranch?: boolean
-    toBranch?: boolean
     medicineName?: boolean
     genericName?: boolean
     branchCode?: boolean
@@ -19955,11 +20006,10 @@ export namespace Prisma {
 
   export type MedicineTransferSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    sellId?: boolean
+    billNumber?: boolean
     flockId?: boolean
+    fromFarmcode?: boolean
     toFarmcode?: boolean
-    fromBranch?: boolean
-    toBranch?: boolean
     medicineName?: boolean
     genericName?: boolean
     branchCode?: boolean
@@ -19972,11 +20022,10 @@ export namespace Prisma {
 
   export type MedicineTransferSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    sellId?: boolean
+    billNumber?: boolean
     flockId?: boolean
+    fromFarmcode?: boolean
     toFarmcode?: boolean
-    fromBranch?: boolean
-    toBranch?: boolean
     medicineName?: boolean
     genericName?: boolean
     branchCode?: boolean
@@ -19989,11 +20038,10 @@ export namespace Prisma {
 
   export type MedicineTransferSelectScalar = {
     id?: boolean
-    sellId?: boolean
+    billNumber?: boolean
     flockId?: boolean
+    fromFarmcode?: boolean
     toFarmcode?: boolean
-    fromBranch?: boolean
-    toBranch?: boolean
     medicineName?: boolean
     genericName?: boolean
     branchCode?: boolean
@@ -20001,7 +20049,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type MedicineTransferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sellId" | "flockId" | "toFarmcode" | "fromBranch" | "toBranch" | "medicineName" | "genericName" | "branchCode" | "createdAt" | "updatedAt", ExtArgs["result"]["medicineTransfer"]>
+  export type MedicineTransferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "billNumber" | "flockId" | "fromFarmcode" | "toFarmcode" | "medicineName" | "genericName" | "branchCode" | "createdAt" | "updatedAt", ExtArgs["result"]["medicineTransfer"]>
   export type MedicineTransferInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sellmedicine?: boolean | SellMedicineDefaultArgs<ExtArgs>
     flock?: boolean | FlockDefaultArgs<ExtArgs>
@@ -20027,11 +20075,10 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      sellId: string
+      billNumber: number
       flockId: string
-      toFarmcode: string | null
-      fromBranch: string | null
-      toBranch: string | null
+      fromFarmcode: number | null
+      toFarmcode: number
       medicineName: string
       genericName: string
       branchCode: string
@@ -20464,11 +20511,10 @@ export namespace Prisma {
    */
   interface MedicineTransferFieldRefs {
     readonly id: FieldRef<"MedicineTransfer", 'String'>
-    readonly sellId: FieldRef<"MedicineTransfer", 'String'>
+    readonly billNumber: FieldRef<"MedicineTransfer", 'Int'>
     readonly flockId: FieldRef<"MedicineTransfer", 'String'>
-    readonly toFarmcode: FieldRef<"MedicineTransfer", 'String'>
-    readonly fromBranch: FieldRef<"MedicineTransfer", 'String'>
-    readonly toBranch: FieldRef<"MedicineTransfer", 'String'>
+    readonly fromFarmcode: FieldRef<"MedicineTransfer", 'Int'>
+    readonly toFarmcode: FieldRef<"MedicineTransfer", 'Int'>
     readonly medicineName: FieldRef<"MedicineTransfer", 'String'>
     readonly genericName: FieldRef<"MedicineTransfer", 'String'>
     readonly branchCode: FieldRef<"MedicineTransfer", 'String'>
@@ -21124,6 +21170,7 @@ export namespace Prisma {
 
   export const SellMedicineScalarFieldEnum: {
     id: 'id',
+    billNumber: 'billNumber',
     farmId: 'farmId',
     flockNumer: 'flockNumer',
     genericName: 'genericName',
@@ -21142,11 +21189,10 @@ export namespace Prisma {
 
   export const MedicineTransferScalarFieldEnum: {
     id: 'id',
-    sellId: 'sellId',
+    billNumber: 'billNumber',
     flockId: 'flockId',
+    fromFarmcode: 'fromFarmcode',
     toFarmcode: 'toFarmcode',
-    fromBranch: 'fromBranch',
-    toBranch: 'toBranch',
     medicineName: 'medicineName',
     genericName: 'genericName',
     branchCode: 'branchCode',
@@ -22488,12 +22534,12 @@ export namespace Prisma {
 
   export type MedicineStockWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    genericName?: string
-    medicineName?: string
-    genericName_medicineName?: MedicineStockGenericNameMedicineNameCompoundUniqueInput
+    genericName_medicineName_branchCode?: MedicineStockGenericNameMedicineNameBranchCodeCompoundUniqueInput
     AND?: MedicineStockWhereInput | MedicineStockWhereInput[]
     OR?: MedicineStockWhereInput[]
     NOT?: MedicineStockWhereInput | MedicineStockWhereInput[]
+    genericName?: StringFilter<"MedicineStock"> | string
+    medicineName?: StringFilter<"MedicineStock"> | string
     branchCode?: StringFilter<"MedicineStock"> | string
     totalStock?: IntFilter<"MedicineStock"> | number
     price?: IntFilter<"MedicineStock"> | number
@@ -22502,7 +22548,7 @@ export namespace Prisma {
     medicineNameAdd?: XOR<MedicineNameAddScalarRelationFilter, MedicineNameAddWhereInput>
     medicineCategory?: XOR<AllGenericMedicinScalarRelationFilter, AllGenericMedicinWhereInput>
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
-  }, "id" | "genericName" | "medicineName" | "genericName_medicineName">
+  }, "id" | "genericName_medicineName_branchCode">
 
   export type MedicineStockOrderByWithAggregationInput = {
     id?: SortOrder
@@ -22539,6 +22585,7 @@ export namespace Prisma {
     OR?: SellMedicineWhereInput[]
     NOT?: SellMedicineWhereInput | SellMedicineWhereInput[]
     id?: StringFilter<"SellMedicine"> | string
+    billNumber?: IntNullableFilter<"SellMedicine"> | number | null
     farmId?: StringFilter<"SellMedicine"> | string
     flockNumer?: IntFilter<"SellMedicine"> | number
     genericName?: StringFilter<"SellMedicine"> | string
@@ -22558,6 +22605,7 @@ export namespace Prisma {
 
   export type SellMedicineOrderByWithRelationInput = {
     id?: SortOrder
+    billNumber?: SortOrderInput | SortOrder
     farmId?: SortOrder
     flockNumer?: SortOrder
     genericName?: SortOrder
@@ -22577,6 +22625,7 @@ export namespace Prisma {
 
   export type SellMedicineWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    billNumber?: number
     AND?: SellMedicineWhereInput | SellMedicineWhereInput[]
     OR?: SellMedicineWhereInput[]
     NOT?: SellMedicineWhereInput | SellMedicineWhereInput[]
@@ -22595,10 +22644,11 @@ export namespace Prisma {
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
     farmer?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
     MedicineTransfer?: MedicineTransferListRelationFilter
-  }, "id">
+  }, "id" | "billNumber">
 
   export type SellMedicineOrderByWithAggregationInput = {
     id?: SortOrder
+    billNumber?: SortOrderInput | SortOrder
     farmId?: SortOrder
     flockNumer?: SortOrder
     genericName?: SortOrder
@@ -22622,6 +22672,7 @@ export namespace Prisma {
     OR?: SellMedicineScalarWhereWithAggregatesInput[]
     NOT?: SellMedicineScalarWhereWithAggregatesInput | SellMedicineScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"SellMedicine"> | string
+    billNumber?: IntNullableWithAggregatesFilter<"SellMedicine"> | number | null
     farmId?: StringWithAggregatesFilter<"SellMedicine"> | string
     flockNumer?: IntWithAggregatesFilter<"SellMedicine"> | number
     genericName?: StringWithAggregatesFilter<"SellMedicine"> | string
@@ -22640,11 +22691,10 @@ export namespace Prisma {
     OR?: MedicineTransferWhereInput[]
     NOT?: MedicineTransferWhereInput | MedicineTransferWhereInput[]
     id?: StringFilter<"MedicineTransfer"> | string
-    sellId?: StringFilter<"MedicineTransfer"> | string
+    billNumber?: IntFilter<"MedicineTransfer"> | number
     flockId?: StringFilter<"MedicineTransfer"> | string
-    toFarmcode?: StringNullableFilter<"MedicineTransfer"> | string | null
-    fromBranch?: StringNullableFilter<"MedicineTransfer"> | string | null
-    toBranch?: StringNullableFilter<"MedicineTransfer"> | string | null
+    fromFarmcode?: IntNullableFilter<"MedicineTransfer"> | number | null
+    toFarmcode?: IntFilter<"MedicineTransfer"> | number
     medicineName?: StringFilter<"MedicineTransfer"> | string
     genericName?: StringFilter<"MedicineTransfer"> | string
     branchCode?: StringFilter<"MedicineTransfer"> | string
@@ -22657,11 +22707,10 @@ export namespace Prisma {
 
   export type MedicineTransferOrderByWithRelationInput = {
     id?: SortOrder
-    sellId?: SortOrder
+    billNumber?: SortOrder
     flockId?: SortOrder
-    toFarmcode?: SortOrderInput | SortOrder
-    fromBranch?: SortOrderInput | SortOrder
-    toBranch?: SortOrderInput | SortOrder
+    fromFarmcode?: SortOrderInput | SortOrder
+    toFarmcode?: SortOrder
     medicineName?: SortOrder
     genericName?: SortOrder
     branchCode?: SortOrder
@@ -22677,11 +22726,10 @@ export namespace Prisma {
     AND?: MedicineTransferWhereInput | MedicineTransferWhereInput[]
     OR?: MedicineTransferWhereInput[]
     NOT?: MedicineTransferWhereInput | MedicineTransferWhereInput[]
-    sellId?: StringFilter<"MedicineTransfer"> | string
+    billNumber?: IntFilter<"MedicineTransfer"> | number
     flockId?: StringFilter<"MedicineTransfer"> | string
-    toFarmcode?: StringNullableFilter<"MedicineTransfer"> | string | null
-    fromBranch?: StringNullableFilter<"MedicineTransfer"> | string | null
-    toBranch?: StringNullableFilter<"MedicineTransfer"> | string | null
+    fromFarmcode?: IntNullableFilter<"MedicineTransfer"> | number | null
+    toFarmcode?: IntFilter<"MedicineTransfer"> | number
     medicineName?: StringFilter<"MedicineTransfer"> | string
     genericName?: StringFilter<"MedicineTransfer"> | string
     branchCode?: StringFilter<"MedicineTransfer"> | string
@@ -22694,19 +22742,20 @@ export namespace Prisma {
 
   export type MedicineTransferOrderByWithAggregationInput = {
     id?: SortOrder
-    sellId?: SortOrder
+    billNumber?: SortOrder
     flockId?: SortOrder
-    toFarmcode?: SortOrderInput | SortOrder
-    fromBranch?: SortOrderInput | SortOrder
-    toBranch?: SortOrderInput | SortOrder
+    fromFarmcode?: SortOrderInput | SortOrder
+    toFarmcode?: SortOrder
     medicineName?: SortOrder
     genericName?: SortOrder
     branchCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: MedicineTransferCountOrderByAggregateInput
+    _avg?: MedicineTransferAvgOrderByAggregateInput
     _max?: MedicineTransferMaxOrderByAggregateInput
     _min?: MedicineTransferMinOrderByAggregateInput
+    _sum?: MedicineTransferSumOrderByAggregateInput
   }
 
   export type MedicineTransferScalarWhereWithAggregatesInput = {
@@ -22714,11 +22763,10 @@ export namespace Prisma {
     OR?: MedicineTransferScalarWhereWithAggregatesInput[]
     NOT?: MedicineTransferScalarWhereWithAggregatesInput | MedicineTransferScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"MedicineTransfer"> | string
-    sellId?: StringWithAggregatesFilter<"MedicineTransfer"> | string
+    billNumber?: IntWithAggregatesFilter<"MedicineTransfer"> | number
     flockId?: StringWithAggregatesFilter<"MedicineTransfer"> | string
-    toFarmcode?: StringNullableWithAggregatesFilter<"MedicineTransfer"> | string | null
-    fromBranch?: StringNullableWithAggregatesFilter<"MedicineTransfer"> | string | null
-    toBranch?: StringNullableWithAggregatesFilter<"MedicineTransfer"> | string | null
+    fromFarmcode?: IntNullableWithAggregatesFilter<"MedicineTransfer"> | number | null
+    toFarmcode?: IntWithAggregatesFilter<"MedicineTransfer"> | number
     medicineName?: StringWithAggregatesFilter<"MedicineTransfer"> | string
     genericName?: StringWithAggregatesFilter<"MedicineTransfer"> | string
     branchCode?: StringWithAggregatesFilter<"MedicineTransfer"> | string
@@ -24075,6 +24123,7 @@ export namespace Prisma {
 
   export type SellMedicineCreateInput = {
     id?: string
+    billNumber?: number | null
     genericName: string
     medicineName: string
     sellQuantity: number
@@ -24091,6 +24140,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedCreateInput = {
     id?: string
+    billNumber?: number | null
     farmId: string
     flockNumer: number
     genericName: string
@@ -24123,6 +24173,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    billNumber?: NullableIntFieldUpdateOperationsInput | number | null
     farmId?: StringFieldUpdateOperationsInput | string
     flockNumer?: IntFieldUpdateOperationsInput | number
     genericName?: StringFieldUpdateOperationsInput | string
@@ -24139,6 +24190,7 @@ export namespace Prisma {
 
   export type SellMedicineCreateManyInput = {
     id?: string
+    billNumber?: number | null
     farmId: string
     flockNumer: number
     genericName: string
@@ -24166,6 +24218,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    billNumber?: NullableIntFieldUpdateOperationsInput | number | null
     farmId?: StringFieldUpdateOperationsInput | string
     flockNumer?: IntFieldUpdateOperationsInput | number
     genericName?: StringFieldUpdateOperationsInput | string
@@ -24181,9 +24234,8 @@ export namespace Prisma {
 
   export type MedicineTransferCreateInput = {
     id?: string
-    toFarmcode?: string | null
-    fromBranch?: string | null
-    toBranch?: string | null
+    fromFarmcode?: number | null
+    toFarmcode: number
     medicineName: string
     genericName: string
     createdAt: Date | string
@@ -24195,11 +24247,10 @@ export namespace Prisma {
 
   export type MedicineTransferUncheckedCreateInput = {
     id?: string
-    sellId: string
+    billNumber: number
     flockId: string
-    toFarmcode?: string | null
-    fromBranch?: string | null
-    toBranch?: string | null
+    fromFarmcode?: number | null
+    toFarmcode: number
     medicineName: string
     genericName: string
     branchCode: string
@@ -24209,9 +24260,8 @@ export namespace Prisma {
 
   export type MedicineTransferUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
-    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
-    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    fromFarmcode?: NullableIntFieldUpdateOperationsInput | number | null
+    toFarmcode?: IntFieldUpdateOperationsInput | number
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24223,11 +24273,10 @@ export namespace Prisma {
 
   export type MedicineTransferUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    sellId?: StringFieldUpdateOperationsInput | string
+    billNumber?: IntFieldUpdateOperationsInput | number
     flockId?: StringFieldUpdateOperationsInput | string
-    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
-    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
-    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    fromFarmcode?: NullableIntFieldUpdateOperationsInput | number | null
+    toFarmcode?: IntFieldUpdateOperationsInput | number
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     branchCode?: StringFieldUpdateOperationsInput | string
@@ -24237,11 +24286,10 @@ export namespace Prisma {
 
   export type MedicineTransferCreateManyInput = {
     id?: string
-    sellId: string
+    billNumber: number
     flockId: string
-    toFarmcode?: string | null
-    fromBranch?: string | null
-    toBranch?: string | null
+    fromFarmcode?: number | null
+    toFarmcode: number
     medicineName: string
     genericName: string
     branchCode: string
@@ -24251,9 +24299,8 @@ export namespace Prisma {
 
   export type MedicineTransferUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
-    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
-    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    fromFarmcode?: NullableIntFieldUpdateOperationsInput | number | null
+    toFarmcode?: IntFieldUpdateOperationsInput | number
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24262,11 +24309,10 @@ export namespace Prisma {
 
   export type MedicineTransferUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    sellId?: StringFieldUpdateOperationsInput | string
+    billNumber?: IntFieldUpdateOperationsInput | number
     flockId?: StringFieldUpdateOperationsInput | string
-    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
-    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
-    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    fromFarmcode?: NullableIntFieldUpdateOperationsInput | number | null
+    toFarmcode?: IntFieldUpdateOperationsInput | number
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     branchCode?: StringFieldUpdateOperationsInput | string
@@ -25354,9 +25400,10 @@ export namespace Prisma {
     _max?: NestedEnumStoredFilter<$PrismaModel>
   }
 
-  export type MedicineStockGenericNameMedicineNameCompoundUniqueInput = {
+  export type MedicineStockGenericNameMedicineNameBranchCodeCompoundUniqueInput = {
     genericName: string
     medicineName: string
+    branchCode: string
   }
 
   export type MedicineStockCountOrderByAggregateInput = {
@@ -25411,6 +25458,7 @@ export namespace Prisma {
 
   export type SellMedicineCountOrderByAggregateInput = {
     id?: SortOrder
+    billNumber?: SortOrder
     farmId?: SortOrder
     flockNumer?: SortOrder
     genericName?: SortOrder
@@ -25425,6 +25473,7 @@ export namespace Prisma {
   }
 
   export type SellMedicineAvgOrderByAggregateInput = {
+    billNumber?: SortOrder
     flockNumer?: SortOrder
     sellQuantity?: SortOrder
     sellPrice?: SortOrder
@@ -25432,6 +25481,7 @@ export namespace Prisma {
 
   export type SellMedicineMaxOrderByAggregateInput = {
     id?: SortOrder
+    billNumber?: SortOrder
     farmId?: SortOrder
     flockNumer?: SortOrder
     genericName?: SortOrder
@@ -25447,6 +25497,7 @@ export namespace Prisma {
 
   export type SellMedicineMinOrderByAggregateInput = {
     id?: SortOrder
+    billNumber?: SortOrder
     farmId?: SortOrder
     flockNumer?: SortOrder
     genericName?: SortOrder
@@ -25461,6 +25512,7 @@ export namespace Prisma {
   }
 
   export type SellMedicineSumOrderByAggregateInput = {
+    billNumber?: SortOrder
     flockNumer?: SortOrder
     sellQuantity?: SortOrder
     sellPrice?: SortOrder
@@ -25483,11 +25535,10 @@ export namespace Prisma {
 
   export type MedicineTransferCountOrderByAggregateInput = {
     id?: SortOrder
-    sellId?: SortOrder
+    billNumber?: SortOrder
     flockId?: SortOrder
+    fromFarmcode?: SortOrder
     toFarmcode?: SortOrder
-    fromBranch?: SortOrder
-    toBranch?: SortOrder
     medicineName?: SortOrder
     genericName?: SortOrder
     branchCode?: SortOrder
@@ -25495,13 +25546,18 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type MedicineTransferAvgOrderByAggregateInput = {
+    billNumber?: SortOrder
+    fromFarmcode?: SortOrder
+    toFarmcode?: SortOrder
+  }
+
   export type MedicineTransferMaxOrderByAggregateInput = {
     id?: SortOrder
-    sellId?: SortOrder
+    billNumber?: SortOrder
     flockId?: SortOrder
+    fromFarmcode?: SortOrder
     toFarmcode?: SortOrder
-    fromBranch?: SortOrder
-    toBranch?: SortOrder
     medicineName?: SortOrder
     genericName?: SortOrder
     branchCode?: SortOrder
@@ -25511,16 +25567,21 @@ export namespace Prisma {
 
   export type MedicineTransferMinOrderByAggregateInput = {
     id?: SortOrder
-    sellId?: SortOrder
+    billNumber?: SortOrder
     flockId?: SortOrder
+    fromFarmcode?: SortOrder
     toFarmcode?: SortOrder
-    fromBranch?: SortOrder
-    toBranch?: SortOrder
     medicineName?: SortOrder
     genericName?: SortOrder
     branchCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type MedicineTransferSumOrderByAggregateInput = {
+    billNumber?: SortOrder
+    fromFarmcode?: SortOrder
+    toFarmcode?: SortOrder
   }
 
   export type FarmerCreateNestedManyWithoutBranchInput = {
@@ -27561,6 +27622,7 @@ export namespace Prisma {
 
   export type SellMedicineCreateWithoutBranchInput = {
     id?: string
+    billNumber?: number | null
     genericName: string
     medicineName: string
     sellQuantity: number
@@ -27576,6 +27638,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedCreateWithoutBranchInput = {
     id?: string
+    billNumber?: number | null
     farmId: string
     flockNumer: number
     genericName: string
@@ -27601,9 +27664,8 @@ export namespace Prisma {
 
   export type MedicineTransferCreateWithoutBaranchInput = {
     id?: string
-    toFarmcode?: string | null
-    fromBranch?: string | null
-    toBranch?: string | null
+    fromFarmcode?: number | null
+    toFarmcode: number
     medicineName: string
     genericName: string
     createdAt: Date | string
@@ -27614,11 +27676,10 @@ export namespace Prisma {
 
   export type MedicineTransferUncheckedCreateWithoutBaranchInput = {
     id?: string
-    sellId: string
+    billNumber: number
     flockId: string
-    toFarmcode?: string | null
-    fromBranch?: string | null
-    toBranch?: string | null
+    fromFarmcode?: number | null
+    toFarmcode: number
     medicineName: string
     genericName: string
     createdAt: Date | string
@@ -27938,6 +27999,7 @@ export namespace Prisma {
     OR?: SellMedicineScalarWhereInput[]
     NOT?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
     id?: StringFilter<"SellMedicine"> | string
+    billNumber?: IntNullableFilter<"SellMedicine"> | number | null
     farmId?: StringFilter<"SellMedicine"> | string
     flockNumer?: IntFilter<"SellMedicine"> | number
     genericName?: StringFilter<"SellMedicine"> | string
@@ -27972,11 +28034,10 @@ export namespace Prisma {
     OR?: MedicineTransferScalarWhereInput[]
     NOT?: MedicineTransferScalarWhereInput | MedicineTransferScalarWhereInput[]
     id?: StringFilter<"MedicineTransfer"> | string
-    sellId?: StringFilter<"MedicineTransfer"> | string
+    billNumber?: IntFilter<"MedicineTransfer"> | number
     flockId?: StringFilter<"MedicineTransfer"> | string
-    toFarmcode?: StringNullableFilter<"MedicineTransfer"> | string | null
-    fromBranch?: StringNullableFilter<"MedicineTransfer"> | string | null
-    toBranch?: StringNullableFilter<"MedicineTransfer"> | string | null
+    fromFarmcode?: IntNullableFilter<"MedicineTransfer"> | number | null
+    toFarmcode?: IntFilter<"MedicineTransfer"> | number
     medicineName?: StringFilter<"MedicineTransfer"> | string
     genericName?: StringFilter<"MedicineTransfer"> | string
     branchCode?: StringFilter<"MedicineTransfer"> | string
@@ -28198,6 +28259,7 @@ export namespace Prisma {
 
   export type SellMedicineCreateWithoutFarmerInput = {
     id?: string
+    billNumber?: number | null
     genericName: string
     medicineName: string
     sellQuantity: number
@@ -28213,6 +28275,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedCreateWithoutFarmerInput = {
     id?: string
+    billNumber?: number | null
     flockNumer: number
     genericName: string
     medicineName: string
@@ -29065,6 +29128,7 @@ export namespace Prisma {
 
   export type SellMedicineCreateWithoutFlockInput = {
     id?: string
+    billNumber?: number | null
     genericName: string
     medicineName: string
     sellQuantity: number
@@ -29080,6 +29144,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedCreateWithoutFlockInput = {
     id?: string
+    billNumber?: number | null
     farmId: string
     genericName: string
     medicineName: string
@@ -29105,9 +29170,8 @@ export namespace Prisma {
 
   export type MedicineTransferCreateWithoutFlockInput = {
     id?: string
-    toFarmcode?: string | null
-    fromBranch?: string | null
-    toBranch?: string | null
+    fromFarmcode?: number | null
+    toFarmcode: number
     medicineName: string
     genericName: string
     createdAt: Date | string
@@ -29118,10 +29182,9 @@ export namespace Prisma {
 
   export type MedicineTransferUncheckedCreateWithoutFlockInput = {
     id?: string
-    sellId: string
-    toFarmcode?: string | null
-    fromBranch?: string | null
-    toBranch?: string | null
+    billNumber: number
+    fromFarmcode?: number | null
+    toFarmcode: number
     medicineName: string
     genericName: string
     branchCode: string
@@ -30693,9 +30756,8 @@ export namespace Prisma {
 
   export type MedicineTransferCreateWithoutSellmedicineInput = {
     id?: string
-    toFarmcode?: string | null
-    fromBranch?: string | null
-    toBranch?: string | null
+    fromFarmcode?: number | null
+    toFarmcode: number
     medicineName: string
     genericName: string
     createdAt: Date | string
@@ -30707,9 +30769,8 @@ export namespace Prisma {
   export type MedicineTransferUncheckedCreateWithoutSellmedicineInput = {
     id?: string
     flockId: string
-    toFarmcode?: string | null
-    fromBranch?: string | null
-    toBranch?: string | null
+    fromFarmcode?: number | null
+    toFarmcode: number
     medicineName: string
     genericName: string
     branchCode: string
@@ -30894,6 +30955,7 @@ export namespace Prisma {
 
   export type SellMedicineCreateWithoutMedicineTransferInput = {
     id?: string
+    billNumber?: number | null
     genericName: string
     medicineName: string
     sellQuantity: number
@@ -30909,6 +30971,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedCreateWithoutMedicineTransferInput = {
     id?: string
+    billNumber?: number | null
     farmId: string
     flockNumer: number
     genericName: string
@@ -31045,6 +31108,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedUpdateWithoutMedicineTransferInput = {
     id?: StringFieldUpdateOperationsInput | string
+    billNumber?: NullableIntFieldUpdateOperationsInput | number | null
     farmId?: StringFieldUpdateOperationsInput | string
     flockNumer?: IntFieldUpdateOperationsInput | number
     genericName?: StringFieldUpdateOperationsInput | string
@@ -31232,6 +31296,7 @@ export namespace Prisma {
 
   export type SellMedicineCreateManyBranchInput = {
     id?: string
+    billNumber?: number | null
     farmId: string
     flockNumer: number
     genericName: string
@@ -31246,11 +31311,10 @@ export namespace Prisma {
 
   export type MedicineTransferCreateManyBaranchInput = {
     id?: string
-    sellId: string
+    billNumber: number
     flockId: string
-    toFarmcode?: string | null
-    fromBranch?: string | null
-    toBranch?: string | null
+    fromFarmcode?: number | null
+    toFarmcode: number
     medicineName: string
     genericName: string
     createdAt: Date | string
@@ -31542,6 +31606,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedUpdateWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
+    billNumber?: NullableIntFieldUpdateOperationsInput | number | null
     farmId?: StringFieldUpdateOperationsInput | string
     flockNumer?: IntFieldUpdateOperationsInput | number
     genericName?: StringFieldUpdateOperationsInput | string
@@ -31557,6 +31622,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedUpdateManyWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
+    billNumber?: NullableIntFieldUpdateOperationsInput | number | null
     farmId?: StringFieldUpdateOperationsInput | string
     flockNumer?: IntFieldUpdateOperationsInput | number
     genericName?: StringFieldUpdateOperationsInput | string
@@ -31571,9 +31637,8 @@ export namespace Prisma {
 
   export type MedicineTransferUpdateWithoutBaranchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
-    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
-    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    fromFarmcode?: NullableIntFieldUpdateOperationsInput | number | null
+    toFarmcode?: IntFieldUpdateOperationsInput | number
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31584,11 +31649,10 @@ export namespace Prisma {
 
   export type MedicineTransferUncheckedUpdateWithoutBaranchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    sellId?: StringFieldUpdateOperationsInput | string
+    billNumber?: IntFieldUpdateOperationsInput | number
     flockId?: StringFieldUpdateOperationsInput | string
-    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
-    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
-    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    fromFarmcode?: NullableIntFieldUpdateOperationsInput | number | null
+    toFarmcode?: IntFieldUpdateOperationsInput | number
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31597,11 +31661,10 @@ export namespace Prisma {
 
   export type MedicineTransferUncheckedUpdateManyWithoutBaranchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    sellId?: StringFieldUpdateOperationsInput | string
+    billNumber?: IntFieldUpdateOperationsInput | number
     flockId?: StringFieldUpdateOperationsInput | string
-    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
-    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
-    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    fromFarmcode?: NullableIntFieldUpdateOperationsInput | number | null
+    toFarmcode?: IntFieldUpdateOperationsInput | number
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31768,6 +31831,7 @@ export namespace Prisma {
 
   export type SellMedicineCreateManyFarmerInput = {
     id?: string
+    billNumber?: number | null
     flockNumer: number
     genericName: string
     medicineName: string
@@ -31899,6 +31963,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedUpdateWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
+    billNumber?: NullableIntFieldUpdateOperationsInput | number | null
     flockNumer?: IntFieldUpdateOperationsInput | number
     genericName?: StringFieldUpdateOperationsInput | string
     medicineName?: StringFieldUpdateOperationsInput | string
@@ -31914,6 +31979,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedUpdateManyWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
+    billNumber?: NullableIntFieldUpdateOperationsInput | number | null
     flockNumer?: IntFieldUpdateOperationsInput | number
     genericName?: StringFieldUpdateOperationsInput | string
     medicineName?: StringFieldUpdateOperationsInput | string
@@ -32162,6 +32228,7 @@ export namespace Prisma {
 
   export type SellMedicineCreateManyFlockInput = {
     id?: string
+    billNumber?: number | null
     farmId: string
     genericName: string
     medicineName: string
@@ -32176,10 +32243,9 @@ export namespace Prisma {
 
   export type MedicineTransferCreateManyFlockInput = {
     id?: string
-    sellId: string
-    toFarmcode?: string | null
-    fromBranch?: string | null
-    toBranch?: string | null
+    billNumber: number
+    fromFarmcode?: number | null
+    toFarmcode: number
     medicineName: string
     genericName: string
     branchCode: string
@@ -32240,6 +32306,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedUpdateWithoutFlockInput = {
     id?: StringFieldUpdateOperationsInput | string
+    billNumber?: NullableIntFieldUpdateOperationsInput | number | null
     farmId?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     medicineName?: StringFieldUpdateOperationsInput | string
@@ -32255,6 +32322,7 @@ export namespace Prisma {
 
   export type SellMedicineUncheckedUpdateManyWithoutFlockInput = {
     id?: StringFieldUpdateOperationsInput | string
+    billNumber?: NullableIntFieldUpdateOperationsInput | number | null
     farmId?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     medicineName?: StringFieldUpdateOperationsInput | string
@@ -32269,9 +32337,8 @@ export namespace Prisma {
 
   export type MedicineTransferUpdateWithoutFlockInput = {
     id?: StringFieldUpdateOperationsInput | string
-    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
-    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
-    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    fromFarmcode?: NullableIntFieldUpdateOperationsInput | number | null
+    toFarmcode?: IntFieldUpdateOperationsInput | number
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32282,10 +32349,9 @@ export namespace Prisma {
 
   export type MedicineTransferUncheckedUpdateWithoutFlockInput = {
     id?: StringFieldUpdateOperationsInput | string
-    sellId?: StringFieldUpdateOperationsInput | string
-    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
-    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
-    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: IntFieldUpdateOperationsInput | number
+    fromFarmcode?: NullableIntFieldUpdateOperationsInput | number | null
+    toFarmcode?: IntFieldUpdateOperationsInput | number
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     branchCode?: StringFieldUpdateOperationsInput | string
@@ -32295,10 +32361,9 @@ export namespace Prisma {
 
   export type MedicineTransferUncheckedUpdateManyWithoutFlockInput = {
     id?: StringFieldUpdateOperationsInput | string
-    sellId?: StringFieldUpdateOperationsInput | string
-    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
-    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
-    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: IntFieldUpdateOperationsInput | number
+    fromFarmcode?: NullableIntFieldUpdateOperationsInput | number | null
+    toFarmcode?: IntFieldUpdateOperationsInput | number
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     branchCode?: StringFieldUpdateOperationsInput | string
@@ -32701,9 +32766,8 @@ export namespace Prisma {
   export type MedicineTransferCreateManySellmedicineInput = {
     id?: string
     flockId: string
-    toFarmcode?: string | null
-    fromBranch?: string | null
-    toBranch?: string | null
+    fromFarmcode?: number | null
+    toFarmcode: number
     medicineName: string
     genericName: string
     branchCode: string
@@ -32713,9 +32777,8 @@ export namespace Prisma {
 
   export type MedicineTransferUpdateWithoutSellmedicineInput = {
     id?: StringFieldUpdateOperationsInput | string
-    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
-    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
-    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    fromFarmcode?: NullableIntFieldUpdateOperationsInput | number | null
+    toFarmcode?: IntFieldUpdateOperationsInput | number
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32727,9 +32790,8 @@ export namespace Prisma {
   export type MedicineTransferUncheckedUpdateWithoutSellmedicineInput = {
     id?: StringFieldUpdateOperationsInput | string
     flockId?: StringFieldUpdateOperationsInput | string
-    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
-    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
-    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    fromFarmcode?: NullableIntFieldUpdateOperationsInput | number | null
+    toFarmcode?: IntFieldUpdateOperationsInput | number
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     branchCode?: StringFieldUpdateOperationsInput | string
@@ -32740,9 +32802,8 @@ export namespace Prisma {
   export type MedicineTransferUncheckedUpdateManyWithoutSellmedicineInput = {
     id?: StringFieldUpdateOperationsInput | string
     flockId?: StringFieldUpdateOperationsInput | string
-    toFarmcode?: NullableStringFieldUpdateOperationsInput | string | null
-    fromBranch?: NullableStringFieldUpdateOperationsInput | string | null
-    toBranch?: NullableStringFieldUpdateOperationsInput | string | null
+    fromFarmcode?: NullableIntFieldUpdateOperationsInput | number | null
+    toFarmcode?: IntFieldUpdateOperationsInput | number
     medicineName?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     branchCode?: StringFieldUpdateOperationsInput | string

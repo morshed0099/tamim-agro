@@ -303,6 +303,7 @@ exports.Prisma.MedicineStockScalarFieldEnum = {
 
 exports.Prisma.SellMedicineScalarFieldEnum = {
   id: 'id',
+  billNumber: 'billNumber',
   farmId: 'farmId',
   flockNumer: 'flockNumer',
   genericName: 'genericName',
@@ -318,11 +319,10 @@ exports.Prisma.SellMedicineScalarFieldEnum = {
 
 exports.Prisma.MedicineTransferScalarFieldEnum = {
   id: 'id',
-  sellId: 'sellId',
+  billNumber: 'billNumber',
   flockId: 'flockId',
+  fromFarmcode: 'fromFarmcode',
   toFarmcode: 'toFarmcode',
-  fromBranch: 'fromBranch',
-  toBranch: 'toBranch',
   medicineName: 'medicineName',
   genericName: 'genericName',
   branchCode: 'branchCode',
