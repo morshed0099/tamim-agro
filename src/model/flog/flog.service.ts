@@ -5,7 +5,7 @@ const createFlock = async (payload: any) => {
   const executiveIsAviableBrnach = await prismaClient.employee.findFirstOrThrow(
     {
       where: {
-        branchCode: payload.brachCode,
+        branchId: payload.brachCode,
       },
     }
   );

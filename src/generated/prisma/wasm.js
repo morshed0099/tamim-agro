@@ -125,6 +125,7 @@ exports.Prisma.BranchScalarFieldEnum = {
   locationName: 'locationName',
   type: 'type',
   branchCode: 'branchCode',
+  createDate: 'createDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -141,6 +142,7 @@ exports.Prisma.FarmerScalarFieldEnum = {
   capacity: 'capacity',
   addressId: 'addressId',
   nid: 'nid',
+  createDate: 'createDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -152,7 +154,7 @@ exports.Prisma.AddressScalarFieldEnum = {
   union: 'union',
   thana: 'thana',
   upazila: 'upazila',
-  city: 'city',
+  distic: 'distic',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -172,11 +174,11 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
   name: 'name',
-  workingLocation: 'workingLocation',
   designation: 'designation',
   phoneNumber: 'phoneNumber',
   addressId: 'addressId',
-  branchId: 'branchId',
+  nid: 'nid',
+  createDate: 'createDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -301,18 +303,35 @@ exports.Prisma.MedicineStockScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.MedicineItemScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  billNumber: 'billNumber',
+  quantity: 'quantity'
+};
+
 exports.Prisma.SellMedicineScalarFieldEnum = {
   id: 'id',
   billNumber: 'billNumber',
   farmId: 'farmId',
   flockNumer: 'flockNumer',
-  genericName: 'genericName',
-  medicineName: 'medicineName',
-  sellQuantity: 'sellQuantity',
-  sellPrice: 'sellPrice',
+  totalQuantity: 'totalQuantity',
+  totalPrice: 'totalPrice',
   Delivery: 'Delivery',
   sellDate: 'sellDate',
   branchCode: 'branchCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StockTransferScalarFieldEnum = {
+  id: 'id',
+  fromBranchCode: 'fromBranchCode',
+  toBranchCode: 'toBranchCode',
+  genericName: 'genericName',
+  medicineName: 'medicineName',
+  quantity: 'quantity',
+  description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -352,7 +371,8 @@ exports.BranchType = exports.$Enums.BranchType = {
 
 exports.Custtype = exports.$Enums.Custtype = {
   Broiler: 'Broiler',
-  Color: 'Color'
+  Color: 'Color',
+  Both: 'Both'
 };
 
 exports.FlockStatus = exports.$Enums.FlockStatus = {
@@ -386,7 +406,9 @@ exports.Prisma.ModelName = {
   MedicineNameAdd: 'MedicineNameAdd',
   MedicinePurchess: 'MedicinePurchess',
   MedicineStock: 'MedicineStock',
+  MedicineItem: 'MedicineItem',
   SellMedicine: 'SellMedicine',
+  StockTransfer: 'StockTransfer',
   MedicineTransfer: 'MedicineTransfer'
 };
 

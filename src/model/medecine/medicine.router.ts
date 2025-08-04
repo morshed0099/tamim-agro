@@ -14,5 +14,6 @@ router.post("/create-medicine-name", medicineControler.createMedicineName);
 router.post("/create-medicine-purchess", medicineControler.medicinePurchess);
 router.get("/", medicineControler.findPurchess);
 router.post("/add-stock", medicineControler.addMedicineStock);
+router.post("/sell-medicine", medicineControler.sellMedicine);
 
 export const medicineRouter = router;

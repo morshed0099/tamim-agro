@@ -24,7 +24,18 @@ const getEmployee = catchAsync(async (req, res) => {
   });
 });
 
+const getSingleEmployee = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await employeeService.getSingleEmployee(id);
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "retive single employee successfully !!",
+    data: result,
+  });
+});
+
 export const employeeControler = {
   createEmployee,
   getEmployee,
+  getSingleEmployee,
 };

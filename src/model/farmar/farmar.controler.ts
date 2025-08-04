@@ -21,7 +21,31 @@ const getFarmer = catchAsync(async (req, res) => {
   });
 });
 
+const getSingleFarmer = catchAsync(async (req, res) => {
+  const { id } = req.params;
+
+  const farmer = await farmService.getSingleFarmer(id);
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "farmer retive success full !!",
+    data: farmer,
+  });
+});
+
+const updateFarmer = catchAsync(async (req, res) => {
+  const updateData = req.body;
+  const { id } = req.params;
+  const result = await farmService.updateFarmer(updateData, id);
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "farmer details updated successfully !!",
+    data: result,
+  });
+});
+
 export const farmControler = {
   createFarm,
   getFarmer,
+  getSingleFarmer,
+  updateFarmer,
 };

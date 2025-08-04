@@ -2,7 +2,6 @@ import { Prisma } from "../../generated/prisma";
 import prismaClient from "../../helper/prismaClient";
 
 const createFarm = async (payload: any) => {
-
   const findLastFarmer = await prismaClient.farmer.findFirst({
     where: {
       branchCode: payload.branchCode,
@@ -12,42 +11,42 @@ const createFarm = async (payload: any) => {
     },
   });
 
-  console.log(findLastFarmer,'dfdf')
   const nextFarmId = findLastFarmer ? findLastFarmer.farmCode + 1 : 1;
   payload.farCode = nextFarmId;
-
 
   const cheBranche = await prismaClient.branch.findFirstOrThrow({
     where: {
       branchCode: payload.branchCode,
     },
   });
- 
 
-  const address = await prismaClient.address.create({
-    data: payload.address,
-  });
-  console.log(address)
-  const farmer = await prismaClient.farmer.create({
-    data: {
-      branchCode: payload.branchCode, // This is the foreign key
-      farmCode: nextFarmId,
-      addressId: address.id,
-      name: payload.name,
-      phoneNumber: payload.phoneNumber,
-      farmType: payload.farmType,
-      totalShed: payload.totalShed,
-      totalSquare: payload.totalSquare,
-      capacity: payload.capacity,
-      nid: payload.nid,
-      createdAt: payload.createdAt,
-    },
+  const result = await prismaClient.$transaction(async (tx) => {
+    const address = await tx.address.create({
+      data: payload.address,
+    });
+
+    const farmer = await tx.farmer.create({
+      data: {
+        branchCode: payload.branchCode, // This is the foreign key
+        farmCode: nextFarmId,
+        addressId: address.id,
+        name: payload.name,
+        phoneNumber: payload.phoneNumber,
+        farmType: payload.farmType,
+        totalShed: payload.totalShed,
+        totalSquare: payload.totalSquare,
+        capacity: payload.capacity,
+        nid: payload.nid,
+        createDate: payload.createDate,
+      },
+    });
+    return {
+      farmer,
+      address,
+    };
   });
 
-  return {
-    farmer,
-    address,
-  };
+  return result;
 };
 
 const getFarmer = async (params: any) => {
@@ -90,7 +89,50 @@ const getFarmer = async (params: any) => {
   return farmer;
 };
 
+const getSingleFarmer = async (id: string) => {
+  const result = await prismaClient.farmer.findUnique({
+    where: {
+      id,
+    },
+  });
+  const address = await prismaClient.address.findUnique({
+    where: {
+      id: result?.addressId!,
+    },
+  });
+  return {
+    address,
+    farmer: result,
+  };
+};
+
+const updateFarmer = async (payload: any, farmId: string) => {
+  const { id, addressId, address, ...updateData } = payload;
+  const result = await prismaClient.$transaction(async (tx) => {
+    const addressUpdate = await tx.address.update({
+      where: {
+        id: addressId,
+      },
+      data: address,
+    });
+
+    const farmerUpdate = await tx.farmer.update({
+      where: {
+        id,
+      },
+      data: updateData,
+    });
+    return {
+      addressUpdate,
+      farmerUpdate,
+    };
+  });
+  return result;
+};
+
 export const farmService = {
   createFarm,
   getFarmer,
+  getSingleFarmer,
+  updateFarmer,
 };

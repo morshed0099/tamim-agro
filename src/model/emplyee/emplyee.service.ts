@@ -2,32 +2,37 @@ import { Prisma } from "../../generated/prisma";
 import prismaClient from "../../helper/prismaClient";
 
 const createEmployee = async (payload: any) => {
-  const result = await prismaClient.$transaction(async (tncClient) => {
-    const branchcode = await tncClient.branch.findFirstOrThrow({
-      where: {
-        branchCode: payload.branchCode,
-      },
-    });
-    const addressCreate = await tncClient.address.create({
-      data: payload.address,
-    });
-    const createEmployee = await tncClient.employee.create({
-      data: {
-        designation: payload.designation,
-        employeeId: payload.employeeId, //need create employee id like emp00001
-        name: payload.name,
-        phoneNumber: payload.phoneNumber,
-        workingLocation: payload.workingLocation,
-        addressId: addressCreate.id,
-        createdAt: payload.createdAt,
-      },
-      include: {
-        address: true,
-      },
-    });
-    return createEmployee;
+  const oldEmpId = await prismaClient.employee.findFirst({
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
+  let employeeId;
+
+  if (oldEmpId) {
+    const startString = oldEmpId.employeeId.substring(5);
+    const newId = parseInt(startString) + 1;
+    employeeId = `em000${newId}`;
+  } else {
+    employeeId = "em0001";
+  }
+
+  const { address, ...employeData } = payload;
+  const result = await prismaClient.$transaction(async (tx) => {
+    const empAddress = await tx.address.create({
+      data: address,
+    });
+    employeData["addressId"] = empAddress.id;
+    employeData["employeeId"] = employeeId;
+    const employee = await tx.employee.create({
+      data: employeData,
+    });
+    return {
+      empAddress,
+      employee,
+    };
+  });
   return result;
 };
 
@@ -60,7 +65,16 @@ const getEmployee = async (params: any) => {
   const result = await prismaClient.employee.findMany({
     where: whereCondition,
     include: {
-      flocks: true,
+      address: true,
+    },
+  });
+  return result;
+};
+
+const getSingleEmployee = async (id: string) => {
+  const result = await prismaClient.employee.findUnique({
+    where: {
+      id,
     },
   });
   return result;
@@ -69,4 +83,5 @@ const getEmployee = async (params: any) => {
 export const employeeService = {
   createEmployee,
   getEmployee,
+  getSingleEmployee,
 };

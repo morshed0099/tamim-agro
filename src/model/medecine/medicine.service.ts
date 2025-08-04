@@ -227,6 +227,173 @@ const getStock = async (params: any) => {
   return result;
 };
 
+const sellMedicine = async (params: any) => {
+  // 1. Get farm info
+  const farm = await prismaClient.farmer.findFirst({
+    where: {
+      AND: [
+        { branchCode: params.branchCode },
+        { farmCode: params.farmCode },
+      ],
+    },
+  });
+
+  if (!farm) throw new Error("Farmer not found");
+
+  // 2. Generate billNumber (get last one and increment)
+  const lastBill = await prismaClient.sellMedicine.findFirst({
+    where: { branchCode: params.branchCode },
+    orderBy: { createdAt: "desc" },
+  });
+
+  const newBillNumber = lastBill ? lastBill.billNumber + 1 : 1;
+
+  // 3. Create SellMedicine entry
+
+
+  const sellMedicine = await prismaClient.sellMedicine.create({
+    data: {
+      billNumber: newBillNumber,
+      farmId: farm.id,
+      flockNumer: params.flockNumer,
+      branchCode: params.branchCode,
+      sellDate: params.sellDate || new Date().toISOString(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+  });
+
+  // 4. Loop through items
+  for (const itm of params.item) {
+    const stock = await prismaClient.medicineStock.findFirst({
+      where: {
+        medicineName: itm.name,
+        branchCode: params.branchCode, // optional if you track by branch
+      },
+    });
+
+    if (stock && stock.totalStock >= itm.quantity) {
+      // Update stock
+      await prismaClient.medicineStock.update({
+        where: {
+          id: stock.id,
+        },
+        data: {
+          totalStock: stock.totalStock - itm.quantity,
+        },
+      });
+
+      // Create medicine item with valid bill number
+      await prismaClient.medicineItem.create({
+        data: {
+          name: itm.name,
+          quantity: itm.quantity,
+          billNumber: newBillNumber,
+        },
+      });
+    } else {
+      throw new Error(`Insufficient stock for ${itm.name}`);
+    }
+  }
+
+  // 5. Return sellMedicine with items
+  const result = await prismaClient.sellMedicine.findUnique({
+    where: {
+      billNumber: newBillNumber,
+    },
+    include: {
+      MedicineItem: true,
+    },
+  });
+
+  return result;
+};
+
+// const sellMedicine = async (params: any) => {
+//   // console.log(params);
+//   const farmId = await prismaClient.farmer.findFirst({
+//     where: {
+//       AND: [{ branchCode: params.branchCode }, { farmCode: params.farmCode }],
+//     },
+//   });
+
+//   if (params.item.length > 1) {
+//     for (const itm of params.item) {
+//       const stock = await prismaClient.medicineStock.findFirst({
+//         where: {
+//           medicineName: itm.name,
+//         },
+//       });
+
+//       if (stock) {
+//         const newStock = stock.totalStock - itm.quantity;
+//         await prismaClient.medicineStock.update({
+//           where: {
+//             id: stock.id,
+//           },
+//           data: {
+//             totalStock: stock.totalStock - itm.quantity,
+//           },
+//         });
+//         await prismaClient.medicineItem.create({
+//           data: {
+//             name: itm.name,
+//             quantity: itm.quantity,
+//             billNumber: 22,
+//           },
+//         });
+//       }
+//     }
+//   } else {
+//     const stock = await prismaClient.medicineStock.findFirst({
+//       where: {
+//         medicineName: params.item.name,
+//       },
+//     });
+
+//     if (stock) {
+//       const newStock = stock.totalStock - params.item[0].quantity;
+  
+
+
+//       await prismaClient.medicineStock.update({
+//         where: {
+//           id: stock?.id,
+//         },
+//         data: {
+//           totalStock: newStock,
+//         },
+//       });
+//     }
+
+
+
+//     await prismaClient.medicineItem.create({
+//       data: {
+//         name: params.item[0].name,
+//         quantity: params.item[0].quantity,
+//         billNumber: 23,
+//       },
+//     });
+//   }
+
+//   const medicineStock = await prismaClient.medicineStock.findFirst({
+//     where: {
+//       medicineName: params.item.name,
+//     },
+//   });
+
+//   const result = await prismaClient.sellMedicine.findFirst({
+//     where: {
+//       billNumber: 22,
+//     },
+//     include: {
+//       MedicineItem: true,
+//     },
+//   });
+//   return result;
+// };
+
 export const medicineSercive = {
   createMedicineGeniric,
   findMedicineGeniric,
@@ -234,4 +401,5 @@ export const medicineSercive = {
   medicinePurchess,
   findPurches,
   addStockMedicine,
+  sellMedicine,
 };

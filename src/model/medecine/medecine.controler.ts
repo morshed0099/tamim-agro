@@ -61,6 +61,15 @@ const addMedicineStock = catchAsync(async (req, res) => {
   });
 });
 
+const sellMedicine = catchAsync(async (req, res) => {
+  const sellData = await medicineSercive.sellMedicine(req.body);
+  res.status(httpStatus.CREATED).json({
+    success: true,
+    message: "medicine order created successfully",
+    data: sellData,
+  });
+});
+
 export const medicineControler = {
   createMedicineGeneric,
   findMedicineGeneric,
@@ -68,4 +77,5 @@ export const medicineControler = {
   medicinePurchess,
   findPurchess,
   addMedicineStock,
+  sellMedicine
 };

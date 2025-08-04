@@ -4,8 +4,15 @@ import notFound from "./middileware/notFound";
 import globalError from "./middileware/globalError";
 import router from "./router";
 const app: Application = express();
-app.use(cors());
+
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Your frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 app.get("/", (req: Request, res: Response) => {
   res.send({
