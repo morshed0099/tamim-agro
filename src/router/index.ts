@@ -36,7 +36,7 @@ const moduleRouter = [
     route: flockReportRouter,
   },
   {
-    path: "/bracnh",
+    path: "/bracnh-employee",
     route: branchAssinEmployeeRouter,
   },
 ];

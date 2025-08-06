@@ -100,15 +100,16 @@ model Address {
 model BranchEmployeeHistory {
   id         String    @id @default(uuid())
   employeeId String
-  startDate  DateTime  @default(now())
-  endDate    DateTime?
+  startDate  String
+  endDate    String?
   isActive   Boolean   @default(true)
   branchCode String
   branch     Branch    @relation(fields: [branchCode], references: [branchCode])
   employee   Employee  @relation(fields: [employeeId], references: [employeeId])
-  createdAt  DateTime
+  createdAt  DateTime? @default(now())
   updatedAt  DateTime  @default(now())
 
+  @@index([employeeId])
   @@map("branchEmployee")
 }
 
@@ -121,15 +122,16 @@ model Employee {
   designation String
   phoneNumber String
   addressId   String? @unique
+  nid         String
 
   address               Address?                @relation(fields: [addressId], references: [id])
   flocks                Flock[]
   branchEmployeeHistory BranchEmployeeHistory[]
-  branchId              String?
   createDate            String
   createdAt             DateTime?               @default(now())
   updatedAt             DateTime                @default(now())
 
+  @@index([employeeId])
   @@map("employee")
 }
 

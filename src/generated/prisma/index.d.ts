@@ -6609,8 +6609,8 @@ export namespace Prisma {
   export type BranchEmployeeHistoryMinAggregateOutputType = {
     id: string | null
     employeeId: string | null
-    startDate: Date | null
-    endDate: Date | null
+    startDate: string | null
+    endDate: string | null
     isActive: boolean | null
     branchCode: string | null
     createdAt: Date | null
@@ -6620,8 +6620,8 @@ export namespace Prisma {
   export type BranchEmployeeHistoryMaxAggregateOutputType = {
     id: string | null
     employeeId: string | null
-    startDate: Date | null
-    endDate: Date | null
+    startDate: string | null
+    endDate: string | null
     isActive: boolean | null
     branchCode: string | null
     createdAt: Date | null
@@ -6750,11 +6750,11 @@ export namespace Prisma {
   export type BranchEmployeeHistoryGroupByOutputType = {
     id: string
     employeeId: string
-    startDate: Date
-    endDate: Date | null
+    startDate: string
+    endDate: string | null
     isActive: boolean
     branchCode: string
-    createdAt: Date
+    createdAt: Date | null
     updatedAt: Date
     _count: BranchEmployeeHistoryCountAggregateOutputType | null
     _min: BranchEmployeeHistoryMinAggregateOutputType | null
@@ -6848,11 +6848,11 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       employeeId: string
-      startDate: Date
-      endDate: Date | null
+      startDate: string
+      endDate: string | null
       isActive: boolean
       branchCode: string
-      createdAt: Date
+      createdAt: Date | null
       updatedAt: Date
     }, ExtArgs["result"]["branchEmployeeHistory"]>
     composites: {}
@@ -7281,8 +7281,8 @@ export namespace Prisma {
   interface BranchEmployeeHistoryFieldRefs {
     readonly id: FieldRef<"BranchEmployeeHistory", 'String'>
     readonly employeeId: FieldRef<"BranchEmployeeHistory", 'String'>
-    readonly startDate: FieldRef<"BranchEmployeeHistory", 'DateTime'>
-    readonly endDate: FieldRef<"BranchEmployeeHistory", 'DateTime'>
+    readonly startDate: FieldRef<"BranchEmployeeHistory", 'String'>
+    readonly endDate: FieldRef<"BranchEmployeeHistory", 'String'>
     readonly isActive: FieldRef<"BranchEmployeeHistory", 'Boolean'>
     readonly branchCode: FieldRef<"BranchEmployeeHistory", 'String'>
     readonly createdAt: FieldRef<"BranchEmployeeHistory", 'DateTime'>
@@ -24020,11 +24020,11 @@ export namespace Prisma {
     NOT?: BranchEmployeeHistoryWhereInput | BranchEmployeeHistoryWhereInput[]
     id?: StringFilter<"BranchEmployeeHistory"> | string
     employeeId?: StringFilter<"BranchEmployeeHistory"> | string
-    startDate?: DateTimeFilter<"BranchEmployeeHistory"> | Date | string
-    endDate?: DateTimeNullableFilter<"BranchEmployeeHistory"> | Date | string | null
+    startDate?: StringFilter<"BranchEmployeeHistory"> | string
+    endDate?: StringNullableFilter<"BranchEmployeeHistory"> | string | null
     isActive?: BoolFilter<"BranchEmployeeHistory"> | boolean
     branchCode?: StringFilter<"BranchEmployeeHistory"> | string
-    createdAt?: DateTimeFilter<"BranchEmployeeHistory"> | Date | string
+    createdAt?: DateTimeNullableFilter<"BranchEmployeeHistory"> | Date | string | null
     updatedAt?: DateTimeFilter<"BranchEmployeeHistory"> | Date | string
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
@@ -24037,7 +24037,7 @@ export namespace Prisma {
     endDate?: SortOrderInput | SortOrder
     isActive?: SortOrder
     branchCode?: SortOrder
-    createdAt?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     branch?: BranchOrderByWithRelationInput
     employee?: EmployeeOrderByWithRelationInput
@@ -24049,11 +24049,11 @@ export namespace Prisma {
     OR?: BranchEmployeeHistoryWhereInput[]
     NOT?: BranchEmployeeHistoryWhereInput | BranchEmployeeHistoryWhereInput[]
     employeeId?: StringFilter<"BranchEmployeeHistory"> | string
-    startDate?: DateTimeFilter<"BranchEmployeeHistory"> | Date | string
-    endDate?: DateTimeNullableFilter<"BranchEmployeeHistory"> | Date | string | null
+    startDate?: StringFilter<"BranchEmployeeHistory"> | string
+    endDate?: StringNullableFilter<"BranchEmployeeHistory"> | string | null
     isActive?: BoolFilter<"BranchEmployeeHistory"> | boolean
     branchCode?: StringFilter<"BranchEmployeeHistory"> | string
-    createdAt?: DateTimeFilter<"BranchEmployeeHistory"> | Date | string
+    createdAt?: DateTimeNullableFilter<"BranchEmployeeHistory"> | Date | string | null
     updatedAt?: DateTimeFilter<"BranchEmployeeHistory"> | Date | string
     branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
@@ -24066,7 +24066,7 @@ export namespace Prisma {
     endDate?: SortOrderInput | SortOrder
     isActive?: SortOrder
     branchCode?: SortOrder
-    createdAt?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     _count?: BranchEmployeeHistoryCountOrderByAggregateInput
     _max?: BranchEmployeeHistoryMaxOrderByAggregateInput
@@ -24079,11 +24079,11 @@ export namespace Prisma {
     NOT?: BranchEmployeeHistoryScalarWhereWithAggregatesInput | BranchEmployeeHistoryScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"BranchEmployeeHistory"> | string
     employeeId?: StringWithAggregatesFilter<"BranchEmployeeHistory"> | string
-    startDate?: DateTimeWithAggregatesFilter<"BranchEmployeeHistory"> | Date | string
-    endDate?: DateTimeNullableWithAggregatesFilter<"BranchEmployeeHistory"> | Date | string | null
+    startDate?: StringWithAggregatesFilter<"BranchEmployeeHistory"> | string
+    endDate?: StringNullableWithAggregatesFilter<"BranchEmployeeHistory"> | string | null
     isActive?: BoolWithAggregatesFilter<"BranchEmployeeHistory"> | boolean
     branchCode?: StringWithAggregatesFilter<"BranchEmployeeHistory"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"BranchEmployeeHistory"> | Date | string
+    createdAt?: DateTimeNullableWithAggregatesFilter<"BranchEmployeeHistory"> | Date | string | null
     updatedAt?: DateTimeWithAggregatesFilter<"BranchEmployeeHistory"> | Date | string
   }
 
@@ -25590,10 +25590,10 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryCreateInput = {
     id?: string
-    startDate?: Date | string
-    endDate?: Date | string | null
+    startDate: string
+    endDate?: string | null
     isActive?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string | null
     updatedAt?: Date | string
     branch: BranchCreateNestedOneWithoutBranchEmployeeHistoryInput
     employee: EmployeeCreateNestedOneWithoutBranchEmployeeHistoryInput
@@ -25602,20 +25602,20 @@ export namespace Prisma {
   export type BranchEmployeeHistoryUncheckedCreateInput = {
     id?: string
     employeeId: string
-    startDate?: Date | string
-    endDate?: Date | string | null
+    startDate: string
+    endDate?: string | null
     isActive?: boolean
     branchCode: string
-    createdAt: Date | string
+    createdAt?: Date | string | null
     updatedAt?: Date | string
   }
 
   export type BranchEmployeeHistoryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: BranchUpdateOneRequiredWithoutBranchEmployeeHistoryNestedInput
     employee?: EmployeeUpdateOneRequiredWithoutBranchEmployeeHistoryNestedInput
@@ -25624,42 +25624,42 @@ export namespace Prisma {
   export type BranchEmployeeHistoryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     branchCode?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BranchEmployeeHistoryCreateManyInput = {
     id?: string
     employeeId: string
-    startDate?: Date | string
-    endDate?: Date | string | null
+    startDate: string
+    endDate?: string | null
     isActive?: boolean
     branchCode: string
-    createdAt: Date | string
+    createdAt?: Date | string | null
     updatedAt?: Date | string
   }
 
   export type BranchEmployeeHistoryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BranchEmployeeHistoryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     branchCode?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -30485,10 +30485,10 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryCreateWithoutBranchInput = {
     id?: string
-    startDate?: Date | string
-    endDate?: Date | string | null
+    startDate: string
+    endDate?: string | null
     isActive?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string | null
     updatedAt?: Date | string
     employee: EmployeeCreateNestedOneWithoutBranchEmployeeHistoryInput
   }
@@ -30496,10 +30496,10 @@ export namespace Prisma {
   export type BranchEmployeeHistoryUncheckedCreateWithoutBranchInput = {
     id?: string
     employeeId: string
-    startDate?: Date | string
-    endDate?: Date | string | null
+    startDate: string
+    endDate?: string | null
     isActive?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string | null
     updatedAt?: Date | string
   }
 
@@ -30827,11 +30827,11 @@ export namespace Prisma {
     NOT?: BranchEmployeeHistoryScalarWhereInput | BranchEmployeeHistoryScalarWhereInput[]
     id?: StringFilter<"BranchEmployeeHistory"> | string
     employeeId?: StringFilter<"BranchEmployeeHistory"> | string
-    startDate?: DateTimeFilter<"BranchEmployeeHistory"> | Date | string
-    endDate?: DateTimeNullableFilter<"BranchEmployeeHistory"> | Date | string | null
+    startDate?: StringFilter<"BranchEmployeeHistory"> | string
+    endDate?: StringNullableFilter<"BranchEmployeeHistory"> | string | null
     isActive?: BoolFilter<"BranchEmployeeHistory"> | boolean
     branchCode?: StringFilter<"BranchEmployeeHistory"> | string
-    createdAt?: DateTimeFilter<"BranchEmployeeHistory"> | Date | string
+    createdAt?: DateTimeNullableFilter<"BranchEmployeeHistory"> | Date | string | null
     updatedAt?: DateTimeFilter<"BranchEmployeeHistory"> | Date | string
   }
 
@@ -31628,21 +31628,21 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryCreateWithoutEmployeeInput = {
     id?: string
-    startDate?: Date | string
-    endDate?: Date | string | null
+    startDate: string
+    endDate?: string | null
     isActive?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string | null
     updatedAt?: Date | string
     branch: BranchCreateNestedOneWithoutBranchEmployeeHistoryInput
   }
 
   export type BranchEmployeeHistoryUncheckedCreateWithoutEmployeeInput = {
     id?: string
-    startDate?: Date | string
-    endDate?: Date | string | null
+    startDate: string
+    endDate?: string | null
     isActive?: boolean
     branchCode: string
-    createdAt: Date | string
+    createdAt?: Date | string | null
     updatedAt?: Date | string
   }
 
@@ -34098,10 +34098,10 @@ export namespace Prisma {
   export type BranchEmployeeHistoryCreateManyBranchInput = {
     id?: string
     employeeId: string
-    startDate?: Date | string
-    endDate?: Date | string | null
+    startDate: string
+    endDate?: string | null
     isActive?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string | null
     updatedAt?: Date | string
   }
 
@@ -34517,10 +34517,10 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryUpdateWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employee?: EmployeeUpdateOneRequiredWithoutBranchEmployeeHistoryNestedInput
   }
@@ -34528,20 +34528,20 @@ export namespace Prisma {
   export type BranchEmployeeHistoryUncheckedUpdateWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -34851,11 +34851,11 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryCreateManyEmployeeInput = {
     id?: string
-    startDate?: Date | string
-    endDate?: Date | string | null
+    startDate: string
+    endDate?: string | null
     isActive?: boolean
     branchCode: string
-    createdAt: Date | string
+    createdAt?: Date | string | null
     updatedAt?: Date | string
   }
 
@@ -34927,31 +34927,31 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: BranchUpdateOneRequiredWithoutBranchEmployeeHistoryNestedInput
   }
 
   export type BranchEmployeeHistoryUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     branchCode?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BranchEmployeeHistoryUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     branchCode?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

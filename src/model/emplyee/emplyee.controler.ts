@@ -34,8 +34,32 @@ const getSingleEmployee = catchAsync(async (req, res) => {
   });
 });
 
+const updateEmployee = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const updateData = req.body;
+  const result = await employeeService.updateEmployee(updateData, id);
+
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "employe updated successfully !!",
+    data: result,
+  });
+});
+
+const getEmployeeWithEmpid = catchAsync(async (req, res) => {
+  const { employeeId } = req.body;
+  const result = await employeeService.getEmployeWithEmpid(employeeId);
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "retive employee success fully !!",
+    data: result,
+  });
+});
+
 export const employeeControler = {
   createEmployee,
   getEmployee,
   getSingleEmployee,
+  updateEmployee,
+  getEmployeeWithEmpid,
 };

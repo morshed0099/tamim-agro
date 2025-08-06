@@ -76,12 +76,52 @@ const getSingleEmployee = async (id: string) => {
     where: {
       id,
     },
+    include: {
+      address: true,
+    },
+  });
+
+  return result;
+};
+
+const updateEmployee = async (payload: any, id: string) => {
+  const { id: emid, addressId, address, ...empData } = payload;
+
+  const result = await prismaClient.$transaction(async (tx) => {
+    const updateAddress = await tx.address.update({
+      where: {
+        id: addressId,
+      },
+      data: address,
+    });
+    const updateEmp = await tx.employee.update({
+      where: {
+        id: emid,
+      },
+      data: empData,
+    });
+    return {
+      updateEmp,
+      updateAddress,
+    };
   });
   return result;
+};
+
+const getEmployeWithEmpid = async (emid: string) => {
+  console.log(emid);
+  const employeeData = await prismaClient.employee.findUnique({
+    where: {
+      employeeId: emid,
+    },
+  });
+  return employeeData;
 };
 
 export const employeeService = {
   createEmployee,
   getEmployee,
   getSingleEmployee,
+  updateEmployee,
+  getEmployeWithEmpid,
 };
