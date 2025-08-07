@@ -41,7 +41,6 @@ model Branch {
   branchCode            String                  @unique
   farmer                Farmer[]
   flocks                Flock[]
-  feed                  Feed[]
   medicineStock         MedicineStock[]
   medicinePurchess      MedicinePurchess[]
   sellMedicine          SellMedicine[]
@@ -51,8 +50,24 @@ model Branch {
   createDate            String
   createdAt             DateTime?               @default(now())
   updatedAt             DateTime                @default(now())
+  FeedStock             FeedStock[]
 
   @@map("branch")
+}
+
+model Depot {
+  id                String              @id @default(uuid())
+  locationName      String
+  depotName         String              @unique
+  createDate        String
+  createAt          DateTime?           @default(now())
+  updateAt          DateTime            @default(now())
+  feedStock         FeedStock[]
+  sentTransfers     FeedStockTransfer[] @relation("FromDepot")
+  receivedTransfers FeedStockTransfer[] @relation("ToDepot")
+
+  @@index([depotName])
+  @@map("depot")
 }
 
 model Farmer {
@@ -209,27 +224,65 @@ model FlockReport {
 }
 
 model FeedNameCategory {
-  id             String   @id @default(uuid())
-  feedName       String   @unique
-  feedCodeNumber Int      @unique
-  feeds          Feed[]
-  createdAt      DateTime
-  updatedAt      DateTime @default(now())
+  id               String             @id @default(uuid())
+  feedName         String             @unique
+  feedCodeNumber   Int                @unique
+  createdAt        DateTime
+  updatedAt        DateTime           @default(now())
+  FeedStock        FeedStock[]
+  transferFeedItem TransferFeedItem[]
 
   @@map("feedNameCategory")
 }
 
-model Feed {
+model FeedStock {
   id               String           @id @default(uuid())
   feedName         String
   feedNameCategory FeedNameCategory @relation(fields: [feedName], references: [feedName])
   stock            Int
-  branchCode       String?
-  branch           Branch?          @relation(fields: [branchCode], references: [branchCode])
-  createdAt        DateTime
-  updatedAt        DateTime         @default(now())
+  depotName        String
+  depot            Depot            @relation(fields: [depotName], references: [depotName])
 
-  @@map("feed")
+  createdAt DateTime
+  updatedAt DateTime @default(now())
+  Branch    Branch?  @relation(fields: [branchId], references: [id])
+  branchId  String?
+
+  @@index([feedName, depotName])
+  @@map("feedStoc")
+}
+
+model FeedStockTransfer {
+  id             String    @id @default(uuid())
+  fromDepot      String
+  toDepot        String
+  transerFerDate String
+  createDate     String
+  trnasferBill   String    @unique
+  createAt       DateTime? @default(now())
+  updateAt       DateTime  @default(now())
+
+  transferDepot    Depot              @relation("FromDepot", fields: [fromDepot], references: [depotName])
+  reciveDepot      Depot              @relation("ToDepot", fields: [toDepot], references: [depotName])
+  depotId          String?
+  transferFeedItem TransferFeedItem[]
+
+  @@index([trnasferBill])
+  @@map("feedStockTransfer")
+}
+
+model TransferFeedItem {
+  id              String            @id @default(uuid())
+  feedName        String
+  createDate      String
+  quntity         String
+  tansferId       String
+  feed            FeedNameCategory  @relation(fields: [feedName], references: [feedName])
+  feedStckTranfer FeedStockTransfer @relation(fields: [tansferId], references: [trnasferBill])
+  createdAt       DateTime          @default(now())
+  updateAt        DateTime          @default(now())
+
+  @@map("transferFeedItem")
 }
 
 model AllGenericMedicin {
@@ -333,16 +386,15 @@ model SellMedicine {
 }
 
 model StockTransfer {
-  id             String  @id @default(uuid())
-  fromBranchCode String
-  toBranchCode   String
-  genericName    String
-  medicineName   String
-  quantity       Int
-  description    String?
-
-  createdAt DateTime
-  updatedAt DateTime @default(now())
+  id            String   @id @default(uuid())
+  FromDepotName String
+  toBranchCode  String
+  genericName   String
+  medicineName  String
+  quantity      Int
+  description   String?
+  createdAt     DateTime
+  updatedAt     DateTime @default(now())
 }
 
 model MedicineTransfer {

@@ -130,6 +130,15 @@ exports.Prisma.BranchScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.DepotScalarFieldEnum = {
+  id: 'id',
+  locationName: 'locationName',
+  depotName: 'depotName',
+  createDate: 'createDate',
+  createAt: 'createAt',
+  updateAt: 'updateAt'
+};
+
 exports.Prisma.FarmerScalarFieldEnum = {
   id: 'id',
   branchCode: 'branchCode',
@@ -249,13 +258,36 @@ exports.Prisma.FeedNameCategoryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.FeedScalarFieldEnum = {
+exports.Prisma.FeedStockScalarFieldEnum = {
   id: 'id',
   feedName: 'feedName',
   stock: 'stock',
-  branchCode: 'branchCode',
+  depotName: 'depotName',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  branchId: 'branchId'
+};
+
+exports.Prisma.FeedStockTransferScalarFieldEnum = {
+  id: 'id',
+  fromDepot: 'fromDepot',
+  toDepot: 'toDepot',
+  transerFerDate: 'transerFerDate',
+  createDate: 'createDate',
+  trnasferBill: 'trnasferBill',
+  createAt: 'createAt',
+  updateAt: 'updateAt',
+  depotId: 'depotId'
+};
+
+exports.Prisma.TransferFeedItemScalarFieldEnum = {
+  id: 'id',
+  feedName: 'feedName',
+  createDate: 'createDate',
+  quntity: 'quntity',
+  tansferId: 'tansferId',
+  createdAt: 'createdAt',
+  updateAt: 'updateAt'
 };
 
 exports.Prisma.AllGenericMedicinScalarFieldEnum = {
@@ -326,7 +358,7 @@ exports.Prisma.SellMedicineScalarFieldEnum = {
 
 exports.Prisma.StockTransferScalarFieldEnum = {
   id: 'id',
-  fromBranchCode: 'fromBranchCode',
+  FromDepotName: 'FromDepotName',
   toBranchCode: 'toBranchCode',
   genericName: 'genericName',
   medicineName: 'medicineName',
@@ -394,6 +426,7 @@ exports.DeliveryStatus = exports.$Enums.DeliveryStatus = {
 
 exports.Prisma.ModelName = {
   Branch: 'Branch',
+  Depot: 'Depot',
   Farmer: 'Farmer',
   Address: 'Address',
   BranchEmployeeHistory: 'BranchEmployeeHistory',
@@ -401,7 +434,9 @@ exports.Prisma.ModelName = {
   Flock: 'Flock',
   FlockReport: 'FlockReport',
   FeedNameCategory: 'FeedNameCategory',
-  Feed: 'Feed',
+  FeedStock: 'FeedStock',
+  FeedStockTransfer: 'FeedStockTransfer',
+  TransferFeedItem: 'TransferFeedItem',
   AllGenericMedicin: 'AllGenericMedicin',
   MedicineNameAdd: 'MedicineNameAdd',
   MedicinePurchess: 'MedicinePurchess',

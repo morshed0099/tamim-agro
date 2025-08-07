@@ -6,5 +6,6 @@ router.post(
   "/create-employee-branch",
   brachAssinEmployeeControler.createBranchAssinEmployee
 );
+router.get("/:id", brachAssinEmployeeControler.getSingleEmbployeBranch);
 
 export const branchAssinEmployeeRouter = router;

@@ -16,6 +16,26 @@ const createBranchAssinEmployee = async (payload: any) => {
   });
 };
 
+const getSingleBranchEmpoyee = async (id: string) => {
+  const oldData = await prismaClient.branchEmployeeHistory.findFirst({
+    where: {
+      employeeId: id,
+    },
+  });
+
+  const employeeDetails = await prismaClient.employee.findFirst({
+    where: {
+      employeeId: id,
+    },
+  });
+
+  return {
+    oldData,
+    employeeDetails,
+  };
+};
+
 export const branchAssinEployeeService = {
   createBranchAssinEmployee,
+  getSingleBranchEmpoyee,
 };

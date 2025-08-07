@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type Branch = $Result.DefaultSelection<Prisma.$BranchPayload>
 /**
+ * Model Depot
+ * 
+ */
+export type Depot = $Result.DefaultSelection<Prisma.$DepotPayload>
+/**
  * Model Farmer
  * 
  */
@@ -54,10 +59,20 @@ export type FlockReport = $Result.DefaultSelection<Prisma.$FlockReportPayload>
  */
 export type FeedNameCategory = $Result.DefaultSelection<Prisma.$FeedNameCategoryPayload>
 /**
- * Model Feed
+ * Model FeedStock
  * 
  */
-export type Feed = $Result.DefaultSelection<Prisma.$FeedPayload>
+export type FeedStock = $Result.DefaultSelection<Prisma.$FeedStockPayload>
+/**
+ * Model FeedStockTransfer
+ * 
+ */
+export type FeedStockTransfer = $Result.DefaultSelection<Prisma.$FeedStockTransferPayload>
+/**
+ * Model TransferFeedItem
+ * 
+ */
+export type TransferFeedItem = $Result.DefaultSelection<Prisma.$TransferFeedItemPayload>
 /**
  * Model AllGenericMedicin
  * 
@@ -304,6 +319,16 @@ export class PrismaClient<
   get branch(): Prisma.BranchDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.depot`: Exposes CRUD operations for the **Depot** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Depots
+    * const depots = await prisma.depot.findMany()
+    * ```
+    */
+  get depot(): Prisma.DepotDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.farmer`: Exposes CRUD operations for the **Farmer** model.
     * Example usage:
     * ```ts
@@ -374,14 +399,34 @@ export class PrismaClient<
   get feedNameCategory(): Prisma.FeedNameCategoryDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.feed`: Exposes CRUD operations for the **Feed** model.
+   * `prisma.feedStock`: Exposes CRUD operations for the **FeedStock** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Feeds
-    * const feeds = await prisma.feed.findMany()
+    * // Fetch zero or more FeedStocks
+    * const feedStocks = await prisma.feedStock.findMany()
     * ```
     */
-  get feed(): Prisma.FeedDelegate<ExtArgs, ClientOptions>;
+  get feedStock(): Prisma.FeedStockDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.feedStockTransfer`: Exposes CRUD operations for the **FeedStockTransfer** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FeedStockTransfers
+    * const feedStockTransfers = await prisma.feedStockTransfer.findMany()
+    * ```
+    */
+  get feedStockTransfer(): Prisma.FeedStockTransferDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.transferFeedItem`: Exposes CRUD operations for the **TransferFeedItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TransferFeedItems
+    * const transferFeedItems = await prisma.transferFeedItem.findMany()
+    * ```
+    */
+  get transferFeedItem(): Prisma.TransferFeedItemDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.allGenericMedicin`: Exposes CRUD operations for the **AllGenericMedicin** model.
@@ -903,6 +948,7 @@ export namespace Prisma {
 
   export const ModelName: {
     Branch: 'Branch',
+    Depot: 'Depot',
     Farmer: 'Farmer',
     Address: 'Address',
     BranchEmployeeHistory: 'BranchEmployeeHistory',
@@ -910,7 +956,9 @@ export namespace Prisma {
     Flock: 'Flock',
     FlockReport: 'FlockReport',
     FeedNameCategory: 'FeedNameCategory',
-    Feed: 'Feed',
+    FeedStock: 'FeedStock',
+    FeedStockTransfer: 'FeedStockTransfer',
+    TransferFeedItem: 'TransferFeedItem',
     AllGenericMedicin: 'AllGenericMedicin',
     MedicineNameAdd: 'MedicineNameAdd',
     MedicinePurchess: 'MedicinePurchess',
@@ -937,7 +985,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "branch" | "farmer" | "address" | "branchEmployeeHistory" | "employee" | "flock" | "flockReport" | "feedNameCategory" | "feed" | "allGenericMedicin" | "medicineNameAdd" | "medicinePurchess" | "medicineStock" | "medicineItem" | "sellMedicine" | "stockTransfer" | "medicineTransfer"
+      modelProps: "branch" | "depot" | "farmer" | "address" | "branchEmployeeHistory" | "employee" | "flock" | "flockReport" | "feedNameCategory" | "feedStock" | "feedStockTransfer" | "transferFeedItem" | "allGenericMedicin" | "medicineNameAdd" | "medicinePurchess" | "medicineStock" | "medicineItem" | "sellMedicine" | "stockTransfer" | "medicineTransfer"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1012,6 +1060,80 @@ export namespace Prisma {
           count: {
             args: Prisma.BranchCountArgs<ExtArgs>
             result: $Utils.Optional<BranchCountAggregateOutputType> | number
+          }
+        }
+      }
+      Depot: {
+        payload: Prisma.$DepotPayload<ExtArgs>
+        fields: Prisma.DepotFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DepotFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepotPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DepotFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepotPayload>
+          }
+          findFirst: {
+            args: Prisma.DepotFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepotPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DepotFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepotPayload>
+          }
+          findMany: {
+            args: Prisma.DepotFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepotPayload>[]
+          }
+          create: {
+            args: Prisma.DepotCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepotPayload>
+          }
+          createMany: {
+            args: Prisma.DepotCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DepotCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepotPayload>[]
+          }
+          delete: {
+            args: Prisma.DepotDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepotPayload>
+          }
+          update: {
+            args: Prisma.DepotUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepotPayload>
+          }
+          deleteMany: {
+            args: Prisma.DepotDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DepotUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DepotUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepotPayload>[]
+          }
+          upsert: {
+            args: Prisma.DepotUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepotPayload>
+          }
+          aggregate: {
+            args: Prisma.DepotAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDepot>
+          }
+          groupBy: {
+            args: Prisma.DepotGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DepotGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DepotCountArgs<ExtArgs>
+            result: $Utils.Optional<DepotCountAggregateOutputType> | number
           }
         }
       }
@@ -1533,77 +1655,225 @@ export namespace Prisma {
           }
         }
       }
-      Feed: {
-        payload: Prisma.$FeedPayload<ExtArgs>
-        fields: Prisma.FeedFieldRefs
+      FeedStock: {
+        payload: Prisma.$FeedStockPayload<ExtArgs>
+        fields: Prisma.FeedStockFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.FeedFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FeedPayload> | null
+            args: Prisma.FeedStockFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.FeedFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FeedPayload>
+            args: Prisma.FeedStockFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockPayload>
           }
           findFirst: {
-            args: Prisma.FeedFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FeedPayload> | null
+            args: Prisma.FeedStockFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.FeedFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FeedPayload>
+            args: Prisma.FeedStockFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockPayload>
           }
           findMany: {
-            args: Prisma.FeedFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FeedPayload>[]
+            args: Prisma.FeedStockFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockPayload>[]
           }
           create: {
-            args: Prisma.FeedCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FeedPayload>
+            args: Prisma.FeedStockCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockPayload>
           }
           createMany: {
-            args: Prisma.FeedCreateManyArgs<ExtArgs>
+            args: Prisma.FeedStockCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.FeedCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FeedPayload>[]
+            args: Prisma.FeedStockCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockPayload>[]
           }
           delete: {
-            args: Prisma.FeedDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FeedPayload>
+            args: Prisma.FeedStockDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockPayload>
           }
           update: {
-            args: Prisma.FeedUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FeedPayload>
+            args: Prisma.FeedStockUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockPayload>
           }
           deleteMany: {
-            args: Prisma.FeedDeleteManyArgs<ExtArgs>
+            args: Prisma.FeedStockDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.FeedUpdateManyArgs<ExtArgs>
+            args: Prisma.FeedStockUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.FeedUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FeedPayload>[]
+            args: Prisma.FeedStockUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockPayload>[]
           }
           upsert: {
-            args: Prisma.FeedUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FeedPayload>
+            args: Prisma.FeedStockUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockPayload>
           }
           aggregate: {
-            args: Prisma.FeedAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateFeed>
+            args: Prisma.FeedStockAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFeedStock>
           }
           groupBy: {
-            args: Prisma.FeedGroupByArgs<ExtArgs>
-            result: $Utils.Optional<FeedGroupByOutputType>[]
+            args: Prisma.FeedStockGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FeedStockGroupByOutputType>[]
           }
           count: {
-            args: Prisma.FeedCountArgs<ExtArgs>
-            result: $Utils.Optional<FeedCountAggregateOutputType> | number
+            args: Prisma.FeedStockCountArgs<ExtArgs>
+            result: $Utils.Optional<FeedStockCountAggregateOutputType> | number
+          }
+        }
+      }
+      FeedStockTransfer: {
+        payload: Prisma.$FeedStockTransferPayload<ExtArgs>
+        fields: Prisma.FeedStockTransferFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FeedStockTransferFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockTransferPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FeedStockTransferFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockTransferPayload>
+          }
+          findFirst: {
+            args: Prisma.FeedStockTransferFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockTransferPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FeedStockTransferFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockTransferPayload>
+          }
+          findMany: {
+            args: Prisma.FeedStockTransferFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockTransferPayload>[]
+          }
+          create: {
+            args: Prisma.FeedStockTransferCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockTransferPayload>
+          }
+          createMany: {
+            args: Prisma.FeedStockTransferCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FeedStockTransferCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockTransferPayload>[]
+          }
+          delete: {
+            args: Prisma.FeedStockTransferDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockTransferPayload>
+          }
+          update: {
+            args: Prisma.FeedStockTransferUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockTransferPayload>
+          }
+          deleteMany: {
+            args: Prisma.FeedStockTransferDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FeedStockTransferUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FeedStockTransferUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockTransferPayload>[]
+          }
+          upsert: {
+            args: Prisma.FeedStockTransferUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockTransferPayload>
+          }
+          aggregate: {
+            args: Prisma.FeedStockTransferAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFeedStockTransfer>
+          }
+          groupBy: {
+            args: Prisma.FeedStockTransferGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FeedStockTransferGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FeedStockTransferCountArgs<ExtArgs>
+            result: $Utils.Optional<FeedStockTransferCountAggregateOutputType> | number
+          }
+        }
+      }
+      TransferFeedItem: {
+        payload: Prisma.$TransferFeedItemPayload<ExtArgs>
+        fields: Prisma.TransferFeedItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TransferFeedItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferFeedItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TransferFeedItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferFeedItemPayload>
+          }
+          findFirst: {
+            args: Prisma.TransferFeedItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferFeedItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TransferFeedItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferFeedItemPayload>
+          }
+          findMany: {
+            args: Prisma.TransferFeedItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferFeedItemPayload>[]
+          }
+          create: {
+            args: Prisma.TransferFeedItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferFeedItemPayload>
+          }
+          createMany: {
+            args: Prisma.TransferFeedItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TransferFeedItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferFeedItemPayload>[]
+          }
+          delete: {
+            args: Prisma.TransferFeedItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferFeedItemPayload>
+          }
+          update: {
+            args: Prisma.TransferFeedItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferFeedItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.TransferFeedItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TransferFeedItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TransferFeedItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferFeedItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.TransferFeedItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferFeedItemPayload>
+          }
+          aggregate: {
+            args: Prisma.TransferFeedItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTransferFeedItem>
+          }
+          groupBy: {
+            args: Prisma.TransferFeedItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TransferFeedItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TransferFeedItemCountArgs<ExtArgs>
+            result: $Utils.Optional<TransferFeedItemCountAggregateOutputType> | number
           }
         }
       }
@@ -2284,6 +2554,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     branch?: BranchOmit
+    depot?: DepotOmit
     farmer?: FarmerOmit
     address?: AddressOmit
     branchEmployeeHistory?: BranchEmployeeHistoryOmit
@@ -2291,7 +2562,9 @@ export namespace Prisma {
     flock?: FlockOmit
     flockReport?: FlockReportOmit
     feedNameCategory?: FeedNameCategoryOmit
-    feed?: FeedOmit
+    feedStock?: FeedStockOmit
+    feedStockTransfer?: FeedStockTransferOmit
+    transferFeedItem?: TransferFeedItemOmit
     allGenericMedicin?: AllGenericMedicinOmit
     medicineNameAdd?: MedicineNameAddOmit
     medicinePurchess?: MedicinePurchessOmit
@@ -2396,25 +2669,25 @@ export namespace Prisma {
   export type BranchCountOutputType = {
     farmer: number
     flocks: number
-    feed: number
     medicineStock: number
     medicinePurchess: number
     sellMedicine: number
     medicineTransfer: number
     flockReport: number
     branchEmployeeHistory: number
+    FeedStock: number
   }
 
   export type BranchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     farmer?: boolean | BranchCountOutputTypeCountFarmerArgs
     flocks?: boolean | BranchCountOutputTypeCountFlocksArgs
-    feed?: boolean | BranchCountOutputTypeCountFeedArgs
     medicineStock?: boolean | BranchCountOutputTypeCountMedicineStockArgs
     medicinePurchess?: boolean | BranchCountOutputTypeCountMedicinePurchessArgs
     sellMedicine?: boolean | BranchCountOutputTypeCountSellMedicineArgs
     medicineTransfer?: boolean | BranchCountOutputTypeCountMedicineTransferArgs
     flockReport?: boolean | BranchCountOutputTypeCountFlockReportArgs
     branchEmployeeHistory?: boolean | BranchCountOutputTypeCountBranchEmployeeHistoryArgs
+    FeedStock?: boolean | BranchCountOutputTypeCountFeedStockArgs
   }
 
   // Custom InputTypes
@@ -2440,13 +2713,6 @@ export namespace Prisma {
    */
   export type BranchCountOutputTypeCountFlocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FlockWhereInput
-  }
-
-  /**
-   * BranchCountOutputType without action
-   */
-  export type BranchCountOutputTypeCountFeedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FeedWhereInput
   }
 
   /**
@@ -2489,6 +2755,62 @@ export namespace Prisma {
    */
   export type BranchCountOutputTypeCountBranchEmployeeHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BranchEmployeeHistoryWhereInput
+  }
+
+  /**
+   * BranchCountOutputType without action
+   */
+  export type BranchCountOutputTypeCountFeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedStockWhereInput
+  }
+
+
+  /**
+   * Count Type DepotCountOutputType
+   */
+
+  export type DepotCountOutputType = {
+    feedStock: number
+    sentTransfers: number
+    receivedTransfers: number
+  }
+
+  export type DepotCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feedStock?: boolean | DepotCountOutputTypeCountFeedStockArgs
+    sentTransfers?: boolean | DepotCountOutputTypeCountSentTransfersArgs
+    receivedTransfers?: boolean | DepotCountOutputTypeCountReceivedTransfersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DepotCountOutputType without action
+   */
+  export type DepotCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepotCountOutputType
+     */
+    select?: DepotCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DepotCountOutputType without action
+   */
+  export type DepotCountOutputTypeCountFeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedStockWhereInput
+  }
+
+  /**
+   * DepotCountOutputType without action
+   */
+  export type DepotCountOutputTypeCountSentTransfersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedStockTransferWhereInput
+  }
+
+  /**
+   * DepotCountOutputType without action
+   */
+  export type DepotCountOutputTypeCountReceivedTransfersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedStockTransferWhereInput
   }
 
 
@@ -2635,11 +2957,13 @@ export namespace Prisma {
    */
 
   export type FeedNameCategoryCountOutputType = {
-    feeds: number
+    FeedStock: number
+    transferFeedItem: number
   }
 
   export type FeedNameCategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    feeds?: boolean | FeedNameCategoryCountOutputTypeCountFeedsArgs
+    FeedStock?: boolean | FeedNameCategoryCountOutputTypeCountFeedStockArgs
+    transferFeedItem?: boolean | FeedNameCategoryCountOutputTypeCountTransferFeedItemArgs
   }
 
   // Custom InputTypes
@@ -2656,8 +2980,46 @@ export namespace Prisma {
   /**
    * FeedNameCategoryCountOutputType without action
    */
-  export type FeedNameCategoryCountOutputTypeCountFeedsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FeedWhereInput
+  export type FeedNameCategoryCountOutputTypeCountFeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedStockWhereInput
+  }
+
+  /**
+   * FeedNameCategoryCountOutputType without action
+   */
+  export type FeedNameCategoryCountOutputTypeCountTransferFeedItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransferFeedItemWhereInput
+  }
+
+
+  /**
+   * Count Type FeedStockTransferCountOutputType
+   */
+
+  export type FeedStockTransferCountOutputType = {
+    transferFeedItem: number
+  }
+
+  export type FeedStockTransferCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    transferFeedItem?: boolean | FeedStockTransferCountOutputTypeCountTransferFeedItemArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FeedStockTransferCountOutputType without action
+   */
+  export type FeedStockTransferCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransferCountOutputType
+     */
+    select?: FeedStockTransferCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FeedStockTransferCountOutputType without action
+   */
+  export type FeedStockTransferCountOutputTypeCountTransferFeedItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransferFeedItemWhereInput
   }
 
 
@@ -2967,13 +3329,13 @@ export namespace Prisma {
     updatedAt?: boolean
     farmer?: boolean | Branch$farmerArgs<ExtArgs>
     flocks?: boolean | Branch$flocksArgs<ExtArgs>
-    feed?: boolean | Branch$feedArgs<ExtArgs>
     medicineStock?: boolean | Branch$medicineStockArgs<ExtArgs>
     medicinePurchess?: boolean | Branch$medicinePurchessArgs<ExtArgs>
     sellMedicine?: boolean | Branch$sellMedicineArgs<ExtArgs>
     medicineTransfer?: boolean | Branch$medicineTransferArgs<ExtArgs>
     flockReport?: boolean | Branch$flockReportArgs<ExtArgs>
     branchEmployeeHistory?: boolean | Branch$branchEmployeeHistoryArgs<ExtArgs>
+    FeedStock?: boolean | Branch$FeedStockArgs<ExtArgs>
     _count?: boolean | BranchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["branch"]>
 
@@ -3011,13 +3373,13 @@ export namespace Prisma {
   export type BranchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     farmer?: boolean | Branch$farmerArgs<ExtArgs>
     flocks?: boolean | Branch$flocksArgs<ExtArgs>
-    feed?: boolean | Branch$feedArgs<ExtArgs>
     medicineStock?: boolean | Branch$medicineStockArgs<ExtArgs>
     medicinePurchess?: boolean | Branch$medicinePurchessArgs<ExtArgs>
     sellMedicine?: boolean | Branch$sellMedicineArgs<ExtArgs>
     medicineTransfer?: boolean | Branch$medicineTransferArgs<ExtArgs>
     flockReport?: boolean | Branch$flockReportArgs<ExtArgs>
     branchEmployeeHistory?: boolean | Branch$branchEmployeeHistoryArgs<ExtArgs>
+    FeedStock?: boolean | Branch$FeedStockArgs<ExtArgs>
     _count?: boolean | BranchCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BranchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3028,13 +3390,13 @@ export namespace Prisma {
     objects: {
       farmer: Prisma.$FarmerPayload<ExtArgs>[]
       flocks: Prisma.$FlockPayload<ExtArgs>[]
-      feed: Prisma.$FeedPayload<ExtArgs>[]
       medicineStock: Prisma.$MedicineStockPayload<ExtArgs>[]
       medicinePurchess: Prisma.$MedicinePurchessPayload<ExtArgs>[]
       sellMedicine: Prisma.$SellMedicinePayload<ExtArgs>[]
       medicineTransfer: Prisma.$MedicineTransferPayload<ExtArgs>[]
       flockReport: Prisma.$FlockReportPayload<ExtArgs>[]
       branchEmployeeHistory: Prisma.$BranchEmployeeHistoryPayload<ExtArgs>[]
+      FeedStock: Prisma.$FeedStockPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3440,13 +3802,13 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     farmer<T extends Branch$farmerArgs<ExtArgs> = {}>(args?: Subset<T, Branch$farmerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     flocks<T extends Branch$flocksArgs<ExtArgs> = {}>(args?: Subset<T, Branch$flocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    feed<T extends Branch$feedArgs<ExtArgs> = {}>(args?: Subset<T, Branch$feedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     medicineStock<T extends Branch$medicineStockArgs<ExtArgs> = {}>(args?: Subset<T, Branch$medicineStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     medicinePurchess<T extends Branch$medicinePurchessArgs<ExtArgs> = {}>(args?: Subset<T, Branch$medicinePurchessArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicinePurchessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sellMedicine<T extends Branch$sellMedicineArgs<ExtArgs> = {}>(args?: Subset<T, Branch$sellMedicineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     medicineTransfer<T extends Branch$medicineTransferArgs<ExtArgs> = {}>(args?: Subset<T, Branch$medicineTransferArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     flockReport<T extends Branch$flockReportArgs<ExtArgs> = {}>(args?: Subset<T, Branch$flockReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     branchEmployeeHistory<T extends Branch$branchEmployeeHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Branch$branchEmployeeHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BranchEmployeeHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FeedStock<T extends Branch$FeedStockArgs<ExtArgs> = {}>(args?: Subset<T, Branch$FeedStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3919,30 +4281,6 @@ export namespace Prisma {
   }
 
   /**
-   * Branch.feed
-   */
-  export type Branch$feedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Feed
-     */
-    select?: FeedSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Feed
-     */
-    omit?: FeedOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedInclude<ExtArgs> | null
-    where?: FeedWhereInput
-    orderBy?: FeedOrderByWithRelationInput | FeedOrderByWithRelationInput[]
-    cursor?: FeedWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: FeedScalarFieldEnum | FeedScalarFieldEnum[]
-  }
-
-  /**
    * Branch.medicineStock
    */
   export type Branch$medicineStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4087,6 +4425,30 @@ export namespace Prisma {
   }
 
   /**
+   * Branch.FeedStock
+   */
+  export type Branch$FeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStock
+     */
+    select?: FeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStock
+     */
+    omit?: FeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockInclude<ExtArgs> | null
+    where?: FeedStockWhereInput
+    orderBy?: FeedStockOrderByWithRelationInput | FeedStockOrderByWithRelationInput[]
+    cursor?: FeedStockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedStockScalarFieldEnum | FeedStockScalarFieldEnum[]
+  }
+
+  /**
    * Branch without action
    */
   export type BranchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4102,6 +4464,1145 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: BranchInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Depot
+   */
+
+  export type AggregateDepot = {
+    _count: DepotCountAggregateOutputType | null
+    _min: DepotMinAggregateOutputType | null
+    _max: DepotMaxAggregateOutputType | null
+  }
+
+  export type DepotMinAggregateOutputType = {
+    id: string | null
+    locationName: string | null
+    depotName: string | null
+    createDate: string | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type DepotMaxAggregateOutputType = {
+    id: string | null
+    locationName: string | null
+    depotName: string | null
+    createDate: string | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type DepotCountAggregateOutputType = {
+    id: number
+    locationName: number
+    depotName: number
+    createDate: number
+    createAt: number
+    updateAt: number
+    _all: number
+  }
+
+
+  export type DepotMinAggregateInputType = {
+    id?: true
+    locationName?: true
+    depotName?: true
+    createDate?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type DepotMaxAggregateInputType = {
+    id?: true
+    locationName?: true
+    depotName?: true
+    createDate?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type DepotCountAggregateInputType = {
+    id?: true
+    locationName?: true
+    depotName?: true
+    createDate?: true
+    createAt?: true
+    updateAt?: true
+    _all?: true
+  }
+
+  export type DepotAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Depot to aggregate.
+     */
+    where?: DepotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Depots to fetch.
+     */
+    orderBy?: DepotOrderByWithRelationInput | DepotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DepotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Depots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Depots.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Depots
+    **/
+    _count?: true | DepotCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DepotMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DepotMaxAggregateInputType
+  }
+
+  export type GetDepotAggregateType<T extends DepotAggregateArgs> = {
+        [P in keyof T & keyof AggregateDepot]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDepot[P]>
+      : GetScalarType<T[P], AggregateDepot[P]>
+  }
+
+
+
+
+  export type DepotGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DepotWhereInput
+    orderBy?: DepotOrderByWithAggregationInput | DepotOrderByWithAggregationInput[]
+    by: DepotScalarFieldEnum[] | DepotScalarFieldEnum
+    having?: DepotScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DepotCountAggregateInputType | true
+    _min?: DepotMinAggregateInputType
+    _max?: DepotMaxAggregateInputType
+  }
+
+  export type DepotGroupByOutputType = {
+    id: string
+    locationName: string
+    depotName: string
+    createDate: string
+    createAt: Date | null
+    updateAt: Date
+    _count: DepotCountAggregateOutputType | null
+    _min: DepotMinAggregateOutputType | null
+    _max: DepotMaxAggregateOutputType | null
+  }
+
+  type GetDepotGroupByPayload<T extends DepotGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DepotGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DepotGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DepotGroupByOutputType[P]>
+            : GetScalarType<T[P], DepotGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DepotSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locationName?: boolean
+    depotName?: boolean
+    createDate?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    feedStock?: boolean | Depot$feedStockArgs<ExtArgs>
+    sentTransfers?: boolean | Depot$sentTransfersArgs<ExtArgs>
+    receivedTransfers?: boolean | Depot$receivedTransfersArgs<ExtArgs>
+    _count?: boolean | DepotCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["depot"]>
+
+  export type DepotSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locationName?: boolean
+    depotName?: boolean
+    createDate?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+  }, ExtArgs["result"]["depot"]>
+
+  export type DepotSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locationName?: boolean
+    depotName?: boolean
+    createDate?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+  }, ExtArgs["result"]["depot"]>
+
+  export type DepotSelectScalar = {
+    id?: boolean
+    locationName?: boolean
+    depotName?: boolean
+    createDate?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+  }
+
+  export type DepotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locationName" | "depotName" | "createDate" | "createAt" | "updateAt", ExtArgs["result"]["depot"]>
+  export type DepotInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feedStock?: boolean | Depot$feedStockArgs<ExtArgs>
+    sentTransfers?: boolean | Depot$sentTransfersArgs<ExtArgs>
+    receivedTransfers?: boolean | Depot$receivedTransfersArgs<ExtArgs>
+    _count?: boolean | DepotCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type DepotIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type DepotIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $DepotPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Depot"
+    objects: {
+      feedStock: Prisma.$FeedStockPayload<ExtArgs>[]
+      sentTransfers: Prisma.$FeedStockTransferPayload<ExtArgs>[]
+      receivedTransfers: Prisma.$FeedStockTransferPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      locationName: string
+      depotName: string
+      createDate: string
+      createAt: Date | null
+      updateAt: Date
+    }, ExtArgs["result"]["depot"]>
+    composites: {}
+  }
+
+  type DepotGetPayload<S extends boolean | null | undefined | DepotDefaultArgs> = $Result.GetResult<Prisma.$DepotPayload, S>
+
+  type DepotCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DepotFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DepotCountAggregateInputType | true
+    }
+
+  export interface DepotDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Depot'], meta: { name: 'Depot' } }
+    /**
+     * Find zero or one Depot that matches the filter.
+     * @param {DepotFindUniqueArgs} args - Arguments to find a Depot
+     * @example
+     * // Get one Depot
+     * const depot = await prisma.depot.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DepotFindUniqueArgs>(args: SelectSubset<T, DepotFindUniqueArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Depot that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DepotFindUniqueOrThrowArgs} args - Arguments to find a Depot
+     * @example
+     * // Get one Depot
+     * const depot = await prisma.depot.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DepotFindUniqueOrThrowArgs>(args: SelectSubset<T, DepotFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Depot that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepotFindFirstArgs} args - Arguments to find a Depot
+     * @example
+     * // Get one Depot
+     * const depot = await prisma.depot.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DepotFindFirstArgs>(args?: SelectSubset<T, DepotFindFirstArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Depot that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepotFindFirstOrThrowArgs} args - Arguments to find a Depot
+     * @example
+     * // Get one Depot
+     * const depot = await prisma.depot.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DepotFindFirstOrThrowArgs>(args?: SelectSubset<T, DepotFindFirstOrThrowArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Depots that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepotFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Depots
+     * const depots = await prisma.depot.findMany()
+     * 
+     * // Get first 10 Depots
+     * const depots = await prisma.depot.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const depotWithIdOnly = await prisma.depot.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DepotFindManyArgs>(args?: SelectSubset<T, DepotFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Depot.
+     * @param {DepotCreateArgs} args - Arguments to create a Depot.
+     * @example
+     * // Create one Depot
+     * const Depot = await prisma.depot.create({
+     *   data: {
+     *     // ... data to create a Depot
+     *   }
+     * })
+     * 
+     */
+    create<T extends DepotCreateArgs>(args: SelectSubset<T, DepotCreateArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Depots.
+     * @param {DepotCreateManyArgs} args - Arguments to create many Depots.
+     * @example
+     * // Create many Depots
+     * const depot = await prisma.depot.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DepotCreateManyArgs>(args?: SelectSubset<T, DepotCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Depots and returns the data saved in the database.
+     * @param {DepotCreateManyAndReturnArgs} args - Arguments to create many Depots.
+     * @example
+     * // Create many Depots
+     * const depot = await prisma.depot.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Depots and only return the `id`
+     * const depotWithIdOnly = await prisma.depot.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DepotCreateManyAndReturnArgs>(args?: SelectSubset<T, DepotCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Depot.
+     * @param {DepotDeleteArgs} args - Arguments to delete one Depot.
+     * @example
+     * // Delete one Depot
+     * const Depot = await prisma.depot.delete({
+     *   where: {
+     *     // ... filter to delete one Depot
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DepotDeleteArgs>(args: SelectSubset<T, DepotDeleteArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Depot.
+     * @param {DepotUpdateArgs} args - Arguments to update one Depot.
+     * @example
+     * // Update one Depot
+     * const depot = await prisma.depot.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DepotUpdateArgs>(args: SelectSubset<T, DepotUpdateArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Depots.
+     * @param {DepotDeleteManyArgs} args - Arguments to filter Depots to delete.
+     * @example
+     * // Delete a few Depots
+     * const { count } = await prisma.depot.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DepotDeleteManyArgs>(args?: SelectSubset<T, DepotDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Depots.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepotUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Depots
+     * const depot = await prisma.depot.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DepotUpdateManyArgs>(args: SelectSubset<T, DepotUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Depots and returns the data updated in the database.
+     * @param {DepotUpdateManyAndReturnArgs} args - Arguments to update many Depots.
+     * @example
+     * // Update many Depots
+     * const depot = await prisma.depot.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Depots and only return the `id`
+     * const depotWithIdOnly = await prisma.depot.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DepotUpdateManyAndReturnArgs>(args: SelectSubset<T, DepotUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Depot.
+     * @param {DepotUpsertArgs} args - Arguments to update or create a Depot.
+     * @example
+     * // Update or create a Depot
+     * const depot = await prisma.depot.upsert({
+     *   create: {
+     *     // ... data to create a Depot
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Depot we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DepotUpsertArgs>(args: SelectSubset<T, DepotUpsertArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Depots.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepotCountArgs} args - Arguments to filter Depots to count.
+     * @example
+     * // Count the number of Depots
+     * const count = await prisma.depot.count({
+     *   where: {
+     *     // ... the filter for the Depots we want to count
+     *   }
+     * })
+    **/
+    count<T extends DepotCountArgs>(
+      args?: Subset<T, DepotCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DepotCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Depot.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepotAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DepotAggregateArgs>(args: Subset<T, DepotAggregateArgs>): Prisma.PrismaPromise<GetDepotAggregateType<T>>
+
+    /**
+     * Group by Depot.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepotGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DepotGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DepotGroupByArgs['orderBy'] }
+        : { orderBy?: DepotGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DepotGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDepotGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Depot model
+   */
+  readonly fields: DepotFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Depot.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DepotClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    feedStock<T extends Depot$feedStockArgs<ExtArgs> = {}>(args?: Subset<T, Depot$feedStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sentTransfers<T extends Depot$sentTransfersArgs<ExtArgs> = {}>(args?: Subset<T, Depot$sentTransfersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    receivedTransfers<T extends Depot$receivedTransfersArgs<ExtArgs> = {}>(args?: Subset<T, Depot$receivedTransfersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Depot model
+   */
+  interface DepotFieldRefs {
+    readonly id: FieldRef<"Depot", 'String'>
+    readonly locationName: FieldRef<"Depot", 'String'>
+    readonly depotName: FieldRef<"Depot", 'String'>
+    readonly createDate: FieldRef<"Depot", 'String'>
+    readonly createAt: FieldRef<"Depot", 'DateTime'>
+    readonly updateAt: FieldRef<"Depot", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Depot findUnique
+   */
+  export type DepotFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Depot
+     */
+    select?: DepotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Depot
+     */
+    omit?: DepotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepotInclude<ExtArgs> | null
+    /**
+     * Filter, which Depot to fetch.
+     */
+    where: DepotWhereUniqueInput
+  }
+
+  /**
+   * Depot findUniqueOrThrow
+   */
+  export type DepotFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Depot
+     */
+    select?: DepotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Depot
+     */
+    omit?: DepotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepotInclude<ExtArgs> | null
+    /**
+     * Filter, which Depot to fetch.
+     */
+    where: DepotWhereUniqueInput
+  }
+
+  /**
+   * Depot findFirst
+   */
+  export type DepotFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Depot
+     */
+    select?: DepotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Depot
+     */
+    omit?: DepotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepotInclude<ExtArgs> | null
+    /**
+     * Filter, which Depot to fetch.
+     */
+    where?: DepotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Depots to fetch.
+     */
+    orderBy?: DepotOrderByWithRelationInput | DepotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Depots.
+     */
+    cursor?: DepotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Depots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Depots.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Depots.
+     */
+    distinct?: DepotScalarFieldEnum | DepotScalarFieldEnum[]
+  }
+
+  /**
+   * Depot findFirstOrThrow
+   */
+  export type DepotFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Depot
+     */
+    select?: DepotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Depot
+     */
+    omit?: DepotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepotInclude<ExtArgs> | null
+    /**
+     * Filter, which Depot to fetch.
+     */
+    where?: DepotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Depots to fetch.
+     */
+    orderBy?: DepotOrderByWithRelationInput | DepotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Depots.
+     */
+    cursor?: DepotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Depots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Depots.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Depots.
+     */
+    distinct?: DepotScalarFieldEnum | DepotScalarFieldEnum[]
+  }
+
+  /**
+   * Depot findMany
+   */
+  export type DepotFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Depot
+     */
+    select?: DepotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Depot
+     */
+    omit?: DepotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepotInclude<ExtArgs> | null
+    /**
+     * Filter, which Depots to fetch.
+     */
+    where?: DepotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Depots to fetch.
+     */
+    orderBy?: DepotOrderByWithRelationInput | DepotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Depots.
+     */
+    cursor?: DepotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Depots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Depots.
+     */
+    skip?: number
+    distinct?: DepotScalarFieldEnum | DepotScalarFieldEnum[]
+  }
+
+  /**
+   * Depot create
+   */
+  export type DepotCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Depot
+     */
+    select?: DepotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Depot
+     */
+    omit?: DepotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepotInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Depot.
+     */
+    data: XOR<DepotCreateInput, DepotUncheckedCreateInput>
+  }
+
+  /**
+   * Depot createMany
+   */
+  export type DepotCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Depots.
+     */
+    data: DepotCreateManyInput | DepotCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Depot createManyAndReturn
+   */
+  export type DepotCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Depot
+     */
+    select?: DepotSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Depot
+     */
+    omit?: DepotOmit<ExtArgs> | null
+    /**
+     * The data used to create many Depots.
+     */
+    data: DepotCreateManyInput | DepotCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Depot update
+   */
+  export type DepotUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Depot
+     */
+    select?: DepotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Depot
+     */
+    omit?: DepotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepotInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Depot.
+     */
+    data: XOR<DepotUpdateInput, DepotUncheckedUpdateInput>
+    /**
+     * Choose, which Depot to update.
+     */
+    where: DepotWhereUniqueInput
+  }
+
+  /**
+   * Depot updateMany
+   */
+  export type DepotUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Depots.
+     */
+    data: XOR<DepotUpdateManyMutationInput, DepotUncheckedUpdateManyInput>
+    /**
+     * Filter which Depots to update
+     */
+    where?: DepotWhereInput
+    /**
+     * Limit how many Depots to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Depot updateManyAndReturn
+   */
+  export type DepotUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Depot
+     */
+    select?: DepotSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Depot
+     */
+    omit?: DepotOmit<ExtArgs> | null
+    /**
+     * The data used to update Depots.
+     */
+    data: XOR<DepotUpdateManyMutationInput, DepotUncheckedUpdateManyInput>
+    /**
+     * Filter which Depots to update
+     */
+    where?: DepotWhereInput
+    /**
+     * Limit how many Depots to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Depot upsert
+   */
+  export type DepotUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Depot
+     */
+    select?: DepotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Depot
+     */
+    omit?: DepotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepotInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Depot to update in case it exists.
+     */
+    where: DepotWhereUniqueInput
+    /**
+     * In case the Depot found by the `where` argument doesn't exist, create a new Depot with this data.
+     */
+    create: XOR<DepotCreateInput, DepotUncheckedCreateInput>
+    /**
+     * In case the Depot was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DepotUpdateInput, DepotUncheckedUpdateInput>
+  }
+
+  /**
+   * Depot delete
+   */
+  export type DepotDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Depot
+     */
+    select?: DepotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Depot
+     */
+    omit?: DepotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepotInclude<ExtArgs> | null
+    /**
+     * Filter which Depot to delete.
+     */
+    where: DepotWhereUniqueInput
+  }
+
+  /**
+   * Depot deleteMany
+   */
+  export type DepotDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Depots to delete
+     */
+    where?: DepotWhereInput
+    /**
+     * Limit how many Depots to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Depot.feedStock
+   */
+  export type Depot$feedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStock
+     */
+    select?: FeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStock
+     */
+    omit?: FeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockInclude<ExtArgs> | null
+    where?: FeedStockWhereInput
+    orderBy?: FeedStockOrderByWithRelationInput | FeedStockOrderByWithRelationInput[]
+    cursor?: FeedStockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedStockScalarFieldEnum | FeedStockScalarFieldEnum[]
+  }
+
+  /**
+   * Depot.sentTransfers
+   */
+  export type Depot$sentTransfersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferInclude<ExtArgs> | null
+    where?: FeedStockTransferWhereInput
+    orderBy?: FeedStockTransferOrderByWithRelationInput | FeedStockTransferOrderByWithRelationInput[]
+    cursor?: FeedStockTransferWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedStockTransferScalarFieldEnum | FeedStockTransferScalarFieldEnum[]
+  }
+
+  /**
+   * Depot.receivedTransfers
+   */
+  export type Depot$receivedTransfersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferInclude<ExtArgs> | null
+    where?: FeedStockTransferWhereInput
+    orderBy?: FeedStockTransferOrderByWithRelationInput | FeedStockTransferOrderByWithRelationInput[]
+    cursor?: FeedStockTransferWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedStockTransferScalarFieldEnum | FeedStockTransferScalarFieldEnum[]
+  }
+
+  /**
+   * Depot without action
+   */
+  export type DepotDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Depot
+     */
+    select?: DepotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Depot
+     */
+    omit?: DepotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepotInclude<ExtArgs> | null
   }
 
 
@@ -12023,7 +13524,8 @@ export namespace Prisma {
     feedCodeNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    feeds?: boolean | FeedNameCategory$feedsArgs<ExtArgs>
+    FeedStock?: boolean | FeedNameCategory$FeedStockArgs<ExtArgs>
+    transferFeedItem?: boolean | FeedNameCategory$transferFeedItemArgs<ExtArgs>
     _count?: boolean | FeedNameCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["feedNameCategory"]>
 
@@ -12053,7 +13555,8 @@ export namespace Prisma {
 
   export type FeedNameCategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "feedCodeNumber" | "createdAt" | "updatedAt", ExtArgs["result"]["feedNameCategory"]>
   export type FeedNameCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    feeds?: boolean | FeedNameCategory$feedsArgs<ExtArgs>
+    FeedStock?: boolean | FeedNameCategory$FeedStockArgs<ExtArgs>
+    transferFeedItem?: boolean | FeedNameCategory$transferFeedItemArgs<ExtArgs>
     _count?: boolean | FeedNameCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FeedNameCategoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -12062,7 +13565,8 @@ export namespace Prisma {
   export type $FeedNameCategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "FeedNameCategory"
     objects: {
-      feeds: Prisma.$FeedPayload<ExtArgs>[]
+      FeedStock: Prisma.$FeedStockPayload<ExtArgs>[]
+      transferFeedItem: Prisma.$TransferFeedItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12464,7 +13968,8 @@ export namespace Prisma {
    */
   export interface Prisma__FeedNameCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    feeds<T extends FeedNameCategory$feedsArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategory$feedsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FeedStock<T extends FeedNameCategory$FeedStockArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategory$FeedStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    transferFeedItem<T extends FeedNameCategory$transferFeedItemArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategory$transferFeedItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12887,27 +14392,51 @@ export namespace Prisma {
   }
 
   /**
-   * FeedNameCategory.feeds
+   * FeedNameCategory.FeedStock
    */
-  export type FeedNameCategory$feedsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedNameCategory$FeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Feed
+     * Select specific fields to fetch from the FeedStock
      */
-    select?: FeedSelect<ExtArgs> | null
+    select?: FeedStockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Feed
+     * Omit specific fields from the FeedStock
      */
-    omit?: FeedOmit<ExtArgs> | null
+    omit?: FeedStockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FeedInclude<ExtArgs> | null
-    where?: FeedWhereInput
-    orderBy?: FeedOrderByWithRelationInput | FeedOrderByWithRelationInput[]
-    cursor?: FeedWhereUniqueInput
+    include?: FeedStockInclude<ExtArgs> | null
+    where?: FeedStockWhereInput
+    orderBy?: FeedStockOrderByWithRelationInput | FeedStockOrderByWithRelationInput[]
+    cursor?: FeedStockWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: FeedScalarFieldEnum | FeedScalarFieldEnum[]
+    distinct?: FeedStockScalarFieldEnum | FeedStockScalarFieldEnum[]
+  }
+
+  /**
+   * FeedNameCategory.transferFeedItem
+   */
+  export type FeedNameCategory$transferFeedItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemInclude<ExtArgs> | null
+    where?: TransferFeedItemWhereInput
+    orderBy?: TransferFeedItemOrderByWithRelationInput | TransferFeedItemOrderByWithRelationInput[]
+    cursor?: TransferFeedItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TransferFeedItemScalarFieldEnum | TransferFeedItemScalarFieldEnum[]
   }
 
   /**
@@ -12930,403 +14459,422 @@ export namespace Prisma {
 
 
   /**
-   * Model Feed
+   * Model FeedStock
    */
 
-  export type AggregateFeed = {
-    _count: FeedCountAggregateOutputType | null
-    _avg: FeedAvgAggregateOutputType | null
-    _sum: FeedSumAggregateOutputType | null
-    _min: FeedMinAggregateOutputType | null
-    _max: FeedMaxAggregateOutputType | null
+  export type AggregateFeedStock = {
+    _count: FeedStockCountAggregateOutputType | null
+    _avg: FeedStockAvgAggregateOutputType | null
+    _sum: FeedStockSumAggregateOutputType | null
+    _min: FeedStockMinAggregateOutputType | null
+    _max: FeedStockMaxAggregateOutputType | null
   }
 
-  export type FeedAvgAggregateOutputType = {
+  export type FeedStockAvgAggregateOutputType = {
     stock: number | null
   }
 
-  export type FeedSumAggregateOutputType = {
+  export type FeedStockSumAggregateOutputType = {
     stock: number | null
   }
 
-  export type FeedMinAggregateOutputType = {
+  export type FeedStockMinAggregateOutputType = {
     id: string | null
     feedName: string | null
     stock: number | null
-    branchCode: string | null
+    depotName: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    branchId: string | null
   }
 
-  export type FeedMaxAggregateOutputType = {
+  export type FeedStockMaxAggregateOutputType = {
     id: string | null
     feedName: string | null
     stock: number | null
-    branchCode: string | null
+    depotName: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    branchId: string | null
   }
 
-  export type FeedCountAggregateOutputType = {
+  export type FeedStockCountAggregateOutputType = {
     id: number
     feedName: number
     stock: number
-    branchCode: number
+    depotName: number
     createdAt: number
     updatedAt: number
+    branchId: number
     _all: number
   }
 
 
-  export type FeedAvgAggregateInputType = {
+  export type FeedStockAvgAggregateInputType = {
     stock?: true
   }
 
-  export type FeedSumAggregateInputType = {
+  export type FeedStockSumAggregateInputType = {
     stock?: true
   }
 
-  export type FeedMinAggregateInputType = {
+  export type FeedStockMinAggregateInputType = {
     id?: true
     feedName?: true
     stock?: true
-    branchCode?: true
+    depotName?: true
     createdAt?: true
     updatedAt?: true
+    branchId?: true
   }
 
-  export type FeedMaxAggregateInputType = {
+  export type FeedStockMaxAggregateInputType = {
     id?: true
     feedName?: true
     stock?: true
-    branchCode?: true
+    depotName?: true
     createdAt?: true
     updatedAt?: true
+    branchId?: true
   }
 
-  export type FeedCountAggregateInputType = {
+  export type FeedStockCountAggregateInputType = {
     id?: true
     feedName?: true
     stock?: true
-    branchCode?: true
+    depotName?: true
     createdAt?: true
     updatedAt?: true
+    branchId?: true
     _all?: true
   }
 
-  export type FeedAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Feed to aggregate.
+     * Filter which FeedStock to aggregate.
      */
-    where?: FeedWhereInput
+    where?: FeedStockWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Feeds to fetch.
+     * Determine the order of FeedStocks to fetch.
      */
-    orderBy?: FeedOrderByWithRelationInput | FeedOrderByWithRelationInput[]
+    orderBy?: FeedStockOrderByWithRelationInput | FeedStockOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: FeedWhereUniqueInput
+    cursor?: FeedStockWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Feeds from the position of the cursor.
+     * Take `±n` FeedStocks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Feeds.
+     * Skip the first `n` FeedStocks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Feeds
+     * Count returned FeedStocks
     **/
-    _count?: true | FeedCountAggregateInputType
+    _count?: true | FeedStockCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: FeedAvgAggregateInputType
+    _avg?: FeedStockAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: FeedSumAggregateInputType
+    _sum?: FeedStockSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: FeedMinAggregateInputType
+    _min?: FeedStockMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: FeedMaxAggregateInputType
+    _max?: FeedStockMaxAggregateInputType
   }
 
-  export type GetFeedAggregateType<T extends FeedAggregateArgs> = {
-        [P in keyof T & keyof AggregateFeed]: P extends '_count' | 'count'
+  export type GetFeedStockAggregateType<T extends FeedStockAggregateArgs> = {
+        [P in keyof T & keyof AggregateFeedStock]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateFeed[P]>
-      : GetScalarType<T[P], AggregateFeed[P]>
+        : GetScalarType<T[P], AggregateFeedStock[P]>
+      : GetScalarType<T[P], AggregateFeedStock[P]>
   }
 
 
 
 
-  export type FeedGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FeedWhereInput
-    orderBy?: FeedOrderByWithAggregationInput | FeedOrderByWithAggregationInput[]
-    by: FeedScalarFieldEnum[] | FeedScalarFieldEnum
-    having?: FeedScalarWhereWithAggregatesInput
+  export type FeedStockGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedStockWhereInput
+    orderBy?: FeedStockOrderByWithAggregationInput | FeedStockOrderByWithAggregationInput[]
+    by: FeedStockScalarFieldEnum[] | FeedStockScalarFieldEnum
+    having?: FeedStockScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: FeedCountAggregateInputType | true
-    _avg?: FeedAvgAggregateInputType
-    _sum?: FeedSumAggregateInputType
-    _min?: FeedMinAggregateInputType
-    _max?: FeedMaxAggregateInputType
+    _count?: FeedStockCountAggregateInputType | true
+    _avg?: FeedStockAvgAggregateInputType
+    _sum?: FeedStockSumAggregateInputType
+    _min?: FeedStockMinAggregateInputType
+    _max?: FeedStockMaxAggregateInputType
   }
 
-  export type FeedGroupByOutputType = {
+  export type FeedStockGroupByOutputType = {
     id: string
     feedName: string
     stock: number
-    branchCode: string | null
+    depotName: string
     createdAt: Date
     updatedAt: Date
-    _count: FeedCountAggregateOutputType | null
-    _avg: FeedAvgAggregateOutputType | null
-    _sum: FeedSumAggregateOutputType | null
-    _min: FeedMinAggregateOutputType | null
-    _max: FeedMaxAggregateOutputType | null
+    branchId: string | null
+    _count: FeedStockCountAggregateOutputType | null
+    _avg: FeedStockAvgAggregateOutputType | null
+    _sum: FeedStockSumAggregateOutputType | null
+    _min: FeedStockMinAggregateOutputType | null
+    _max: FeedStockMaxAggregateOutputType | null
   }
 
-  type GetFeedGroupByPayload<T extends FeedGroupByArgs> = Prisma.PrismaPromise<
+  type GetFeedStockGroupByPayload<T extends FeedStockGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<FeedGroupByOutputType, T['by']> &
+      PickEnumerable<FeedStockGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof FeedGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof FeedStockGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], FeedGroupByOutputType[P]>
-            : GetScalarType<T[P], FeedGroupByOutputType[P]>
+              : GetScalarType<T[P], FeedStockGroupByOutputType[P]>
+            : GetScalarType<T[P], FeedStockGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type FeedSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FeedStockSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     feedName?: boolean
     stock?: boolean
-    branchCode?: boolean
+    depotName?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    branchId?: boolean
     feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
-    branch?: boolean | Feed$branchArgs<ExtArgs>
-  }, ExtArgs["result"]["feed"]>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+    Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
+  }, ExtArgs["result"]["feedStock"]>
 
-  export type FeedSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FeedStockSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     feedName?: boolean
     stock?: boolean
-    branchCode?: boolean
+    depotName?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    branchId?: boolean
     feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
-    branch?: boolean | Feed$branchArgs<ExtArgs>
-  }, ExtArgs["result"]["feed"]>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+    Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
+  }, ExtArgs["result"]["feedStock"]>
 
-  export type FeedSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FeedStockSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     feedName?: boolean
     stock?: boolean
-    branchCode?: boolean
+    depotName?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    branchId?: boolean
     feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
-    branch?: boolean | Feed$branchArgs<ExtArgs>
-  }, ExtArgs["result"]["feed"]>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+    Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
+  }, ExtArgs["result"]["feedStock"]>
 
-  export type FeedSelectScalar = {
+  export type FeedStockSelectScalar = {
     id?: boolean
     feedName?: boolean
     stock?: boolean
-    branchCode?: boolean
+    depotName?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    branchId?: boolean
   }
 
-  export type FeedOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "stock" | "branchCode" | "createdAt" | "updatedAt", ExtArgs["result"]["feed"]>
-  export type FeedInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "stock" | "depotName" | "createdAt" | "updatedAt" | "branchId", ExtArgs["result"]["feedStock"]>
+  export type FeedStockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
-    branch?: boolean | Feed$branchArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+    Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
   }
-  export type FeedIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
-    branch?: boolean | Feed$branchArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+    Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
   }
-  export type FeedIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
-    branch?: boolean | Feed$branchArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+    Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
   }
 
-  export type $FeedPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Feed"
+  export type $FeedStockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FeedStock"
     objects: {
       feedNameCategory: Prisma.$FeedNameCategoryPayload<ExtArgs>
-      branch: Prisma.$BranchPayload<ExtArgs> | null
+      depot: Prisma.$DepotPayload<ExtArgs>
+      Branch: Prisma.$BranchPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       feedName: string
       stock: number
-      branchCode: string | null
+      depotName: string
       createdAt: Date
       updatedAt: Date
-    }, ExtArgs["result"]["feed"]>
+      branchId: string | null
+    }, ExtArgs["result"]["feedStock"]>
     composites: {}
   }
 
-  type FeedGetPayload<S extends boolean | null | undefined | FeedDefaultArgs> = $Result.GetResult<Prisma.$FeedPayload, S>
+  type FeedStockGetPayload<S extends boolean | null | undefined | FeedStockDefaultArgs> = $Result.GetResult<Prisma.$FeedStockPayload, S>
 
-  type FeedCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<FeedFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: FeedCountAggregateInputType | true
+  type FeedStockCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FeedStockFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FeedStockCountAggregateInputType | true
     }
 
-  export interface FeedDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Feed'], meta: { name: 'Feed' } }
+  export interface FeedStockDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FeedStock'], meta: { name: 'FeedStock' } }
     /**
-     * Find zero or one Feed that matches the filter.
-     * @param {FeedFindUniqueArgs} args - Arguments to find a Feed
+     * Find zero or one FeedStock that matches the filter.
+     * @param {FeedStockFindUniqueArgs} args - Arguments to find a FeedStock
      * @example
-     * // Get one Feed
-     * const feed = await prisma.feed.findUnique({
+     * // Get one FeedStock
+     * const feedStock = await prisma.feedStock.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends FeedFindUniqueArgs>(args: SelectSubset<T, FeedFindUniqueArgs<ExtArgs>>): Prisma__FeedClient<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends FeedStockFindUniqueArgs>(args: SelectSubset<T, FeedStockFindUniqueArgs<ExtArgs>>): Prisma__FeedStockClient<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Feed that matches the filter or throw an error with `error.code='P2025'`
+     * Find one FeedStock that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {FeedFindUniqueOrThrowArgs} args - Arguments to find a Feed
+     * @param {FeedStockFindUniqueOrThrowArgs} args - Arguments to find a FeedStock
      * @example
-     * // Get one Feed
-     * const feed = await prisma.feed.findUniqueOrThrow({
+     * // Get one FeedStock
+     * const feedStock = await prisma.feedStock.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends FeedFindUniqueOrThrowArgs>(args: SelectSubset<T, FeedFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FeedClient<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends FeedStockFindUniqueOrThrowArgs>(args: SelectSubset<T, FeedStockFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FeedStockClient<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Feed that matches the filter.
+     * Find the first FeedStock that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FeedFindFirstArgs} args - Arguments to find a Feed
+     * @param {FeedStockFindFirstArgs} args - Arguments to find a FeedStock
      * @example
-     * // Get one Feed
-     * const feed = await prisma.feed.findFirst({
+     * // Get one FeedStock
+     * const feedStock = await prisma.feedStock.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends FeedFindFirstArgs>(args?: SelectSubset<T, FeedFindFirstArgs<ExtArgs>>): Prisma__FeedClient<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends FeedStockFindFirstArgs>(args?: SelectSubset<T, FeedStockFindFirstArgs<ExtArgs>>): Prisma__FeedStockClient<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Feed that matches the filter or
+     * Find the first FeedStock that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FeedFindFirstOrThrowArgs} args - Arguments to find a Feed
+     * @param {FeedStockFindFirstOrThrowArgs} args - Arguments to find a FeedStock
      * @example
-     * // Get one Feed
-     * const feed = await prisma.feed.findFirstOrThrow({
+     * // Get one FeedStock
+     * const feedStock = await prisma.feedStock.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends FeedFindFirstOrThrowArgs>(args?: SelectSubset<T, FeedFindFirstOrThrowArgs<ExtArgs>>): Prisma__FeedClient<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends FeedStockFindFirstOrThrowArgs>(args?: SelectSubset<T, FeedStockFindFirstOrThrowArgs<ExtArgs>>): Prisma__FeedStockClient<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Feeds that matches the filter.
+     * Find zero or more FeedStocks that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FeedFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {FeedStockFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Feeds
-     * const feeds = await prisma.feed.findMany()
+     * // Get all FeedStocks
+     * const feedStocks = await prisma.feedStock.findMany()
      * 
-     * // Get first 10 Feeds
-     * const feeds = await prisma.feed.findMany({ take: 10 })
+     * // Get first 10 FeedStocks
+     * const feedStocks = await prisma.feedStock.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const feedWithIdOnly = await prisma.feed.findMany({ select: { id: true } })
+     * const feedStockWithIdOnly = await prisma.feedStock.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends FeedFindManyArgs>(args?: SelectSubset<T, FeedFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends FeedStockFindManyArgs>(args?: SelectSubset<T, FeedStockFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Feed.
-     * @param {FeedCreateArgs} args - Arguments to create a Feed.
+     * Create a FeedStock.
+     * @param {FeedStockCreateArgs} args - Arguments to create a FeedStock.
      * @example
-     * // Create one Feed
-     * const Feed = await prisma.feed.create({
+     * // Create one FeedStock
+     * const FeedStock = await prisma.feedStock.create({
      *   data: {
-     *     // ... data to create a Feed
+     *     // ... data to create a FeedStock
      *   }
      * })
      * 
      */
-    create<T extends FeedCreateArgs>(args: SelectSubset<T, FeedCreateArgs<ExtArgs>>): Prisma__FeedClient<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends FeedStockCreateArgs>(args: SelectSubset<T, FeedStockCreateArgs<ExtArgs>>): Prisma__FeedStockClient<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Feeds.
-     * @param {FeedCreateManyArgs} args - Arguments to create many Feeds.
+     * Create many FeedStocks.
+     * @param {FeedStockCreateManyArgs} args - Arguments to create many FeedStocks.
      * @example
-     * // Create many Feeds
-     * const feed = await prisma.feed.createMany({
+     * // Create many FeedStocks
+     * const feedStock = await prisma.feedStock.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends FeedCreateManyArgs>(args?: SelectSubset<T, FeedCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends FeedStockCreateManyArgs>(args?: SelectSubset<T, FeedStockCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Feeds and returns the data saved in the database.
-     * @param {FeedCreateManyAndReturnArgs} args - Arguments to create many Feeds.
+     * Create many FeedStocks and returns the data saved in the database.
+     * @param {FeedStockCreateManyAndReturnArgs} args - Arguments to create many FeedStocks.
      * @example
-     * // Create many Feeds
-     * const feed = await prisma.feed.createManyAndReturn({
+     * // Create many FeedStocks
+     * const feedStock = await prisma.feedStock.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Feeds and only return the `id`
-     * const feedWithIdOnly = await prisma.feed.createManyAndReturn({
+     * // Create many FeedStocks and only return the `id`
+     * const feedStockWithIdOnly = await prisma.feedStock.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -13336,28 +14884,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends FeedCreateManyAndReturnArgs>(args?: SelectSubset<T, FeedCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends FeedStockCreateManyAndReturnArgs>(args?: SelectSubset<T, FeedStockCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Feed.
-     * @param {FeedDeleteArgs} args - Arguments to delete one Feed.
+     * Delete a FeedStock.
+     * @param {FeedStockDeleteArgs} args - Arguments to delete one FeedStock.
      * @example
-     * // Delete one Feed
-     * const Feed = await prisma.feed.delete({
+     * // Delete one FeedStock
+     * const FeedStock = await prisma.feedStock.delete({
      *   where: {
-     *     // ... filter to delete one Feed
+     *     // ... filter to delete one FeedStock
      *   }
      * })
      * 
      */
-    delete<T extends FeedDeleteArgs>(args: SelectSubset<T, FeedDeleteArgs<ExtArgs>>): Prisma__FeedClient<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends FeedStockDeleteArgs>(args: SelectSubset<T, FeedStockDeleteArgs<ExtArgs>>): Prisma__FeedStockClient<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Feed.
-     * @param {FeedUpdateArgs} args - Arguments to update one Feed.
+     * Update one FeedStock.
+     * @param {FeedStockUpdateArgs} args - Arguments to update one FeedStock.
      * @example
-     * // Update one Feed
-     * const feed = await prisma.feed.update({
+     * // Update one FeedStock
+     * const feedStock = await prisma.feedStock.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -13367,30 +14915,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends FeedUpdateArgs>(args: SelectSubset<T, FeedUpdateArgs<ExtArgs>>): Prisma__FeedClient<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends FeedStockUpdateArgs>(args: SelectSubset<T, FeedStockUpdateArgs<ExtArgs>>): Prisma__FeedStockClient<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Feeds.
-     * @param {FeedDeleteManyArgs} args - Arguments to filter Feeds to delete.
+     * Delete zero or more FeedStocks.
+     * @param {FeedStockDeleteManyArgs} args - Arguments to filter FeedStocks to delete.
      * @example
-     * // Delete a few Feeds
-     * const { count } = await prisma.feed.deleteMany({
+     * // Delete a few FeedStocks
+     * const { count } = await prisma.feedStock.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends FeedDeleteManyArgs>(args?: SelectSubset<T, FeedDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends FeedStockDeleteManyArgs>(args?: SelectSubset<T, FeedStockDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Feeds.
+     * Update zero or more FeedStocks.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FeedUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {FeedStockUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Feeds
-     * const feed = await prisma.feed.updateMany({
+     * // Update many FeedStocks
+     * const feedStock = await prisma.feedStock.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -13400,14 +14948,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends FeedUpdateManyArgs>(args: SelectSubset<T, FeedUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends FeedStockUpdateManyArgs>(args: SelectSubset<T, FeedStockUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Feeds and returns the data updated in the database.
-     * @param {FeedUpdateManyAndReturnArgs} args - Arguments to update many Feeds.
+     * Update zero or more FeedStocks and returns the data updated in the database.
+     * @param {FeedStockUpdateManyAndReturnArgs} args - Arguments to update many FeedStocks.
      * @example
-     * // Update many Feeds
-     * const feed = await prisma.feed.updateManyAndReturn({
+     * // Update many FeedStocks
+     * const feedStock = await prisma.feedStock.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -13416,8 +14964,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Feeds and only return the `id`
-     * const feedWithIdOnly = await prisma.feed.updateManyAndReturn({
+     * // Update zero or more FeedStocks and only return the `id`
+     * const feedStockWithIdOnly = await prisma.feedStock.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -13430,56 +14978,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends FeedUpdateManyAndReturnArgs>(args: SelectSubset<T, FeedUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends FeedStockUpdateManyAndReturnArgs>(args: SelectSubset<T, FeedStockUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Feed.
-     * @param {FeedUpsertArgs} args - Arguments to update or create a Feed.
+     * Create or update one FeedStock.
+     * @param {FeedStockUpsertArgs} args - Arguments to update or create a FeedStock.
      * @example
-     * // Update or create a Feed
-     * const feed = await prisma.feed.upsert({
+     * // Update or create a FeedStock
+     * const feedStock = await prisma.feedStock.upsert({
      *   create: {
-     *     // ... data to create a Feed
+     *     // ... data to create a FeedStock
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Feed we want to update
+     *     // ... the filter for the FeedStock we want to update
      *   }
      * })
      */
-    upsert<T extends FeedUpsertArgs>(args: SelectSubset<T, FeedUpsertArgs<ExtArgs>>): Prisma__FeedClient<$Result.GetResult<Prisma.$FeedPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends FeedStockUpsertArgs>(args: SelectSubset<T, FeedStockUpsertArgs<ExtArgs>>): Prisma__FeedStockClient<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Feeds.
+     * Count the number of FeedStocks.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FeedCountArgs} args - Arguments to filter Feeds to count.
+     * @param {FeedStockCountArgs} args - Arguments to filter FeedStocks to count.
      * @example
-     * // Count the number of Feeds
-     * const count = await prisma.feed.count({
+     * // Count the number of FeedStocks
+     * const count = await prisma.feedStock.count({
      *   where: {
-     *     // ... the filter for the Feeds we want to count
+     *     // ... the filter for the FeedStocks we want to count
      *   }
      * })
     **/
-    count<T extends FeedCountArgs>(
-      args?: Subset<T, FeedCountArgs>,
+    count<T extends FeedStockCountArgs>(
+      args?: Subset<T, FeedStockCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], FeedCountAggregateOutputType>
+          : GetScalarType<T['select'], FeedStockCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Feed.
+     * Allows you to perform aggregations operations on a FeedStock.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FeedAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {FeedStockAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -13499,13 +15047,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends FeedAggregateArgs>(args: Subset<T, FeedAggregateArgs>): Prisma.PrismaPromise<GetFeedAggregateType<T>>
+    aggregate<T extends FeedStockAggregateArgs>(args: Subset<T, FeedStockAggregateArgs>): Prisma.PrismaPromise<GetFeedStockAggregateType<T>>
 
     /**
-     * Group by Feed.
+     * Group by FeedStock.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FeedGroupByArgs} args - Group by arguments.
+     * @param {FeedStockGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -13520,14 +15068,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends FeedGroupByArgs,
+      T extends FeedStockGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: FeedGroupByArgs['orderBy'] }
-        : { orderBy?: FeedGroupByArgs['orderBy'] },
+        ? { orderBy: FeedStockGroupByArgs['orderBy'] }
+        : { orderBy?: FeedStockGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -13576,23 +15124,24 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, FeedGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFeedGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, FeedStockGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFeedStockGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Feed model
+   * Fields of the FeedStock model
    */
-  readonly fields: FeedFieldRefs;
+  readonly fields: FeedStockFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Feed.
+   * The delegate class that acts as a "Promise-like" for FeedStock.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__FeedClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__FeedStockClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     feedNameCategory<T extends FeedNameCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategoryDefaultArgs<ExtArgs>>): Prisma__FeedNameCategoryClient<$Result.GetResult<Prisma.$FeedNameCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    branch<T extends Feed$branchArgs<ExtArgs> = {}>(args?: Subset<T, Feed$branchArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    depot<T extends DepotDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DepotDefaultArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Branch<T extends FeedStock$BranchArgs<ExtArgs> = {}>(args?: Subset<T, FeedStock$BranchArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13619,414 +15168,415 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Feed model
+   * Fields of the FeedStock model
    */
-  interface FeedFieldRefs {
-    readonly id: FieldRef<"Feed", 'String'>
-    readonly feedName: FieldRef<"Feed", 'String'>
-    readonly stock: FieldRef<"Feed", 'Int'>
-    readonly branchCode: FieldRef<"Feed", 'String'>
-    readonly createdAt: FieldRef<"Feed", 'DateTime'>
-    readonly updatedAt: FieldRef<"Feed", 'DateTime'>
+  interface FeedStockFieldRefs {
+    readonly id: FieldRef<"FeedStock", 'String'>
+    readonly feedName: FieldRef<"FeedStock", 'String'>
+    readonly stock: FieldRef<"FeedStock", 'Int'>
+    readonly depotName: FieldRef<"FeedStock", 'String'>
+    readonly createdAt: FieldRef<"FeedStock", 'DateTime'>
+    readonly updatedAt: FieldRef<"FeedStock", 'DateTime'>
+    readonly branchId: FieldRef<"FeedStock", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * Feed findUnique
+   * FeedStock findUnique
    */
-  export type FeedFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Feed
+     * Select specific fields to fetch from the FeedStock
      */
-    select?: FeedSelect<ExtArgs> | null
+    select?: FeedStockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Feed
+     * Omit specific fields from the FeedStock
      */
-    omit?: FeedOmit<ExtArgs> | null
+    omit?: FeedStockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FeedInclude<ExtArgs> | null
+    include?: FeedStockInclude<ExtArgs> | null
     /**
-     * Filter, which Feed to fetch.
+     * Filter, which FeedStock to fetch.
      */
-    where: FeedWhereUniqueInput
+    where: FeedStockWhereUniqueInput
   }
 
   /**
-   * Feed findUniqueOrThrow
+   * FeedStock findUniqueOrThrow
    */
-  export type FeedFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Feed
+     * Select specific fields to fetch from the FeedStock
      */
-    select?: FeedSelect<ExtArgs> | null
+    select?: FeedStockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Feed
+     * Omit specific fields from the FeedStock
      */
-    omit?: FeedOmit<ExtArgs> | null
+    omit?: FeedStockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FeedInclude<ExtArgs> | null
+    include?: FeedStockInclude<ExtArgs> | null
     /**
-     * Filter, which Feed to fetch.
+     * Filter, which FeedStock to fetch.
      */
-    where: FeedWhereUniqueInput
+    where: FeedStockWhereUniqueInput
   }
 
   /**
-   * Feed findFirst
+   * FeedStock findFirst
    */
-  export type FeedFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Feed
+     * Select specific fields to fetch from the FeedStock
      */
-    select?: FeedSelect<ExtArgs> | null
+    select?: FeedStockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Feed
+     * Omit specific fields from the FeedStock
      */
-    omit?: FeedOmit<ExtArgs> | null
+    omit?: FeedStockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FeedInclude<ExtArgs> | null
+    include?: FeedStockInclude<ExtArgs> | null
     /**
-     * Filter, which Feed to fetch.
+     * Filter, which FeedStock to fetch.
      */
-    where?: FeedWhereInput
+    where?: FeedStockWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Feeds to fetch.
+     * Determine the order of FeedStocks to fetch.
      */
-    orderBy?: FeedOrderByWithRelationInput | FeedOrderByWithRelationInput[]
+    orderBy?: FeedStockOrderByWithRelationInput | FeedStockOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Feeds.
+     * Sets the position for searching for FeedStocks.
      */
-    cursor?: FeedWhereUniqueInput
+    cursor?: FeedStockWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Feeds from the position of the cursor.
+     * Take `±n` FeedStocks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Feeds.
+     * Skip the first `n` FeedStocks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Feeds.
+     * Filter by unique combinations of FeedStocks.
      */
-    distinct?: FeedScalarFieldEnum | FeedScalarFieldEnum[]
+    distinct?: FeedStockScalarFieldEnum | FeedStockScalarFieldEnum[]
   }
 
   /**
-   * Feed findFirstOrThrow
+   * FeedStock findFirstOrThrow
    */
-  export type FeedFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Feed
+     * Select specific fields to fetch from the FeedStock
      */
-    select?: FeedSelect<ExtArgs> | null
+    select?: FeedStockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Feed
+     * Omit specific fields from the FeedStock
      */
-    omit?: FeedOmit<ExtArgs> | null
+    omit?: FeedStockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FeedInclude<ExtArgs> | null
+    include?: FeedStockInclude<ExtArgs> | null
     /**
-     * Filter, which Feed to fetch.
+     * Filter, which FeedStock to fetch.
      */
-    where?: FeedWhereInput
+    where?: FeedStockWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Feeds to fetch.
+     * Determine the order of FeedStocks to fetch.
      */
-    orderBy?: FeedOrderByWithRelationInput | FeedOrderByWithRelationInput[]
+    orderBy?: FeedStockOrderByWithRelationInput | FeedStockOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Feeds.
+     * Sets the position for searching for FeedStocks.
      */
-    cursor?: FeedWhereUniqueInput
+    cursor?: FeedStockWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Feeds from the position of the cursor.
+     * Take `±n` FeedStocks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Feeds.
+     * Skip the first `n` FeedStocks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Feeds.
+     * Filter by unique combinations of FeedStocks.
      */
-    distinct?: FeedScalarFieldEnum | FeedScalarFieldEnum[]
+    distinct?: FeedStockScalarFieldEnum | FeedStockScalarFieldEnum[]
   }
 
   /**
-   * Feed findMany
+   * FeedStock findMany
    */
-  export type FeedFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Feed
+     * Select specific fields to fetch from the FeedStock
      */
-    select?: FeedSelect<ExtArgs> | null
+    select?: FeedStockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Feed
+     * Omit specific fields from the FeedStock
      */
-    omit?: FeedOmit<ExtArgs> | null
+    omit?: FeedStockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FeedInclude<ExtArgs> | null
+    include?: FeedStockInclude<ExtArgs> | null
     /**
-     * Filter, which Feeds to fetch.
+     * Filter, which FeedStocks to fetch.
      */
-    where?: FeedWhereInput
+    where?: FeedStockWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Feeds to fetch.
+     * Determine the order of FeedStocks to fetch.
      */
-    orderBy?: FeedOrderByWithRelationInput | FeedOrderByWithRelationInput[]
+    orderBy?: FeedStockOrderByWithRelationInput | FeedStockOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Feeds.
+     * Sets the position for listing FeedStocks.
      */
-    cursor?: FeedWhereUniqueInput
+    cursor?: FeedStockWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Feeds from the position of the cursor.
+     * Take `±n` FeedStocks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Feeds.
+     * Skip the first `n` FeedStocks.
      */
     skip?: number
-    distinct?: FeedScalarFieldEnum | FeedScalarFieldEnum[]
+    distinct?: FeedStockScalarFieldEnum | FeedStockScalarFieldEnum[]
   }
 
   /**
-   * Feed create
+   * FeedStock create
    */
-  export type FeedCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Feed
+     * Select specific fields to fetch from the FeedStock
      */
-    select?: FeedSelect<ExtArgs> | null
+    select?: FeedStockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Feed
+     * Omit specific fields from the FeedStock
      */
-    omit?: FeedOmit<ExtArgs> | null
+    omit?: FeedStockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FeedInclude<ExtArgs> | null
+    include?: FeedStockInclude<ExtArgs> | null
     /**
-     * The data needed to create a Feed.
+     * The data needed to create a FeedStock.
      */
-    data: XOR<FeedCreateInput, FeedUncheckedCreateInput>
+    data: XOR<FeedStockCreateInput, FeedStockUncheckedCreateInput>
   }
 
   /**
-   * Feed createMany
+   * FeedStock createMany
    */
-  export type FeedCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Feeds.
+     * The data used to create many FeedStocks.
      */
-    data: FeedCreateManyInput | FeedCreateManyInput[]
+    data: FeedStockCreateManyInput | FeedStockCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Feed createManyAndReturn
+   * FeedStock createManyAndReturn
    */
-  export type FeedCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Feed
+     * Select specific fields to fetch from the FeedStock
      */
-    select?: FeedSelectCreateManyAndReturn<ExtArgs> | null
+    select?: FeedStockSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Feed
+     * Omit specific fields from the FeedStock
      */
-    omit?: FeedOmit<ExtArgs> | null
+    omit?: FeedStockOmit<ExtArgs> | null
     /**
-     * The data used to create many Feeds.
+     * The data used to create many FeedStocks.
      */
-    data: FeedCreateManyInput | FeedCreateManyInput[]
+    data: FeedStockCreateManyInput | FeedStockCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FeedIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: FeedStockIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Feed update
+   * FeedStock update
    */
-  export type FeedUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Feed
+     * Select specific fields to fetch from the FeedStock
      */
-    select?: FeedSelect<ExtArgs> | null
+    select?: FeedStockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Feed
+     * Omit specific fields from the FeedStock
      */
-    omit?: FeedOmit<ExtArgs> | null
+    omit?: FeedStockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FeedInclude<ExtArgs> | null
+    include?: FeedStockInclude<ExtArgs> | null
     /**
-     * The data needed to update a Feed.
+     * The data needed to update a FeedStock.
      */
-    data: XOR<FeedUpdateInput, FeedUncheckedUpdateInput>
+    data: XOR<FeedStockUpdateInput, FeedStockUncheckedUpdateInput>
     /**
-     * Choose, which Feed to update.
+     * Choose, which FeedStock to update.
      */
-    where: FeedWhereUniqueInput
+    where: FeedStockWhereUniqueInput
   }
 
   /**
-   * Feed updateMany
+   * FeedStock updateMany
    */
-  export type FeedUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Feeds.
+     * The data used to update FeedStocks.
      */
-    data: XOR<FeedUpdateManyMutationInput, FeedUncheckedUpdateManyInput>
+    data: XOR<FeedStockUpdateManyMutationInput, FeedStockUncheckedUpdateManyInput>
     /**
-     * Filter which Feeds to update
+     * Filter which FeedStocks to update
      */
-    where?: FeedWhereInput
+    where?: FeedStockWhereInput
     /**
-     * Limit how many Feeds to update.
+     * Limit how many FeedStocks to update.
      */
     limit?: number
   }
 
   /**
-   * Feed updateManyAndReturn
+   * FeedStock updateManyAndReturn
    */
-  export type FeedUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Feed
+     * Select specific fields to fetch from the FeedStock
      */
-    select?: FeedSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: FeedStockSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Feed
+     * Omit specific fields from the FeedStock
      */
-    omit?: FeedOmit<ExtArgs> | null
+    omit?: FeedStockOmit<ExtArgs> | null
     /**
-     * The data used to update Feeds.
+     * The data used to update FeedStocks.
      */
-    data: XOR<FeedUpdateManyMutationInput, FeedUncheckedUpdateManyInput>
+    data: XOR<FeedStockUpdateManyMutationInput, FeedStockUncheckedUpdateManyInput>
     /**
-     * Filter which Feeds to update
+     * Filter which FeedStocks to update
      */
-    where?: FeedWhereInput
+    where?: FeedStockWhereInput
     /**
-     * Limit how many Feeds to update.
+     * Limit how many FeedStocks to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FeedIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: FeedStockIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Feed upsert
+   * FeedStock upsert
    */
-  export type FeedUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Feed
+     * Select specific fields to fetch from the FeedStock
      */
-    select?: FeedSelect<ExtArgs> | null
+    select?: FeedStockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Feed
+     * Omit specific fields from the FeedStock
      */
-    omit?: FeedOmit<ExtArgs> | null
+    omit?: FeedStockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FeedInclude<ExtArgs> | null
+    include?: FeedStockInclude<ExtArgs> | null
     /**
-     * The filter to search for the Feed to update in case it exists.
+     * The filter to search for the FeedStock to update in case it exists.
      */
-    where: FeedWhereUniqueInput
+    where: FeedStockWhereUniqueInput
     /**
-     * In case the Feed found by the `where` argument doesn't exist, create a new Feed with this data.
+     * In case the FeedStock found by the `where` argument doesn't exist, create a new FeedStock with this data.
      */
-    create: XOR<FeedCreateInput, FeedUncheckedCreateInput>
+    create: XOR<FeedStockCreateInput, FeedStockUncheckedCreateInput>
     /**
-     * In case the Feed was found with the provided `where` argument, update it with this data.
+     * In case the FeedStock was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<FeedUpdateInput, FeedUncheckedUpdateInput>
+    update: XOR<FeedStockUpdateInput, FeedStockUncheckedUpdateInput>
   }
 
   /**
-   * Feed delete
+   * FeedStock delete
    */
-  export type FeedDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Feed
+     * Select specific fields to fetch from the FeedStock
      */
-    select?: FeedSelect<ExtArgs> | null
+    select?: FeedStockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Feed
+     * Omit specific fields from the FeedStock
      */
-    omit?: FeedOmit<ExtArgs> | null
+    omit?: FeedStockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FeedInclude<ExtArgs> | null
+    include?: FeedStockInclude<ExtArgs> | null
     /**
-     * Filter which Feed to delete.
+     * Filter which FeedStock to delete.
      */
-    where: FeedWhereUniqueInput
+    where: FeedStockWhereUniqueInput
   }
 
   /**
-   * Feed deleteMany
+   * FeedStock deleteMany
    */
-  export type FeedDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Feeds to delete
+     * Filter which FeedStocks to delete
      */
-    where?: FeedWhereInput
+    where?: FeedStockWhereInput
     /**
-     * Limit how many Feeds to delete.
+     * Limit how many FeedStocks to delete.
      */
     limit?: number
   }
 
   /**
-   * Feed.branch
+   * FeedStock.Branch
    */
-  export type Feed$branchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStock$BranchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Branch
      */
@@ -14043,21 +15593,2261 @@ export namespace Prisma {
   }
 
   /**
-   * Feed without action
+   * FeedStock without action
    */
-  export type FeedDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FeedStockDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Feed
+     * Select specific fields to fetch from the FeedStock
      */
-    select?: FeedSelect<ExtArgs> | null
+    select?: FeedStockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Feed
+     * Omit specific fields from the FeedStock
      */
-    omit?: FeedOmit<ExtArgs> | null
+    omit?: FeedStockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: FeedInclude<ExtArgs> | null
+    include?: FeedStockInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FeedStockTransfer
+   */
+
+  export type AggregateFeedStockTransfer = {
+    _count: FeedStockTransferCountAggregateOutputType | null
+    _min: FeedStockTransferMinAggregateOutputType | null
+    _max: FeedStockTransferMaxAggregateOutputType | null
+  }
+
+  export type FeedStockTransferMinAggregateOutputType = {
+    id: string | null
+    fromDepot: string | null
+    toDepot: string | null
+    transerFerDate: string | null
+    createDate: string | null
+    trnasferBill: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    depotId: string | null
+  }
+
+  export type FeedStockTransferMaxAggregateOutputType = {
+    id: string | null
+    fromDepot: string | null
+    toDepot: string | null
+    transerFerDate: string | null
+    createDate: string | null
+    trnasferBill: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    depotId: string | null
+  }
+
+  export type FeedStockTransferCountAggregateOutputType = {
+    id: number
+    fromDepot: number
+    toDepot: number
+    transerFerDate: number
+    createDate: number
+    trnasferBill: number
+    createAt: number
+    updateAt: number
+    depotId: number
+    _all: number
+  }
+
+
+  export type FeedStockTransferMinAggregateInputType = {
+    id?: true
+    fromDepot?: true
+    toDepot?: true
+    transerFerDate?: true
+    createDate?: true
+    trnasferBill?: true
+    createAt?: true
+    updateAt?: true
+    depotId?: true
+  }
+
+  export type FeedStockTransferMaxAggregateInputType = {
+    id?: true
+    fromDepot?: true
+    toDepot?: true
+    transerFerDate?: true
+    createDate?: true
+    trnasferBill?: true
+    createAt?: true
+    updateAt?: true
+    depotId?: true
+  }
+
+  export type FeedStockTransferCountAggregateInputType = {
+    id?: true
+    fromDepot?: true
+    toDepot?: true
+    transerFerDate?: true
+    createDate?: true
+    trnasferBill?: true
+    createAt?: true
+    updateAt?: true
+    depotId?: true
+    _all?: true
+  }
+
+  export type FeedStockTransferAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeedStockTransfer to aggregate.
+     */
+    where?: FeedStockTransferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedStockTransfers to fetch.
+     */
+    orderBy?: FeedStockTransferOrderByWithRelationInput | FeedStockTransferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FeedStockTransferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedStockTransfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedStockTransfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FeedStockTransfers
+    **/
+    _count?: true | FeedStockTransferCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FeedStockTransferMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FeedStockTransferMaxAggregateInputType
+  }
+
+  export type GetFeedStockTransferAggregateType<T extends FeedStockTransferAggregateArgs> = {
+        [P in keyof T & keyof AggregateFeedStockTransfer]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFeedStockTransfer[P]>
+      : GetScalarType<T[P], AggregateFeedStockTransfer[P]>
+  }
+
+
+
+
+  export type FeedStockTransferGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedStockTransferWhereInput
+    orderBy?: FeedStockTransferOrderByWithAggregationInput | FeedStockTransferOrderByWithAggregationInput[]
+    by: FeedStockTransferScalarFieldEnum[] | FeedStockTransferScalarFieldEnum
+    having?: FeedStockTransferScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FeedStockTransferCountAggregateInputType | true
+    _min?: FeedStockTransferMinAggregateInputType
+    _max?: FeedStockTransferMaxAggregateInputType
+  }
+
+  export type FeedStockTransferGroupByOutputType = {
+    id: string
+    fromDepot: string
+    toDepot: string
+    transerFerDate: string
+    createDate: string
+    trnasferBill: string
+    createAt: Date | null
+    updateAt: Date
+    depotId: string | null
+    _count: FeedStockTransferCountAggregateOutputType | null
+    _min: FeedStockTransferMinAggregateOutputType | null
+    _max: FeedStockTransferMaxAggregateOutputType | null
+  }
+
+  type GetFeedStockTransferGroupByPayload<T extends FeedStockTransferGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FeedStockTransferGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FeedStockTransferGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FeedStockTransferGroupByOutputType[P]>
+            : GetScalarType<T[P], FeedStockTransferGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FeedStockTransferSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fromDepot?: boolean
+    toDepot?: boolean
+    transerFerDate?: boolean
+    createDate?: boolean
+    trnasferBill?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    depotId?: boolean
+    transferDepot?: boolean | DepotDefaultArgs<ExtArgs>
+    reciveDepot?: boolean | DepotDefaultArgs<ExtArgs>
+    transferFeedItem?: boolean | FeedStockTransfer$transferFeedItemArgs<ExtArgs>
+    _count?: boolean | FeedStockTransferCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedStockTransfer"]>
+
+  export type FeedStockTransferSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fromDepot?: boolean
+    toDepot?: boolean
+    transerFerDate?: boolean
+    createDate?: boolean
+    trnasferBill?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    depotId?: boolean
+    transferDepot?: boolean | DepotDefaultArgs<ExtArgs>
+    reciveDepot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedStockTransfer"]>
+
+  export type FeedStockTransferSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fromDepot?: boolean
+    toDepot?: boolean
+    transerFerDate?: boolean
+    createDate?: boolean
+    trnasferBill?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    depotId?: boolean
+    transferDepot?: boolean | DepotDefaultArgs<ExtArgs>
+    reciveDepot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedStockTransfer"]>
+
+  export type FeedStockTransferSelectScalar = {
+    id?: boolean
+    fromDepot?: boolean
+    toDepot?: boolean
+    transerFerDate?: boolean
+    createDate?: boolean
+    trnasferBill?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    depotId?: boolean
+  }
+
+  export type FeedStockTransferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fromDepot" | "toDepot" | "transerFerDate" | "createDate" | "trnasferBill" | "createAt" | "updateAt" | "depotId", ExtArgs["result"]["feedStockTransfer"]>
+  export type FeedStockTransferInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    transferDepot?: boolean | DepotDefaultArgs<ExtArgs>
+    reciveDepot?: boolean | DepotDefaultArgs<ExtArgs>
+    transferFeedItem?: boolean | FeedStockTransfer$transferFeedItemArgs<ExtArgs>
+    _count?: boolean | FeedStockTransferCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FeedStockTransferIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    transferDepot?: boolean | DepotDefaultArgs<ExtArgs>
+    reciveDepot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+  export type FeedStockTransferIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    transferDepot?: boolean | DepotDefaultArgs<ExtArgs>
+    reciveDepot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+
+  export type $FeedStockTransferPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FeedStockTransfer"
+    objects: {
+      transferDepot: Prisma.$DepotPayload<ExtArgs>
+      reciveDepot: Prisma.$DepotPayload<ExtArgs>
+      transferFeedItem: Prisma.$TransferFeedItemPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      fromDepot: string
+      toDepot: string
+      transerFerDate: string
+      createDate: string
+      trnasferBill: string
+      createAt: Date | null
+      updateAt: Date
+      depotId: string | null
+    }, ExtArgs["result"]["feedStockTransfer"]>
+    composites: {}
+  }
+
+  type FeedStockTransferGetPayload<S extends boolean | null | undefined | FeedStockTransferDefaultArgs> = $Result.GetResult<Prisma.$FeedStockTransferPayload, S>
+
+  type FeedStockTransferCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FeedStockTransferFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FeedStockTransferCountAggregateInputType | true
+    }
+
+  export interface FeedStockTransferDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FeedStockTransfer'], meta: { name: 'FeedStockTransfer' } }
+    /**
+     * Find zero or one FeedStockTransfer that matches the filter.
+     * @param {FeedStockTransferFindUniqueArgs} args - Arguments to find a FeedStockTransfer
+     * @example
+     * // Get one FeedStockTransfer
+     * const feedStockTransfer = await prisma.feedStockTransfer.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FeedStockTransferFindUniqueArgs>(args: SelectSubset<T, FeedStockTransferFindUniqueArgs<ExtArgs>>): Prisma__FeedStockTransferClient<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FeedStockTransfer that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FeedStockTransferFindUniqueOrThrowArgs} args - Arguments to find a FeedStockTransfer
+     * @example
+     * // Get one FeedStockTransfer
+     * const feedStockTransfer = await prisma.feedStockTransfer.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FeedStockTransferFindUniqueOrThrowArgs>(args: SelectSubset<T, FeedStockTransferFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FeedStockTransferClient<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeedStockTransfer that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockTransferFindFirstArgs} args - Arguments to find a FeedStockTransfer
+     * @example
+     * // Get one FeedStockTransfer
+     * const feedStockTransfer = await prisma.feedStockTransfer.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FeedStockTransferFindFirstArgs>(args?: SelectSubset<T, FeedStockTransferFindFirstArgs<ExtArgs>>): Prisma__FeedStockTransferClient<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeedStockTransfer that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockTransferFindFirstOrThrowArgs} args - Arguments to find a FeedStockTransfer
+     * @example
+     * // Get one FeedStockTransfer
+     * const feedStockTransfer = await prisma.feedStockTransfer.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FeedStockTransferFindFirstOrThrowArgs>(args?: SelectSubset<T, FeedStockTransferFindFirstOrThrowArgs<ExtArgs>>): Prisma__FeedStockTransferClient<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FeedStockTransfers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockTransferFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FeedStockTransfers
+     * const feedStockTransfers = await prisma.feedStockTransfer.findMany()
+     * 
+     * // Get first 10 FeedStockTransfers
+     * const feedStockTransfers = await prisma.feedStockTransfer.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const feedStockTransferWithIdOnly = await prisma.feedStockTransfer.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FeedStockTransferFindManyArgs>(args?: SelectSubset<T, FeedStockTransferFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FeedStockTransfer.
+     * @param {FeedStockTransferCreateArgs} args - Arguments to create a FeedStockTransfer.
+     * @example
+     * // Create one FeedStockTransfer
+     * const FeedStockTransfer = await prisma.feedStockTransfer.create({
+     *   data: {
+     *     // ... data to create a FeedStockTransfer
+     *   }
+     * })
+     * 
+     */
+    create<T extends FeedStockTransferCreateArgs>(args: SelectSubset<T, FeedStockTransferCreateArgs<ExtArgs>>): Prisma__FeedStockTransferClient<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FeedStockTransfers.
+     * @param {FeedStockTransferCreateManyArgs} args - Arguments to create many FeedStockTransfers.
+     * @example
+     * // Create many FeedStockTransfers
+     * const feedStockTransfer = await prisma.feedStockTransfer.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FeedStockTransferCreateManyArgs>(args?: SelectSubset<T, FeedStockTransferCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FeedStockTransfers and returns the data saved in the database.
+     * @param {FeedStockTransferCreateManyAndReturnArgs} args - Arguments to create many FeedStockTransfers.
+     * @example
+     * // Create many FeedStockTransfers
+     * const feedStockTransfer = await prisma.feedStockTransfer.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FeedStockTransfers and only return the `id`
+     * const feedStockTransferWithIdOnly = await prisma.feedStockTransfer.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FeedStockTransferCreateManyAndReturnArgs>(args?: SelectSubset<T, FeedStockTransferCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FeedStockTransfer.
+     * @param {FeedStockTransferDeleteArgs} args - Arguments to delete one FeedStockTransfer.
+     * @example
+     * // Delete one FeedStockTransfer
+     * const FeedStockTransfer = await prisma.feedStockTransfer.delete({
+     *   where: {
+     *     // ... filter to delete one FeedStockTransfer
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FeedStockTransferDeleteArgs>(args: SelectSubset<T, FeedStockTransferDeleteArgs<ExtArgs>>): Prisma__FeedStockTransferClient<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FeedStockTransfer.
+     * @param {FeedStockTransferUpdateArgs} args - Arguments to update one FeedStockTransfer.
+     * @example
+     * // Update one FeedStockTransfer
+     * const feedStockTransfer = await prisma.feedStockTransfer.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FeedStockTransferUpdateArgs>(args: SelectSubset<T, FeedStockTransferUpdateArgs<ExtArgs>>): Prisma__FeedStockTransferClient<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FeedStockTransfers.
+     * @param {FeedStockTransferDeleteManyArgs} args - Arguments to filter FeedStockTransfers to delete.
+     * @example
+     * // Delete a few FeedStockTransfers
+     * const { count } = await prisma.feedStockTransfer.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FeedStockTransferDeleteManyArgs>(args?: SelectSubset<T, FeedStockTransferDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeedStockTransfers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockTransferUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FeedStockTransfers
+     * const feedStockTransfer = await prisma.feedStockTransfer.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FeedStockTransferUpdateManyArgs>(args: SelectSubset<T, FeedStockTransferUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeedStockTransfers and returns the data updated in the database.
+     * @param {FeedStockTransferUpdateManyAndReturnArgs} args - Arguments to update many FeedStockTransfers.
+     * @example
+     * // Update many FeedStockTransfers
+     * const feedStockTransfer = await prisma.feedStockTransfer.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FeedStockTransfers and only return the `id`
+     * const feedStockTransferWithIdOnly = await prisma.feedStockTransfer.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FeedStockTransferUpdateManyAndReturnArgs>(args: SelectSubset<T, FeedStockTransferUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FeedStockTransfer.
+     * @param {FeedStockTransferUpsertArgs} args - Arguments to update or create a FeedStockTransfer.
+     * @example
+     * // Update or create a FeedStockTransfer
+     * const feedStockTransfer = await prisma.feedStockTransfer.upsert({
+     *   create: {
+     *     // ... data to create a FeedStockTransfer
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FeedStockTransfer we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FeedStockTransferUpsertArgs>(args: SelectSubset<T, FeedStockTransferUpsertArgs<ExtArgs>>): Prisma__FeedStockTransferClient<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FeedStockTransfers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockTransferCountArgs} args - Arguments to filter FeedStockTransfers to count.
+     * @example
+     * // Count the number of FeedStockTransfers
+     * const count = await prisma.feedStockTransfer.count({
+     *   where: {
+     *     // ... the filter for the FeedStockTransfers we want to count
+     *   }
+     * })
+    **/
+    count<T extends FeedStockTransferCountArgs>(
+      args?: Subset<T, FeedStockTransferCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FeedStockTransferCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FeedStockTransfer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockTransferAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FeedStockTransferAggregateArgs>(args: Subset<T, FeedStockTransferAggregateArgs>): Prisma.PrismaPromise<GetFeedStockTransferAggregateType<T>>
+
+    /**
+     * Group by FeedStockTransfer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockTransferGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FeedStockTransferGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FeedStockTransferGroupByArgs['orderBy'] }
+        : { orderBy?: FeedStockTransferGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FeedStockTransferGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFeedStockTransferGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FeedStockTransfer model
+   */
+  readonly fields: FeedStockTransferFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FeedStockTransfer.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FeedStockTransferClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    transferDepot<T extends DepotDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DepotDefaultArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    reciveDepot<T extends DepotDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DepotDefaultArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    transferFeedItem<T extends FeedStockTransfer$transferFeedItemArgs<ExtArgs> = {}>(args?: Subset<T, FeedStockTransfer$transferFeedItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FeedStockTransfer model
+   */
+  interface FeedStockTransferFieldRefs {
+    readonly id: FieldRef<"FeedStockTransfer", 'String'>
+    readonly fromDepot: FieldRef<"FeedStockTransfer", 'String'>
+    readonly toDepot: FieldRef<"FeedStockTransfer", 'String'>
+    readonly transerFerDate: FieldRef<"FeedStockTransfer", 'String'>
+    readonly createDate: FieldRef<"FeedStockTransfer", 'String'>
+    readonly trnasferBill: FieldRef<"FeedStockTransfer", 'String'>
+    readonly createAt: FieldRef<"FeedStockTransfer", 'DateTime'>
+    readonly updateAt: FieldRef<"FeedStockTransfer", 'DateTime'>
+    readonly depotId: FieldRef<"FeedStockTransfer", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FeedStockTransfer findUnique
+   */
+  export type FeedStockTransferFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedStockTransfer to fetch.
+     */
+    where: FeedStockTransferWhereUniqueInput
+  }
+
+  /**
+   * FeedStockTransfer findUniqueOrThrow
+   */
+  export type FeedStockTransferFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedStockTransfer to fetch.
+     */
+    where: FeedStockTransferWhereUniqueInput
+  }
+
+  /**
+   * FeedStockTransfer findFirst
+   */
+  export type FeedStockTransferFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedStockTransfer to fetch.
+     */
+    where?: FeedStockTransferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedStockTransfers to fetch.
+     */
+    orderBy?: FeedStockTransferOrderByWithRelationInput | FeedStockTransferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeedStockTransfers.
+     */
+    cursor?: FeedStockTransferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedStockTransfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedStockTransfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeedStockTransfers.
+     */
+    distinct?: FeedStockTransferScalarFieldEnum | FeedStockTransferScalarFieldEnum[]
+  }
+
+  /**
+   * FeedStockTransfer findFirstOrThrow
+   */
+  export type FeedStockTransferFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedStockTransfer to fetch.
+     */
+    where?: FeedStockTransferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedStockTransfers to fetch.
+     */
+    orderBy?: FeedStockTransferOrderByWithRelationInput | FeedStockTransferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeedStockTransfers.
+     */
+    cursor?: FeedStockTransferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedStockTransfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedStockTransfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeedStockTransfers.
+     */
+    distinct?: FeedStockTransferScalarFieldEnum | FeedStockTransferScalarFieldEnum[]
+  }
+
+  /**
+   * FeedStockTransfer findMany
+   */
+  export type FeedStockTransferFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedStockTransfers to fetch.
+     */
+    where?: FeedStockTransferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedStockTransfers to fetch.
+     */
+    orderBy?: FeedStockTransferOrderByWithRelationInput | FeedStockTransferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FeedStockTransfers.
+     */
+    cursor?: FeedStockTransferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedStockTransfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedStockTransfers.
+     */
+    skip?: number
+    distinct?: FeedStockTransferScalarFieldEnum | FeedStockTransferScalarFieldEnum[]
+  }
+
+  /**
+   * FeedStockTransfer create
+   */
+  export type FeedStockTransferCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FeedStockTransfer.
+     */
+    data: XOR<FeedStockTransferCreateInput, FeedStockTransferUncheckedCreateInput>
+  }
+
+  /**
+   * FeedStockTransfer createMany
+   */
+  export type FeedStockTransferCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FeedStockTransfers.
+     */
+    data: FeedStockTransferCreateManyInput | FeedStockTransferCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FeedStockTransfer createManyAndReturn
+   */
+  export type FeedStockTransferCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * The data used to create many FeedStockTransfers.
+     */
+    data: FeedStockTransferCreateManyInput | FeedStockTransferCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeedStockTransfer update
+   */
+  export type FeedStockTransferUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FeedStockTransfer.
+     */
+    data: XOR<FeedStockTransferUpdateInput, FeedStockTransferUncheckedUpdateInput>
+    /**
+     * Choose, which FeedStockTransfer to update.
+     */
+    where: FeedStockTransferWhereUniqueInput
+  }
+
+  /**
+   * FeedStockTransfer updateMany
+   */
+  export type FeedStockTransferUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FeedStockTransfers.
+     */
+    data: XOR<FeedStockTransferUpdateManyMutationInput, FeedStockTransferUncheckedUpdateManyInput>
+    /**
+     * Filter which FeedStockTransfers to update
+     */
+    where?: FeedStockTransferWhereInput
+    /**
+     * Limit how many FeedStockTransfers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeedStockTransfer updateManyAndReturn
+   */
+  export type FeedStockTransferUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * The data used to update FeedStockTransfers.
+     */
+    data: XOR<FeedStockTransferUpdateManyMutationInput, FeedStockTransferUncheckedUpdateManyInput>
+    /**
+     * Filter which FeedStockTransfers to update
+     */
+    where?: FeedStockTransferWhereInput
+    /**
+     * Limit how many FeedStockTransfers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeedStockTransfer upsert
+   */
+  export type FeedStockTransferUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FeedStockTransfer to update in case it exists.
+     */
+    where: FeedStockTransferWhereUniqueInput
+    /**
+     * In case the FeedStockTransfer found by the `where` argument doesn't exist, create a new FeedStockTransfer with this data.
+     */
+    create: XOR<FeedStockTransferCreateInput, FeedStockTransferUncheckedCreateInput>
+    /**
+     * In case the FeedStockTransfer was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FeedStockTransferUpdateInput, FeedStockTransferUncheckedUpdateInput>
+  }
+
+  /**
+   * FeedStockTransfer delete
+   */
+  export type FeedStockTransferDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferInclude<ExtArgs> | null
+    /**
+     * Filter which FeedStockTransfer to delete.
+     */
+    where: FeedStockTransferWhereUniqueInput
+  }
+
+  /**
+   * FeedStockTransfer deleteMany
+   */
+  export type FeedStockTransferDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeedStockTransfers to delete
+     */
+    where?: FeedStockTransferWhereInput
+    /**
+     * Limit how many FeedStockTransfers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeedStockTransfer.transferFeedItem
+   */
+  export type FeedStockTransfer$transferFeedItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemInclude<ExtArgs> | null
+    where?: TransferFeedItemWhereInput
+    orderBy?: TransferFeedItemOrderByWithRelationInput | TransferFeedItemOrderByWithRelationInput[]
+    cursor?: TransferFeedItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TransferFeedItemScalarFieldEnum | TransferFeedItemScalarFieldEnum[]
+  }
+
+  /**
+   * FeedStockTransfer without action
+   */
+  export type FeedStockTransferDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockTransfer
+     */
+    select?: FeedStockTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockTransfer
+     */
+    omit?: FeedStockTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockTransferInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TransferFeedItem
+   */
+
+  export type AggregateTransferFeedItem = {
+    _count: TransferFeedItemCountAggregateOutputType | null
+    _min: TransferFeedItemMinAggregateOutputType | null
+    _max: TransferFeedItemMaxAggregateOutputType | null
+  }
+
+  export type TransferFeedItemMinAggregateOutputType = {
+    id: string | null
+    feedName: string | null
+    createDate: string | null
+    quntity: string | null
+    tansferId: string | null
+    createdAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type TransferFeedItemMaxAggregateOutputType = {
+    id: string | null
+    feedName: string | null
+    createDate: string | null
+    quntity: string | null
+    tansferId: string | null
+    createdAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type TransferFeedItemCountAggregateOutputType = {
+    id: number
+    feedName: number
+    createDate: number
+    quntity: number
+    tansferId: number
+    createdAt: number
+    updateAt: number
+    _all: number
+  }
+
+
+  export type TransferFeedItemMinAggregateInputType = {
+    id?: true
+    feedName?: true
+    createDate?: true
+    quntity?: true
+    tansferId?: true
+    createdAt?: true
+    updateAt?: true
+  }
+
+  export type TransferFeedItemMaxAggregateInputType = {
+    id?: true
+    feedName?: true
+    createDate?: true
+    quntity?: true
+    tansferId?: true
+    createdAt?: true
+    updateAt?: true
+  }
+
+  export type TransferFeedItemCountAggregateInputType = {
+    id?: true
+    feedName?: true
+    createDate?: true
+    quntity?: true
+    tansferId?: true
+    createdAt?: true
+    updateAt?: true
+    _all?: true
+  }
+
+  export type TransferFeedItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TransferFeedItem to aggregate.
+     */
+    where?: TransferFeedItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransferFeedItems to fetch.
+     */
+    orderBy?: TransferFeedItemOrderByWithRelationInput | TransferFeedItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TransferFeedItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransferFeedItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransferFeedItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TransferFeedItems
+    **/
+    _count?: true | TransferFeedItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TransferFeedItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TransferFeedItemMaxAggregateInputType
+  }
+
+  export type GetTransferFeedItemAggregateType<T extends TransferFeedItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateTransferFeedItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTransferFeedItem[P]>
+      : GetScalarType<T[P], AggregateTransferFeedItem[P]>
+  }
+
+
+
+
+  export type TransferFeedItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransferFeedItemWhereInput
+    orderBy?: TransferFeedItemOrderByWithAggregationInput | TransferFeedItemOrderByWithAggregationInput[]
+    by: TransferFeedItemScalarFieldEnum[] | TransferFeedItemScalarFieldEnum
+    having?: TransferFeedItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TransferFeedItemCountAggregateInputType | true
+    _min?: TransferFeedItemMinAggregateInputType
+    _max?: TransferFeedItemMaxAggregateInputType
+  }
+
+  export type TransferFeedItemGroupByOutputType = {
+    id: string
+    feedName: string
+    createDate: string
+    quntity: string
+    tansferId: string
+    createdAt: Date
+    updateAt: Date
+    _count: TransferFeedItemCountAggregateOutputType | null
+    _min: TransferFeedItemMinAggregateOutputType | null
+    _max: TransferFeedItemMaxAggregateOutputType | null
+  }
+
+  type GetTransferFeedItemGroupByPayload<T extends TransferFeedItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TransferFeedItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TransferFeedItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TransferFeedItemGroupByOutputType[P]>
+            : GetScalarType<T[P], TransferFeedItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TransferFeedItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    createDate?: boolean
+    quntity?: boolean
+    tansferId?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    feedStckTranfer?: boolean | FeedStockTransferDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["transferFeedItem"]>
+
+  export type TransferFeedItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    createDate?: boolean
+    quntity?: boolean
+    tansferId?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    feedStckTranfer?: boolean | FeedStockTransferDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["transferFeedItem"]>
+
+  export type TransferFeedItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    createDate?: boolean
+    quntity?: boolean
+    tansferId?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    feedStckTranfer?: boolean | FeedStockTransferDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["transferFeedItem"]>
+
+  export type TransferFeedItemSelectScalar = {
+    id?: boolean
+    feedName?: boolean
+    createDate?: boolean
+    quntity?: boolean
+    tansferId?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+  }
+
+  export type TransferFeedItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "createDate" | "quntity" | "tansferId" | "createdAt" | "updateAt", ExtArgs["result"]["transferFeedItem"]>
+  export type TransferFeedItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    feedStckTranfer?: boolean | FeedStockTransferDefaultArgs<ExtArgs>
+  }
+  export type TransferFeedItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    feedStckTranfer?: boolean | FeedStockTransferDefaultArgs<ExtArgs>
+  }
+  export type TransferFeedItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    feedStckTranfer?: boolean | FeedStockTransferDefaultArgs<ExtArgs>
+  }
+
+  export type $TransferFeedItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TransferFeedItem"
+    objects: {
+      feed: Prisma.$FeedNameCategoryPayload<ExtArgs>
+      feedStckTranfer: Prisma.$FeedStockTransferPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      feedName: string
+      createDate: string
+      quntity: string
+      tansferId: string
+      createdAt: Date
+      updateAt: Date
+    }, ExtArgs["result"]["transferFeedItem"]>
+    composites: {}
+  }
+
+  type TransferFeedItemGetPayload<S extends boolean | null | undefined | TransferFeedItemDefaultArgs> = $Result.GetResult<Prisma.$TransferFeedItemPayload, S>
+
+  type TransferFeedItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TransferFeedItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TransferFeedItemCountAggregateInputType | true
+    }
+
+  export interface TransferFeedItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TransferFeedItem'], meta: { name: 'TransferFeedItem' } }
+    /**
+     * Find zero or one TransferFeedItem that matches the filter.
+     * @param {TransferFeedItemFindUniqueArgs} args - Arguments to find a TransferFeedItem
+     * @example
+     * // Get one TransferFeedItem
+     * const transferFeedItem = await prisma.transferFeedItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TransferFeedItemFindUniqueArgs>(args: SelectSubset<T, TransferFeedItemFindUniqueArgs<ExtArgs>>): Prisma__TransferFeedItemClient<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TransferFeedItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TransferFeedItemFindUniqueOrThrowArgs} args - Arguments to find a TransferFeedItem
+     * @example
+     * // Get one TransferFeedItem
+     * const transferFeedItem = await prisma.transferFeedItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TransferFeedItemFindUniqueOrThrowArgs>(args: SelectSubset<T, TransferFeedItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TransferFeedItemClient<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TransferFeedItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferFeedItemFindFirstArgs} args - Arguments to find a TransferFeedItem
+     * @example
+     * // Get one TransferFeedItem
+     * const transferFeedItem = await prisma.transferFeedItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TransferFeedItemFindFirstArgs>(args?: SelectSubset<T, TransferFeedItemFindFirstArgs<ExtArgs>>): Prisma__TransferFeedItemClient<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TransferFeedItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferFeedItemFindFirstOrThrowArgs} args - Arguments to find a TransferFeedItem
+     * @example
+     * // Get one TransferFeedItem
+     * const transferFeedItem = await prisma.transferFeedItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TransferFeedItemFindFirstOrThrowArgs>(args?: SelectSubset<T, TransferFeedItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__TransferFeedItemClient<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TransferFeedItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferFeedItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TransferFeedItems
+     * const transferFeedItems = await prisma.transferFeedItem.findMany()
+     * 
+     * // Get first 10 TransferFeedItems
+     * const transferFeedItems = await prisma.transferFeedItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const transferFeedItemWithIdOnly = await prisma.transferFeedItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TransferFeedItemFindManyArgs>(args?: SelectSubset<T, TransferFeedItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TransferFeedItem.
+     * @param {TransferFeedItemCreateArgs} args - Arguments to create a TransferFeedItem.
+     * @example
+     * // Create one TransferFeedItem
+     * const TransferFeedItem = await prisma.transferFeedItem.create({
+     *   data: {
+     *     // ... data to create a TransferFeedItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends TransferFeedItemCreateArgs>(args: SelectSubset<T, TransferFeedItemCreateArgs<ExtArgs>>): Prisma__TransferFeedItemClient<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TransferFeedItems.
+     * @param {TransferFeedItemCreateManyArgs} args - Arguments to create many TransferFeedItems.
+     * @example
+     * // Create many TransferFeedItems
+     * const transferFeedItem = await prisma.transferFeedItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TransferFeedItemCreateManyArgs>(args?: SelectSubset<T, TransferFeedItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TransferFeedItems and returns the data saved in the database.
+     * @param {TransferFeedItemCreateManyAndReturnArgs} args - Arguments to create many TransferFeedItems.
+     * @example
+     * // Create many TransferFeedItems
+     * const transferFeedItem = await prisma.transferFeedItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TransferFeedItems and only return the `id`
+     * const transferFeedItemWithIdOnly = await prisma.transferFeedItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TransferFeedItemCreateManyAndReturnArgs>(args?: SelectSubset<T, TransferFeedItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TransferFeedItem.
+     * @param {TransferFeedItemDeleteArgs} args - Arguments to delete one TransferFeedItem.
+     * @example
+     * // Delete one TransferFeedItem
+     * const TransferFeedItem = await prisma.transferFeedItem.delete({
+     *   where: {
+     *     // ... filter to delete one TransferFeedItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TransferFeedItemDeleteArgs>(args: SelectSubset<T, TransferFeedItemDeleteArgs<ExtArgs>>): Prisma__TransferFeedItemClient<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TransferFeedItem.
+     * @param {TransferFeedItemUpdateArgs} args - Arguments to update one TransferFeedItem.
+     * @example
+     * // Update one TransferFeedItem
+     * const transferFeedItem = await prisma.transferFeedItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TransferFeedItemUpdateArgs>(args: SelectSubset<T, TransferFeedItemUpdateArgs<ExtArgs>>): Prisma__TransferFeedItemClient<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TransferFeedItems.
+     * @param {TransferFeedItemDeleteManyArgs} args - Arguments to filter TransferFeedItems to delete.
+     * @example
+     * // Delete a few TransferFeedItems
+     * const { count } = await prisma.transferFeedItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TransferFeedItemDeleteManyArgs>(args?: SelectSubset<T, TransferFeedItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TransferFeedItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferFeedItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TransferFeedItems
+     * const transferFeedItem = await prisma.transferFeedItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TransferFeedItemUpdateManyArgs>(args: SelectSubset<T, TransferFeedItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TransferFeedItems and returns the data updated in the database.
+     * @param {TransferFeedItemUpdateManyAndReturnArgs} args - Arguments to update many TransferFeedItems.
+     * @example
+     * // Update many TransferFeedItems
+     * const transferFeedItem = await prisma.transferFeedItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TransferFeedItems and only return the `id`
+     * const transferFeedItemWithIdOnly = await prisma.transferFeedItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TransferFeedItemUpdateManyAndReturnArgs>(args: SelectSubset<T, TransferFeedItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TransferFeedItem.
+     * @param {TransferFeedItemUpsertArgs} args - Arguments to update or create a TransferFeedItem.
+     * @example
+     * // Update or create a TransferFeedItem
+     * const transferFeedItem = await prisma.transferFeedItem.upsert({
+     *   create: {
+     *     // ... data to create a TransferFeedItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TransferFeedItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TransferFeedItemUpsertArgs>(args: SelectSubset<T, TransferFeedItemUpsertArgs<ExtArgs>>): Prisma__TransferFeedItemClient<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TransferFeedItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferFeedItemCountArgs} args - Arguments to filter TransferFeedItems to count.
+     * @example
+     * // Count the number of TransferFeedItems
+     * const count = await prisma.transferFeedItem.count({
+     *   where: {
+     *     // ... the filter for the TransferFeedItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends TransferFeedItemCountArgs>(
+      args?: Subset<T, TransferFeedItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TransferFeedItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TransferFeedItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferFeedItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TransferFeedItemAggregateArgs>(args: Subset<T, TransferFeedItemAggregateArgs>): Prisma.PrismaPromise<GetTransferFeedItemAggregateType<T>>
+
+    /**
+     * Group by TransferFeedItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferFeedItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TransferFeedItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TransferFeedItemGroupByArgs['orderBy'] }
+        : { orderBy?: TransferFeedItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TransferFeedItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTransferFeedItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TransferFeedItem model
+   */
+  readonly fields: TransferFeedItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TransferFeedItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TransferFeedItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    feed<T extends FeedNameCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategoryDefaultArgs<ExtArgs>>): Prisma__FeedNameCategoryClient<$Result.GetResult<Prisma.$FeedNameCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    feedStckTranfer<T extends FeedStockTransferDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FeedStockTransferDefaultArgs<ExtArgs>>): Prisma__FeedStockTransferClient<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TransferFeedItem model
+   */
+  interface TransferFeedItemFieldRefs {
+    readonly id: FieldRef<"TransferFeedItem", 'String'>
+    readonly feedName: FieldRef<"TransferFeedItem", 'String'>
+    readonly createDate: FieldRef<"TransferFeedItem", 'String'>
+    readonly quntity: FieldRef<"TransferFeedItem", 'String'>
+    readonly tansferId: FieldRef<"TransferFeedItem", 'String'>
+    readonly createdAt: FieldRef<"TransferFeedItem", 'DateTime'>
+    readonly updateAt: FieldRef<"TransferFeedItem", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TransferFeedItem findUnique
+   */
+  export type TransferFeedItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which TransferFeedItem to fetch.
+     */
+    where: TransferFeedItemWhereUniqueInput
+  }
+
+  /**
+   * TransferFeedItem findUniqueOrThrow
+   */
+  export type TransferFeedItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which TransferFeedItem to fetch.
+     */
+    where: TransferFeedItemWhereUniqueInput
+  }
+
+  /**
+   * TransferFeedItem findFirst
+   */
+  export type TransferFeedItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which TransferFeedItem to fetch.
+     */
+    where?: TransferFeedItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransferFeedItems to fetch.
+     */
+    orderBy?: TransferFeedItemOrderByWithRelationInput | TransferFeedItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TransferFeedItems.
+     */
+    cursor?: TransferFeedItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransferFeedItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransferFeedItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TransferFeedItems.
+     */
+    distinct?: TransferFeedItemScalarFieldEnum | TransferFeedItemScalarFieldEnum[]
+  }
+
+  /**
+   * TransferFeedItem findFirstOrThrow
+   */
+  export type TransferFeedItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which TransferFeedItem to fetch.
+     */
+    where?: TransferFeedItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransferFeedItems to fetch.
+     */
+    orderBy?: TransferFeedItemOrderByWithRelationInput | TransferFeedItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TransferFeedItems.
+     */
+    cursor?: TransferFeedItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransferFeedItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransferFeedItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TransferFeedItems.
+     */
+    distinct?: TransferFeedItemScalarFieldEnum | TransferFeedItemScalarFieldEnum[]
+  }
+
+  /**
+   * TransferFeedItem findMany
+   */
+  export type TransferFeedItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which TransferFeedItems to fetch.
+     */
+    where?: TransferFeedItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransferFeedItems to fetch.
+     */
+    orderBy?: TransferFeedItemOrderByWithRelationInput | TransferFeedItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TransferFeedItems.
+     */
+    cursor?: TransferFeedItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransferFeedItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransferFeedItems.
+     */
+    skip?: number
+    distinct?: TransferFeedItemScalarFieldEnum | TransferFeedItemScalarFieldEnum[]
+  }
+
+  /**
+   * TransferFeedItem create
+   */
+  export type TransferFeedItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TransferFeedItem.
+     */
+    data: XOR<TransferFeedItemCreateInput, TransferFeedItemUncheckedCreateInput>
+  }
+
+  /**
+   * TransferFeedItem createMany
+   */
+  export type TransferFeedItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TransferFeedItems.
+     */
+    data: TransferFeedItemCreateManyInput | TransferFeedItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TransferFeedItem createManyAndReturn
+   */
+  export type TransferFeedItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many TransferFeedItems.
+     */
+    data: TransferFeedItemCreateManyInput | TransferFeedItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TransferFeedItem update
+   */
+  export type TransferFeedItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TransferFeedItem.
+     */
+    data: XOR<TransferFeedItemUpdateInput, TransferFeedItemUncheckedUpdateInput>
+    /**
+     * Choose, which TransferFeedItem to update.
+     */
+    where: TransferFeedItemWhereUniqueInput
+  }
+
+  /**
+   * TransferFeedItem updateMany
+   */
+  export type TransferFeedItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TransferFeedItems.
+     */
+    data: XOR<TransferFeedItemUpdateManyMutationInput, TransferFeedItemUncheckedUpdateManyInput>
+    /**
+     * Filter which TransferFeedItems to update
+     */
+    where?: TransferFeedItemWhereInput
+    /**
+     * Limit how many TransferFeedItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TransferFeedItem updateManyAndReturn
+   */
+  export type TransferFeedItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * The data used to update TransferFeedItems.
+     */
+    data: XOR<TransferFeedItemUpdateManyMutationInput, TransferFeedItemUncheckedUpdateManyInput>
+    /**
+     * Filter which TransferFeedItems to update
+     */
+    where?: TransferFeedItemWhereInput
+    /**
+     * Limit how many TransferFeedItems to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TransferFeedItem upsert
+   */
+  export type TransferFeedItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TransferFeedItem to update in case it exists.
+     */
+    where: TransferFeedItemWhereUniqueInput
+    /**
+     * In case the TransferFeedItem found by the `where` argument doesn't exist, create a new TransferFeedItem with this data.
+     */
+    create: XOR<TransferFeedItemCreateInput, TransferFeedItemUncheckedCreateInput>
+    /**
+     * In case the TransferFeedItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TransferFeedItemUpdateInput, TransferFeedItemUncheckedUpdateInput>
+  }
+
+  /**
+   * TransferFeedItem delete
+   */
+  export type TransferFeedItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemInclude<ExtArgs> | null
+    /**
+     * Filter which TransferFeedItem to delete.
+     */
+    where: TransferFeedItemWhereUniqueInput
+  }
+
+  /**
+   * TransferFeedItem deleteMany
+   */
+  export type TransferFeedItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TransferFeedItems to delete
+     */
+    where?: TransferFeedItemWhereInput
+    /**
+     * Limit how many TransferFeedItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TransferFeedItem without action
+   */
+  export type TransferFeedItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferFeedItem
+     */
+    select?: TransferFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferFeedItem
+     */
+    omit?: TransferFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferFeedItemInclude<ExtArgs> | null
   }
 
 
@@ -21041,7 +24831,7 @@ export namespace Prisma {
 
   export type StockTransferMinAggregateOutputType = {
     id: string | null
-    fromBranchCode: string | null
+    FromDepotName: string | null
     toBranchCode: string | null
     genericName: string | null
     medicineName: string | null
@@ -21053,7 +24843,7 @@ export namespace Prisma {
 
   export type StockTransferMaxAggregateOutputType = {
     id: string | null
-    fromBranchCode: string | null
+    FromDepotName: string | null
     toBranchCode: string | null
     genericName: string | null
     medicineName: string | null
@@ -21065,7 +24855,7 @@ export namespace Prisma {
 
   export type StockTransferCountAggregateOutputType = {
     id: number
-    fromBranchCode: number
+    FromDepotName: number
     toBranchCode: number
     genericName: number
     medicineName: number
@@ -21087,7 +24877,7 @@ export namespace Prisma {
 
   export type StockTransferMinAggregateInputType = {
     id?: true
-    fromBranchCode?: true
+    FromDepotName?: true
     toBranchCode?: true
     genericName?: true
     medicineName?: true
@@ -21099,7 +24889,7 @@ export namespace Prisma {
 
   export type StockTransferMaxAggregateInputType = {
     id?: true
-    fromBranchCode?: true
+    FromDepotName?: true
     toBranchCode?: true
     genericName?: true
     medicineName?: true
@@ -21111,7 +24901,7 @@ export namespace Prisma {
 
   export type StockTransferCountAggregateInputType = {
     id?: true
-    fromBranchCode?: true
+    FromDepotName?: true
     toBranchCode?: true
     genericName?: true
     medicineName?: true
@@ -21210,7 +25000,7 @@ export namespace Prisma {
 
   export type StockTransferGroupByOutputType = {
     id: string
-    fromBranchCode: string
+    FromDepotName: string
     toBranchCode: string
     genericName: string
     medicineName: string
@@ -21241,7 +25031,7 @@ export namespace Prisma {
 
   export type StockTransferSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    fromBranchCode?: boolean
+    FromDepotName?: boolean
     toBranchCode?: boolean
     genericName?: boolean
     medicineName?: boolean
@@ -21253,7 +25043,7 @@ export namespace Prisma {
 
   export type StockTransferSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    fromBranchCode?: boolean
+    FromDepotName?: boolean
     toBranchCode?: boolean
     genericName?: boolean
     medicineName?: boolean
@@ -21265,7 +25055,7 @@ export namespace Prisma {
 
   export type StockTransferSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    fromBranchCode?: boolean
+    FromDepotName?: boolean
     toBranchCode?: boolean
     genericName?: boolean
     medicineName?: boolean
@@ -21277,7 +25067,7 @@ export namespace Prisma {
 
   export type StockTransferSelectScalar = {
     id?: boolean
-    fromBranchCode?: boolean
+    FromDepotName?: boolean
     toBranchCode?: boolean
     genericName?: boolean
     medicineName?: boolean
@@ -21287,14 +25077,14 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type StockTransferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fromBranchCode" | "toBranchCode" | "genericName" | "medicineName" | "quantity" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["stockTransfer"]>
+  export type StockTransferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "FromDepotName" | "toBranchCode" | "genericName" | "medicineName" | "quantity" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["stockTransfer"]>
 
   export type $StockTransferPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "StockTransfer"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      fromBranchCode: string
+      FromDepotName: string
       toBranchCode: string
       genericName: string
       medicineName: string
@@ -21726,7 +25516,7 @@ export namespace Prisma {
    */
   interface StockTransferFieldRefs {
     readonly id: FieldRef<"StockTransfer", 'String'>
-    readonly fromBranchCode: FieldRef<"StockTransfer", 'String'>
+    readonly FromDepotName: FieldRef<"StockTransfer", 'String'>
     readonly toBranchCode: FieldRef<"StockTransfer", 'String'>
     readonly genericName: FieldRef<"StockTransfer", 'String'>
     readonly medicineName: FieldRef<"StockTransfer", 'String'>
@@ -23300,6 +27090,18 @@ export namespace Prisma {
   export type BranchScalarFieldEnum = (typeof BranchScalarFieldEnum)[keyof typeof BranchScalarFieldEnum]
 
 
+  export const DepotScalarFieldEnum: {
+    id: 'id',
+    locationName: 'locationName',
+    depotName: 'depotName',
+    createDate: 'createDate',
+    createAt: 'createAt',
+    updateAt: 'updateAt'
+  };
+
+  export type DepotScalarFieldEnum = (typeof DepotScalarFieldEnum)[keyof typeof DepotScalarFieldEnum]
+
+
   export const FarmerScalarFieldEnum: {
     id: 'id',
     branchCode: 'branchCode',
@@ -23440,16 +27242,45 @@ export namespace Prisma {
   export type FeedNameCategoryScalarFieldEnum = (typeof FeedNameCategoryScalarFieldEnum)[keyof typeof FeedNameCategoryScalarFieldEnum]
 
 
-  export const FeedScalarFieldEnum: {
+  export const FeedStockScalarFieldEnum: {
     id: 'id',
     feedName: 'feedName',
     stock: 'stock',
-    branchCode: 'branchCode',
+    depotName: 'depotName',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    branchId: 'branchId'
   };
 
-  export type FeedScalarFieldEnum = (typeof FeedScalarFieldEnum)[keyof typeof FeedScalarFieldEnum]
+  export type FeedStockScalarFieldEnum = (typeof FeedStockScalarFieldEnum)[keyof typeof FeedStockScalarFieldEnum]
+
+
+  export const FeedStockTransferScalarFieldEnum: {
+    id: 'id',
+    fromDepot: 'fromDepot',
+    toDepot: 'toDepot',
+    transerFerDate: 'transerFerDate',
+    createDate: 'createDate',
+    trnasferBill: 'trnasferBill',
+    createAt: 'createAt',
+    updateAt: 'updateAt',
+    depotId: 'depotId'
+  };
+
+  export type FeedStockTransferScalarFieldEnum = (typeof FeedStockTransferScalarFieldEnum)[keyof typeof FeedStockTransferScalarFieldEnum]
+
+
+  export const TransferFeedItemScalarFieldEnum: {
+    id: 'id',
+    feedName: 'feedName',
+    createDate: 'createDate',
+    quntity: 'quntity',
+    tansferId: 'tansferId',
+    createdAt: 'createdAt',
+    updateAt: 'updateAt'
+  };
+
+  export type TransferFeedItemScalarFieldEnum = (typeof TransferFeedItemScalarFieldEnum)[keyof typeof TransferFeedItemScalarFieldEnum]
 
 
   export const AllGenericMedicinScalarFieldEnum: {
@@ -23538,7 +27369,7 @@ export namespace Prisma {
 
   export const StockTransferScalarFieldEnum: {
     id: 'id',
-    fromBranchCode: 'fromBranchCode',
+    FromDepotName: 'FromDepotName',
     toBranchCode: 'toBranchCode',
     genericName: 'genericName',
     medicineName: 'medicineName',
@@ -23745,13 +27576,13 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Branch"> | Date | string
     farmer?: FarmerListRelationFilter
     flocks?: FlockListRelationFilter
-    feed?: FeedListRelationFilter
     medicineStock?: MedicineStockListRelationFilter
     medicinePurchess?: MedicinePurchessListRelationFilter
     sellMedicine?: SellMedicineListRelationFilter
     medicineTransfer?: MedicineTransferListRelationFilter
     flockReport?: FlockReportListRelationFilter
     branchEmployeeHistory?: BranchEmployeeHistoryListRelationFilter
+    FeedStock?: FeedStockListRelationFilter
   }
 
   export type BranchOrderByWithRelationInput = {
@@ -23764,13 +27595,13 @@ export namespace Prisma {
     updatedAt?: SortOrder
     farmer?: FarmerOrderByRelationAggregateInput
     flocks?: FlockOrderByRelationAggregateInput
-    feed?: FeedOrderByRelationAggregateInput
     medicineStock?: MedicineStockOrderByRelationAggregateInput
     medicinePurchess?: MedicinePurchessOrderByRelationAggregateInput
     sellMedicine?: SellMedicineOrderByRelationAggregateInput
     medicineTransfer?: MedicineTransferOrderByRelationAggregateInput
     flockReport?: FlockReportOrderByRelationAggregateInput
     branchEmployeeHistory?: BranchEmployeeHistoryOrderByRelationAggregateInput
+    FeedStock?: FeedStockOrderByRelationAggregateInput
   }
 
   export type BranchWhereUniqueInput = Prisma.AtLeast<{
@@ -23786,13 +27617,13 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Branch"> | Date | string
     farmer?: FarmerListRelationFilter
     flocks?: FlockListRelationFilter
-    feed?: FeedListRelationFilter
     medicineStock?: MedicineStockListRelationFilter
     medicinePurchess?: MedicinePurchessListRelationFilter
     sellMedicine?: SellMedicineListRelationFilter
     medicineTransfer?: MedicineTransferListRelationFilter
     flockReport?: FlockReportListRelationFilter
     branchEmployeeHistory?: BranchEmployeeHistoryListRelationFilter
+    FeedStock?: FeedStockListRelationFilter
   }, "id" | "locationName" | "branchCode">
 
   export type BranchOrderByWithAggregationInput = {
@@ -23819,6 +27650,72 @@ export namespace Prisma {
     createDate?: StringWithAggregatesFilter<"Branch"> | string
     createdAt?: DateTimeNullableWithAggregatesFilter<"Branch"> | Date | string | null
     updatedAt?: DateTimeWithAggregatesFilter<"Branch"> | Date | string
+  }
+
+  export type DepotWhereInput = {
+    AND?: DepotWhereInput | DepotWhereInput[]
+    OR?: DepotWhereInput[]
+    NOT?: DepotWhereInput | DepotWhereInput[]
+    id?: StringFilter<"Depot"> | string
+    locationName?: StringFilter<"Depot"> | string
+    depotName?: StringFilter<"Depot"> | string
+    createDate?: StringFilter<"Depot"> | string
+    createAt?: DateTimeNullableFilter<"Depot"> | Date | string | null
+    updateAt?: DateTimeFilter<"Depot"> | Date | string
+    feedStock?: FeedStockListRelationFilter
+    sentTransfers?: FeedStockTransferListRelationFilter
+    receivedTransfers?: FeedStockTransferListRelationFilter
+  }
+
+  export type DepotOrderByWithRelationInput = {
+    id?: SortOrder
+    locationName?: SortOrder
+    depotName?: SortOrder
+    createDate?: SortOrder
+    createAt?: SortOrderInput | SortOrder
+    updateAt?: SortOrder
+    feedStock?: FeedStockOrderByRelationAggregateInput
+    sentTransfers?: FeedStockTransferOrderByRelationAggregateInput
+    receivedTransfers?: FeedStockTransferOrderByRelationAggregateInput
+  }
+
+  export type DepotWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    depotName?: string
+    AND?: DepotWhereInput | DepotWhereInput[]
+    OR?: DepotWhereInput[]
+    NOT?: DepotWhereInput | DepotWhereInput[]
+    locationName?: StringFilter<"Depot"> | string
+    createDate?: StringFilter<"Depot"> | string
+    createAt?: DateTimeNullableFilter<"Depot"> | Date | string | null
+    updateAt?: DateTimeFilter<"Depot"> | Date | string
+    feedStock?: FeedStockListRelationFilter
+    sentTransfers?: FeedStockTransferListRelationFilter
+    receivedTransfers?: FeedStockTransferListRelationFilter
+  }, "id" | "depotName">
+
+  export type DepotOrderByWithAggregationInput = {
+    id?: SortOrder
+    locationName?: SortOrder
+    depotName?: SortOrder
+    createDate?: SortOrder
+    createAt?: SortOrderInput | SortOrder
+    updateAt?: SortOrder
+    _count?: DepotCountOrderByAggregateInput
+    _max?: DepotMaxOrderByAggregateInput
+    _min?: DepotMinOrderByAggregateInput
+  }
+
+  export type DepotScalarWhereWithAggregatesInput = {
+    AND?: DepotScalarWhereWithAggregatesInput | DepotScalarWhereWithAggregatesInput[]
+    OR?: DepotScalarWhereWithAggregatesInput[]
+    NOT?: DepotScalarWhereWithAggregatesInput | DepotScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Depot"> | string
+    locationName?: StringWithAggregatesFilter<"Depot"> | string
+    depotName?: StringWithAggregatesFilter<"Depot"> | string
+    createDate?: StringWithAggregatesFilter<"Depot"> | string
+    createAt?: DateTimeNullableWithAggregatesFilter<"Depot"> | Date | string | null
+    updateAt?: DateTimeWithAggregatesFilter<"Depot"> | Date | string
   }
 
   export type FarmerWhereInput = {
@@ -24527,7 +28424,8 @@ export namespace Prisma {
     feedCodeNumber?: IntFilter<"FeedNameCategory"> | number
     createdAt?: DateTimeFilter<"FeedNameCategory"> | Date | string
     updatedAt?: DateTimeFilter<"FeedNameCategory"> | Date | string
-    feeds?: FeedListRelationFilter
+    FeedStock?: FeedStockListRelationFilter
+    transferFeedItem?: TransferFeedItemListRelationFilter
   }
 
   export type FeedNameCategoryOrderByWithRelationInput = {
@@ -24536,7 +28434,8 @@ export namespace Prisma {
     feedCodeNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    feeds?: FeedOrderByRelationAggregateInput
+    FeedStock?: FeedStockOrderByRelationAggregateInput
+    transferFeedItem?: TransferFeedItemOrderByRelationAggregateInput
   }
 
   export type FeedNameCategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -24548,7 +28447,8 @@ export namespace Prisma {
     NOT?: FeedNameCategoryWhereInput | FeedNameCategoryWhereInput[]
     createdAt?: DateTimeFilter<"FeedNameCategory"> | Date | string
     updatedAt?: DateTimeFilter<"FeedNameCategory"> | Date | string
-    feeds?: FeedListRelationFilter
+    FeedStock?: FeedStockListRelationFilter
+    transferFeedItem?: TransferFeedItemListRelationFilter
   }, "id" | "feedName" | "feedCodeNumber">
 
   export type FeedNameCategoryOrderByWithAggregationInput = {
@@ -24575,69 +28475,226 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"FeedNameCategory"> | Date | string
   }
 
-  export type FeedWhereInput = {
-    AND?: FeedWhereInput | FeedWhereInput[]
-    OR?: FeedWhereInput[]
-    NOT?: FeedWhereInput | FeedWhereInput[]
-    id?: StringFilter<"Feed"> | string
-    feedName?: StringFilter<"Feed"> | string
-    stock?: IntFilter<"Feed"> | number
-    branchCode?: StringNullableFilter<"Feed"> | string | null
-    createdAt?: DateTimeFilter<"Feed"> | Date | string
-    updatedAt?: DateTimeFilter<"Feed"> | Date | string
+  export type FeedStockWhereInput = {
+    AND?: FeedStockWhereInput | FeedStockWhereInput[]
+    OR?: FeedStockWhereInput[]
+    NOT?: FeedStockWhereInput | FeedStockWhereInput[]
+    id?: StringFilter<"FeedStock"> | string
+    feedName?: StringFilter<"FeedStock"> | string
+    stock?: IntFilter<"FeedStock"> | number
+    depotName?: StringFilter<"FeedStock"> | string
+    createdAt?: DateTimeFilter<"FeedStock"> | Date | string
+    updatedAt?: DateTimeFilter<"FeedStock"> | Date | string
+    branchId?: StringNullableFilter<"FeedStock"> | string | null
     feedNameCategory?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
-    branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
+    depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    Branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
   }
 
-  export type FeedOrderByWithRelationInput = {
+  export type FeedStockOrderByWithRelationInput = {
     id?: SortOrder
     feedName?: SortOrder
     stock?: SortOrder
-    branchCode?: SortOrderInput | SortOrder
+    depotName?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    branchId?: SortOrderInput | SortOrder
     feedNameCategory?: FeedNameCategoryOrderByWithRelationInput
-    branch?: BranchOrderByWithRelationInput
+    depot?: DepotOrderByWithRelationInput
+    Branch?: BranchOrderByWithRelationInput
   }
 
-  export type FeedWhereUniqueInput = Prisma.AtLeast<{
+  export type FeedStockWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: FeedWhereInput | FeedWhereInput[]
-    OR?: FeedWhereInput[]
-    NOT?: FeedWhereInput | FeedWhereInput[]
-    feedName?: StringFilter<"Feed"> | string
-    stock?: IntFilter<"Feed"> | number
-    branchCode?: StringNullableFilter<"Feed"> | string | null
-    createdAt?: DateTimeFilter<"Feed"> | Date | string
-    updatedAt?: DateTimeFilter<"Feed"> | Date | string
+    AND?: FeedStockWhereInput | FeedStockWhereInput[]
+    OR?: FeedStockWhereInput[]
+    NOT?: FeedStockWhereInput | FeedStockWhereInput[]
+    feedName?: StringFilter<"FeedStock"> | string
+    stock?: IntFilter<"FeedStock"> | number
+    depotName?: StringFilter<"FeedStock"> | string
+    createdAt?: DateTimeFilter<"FeedStock"> | Date | string
+    updatedAt?: DateTimeFilter<"FeedStock"> | Date | string
+    branchId?: StringNullableFilter<"FeedStock"> | string | null
     feedNameCategory?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
-    branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
+    depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    Branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
   }, "id">
 
-  export type FeedOrderByWithAggregationInput = {
+  export type FeedStockOrderByWithAggregationInput = {
     id?: SortOrder
     feedName?: SortOrder
     stock?: SortOrder
-    branchCode?: SortOrderInput | SortOrder
+    depotName?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: FeedCountOrderByAggregateInput
-    _avg?: FeedAvgOrderByAggregateInput
-    _max?: FeedMaxOrderByAggregateInput
-    _min?: FeedMinOrderByAggregateInput
-    _sum?: FeedSumOrderByAggregateInput
+    branchId?: SortOrderInput | SortOrder
+    _count?: FeedStockCountOrderByAggregateInput
+    _avg?: FeedStockAvgOrderByAggregateInput
+    _max?: FeedStockMaxOrderByAggregateInput
+    _min?: FeedStockMinOrderByAggregateInput
+    _sum?: FeedStockSumOrderByAggregateInput
   }
 
-  export type FeedScalarWhereWithAggregatesInput = {
-    AND?: FeedScalarWhereWithAggregatesInput | FeedScalarWhereWithAggregatesInput[]
-    OR?: FeedScalarWhereWithAggregatesInput[]
-    NOT?: FeedScalarWhereWithAggregatesInput | FeedScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Feed"> | string
-    feedName?: StringWithAggregatesFilter<"Feed"> | string
-    stock?: IntWithAggregatesFilter<"Feed"> | number
-    branchCode?: StringNullableWithAggregatesFilter<"Feed"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"Feed"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Feed"> | Date | string
+  export type FeedStockScalarWhereWithAggregatesInput = {
+    AND?: FeedStockScalarWhereWithAggregatesInput | FeedStockScalarWhereWithAggregatesInput[]
+    OR?: FeedStockScalarWhereWithAggregatesInput[]
+    NOT?: FeedStockScalarWhereWithAggregatesInput | FeedStockScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FeedStock"> | string
+    feedName?: StringWithAggregatesFilter<"FeedStock"> | string
+    stock?: IntWithAggregatesFilter<"FeedStock"> | number
+    depotName?: StringWithAggregatesFilter<"FeedStock"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"FeedStock"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FeedStock"> | Date | string
+    branchId?: StringNullableWithAggregatesFilter<"FeedStock"> | string | null
+  }
+
+  export type FeedStockTransferWhereInput = {
+    AND?: FeedStockTransferWhereInput | FeedStockTransferWhereInput[]
+    OR?: FeedStockTransferWhereInput[]
+    NOT?: FeedStockTransferWhereInput | FeedStockTransferWhereInput[]
+    id?: StringFilter<"FeedStockTransfer"> | string
+    fromDepot?: StringFilter<"FeedStockTransfer"> | string
+    toDepot?: StringFilter<"FeedStockTransfer"> | string
+    transerFerDate?: StringFilter<"FeedStockTransfer"> | string
+    createDate?: StringFilter<"FeedStockTransfer"> | string
+    trnasferBill?: StringFilter<"FeedStockTransfer"> | string
+    createAt?: DateTimeNullableFilter<"FeedStockTransfer"> | Date | string | null
+    updateAt?: DateTimeFilter<"FeedStockTransfer"> | Date | string
+    depotId?: StringNullableFilter<"FeedStockTransfer"> | string | null
+    transferDepot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    reciveDepot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    transferFeedItem?: TransferFeedItemListRelationFilter
+  }
+
+  export type FeedStockTransferOrderByWithRelationInput = {
+    id?: SortOrder
+    fromDepot?: SortOrder
+    toDepot?: SortOrder
+    transerFerDate?: SortOrder
+    createDate?: SortOrder
+    trnasferBill?: SortOrder
+    createAt?: SortOrderInput | SortOrder
+    updateAt?: SortOrder
+    depotId?: SortOrderInput | SortOrder
+    transferDepot?: DepotOrderByWithRelationInput
+    reciveDepot?: DepotOrderByWithRelationInput
+    transferFeedItem?: TransferFeedItemOrderByRelationAggregateInput
+  }
+
+  export type FeedStockTransferWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    trnasferBill?: string
+    AND?: FeedStockTransferWhereInput | FeedStockTransferWhereInput[]
+    OR?: FeedStockTransferWhereInput[]
+    NOT?: FeedStockTransferWhereInput | FeedStockTransferWhereInput[]
+    fromDepot?: StringFilter<"FeedStockTransfer"> | string
+    toDepot?: StringFilter<"FeedStockTransfer"> | string
+    transerFerDate?: StringFilter<"FeedStockTransfer"> | string
+    createDate?: StringFilter<"FeedStockTransfer"> | string
+    createAt?: DateTimeNullableFilter<"FeedStockTransfer"> | Date | string | null
+    updateAt?: DateTimeFilter<"FeedStockTransfer"> | Date | string
+    depotId?: StringNullableFilter<"FeedStockTransfer"> | string | null
+    transferDepot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    reciveDepot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    transferFeedItem?: TransferFeedItemListRelationFilter
+  }, "id" | "trnasferBill">
+
+  export type FeedStockTransferOrderByWithAggregationInput = {
+    id?: SortOrder
+    fromDepot?: SortOrder
+    toDepot?: SortOrder
+    transerFerDate?: SortOrder
+    createDate?: SortOrder
+    trnasferBill?: SortOrder
+    createAt?: SortOrderInput | SortOrder
+    updateAt?: SortOrder
+    depotId?: SortOrderInput | SortOrder
+    _count?: FeedStockTransferCountOrderByAggregateInput
+    _max?: FeedStockTransferMaxOrderByAggregateInput
+    _min?: FeedStockTransferMinOrderByAggregateInput
+  }
+
+  export type FeedStockTransferScalarWhereWithAggregatesInput = {
+    AND?: FeedStockTransferScalarWhereWithAggregatesInput | FeedStockTransferScalarWhereWithAggregatesInput[]
+    OR?: FeedStockTransferScalarWhereWithAggregatesInput[]
+    NOT?: FeedStockTransferScalarWhereWithAggregatesInput | FeedStockTransferScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
+    fromDepot?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
+    toDepot?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
+    transerFerDate?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
+    createDate?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
+    trnasferBill?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
+    createAt?: DateTimeNullableWithAggregatesFilter<"FeedStockTransfer"> | Date | string | null
+    updateAt?: DateTimeWithAggregatesFilter<"FeedStockTransfer"> | Date | string
+    depotId?: StringNullableWithAggregatesFilter<"FeedStockTransfer"> | string | null
+  }
+
+  export type TransferFeedItemWhereInput = {
+    AND?: TransferFeedItemWhereInput | TransferFeedItemWhereInput[]
+    OR?: TransferFeedItemWhereInput[]
+    NOT?: TransferFeedItemWhereInput | TransferFeedItemWhereInput[]
+    id?: StringFilter<"TransferFeedItem"> | string
+    feedName?: StringFilter<"TransferFeedItem"> | string
+    createDate?: StringFilter<"TransferFeedItem"> | string
+    quntity?: StringFilter<"TransferFeedItem"> | string
+    tansferId?: StringFilter<"TransferFeedItem"> | string
+    createdAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
+    updateAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
+    feed?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
+    feedStckTranfer?: XOR<FeedStockTransferScalarRelationFilter, FeedStockTransferWhereInput>
+  }
+
+  export type TransferFeedItemOrderByWithRelationInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    createDate?: SortOrder
+    quntity?: SortOrder
+    tansferId?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+    feed?: FeedNameCategoryOrderByWithRelationInput
+    feedStckTranfer?: FeedStockTransferOrderByWithRelationInput
+  }
+
+  export type TransferFeedItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TransferFeedItemWhereInput | TransferFeedItemWhereInput[]
+    OR?: TransferFeedItemWhereInput[]
+    NOT?: TransferFeedItemWhereInput | TransferFeedItemWhereInput[]
+    feedName?: StringFilter<"TransferFeedItem"> | string
+    createDate?: StringFilter<"TransferFeedItem"> | string
+    quntity?: StringFilter<"TransferFeedItem"> | string
+    tansferId?: StringFilter<"TransferFeedItem"> | string
+    createdAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
+    updateAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
+    feed?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
+    feedStckTranfer?: XOR<FeedStockTransferScalarRelationFilter, FeedStockTransferWhereInput>
+  }, "id">
+
+  export type TransferFeedItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    createDate?: SortOrder
+    quntity?: SortOrder
+    tansferId?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+    _count?: TransferFeedItemCountOrderByAggregateInput
+    _max?: TransferFeedItemMaxOrderByAggregateInput
+    _min?: TransferFeedItemMinOrderByAggregateInput
+  }
+
+  export type TransferFeedItemScalarWhereWithAggregatesInput = {
+    AND?: TransferFeedItemScalarWhereWithAggregatesInput | TransferFeedItemScalarWhereWithAggregatesInput[]
+    OR?: TransferFeedItemScalarWhereWithAggregatesInput[]
+    NOT?: TransferFeedItemScalarWhereWithAggregatesInput | TransferFeedItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TransferFeedItem"> | string
+    feedName?: StringWithAggregatesFilter<"TransferFeedItem"> | string
+    createDate?: StringWithAggregatesFilter<"TransferFeedItem"> | string
+    quntity?: StringWithAggregatesFilter<"TransferFeedItem"> | string
+    tansferId?: StringWithAggregatesFilter<"TransferFeedItem"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"TransferFeedItem"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"TransferFeedItem"> | Date | string
   }
 
   export type AllGenericMedicinWhereInput = {
@@ -25107,7 +29164,7 @@ export namespace Prisma {
     OR?: StockTransferWhereInput[]
     NOT?: StockTransferWhereInput | StockTransferWhereInput[]
     id?: StringFilter<"StockTransfer"> | string
-    fromBranchCode?: StringFilter<"StockTransfer"> | string
+    FromDepotName?: StringFilter<"StockTransfer"> | string
     toBranchCode?: StringFilter<"StockTransfer"> | string
     genericName?: StringFilter<"StockTransfer"> | string
     medicineName?: StringFilter<"StockTransfer"> | string
@@ -25119,7 +29176,7 @@ export namespace Prisma {
 
   export type StockTransferOrderByWithRelationInput = {
     id?: SortOrder
-    fromBranchCode?: SortOrder
+    FromDepotName?: SortOrder
     toBranchCode?: SortOrder
     genericName?: SortOrder
     medicineName?: SortOrder
@@ -25134,7 +29191,7 @@ export namespace Prisma {
     AND?: StockTransferWhereInput | StockTransferWhereInput[]
     OR?: StockTransferWhereInput[]
     NOT?: StockTransferWhereInput | StockTransferWhereInput[]
-    fromBranchCode?: StringFilter<"StockTransfer"> | string
+    FromDepotName?: StringFilter<"StockTransfer"> | string
     toBranchCode?: StringFilter<"StockTransfer"> | string
     genericName?: StringFilter<"StockTransfer"> | string
     medicineName?: StringFilter<"StockTransfer"> | string
@@ -25146,7 +29203,7 @@ export namespace Prisma {
 
   export type StockTransferOrderByWithAggregationInput = {
     id?: SortOrder
-    fromBranchCode?: SortOrder
+    FromDepotName?: SortOrder
     toBranchCode?: SortOrder
     genericName?: SortOrder
     medicineName?: SortOrder
@@ -25166,7 +29223,7 @@ export namespace Prisma {
     OR?: StockTransferScalarWhereWithAggregatesInput[]
     NOT?: StockTransferScalarWhereWithAggregatesInput | StockTransferScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"StockTransfer"> | string
-    fromBranchCode?: StringWithAggregatesFilter<"StockTransfer"> | string
+    FromDepotName?: StringWithAggregatesFilter<"StockTransfer"> | string
     toBranchCode?: StringWithAggregatesFilter<"StockTransfer"> | string
     genericName?: StringWithAggregatesFilter<"StockTransfer"> | string
     medicineName?: StringWithAggregatesFilter<"StockTransfer"> | string
@@ -25271,13 +29328,13 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
-    feed?: FeedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateInput = {
@@ -25290,13 +29347,13 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
-    feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUpdateInput = {
@@ -25309,13 +29366,13 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
-    feed?: FeedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateInput = {
@@ -25328,13 +29385,13 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
-    feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchCreateManyInput = {
@@ -25365,6 +29422,81 @@ export namespace Prisma {
     createDate?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DepotCreateInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    feedStock?: FeedStockCreateNestedManyWithoutDepotInput
+    sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
+  }
+
+  export type DepotUncheckedCreateInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    feedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
+    sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
+  }
+
+  export type DepotUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedStock?: FeedStockUpdateManyWithoutDepotNestedInput
+    sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
+  }
+
+  export type DepotUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
+    sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
+  }
+
+  export type DepotCreateManyInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+  }
+
+  export type DepotUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DepotUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FarmerCreateInput = {
@@ -26179,7 +30311,8 @@ export namespace Prisma {
     feedCodeNumber: number
     createdAt: Date | string
     updatedAt?: Date | string
-    feeds?: FeedCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
+    transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedInput
   }
 
   export type FeedNameCategoryUncheckedCreateInput = {
@@ -26188,7 +30321,8 @@ export namespace Prisma {
     feedCodeNumber: number
     createdAt: Date | string
     updatedAt?: Date | string
-    feeds?: FeedUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedInput
   }
 
   export type FeedNameCategoryUpdateInput = {
@@ -26197,7 +30331,8 @@ export namespace Prisma {
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    feeds?: FeedUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
+    transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedNestedInput
   }
 
   export type FeedNameCategoryUncheckedUpdateInput = {
@@ -26206,7 +30341,8 @@ export namespace Prisma {
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    feeds?: FeedUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedNestedInput
   }
 
   export type FeedNameCategoryCreateManyInput = {
@@ -26233,65 +30369,225 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FeedCreateInput = {
+  export type FeedStockCreateInput = {
     id?: string
     stock: number
     createdAt: Date | string
     updatedAt?: Date | string
-    feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedsInput
-    branch?: BranchCreateNestedOneWithoutFeedInput
+    feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedStockInput
+    depot: DepotCreateNestedOneWithoutFeedStockInput
+    Branch?: BranchCreateNestedOneWithoutFeedStockInput
   }
 
-  export type FeedUncheckedCreateInput = {
-    id?: string
-    feedName: string
-    stock: number
-    branchCode?: string | null
-    createdAt: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type FeedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedsNestedInput
-    branch?: BranchUpdateOneWithoutFeedNestedInput
-  }
-
-  export type FeedUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    feedName?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    branchCode?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type FeedCreateManyInput = {
+  export type FeedStockUncheckedCreateInput = {
     id?: string
     feedName: string
     stock: number
-    branchCode?: string | null
+    depotName: string
     createdAt: Date | string
     updatedAt?: Date | string
+    branchId?: string | null
   }
 
-  export type FeedUpdateManyMutationInput = {
+  export type FeedStockUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     stock?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedStockNestedInput
+    depot?: DepotUpdateOneRequiredWithoutFeedStockNestedInput
+    Branch?: BranchUpdateOneWithoutFeedStockNestedInput
   }
 
-  export type FeedUncheckedUpdateManyInput = {
+  export type FeedStockUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     stock?: IntFieldUpdateOperationsInput | number
-    branchCode?: NullableStringFieldUpdateOperationsInput | string | null
+    depotName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branchId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FeedStockCreateManyInput = {
+    id?: string
+    feedName: string
+    stock: number
+    depotName: string
+    createdAt: Date | string
+    updatedAt?: Date | string
+    branchId?: string | null
+  }
+
+  export type FeedStockUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    depotName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branchId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FeedStockTransferCreateInput = {
+    id?: string
+    transerFerDate: string
+    createDate: string
+    trnasferBill: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    depotId?: string | null
+    transferDepot: DepotCreateNestedOneWithoutSentTransfersInput
+    reciveDepot: DepotCreateNestedOneWithoutReceivedTransfersInput
+    transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedStckTranferInput
+  }
+
+  export type FeedStockTransferUncheckedCreateInput = {
+    id?: string
+    fromDepot: string
+    toDepot: string
+    transerFerDate: string
+    createDate: string
+    trnasferBill: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    depotId?: string | null
+    transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedStckTranferInput
+  }
+
+  export type FeedStockTransferUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    transerFerDate?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    trnasferBill?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depotId?: NullableStringFieldUpdateOperationsInput | string | null
+    transferDepot?: DepotUpdateOneRequiredWithoutSentTransfersNestedInput
+    reciveDepot?: DepotUpdateOneRequiredWithoutReceivedTransfersNestedInput
+    transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedStckTranferNestedInput
+  }
+
+  export type FeedStockTransferUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDepot?: StringFieldUpdateOperationsInput | string
+    toDepot?: StringFieldUpdateOperationsInput | string
+    transerFerDate?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    trnasferBill?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depotId?: NullableStringFieldUpdateOperationsInput | string | null
+    transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedStckTranferNestedInput
+  }
+
+  export type FeedStockTransferCreateManyInput = {
+    id?: string
+    fromDepot: string
+    toDepot: string
+    transerFerDate: string
+    createDate: string
+    trnasferBill: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    depotId?: string | null
+  }
+
+  export type FeedStockTransferUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    transerFerDate?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    trnasferBill?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depotId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FeedStockTransferUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDepot?: StringFieldUpdateOperationsInput | string
+    toDepot?: StringFieldUpdateOperationsInput | string
+    transerFerDate?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    trnasferBill?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depotId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TransferFeedItemCreateInput = {
+    id?: string
+    createDate: string
+    quntity: string
+    createdAt?: Date | string
+    updateAt?: Date | string
+    feed: FeedNameCategoryCreateNestedOneWithoutTransferFeedItemInput
+    feedStckTranfer: FeedStockTransferCreateNestedOneWithoutTransferFeedItemInput
+  }
+
+  export type TransferFeedItemUncheckedCreateInput = {
+    id?: string
+    feedName: string
+    createDate: string
+    quntity: string
+    tansferId: string
+    createdAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type TransferFeedItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    quntity?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feed?: FeedNameCategoryUpdateOneRequiredWithoutTransferFeedItemNestedInput
+    feedStckTranfer?: FeedStockTransferUpdateOneRequiredWithoutTransferFeedItemNestedInput
+  }
+
+  export type TransferFeedItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    quntity?: StringFieldUpdateOperationsInput | string
+    tansferId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferFeedItemCreateManyInput = {
+    id?: string
+    feedName: string
+    createDate: string
+    quntity: string
+    tansferId: string
+    createdAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type TransferFeedItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    quntity?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferFeedItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    quntity?: StringFieldUpdateOperationsInput | string
+    tansferId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AllGenericMedicinCreateInput = {
@@ -26771,7 +31067,7 @@ export namespace Prisma {
 
   export type StockTransferCreateInput = {
     id?: string
-    fromBranchCode: string
+    FromDepotName: string
     toBranchCode: string
     genericName: string
     medicineName: string
@@ -26783,7 +31079,7 @@ export namespace Prisma {
 
   export type StockTransferUncheckedCreateInput = {
     id?: string
-    fromBranchCode: string
+    FromDepotName: string
     toBranchCode: string
     genericName: string
     medicineName: string
@@ -26795,7 +31091,7 @@ export namespace Prisma {
 
   export type StockTransferUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fromBranchCode?: StringFieldUpdateOperationsInput | string
+    FromDepotName?: StringFieldUpdateOperationsInput | string
     toBranchCode?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     medicineName?: StringFieldUpdateOperationsInput | string
@@ -26807,7 +31103,7 @@ export namespace Prisma {
 
   export type StockTransferUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fromBranchCode?: StringFieldUpdateOperationsInput | string
+    FromDepotName?: StringFieldUpdateOperationsInput | string
     toBranchCode?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     medicineName?: StringFieldUpdateOperationsInput | string
@@ -26819,7 +31115,7 @@ export namespace Prisma {
 
   export type StockTransferCreateManyInput = {
     id?: string
-    fromBranchCode: string
+    FromDepotName: string
     toBranchCode: string
     genericName: string
     medicineName: string
@@ -26831,7 +31127,7 @@ export namespace Prisma {
 
   export type StockTransferUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fromBranchCode?: StringFieldUpdateOperationsInput | string
+    FromDepotName?: StringFieldUpdateOperationsInput | string
     toBranchCode?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     medicineName?: StringFieldUpdateOperationsInput | string
@@ -26843,7 +31139,7 @@ export namespace Prisma {
 
   export type StockTransferUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fromBranchCode?: StringFieldUpdateOperationsInput | string
+    FromDepotName?: StringFieldUpdateOperationsInput | string
     toBranchCode?: StringFieldUpdateOperationsInput | string
     genericName?: StringFieldUpdateOperationsInput | string
     medicineName?: StringFieldUpdateOperationsInput | string
@@ -26998,12 +31294,6 @@ export namespace Prisma {
     none?: FlockWhereInput
   }
 
-  export type FeedListRelationFilter = {
-    every?: FeedWhereInput
-    some?: FeedWhereInput
-    none?: FeedWhereInput
-  }
-
   export type MedicineStockListRelationFilter = {
     every?: MedicineStockWhereInput
     some?: MedicineStockWhereInput
@@ -27040,6 +31330,12 @@ export namespace Prisma {
     none?: BranchEmployeeHistoryWhereInput
   }
 
+  export type FeedStockListRelationFilter = {
+    every?: FeedStockWhereInput
+    some?: FeedStockWhereInput
+    none?: FeedStockWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -27050,10 +31346,6 @@ export namespace Prisma {
   }
 
   export type FlockOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type FeedOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -27078,6 +31370,10 @@ export namespace Prisma {
   }
 
   export type BranchEmployeeHistoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FeedStockOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -27165,6 +31461,43 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type FeedStockTransferListRelationFilter = {
+    every?: FeedStockTransferWhereInput
+    some?: FeedStockTransferWhereInput
+    none?: FeedStockTransferWhereInput
+  }
+
+  export type FeedStockTransferOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DepotCountOrderByAggregateInput = {
+    id?: SortOrder
+    locationName?: SortOrder
+    depotName?: SortOrder
+    createDate?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type DepotMaxOrderByAggregateInput = {
+    id?: SortOrder
+    locationName?: SortOrder
+    depotName?: SortOrder
+    createDate?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type DepotMinOrderByAggregateInput = {
+    id?: SortOrder
+    locationName?: SortOrder
+    depotName?: SortOrder
+    createDate?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -27801,6 +32134,16 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
+  export type TransferFeedItemListRelationFilter = {
+    every?: TransferFeedItemWhereInput
+    some?: TransferFeedItemWhereInput
+    none?: TransferFeedItemWhereInput
+  }
+
+  export type TransferFeedItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type FeedNameCategoryCountOrderByAggregateInput = {
     id?: SortOrder
     feedName?: SortOrder
@@ -27838,39 +32181,118 @@ export namespace Prisma {
     isNot?: FeedNameCategoryWhereInput
   }
 
-  export type FeedCountOrderByAggregateInput = {
+  export type DepotScalarRelationFilter = {
+    is?: DepotWhereInput
+    isNot?: DepotWhereInput
+  }
+
+  export type FeedStockCountOrderByAggregateInput = {
     id?: SortOrder
     feedName?: SortOrder
     stock?: SortOrder
-    branchCode?: SortOrder
+    depotName?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    branchId?: SortOrder
   }
 
-  export type FeedAvgOrderByAggregateInput = {
+  export type FeedStockAvgOrderByAggregateInput = {
     stock?: SortOrder
   }
 
-  export type FeedMaxOrderByAggregateInput = {
+  export type FeedStockMaxOrderByAggregateInput = {
     id?: SortOrder
     feedName?: SortOrder
     stock?: SortOrder
-    branchCode?: SortOrder
+    depotName?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    branchId?: SortOrder
   }
 
-  export type FeedMinOrderByAggregateInput = {
+  export type FeedStockMinOrderByAggregateInput = {
     id?: SortOrder
     feedName?: SortOrder
     stock?: SortOrder
-    branchCode?: SortOrder
+    depotName?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    branchId?: SortOrder
   }
 
-  export type FeedSumOrderByAggregateInput = {
+  export type FeedStockSumOrderByAggregateInput = {
     stock?: SortOrder
+  }
+
+  export type FeedStockTransferCountOrderByAggregateInput = {
+    id?: SortOrder
+    fromDepot?: SortOrder
+    toDepot?: SortOrder
+    transerFerDate?: SortOrder
+    createDate?: SortOrder
+    trnasferBill?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    depotId?: SortOrder
+  }
+
+  export type FeedStockTransferMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fromDepot?: SortOrder
+    toDepot?: SortOrder
+    transerFerDate?: SortOrder
+    createDate?: SortOrder
+    trnasferBill?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    depotId?: SortOrder
+  }
+
+  export type FeedStockTransferMinOrderByAggregateInput = {
+    id?: SortOrder
+    fromDepot?: SortOrder
+    toDepot?: SortOrder
+    transerFerDate?: SortOrder
+    createDate?: SortOrder
+    trnasferBill?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    depotId?: SortOrder
+  }
+
+  export type FeedStockTransferScalarRelationFilter = {
+    is?: FeedStockTransferWhereInput
+    isNot?: FeedStockTransferWhereInput
+  }
+
+  export type TransferFeedItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    createDate?: SortOrder
+    quntity?: SortOrder
+    tansferId?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type TransferFeedItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    createDate?: SortOrder
+    quntity?: SortOrder
+    tansferId?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type TransferFeedItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    createDate?: SortOrder
+    quntity?: SortOrder
+    tansferId?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
   }
 
   export type MedicineNameAddListRelationFilter = {
@@ -28198,7 +32620,7 @@ export namespace Prisma {
 
   export type StockTransferCountOrderByAggregateInput = {
     id?: SortOrder
-    fromBranchCode?: SortOrder
+    FromDepotName?: SortOrder
     toBranchCode?: SortOrder
     genericName?: SortOrder
     medicineName?: SortOrder
@@ -28214,7 +32636,7 @@ export namespace Prisma {
 
   export type StockTransferMaxOrderByAggregateInput = {
     id?: SortOrder
-    fromBranchCode?: SortOrder
+    FromDepotName?: SortOrder
     toBranchCode?: SortOrder
     genericName?: SortOrder
     medicineName?: SortOrder
@@ -28226,7 +32648,7 @@ export namespace Prisma {
 
   export type StockTransferMinOrderByAggregateInput = {
     id?: SortOrder
-    fromBranchCode?: SortOrder
+    FromDepotName?: SortOrder
     toBranchCode?: SortOrder
     genericName?: SortOrder
     medicineName?: SortOrder
@@ -28305,13 +32727,6 @@ export namespace Prisma {
     connect?: FlockWhereUniqueInput | FlockWhereUniqueInput[]
   }
 
-  export type FeedCreateNestedManyWithoutBranchInput = {
-    create?: XOR<FeedCreateWithoutBranchInput, FeedUncheckedCreateWithoutBranchInput> | FeedCreateWithoutBranchInput[] | FeedUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: FeedCreateOrConnectWithoutBranchInput | FeedCreateOrConnectWithoutBranchInput[]
-    createMany?: FeedCreateManyBranchInputEnvelope
-    connect?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-  }
-
   export type MedicineStockCreateNestedManyWithoutBranchInput = {
     create?: XOR<MedicineStockCreateWithoutBranchInput, MedicineStockUncheckedCreateWithoutBranchInput> | MedicineStockCreateWithoutBranchInput[] | MedicineStockUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: MedicineStockCreateOrConnectWithoutBranchInput | MedicineStockCreateOrConnectWithoutBranchInput[]
@@ -28354,6 +32769,13 @@ export namespace Prisma {
     connect?: BranchEmployeeHistoryWhereUniqueInput | BranchEmployeeHistoryWhereUniqueInput[]
   }
 
+  export type FeedStockCreateNestedManyWithoutBranchInput = {
+    create?: XOR<FeedStockCreateWithoutBranchInput, FeedStockUncheckedCreateWithoutBranchInput> | FeedStockCreateWithoutBranchInput[] | FeedStockUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutBranchInput | FeedStockCreateOrConnectWithoutBranchInput[]
+    createMany?: FeedStockCreateManyBranchInputEnvelope
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+  }
+
   export type FarmerUncheckedCreateNestedManyWithoutBranchInput = {
     create?: XOR<FarmerCreateWithoutBranchInput, FarmerUncheckedCreateWithoutBranchInput> | FarmerCreateWithoutBranchInput[] | FarmerUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: FarmerCreateOrConnectWithoutBranchInput | FarmerCreateOrConnectWithoutBranchInput[]
@@ -28366,13 +32788,6 @@ export namespace Prisma {
     connectOrCreate?: FlockCreateOrConnectWithoutBranchInput | FlockCreateOrConnectWithoutBranchInput[]
     createMany?: FlockCreateManyBranchInputEnvelope
     connect?: FlockWhereUniqueInput | FlockWhereUniqueInput[]
-  }
-
-  export type FeedUncheckedCreateNestedManyWithoutBranchInput = {
-    create?: XOR<FeedCreateWithoutBranchInput, FeedUncheckedCreateWithoutBranchInput> | FeedCreateWithoutBranchInput[] | FeedUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: FeedCreateOrConnectWithoutBranchInput | FeedCreateOrConnectWithoutBranchInput[]
-    createMany?: FeedCreateManyBranchInputEnvelope
-    connect?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
   }
 
   export type MedicineStockUncheckedCreateNestedManyWithoutBranchInput = {
@@ -28417,6 +32832,13 @@ export namespace Prisma {
     connect?: BranchEmployeeHistoryWhereUniqueInput | BranchEmployeeHistoryWhereUniqueInput[]
   }
 
+  export type FeedStockUncheckedCreateNestedManyWithoutBranchInput = {
+    create?: XOR<FeedStockCreateWithoutBranchInput, FeedStockUncheckedCreateWithoutBranchInput> | FeedStockCreateWithoutBranchInput[] | FeedStockUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutBranchInput | FeedStockCreateOrConnectWithoutBranchInput[]
+    createMany?: FeedStockCreateManyBranchInputEnvelope
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -28459,20 +32881,6 @@ export namespace Prisma {
     update?: FlockUpdateWithWhereUniqueWithoutBranchInput | FlockUpdateWithWhereUniqueWithoutBranchInput[]
     updateMany?: FlockUpdateManyWithWhereWithoutBranchInput | FlockUpdateManyWithWhereWithoutBranchInput[]
     deleteMany?: FlockScalarWhereInput | FlockScalarWhereInput[]
-  }
-
-  export type FeedUpdateManyWithoutBranchNestedInput = {
-    create?: XOR<FeedCreateWithoutBranchInput, FeedUncheckedCreateWithoutBranchInput> | FeedCreateWithoutBranchInput[] | FeedUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: FeedCreateOrConnectWithoutBranchInput | FeedCreateOrConnectWithoutBranchInput[]
-    upsert?: FeedUpsertWithWhereUniqueWithoutBranchInput | FeedUpsertWithWhereUniqueWithoutBranchInput[]
-    createMany?: FeedCreateManyBranchInputEnvelope
-    set?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    disconnect?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    delete?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    connect?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    update?: FeedUpdateWithWhereUniqueWithoutBranchInput | FeedUpdateWithWhereUniqueWithoutBranchInput[]
-    updateMany?: FeedUpdateManyWithWhereWithoutBranchInput | FeedUpdateManyWithWhereWithoutBranchInput[]
-    deleteMany?: FeedScalarWhereInput | FeedScalarWhereInput[]
   }
 
   export type MedicineStockUpdateManyWithoutBranchNestedInput = {
@@ -28559,6 +32967,20 @@ export namespace Prisma {
     deleteMany?: BranchEmployeeHistoryScalarWhereInput | BranchEmployeeHistoryScalarWhereInput[]
   }
 
+  export type FeedStockUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<FeedStockCreateWithoutBranchInput, FeedStockUncheckedCreateWithoutBranchInput> | FeedStockCreateWithoutBranchInput[] | FeedStockUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutBranchInput | FeedStockCreateOrConnectWithoutBranchInput[]
+    upsert?: FeedStockUpsertWithWhereUniqueWithoutBranchInput | FeedStockUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: FeedStockCreateManyBranchInputEnvelope
+    set?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    disconnect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    delete?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    update?: FeedStockUpdateWithWhereUniqueWithoutBranchInput | FeedStockUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: FeedStockUpdateManyWithWhereWithoutBranchInput | FeedStockUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
+  }
+
   export type FarmerUncheckedUpdateManyWithoutBranchNestedInput = {
     create?: XOR<FarmerCreateWithoutBranchInput, FarmerUncheckedCreateWithoutBranchInput> | FarmerCreateWithoutBranchInput[] | FarmerUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: FarmerCreateOrConnectWithoutBranchInput | FarmerCreateOrConnectWithoutBranchInput[]
@@ -28585,20 +33007,6 @@ export namespace Prisma {
     update?: FlockUpdateWithWhereUniqueWithoutBranchInput | FlockUpdateWithWhereUniqueWithoutBranchInput[]
     updateMany?: FlockUpdateManyWithWhereWithoutBranchInput | FlockUpdateManyWithWhereWithoutBranchInput[]
     deleteMany?: FlockScalarWhereInput | FlockScalarWhereInput[]
-  }
-
-  export type FeedUncheckedUpdateManyWithoutBranchNestedInput = {
-    create?: XOR<FeedCreateWithoutBranchInput, FeedUncheckedCreateWithoutBranchInput> | FeedCreateWithoutBranchInput[] | FeedUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: FeedCreateOrConnectWithoutBranchInput | FeedCreateOrConnectWithoutBranchInput[]
-    upsert?: FeedUpsertWithWhereUniqueWithoutBranchInput | FeedUpsertWithWhereUniqueWithoutBranchInput[]
-    createMany?: FeedCreateManyBranchInputEnvelope
-    set?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    disconnect?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    delete?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    connect?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    update?: FeedUpdateWithWhereUniqueWithoutBranchInput | FeedUpdateWithWhereUniqueWithoutBranchInput[]
-    updateMany?: FeedUpdateManyWithWhereWithoutBranchInput | FeedUpdateManyWithWhereWithoutBranchInput[]
-    deleteMany?: FeedScalarWhereInput | FeedScalarWhereInput[]
   }
 
   export type MedicineStockUncheckedUpdateManyWithoutBranchNestedInput = {
@@ -28683,6 +33091,146 @@ export namespace Prisma {
     update?: BranchEmployeeHistoryUpdateWithWhereUniqueWithoutBranchInput | BranchEmployeeHistoryUpdateWithWhereUniqueWithoutBranchInput[]
     updateMany?: BranchEmployeeHistoryUpdateManyWithWhereWithoutBranchInput | BranchEmployeeHistoryUpdateManyWithWhereWithoutBranchInput[]
     deleteMany?: BranchEmployeeHistoryScalarWhereInput | BranchEmployeeHistoryScalarWhereInput[]
+  }
+
+  export type FeedStockUncheckedUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<FeedStockCreateWithoutBranchInput, FeedStockUncheckedCreateWithoutBranchInput> | FeedStockCreateWithoutBranchInput[] | FeedStockUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutBranchInput | FeedStockCreateOrConnectWithoutBranchInput[]
+    upsert?: FeedStockUpsertWithWhereUniqueWithoutBranchInput | FeedStockUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: FeedStockCreateManyBranchInputEnvelope
+    set?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    disconnect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    delete?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    update?: FeedStockUpdateWithWhereUniqueWithoutBranchInput | FeedStockUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: FeedStockUpdateManyWithWhereWithoutBranchInput | FeedStockUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
+  }
+
+  export type FeedStockCreateNestedManyWithoutDepotInput = {
+    create?: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput> | FeedStockCreateWithoutDepotInput[] | FeedStockUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutDepotInput | FeedStockCreateOrConnectWithoutDepotInput[]
+    createMany?: FeedStockCreateManyDepotInputEnvelope
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+  }
+
+  export type FeedStockTransferCreateNestedManyWithoutTransferDepotInput = {
+    create?: XOR<FeedStockTransferCreateWithoutTransferDepotInput, FeedStockTransferUncheckedCreateWithoutTransferDepotInput> | FeedStockTransferCreateWithoutTransferDepotInput[] | FeedStockTransferUncheckedCreateWithoutTransferDepotInput[]
+    connectOrCreate?: FeedStockTransferCreateOrConnectWithoutTransferDepotInput | FeedStockTransferCreateOrConnectWithoutTransferDepotInput[]
+    createMany?: FeedStockTransferCreateManyTransferDepotInputEnvelope
+    connect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+  }
+
+  export type FeedStockTransferCreateNestedManyWithoutReciveDepotInput = {
+    create?: XOR<FeedStockTransferCreateWithoutReciveDepotInput, FeedStockTransferUncheckedCreateWithoutReciveDepotInput> | FeedStockTransferCreateWithoutReciveDepotInput[] | FeedStockTransferUncheckedCreateWithoutReciveDepotInput[]
+    connectOrCreate?: FeedStockTransferCreateOrConnectWithoutReciveDepotInput | FeedStockTransferCreateOrConnectWithoutReciveDepotInput[]
+    createMany?: FeedStockTransferCreateManyReciveDepotInputEnvelope
+    connect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+  }
+
+  export type FeedStockUncheckedCreateNestedManyWithoutDepotInput = {
+    create?: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput> | FeedStockCreateWithoutDepotInput[] | FeedStockUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutDepotInput | FeedStockCreateOrConnectWithoutDepotInput[]
+    createMany?: FeedStockCreateManyDepotInputEnvelope
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+  }
+
+  export type FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput = {
+    create?: XOR<FeedStockTransferCreateWithoutTransferDepotInput, FeedStockTransferUncheckedCreateWithoutTransferDepotInput> | FeedStockTransferCreateWithoutTransferDepotInput[] | FeedStockTransferUncheckedCreateWithoutTransferDepotInput[]
+    connectOrCreate?: FeedStockTransferCreateOrConnectWithoutTransferDepotInput | FeedStockTransferCreateOrConnectWithoutTransferDepotInput[]
+    createMany?: FeedStockTransferCreateManyTransferDepotInputEnvelope
+    connect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+  }
+
+  export type FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput = {
+    create?: XOR<FeedStockTransferCreateWithoutReciveDepotInput, FeedStockTransferUncheckedCreateWithoutReciveDepotInput> | FeedStockTransferCreateWithoutReciveDepotInput[] | FeedStockTransferUncheckedCreateWithoutReciveDepotInput[]
+    connectOrCreate?: FeedStockTransferCreateOrConnectWithoutReciveDepotInput | FeedStockTransferCreateOrConnectWithoutReciveDepotInput[]
+    createMany?: FeedStockTransferCreateManyReciveDepotInputEnvelope
+    connect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+  }
+
+  export type FeedStockUpdateManyWithoutDepotNestedInput = {
+    create?: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput> | FeedStockCreateWithoutDepotInput[] | FeedStockUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutDepotInput | FeedStockCreateOrConnectWithoutDepotInput[]
+    upsert?: FeedStockUpsertWithWhereUniqueWithoutDepotInput | FeedStockUpsertWithWhereUniqueWithoutDepotInput[]
+    createMany?: FeedStockCreateManyDepotInputEnvelope
+    set?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    disconnect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    delete?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    update?: FeedStockUpdateWithWhereUniqueWithoutDepotInput | FeedStockUpdateWithWhereUniqueWithoutDepotInput[]
+    updateMany?: FeedStockUpdateManyWithWhereWithoutDepotInput | FeedStockUpdateManyWithWhereWithoutDepotInput[]
+    deleteMany?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
+  }
+
+  export type FeedStockTransferUpdateManyWithoutTransferDepotNestedInput = {
+    create?: XOR<FeedStockTransferCreateWithoutTransferDepotInput, FeedStockTransferUncheckedCreateWithoutTransferDepotInput> | FeedStockTransferCreateWithoutTransferDepotInput[] | FeedStockTransferUncheckedCreateWithoutTransferDepotInput[]
+    connectOrCreate?: FeedStockTransferCreateOrConnectWithoutTransferDepotInput | FeedStockTransferCreateOrConnectWithoutTransferDepotInput[]
+    upsert?: FeedStockTransferUpsertWithWhereUniqueWithoutTransferDepotInput | FeedStockTransferUpsertWithWhereUniqueWithoutTransferDepotInput[]
+    createMany?: FeedStockTransferCreateManyTransferDepotInputEnvelope
+    set?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    disconnect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    delete?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    connect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    update?: FeedStockTransferUpdateWithWhereUniqueWithoutTransferDepotInput | FeedStockTransferUpdateWithWhereUniqueWithoutTransferDepotInput[]
+    updateMany?: FeedStockTransferUpdateManyWithWhereWithoutTransferDepotInput | FeedStockTransferUpdateManyWithWhereWithoutTransferDepotInput[]
+    deleteMany?: FeedStockTransferScalarWhereInput | FeedStockTransferScalarWhereInput[]
+  }
+
+  export type FeedStockTransferUpdateManyWithoutReciveDepotNestedInput = {
+    create?: XOR<FeedStockTransferCreateWithoutReciveDepotInput, FeedStockTransferUncheckedCreateWithoutReciveDepotInput> | FeedStockTransferCreateWithoutReciveDepotInput[] | FeedStockTransferUncheckedCreateWithoutReciveDepotInput[]
+    connectOrCreate?: FeedStockTransferCreateOrConnectWithoutReciveDepotInput | FeedStockTransferCreateOrConnectWithoutReciveDepotInput[]
+    upsert?: FeedStockTransferUpsertWithWhereUniqueWithoutReciveDepotInput | FeedStockTransferUpsertWithWhereUniqueWithoutReciveDepotInput[]
+    createMany?: FeedStockTransferCreateManyReciveDepotInputEnvelope
+    set?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    disconnect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    delete?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    connect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    update?: FeedStockTransferUpdateWithWhereUniqueWithoutReciveDepotInput | FeedStockTransferUpdateWithWhereUniqueWithoutReciveDepotInput[]
+    updateMany?: FeedStockTransferUpdateManyWithWhereWithoutReciveDepotInput | FeedStockTransferUpdateManyWithWhereWithoutReciveDepotInput[]
+    deleteMany?: FeedStockTransferScalarWhereInput | FeedStockTransferScalarWhereInput[]
+  }
+
+  export type FeedStockUncheckedUpdateManyWithoutDepotNestedInput = {
+    create?: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput> | FeedStockCreateWithoutDepotInput[] | FeedStockUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutDepotInput | FeedStockCreateOrConnectWithoutDepotInput[]
+    upsert?: FeedStockUpsertWithWhereUniqueWithoutDepotInput | FeedStockUpsertWithWhereUniqueWithoutDepotInput[]
+    createMany?: FeedStockCreateManyDepotInputEnvelope
+    set?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    disconnect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    delete?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    update?: FeedStockUpdateWithWhereUniqueWithoutDepotInput | FeedStockUpdateWithWhereUniqueWithoutDepotInput[]
+    updateMany?: FeedStockUpdateManyWithWhereWithoutDepotInput | FeedStockUpdateManyWithWhereWithoutDepotInput[]
+    deleteMany?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
+  }
+
+  export type FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput = {
+    create?: XOR<FeedStockTransferCreateWithoutTransferDepotInput, FeedStockTransferUncheckedCreateWithoutTransferDepotInput> | FeedStockTransferCreateWithoutTransferDepotInput[] | FeedStockTransferUncheckedCreateWithoutTransferDepotInput[]
+    connectOrCreate?: FeedStockTransferCreateOrConnectWithoutTransferDepotInput | FeedStockTransferCreateOrConnectWithoutTransferDepotInput[]
+    upsert?: FeedStockTransferUpsertWithWhereUniqueWithoutTransferDepotInput | FeedStockTransferUpsertWithWhereUniqueWithoutTransferDepotInput[]
+    createMany?: FeedStockTransferCreateManyTransferDepotInputEnvelope
+    set?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    disconnect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    delete?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    connect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    update?: FeedStockTransferUpdateWithWhereUniqueWithoutTransferDepotInput | FeedStockTransferUpdateWithWhereUniqueWithoutTransferDepotInput[]
+    updateMany?: FeedStockTransferUpdateManyWithWhereWithoutTransferDepotInput | FeedStockTransferUpdateManyWithWhereWithoutTransferDepotInput[]
+    deleteMany?: FeedStockTransferScalarWhereInput | FeedStockTransferScalarWhereInput[]
+  }
+
+  export type FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput = {
+    create?: XOR<FeedStockTransferCreateWithoutReciveDepotInput, FeedStockTransferUncheckedCreateWithoutReciveDepotInput> | FeedStockTransferCreateWithoutReciveDepotInput[] | FeedStockTransferUncheckedCreateWithoutReciveDepotInput[]
+    connectOrCreate?: FeedStockTransferCreateOrConnectWithoutReciveDepotInput | FeedStockTransferCreateOrConnectWithoutReciveDepotInput[]
+    upsert?: FeedStockTransferUpsertWithWhereUniqueWithoutReciveDepotInput | FeedStockTransferUpsertWithWhereUniqueWithoutReciveDepotInput[]
+    createMany?: FeedStockTransferCreateManyReciveDepotInputEnvelope
+    set?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    disconnect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    delete?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    connect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+    update?: FeedStockTransferUpdateWithWhereUniqueWithoutReciveDepotInput | FeedStockTransferUpdateWithWhereUniqueWithoutReciveDepotInput[]
+    updateMany?: FeedStockTransferUpdateManyWithWhereWithoutReciveDepotInput | FeedStockTransferUpdateManyWithWhereWithoutReciveDepotInput[]
+    deleteMany?: FeedStockTransferScalarWhereInput | FeedStockTransferScalarWhereInput[]
   }
 
   export type BranchCreateNestedOneWithoutFarmerInput = {
@@ -29293,76 +33841,230 @@ export namespace Prisma {
     update?: XOR<XOR<FarmerUpdateToOneWithWhereWithoutFlockReportInput, FarmerUpdateWithoutFlockReportInput>, FarmerUncheckedUpdateWithoutFlockReportInput>
   }
 
-  export type FeedCreateNestedManyWithoutFeedNameCategoryInput = {
-    create?: XOR<FeedCreateWithoutFeedNameCategoryInput, FeedUncheckedCreateWithoutFeedNameCategoryInput> | FeedCreateWithoutFeedNameCategoryInput[] | FeedUncheckedCreateWithoutFeedNameCategoryInput[]
-    connectOrCreate?: FeedCreateOrConnectWithoutFeedNameCategoryInput | FeedCreateOrConnectWithoutFeedNameCategoryInput[]
-    createMany?: FeedCreateManyFeedNameCategoryInputEnvelope
-    connect?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
+  export type FeedStockCreateNestedManyWithoutFeedNameCategoryInput = {
+    create?: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput> | FeedStockCreateWithoutFeedNameCategoryInput[] | FeedStockUncheckedCreateWithoutFeedNameCategoryInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutFeedNameCategoryInput | FeedStockCreateOrConnectWithoutFeedNameCategoryInput[]
+    createMany?: FeedStockCreateManyFeedNameCategoryInputEnvelope
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
   }
 
-  export type FeedUncheckedCreateNestedManyWithoutFeedNameCategoryInput = {
-    create?: XOR<FeedCreateWithoutFeedNameCategoryInput, FeedUncheckedCreateWithoutFeedNameCategoryInput> | FeedCreateWithoutFeedNameCategoryInput[] | FeedUncheckedCreateWithoutFeedNameCategoryInput[]
-    connectOrCreate?: FeedCreateOrConnectWithoutFeedNameCategoryInput | FeedCreateOrConnectWithoutFeedNameCategoryInput[]
-    createMany?: FeedCreateManyFeedNameCategoryInputEnvelope
-    connect?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
+  export type TransferFeedItemCreateNestedManyWithoutFeedInput = {
+    create?: XOR<TransferFeedItemCreateWithoutFeedInput, TransferFeedItemUncheckedCreateWithoutFeedInput> | TransferFeedItemCreateWithoutFeedInput[] | TransferFeedItemUncheckedCreateWithoutFeedInput[]
+    connectOrCreate?: TransferFeedItemCreateOrConnectWithoutFeedInput | TransferFeedItemCreateOrConnectWithoutFeedInput[]
+    createMany?: TransferFeedItemCreateManyFeedInputEnvelope
+    connect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
   }
 
-  export type FeedUpdateManyWithoutFeedNameCategoryNestedInput = {
-    create?: XOR<FeedCreateWithoutFeedNameCategoryInput, FeedUncheckedCreateWithoutFeedNameCategoryInput> | FeedCreateWithoutFeedNameCategoryInput[] | FeedUncheckedCreateWithoutFeedNameCategoryInput[]
-    connectOrCreate?: FeedCreateOrConnectWithoutFeedNameCategoryInput | FeedCreateOrConnectWithoutFeedNameCategoryInput[]
-    upsert?: FeedUpsertWithWhereUniqueWithoutFeedNameCategoryInput | FeedUpsertWithWhereUniqueWithoutFeedNameCategoryInput[]
-    createMany?: FeedCreateManyFeedNameCategoryInputEnvelope
-    set?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    disconnect?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    delete?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    connect?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    update?: FeedUpdateWithWhereUniqueWithoutFeedNameCategoryInput | FeedUpdateWithWhereUniqueWithoutFeedNameCategoryInput[]
-    updateMany?: FeedUpdateManyWithWhereWithoutFeedNameCategoryInput | FeedUpdateManyWithWhereWithoutFeedNameCategoryInput[]
-    deleteMany?: FeedScalarWhereInput | FeedScalarWhereInput[]
+  export type FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput = {
+    create?: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput> | FeedStockCreateWithoutFeedNameCategoryInput[] | FeedStockUncheckedCreateWithoutFeedNameCategoryInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutFeedNameCategoryInput | FeedStockCreateOrConnectWithoutFeedNameCategoryInput[]
+    createMany?: FeedStockCreateManyFeedNameCategoryInputEnvelope
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
   }
 
-  export type FeedUncheckedUpdateManyWithoutFeedNameCategoryNestedInput = {
-    create?: XOR<FeedCreateWithoutFeedNameCategoryInput, FeedUncheckedCreateWithoutFeedNameCategoryInput> | FeedCreateWithoutFeedNameCategoryInput[] | FeedUncheckedCreateWithoutFeedNameCategoryInput[]
-    connectOrCreate?: FeedCreateOrConnectWithoutFeedNameCategoryInput | FeedCreateOrConnectWithoutFeedNameCategoryInput[]
-    upsert?: FeedUpsertWithWhereUniqueWithoutFeedNameCategoryInput | FeedUpsertWithWhereUniqueWithoutFeedNameCategoryInput[]
-    createMany?: FeedCreateManyFeedNameCategoryInputEnvelope
-    set?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    disconnect?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    delete?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    connect?: FeedWhereUniqueInput | FeedWhereUniqueInput[]
-    update?: FeedUpdateWithWhereUniqueWithoutFeedNameCategoryInput | FeedUpdateWithWhereUniqueWithoutFeedNameCategoryInput[]
-    updateMany?: FeedUpdateManyWithWhereWithoutFeedNameCategoryInput | FeedUpdateManyWithWhereWithoutFeedNameCategoryInput[]
-    deleteMany?: FeedScalarWhereInput | FeedScalarWhereInput[]
+  export type TransferFeedItemUncheckedCreateNestedManyWithoutFeedInput = {
+    create?: XOR<TransferFeedItemCreateWithoutFeedInput, TransferFeedItemUncheckedCreateWithoutFeedInput> | TransferFeedItemCreateWithoutFeedInput[] | TransferFeedItemUncheckedCreateWithoutFeedInput[]
+    connectOrCreate?: TransferFeedItemCreateOrConnectWithoutFeedInput | TransferFeedItemCreateOrConnectWithoutFeedInput[]
+    createMany?: TransferFeedItemCreateManyFeedInputEnvelope
+    connect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
   }
 
-  export type FeedNameCategoryCreateNestedOneWithoutFeedsInput = {
-    create?: XOR<FeedNameCategoryCreateWithoutFeedsInput, FeedNameCategoryUncheckedCreateWithoutFeedsInput>
-    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutFeedsInput
+  export type FeedStockUpdateManyWithoutFeedNameCategoryNestedInput = {
+    create?: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput> | FeedStockCreateWithoutFeedNameCategoryInput[] | FeedStockUncheckedCreateWithoutFeedNameCategoryInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutFeedNameCategoryInput | FeedStockCreateOrConnectWithoutFeedNameCategoryInput[]
+    upsert?: FeedStockUpsertWithWhereUniqueWithoutFeedNameCategoryInput | FeedStockUpsertWithWhereUniqueWithoutFeedNameCategoryInput[]
+    createMany?: FeedStockCreateManyFeedNameCategoryInputEnvelope
+    set?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    disconnect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    delete?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    update?: FeedStockUpdateWithWhereUniqueWithoutFeedNameCategoryInput | FeedStockUpdateWithWhereUniqueWithoutFeedNameCategoryInput[]
+    updateMany?: FeedStockUpdateManyWithWhereWithoutFeedNameCategoryInput | FeedStockUpdateManyWithWhereWithoutFeedNameCategoryInput[]
+    deleteMany?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
+  }
+
+  export type TransferFeedItemUpdateManyWithoutFeedNestedInput = {
+    create?: XOR<TransferFeedItemCreateWithoutFeedInput, TransferFeedItemUncheckedCreateWithoutFeedInput> | TransferFeedItemCreateWithoutFeedInput[] | TransferFeedItemUncheckedCreateWithoutFeedInput[]
+    connectOrCreate?: TransferFeedItemCreateOrConnectWithoutFeedInput | TransferFeedItemCreateOrConnectWithoutFeedInput[]
+    upsert?: TransferFeedItemUpsertWithWhereUniqueWithoutFeedInput | TransferFeedItemUpsertWithWhereUniqueWithoutFeedInput[]
+    createMany?: TransferFeedItemCreateManyFeedInputEnvelope
+    set?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    disconnect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    delete?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    connect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    update?: TransferFeedItemUpdateWithWhereUniqueWithoutFeedInput | TransferFeedItemUpdateWithWhereUniqueWithoutFeedInput[]
+    updateMany?: TransferFeedItemUpdateManyWithWhereWithoutFeedInput | TransferFeedItemUpdateManyWithWhereWithoutFeedInput[]
+    deleteMany?: TransferFeedItemScalarWhereInput | TransferFeedItemScalarWhereInput[]
+  }
+
+  export type FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput = {
+    create?: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput> | FeedStockCreateWithoutFeedNameCategoryInput[] | FeedStockUncheckedCreateWithoutFeedNameCategoryInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutFeedNameCategoryInput | FeedStockCreateOrConnectWithoutFeedNameCategoryInput[]
+    upsert?: FeedStockUpsertWithWhereUniqueWithoutFeedNameCategoryInput | FeedStockUpsertWithWhereUniqueWithoutFeedNameCategoryInput[]
+    createMany?: FeedStockCreateManyFeedNameCategoryInputEnvelope
+    set?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    disconnect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    delete?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    update?: FeedStockUpdateWithWhereUniqueWithoutFeedNameCategoryInput | FeedStockUpdateWithWhereUniqueWithoutFeedNameCategoryInput[]
+    updateMany?: FeedStockUpdateManyWithWhereWithoutFeedNameCategoryInput | FeedStockUpdateManyWithWhereWithoutFeedNameCategoryInput[]
+    deleteMany?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
+  }
+
+  export type TransferFeedItemUncheckedUpdateManyWithoutFeedNestedInput = {
+    create?: XOR<TransferFeedItemCreateWithoutFeedInput, TransferFeedItemUncheckedCreateWithoutFeedInput> | TransferFeedItemCreateWithoutFeedInput[] | TransferFeedItemUncheckedCreateWithoutFeedInput[]
+    connectOrCreate?: TransferFeedItemCreateOrConnectWithoutFeedInput | TransferFeedItemCreateOrConnectWithoutFeedInput[]
+    upsert?: TransferFeedItemUpsertWithWhereUniqueWithoutFeedInput | TransferFeedItemUpsertWithWhereUniqueWithoutFeedInput[]
+    createMany?: TransferFeedItemCreateManyFeedInputEnvelope
+    set?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    disconnect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    delete?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    connect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    update?: TransferFeedItemUpdateWithWhereUniqueWithoutFeedInput | TransferFeedItemUpdateWithWhereUniqueWithoutFeedInput[]
+    updateMany?: TransferFeedItemUpdateManyWithWhereWithoutFeedInput | TransferFeedItemUpdateManyWithWhereWithoutFeedInput[]
+    deleteMany?: TransferFeedItemScalarWhereInput | TransferFeedItemScalarWhereInput[]
+  }
+
+  export type FeedNameCategoryCreateNestedOneWithoutFeedStockInput = {
+    create?: XOR<FeedNameCategoryCreateWithoutFeedStockInput, FeedNameCategoryUncheckedCreateWithoutFeedStockInput>
+    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutFeedStockInput
     connect?: FeedNameCategoryWhereUniqueInput
   }
 
-  export type BranchCreateNestedOneWithoutFeedInput = {
-    create?: XOR<BranchCreateWithoutFeedInput, BranchUncheckedCreateWithoutFeedInput>
-    connectOrCreate?: BranchCreateOrConnectWithoutFeedInput
+  export type DepotCreateNestedOneWithoutFeedStockInput = {
+    create?: XOR<DepotCreateWithoutFeedStockInput, DepotUncheckedCreateWithoutFeedStockInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutFeedStockInput
+    connect?: DepotWhereUniqueInput
+  }
+
+  export type BranchCreateNestedOneWithoutFeedStockInput = {
+    create?: XOR<BranchCreateWithoutFeedStockInput, BranchUncheckedCreateWithoutFeedStockInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutFeedStockInput
     connect?: BranchWhereUniqueInput
   }
 
-  export type FeedNameCategoryUpdateOneRequiredWithoutFeedsNestedInput = {
-    create?: XOR<FeedNameCategoryCreateWithoutFeedsInput, FeedNameCategoryUncheckedCreateWithoutFeedsInput>
-    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutFeedsInput
-    upsert?: FeedNameCategoryUpsertWithoutFeedsInput
+  export type FeedNameCategoryUpdateOneRequiredWithoutFeedStockNestedInput = {
+    create?: XOR<FeedNameCategoryCreateWithoutFeedStockInput, FeedNameCategoryUncheckedCreateWithoutFeedStockInput>
+    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutFeedStockInput
+    upsert?: FeedNameCategoryUpsertWithoutFeedStockInput
     connect?: FeedNameCategoryWhereUniqueInput
-    update?: XOR<XOR<FeedNameCategoryUpdateToOneWithWhereWithoutFeedsInput, FeedNameCategoryUpdateWithoutFeedsInput>, FeedNameCategoryUncheckedUpdateWithoutFeedsInput>
+    update?: XOR<XOR<FeedNameCategoryUpdateToOneWithWhereWithoutFeedStockInput, FeedNameCategoryUpdateWithoutFeedStockInput>, FeedNameCategoryUncheckedUpdateWithoutFeedStockInput>
   }
 
-  export type BranchUpdateOneWithoutFeedNestedInput = {
-    create?: XOR<BranchCreateWithoutFeedInput, BranchUncheckedCreateWithoutFeedInput>
-    connectOrCreate?: BranchCreateOrConnectWithoutFeedInput
-    upsert?: BranchUpsertWithoutFeedInput
+  export type DepotUpdateOneRequiredWithoutFeedStockNestedInput = {
+    create?: XOR<DepotCreateWithoutFeedStockInput, DepotUncheckedCreateWithoutFeedStockInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutFeedStockInput
+    upsert?: DepotUpsertWithoutFeedStockInput
+    connect?: DepotWhereUniqueInput
+    update?: XOR<XOR<DepotUpdateToOneWithWhereWithoutFeedStockInput, DepotUpdateWithoutFeedStockInput>, DepotUncheckedUpdateWithoutFeedStockInput>
+  }
+
+  export type BranchUpdateOneWithoutFeedStockNestedInput = {
+    create?: XOR<BranchCreateWithoutFeedStockInput, BranchUncheckedCreateWithoutFeedStockInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutFeedStockInput
+    upsert?: BranchUpsertWithoutFeedStockInput
     disconnect?: BranchWhereInput | boolean
     delete?: BranchWhereInput | boolean
     connect?: BranchWhereUniqueInput
-    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutFeedInput, BranchUpdateWithoutFeedInput>, BranchUncheckedUpdateWithoutFeedInput>
+    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutFeedStockInput, BranchUpdateWithoutFeedStockInput>, BranchUncheckedUpdateWithoutFeedStockInput>
+  }
+
+  export type DepotCreateNestedOneWithoutSentTransfersInput = {
+    create?: XOR<DepotCreateWithoutSentTransfersInput, DepotUncheckedCreateWithoutSentTransfersInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutSentTransfersInput
+    connect?: DepotWhereUniqueInput
+  }
+
+  export type DepotCreateNestedOneWithoutReceivedTransfersInput = {
+    create?: XOR<DepotCreateWithoutReceivedTransfersInput, DepotUncheckedCreateWithoutReceivedTransfersInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutReceivedTransfersInput
+    connect?: DepotWhereUniqueInput
+  }
+
+  export type TransferFeedItemCreateNestedManyWithoutFeedStckTranferInput = {
+    create?: XOR<TransferFeedItemCreateWithoutFeedStckTranferInput, TransferFeedItemUncheckedCreateWithoutFeedStckTranferInput> | TransferFeedItemCreateWithoutFeedStckTranferInput[] | TransferFeedItemUncheckedCreateWithoutFeedStckTranferInput[]
+    connectOrCreate?: TransferFeedItemCreateOrConnectWithoutFeedStckTranferInput | TransferFeedItemCreateOrConnectWithoutFeedStckTranferInput[]
+    createMany?: TransferFeedItemCreateManyFeedStckTranferInputEnvelope
+    connect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+  }
+
+  export type TransferFeedItemUncheckedCreateNestedManyWithoutFeedStckTranferInput = {
+    create?: XOR<TransferFeedItemCreateWithoutFeedStckTranferInput, TransferFeedItemUncheckedCreateWithoutFeedStckTranferInput> | TransferFeedItemCreateWithoutFeedStckTranferInput[] | TransferFeedItemUncheckedCreateWithoutFeedStckTranferInput[]
+    connectOrCreate?: TransferFeedItemCreateOrConnectWithoutFeedStckTranferInput | TransferFeedItemCreateOrConnectWithoutFeedStckTranferInput[]
+    createMany?: TransferFeedItemCreateManyFeedStckTranferInputEnvelope
+    connect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+  }
+
+  export type DepotUpdateOneRequiredWithoutSentTransfersNestedInput = {
+    create?: XOR<DepotCreateWithoutSentTransfersInput, DepotUncheckedCreateWithoutSentTransfersInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutSentTransfersInput
+    upsert?: DepotUpsertWithoutSentTransfersInput
+    connect?: DepotWhereUniqueInput
+    update?: XOR<XOR<DepotUpdateToOneWithWhereWithoutSentTransfersInput, DepotUpdateWithoutSentTransfersInput>, DepotUncheckedUpdateWithoutSentTransfersInput>
+  }
+
+  export type DepotUpdateOneRequiredWithoutReceivedTransfersNestedInput = {
+    create?: XOR<DepotCreateWithoutReceivedTransfersInput, DepotUncheckedCreateWithoutReceivedTransfersInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutReceivedTransfersInput
+    upsert?: DepotUpsertWithoutReceivedTransfersInput
+    connect?: DepotWhereUniqueInput
+    update?: XOR<XOR<DepotUpdateToOneWithWhereWithoutReceivedTransfersInput, DepotUpdateWithoutReceivedTransfersInput>, DepotUncheckedUpdateWithoutReceivedTransfersInput>
+  }
+
+  export type TransferFeedItemUpdateManyWithoutFeedStckTranferNestedInput = {
+    create?: XOR<TransferFeedItemCreateWithoutFeedStckTranferInput, TransferFeedItemUncheckedCreateWithoutFeedStckTranferInput> | TransferFeedItemCreateWithoutFeedStckTranferInput[] | TransferFeedItemUncheckedCreateWithoutFeedStckTranferInput[]
+    connectOrCreate?: TransferFeedItemCreateOrConnectWithoutFeedStckTranferInput | TransferFeedItemCreateOrConnectWithoutFeedStckTranferInput[]
+    upsert?: TransferFeedItemUpsertWithWhereUniqueWithoutFeedStckTranferInput | TransferFeedItemUpsertWithWhereUniqueWithoutFeedStckTranferInput[]
+    createMany?: TransferFeedItemCreateManyFeedStckTranferInputEnvelope
+    set?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    disconnect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    delete?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    connect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    update?: TransferFeedItemUpdateWithWhereUniqueWithoutFeedStckTranferInput | TransferFeedItemUpdateWithWhereUniqueWithoutFeedStckTranferInput[]
+    updateMany?: TransferFeedItemUpdateManyWithWhereWithoutFeedStckTranferInput | TransferFeedItemUpdateManyWithWhereWithoutFeedStckTranferInput[]
+    deleteMany?: TransferFeedItemScalarWhereInput | TransferFeedItemScalarWhereInput[]
+  }
+
+  export type TransferFeedItemUncheckedUpdateManyWithoutFeedStckTranferNestedInput = {
+    create?: XOR<TransferFeedItemCreateWithoutFeedStckTranferInput, TransferFeedItemUncheckedCreateWithoutFeedStckTranferInput> | TransferFeedItemCreateWithoutFeedStckTranferInput[] | TransferFeedItemUncheckedCreateWithoutFeedStckTranferInput[]
+    connectOrCreate?: TransferFeedItemCreateOrConnectWithoutFeedStckTranferInput | TransferFeedItemCreateOrConnectWithoutFeedStckTranferInput[]
+    upsert?: TransferFeedItemUpsertWithWhereUniqueWithoutFeedStckTranferInput | TransferFeedItemUpsertWithWhereUniqueWithoutFeedStckTranferInput[]
+    createMany?: TransferFeedItemCreateManyFeedStckTranferInputEnvelope
+    set?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    disconnect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    delete?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    connect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+    update?: TransferFeedItemUpdateWithWhereUniqueWithoutFeedStckTranferInput | TransferFeedItemUpdateWithWhereUniqueWithoutFeedStckTranferInput[]
+    updateMany?: TransferFeedItemUpdateManyWithWhereWithoutFeedStckTranferInput | TransferFeedItemUpdateManyWithWhereWithoutFeedStckTranferInput[]
+    deleteMany?: TransferFeedItemScalarWhereInput | TransferFeedItemScalarWhereInput[]
+  }
+
+  export type FeedNameCategoryCreateNestedOneWithoutTransferFeedItemInput = {
+    create?: XOR<FeedNameCategoryCreateWithoutTransferFeedItemInput, FeedNameCategoryUncheckedCreateWithoutTransferFeedItemInput>
+    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutTransferFeedItemInput
+    connect?: FeedNameCategoryWhereUniqueInput
+  }
+
+  export type FeedStockTransferCreateNestedOneWithoutTransferFeedItemInput = {
+    create?: XOR<FeedStockTransferCreateWithoutTransferFeedItemInput, FeedStockTransferUncheckedCreateWithoutTransferFeedItemInput>
+    connectOrCreate?: FeedStockTransferCreateOrConnectWithoutTransferFeedItemInput
+    connect?: FeedStockTransferWhereUniqueInput
+  }
+
+  export type FeedNameCategoryUpdateOneRequiredWithoutTransferFeedItemNestedInput = {
+    create?: XOR<FeedNameCategoryCreateWithoutTransferFeedItemInput, FeedNameCategoryUncheckedCreateWithoutTransferFeedItemInput>
+    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutTransferFeedItemInput
+    upsert?: FeedNameCategoryUpsertWithoutTransferFeedItemInput
+    connect?: FeedNameCategoryWhereUniqueInput
+    update?: XOR<XOR<FeedNameCategoryUpdateToOneWithWhereWithoutTransferFeedItemInput, FeedNameCategoryUpdateWithoutTransferFeedItemInput>, FeedNameCategoryUncheckedUpdateWithoutTransferFeedItemInput>
+  }
+
+  export type FeedStockTransferUpdateOneRequiredWithoutTransferFeedItemNestedInput = {
+    create?: XOR<FeedStockTransferCreateWithoutTransferFeedItemInput, FeedStockTransferUncheckedCreateWithoutTransferFeedItemInput>
+    connectOrCreate?: FeedStockTransferCreateOrConnectWithoutTransferFeedItemInput
+    upsert?: FeedStockTransferUpsertWithoutTransferFeedItemInput
+    connect?: FeedStockTransferWhereUniqueInput
+    update?: XOR<XOR<FeedStockTransferUpdateToOneWithWhereWithoutTransferFeedItemInput, FeedStockTransferUpdateWithoutTransferFeedItemInput>, FeedStockTransferUncheckedUpdateWithoutTransferFeedItemInput>
   }
 
   export type MedicineNameAddCreateNestedManyWithoutMedicineCategoryInput = {
@@ -30229,32 +34931,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type FeedCreateWithoutBranchInput = {
-    id?: string
-    stock: number
-    createdAt: Date | string
-    updatedAt?: Date | string
-    feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedsInput
-  }
-
-  export type FeedUncheckedCreateWithoutBranchInput = {
-    id?: string
-    feedName: string
-    stock: number
-    createdAt: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type FeedCreateOrConnectWithoutBranchInput = {
-    where: FeedWhereUniqueInput
-    create: XOR<FeedCreateWithoutBranchInput, FeedUncheckedCreateWithoutBranchInput>
-  }
-
-  export type FeedCreateManyBranchInputEnvelope = {
-    data: FeedCreateManyBranchInput | FeedCreateManyBranchInput[]
-    skipDuplicates?: boolean
-  }
-
   export type MedicineStockCreateWithoutBranchInput = {
     id?: string
     totalStock: number
@@ -30513,6 +35189,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type FeedStockCreateWithoutBranchInput = {
+    id?: string
+    stock: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedStockInput
+    depot: DepotCreateNestedOneWithoutFeedStockInput
+  }
+
+  export type FeedStockUncheckedCreateWithoutBranchInput = {
+    id?: string
+    feedName: string
+    stock: number
+    depotName: string
+    createdAt: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FeedStockCreateOrConnectWithoutBranchInput = {
+    where: FeedStockWhereUniqueInput
+    create: XOR<FeedStockCreateWithoutBranchInput, FeedStockUncheckedCreateWithoutBranchInput>
+  }
+
+  export type FeedStockCreateManyBranchInputEnvelope = {
+    data: FeedStockCreateManyBranchInput | FeedStockCreateManyBranchInput[]
+    skipDuplicates?: boolean
+  }
+
   export type FarmerUpsertWithWhereUniqueWithoutBranchInput = {
     where: FarmerWhereUniqueInput
     update: XOR<FarmerUpdateWithoutBranchInput, FarmerUncheckedUpdateWithoutBranchInput>
@@ -30587,34 +35291,6 @@ export namespace Prisma {
     mortality?: IntFilter<"Flock"> | number
     createdAt?: DateTimeFilter<"Flock"> | Date | string
     updatedAt?: DateTimeFilter<"Flock"> | Date | string
-  }
-
-  export type FeedUpsertWithWhereUniqueWithoutBranchInput = {
-    where: FeedWhereUniqueInput
-    update: XOR<FeedUpdateWithoutBranchInput, FeedUncheckedUpdateWithoutBranchInput>
-    create: XOR<FeedCreateWithoutBranchInput, FeedUncheckedCreateWithoutBranchInput>
-  }
-
-  export type FeedUpdateWithWhereUniqueWithoutBranchInput = {
-    where: FeedWhereUniqueInput
-    data: XOR<FeedUpdateWithoutBranchInput, FeedUncheckedUpdateWithoutBranchInput>
-  }
-
-  export type FeedUpdateManyWithWhereWithoutBranchInput = {
-    where: FeedScalarWhereInput
-    data: XOR<FeedUpdateManyMutationInput, FeedUncheckedUpdateManyWithoutBranchInput>
-  }
-
-  export type FeedScalarWhereInput = {
-    AND?: FeedScalarWhereInput | FeedScalarWhereInput[]
-    OR?: FeedScalarWhereInput[]
-    NOT?: FeedScalarWhereInput | FeedScalarWhereInput[]
-    id?: StringFilter<"Feed"> | string
-    feedName?: StringFilter<"Feed"> | string
-    stock?: IntFilter<"Feed"> | number
-    branchCode?: StringNullableFilter<"Feed"> | string | null
-    createdAt?: DateTimeFilter<"Feed"> | Date | string
-    updatedAt?: DateTimeFilter<"Feed"> | Date | string
   }
 
   export type MedicineStockUpsertWithWhereUniqueWithoutBranchInput = {
@@ -30835,6 +35511,194 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"BranchEmployeeHistory"> | Date | string
   }
 
+  export type FeedStockUpsertWithWhereUniqueWithoutBranchInput = {
+    where: FeedStockWhereUniqueInput
+    update: XOR<FeedStockUpdateWithoutBranchInput, FeedStockUncheckedUpdateWithoutBranchInput>
+    create: XOR<FeedStockCreateWithoutBranchInput, FeedStockUncheckedCreateWithoutBranchInput>
+  }
+
+  export type FeedStockUpdateWithWhereUniqueWithoutBranchInput = {
+    where: FeedStockWhereUniqueInput
+    data: XOR<FeedStockUpdateWithoutBranchInput, FeedStockUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type FeedStockUpdateManyWithWhereWithoutBranchInput = {
+    where: FeedStockScalarWhereInput
+    data: XOR<FeedStockUpdateManyMutationInput, FeedStockUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type FeedStockScalarWhereInput = {
+    AND?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
+    OR?: FeedStockScalarWhereInput[]
+    NOT?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
+    id?: StringFilter<"FeedStock"> | string
+    feedName?: StringFilter<"FeedStock"> | string
+    stock?: IntFilter<"FeedStock"> | number
+    depotName?: StringFilter<"FeedStock"> | string
+    createdAt?: DateTimeFilter<"FeedStock"> | Date | string
+    updatedAt?: DateTimeFilter<"FeedStock"> | Date | string
+    branchId?: StringNullableFilter<"FeedStock"> | string | null
+  }
+
+  export type FeedStockCreateWithoutDepotInput = {
+    id?: string
+    stock: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedStockInput
+    Branch?: BranchCreateNestedOneWithoutFeedStockInput
+  }
+
+  export type FeedStockUncheckedCreateWithoutDepotInput = {
+    id?: string
+    feedName: string
+    stock: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    branchId?: string | null
+  }
+
+  export type FeedStockCreateOrConnectWithoutDepotInput = {
+    where: FeedStockWhereUniqueInput
+    create: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput>
+  }
+
+  export type FeedStockCreateManyDepotInputEnvelope = {
+    data: FeedStockCreateManyDepotInput | FeedStockCreateManyDepotInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeedStockTransferCreateWithoutTransferDepotInput = {
+    id?: string
+    transerFerDate: string
+    createDate: string
+    trnasferBill: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    depotId?: string | null
+    reciveDepot: DepotCreateNestedOneWithoutReceivedTransfersInput
+    transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedStckTranferInput
+  }
+
+  export type FeedStockTransferUncheckedCreateWithoutTransferDepotInput = {
+    id?: string
+    toDepot: string
+    transerFerDate: string
+    createDate: string
+    trnasferBill: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    depotId?: string | null
+    transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedStckTranferInput
+  }
+
+  export type FeedStockTransferCreateOrConnectWithoutTransferDepotInput = {
+    where: FeedStockTransferWhereUniqueInput
+    create: XOR<FeedStockTransferCreateWithoutTransferDepotInput, FeedStockTransferUncheckedCreateWithoutTransferDepotInput>
+  }
+
+  export type FeedStockTransferCreateManyTransferDepotInputEnvelope = {
+    data: FeedStockTransferCreateManyTransferDepotInput | FeedStockTransferCreateManyTransferDepotInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeedStockTransferCreateWithoutReciveDepotInput = {
+    id?: string
+    transerFerDate: string
+    createDate: string
+    trnasferBill: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    depotId?: string | null
+    transferDepot: DepotCreateNestedOneWithoutSentTransfersInput
+    transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedStckTranferInput
+  }
+
+  export type FeedStockTransferUncheckedCreateWithoutReciveDepotInput = {
+    id?: string
+    fromDepot: string
+    transerFerDate: string
+    createDate: string
+    trnasferBill: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    depotId?: string | null
+    transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedStckTranferInput
+  }
+
+  export type FeedStockTransferCreateOrConnectWithoutReciveDepotInput = {
+    where: FeedStockTransferWhereUniqueInput
+    create: XOR<FeedStockTransferCreateWithoutReciveDepotInput, FeedStockTransferUncheckedCreateWithoutReciveDepotInput>
+  }
+
+  export type FeedStockTransferCreateManyReciveDepotInputEnvelope = {
+    data: FeedStockTransferCreateManyReciveDepotInput | FeedStockTransferCreateManyReciveDepotInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeedStockUpsertWithWhereUniqueWithoutDepotInput = {
+    where: FeedStockWhereUniqueInput
+    update: XOR<FeedStockUpdateWithoutDepotInput, FeedStockUncheckedUpdateWithoutDepotInput>
+    create: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput>
+  }
+
+  export type FeedStockUpdateWithWhereUniqueWithoutDepotInput = {
+    where: FeedStockWhereUniqueInput
+    data: XOR<FeedStockUpdateWithoutDepotInput, FeedStockUncheckedUpdateWithoutDepotInput>
+  }
+
+  export type FeedStockUpdateManyWithWhereWithoutDepotInput = {
+    where: FeedStockScalarWhereInput
+    data: XOR<FeedStockUpdateManyMutationInput, FeedStockUncheckedUpdateManyWithoutDepotInput>
+  }
+
+  export type FeedStockTransferUpsertWithWhereUniqueWithoutTransferDepotInput = {
+    where: FeedStockTransferWhereUniqueInput
+    update: XOR<FeedStockTransferUpdateWithoutTransferDepotInput, FeedStockTransferUncheckedUpdateWithoutTransferDepotInput>
+    create: XOR<FeedStockTransferCreateWithoutTransferDepotInput, FeedStockTransferUncheckedCreateWithoutTransferDepotInput>
+  }
+
+  export type FeedStockTransferUpdateWithWhereUniqueWithoutTransferDepotInput = {
+    where: FeedStockTransferWhereUniqueInput
+    data: XOR<FeedStockTransferUpdateWithoutTransferDepotInput, FeedStockTransferUncheckedUpdateWithoutTransferDepotInput>
+  }
+
+  export type FeedStockTransferUpdateManyWithWhereWithoutTransferDepotInput = {
+    where: FeedStockTransferScalarWhereInput
+    data: XOR<FeedStockTransferUpdateManyMutationInput, FeedStockTransferUncheckedUpdateManyWithoutTransferDepotInput>
+  }
+
+  export type FeedStockTransferScalarWhereInput = {
+    AND?: FeedStockTransferScalarWhereInput | FeedStockTransferScalarWhereInput[]
+    OR?: FeedStockTransferScalarWhereInput[]
+    NOT?: FeedStockTransferScalarWhereInput | FeedStockTransferScalarWhereInput[]
+    id?: StringFilter<"FeedStockTransfer"> | string
+    fromDepot?: StringFilter<"FeedStockTransfer"> | string
+    toDepot?: StringFilter<"FeedStockTransfer"> | string
+    transerFerDate?: StringFilter<"FeedStockTransfer"> | string
+    createDate?: StringFilter<"FeedStockTransfer"> | string
+    trnasferBill?: StringFilter<"FeedStockTransfer"> | string
+    createAt?: DateTimeNullableFilter<"FeedStockTransfer"> | Date | string | null
+    updateAt?: DateTimeFilter<"FeedStockTransfer"> | Date | string
+    depotId?: StringNullableFilter<"FeedStockTransfer"> | string | null
+  }
+
+  export type FeedStockTransferUpsertWithWhereUniqueWithoutReciveDepotInput = {
+    where: FeedStockTransferWhereUniqueInput
+    update: XOR<FeedStockTransferUpdateWithoutReciveDepotInput, FeedStockTransferUncheckedUpdateWithoutReciveDepotInput>
+    create: XOR<FeedStockTransferCreateWithoutReciveDepotInput, FeedStockTransferUncheckedCreateWithoutReciveDepotInput>
+  }
+
+  export type FeedStockTransferUpdateWithWhereUniqueWithoutReciveDepotInput = {
+    where: FeedStockTransferWhereUniqueInput
+    data: XOR<FeedStockTransferUpdateWithoutReciveDepotInput, FeedStockTransferUncheckedUpdateWithoutReciveDepotInput>
+  }
+
+  export type FeedStockTransferUpdateManyWithWhereWithoutReciveDepotInput = {
+    where: FeedStockTransferScalarWhereInput
+    data: XOR<FeedStockTransferUpdateManyMutationInput, FeedStockTransferUncheckedUpdateManyWithoutReciveDepotInput>
+  }
+
   export type BranchCreateWithoutFarmerInput = {
     id?: string
     locationName: string
@@ -30844,13 +35708,13 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     flocks?: FlockCreateNestedManyWithoutBranchInput
-    feed?: FeedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutFarmerInput = {
@@ -30862,13 +35726,13 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
-    feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutFarmerInput = {
@@ -31103,13 +35967,13 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     flocks?: FlockUpdateManyWithoutBranchNestedInput
-    feed?: FeedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutFarmerInput = {
@@ -31121,13 +35985,13 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
-    feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type AddressUpsertWithoutFarmerInput = {
@@ -31389,12 +36253,12 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
-    feed?: FeedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutBranchEmployeeHistoryInput = {
@@ -31407,12 +36271,12 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
-    feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutBranchEmployeeHistoryInput = {
@@ -31474,12 +36338,12 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
-    feed?: FeedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutBranchEmployeeHistoryInput = {
@@ -31492,12 +36356,12 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
-    feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type EmployeeUpsertWithoutBranchEmployeeHistoryInput = {
@@ -31810,13 +36674,13 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     farmer?: FarmerCreateNestedManyWithoutBranchInput
-    feed?: FeedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutFlocksInput = {
@@ -31828,13 +36692,13 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
-    feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutFlocksInput = {
@@ -32104,13 +36968,13 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
-    feed?: FeedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutFlocksInput = {
@@ -32122,13 +36986,13 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
-    feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type SellMedicineUpsertWithWhereUniqueWithoutFlockInput = {
@@ -32189,12 +37053,12 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
-    feed?: FeedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutFlockReportInput = {
@@ -32207,12 +37071,12 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
-    feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutFlockReportInput = {
@@ -32335,12 +37199,12 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
-    feed?: FeedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutFlockReportInput = {
@@ -32353,12 +37217,12 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
-    feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type FlockUpsertWithoutFlockReportInput = {
@@ -32467,70 +37331,158 @@ export namespace Prisma {
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
   }
 
-  export type FeedCreateWithoutFeedNameCategoryInput = {
+  export type FeedStockCreateWithoutFeedNameCategoryInput = {
     id?: string
     stock: number
     createdAt: Date | string
     updatedAt?: Date | string
-    branch?: BranchCreateNestedOneWithoutFeedInput
+    depot: DepotCreateNestedOneWithoutFeedStockInput
+    Branch?: BranchCreateNestedOneWithoutFeedStockInput
   }
 
-  export type FeedUncheckedCreateWithoutFeedNameCategoryInput = {
+  export type FeedStockUncheckedCreateWithoutFeedNameCategoryInput = {
     id?: string
     stock: number
-    branchCode?: string | null
+    depotName: string
     createdAt: Date | string
     updatedAt?: Date | string
+    branchId?: string | null
   }
 
-  export type FeedCreateOrConnectWithoutFeedNameCategoryInput = {
-    where: FeedWhereUniqueInput
-    create: XOR<FeedCreateWithoutFeedNameCategoryInput, FeedUncheckedCreateWithoutFeedNameCategoryInput>
+  export type FeedStockCreateOrConnectWithoutFeedNameCategoryInput = {
+    where: FeedStockWhereUniqueInput
+    create: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput>
   }
 
-  export type FeedCreateManyFeedNameCategoryInputEnvelope = {
-    data: FeedCreateManyFeedNameCategoryInput | FeedCreateManyFeedNameCategoryInput[]
+  export type FeedStockCreateManyFeedNameCategoryInputEnvelope = {
+    data: FeedStockCreateManyFeedNameCategoryInput | FeedStockCreateManyFeedNameCategoryInput[]
     skipDuplicates?: boolean
   }
 
-  export type FeedUpsertWithWhereUniqueWithoutFeedNameCategoryInput = {
-    where: FeedWhereUniqueInput
-    update: XOR<FeedUpdateWithoutFeedNameCategoryInput, FeedUncheckedUpdateWithoutFeedNameCategoryInput>
-    create: XOR<FeedCreateWithoutFeedNameCategoryInput, FeedUncheckedCreateWithoutFeedNameCategoryInput>
+  export type TransferFeedItemCreateWithoutFeedInput = {
+    id?: string
+    createDate: string
+    quntity: string
+    createdAt?: Date | string
+    updateAt?: Date | string
+    feedStckTranfer: FeedStockTransferCreateNestedOneWithoutTransferFeedItemInput
   }
 
-  export type FeedUpdateWithWhereUniqueWithoutFeedNameCategoryInput = {
-    where: FeedWhereUniqueInput
-    data: XOR<FeedUpdateWithoutFeedNameCategoryInput, FeedUncheckedUpdateWithoutFeedNameCategoryInput>
+  export type TransferFeedItemUncheckedCreateWithoutFeedInput = {
+    id?: string
+    createDate: string
+    quntity: string
+    tansferId: string
+    createdAt?: Date | string
+    updateAt?: Date | string
   }
 
-  export type FeedUpdateManyWithWhereWithoutFeedNameCategoryInput = {
-    where: FeedScalarWhereInput
-    data: XOR<FeedUpdateManyMutationInput, FeedUncheckedUpdateManyWithoutFeedNameCategoryInput>
+  export type TransferFeedItemCreateOrConnectWithoutFeedInput = {
+    where: TransferFeedItemWhereUniqueInput
+    create: XOR<TransferFeedItemCreateWithoutFeedInput, TransferFeedItemUncheckedCreateWithoutFeedInput>
   }
 
-  export type FeedNameCategoryCreateWithoutFeedsInput = {
+  export type TransferFeedItemCreateManyFeedInputEnvelope = {
+    data: TransferFeedItemCreateManyFeedInput | TransferFeedItemCreateManyFeedInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeedStockUpsertWithWhereUniqueWithoutFeedNameCategoryInput = {
+    where: FeedStockWhereUniqueInput
+    update: XOR<FeedStockUpdateWithoutFeedNameCategoryInput, FeedStockUncheckedUpdateWithoutFeedNameCategoryInput>
+    create: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput>
+  }
+
+  export type FeedStockUpdateWithWhereUniqueWithoutFeedNameCategoryInput = {
+    where: FeedStockWhereUniqueInput
+    data: XOR<FeedStockUpdateWithoutFeedNameCategoryInput, FeedStockUncheckedUpdateWithoutFeedNameCategoryInput>
+  }
+
+  export type FeedStockUpdateManyWithWhereWithoutFeedNameCategoryInput = {
+    where: FeedStockScalarWhereInput
+    data: XOR<FeedStockUpdateManyMutationInput, FeedStockUncheckedUpdateManyWithoutFeedNameCategoryInput>
+  }
+
+  export type TransferFeedItemUpsertWithWhereUniqueWithoutFeedInput = {
+    where: TransferFeedItemWhereUniqueInput
+    update: XOR<TransferFeedItemUpdateWithoutFeedInput, TransferFeedItemUncheckedUpdateWithoutFeedInput>
+    create: XOR<TransferFeedItemCreateWithoutFeedInput, TransferFeedItemUncheckedCreateWithoutFeedInput>
+  }
+
+  export type TransferFeedItemUpdateWithWhereUniqueWithoutFeedInput = {
+    where: TransferFeedItemWhereUniqueInput
+    data: XOR<TransferFeedItemUpdateWithoutFeedInput, TransferFeedItemUncheckedUpdateWithoutFeedInput>
+  }
+
+  export type TransferFeedItemUpdateManyWithWhereWithoutFeedInput = {
+    where: TransferFeedItemScalarWhereInput
+    data: XOR<TransferFeedItemUpdateManyMutationInput, TransferFeedItemUncheckedUpdateManyWithoutFeedInput>
+  }
+
+  export type TransferFeedItemScalarWhereInput = {
+    AND?: TransferFeedItemScalarWhereInput | TransferFeedItemScalarWhereInput[]
+    OR?: TransferFeedItemScalarWhereInput[]
+    NOT?: TransferFeedItemScalarWhereInput | TransferFeedItemScalarWhereInput[]
+    id?: StringFilter<"TransferFeedItem"> | string
+    feedName?: StringFilter<"TransferFeedItem"> | string
+    createDate?: StringFilter<"TransferFeedItem"> | string
+    quntity?: StringFilter<"TransferFeedItem"> | string
+    tansferId?: StringFilter<"TransferFeedItem"> | string
+    createdAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
+    updateAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
+  }
+
+  export type FeedNameCategoryCreateWithoutFeedStockInput = {
     id?: string
     feedName: string
     feedCodeNumber: number
     createdAt: Date | string
     updatedAt?: Date | string
+    transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedInput
   }
 
-  export type FeedNameCategoryUncheckedCreateWithoutFeedsInput = {
+  export type FeedNameCategoryUncheckedCreateWithoutFeedStockInput = {
     id?: string
     feedName: string
     feedCodeNumber: number
     createdAt: Date | string
     updatedAt?: Date | string
+    transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedInput
   }
 
-  export type FeedNameCategoryCreateOrConnectWithoutFeedsInput = {
+  export type FeedNameCategoryCreateOrConnectWithoutFeedStockInput = {
     where: FeedNameCategoryWhereUniqueInput
-    create: XOR<FeedNameCategoryCreateWithoutFeedsInput, FeedNameCategoryUncheckedCreateWithoutFeedsInput>
+    create: XOR<FeedNameCategoryCreateWithoutFeedStockInput, FeedNameCategoryUncheckedCreateWithoutFeedStockInput>
   }
 
-  export type BranchCreateWithoutFeedInput = {
+  export type DepotCreateWithoutFeedStockInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
+  }
+
+  export type DepotUncheckedCreateWithoutFeedStockInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
+  }
+
+  export type DepotCreateOrConnectWithoutFeedStockInput = {
+    where: DepotWhereUniqueInput
+    create: XOR<DepotCreateWithoutFeedStockInput, DepotUncheckedCreateWithoutFeedStockInput>
+  }
+
+  export type BranchCreateWithoutFeedStockInput = {
     id?: string
     locationName: string
     type: $Enums.BranchType
@@ -32548,7 +37500,7 @@ export namespace Prisma {
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
   }
 
-  export type BranchUncheckedCreateWithoutFeedInput = {
+  export type BranchUncheckedCreateWithoutFeedStockInput = {
     id?: string
     locationName: string
     type: $Enums.BranchType
@@ -32566,50 +37518,85 @@ export namespace Prisma {
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
   }
 
-  export type BranchCreateOrConnectWithoutFeedInput = {
+  export type BranchCreateOrConnectWithoutFeedStockInput = {
     where: BranchWhereUniqueInput
-    create: XOR<BranchCreateWithoutFeedInput, BranchUncheckedCreateWithoutFeedInput>
+    create: XOR<BranchCreateWithoutFeedStockInput, BranchUncheckedCreateWithoutFeedStockInput>
   }
 
-  export type FeedNameCategoryUpsertWithoutFeedsInput = {
-    update: XOR<FeedNameCategoryUpdateWithoutFeedsInput, FeedNameCategoryUncheckedUpdateWithoutFeedsInput>
-    create: XOR<FeedNameCategoryCreateWithoutFeedsInput, FeedNameCategoryUncheckedCreateWithoutFeedsInput>
+  export type FeedNameCategoryUpsertWithoutFeedStockInput = {
+    update: XOR<FeedNameCategoryUpdateWithoutFeedStockInput, FeedNameCategoryUncheckedUpdateWithoutFeedStockInput>
+    create: XOR<FeedNameCategoryCreateWithoutFeedStockInput, FeedNameCategoryUncheckedCreateWithoutFeedStockInput>
     where?: FeedNameCategoryWhereInput
   }
 
-  export type FeedNameCategoryUpdateToOneWithWhereWithoutFeedsInput = {
+  export type FeedNameCategoryUpdateToOneWithWhereWithoutFeedStockInput = {
     where?: FeedNameCategoryWhereInput
-    data: XOR<FeedNameCategoryUpdateWithoutFeedsInput, FeedNameCategoryUncheckedUpdateWithoutFeedsInput>
+    data: XOR<FeedNameCategoryUpdateWithoutFeedStockInput, FeedNameCategoryUncheckedUpdateWithoutFeedStockInput>
   }
 
-  export type FeedNameCategoryUpdateWithoutFeedsInput = {
+  export type FeedNameCategoryUpdateWithoutFeedStockInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedNestedInput
   }
 
-  export type FeedNameCategoryUncheckedUpdateWithoutFeedsInput = {
+  export type FeedNameCategoryUncheckedUpdateWithoutFeedStockInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedNestedInput
   }
 
-  export type BranchUpsertWithoutFeedInput = {
-    update: XOR<BranchUpdateWithoutFeedInput, BranchUncheckedUpdateWithoutFeedInput>
-    create: XOR<BranchCreateWithoutFeedInput, BranchUncheckedCreateWithoutFeedInput>
+  export type DepotUpsertWithoutFeedStockInput = {
+    update: XOR<DepotUpdateWithoutFeedStockInput, DepotUncheckedUpdateWithoutFeedStockInput>
+    create: XOR<DepotCreateWithoutFeedStockInput, DepotUncheckedCreateWithoutFeedStockInput>
+    where?: DepotWhereInput
+  }
+
+  export type DepotUpdateToOneWithWhereWithoutFeedStockInput = {
+    where?: DepotWhereInput
+    data: XOR<DepotUpdateWithoutFeedStockInput, DepotUncheckedUpdateWithoutFeedStockInput>
+  }
+
+  export type DepotUpdateWithoutFeedStockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
+  }
+
+  export type DepotUncheckedUpdateWithoutFeedStockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
+  }
+
+  export type BranchUpsertWithoutFeedStockInput = {
+    update: XOR<BranchUpdateWithoutFeedStockInput, BranchUncheckedUpdateWithoutFeedStockInput>
+    create: XOR<BranchCreateWithoutFeedStockInput, BranchUncheckedCreateWithoutFeedStockInput>
     where?: BranchWhereInput
   }
 
-  export type BranchUpdateToOneWithWhereWithoutFeedInput = {
+  export type BranchUpdateToOneWithWhereWithoutFeedStockInput = {
     where?: BranchWhereInput
-    data: XOR<BranchUpdateWithoutFeedInput, BranchUncheckedUpdateWithoutFeedInput>
+    data: XOR<BranchUpdateWithoutFeedStockInput, BranchUncheckedUpdateWithoutFeedStockInput>
   }
 
-  export type BranchUpdateWithoutFeedInput = {
+  export type BranchUpdateWithoutFeedStockInput = {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
@@ -32627,7 +37614,7 @@ export namespace Prisma {
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
   }
 
-  export type BranchUncheckedUpdateWithoutFeedInput = {
+  export type BranchUncheckedUpdateWithoutFeedStockInput = {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
@@ -32643,6 +37630,286 @@ export namespace Prisma {
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
+  }
+
+  export type DepotCreateWithoutSentTransfersInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    feedStock?: FeedStockCreateNestedManyWithoutDepotInput
+    receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
+  }
+
+  export type DepotUncheckedCreateWithoutSentTransfersInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    feedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
+    receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
+  }
+
+  export type DepotCreateOrConnectWithoutSentTransfersInput = {
+    where: DepotWhereUniqueInput
+    create: XOR<DepotCreateWithoutSentTransfersInput, DepotUncheckedCreateWithoutSentTransfersInput>
+  }
+
+  export type DepotCreateWithoutReceivedTransfersInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    feedStock?: FeedStockCreateNestedManyWithoutDepotInput
+    sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
+  }
+
+  export type DepotUncheckedCreateWithoutReceivedTransfersInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    feedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
+    sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
+  }
+
+  export type DepotCreateOrConnectWithoutReceivedTransfersInput = {
+    where: DepotWhereUniqueInput
+    create: XOR<DepotCreateWithoutReceivedTransfersInput, DepotUncheckedCreateWithoutReceivedTransfersInput>
+  }
+
+  export type TransferFeedItemCreateWithoutFeedStckTranferInput = {
+    id?: string
+    createDate: string
+    quntity: string
+    createdAt?: Date | string
+    updateAt?: Date | string
+    feed: FeedNameCategoryCreateNestedOneWithoutTransferFeedItemInput
+  }
+
+  export type TransferFeedItemUncheckedCreateWithoutFeedStckTranferInput = {
+    id?: string
+    feedName: string
+    createDate: string
+    quntity: string
+    createdAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type TransferFeedItemCreateOrConnectWithoutFeedStckTranferInput = {
+    where: TransferFeedItemWhereUniqueInput
+    create: XOR<TransferFeedItemCreateWithoutFeedStckTranferInput, TransferFeedItemUncheckedCreateWithoutFeedStckTranferInput>
+  }
+
+  export type TransferFeedItemCreateManyFeedStckTranferInputEnvelope = {
+    data: TransferFeedItemCreateManyFeedStckTranferInput | TransferFeedItemCreateManyFeedStckTranferInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DepotUpsertWithoutSentTransfersInput = {
+    update: XOR<DepotUpdateWithoutSentTransfersInput, DepotUncheckedUpdateWithoutSentTransfersInput>
+    create: XOR<DepotCreateWithoutSentTransfersInput, DepotUncheckedCreateWithoutSentTransfersInput>
+    where?: DepotWhereInput
+  }
+
+  export type DepotUpdateToOneWithWhereWithoutSentTransfersInput = {
+    where?: DepotWhereInput
+    data: XOR<DepotUpdateWithoutSentTransfersInput, DepotUncheckedUpdateWithoutSentTransfersInput>
+  }
+
+  export type DepotUpdateWithoutSentTransfersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedStock?: FeedStockUpdateManyWithoutDepotNestedInput
+    receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
+  }
+
+  export type DepotUncheckedUpdateWithoutSentTransfersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
+    receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
+  }
+
+  export type DepotUpsertWithoutReceivedTransfersInput = {
+    update: XOR<DepotUpdateWithoutReceivedTransfersInput, DepotUncheckedUpdateWithoutReceivedTransfersInput>
+    create: XOR<DepotCreateWithoutReceivedTransfersInput, DepotUncheckedCreateWithoutReceivedTransfersInput>
+    where?: DepotWhereInput
+  }
+
+  export type DepotUpdateToOneWithWhereWithoutReceivedTransfersInput = {
+    where?: DepotWhereInput
+    data: XOR<DepotUpdateWithoutReceivedTransfersInput, DepotUncheckedUpdateWithoutReceivedTransfersInput>
+  }
+
+  export type DepotUpdateWithoutReceivedTransfersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedStock?: FeedStockUpdateManyWithoutDepotNestedInput
+    sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
+  }
+
+  export type DepotUncheckedUpdateWithoutReceivedTransfersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
+    sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
+  }
+
+  export type TransferFeedItemUpsertWithWhereUniqueWithoutFeedStckTranferInput = {
+    where: TransferFeedItemWhereUniqueInput
+    update: XOR<TransferFeedItemUpdateWithoutFeedStckTranferInput, TransferFeedItemUncheckedUpdateWithoutFeedStckTranferInput>
+    create: XOR<TransferFeedItemCreateWithoutFeedStckTranferInput, TransferFeedItemUncheckedCreateWithoutFeedStckTranferInput>
+  }
+
+  export type TransferFeedItemUpdateWithWhereUniqueWithoutFeedStckTranferInput = {
+    where: TransferFeedItemWhereUniqueInput
+    data: XOR<TransferFeedItemUpdateWithoutFeedStckTranferInput, TransferFeedItemUncheckedUpdateWithoutFeedStckTranferInput>
+  }
+
+  export type TransferFeedItemUpdateManyWithWhereWithoutFeedStckTranferInput = {
+    where: TransferFeedItemScalarWhereInput
+    data: XOR<TransferFeedItemUpdateManyMutationInput, TransferFeedItemUncheckedUpdateManyWithoutFeedStckTranferInput>
+  }
+
+  export type FeedNameCategoryCreateWithoutTransferFeedItemInput = {
+    id?: string
+    feedName: string
+    feedCodeNumber: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
+  }
+
+  export type FeedNameCategoryUncheckedCreateWithoutTransferFeedItemInput = {
+    id?: string
+    feedName: string
+    feedCodeNumber: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+  }
+
+  export type FeedNameCategoryCreateOrConnectWithoutTransferFeedItemInput = {
+    where: FeedNameCategoryWhereUniqueInput
+    create: XOR<FeedNameCategoryCreateWithoutTransferFeedItemInput, FeedNameCategoryUncheckedCreateWithoutTransferFeedItemInput>
+  }
+
+  export type FeedStockTransferCreateWithoutTransferFeedItemInput = {
+    id?: string
+    transerFerDate: string
+    createDate: string
+    trnasferBill: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    depotId?: string | null
+    transferDepot: DepotCreateNestedOneWithoutSentTransfersInput
+    reciveDepot: DepotCreateNestedOneWithoutReceivedTransfersInput
+  }
+
+  export type FeedStockTransferUncheckedCreateWithoutTransferFeedItemInput = {
+    id?: string
+    fromDepot: string
+    toDepot: string
+    transerFerDate: string
+    createDate: string
+    trnasferBill: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    depotId?: string | null
+  }
+
+  export type FeedStockTransferCreateOrConnectWithoutTransferFeedItemInput = {
+    where: FeedStockTransferWhereUniqueInput
+    create: XOR<FeedStockTransferCreateWithoutTransferFeedItemInput, FeedStockTransferUncheckedCreateWithoutTransferFeedItemInput>
+  }
+
+  export type FeedNameCategoryUpsertWithoutTransferFeedItemInput = {
+    update: XOR<FeedNameCategoryUpdateWithoutTransferFeedItemInput, FeedNameCategoryUncheckedUpdateWithoutTransferFeedItemInput>
+    create: XOR<FeedNameCategoryCreateWithoutTransferFeedItemInput, FeedNameCategoryUncheckedCreateWithoutTransferFeedItemInput>
+    where?: FeedNameCategoryWhereInput
+  }
+
+  export type FeedNameCategoryUpdateToOneWithWhereWithoutTransferFeedItemInput = {
+    where?: FeedNameCategoryWhereInput
+    data: XOR<FeedNameCategoryUpdateWithoutTransferFeedItemInput, FeedNameCategoryUncheckedUpdateWithoutTransferFeedItemInput>
+  }
+
+  export type FeedNameCategoryUpdateWithoutTransferFeedItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
+  }
+
+  export type FeedNameCategoryUncheckedUpdateWithoutTransferFeedItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+  }
+
+  export type FeedStockTransferUpsertWithoutTransferFeedItemInput = {
+    update: XOR<FeedStockTransferUpdateWithoutTransferFeedItemInput, FeedStockTransferUncheckedUpdateWithoutTransferFeedItemInput>
+    create: XOR<FeedStockTransferCreateWithoutTransferFeedItemInput, FeedStockTransferUncheckedCreateWithoutTransferFeedItemInput>
+    where?: FeedStockTransferWhereInput
+  }
+
+  export type FeedStockTransferUpdateToOneWithWhereWithoutTransferFeedItemInput = {
+    where?: FeedStockTransferWhereInput
+    data: XOR<FeedStockTransferUpdateWithoutTransferFeedItemInput, FeedStockTransferUncheckedUpdateWithoutTransferFeedItemInput>
+  }
+
+  export type FeedStockTransferUpdateWithoutTransferFeedItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    transerFerDate?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    trnasferBill?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depotId?: NullableStringFieldUpdateOperationsInput | string | null
+    transferDepot?: DepotUpdateOneRequiredWithoutSentTransfersNestedInput
+    reciveDepot?: DepotUpdateOneRequiredWithoutReceivedTransfersNestedInput
+  }
+
+  export type FeedStockTransferUncheckedUpdateWithoutTransferFeedItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDepot?: StringFieldUpdateOperationsInput | string
+    toDepot?: StringFieldUpdateOperationsInput | string
+    transerFerDate?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    trnasferBill?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depotId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type MedicineNameAddCreateWithoutMedicineCategoryInput = {
@@ -33025,12 +38292,12 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
-    feed?: FeedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutMedicinePurchessInput = {
@@ -33043,12 +38310,12 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
-    feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutMedicinePurchessInput = {
@@ -33137,12 +38404,12 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
-    feed?: FeedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutMedicinePurchessInput = {
@@ -33155,12 +38422,12 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
-    feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type MedicineNameAddCreateWithoutMedicineStockInput = {
@@ -33221,12 +38488,12 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
-    feed?: FeedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutMedicineStockInput = {
@@ -33239,12 +38506,12 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
-    feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutMedicineStockInput = {
@@ -33333,12 +38600,12 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
-    feed?: FeedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutMedicineStockInput = {
@@ -33351,12 +38618,12 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
-    feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type SellMedicineCreateWithoutMedicineItemInput = {
@@ -33492,12 +38759,12 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
-    feed?: FeedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutSellMedicineInput = {
@@ -33510,12 +38777,12 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
-    feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutSellMedicineInput = {
@@ -33666,12 +38933,12 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
-    feed?: FeedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutSellMedicineInput = {
@@ -33684,12 +38951,12 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
-    feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type FarmerUpsertWithoutSellMedicineInput = {
@@ -33828,12 +39095,12 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
-    feed?: FeedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutMedicineTransferInput = {
@@ -33846,12 +39113,12 @@ export namespace Prisma {
     updatedAt?: Date | string
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
-    feed?: FeedUncheckedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutMedicineTransferInput = {
@@ -33937,12 +39204,12 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
-    feed?: FeedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutMedicineTransferInput = {
@@ -33955,12 +39222,12 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
-    feed?: FeedUncheckedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type FarmerCreateManyBranchInput = {
@@ -33995,14 +39262,6 @@ export namespace Prisma {
     fcr?: number
     totalSellBirds?: number
     mortality?: number
-    createdAt: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type FeedCreateManyBranchInput = {
-    id?: string
-    feedName: string
-    stock: number
     createdAt: Date | string
     updatedAt?: Date | string
   }
@@ -34102,6 +39361,15 @@ export namespace Prisma {
     endDate?: string | null
     isActive?: boolean
     createdAt?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type FeedStockCreateManyBranchInput = {
+    id?: string
+    feedName: string
+    stock: number
+    depotName: string
+    createdAt: Date | string
     updatedAt?: Date | string
   }
 
@@ -34221,30 +39489,6 @@ export namespace Prisma {
     fcr?: FloatFieldUpdateOperationsInput | number
     totalSellBirds?: IntFieldUpdateOperationsInput | number
     mortality?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type FeedUpdateWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedsNestedInput
-  }
-
-  export type FeedUncheckedUpdateWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    feedName?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type FeedUncheckedUpdateManyWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    feedName?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34543,6 +39787,161 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedStockNestedInput
+    depot?: DepotUpdateOneRequiredWithoutFeedStockNestedInput
+  }
+
+  export type FeedStockUncheckedUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    depotName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockUncheckedUpdateManyWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    depotName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockCreateManyDepotInput = {
+    id?: string
+    feedName: string
+    stock: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    branchId?: string | null
+  }
+
+  export type FeedStockTransferCreateManyTransferDepotInput = {
+    id?: string
+    toDepot: string
+    transerFerDate: string
+    createDate: string
+    trnasferBill: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    depotId?: string | null
+  }
+
+  export type FeedStockTransferCreateManyReciveDepotInput = {
+    id?: string
+    fromDepot: string
+    transerFerDate: string
+    createDate: string
+    trnasferBill: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    depotId?: string | null
+  }
+
+  export type FeedStockUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedStockNestedInput
+    Branch?: BranchUpdateOneWithoutFeedStockNestedInput
+  }
+
+  export type FeedStockUncheckedUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branchId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FeedStockUncheckedUpdateManyWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branchId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FeedStockTransferUpdateWithoutTransferDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    transerFerDate?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    trnasferBill?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depotId?: NullableStringFieldUpdateOperationsInput | string | null
+    reciveDepot?: DepotUpdateOneRequiredWithoutReceivedTransfersNestedInput
+    transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedStckTranferNestedInput
+  }
+
+  export type FeedStockTransferUncheckedUpdateWithoutTransferDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toDepot?: StringFieldUpdateOperationsInput | string
+    transerFerDate?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    trnasferBill?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depotId?: NullableStringFieldUpdateOperationsInput | string | null
+    transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedStckTranferNestedInput
+  }
+
+  export type FeedStockTransferUncheckedUpdateManyWithoutTransferDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toDepot?: StringFieldUpdateOperationsInput | string
+    transerFerDate?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    trnasferBill?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depotId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FeedStockTransferUpdateWithoutReciveDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    transerFerDate?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    trnasferBill?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depotId?: NullableStringFieldUpdateOperationsInput | string | null
+    transferDepot?: DepotUpdateOneRequiredWithoutSentTransfersNestedInput
+    transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedStckTranferNestedInput
+  }
+
+  export type FeedStockTransferUncheckedUpdateWithoutReciveDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDepot?: StringFieldUpdateOperationsInput | string
+    transerFerDate?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    trnasferBill?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depotId?: NullableStringFieldUpdateOperationsInput | string | null
+    transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedStckTranferNestedInput
+  }
+
+  export type FeedStockTransferUncheckedUpdateManyWithoutReciveDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDepot?: StringFieldUpdateOperationsInput | string
+    transerFerDate?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    trnasferBill?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depotId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FlockCreateManyFarmerInput = {
@@ -35201,36 +40600,112 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FeedCreateManyFeedNameCategoryInput = {
+  export type FeedStockCreateManyFeedNameCategoryInput = {
     id?: string
     stock: number
-    branchCode?: string | null
+    depotName: string
     createdAt: Date | string
     updatedAt?: Date | string
+    branchId?: string | null
   }
 
-  export type FeedUpdateWithoutFeedNameCategoryInput = {
+  export type TransferFeedItemCreateManyFeedInput = {
+    id?: string
+    createDate: string
+    quntity: string
+    tansferId: string
+    createdAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type FeedStockUpdateWithoutFeedNameCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     stock?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    branch?: BranchUpdateOneWithoutFeedNestedInput
+    depot?: DepotUpdateOneRequiredWithoutFeedStockNestedInput
+    Branch?: BranchUpdateOneWithoutFeedStockNestedInput
   }
 
-  export type FeedUncheckedUpdateWithoutFeedNameCategoryInput = {
+  export type FeedStockUncheckedUpdateWithoutFeedNameCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     stock?: IntFieldUpdateOperationsInput | number
-    branchCode?: NullableStringFieldUpdateOperationsInput | string | null
+    depotName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branchId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type FeedUncheckedUpdateManyWithoutFeedNameCategoryInput = {
+  export type FeedStockUncheckedUpdateManyWithoutFeedNameCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     stock?: IntFieldUpdateOperationsInput | number
-    branchCode?: NullableStringFieldUpdateOperationsInput | string | null
+    depotName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branchId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TransferFeedItemUpdateWithoutFeedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    quntity?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedStckTranfer?: FeedStockTransferUpdateOneRequiredWithoutTransferFeedItemNestedInput
+  }
+
+  export type TransferFeedItemUncheckedUpdateWithoutFeedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    quntity?: StringFieldUpdateOperationsInput | string
+    tansferId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferFeedItemUncheckedUpdateManyWithoutFeedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    quntity?: StringFieldUpdateOperationsInput | string
+    tansferId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferFeedItemCreateManyFeedStckTranferInput = {
+    id?: string
+    feedName: string
+    createDate: string
+    quntity: string
+    createdAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type TransferFeedItemUpdateWithoutFeedStckTranferInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    quntity?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feed?: FeedNameCategoryUpdateOneRequiredWithoutTransferFeedItemNestedInput
+  }
+
+  export type TransferFeedItemUncheckedUpdateWithoutFeedStckTranferInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    quntity?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferFeedItemUncheckedUpdateManyWithoutFeedStckTranferInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    quntity?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MedicineNameAddCreateManyMedicineCategoryInput = {

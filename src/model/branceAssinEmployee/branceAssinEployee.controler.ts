@@ -13,6 +13,17 @@ const createBranchAssinEmployee = catchAsync(async (req, res) => {
   });
 });
 
+const getSingleEmbployeBranch = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await branchAssinEployeeService.getSingleBranchEmpoyee(id);
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "branch employe retive successfully !!",
+    data: result,
+  });
+});
+
 export const brachAssinEmployeeControler = {
   createBranchAssinEmployee,
+  getSingleEmbployeBranch,
 };
