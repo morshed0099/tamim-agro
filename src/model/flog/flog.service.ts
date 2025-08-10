@@ -2,14 +2,6 @@ import { FlockStatus } from "../../generated/prisma";
 import prismaClient from "../../helper/prismaClient";
 
 const createFlock = async (payload: any) => {
-  const executiveIsAviableBrnach = await prismaClient.employee.findFirstOrThrow(
-    {
-      where: {
-        branchId: payload.brachCode,
-      },
-    }
-  );
-
   const isRunningFlock = await prismaClient.flock.findFirst({
     where: {
       farmId: payload.farmId,
@@ -17,13 +9,28 @@ const createFlock = async (payload: any) => {
     },
   });
 
-  if (!isRunningFlock) {
-    const result = await prismaClient.flock.create({
-      data: payload,
-    });
-    return result;
+  if (isRunningFlock) {
+    return { message: "this fram have alredy flock is running !!!" };
   }
-  return { message: "flock is alredy running" };
+
+  const lastFlock = await prismaClient.flock.findFirst({
+    where: {
+      farmId: payload.farmId,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  const newFlockNumber = lastFlock ? lastFlock.flockNumber + 1 : 1;
+  payload.flockNumber = newFlockNumber;
+
+  console.log(payload);
+
+  const result = await prismaClient.flock.create({
+    data: payload,
+  });
+  return result;
 };
 
 export const flockService = {

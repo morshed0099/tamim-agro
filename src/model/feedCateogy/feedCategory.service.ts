@@ -1,20 +1,20 @@
 import { Prisma } from "../../generated/prisma";
 import prismaClient from "../../helper/prismaClient";
 
-const createDepot = async (payload: any) => {
-  const result = await prismaClient.depot.create({
+const createFeedCategory = async (payload: any) => {
+  const result = await prismaClient.feedNameCategory.create({
     data: payload,
   });
   return result;
 };
 
-const getAlldepot = async (payload: any) => {
+const getAllFeedCategoy = async (payload: any) => {
   const { serchTermp, ...filterData } = payload;
-  const andCondition: Prisma.DepotWhereInput[] = [];
+  const andCondition: Prisma.FeedNameCategoryWhereInput[] = [];
 
   if (serchTermp) {
     andCondition.push({
-      OR: ["depotName"].map((feilds) => ({
+      OR: [].map((feilds) => ({
         [feilds]: {
           contains: serchTermp,
           mode: "insensitive",
@@ -32,11 +32,18 @@ const getAlldepot = async (payload: any) => {
       })),
     });
   }
-  const wherecondition: Prisma.DepotWhereInput = { AND: andCondition };
-  const result = await prismaClient.depot.findMany({
-    where: wherecondition,
+
+  const whreCondition: Prisma.FeedNameCategoryWhereInput = {
+    AND: andCondition,
+  };
+
+  const result = await prismaClient.feedNameCategory.findMany({
+    where: whreCondition,
   });
   return result;
 };
 
-export const depotService = { createDepot, getAlldepot };
+export const feedCategoryService = {
+  createFeedCategory,
+  getAllFeedCategoy,
+};

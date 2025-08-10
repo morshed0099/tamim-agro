@@ -6,8 +6,11 @@ import { flockRouter } from "../model/flog/flog.router";
 import { flockReportRouter } from "../model/flockReport/flock.router";
 import { farmRouter } from "../model/farmar/farmar.router";
 import { branchAssinEmployeeRouter } from "../model/branceAssinEmployee/branceAssinEmployee.service";
-import path from "path";
 import { depotRouter } from "../model/depot/depot.router";
+import { feedCategoryRouter } from "../model/feedCateogy/feedCategory.router";
+import { feedStockRouter } from "../model/feedStock/feedStock.router";
+import { feedStockTransferRouter } from "../model/feedStockTransfer/feedStockTransfer.router";
+import { feedSalesOrderRouter } from "../model/feedSalesOrder/salesOder.router";
 
 const router = Router();
 
@@ -43,6 +46,22 @@ const moduleRouter = [
   {
     path: "/depot",
     route: depotRouter,
+  },
+  {
+    path: "/feedcategory",
+    route: feedCategoryRouter,
+  },
+  {
+    path: "/feedstock",
+    route: feedStockRouter,
+  },
+  {
+    path: "/feedstocktransfer",
+    route: feedStockTransferRouter,
+  },
+  {
+    path: "/feedsales",
+    route: feedSalesOrderRouter,
   },
 ];
 

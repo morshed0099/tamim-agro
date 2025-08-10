@@ -151,9 +151,9 @@ exports.Prisma.FarmerScalarFieldEnum = {
   capacity: 'capacity',
   addressId: 'addressId',
   nid: 'nid',
-  createDate: 'createDate',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  createDate: 'createDate'
 };
 
 exports.Prisma.AddressScalarFieldEnum = {
@@ -163,9 +163,9 @@ exports.Prisma.AddressScalarFieldEnum = {
   union: 'union',
   thana: 'thana',
   upazila: 'upazila',
-  distic: 'distic',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  distic: 'distic'
 };
 
 exports.Prisma.BranchEmployeeHistoryScalarFieldEnum = {
@@ -186,10 +186,10 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   designation: 'designation',
   phoneNumber: 'phoneNumber',
   addressId: 'addressId',
-  nid: 'nid',
-  createDate: 'createDate',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  createDate: 'createDate',
+  nid: 'nid'
 };
 
 exports.Prisma.FlockScalarFieldEnum = {
@@ -255,7 +255,8 @@ exports.Prisma.FeedNameCategoryScalarFieldEnum = {
   feedName: 'feedName',
   feedCodeNumber: 'feedCodeNumber',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  createDate: 'createDate'
 };
 
 exports.Prisma.FeedStockScalarFieldEnum = {
@@ -265,7 +266,8 @@ exports.Prisma.FeedStockScalarFieldEnum = {
   depotName: 'depotName',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  branchId: 'branchId'
+  branchId: 'branchId',
+  createDate: 'createDate'
 };
 
 exports.Prisma.FeedStockTransferScalarFieldEnum = {
@@ -358,14 +360,14 @@ exports.Prisma.SellMedicineScalarFieldEnum = {
 
 exports.Prisma.StockTransferScalarFieldEnum = {
   id: 'id',
-  FromDepotName: 'FromDepotName',
   toBranchCode: 'toBranchCode',
   genericName: 'genericName',
   medicineName: 'medicineName',
   quantity: 'quantity',
   description: 'description',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  FromDepotName: 'FromDepotName'
 };
 
 exports.Prisma.MedicineTransferScalarFieldEnum = {
