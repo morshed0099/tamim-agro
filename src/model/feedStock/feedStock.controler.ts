@@ -23,7 +23,18 @@ const deleteFeedStock = catchAsync(async (req, res) => {
   });
 });
 
+const getFeedStock = catchAsync(async (req, res) => {
+  const result = await feedStockService.getFeedStock(req.query);
+
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "feed stock name fetch successfully !!",
+    data: result,
+  });
+});
+
 export const feedStocControler = {
   createFeedStock,
   deleteFeedStock,
+  getFeedStock,
 };

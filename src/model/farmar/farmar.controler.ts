@@ -43,9 +43,19 @@ const updateFarmer = catchAsync(async (req, res) => {
   });
 });
 
+const getSepecificFarmer = catchAsync(async (req, res) => {
+  const result = await farmService.getSpecificFarmer(req.query);
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "farm retive successfully !!",
+    data: result,
+  });
+});
+
 export const farmControler = {
   createFarm,
   getFarmer,
   getSingleFarmer,
   updateFarmer,
+  getSepecificFarmer,
 };

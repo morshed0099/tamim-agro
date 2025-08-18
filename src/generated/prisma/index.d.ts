@@ -49,6 +49,21 @@ export type Employee = $Result.DefaultSelection<Prisma.$EmployeePayload>
  */
 export type Flock = $Result.DefaultSelection<Prisma.$FlockPayload>
 /**
+ * Model FarmFeedStock
+ * 
+ */
+export type FarmFeedStock = $Result.DefaultSelection<Prisma.$FarmFeedStockPayload>
+/**
+ * Model Chicks
+ * 
+ */
+export type Chicks = $Result.DefaultSelection<Prisma.$ChicksPayload>
+/**
+ * Model BirdSell
+ * 
+ */
+export type BirdSell = $Result.DefaultSelection<Prisma.$BirdSellPayload>
+/**
  * Model FlockReport
  * 
  */
@@ -73,6 +88,16 @@ export type FeedStockTransfer = $Result.DefaultSelection<Prisma.$FeedStockTransf
  * 
  */
 export type TransferFeedItem = $Result.DefaultSelection<Prisma.$TransferFeedItemPayload>
+/**
+ * Model FeedSalesOrder
+ * 
+ */
+export type FeedSalesOrder = $Result.DefaultSelection<Prisma.$FeedSalesOrderPayload>
+/**
+ * Model FeedSalesItem
+ * 
+ */
+export type FeedSalesItem = $Result.DefaultSelection<Prisma.$FeedSalesItemPayload>
 /**
  * Model AllGenericMedicin
  * 
@@ -154,8 +179,7 @@ export type Stored = (typeof Stored)[keyof typeof Stored]
 
 
 export const DeliveryStatus: {
-  RETURN: 'RETURN',
-  TRANSFER: 'TRANSFER',
+  PENDING: 'PENDING',
   DELIVER: 'DELIVER'
 };
 
@@ -379,6 +403,36 @@ export class PrismaClient<
   get flock(): Prisma.FlockDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.farmFeedStock`: Exposes CRUD operations for the **FarmFeedStock** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FarmFeedStocks
+    * const farmFeedStocks = await prisma.farmFeedStock.findMany()
+    * ```
+    */
+  get farmFeedStock(): Prisma.FarmFeedStockDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.chicks`: Exposes CRUD operations for the **Chicks** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Chicks
+    * const chicks = await prisma.chicks.findMany()
+    * ```
+    */
+  get chicks(): Prisma.ChicksDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.birdSell`: Exposes CRUD operations for the **BirdSell** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BirdSells
+    * const birdSells = await prisma.birdSell.findMany()
+    * ```
+    */
+  get birdSell(): Prisma.BirdSellDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.flockReport`: Exposes CRUD operations for the **FlockReport** model.
     * Example usage:
     * ```ts
@@ -427,6 +481,26 @@ export class PrismaClient<
     * ```
     */
   get transferFeedItem(): Prisma.TransferFeedItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.feedSalesOrder`: Exposes CRUD operations for the **FeedSalesOrder** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FeedSalesOrders
+    * const feedSalesOrders = await prisma.feedSalesOrder.findMany()
+    * ```
+    */
+  get feedSalesOrder(): Prisma.FeedSalesOrderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.feedSalesItem`: Exposes CRUD operations for the **FeedSalesItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FeedSalesItems
+    * const feedSalesItems = await prisma.feedSalesItem.findMany()
+    * ```
+    */
+  get feedSalesItem(): Prisma.FeedSalesItemDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.allGenericMedicin`: Exposes CRUD operations for the **AllGenericMedicin** model.
@@ -954,11 +1028,16 @@ export namespace Prisma {
     BranchEmployeeHistory: 'BranchEmployeeHistory',
     Employee: 'Employee',
     Flock: 'Flock',
+    FarmFeedStock: 'FarmFeedStock',
+    Chicks: 'Chicks',
+    BirdSell: 'BirdSell',
     FlockReport: 'FlockReport',
     FeedNameCategory: 'FeedNameCategory',
     FeedStock: 'FeedStock',
     FeedStockTransfer: 'FeedStockTransfer',
     TransferFeedItem: 'TransferFeedItem',
+    FeedSalesOrder: 'FeedSalesOrder',
+    FeedSalesItem: 'FeedSalesItem',
     AllGenericMedicin: 'AllGenericMedicin',
     MedicineNameAdd: 'MedicineNameAdd',
     MedicinePurchess: 'MedicinePurchess',
@@ -985,7 +1064,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "branch" | "depot" | "farmer" | "address" | "branchEmployeeHistory" | "employee" | "flock" | "flockReport" | "feedNameCategory" | "feedStock" | "feedStockTransfer" | "transferFeedItem" | "allGenericMedicin" | "medicineNameAdd" | "medicinePurchess" | "medicineStock" | "medicineItem" | "sellMedicine" | "stockTransfer" | "medicineTransfer"
+      modelProps: "branch" | "depot" | "farmer" | "address" | "branchEmployeeHistory" | "employee" | "flock" | "farmFeedStock" | "chicks" | "birdSell" | "flockReport" | "feedNameCategory" | "feedStock" | "feedStockTransfer" | "transferFeedItem" | "feedSalesOrder" | "feedSalesItem" | "allGenericMedicin" | "medicineNameAdd" | "medicinePurchess" | "medicineStock" | "medicineItem" | "sellMedicine" | "stockTransfer" | "medicineTransfer"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1507,6 +1586,228 @@ export namespace Prisma {
           }
         }
       }
+      FarmFeedStock: {
+        payload: Prisma.$FarmFeedStockPayload<ExtArgs>
+        fields: Prisma.FarmFeedStockFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FarmFeedStockFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmFeedStockPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FarmFeedStockFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmFeedStockPayload>
+          }
+          findFirst: {
+            args: Prisma.FarmFeedStockFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmFeedStockPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FarmFeedStockFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmFeedStockPayload>
+          }
+          findMany: {
+            args: Prisma.FarmFeedStockFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmFeedStockPayload>[]
+          }
+          create: {
+            args: Prisma.FarmFeedStockCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmFeedStockPayload>
+          }
+          createMany: {
+            args: Prisma.FarmFeedStockCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FarmFeedStockCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmFeedStockPayload>[]
+          }
+          delete: {
+            args: Prisma.FarmFeedStockDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmFeedStockPayload>
+          }
+          update: {
+            args: Prisma.FarmFeedStockUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmFeedStockPayload>
+          }
+          deleteMany: {
+            args: Prisma.FarmFeedStockDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FarmFeedStockUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FarmFeedStockUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmFeedStockPayload>[]
+          }
+          upsert: {
+            args: Prisma.FarmFeedStockUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmFeedStockPayload>
+          }
+          aggregate: {
+            args: Prisma.FarmFeedStockAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFarmFeedStock>
+          }
+          groupBy: {
+            args: Prisma.FarmFeedStockGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FarmFeedStockGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FarmFeedStockCountArgs<ExtArgs>
+            result: $Utils.Optional<FarmFeedStockCountAggregateOutputType> | number
+          }
+        }
+      }
+      Chicks: {
+        payload: Prisma.$ChicksPayload<ExtArgs>
+        fields: Prisma.ChicksFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ChicksFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChicksPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ChicksFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChicksPayload>
+          }
+          findFirst: {
+            args: Prisma.ChicksFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChicksPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ChicksFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChicksPayload>
+          }
+          findMany: {
+            args: Prisma.ChicksFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChicksPayload>[]
+          }
+          create: {
+            args: Prisma.ChicksCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChicksPayload>
+          }
+          createMany: {
+            args: Prisma.ChicksCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ChicksCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChicksPayload>[]
+          }
+          delete: {
+            args: Prisma.ChicksDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChicksPayload>
+          }
+          update: {
+            args: Prisma.ChicksUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChicksPayload>
+          }
+          deleteMany: {
+            args: Prisma.ChicksDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ChicksUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ChicksUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChicksPayload>[]
+          }
+          upsert: {
+            args: Prisma.ChicksUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChicksPayload>
+          }
+          aggregate: {
+            args: Prisma.ChicksAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateChicks>
+          }
+          groupBy: {
+            args: Prisma.ChicksGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ChicksGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ChicksCountArgs<ExtArgs>
+            result: $Utils.Optional<ChicksCountAggregateOutputType> | number
+          }
+        }
+      }
+      BirdSell: {
+        payload: Prisma.$BirdSellPayload<ExtArgs>
+        fields: Prisma.BirdSellFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BirdSellFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BirdSellPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BirdSellFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BirdSellPayload>
+          }
+          findFirst: {
+            args: Prisma.BirdSellFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BirdSellPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BirdSellFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BirdSellPayload>
+          }
+          findMany: {
+            args: Prisma.BirdSellFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BirdSellPayload>[]
+          }
+          create: {
+            args: Prisma.BirdSellCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BirdSellPayload>
+          }
+          createMany: {
+            args: Prisma.BirdSellCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BirdSellCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BirdSellPayload>[]
+          }
+          delete: {
+            args: Prisma.BirdSellDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BirdSellPayload>
+          }
+          update: {
+            args: Prisma.BirdSellUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BirdSellPayload>
+          }
+          deleteMany: {
+            args: Prisma.BirdSellDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BirdSellUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BirdSellUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BirdSellPayload>[]
+          }
+          upsert: {
+            args: Prisma.BirdSellUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BirdSellPayload>
+          }
+          aggregate: {
+            args: Prisma.BirdSellAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBirdSell>
+          }
+          groupBy: {
+            args: Prisma.BirdSellGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BirdSellGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BirdSellCountArgs<ExtArgs>
+            result: $Utils.Optional<BirdSellCountAggregateOutputType> | number
+          }
+        }
+      }
       FlockReport: {
         payload: Prisma.$FlockReportPayload<ExtArgs>
         fields: Prisma.FlockReportFieldRefs
@@ -1874,6 +2175,154 @@ export namespace Prisma {
           count: {
             args: Prisma.TransferFeedItemCountArgs<ExtArgs>
             result: $Utils.Optional<TransferFeedItemCountAggregateOutputType> | number
+          }
+        }
+      }
+      FeedSalesOrder: {
+        payload: Prisma.$FeedSalesOrderPayload<ExtArgs>
+        fields: Prisma.FeedSalesOrderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FeedSalesOrderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesOrderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FeedSalesOrderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesOrderPayload>
+          }
+          findFirst: {
+            args: Prisma.FeedSalesOrderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesOrderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FeedSalesOrderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesOrderPayload>
+          }
+          findMany: {
+            args: Prisma.FeedSalesOrderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesOrderPayload>[]
+          }
+          create: {
+            args: Prisma.FeedSalesOrderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesOrderPayload>
+          }
+          createMany: {
+            args: Prisma.FeedSalesOrderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FeedSalesOrderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesOrderPayload>[]
+          }
+          delete: {
+            args: Prisma.FeedSalesOrderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesOrderPayload>
+          }
+          update: {
+            args: Prisma.FeedSalesOrderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesOrderPayload>
+          }
+          deleteMany: {
+            args: Prisma.FeedSalesOrderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FeedSalesOrderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FeedSalesOrderUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesOrderPayload>[]
+          }
+          upsert: {
+            args: Prisma.FeedSalesOrderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesOrderPayload>
+          }
+          aggregate: {
+            args: Prisma.FeedSalesOrderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFeedSalesOrder>
+          }
+          groupBy: {
+            args: Prisma.FeedSalesOrderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FeedSalesOrderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FeedSalesOrderCountArgs<ExtArgs>
+            result: $Utils.Optional<FeedSalesOrderCountAggregateOutputType> | number
+          }
+        }
+      }
+      FeedSalesItem: {
+        payload: Prisma.$FeedSalesItemPayload<ExtArgs>
+        fields: Prisma.FeedSalesItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FeedSalesItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FeedSalesItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesItemPayload>
+          }
+          findFirst: {
+            args: Prisma.FeedSalesItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FeedSalesItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesItemPayload>
+          }
+          findMany: {
+            args: Prisma.FeedSalesItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesItemPayload>[]
+          }
+          create: {
+            args: Prisma.FeedSalesItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesItemPayload>
+          }
+          createMany: {
+            args: Prisma.FeedSalesItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FeedSalesItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesItemPayload>[]
+          }
+          delete: {
+            args: Prisma.FeedSalesItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesItemPayload>
+          }
+          update: {
+            args: Prisma.FeedSalesItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.FeedSalesItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FeedSalesItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FeedSalesItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.FeedSalesItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedSalesItemPayload>
+          }
+          aggregate: {
+            args: Prisma.FeedSalesItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFeedSalesItem>
+          }
+          groupBy: {
+            args: Prisma.FeedSalesItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FeedSalesItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FeedSalesItemCountArgs<ExtArgs>
+            result: $Utils.Optional<FeedSalesItemCountAggregateOutputType> | number
           }
         }
       }
@@ -2560,11 +3009,16 @@ export namespace Prisma {
     branchEmployeeHistory?: BranchEmployeeHistoryOmit
     employee?: EmployeeOmit
     flock?: FlockOmit
+    farmFeedStock?: FarmFeedStockOmit
+    chicks?: ChicksOmit
+    birdSell?: BirdSellOmit
     flockReport?: FlockReportOmit
     feedNameCategory?: FeedNameCategoryOmit
     feedStock?: FeedStockOmit
     feedStockTransfer?: FeedStockTransferOmit
     transferFeedItem?: TransferFeedItemOmit
+    feedSalesOrder?: FeedSalesOrderOmit
+    feedSalesItem?: FeedSalesItemOmit
     allGenericMedicin?: AllGenericMedicinOmit
     medicineNameAdd?: MedicineNameAddOmit
     medicinePurchess?: MedicinePurchessOmit
@@ -2676,6 +3130,8 @@ export namespace Prisma {
     medicineStock: number
     medicineTransfer: number
     sellMedicine: number
+    birdSell: number
+    chicks: number
   }
 
   export type BranchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2688,6 +3144,8 @@ export namespace Prisma {
     medicineStock?: boolean | BranchCountOutputTypeCountMedicineStockArgs
     medicineTransfer?: boolean | BranchCountOutputTypeCountMedicineTransferArgs
     sellMedicine?: boolean | BranchCountOutputTypeCountSellMedicineArgs
+    birdSell?: boolean | BranchCountOutputTypeCountBirdSellArgs
+    chicks?: boolean | BranchCountOutputTypeCountChicksArgs
   }
 
   // Custom InputTypes
@@ -2764,6 +3222,20 @@ export namespace Prisma {
     where?: SellMedicineWhereInput
   }
 
+  /**
+   * BranchCountOutputType without action
+   */
+  export type BranchCountOutputTypeCountBirdSellArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BirdSellWhereInput
+  }
+
+  /**
+   * BranchCountOutputType without action
+   */
+  export type BranchCountOutputTypeCountChicksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChicksWhereInput
+  }
+
 
   /**
    * Count Type DepotCountOutputType
@@ -2773,12 +3245,14 @@ export namespace Prisma {
     feedStock: number
     sentTransfers: number
     receivedTransfers: number
+    FeedSalesOrder: number
   }
 
   export type DepotCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     feedStock?: boolean | DepotCountOutputTypeCountFeedStockArgs
     sentTransfers?: boolean | DepotCountOutputTypeCountSentTransfersArgs
     receivedTransfers?: boolean | DepotCountOutputTypeCountReceivedTransfersArgs
+    FeedSalesOrder?: boolean | DepotCountOutputTypeCountFeedSalesOrderArgs
   }
 
   // Custom InputTypes
@@ -2813,6 +3287,13 @@ export namespace Prisma {
     where?: FeedStockTransferWhereInput
   }
 
+  /**
+   * DepotCountOutputType without action
+   */
+  export type DepotCountOutputTypeCountFeedSalesOrderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedSalesOrderWhereInput
+  }
+
 
   /**
    * Count Type FarmerCountOutputType
@@ -2822,12 +3303,16 @@ export namespace Prisma {
     flocks: number
     flockReport: number
     sellMedicine: number
+    chicks: number
+    birdSell: number
   }
 
   export type FarmerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     flocks?: boolean | FarmerCountOutputTypeCountFlocksArgs
     flockReport?: boolean | FarmerCountOutputTypeCountFlockReportArgs
     sellMedicine?: boolean | FarmerCountOutputTypeCountSellMedicineArgs
+    chicks?: boolean | FarmerCountOutputTypeCountChicksArgs
+    birdSell?: boolean | FarmerCountOutputTypeCountBirdSellArgs
   }
 
   // Custom InputTypes
@@ -2860,6 +3345,20 @@ export namespace Prisma {
    */
   export type FarmerCountOutputTypeCountSellMedicineArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SellMedicineWhereInput
+  }
+
+  /**
+   * FarmerCountOutputType without action
+   */
+  export type FarmerCountOutputTypeCountChicksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChicksWhereInput
+  }
+
+  /**
+   * FarmerCountOutputType without action
+   */
+  export type FarmerCountOutputTypeCountBirdSellArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BirdSellWhereInput
   }
 
 
@@ -2911,12 +3410,18 @@ export namespace Prisma {
     flockReport: number
     medicineTransfer: number
     sellMedicine: number
+    chicks: number
+    birdSell: number
+    FarmFeedStock: number
   }
 
   export type FlockCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     flockReport?: boolean | FlockCountOutputTypeCountFlockReportArgs
     medicineTransfer?: boolean | FlockCountOutputTypeCountMedicineTransferArgs
     sellMedicine?: boolean | FlockCountOutputTypeCountSellMedicineArgs
+    chicks?: boolean | FlockCountOutputTypeCountChicksArgs
+    birdSell?: boolean | FlockCountOutputTypeCountBirdSellArgs
+    FarmFeedStock?: boolean | FlockCountOutputTypeCountFarmFeedStockArgs
   }
 
   // Custom InputTypes
@@ -2951,6 +3456,27 @@ export namespace Prisma {
     where?: SellMedicineWhereInput
   }
 
+  /**
+   * FlockCountOutputType without action
+   */
+  export type FlockCountOutputTypeCountChicksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChicksWhereInput
+  }
+
+  /**
+   * FlockCountOutputType without action
+   */
+  export type FlockCountOutputTypeCountBirdSellArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BirdSellWhereInput
+  }
+
+  /**
+   * FlockCountOutputType without action
+   */
+  export type FlockCountOutputTypeCountFarmFeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FarmFeedStockWhereInput
+  }
+
 
   /**
    * Count Type FeedNameCategoryCountOutputType
@@ -2959,11 +3485,13 @@ export namespace Prisma {
   export type FeedNameCategoryCountOutputType = {
     FeedStock: number
     transferFeedItem: number
+    FeedSalesItem: number
   }
 
   export type FeedNameCategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     FeedStock?: boolean | FeedNameCategoryCountOutputTypeCountFeedStockArgs
     transferFeedItem?: boolean | FeedNameCategoryCountOutputTypeCountTransferFeedItemArgs
+    FeedSalesItem?: boolean | FeedNameCategoryCountOutputTypeCountFeedSalesItemArgs
   }
 
   // Custom InputTypes
@@ -2989,6 +3517,13 @@ export namespace Prisma {
    */
   export type FeedNameCategoryCountOutputTypeCountTransferFeedItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TransferFeedItemWhereInput
+  }
+
+  /**
+   * FeedNameCategoryCountOutputType without action
+   */
+  export type FeedNameCategoryCountOutputTypeCountFeedSalesItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedSalesItemWhereInput
   }
 
 
@@ -3020,6 +3555,37 @@ export namespace Prisma {
    */
   export type FeedStockTransferCountOutputTypeCountTransferFeedItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TransferFeedItemWhereInput
+  }
+
+
+  /**
+   * Count Type FeedSalesOrderCountOutputType
+   */
+
+  export type FeedSalesOrderCountOutputType = {
+    FeedSalesItem: number
+  }
+
+  export type FeedSalesOrderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    FeedSalesItem?: boolean | FeedSalesOrderCountOutputTypeCountFeedSalesItemArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FeedSalesOrderCountOutputType without action
+   */
+  export type FeedSalesOrderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrderCountOutputType
+     */
+    select?: FeedSalesOrderCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FeedSalesOrderCountOutputType without action
+   */
+  export type FeedSalesOrderCountOutputTypeCountFeedSalesItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedSalesItemWhereInput
   }
 
 
@@ -3336,6 +3902,8 @@ export namespace Prisma {
     medicineStock?: boolean | Branch$medicineStockArgs<ExtArgs>
     medicineTransfer?: boolean | Branch$medicineTransferArgs<ExtArgs>
     sellMedicine?: boolean | Branch$sellMedicineArgs<ExtArgs>
+    birdSell?: boolean | Branch$birdSellArgs<ExtArgs>
+    chicks?: boolean | Branch$chicksArgs<ExtArgs>
     _count?: boolean | BranchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["branch"]>
 
@@ -3380,6 +3948,8 @@ export namespace Prisma {
     medicineStock?: boolean | Branch$medicineStockArgs<ExtArgs>
     medicineTransfer?: boolean | Branch$medicineTransferArgs<ExtArgs>
     sellMedicine?: boolean | Branch$sellMedicineArgs<ExtArgs>
+    birdSell?: boolean | Branch$birdSellArgs<ExtArgs>
+    chicks?: boolean | Branch$chicksArgs<ExtArgs>
     _count?: boolean | BranchCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BranchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3397,6 +3967,8 @@ export namespace Prisma {
       medicineStock: Prisma.$MedicineStockPayload<ExtArgs>[]
       medicineTransfer: Prisma.$MedicineTransferPayload<ExtArgs>[]
       sellMedicine: Prisma.$SellMedicinePayload<ExtArgs>[]
+      birdSell: Prisma.$BirdSellPayload<ExtArgs>[]
+      chicks: Prisma.$ChicksPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3809,6 +4381,8 @@ export namespace Prisma {
     medicineStock<T extends Branch$medicineStockArgs<ExtArgs> = {}>(args?: Subset<T, Branch$medicineStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     medicineTransfer<T extends Branch$medicineTransferArgs<ExtArgs> = {}>(args?: Subset<T, Branch$medicineTransferArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sellMedicine<T extends Branch$sellMedicineArgs<ExtArgs> = {}>(args?: Subset<T, Branch$sellMedicineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    birdSell<T extends Branch$birdSellArgs<ExtArgs> = {}>(args?: Subset<T, Branch$birdSellArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    chicks<T extends Branch$chicksArgs<ExtArgs> = {}>(args?: Subset<T, Branch$chicksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4449,6 +5023,54 @@ export namespace Prisma {
   }
 
   /**
+   * Branch.birdSell
+   */
+  export type Branch$birdSellArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellInclude<ExtArgs> | null
+    where?: BirdSellWhereInput
+    orderBy?: BirdSellOrderByWithRelationInput | BirdSellOrderByWithRelationInput[]
+    cursor?: BirdSellWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BirdSellScalarFieldEnum | BirdSellScalarFieldEnum[]
+  }
+
+  /**
+   * Branch.chicks
+   */
+  export type Branch$chicksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksInclude<ExtArgs> | null
+    where?: ChicksWhereInput
+    orderBy?: ChicksOrderByWithRelationInput | ChicksOrderByWithRelationInput[]
+    cursor?: ChicksWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChicksScalarFieldEnum | ChicksScalarFieldEnum[]
+  }
+
+  /**
    * Branch without action
    */
   export type BranchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4642,6 +5264,7 @@ export namespace Prisma {
     feedStock?: boolean | Depot$feedStockArgs<ExtArgs>
     sentTransfers?: boolean | Depot$sentTransfersArgs<ExtArgs>
     receivedTransfers?: boolean | Depot$receivedTransfersArgs<ExtArgs>
+    FeedSalesOrder?: boolean | Depot$FeedSalesOrderArgs<ExtArgs>
     _count?: boolean | DepotCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["depot"]>
 
@@ -4677,6 +5300,7 @@ export namespace Prisma {
     feedStock?: boolean | Depot$feedStockArgs<ExtArgs>
     sentTransfers?: boolean | Depot$sentTransfersArgs<ExtArgs>
     receivedTransfers?: boolean | Depot$receivedTransfersArgs<ExtArgs>
+    FeedSalesOrder?: boolean | Depot$FeedSalesOrderArgs<ExtArgs>
     _count?: boolean | DepotCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DepotIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4688,6 +5312,7 @@ export namespace Prisma {
       feedStock: Prisma.$FeedStockPayload<ExtArgs>[]
       sentTransfers: Prisma.$FeedStockTransferPayload<ExtArgs>[]
       receivedTransfers: Prisma.$FeedStockTransferPayload<ExtArgs>[]
+      FeedSalesOrder: Prisma.$FeedSalesOrderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5093,6 +5718,7 @@ export namespace Prisma {
     feedStock<T extends Depot$feedStockArgs<ExtArgs> = {}>(args?: Subset<T, Depot$feedStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sentTransfers<T extends Depot$sentTransfersArgs<ExtArgs> = {}>(args?: Subset<T, Depot$sentTransfersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     receivedTransfers<T extends Depot$receivedTransfersArgs<ExtArgs> = {}>(args?: Subset<T, Depot$receivedTransfersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FeedSalesOrder<T extends Depot$FeedSalesOrderArgs<ExtArgs> = {}>(args?: Subset<T, Depot$FeedSalesOrderArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5588,6 +6214,30 @@ export namespace Prisma {
   }
 
   /**
+   * Depot.FeedSalesOrder
+   */
+  export type Depot$FeedSalesOrderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderInclude<ExtArgs> | null
+    where?: FeedSalesOrderWhereInput
+    orderBy?: FeedSalesOrderOrderByWithRelationInput | FeedSalesOrderOrderByWithRelationInput[]
+    cursor?: FeedSalesOrderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedSalesOrderScalarFieldEnum | FeedSalesOrderScalarFieldEnum[]
+  }
+
+  /**
    * Depot without action
    */
   export type DepotDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5893,6 +6543,8 @@ export namespace Prisma {
     flocks?: boolean | Farmer$flocksArgs<ExtArgs>
     flockReport?: boolean | Farmer$flockReportArgs<ExtArgs>
     sellMedicine?: boolean | Farmer$sellMedicineArgs<ExtArgs>
+    chicks?: boolean | Farmer$chicksArgs<ExtArgs>
+    birdSell?: boolean | Farmer$birdSellArgs<ExtArgs>
     _count?: boolean | FarmerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["farmer"]>
 
@@ -5958,6 +6610,8 @@ export namespace Prisma {
     flocks?: boolean | Farmer$flocksArgs<ExtArgs>
     flockReport?: boolean | Farmer$flockReportArgs<ExtArgs>
     sellMedicine?: boolean | Farmer$sellMedicineArgs<ExtArgs>
+    chicks?: boolean | Farmer$chicksArgs<ExtArgs>
+    birdSell?: boolean | Farmer$birdSellArgs<ExtArgs>
     _count?: boolean | FarmerCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FarmerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5977,6 +6631,8 @@ export namespace Prisma {
       flocks: Prisma.$FlockPayload<ExtArgs>[]
       flockReport: Prisma.$FlockReportPayload<ExtArgs>[]
       sellMedicine: Prisma.$SellMedicinePayload<ExtArgs>[]
+      chicks: Prisma.$ChicksPayload<ExtArgs>[]
+      birdSell: Prisma.$BirdSellPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6392,6 +7048,8 @@ export namespace Prisma {
     flocks<T extends Farmer$flocksArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$flocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     flockReport<T extends Farmer$flockReportArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$flockReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sellMedicine<T extends Farmer$sellMedicineArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$sellMedicineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    chicks<T extends Farmer$chicksArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$chicksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    birdSell<T extends Farmer$birdSellArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$birdSellArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6938,6 +7596,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SellMedicineScalarFieldEnum | SellMedicineScalarFieldEnum[]
+  }
+
+  /**
+   * Farmer.chicks
+   */
+  export type Farmer$chicksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksInclude<ExtArgs> | null
+    where?: ChicksWhereInput
+    orderBy?: ChicksOrderByWithRelationInput | ChicksOrderByWithRelationInput[]
+    cursor?: ChicksWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChicksScalarFieldEnum | ChicksScalarFieldEnum[]
+  }
+
+  /**
+   * Farmer.birdSell
+   */
+  export type Farmer$birdSellArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellInclude<ExtArgs> | null
+    where?: BirdSellWhereInput
+    orderBy?: BirdSellOrderByWithRelationInput | BirdSellOrderByWithRelationInput[]
+    cursor?: BirdSellWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BirdSellScalarFieldEnum | BirdSellScalarFieldEnum[]
   }
 
   /**
@@ -10734,6 +11440,9 @@ export namespace Prisma {
     flockReport?: boolean | Flock$flockReportArgs<ExtArgs>
     medicineTransfer?: boolean | Flock$medicineTransferArgs<ExtArgs>
     sellMedicine?: boolean | Flock$sellMedicineArgs<ExtArgs>
+    chicks?: boolean | Flock$chicksArgs<ExtArgs>
+    birdSell?: boolean | Flock$birdSellArgs<ExtArgs>
+    FarmFeedStock?: boolean | Flock$FarmFeedStockArgs<ExtArgs>
     _count?: boolean | FlockCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["flock"]>
 
@@ -10814,6 +11523,9 @@ export namespace Prisma {
     flockReport?: boolean | Flock$flockReportArgs<ExtArgs>
     medicineTransfer?: boolean | Flock$medicineTransferArgs<ExtArgs>
     sellMedicine?: boolean | Flock$sellMedicineArgs<ExtArgs>
+    chicks?: boolean | Flock$chicksArgs<ExtArgs>
+    birdSell?: boolean | Flock$birdSellArgs<ExtArgs>
+    FarmFeedStock?: boolean | Flock$FarmFeedStockArgs<ExtArgs>
     _count?: boolean | FlockCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FlockIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10836,6 +11548,9 @@ export namespace Prisma {
       flockReport: Prisma.$FlockReportPayload<ExtArgs>[]
       medicineTransfer: Prisma.$MedicineTransferPayload<ExtArgs>[]
       sellMedicine: Prisma.$SellMedicinePayload<ExtArgs>[]
+      chicks: Prisma.$ChicksPayload<ExtArgs>[]
+      birdSell: Prisma.$BirdSellPayload<ExtArgs>[]
+      FarmFeedStock: Prisma.$FarmFeedStockPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11256,6 +11971,9 @@ export namespace Prisma {
     flockReport<T extends Flock$flockReportArgs<ExtArgs> = {}>(args?: Subset<T, Flock$flockReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     medicineTransfer<T extends Flock$medicineTransferArgs<ExtArgs> = {}>(args?: Subset<T, Flock$medicineTransferArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicineTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sellMedicine<T extends Flock$sellMedicineArgs<ExtArgs> = {}>(args?: Subset<T, Flock$sellMedicineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    chicks<T extends Flock$chicksArgs<ExtArgs> = {}>(args?: Subset<T, Flock$chicksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    birdSell<T extends Flock$birdSellArgs<ExtArgs> = {}>(args?: Subset<T, Flock$birdSellArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FarmFeedStock<T extends Flock$FarmFeedStockArgs<ExtArgs> = {}>(args?: Subset<T, Flock$FarmFeedStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FarmFeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11771,6 +12489,78 @@ export namespace Prisma {
   }
 
   /**
+   * Flock.chicks
+   */
+  export type Flock$chicksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksInclude<ExtArgs> | null
+    where?: ChicksWhereInput
+    orderBy?: ChicksOrderByWithRelationInput | ChicksOrderByWithRelationInput[]
+    cursor?: ChicksWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChicksScalarFieldEnum | ChicksScalarFieldEnum[]
+  }
+
+  /**
+   * Flock.birdSell
+   */
+  export type Flock$birdSellArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellInclude<ExtArgs> | null
+    where?: BirdSellWhereInput
+    orderBy?: BirdSellOrderByWithRelationInput | BirdSellOrderByWithRelationInput[]
+    cursor?: BirdSellWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BirdSellScalarFieldEnum | BirdSellScalarFieldEnum[]
+  }
+
+  /**
+   * Flock.FarmFeedStock
+   */
+  export type Flock$FarmFeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmFeedStock
+     */
+    select?: FarmFeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmFeedStock
+     */
+    omit?: FarmFeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmFeedStockInclude<ExtArgs> | null
+    where?: FarmFeedStockWhereInput
+    orderBy?: FarmFeedStockOrderByWithRelationInput | FarmFeedStockOrderByWithRelationInput[]
+    cursor?: FarmFeedStockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FarmFeedStockScalarFieldEnum | FarmFeedStockScalarFieldEnum[]
+  }
+
+  /**
    * Flock without action
    */
   export type FlockDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11786,6 +12576,3580 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: FlockInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FarmFeedStock
+   */
+
+  export type AggregateFarmFeedStock = {
+    _count: FarmFeedStockCountAggregateOutputType | null
+    _avg: FarmFeedStockAvgAggregateOutputType | null
+    _sum: FarmFeedStockSumAggregateOutputType | null
+    _min: FarmFeedStockMinAggregateOutputType | null
+    _max: FarmFeedStockMaxAggregateOutputType | null
+  }
+
+  export type FarmFeedStockAvgAggregateOutputType = {
+    stock: number | null
+  }
+
+  export type FarmFeedStockSumAggregateOutputType = {
+    stock: number | null
+  }
+
+  export type FarmFeedStockMinAggregateOutputType = {
+    id: string | null
+    flockId: string | null
+    feedName: string | null
+    stock: number | null
+    createdAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type FarmFeedStockMaxAggregateOutputType = {
+    id: string | null
+    flockId: string | null
+    feedName: string | null
+    stock: number | null
+    createdAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type FarmFeedStockCountAggregateOutputType = {
+    id: number
+    flockId: number
+    feedName: number
+    stock: number
+    createdAt: number
+    updateAt: number
+    _all: number
+  }
+
+
+  export type FarmFeedStockAvgAggregateInputType = {
+    stock?: true
+  }
+
+  export type FarmFeedStockSumAggregateInputType = {
+    stock?: true
+  }
+
+  export type FarmFeedStockMinAggregateInputType = {
+    id?: true
+    flockId?: true
+    feedName?: true
+    stock?: true
+    createdAt?: true
+    updateAt?: true
+  }
+
+  export type FarmFeedStockMaxAggregateInputType = {
+    id?: true
+    flockId?: true
+    feedName?: true
+    stock?: true
+    createdAt?: true
+    updateAt?: true
+  }
+
+  export type FarmFeedStockCountAggregateInputType = {
+    id?: true
+    flockId?: true
+    feedName?: true
+    stock?: true
+    createdAt?: true
+    updateAt?: true
+    _all?: true
+  }
+
+  export type FarmFeedStockAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FarmFeedStock to aggregate.
+     */
+    where?: FarmFeedStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FarmFeedStocks to fetch.
+     */
+    orderBy?: FarmFeedStockOrderByWithRelationInput | FarmFeedStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FarmFeedStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FarmFeedStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FarmFeedStocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FarmFeedStocks
+    **/
+    _count?: true | FarmFeedStockCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FarmFeedStockAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FarmFeedStockSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FarmFeedStockMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FarmFeedStockMaxAggregateInputType
+  }
+
+  export type GetFarmFeedStockAggregateType<T extends FarmFeedStockAggregateArgs> = {
+        [P in keyof T & keyof AggregateFarmFeedStock]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFarmFeedStock[P]>
+      : GetScalarType<T[P], AggregateFarmFeedStock[P]>
+  }
+
+
+
+
+  export type FarmFeedStockGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FarmFeedStockWhereInput
+    orderBy?: FarmFeedStockOrderByWithAggregationInput | FarmFeedStockOrderByWithAggregationInput[]
+    by: FarmFeedStockScalarFieldEnum[] | FarmFeedStockScalarFieldEnum
+    having?: FarmFeedStockScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FarmFeedStockCountAggregateInputType | true
+    _avg?: FarmFeedStockAvgAggregateInputType
+    _sum?: FarmFeedStockSumAggregateInputType
+    _min?: FarmFeedStockMinAggregateInputType
+    _max?: FarmFeedStockMaxAggregateInputType
+  }
+
+  export type FarmFeedStockGroupByOutputType = {
+    id: string
+    flockId: string
+    feedName: string
+    stock: number
+    createdAt: Date | null
+    updateAt: Date
+    _count: FarmFeedStockCountAggregateOutputType | null
+    _avg: FarmFeedStockAvgAggregateOutputType | null
+    _sum: FarmFeedStockSumAggregateOutputType | null
+    _min: FarmFeedStockMinAggregateOutputType | null
+    _max: FarmFeedStockMaxAggregateOutputType | null
+  }
+
+  type GetFarmFeedStockGroupByPayload<T extends FarmFeedStockGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FarmFeedStockGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FarmFeedStockGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FarmFeedStockGroupByOutputType[P]>
+            : GetScalarType<T[P], FarmFeedStockGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FarmFeedStockSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    flockId?: boolean
+    feedName?: boolean
+    stock?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["farmFeedStock"]>
+
+  export type FarmFeedStockSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    flockId?: boolean
+    feedName?: boolean
+    stock?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["farmFeedStock"]>
+
+  export type FarmFeedStockSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    flockId?: boolean
+    feedName?: boolean
+    stock?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["farmFeedStock"]>
+
+  export type FarmFeedStockSelectScalar = {
+    id?: boolean
+    flockId?: boolean
+    feedName?: boolean
+    stock?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+  }
+
+  export type FarmFeedStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "flockId" | "feedName" | "stock" | "createdAt" | "updateAt", ExtArgs["result"]["farmFeedStock"]>
+  export type FarmFeedStockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+  }
+  export type FarmFeedStockIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+  }
+  export type FarmFeedStockIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+  }
+
+  export type $FarmFeedStockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FarmFeedStock"
+    objects: {
+      flock: Prisma.$FlockPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      flockId: string
+      feedName: string
+      stock: number
+      createdAt: Date | null
+      updateAt: Date
+    }, ExtArgs["result"]["farmFeedStock"]>
+    composites: {}
+  }
+
+  type FarmFeedStockGetPayload<S extends boolean | null | undefined | FarmFeedStockDefaultArgs> = $Result.GetResult<Prisma.$FarmFeedStockPayload, S>
+
+  type FarmFeedStockCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FarmFeedStockFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FarmFeedStockCountAggregateInputType | true
+    }
+
+  export interface FarmFeedStockDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FarmFeedStock'], meta: { name: 'FarmFeedStock' } }
+    /**
+     * Find zero or one FarmFeedStock that matches the filter.
+     * @param {FarmFeedStockFindUniqueArgs} args - Arguments to find a FarmFeedStock
+     * @example
+     * // Get one FarmFeedStock
+     * const farmFeedStock = await prisma.farmFeedStock.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FarmFeedStockFindUniqueArgs>(args: SelectSubset<T, FarmFeedStockFindUniqueArgs<ExtArgs>>): Prisma__FarmFeedStockClient<$Result.GetResult<Prisma.$FarmFeedStockPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FarmFeedStock that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FarmFeedStockFindUniqueOrThrowArgs} args - Arguments to find a FarmFeedStock
+     * @example
+     * // Get one FarmFeedStock
+     * const farmFeedStock = await prisma.farmFeedStock.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FarmFeedStockFindUniqueOrThrowArgs>(args: SelectSubset<T, FarmFeedStockFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FarmFeedStockClient<$Result.GetResult<Prisma.$FarmFeedStockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FarmFeedStock that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmFeedStockFindFirstArgs} args - Arguments to find a FarmFeedStock
+     * @example
+     * // Get one FarmFeedStock
+     * const farmFeedStock = await prisma.farmFeedStock.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FarmFeedStockFindFirstArgs>(args?: SelectSubset<T, FarmFeedStockFindFirstArgs<ExtArgs>>): Prisma__FarmFeedStockClient<$Result.GetResult<Prisma.$FarmFeedStockPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FarmFeedStock that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmFeedStockFindFirstOrThrowArgs} args - Arguments to find a FarmFeedStock
+     * @example
+     * // Get one FarmFeedStock
+     * const farmFeedStock = await prisma.farmFeedStock.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FarmFeedStockFindFirstOrThrowArgs>(args?: SelectSubset<T, FarmFeedStockFindFirstOrThrowArgs<ExtArgs>>): Prisma__FarmFeedStockClient<$Result.GetResult<Prisma.$FarmFeedStockPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FarmFeedStocks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmFeedStockFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FarmFeedStocks
+     * const farmFeedStocks = await prisma.farmFeedStock.findMany()
+     * 
+     * // Get first 10 FarmFeedStocks
+     * const farmFeedStocks = await prisma.farmFeedStock.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const farmFeedStockWithIdOnly = await prisma.farmFeedStock.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FarmFeedStockFindManyArgs>(args?: SelectSubset<T, FarmFeedStockFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FarmFeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FarmFeedStock.
+     * @param {FarmFeedStockCreateArgs} args - Arguments to create a FarmFeedStock.
+     * @example
+     * // Create one FarmFeedStock
+     * const FarmFeedStock = await prisma.farmFeedStock.create({
+     *   data: {
+     *     // ... data to create a FarmFeedStock
+     *   }
+     * })
+     * 
+     */
+    create<T extends FarmFeedStockCreateArgs>(args: SelectSubset<T, FarmFeedStockCreateArgs<ExtArgs>>): Prisma__FarmFeedStockClient<$Result.GetResult<Prisma.$FarmFeedStockPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FarmFeedStocks.
+     * @param {FarmFeedStockCreateManyArgs} args - Arguments to create many FarmFeedStocks.
+     * @example
+     * // Create many FarmFeedStocks
+     * const farmFeedStock = await prisma.farmFeedStock.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FarmFeedStockCreateManyArgs>(args?: SelectSubset<T, FarmFeedStockCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FarmFeedStocks and returns the data saved in the database.
+     * @param {FarmFeedStockCreateManyAndReturnArgs} args - Arguments to create many FarmFeedStocks.
+     * @example
+     * // Create many FarmFeedStocks
+     * const farmFeedStock = await prisma.farmFeedStock.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FarmFeedStocks and only return the `id`
+     * const farmFeedStockWithIdOnly = await prisma.farmFeedStock.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FarmFeedStockCreateManyAndReturnArgs>(args?: SelectSubset<T, FarmFeedStockCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FarmFeedStockPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FarmFeedStock.
+     * @param {FarmFeedStockDeleteArgs} args - Arguments to delete one FarmFeedStock.
+     * @example
+     * // Delete one FarmFeedStock
+     * const FarmFeedStock = await prisma.farmFeedStock.delete({
+     *   where: {
+     *     // ... filter to delete one FarmFeedStock
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FarmFeedStockDeleteArgs>(args: SelectSubset<T, FarmFeedStockDeleteArgs<ExtArgs>>): Prisma__FarmFeedStockClient<$Result.GetResult<Prisma.$FarmFeedStockPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FarmFeedStock.
+     * @param {FarmFeedStockUpdateArgs} args - Arguments to update one FarmFeedStock.
+     * @example
+     * // Update one FarmFeedStock
+     * const farmFeedStock = await prisma.farmFeedStock.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FarmFeedStockUpdateArgs>(args: SelectSubset<T, FarmFeedStockUpdateArgs<ExtArgs>>): Prisma__FarmFeedStockClient<$Result.GetResult<Prisma.$FarmFeedStockPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FarmFeedStocks.
+     * @param {FarmFeedStockDeleteManyArgs} args - Arguments to filter FarmFeedStocks to delete.
+     * @example
+     * // Delete a few FarmFeedStocks
+     * const { count } = await prisma.farmFeedStock.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FarmFeedStockDeleteManyArgs>(args?: SelectSubset<T, FarmFeedStockDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FarmFeedStocks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmFeedStockUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FarmFeedStocks
+     * const farmFeedStock = await prisma.farmFeedStock.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FarmFeedStockUpdateManyArgs>(args: SelectSubset<T, FarmFeedStockUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FarmFeedStocks and returns the data updated in the database.
+     * @param {FarmFeedStockUpdateManyAndReturnArgs} args - Arguments to update many FarmFeedStocks.
+     * @example
+     * // Update many FarmFeedStocks
+     * const farmFeedStock = await prisma.farmFeedStock.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FarmFeedStocks and only return the `id`
+     * const farmFeedStockWithIdOnly = await prisma.farmFeedStock.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FarmFeedStockUpdateManyAndReturnArgs>(args: SelectSubset<T, FarmFeedStockUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FarmFeedStockPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FarmFeedStock.
+     * @param {FarmFeedStockUpsertArgs} args - Arguments to update or create a FarmFeedStock.
+     * @example
+     * // Update or create a FarmFeedStock
+     * const farmFeedStock = await prisma.farmFeedStock.upsert({
+     *   create: {
+     *     // ... data to create a FarmFeedStock
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FarmFeedStock we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FarmFeedStockUpsertArgs>(args: SelectSubset<T, FarmFeedStockUpsertArgs<ExtArgs>>): Prisma__FarmFeedStockClient<$Result.GetResult<Prisma.$FarmFeedStockPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FarmFeedStocks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmFeedStockCountArgs} args - Arguments to filter FarmFeedStocks to count.
+     * @example
+     * // Count the number of FarmFeedStocks
+     * const count = await prisma.farmFeedStock.count({
+     *   where: {
+     *     // ... the filter for the FarmFeedStocks we want to count
+     *   }
+     * })
+    **/
+    count<T extends FarmFeedStockCountArgs>(
+      args?: Subset<T, FarmFeedStockCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FarmFeedStockCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FarmFeedStock.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmFeedStockAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FarmFeedStockAggregateArgs>(args: Subset<T, FarmFeedStockAggregateArgs>): Prisma.PrismaPromise<GetFarmFeedStockAggregateType<T>>
+
+    /**
+     * Group by FarmFeedStock.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmFeedStockGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FarmFeedStockGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FarmFeedStockGroupByArgs['orderBy'] }
+        : { orderBy?: FarmFeedStockGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FarmFeedStockGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFarmFeedStockGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FarmFeedStock model
+   */
+  readonly fields: FarmFeedStockFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FarmFeedStock.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FarmFeedStockClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    flock<T extends FlockDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FlockDefaultArgs<ExtArgs>>): Prisma__FlockClient<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FarmFeedStock model
+   */
+  interface FarmFeedStockFieldRefs {
+    readonly id: FieldRef<"FarmFeedStock", 'String'>
+    readonly flockId: FieldRef<"FarmFeedStock", 'String'>
+    readonly feedName: FieldRef<"FarmFeedStock", 'String'>
+    readonly stock: FieldRef<"FarmFeedStock", 'Int'>
+    readonly createdAt: FieldRef<"FarmFeedStock", 'DateTime'>
+    readonly updateAt: FieldRef<"FarmFeedStock", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FarmFeedStock findUnique
+   */
+  export type FarmFeedStockFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmFeedStock
+     */
+    select?: FarmFeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmFeedStock
+     */
+    omit?: FarmFeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmFeedStockInclude<ExtArgs> | null
+    /**
+     * Filter, which FarmFeedStock to fetch.
+     */
+    where: FarmFeedStockWhereUniqueInput
+  }
+
+  /**
+   * FarmFeedStock findUniqueOrThrow
+   */
+  export type FarmFeedStockFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmFeedStock
+     */
+    select?: FarmFeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmFeedStock
+     */
+    omit?: FarmFeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmFeedStockInclude<ExtArgs> | null
+    /**
+     * Filter, which FarmFeedStock to fetch.
+     */
+    where: FarmFeedStockWhereUniqueInput
+  }
+
+  /**
+   * FarmFeedStock findFirst
+   */
+  export type FarmFeedStockFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmFeedStock
+     */
+    select?: FarmFeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmFeedStock
+     */
+    omit?: FarmFeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmFeedStockInclude<ExtArgs> | null
+    /**
+     * Filter, which FarmFeedStock to fetch.
+     */
+    where?: FarmFeedStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FarmFeedStocks to fetch.
+     */
+    orderBy?: FarmFeedStockOrderByWithRelationInput | FarmFeedStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FarmFeedStocks.
+     */
+    cursor?: FarmFeedStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FarmFeedStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FarmFeedStocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FarmFeedStocks.
+     */
+    distinct?: FarmFeedStockScalarFieldEnum | FarmFeedStockScalarFieldEnum[]
+  }
+
+  /**
+   * FarmFeedStock findFirstOrThrow
+   */
+  export type FarmFeedStockFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmFeedStock
+     */
+    select?: FarmFeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmFeedStock
+     */
+    omit?: FarmFeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmFeedStockInclude<ExtArgs> | null
+    /**
+     * Filter, which FarmFeedStock to fetch.
+     */
+    where?: FarmFeedStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FarmFeedStocks to fetch.
+     */
+    orderBy?: FarmFeedStockOrderByWithRelationInput | FarmFeedStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FarmFeedStocks.
+     */
+    cursor?: FarmFeedStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FarmFeedStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FarmFeedStocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FarmFeedStocks.
+     */
+    distinct?: FarmFeedStockScalarFieldEnum | FarmFeedStockScalarFieldEnum[]
+  }
+
+  /**
+   * FarmFeedStock findMany
+   */
+  export type FarmFeedStockFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmFeedStock
+     */
+    select?: FarmFeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmFeedStock
+     */
+    omit?: FarmFeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmFeedStockInclude<ExtArgs> | null
+    /**
+     * Filter, which FarmFeedStocks to fetch.
+     */
+    where?: FarmFeedStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FarmFeedStocks to fetch.
+     */
+    orderBy?: FarmFeedStockOrderByWithRelationInput | FarmFeedStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FarmFeedStocks.
+     */
+    cursor?: FarmFeedStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FarmFeedStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FarmFeedStocks.
+     */
+    skip?: number
+    distinct?: FarmFeedStockScalarFieldEnum | FarmFeedStockScalarFieldEnum[]
+  }
+
+  /**
+   * FarmFeedStock create
+   */
+  export type FarmFeedStockCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmFeedStock
+     */
+    select?: FarmFeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmFeedStock
+     */
+    omit?: FarmFeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmFeedStockInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FarmFeedStock.
+     */
+    data: XOR<FarmFeedStockCreateInput, FarmFeedStockUncheckedCreateInput>
+  }
+
+  /**
+   * FarmFeedStock createMany
+   */
+  export type FarmFeedStockCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FarmFeedStocks.
+     */
+    data: FarmFeedStockCreateManyInput | FarmFeedStockCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FarmFeedStock createManyAndReturn
+   */
+  export type FarmFeedStockCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmFeedStock
+     */
+    select?: FarmFeedStockSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmFeedStock
+     */
+    omit?: FarmFeedStockOmit<ExtArgs> | null
+    /**
+     * The data used to create many FarmFeedStocks.
+     */
+    data: FarmFeedStockCreateManyInput | FarmFeedStockCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmFeedStockIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FarmFeedStock update
+   */
+  export type FarmFeedStockUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmFeedStock
+     */
+    select?: FarmFeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmFeedStock
+     */
+    omit?: FarmFeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmFeedStockInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FarmFeedStock.
+     */
+    data: XOR<FarmFeedStockUpdateInput, FarmFeedStockUncheckedUpdateInput>
+    /**
+     * Choose, which FarmFeedStock to update.
+     */
+    where: FarmFeedStockWhereUniqueInput
+  }
+
+  /**
+   * FarmFeedStock updateMany
+   */
+  export type FarmFeedStockUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FarmFeedStocks.
+     */
+    data: XOR<FarmFeedStockUpdateManyMutationInput, FarmFeedStockUncheckedUpdateManyInput>
+    /**
+     * Filter which FarmFeedStocks to update
+     */
+    where?: FarmFeedStockWhereInput
+    /**
+     * Limit how many FarmFeedStocks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FarmFeedStock updateManyAndReturn
+   */
+  export type FarmFeedStockUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmFeedStock
+     */
+    select?: FarmFeedStockSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmFeedStock
+     */
+    omit?: FarmFeedStockOmit<ExtArgs> | null
+    /**
+     * The data used to update FarmFeedStocks.
+     */
+    data: XOR<FarmFeedStockUpdateManyMutationInput, FarmFeedStockUncheckedUpdateManyInput>
+    /**
+     * Filter which FarmFeedStocks to update
+     */
+    where?: FarmFeedStockWhereInput
+    /**
+     * Limit how many FarmFeedStocks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmFeedStockIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FarmFeedStock upsert
+   */
+  export type FarmFeedStockUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmFeedStock
+     */
+    select?: FarmFeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmFeedStock
+     */
+    omit?: FarmFeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmFeedStockInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FarmFeedStock to update in case it exists.
+     */
+    where: FarmFeedStockWhereUniqueInput
+    /**
+     * In case the FarmFeedStock found by the `where` argument doesn't exist, create a new FarmFeedStock with this data.
+     */
+    create: XOR<FarmFeedStockCreateInput, FarmFeedStockUncheckedCreateInput>
+    /**
+     * In case the FarmFeedStock was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FarmFeedStockUpdateInput, FarmFeedStockUncheckedUpdateInput>
+  }
+
+  /**
+   * FarmFeedStock delete
+   */
+  export type FarmFeedStockDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmFeedStock
+     */
+    select?: FarmFeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmFeedStock
+     */
+    omit?: FarmFeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmFeedStockInclude<ExtArgs> | null
+    /**
+     * Filter which FarmFeedStock to delete.
+     */
+    where: FarmFeedStockWhereUniqueInput
+  }
+
+  /**
+   * FarmFeedStock deleteMany
+   */
+  export type FarmFeedStockDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FarmFeedStocks to delete
+     */
+    where?: FarmFeedStockWhereInput
+    /**
+     * Limit how many FarmFeedStocks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FarmFeedStock without action
+   */
+  export type FarmFeedStockDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmFeedStock
+     */
+    select?: FarmFeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmFeedStock
+     */
+    omit?: FarmFeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmFeedStockInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Chicks
+   */
+
+  export type AggregateChicks = {
+    _count: ChicksCountAggregateOutputType | null
+    _avg: ChicksAvgAggregateOutputType | null
+    _sum: ChicksSumAggregateOutputType | null
+    _min: ChicksMinAggregateOutputType | null
+    _max: ChicksMaxAggregateOutputType | null
+  }
+
+  export type ChicksAvgAggregateOutputType = {
+    farmNumber: number | null
+    currentPrice: number | null
+    sellPrice: number | null
+    quantity: number | null
+    totalPrice: number | null
+  }
+
+  export type ChicksSumAggregateOutputType = {
+    farmNumber: number | null
+    currentPrice: number | null
+    sellPrice: number | null
+    quantity: number | null
+    totalPrice: number | null
+  }
+
+  export type ChicksMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    branchCode: string | null
+    farmNumber: number | null
+    farmId: string | null
+    flockId: string | null
+    currentPrice: number | null
+    sellPrice: number | null
+    quantity: number | null
+    totalPrice: number | null
+    createdBy: string | null
+    description: string | null
+    createdAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type ChicksMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    branchCode: string | null
+    farmNumber: number | null
+    farmId: string | null
+    flockId: string | null
+    currentPrice: number | null
+    sellPrice: number | null
+    quantity: number | null
+    totalPrice: number | null
+    createdBy: string | null
+    description: string | null
+    createdAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type ChicksCountAggregateOutputType = {
+    id: number
+    name: number
+    branchCode: number
+    farmNumber: number
+    farmId: number
+    flockId: number
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: number
+    description: number
+    createdAt: number
+    updateAt: number
+    _all: number
+  }
+
+
+  export type ChicksAvgAggregateInputType = {
+    farmNumber?: true
+    currentPrice?: true
+    sellPrice?: true
+    quantity?: true
+    totalPrice?: true
+  }
+
+  export type ChicksSumAggregateInputType = {
+    farmNumber?: true
+    currentPrice?: true
+    sellPrice?: true
+    quantity?: true
+    totalPrice?: true
+  }
+
+  export type ChicksMinAggregateInputType = {
+    id?: true
+    name?: true
+    branchCode?: true
+    farmNumber?: true
+    farmId?: true
+    flockId?: true
+    currentPrice?: true
+    sellPrice?: true
+    quantity?: true
+    totalPrice?: true
+    createdBy?: true
+    description?: true
+    createdAt?: true
+    updateAt?: true
+  }
+
+  export type ChicksMaxAggregateInputType = {
+    id?: true
+    name?: true
+    branchCode?: true
+    farmNumber?: true
+    farmId?: true
+    flockId?: true
+    currentPrice?: true
+    sellPrice?: true
+    quantity?: true
+    totalPrice?: true
+    createdBy?: true
+    description?: true
+    createdAt?: true
+    updateAt?: true
+  }
+
+  export type ChicksCountAggregateInputType = {
+    id?: true
+    name?: true
+    branchCode?: true
+    farmNumber?: true
+    farmId?: true
+    flockId?: true
+    currentPrice?: true
+    sellPrice?: true
+    quantity?: true
+    totalPrice?: true
+    createdBy?: true
+    description?: true
+    createdAt?: true
+    updateAt?: true
+    _all?: true
+  }
+
+  export type ChicksAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Chicks to aggregate.
+     */
+    where?: ChicksWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Chicks to fetch.
+     */
+    orderBy?: ChicksOrderByWithRelationInput | ChicksOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ChicksWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Chicks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Chicks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Chicks
+    **/
+    _count?: true | ChicksCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ChicksAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ChicksSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ChicksMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ChicksMaxAggregateInputType
+  }
+
+  export type GetChicksAggregateType<T extends ChicksAggregateArgs> = {
+        [P in keyof T & keyof AggregateChicks]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateChicks[P]>
+      : GetScalarType<T[P], AggregateChicks[P]>
+  }
+
+
+
+
+  export type ChicksGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChicksWhereInput
+    orderBy?: ChicksOrderByWithAggregationInput | ChicksOrderByWithAggregationInput[]
+    by: ChicksScalarFieldEnum[] | ChicksScalarFieldEnum
+    having?: ChicksScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ChicksCountAggregateInputType | true
+    _avg?: ChicksAvgAggregateInputType
+    _sum?: ChicksSumAggregateInputType
+    _min?: ChicksMinAggregateInputType
+    _max?: ChicksMaxAggregateInputType
+  }
+
+  export type ChicksGroupByOutputType = {
+    id: string
+    name: string
+    branchCode: string
+    farmNumber: number
+    farmId: string
+    flockId: string
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: string
+    description: string | null
+    createdAt: Date
+    updateAt: Date
+    _count: ChicksCountAggregateOutputType | null
+    _avg: ChicksAvgAggregateOutputType | null
+    _sum: ChicksSumAggregateOutputType | null
+    _min: ChicksMinAggregateOutputType | null
+    _max: ChicksMaxAggregateOutputType | null
+  }
+
+  type GetChicksGroupByPayload<T extends ChicksGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ChicksGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ChicksGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ChicksGroupByOutputType[P]>
+            : GetScalarType<T[P], ChicksGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ChicksSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    branchCode?: boolean
+    farmNumber?: boolean
+    farmId?: boolean
+    flockId?: boolean
+    currentPrice?: boolean
+    sellPrice?: boolean
+    quantity?: boolean
+    totalPrice?: boolean
+    createdBy?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["chicks"]>
+
+  export type ChicksSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    branchCode?: boolean
+    farmNumber?: boolean
+    farmId?: boolean
+    flockId?: boolean
+    currentPrice?: boolean
+    sellPrice?: boolean
+    quantity?: boolean
+    totalPrice?: boolean
+    createdBy?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["chicks"]>
+
+  export type ChicksSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    branchCode?: boolean
+    farmNumber?: boolean
+    farmId?: boolean
+    flockId?: boolean
+    currentPrice?: boolean
+    sellPrice?: boolean
+    quantity?: boolean
+    totalPrice?: boolean
+    createdBy?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["chicks"]>
+
+  export type ChicksSelectScalar = {
+    id?: boolean
+    name?: boolean
+    branchCode?: boolean
+    farmNumber?: boolean
+    farmId?: boolean
+    flockId?: boolean
+    currentPrice?: boolean
+    sellPrice?: boolean
+    quantity?: boolean
+    totalPrice?: boolean
+    createdBy?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+  }
+
+  export type ChicksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "branchCode" | "farmNumber" | "farmId" | "flockId" | "currentPrice" | "sellPrice" | "quantity" | "totalPrice" | "createdBy" | "description" | "createdAt" | "updateAt", ExtArgs["result"]["chicks"]>
+  export type ChicksInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+  }
+  export type ChicksIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+  }
+  export type ChicksIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+  }
+
+  export type $ChicksPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Chicks"
+    objects: {
+      flock: Prisma.$FlockPayload<ExtArgs>
+      farm: Prisma.$FarmerPayload<ExtArgs>
+      branch: Prisma.$BranchPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      branchCode: string
+      farmNumber: number
+      farmId: string
+      flockId: string
+      currentPrice: number
+      sellPrice: number
+      quantity: number
+      totalPrice: number
+      createdBy: string
+      description: string | null
+      createdAt: Date
+      updateAt: Date
+    }, ExtArgs["result"]["chicks"]>
+    composites: {}
+  }
+
+  type ChicksGetPayload<S extends boolean | null | undefined | ChicksDefaultArgs> = $Result.GetResult<Prisma.$ChicksPayload, S>
+
+  type ChicksCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ChicksFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ChicksCountAggregateInputType | true
+    }
+
+  export interface ChicksDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Chicks'], meta: { name: 'Chicks' } }
+    /**
+     * Find zero or one Chicks that matches the filter.
+     * @param {ChicksFindUniqueArgs} args - Arguments to find a Chicks
+     * @example
+     * // Get one Chicks
+     * const chicks = await prisma.chicks.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ChicksFindUniqueArgs>(args: SelectSubset<T, ChicksFindUniqueArgs<ExtArgs>>): Prisma__ChicksClient<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Chicks that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ChicksFindUniqueOrThrowArgs} args - Arguments to find a Chicks
+     * @example
+     * // Get one Chicks
+     * const chicks = await prisma.chicks.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ChicksFindUniqueOrThrowArgs>(args: SelectSubset<T, ChicksFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ChicksClient<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Chicks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChicksFindFirstArgs} args - Arguments to find a Chicks
+     * @example
+     * // Get one Chicks
+     * const chicks = await prisma.chicks.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ChicksFindFirstArgs>(args?: SelectSubset<T, ChicksFindFirstArgs<ExtArgs>>): Prisma__ChicksClient<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Chicks that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChicksFindFirstOrThrowArgs} args - Arguments to find a Chicks
+     * @example
+     * // Get one Chicks
+     * const chicks = await prisma.chicks.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ChicksFindFirstOrThrowArgs>(args?: SelectSubset<T, ChicksFindFirstOrThrowArgs<ExtArgs>>): Prisma__ChicksClient<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Chicks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChicksFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Chicks
+     * const chicks = await prisma.chicks.findMany()
+     * 
+     * // Get first 10 Chicks
+     * const chicks = await prisma.chicks.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const chicksWithIdOnly = await prisma.chicks.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ChicksFindManyArgs>(args?: SelectSubset<T, ChicksFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Chicks.
+     * @param {ChicksCreateArgs} args - Arguments to create a Chicks.
+     * @example
+     * // Create one Chicks
+     * const Chicks = await prisma.chicks.create({
+     *   data: {
+     *     // ... data to create a Chicks
+     *   }
+     * })
+     * 
+     */
+    create<T extends ChicksCreateArgs>(args: SelectSubset<T, ChicksCreateArgs<ExtArgs>>): Prisma__ChicksClient<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Chicks.
+     * @param {ChicksCreateManyArgs} args - Arguments to create many Chicks.
+     * @example
+     * // Create many Chicks
+     * const chicks = await prisma.chicks.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ChicksCreateManyArgs>(args?: SelectSubset<T, ChicksCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Chicks and returns the data saved in the database.
+     * @param {ChicksCreateManyAndReturnArgs} args - Arguments to create many Chicks.
+     * @example
+     * // Create many Chicks
+     * const chicks = await prisma.chicks.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Chicks and only return the `id`
+     * const chicksWithIdOnly = await prisma.chicks.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ChicksCreateManyAndReturnArgs>(args?: SelectSubset<T, ChicksCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Chicks.
+     * @param {ChicksDeleteArgs} args - Arguments to delete one Chicks.
+     * @example
+     * // Delete one Chicks
+     * const Chicks = await prisma.chicks.delete({
+     *   where: {
+     *     // ... filter to delete one Chicks
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ChicksDeleteArgs>(args: SelectSubset<T, ChicksDeleteArgs<ExtArgs>>): Prisma__ChicksClient<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Chicks.
+     * @param {ChicksUpdateArgs} args - Arguments to update one Chicks.
+     * @example
+     * // Update one Chicks
+     * const chicks = await prisma.chicks.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ChicksUpdateArgs>(args: SelectSubset<T, ChicksUpdateArgs<ExtArgs>>): Prisma__ChicksClient<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Chicks.
+     * @param {ChicksDeleteManyArgs} args - Arguments to filter Chicks to delete.
+     * @example
+     * // Delete a few Chicks
+     * const { count } = await prisma.chicks.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ChicksDeleteManyArgs>(args?: SelectSubset<T, ChicksDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Chicks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChicksUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Chicks
+     * const chicks = await prisma.chicks.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ChicksUpdateManyArgs>(args: SelectSubset<T, ChicksUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Chicks and returns the data updated in the database.
+     * @param {ChicksUpdateManyAndReturnArgs} args - Arguments to update many Chicks.
+     * @example
+     * // Update many Chicks
+     * const chicks = await prisma.chicks.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Chicks and only return the `id`
+     * const chicksWithIdOnly = await prisma.chicks.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ChicksUpdateManyAndReturnArgs>(args: SelectSubset<T, ChicksUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Chicks.
+     * @param {ChicksUpsertArgs} args - Arguments to update or create a Chicks.
+     * @example
+     * // Update or create a Chicks
+     * const chicks = await prisma.chicks.upsert({
+     *   create: {
+     *     // ... data to create a Chicks
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Chicks we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ChicksUpsertArgs>(args: SelectSubset<T, ChicksUpsertArgs<ExtArgs>>): Prisma__ChicksClient<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Chicks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChicksCountArgs} args - Arguments to filter Chicks to count.
+     * @example
+     * // Count the number of Chicks
+     * const count = await prisma.chicks.count({
+     *   where: {
+     *     // ... the filter for the Chicks we want to count
+     *   }
+     * })
+    **/
+    count<T extends ChicksCountArgs>(
+      args?: Subset<T, ChicksCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ChicksCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Chicks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChicksAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ChicksAggregateArgs>(args: Subset<T, ChicksAggregateArgs>): Prisma.PrismaPromise<GetChicksAggregateType<T>>
+
+    /**
+     * Group by Chicks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChicksGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ChicksGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ChicksGroupByArgs['orderBy'] }
+        : { orderBy?: ChicksGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ChicksGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetChicksGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Chicks model
+   */
+  readonly fields: ChicksFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Chicks.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ChicksClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    flock<T extends FlockDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FlockDefaultArgs<ExtArgs>>): Prisma__FlockClient<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    farm<T extends FarmerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FarmerDefaultArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    branch<T extends BranchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BranchDefaultArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Chicks model
+   */
+  interface ChicksFieldRefs {
+    readonly id: FieldRef<"Chicks", 'String'>
+    readonly name: FieldRef<"Chicks", 'String'>
+    readonly branchCode: FieldRef<"Chicks", 'String'>
+    readonly farmNumber: FieldRef<"Chicks", 'Int'>
+    readonly farmId: FieldRef<"Chicks", 'String'>
+    readonly flockId: FieldRef<"Chicks", 'String'>
+    readonly currentPrice: FieldRef<"Chicks", 'Int'>
+    readonly sellPrice: FieldRef<"Chicks", 'Int'>
+    readonly quantity: FieldRef<"Chicks", 'Int'>
+    readonly totalPrice: FieldRef<"Chicks", 'Int'>
+    readonly createdBy: FieldRef<"Chicks", 'String'>
+    readonly description: FieldRef<"Chicks", 'String'>
+    readonly createdAt: FieldRef<"Chicks", 'DateTime'>
+    readonly updateAt: FieldRef<"Chicks", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Chicks findUnique
+   */
+  export type ChicksFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksInclude<ExtArgs> | null
+    /**
+     * Filter, which Chicks to fetch.
+     */
+    where: ChicksWhereUniqueInput
+  }
+
+  /**
+   * Chicks findUniqueOrThrow
+   */
+  export type ChicksFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksInclude<ExtArgs> | null
+    /**
+     * Filter, which Chicks to fetch.
+     */
+    where: ChicksWhereUniqueInput
+  }
+
+  /**
+   * Chicks findFirst
+   */
+  export type ChicksFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksInclude<ExtArgs> | null
+    /**
+     * Filter, which Chicks to fetch.
+     */
+    where?: ChicksWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Chicks to fetch.
+     */
+    orderBy?: ChicksOrderByWithRelationInput | ChicksOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Chicks.
+     */
+    cursor?: ChicksWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Chicks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Chicks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Chicks.
+     */
+    distinct?: ChicksScalarFieldEnum | ChicksScalarFieldEnum[]
+  }
+
+  /**
+   * Chicks findFirstOrThrow
+   */
+  export type ChicksFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksInclude<ExtArgs> | null
+    /**
+     * Filter, which Chicks to fetch.
+     */
+    where?: ChicksWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Chicks to fetch.
+     */
+    orderBy?: ChicksOrderByWithRelationInput | ChicksOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Chicks.
+     */
+    cursor?: ChicksWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Chicks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Chicks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Chicks.
+     */
+    distinct?: ChicksScalarFieldEnum | ChicksScalarFieldEnum[]
+  }
+
+  /**
+   * Chicks findMany
+   */
+  export type ChicksFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksInclude<ExtArgs> | null
+    /**
+     * Filter, which Chicks to fetch.
+     */
+    where?: ChicksWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Chicks to fetch.
+     */
+    orderBy?: ChicksOrderByWithRelationInput | ChicksOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Chicks.
+     */
+    cursor?: ChicksWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Chicks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Chicks.
+     */
+    skip?: number
+    distinct?: ChicksScalarFieldEnum | ChicksScalarFieldEnum[]
+  }
+
+  /**
+   * Chicks create
+   */
+  export type ChicksCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Chicks.
+     */
+    data: XOR<ChicksCreateInput, ChicksUncheckedCreateInput>
+  }
+
+  /**
+   * Chicks createMany
+   */
+  export type ChicksCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Chicks.
+     */
+    data: ChicksCreateManyInput | ChicksCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Chicks createManyAndReturn
+   */
+  export type ChicksCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * The data used to create many Chicks.
+     */
+    data: ChicksCreateManyInput | ChicksCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Chicks update
+   */
+  export type ChicksUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Chicks.
+     */
+    data: XOR<ChicksUpdateInput, ChicksUncheckedUpdateInput>
+    /**
+     * Choose, which Chicks to update.
+     */
+    where: ChicksWhereUniqueInput
+  }
+
+  /**
+   * Chicks updateMany
+   */
+  export type ChicksUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Chicks.
+     */
+    data: XOR<ChicksUpdateManyMutationInput, ChicksUncheckedUpdateManyInput>
+    /**
+     * Filter which Chicks to update
+     */
+    where?: ChicksWhereInput
+    /**
+     * Limit how many Chicks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Chicks updateManyAndReturn
+   */
+  export type ChicksUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * The data used to update Chicks.
+     */
+    data: XOR<ChicksUpdateManyMutationInput, ChicksUncheckedUpdateManyInput>
+    /**
+     * Filter which Chicks to update
+     */
+    where?: ChicksWhereInput
+    /**
+     * Limit how many Chicks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Chicks upsert
+   */
+  export type ChicksUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Chicks to update in case it exists.
+     */
+    where: ChicksWhereUniqueInput
+    /**
+     * In case the Chicks found by the `where` argument doesn't exist, create a new Chicks with this data.
+     */
+    create: XOR<ChicksCreateInput, ChicksUncheckedCreateInput>
+    /**
+     * In case the Chicks was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ChicksUpdateInput, ChicksUncheckedUpdateInput>
+  }
+
+  /**
+   * Chicks delete
+   */
+  export type ChicksDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksInclude<ExtArgs> | null
+    /**
+     * Filter which Chicks to delete.
+     */
+    where: ChicksWhereUniqueInput
+  }
+
+  /**
+   * Chicks deleteMany
+   */
+  export type ChicksDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Chicks to delete
+     */
+    where?: ChicksWhereInput
+    /**
+     * Limit how many Chicks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Chicks without action
+   */
+  export type ChicksDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chicks
+     */
+    select?: ChicksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chicks
+     */
+    omit?: ChicksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChicksInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BirdSell
+   */
+
+  export type AggregateBirdSell = {
+    _count: BirdSellCountAggregateOutputType | null
+    _avg: BirdSellAvgAggregateOutputType | null
+    _sum: BirdSellSumAggregateOutputType | null
+    _min: BirdSellMinAggregateOutputType | null
+    _max: BirdSellMaxAggregateOutputType | null
+  }
+
+  export type BirdSellAvgAggregateOutputType = {
+    totalQantity: number | null
+    totalWeight: number | null
+    avgWeight: number | null
+    pricePerkg: number | null
+    totalPrice: number | null
+  }
+
+  export type BirdSellSumAggregateOutputType = {
+    totalQantity: number | null
+    totalWeight: number | null
+    avgWeight: number | null
+    pricePerkg: number | null
+    totalPrice: number | null
+  }
+
+  export type BirdSellMinAggregateOutputType = {
+    id: string | null
+    buyerId: string | null
+    totalQantity: number | null
+    totalWeight: number | null
+    avgWeight: number | null
+    pricePerkg: number | null
+    totalPrice: number | null
+    paid: boolean | null
+    farmId: string | null
+    branchCode: string | null
+    flockId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BirdSellMaxAggregateOutputType = {
+    id: string | null
+    buyerId: string | null
+    totalQantity: number | null
+    totalWeight: number | null
+    avgWeight: number | null
+    pricePerkg: number | null
+    totalPrice: number | null
+    paid: boolean | null
+    farmId: string | null
+    branchCode: string | null
+    flockId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BirdSellCountAggregateOutputType = {
+    id: number
+    buyerId: number
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid: number
+    farmId: number
+    branchCode: number
+    flockId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BirdSellAvgAggregateInputType = {
+    totalQantity?: true
+    totalWeight?: true
+    avgWeight?: true
+    pricePerkg?: true
+    totalPrice?: true
+  }
+
+  export type BirdSellSumAggregateInputType = {
+    totalQantity?: true
+    totalWeight?: true
+    avgWeight?: true
+    pricePerkg?: true
+    totalPrice?: true
+  }
+
+  export type BirdSellMinAggregateInputType = {
+    id?: true
+    buyerId?: true
+    totalQantity?: true
+    totalWeight?: true
+    avgWeight?: true
+    pricePerkg?: true
+    totalPrice?: true
+    paid?: true
+    farmId?: true
+    branchCode?: true
+    flockId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BirdSellMaxAggregateInputType = {
+    id?: true
+    buyerId?: true
+    totalQantity?: true
+    totalWeight?: true
+    avgWeight?: true
+    pricePerkg?: true
+    totalPrice?: true
+    paid?: true
+    farmId?: true
+    branchCode?: true
+    flockId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BirdSellCountAggregateInputType = {
+    id?: true
+    buyerId?: true
+    totalQantity?: true
+    totalWeight?: true
+    avgWeight?: true
+    pricePerkg?: true
+    totalPrice?: true
+    paid?: true
+    farmId?: true
+    branchCode?: true
+    flockId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BirdSellAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BirdSell to aggregate.
+     */
+    where?: BirdSellWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BirdSells to fetch.
+     */
+    orderBy?: BirdSellOrderByWithRelationInput | BirdSellOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BirdSellWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BirdSells from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BirdSells.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BirdSells
+    **/
+    _count?: true | BirdSellCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BirdSellAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BirdSellSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BirdSellMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BirdSellMaxAggregateInputType
+  }
+
+  export type GetBirdSellAggregateType<T extends BirdSellAggregateArgs> = {
+        [P in keyof T & keyof AggregateBirdSell]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBirdSell[P]>
+      : GetScalarType<T[P], AggregateBirdSell[P]>
+  }
+
+
+
+
+  export type BirdSellGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BirdSellWhereInput
+    orderBy?: BirdSellOrderByWithAggregationInput | BirdSellOrderByWithAggregationInput[]
+    by: BirdSellScalarFieldEnum[] | BirdSellScalarFieldEnum
+    having?: BirdSellScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BirdSellCountAggregateInputType | true
+    _avg?: BirdSellAvgAggregateInputType
+    _sum?: BirdSellSumAggregateInputType
+    _min?: BirdSellMinAggregateInputType
+    _max?: BirdSellMaxAggregateInputType
+  }
+
+  export type BirdSellGroupByOutputType = {
+    id: string
+    buyerId: string
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid: boolean
+    farmId: string
+    branchCode: string
+    flockId: string
+    createdAt: Date | null
+    updatedAt: Date
+    _count: BirdSellCountAggregateOutputType | null
+    _avg: BirdSellAvgAggregateOutputType | null
+    _sum: BirdSellSumAggregateOutputType | null
+    _min: BirdSellMinAggregateOutputType | null
+    _max: BirdSellMaxAggregateOutputType | null
+  }
+
+  type GetBirdSellGroupByPayload<T extends BirdSellGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BirdSellGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BirdSellGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BirdSellGroupByOutputType[P]>
+            : GetScalarType<T[P], BirdSellGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BirdSellSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    buyerId?: boolean
+    totalQantity?: boolean
+    totalWeight?: boolean
+    avgWeight?: boolean
+    pricePerkg?: boolean
+    totalPrice?: boolean
+    paid?: boolean
+    farmId?: boolean
+    branchCode?: boolean
+    flockId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["birdSell"]>
+
+  export type BirdSellSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    buyerId?: boolean
+    totalQantity?: boolean
+    totalWeight?: boolean
+    avgWeight?: boolean
+    pricePerkg?: boolean
+    totalPrice?: boolean
+    paid?: boolean
+    farmId?: boolean
+    branchCode?: boolean
+    flockId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["birdSell"]>
+
+  export type BirdSellSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    buyerId?: boolean
+    totalQantity?: boolean
+    totalWeight?: boolean
+    avgWeight?: boolean
+    pricePerkg?: boolean
+    totalPrice?: boolean
+    paid?: boolean
+    farmId?: boolean
+    branchCode?: boolean
+    flockId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["birdSell"]>
+
+  export type BirdSellSelectScalar = {
+    id?: boolean
+    buyerId?: boolean
+    totalQantity?: boolean
+    totalWeight?: boolean
+    avgWeight?: boolean
+    pricePerkg?: boolean
+    totalPrice?: boolean
+    paid?: boolean
+    farmId?: boolean
+    branchCode?: boolean
+    flockId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BirdSellOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "totalQantity" | "totalWeight" | "avgWeight" | "pricePerkg" | "totalPrice" | "paid" | "farmId" | "branchCode" | "flockId" | "createdAt" | "updatedAt", ExtArgs["result"]["birdSell"]>
+  export type BirdSellInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+  }
+  export type BirdSellIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+  }
+  export type BirdSellIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+  }
+
+  export type $BirdSellPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BirdSell"
+    objects: {
+      farm: Prisma.$FarmerPayload<ExtArgs>
+      branch: Prisma.$BranchPayload<ExtArgs>
+      flock: Prisma.$FlockPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      buyerId: string
+      totalQantity: number
+      totalWeight: number
+      avgWeight: number
+      pricePerkg: number
+      totalPrice: number
+      paid: boolean
+      farmId: string
+      branchCode: string
+      flockId: string
+      createdAt: Date | null
+      updatedAt: Date
+    }, ExtArgs["result"]["birdSell"]>
+    composites: {}
+  }
+
+  type BirdSellGetPayload<S extends boolean | null | undefined | BirdSellDefaultArgs> = $Result.GetResult<Prisma.$BirdSellPayload, S>
+
+  type BirdSellCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BirdSellFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BirdSellCountAggregateInputType | true
+    }
+
+  export interface BirdSellDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BirdSell'], meta: { name: 'BirdSell' } }
+    /**
+     * Find zero or one BirdSell that matches the filter.
+     * @param {BirdSellFindUniqueArgs} args - Arguments to find a BirdSell
+     * @example
+     * // Get one BirdSell
+     * const birdSell = await prisma.birdSell.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BirdSellFindUniqueArgs>(args: SelectSubset<T, BirdSellFindUniqueArgs<ExtArgs>>): Prisma__BirdSellClient<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BirdSell that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BirdSellFindUniqueOrThrowArgs} args - Arguments to find a BirdSell
+     * @example
+     * // Get one BirdSell
+     * const birdSell = await prisma.birdSell.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BirdSellFindUniqueOrThrowArgs>(args: SelectSubset<T, BirdSellFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BirdSellClient<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BirdSell that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BirdSellFindFirstArgs} args - Arguments to find a BirdSell
+     * @example
+     * // Get one BirdSell
+     * const birdSell = await prisma.birdSell.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BirdSellFindFirstArgs>(args?: SelectSubset<T, BirdSellFindFirstArgs<ExtArgs>>): Prisma__BirdSellClient<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BirdSell that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BirdSellFindFirstOrThrowArgs} args - Arguments to find a BirdSell
+     * @example
+     * // Get one BirdSell
+     * const birdSell = await prisma.birdSell.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BirdSellFindFirstOrThrowArgs>(args?: SelectSubset<T, BirdSellFindFirstOrThrowArgs<ExtArgs>>): Prisma__BirdSellClient<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BirdSells that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BirdSellFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BirdSells
+     * const birdSells = await prisma.birdSell.findMany()
+     * 
+     * // Get first 10 BirdSells
+     * const birdSells = await prisma.birdSell.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const birdSellWithIdOnly = await prisma.birdSell.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BirdSellFindManyArgs>(args?: SelectSubset<T, BirdSellFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BirdSell.
+     * @param {BirdSellCreateArgs} args - Arguments to create a BirdSell.
+     * @example
+     * // Create one BirdSell
+     * const BirdSell = await prisma.birdSell.create({
+     *   data: {
+     *     // ... data to create a BirdSell
+     *   }
+     * })
+     * 
+     */
+    create<T extends BirdSellCreateArgs>(args: SelectSubset<T, BirdSellCreateArgs<ExtArgs>>): Prisma__BirdSellClient<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BirdSells.
+     * @param {BirdSellCreateManyArgs} args - Arguments to create many BirdSells.
+     * @example
+     * // Create many BirdSells
+     * const birdSell = await prisma.birdSell.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BirdSellCreateManyArgs>(args?: SelectSubset<T, BirdSellCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BirdSells and returns the data saved in the database.
+     * @param {BirdSellCreateManyAndReturnArgs} args - Arguments to create many BirdSells.
+     * @example
+     * // Create many BirdSells
+     * const birdSell = await prisma.birdSell.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BirdSells and only return the `id`
+     * const birdSellWithIdOnly = await prisma.birdSell.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BirdSellCreateManyAndReturnArgs>(args?: SelectSubset<T, BirdSellCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BirdSell.
+     * @param {BirdSellDeleteArgs} args - Arguments to delete one BirdSell.
+     * @example
+     * // Delete one BirdSell
+     * const BirdSell = await prisma.birdSell.delete({
+     *   where: {
+     *     // ... filter to delete one BirdSell
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BirdSellDeleteArgs>(args: SelectSubset<T, BirdSellDeleteArgs<ExtArgs>>): Prisma__BirdSellClient<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BirdSell.
+     * @param {BirdSellUpdateArgs} args - Arguments to update one BirdSell.
+     * @example
+     * // Update one BirdSell
+     * const birdSell = await prisma.birdSell.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BirdSellUpdateArgs>(args: SelectSubset<T, BirdSellUpdateArgs<ExtArgs>>): Prisma__BirdSellClient<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BirdSells.
+     * @param {BirdSellDeleteManyArgs} args - Arguments to filter BirdSells to delete.
+     * @example
+     * // Delete a few BirdSells
+     * const { count } = await prisma.birdSell.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BirdSellDeleteManyArgs>(args?: SelectSubset<T, BirdSellDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BirdSells.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BirdSellUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BirdSells
+     * const birdSell = await prisma.birdSell.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BirdSellUpdateManyArgs>(args: SelectSubset<T, BirdSellUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BirdSells and returns the data updated in the database.
+     * @param {BirdSellUpdateManyAndReturnArgs} args - Arguments to update many BirdSells.
+     * @example
+     * // Update many BirdSells
+     * const birdSell = await prisma.birdSell.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BirdSells and only return the `id`
+     * const birdSellWithIdOnly = await prisma.birdSell.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BirdSellUpdateManyAndReturnArgs>(args: SelectSubset<T, BirdSellUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BirdSell.
+     * @param {BirdSellUpsertArgs} args - Arguments to update or create a BirdSell.
+     * @example
+     * // Update or create a BirdSell
+     * const birdSell = await prisma.birdSell.upsert({
+     *   create: {
+     *     // ... data to create a BirdSell
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BirdSell we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BirdSellUpsertArgs>(args: SelectSubset<T, BirdSellUpsertArgs<ExtArgs>>): Prisma__BirdSellClient<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BirdSells.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BirdSellCountArgs} args - Arguments to filter BirdSells to count.
+     * @example
+     * // Count the number of BirdSells
+     * const count = await prisma.birdSell.count({
+     *   where: {
+     *     // ... the filter for the BirdSells we want to count
+     *   }
+     * })
+    **/
+    count<T extends BirdSellCountArgs>(
+      args?: Subset<T, BirdSellCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BirdSellCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BirdSell.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BirdSellAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BirdSellAggregateArgs>(args: Subset<T, BirdSellAggregateArgs>): Prisma.PrismaPromise<GetBirdSellAggregateType<T>>
+
+    /**
+     * Group by BirdSell.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BirdSellGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BirdSellGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BirdSellGroupByArgs['orderBy'] }
+        : { orderBy?: BirdSellGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BirdSellGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBirdSellGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BirdSell model
+   */
+  readonly fields: BirdSellFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BirdSell.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BirdSellClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    farm<T extends FarmerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FarmerDefaultArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    branch<T extends BranchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BranchDefaultArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    flock<T extends FlockDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FlockDefaultArgs<ExtArgs>>): Prisma__FlockClient<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BirdSell model
+   */
+  interface BirdSellFieldRefs {
+    readonly id: FieldRef<"BirdSell", 'String'>
+    readonly buyerId: FieldRef<"BirdSell", 'String'>
+    readonly totalQantity: FieldRef<"BirdSell", 'Int'>
+    readonly totalWeight: FieldRef<"BirdSell", 'Float'>
+    readonly avgWeight: FieldRef<"BirdSell", 'Float'>
+    readonly pricePerkg: FieldRef<"BirdSell", 'Int'>
+    readonly totalPrice: FieldRef<"BirdSell", 'Int'>
+    readonly paid: FieldRef<"BirdSell", 'Boolean'>
+    readonly farmId: FieldRef<"BirdSell", 'String'>
+    readonly branchCode: FieldRef<"BirdSell", 'String'>
+    readonly flockId: FieldRef<"BirdSell", 'String'>
+    readonly createdAt: FieldRef<"BirdSell", 'DateTime'>
+    readonly updatedAt: FieldRef<"BirdSell", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BirdSell findUnique
+   */
+  export type BirdSellFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellInclude<ExtArgs> | null
+    /**
+     * Filter, which BirdSell to fetch.
+     */
+    where: BirdSellWhereUniqueInput
+  }
+
+  /**
+   * BirdSell findUniqueOrThrow
+   */
+  export type BirdSellFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellInclude<ExtArgs> | null
+    /**
+     * Filter, which BirdSell to fetch.
+     */
+    where: BirdSellWhereUniqueInput
+  }
+
+  /**
+   * BirdSell findFirst
+   */
+  export type BirdSellFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellInclude<ExtArgs> | null
+    /**
+     * Filter, which BirdSell to fetch.
+     */
+    where?: BirdSellWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BirdSells to fetch.
+     */
+    orderBy?: BirdSellOrderByWithRelationInput | BirdSellOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BirdSells.
+     */
+    cursor?: BirdSellWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BirdSells from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BirdSells.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BirdSells.
+     */
+    distinct?: BirdSellScalarFieldEnum | BirdSellScalarFieldEnum[]
+  }
+
+  /**
+   * BirdSell findFirstOrThrow
+   */
+  export type BirdSellFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellInclude<ExtArgs> | null
+    /**
+     * Filter, which BirdSell to fetch.
+     */
+    where?: BirdSellWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BirdSells to fetch.
+     */
+    orderBy?: BirdSellOrderByWithRelationInput | BirdSellOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BirdSells.
+     */
+    cursor?: BirdSellWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BirdSells from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BirdSells.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BirdSells.
+     */
+    distinct?: BirdSellScalarFieldEnum | BirdSellScalarFieldEnum[]
+  }
+
+  /**
+   * BirdSell findMany
+   */
+  export type BirdSellFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellInclude<ExtArgs> | null
+    /**
+     * Filter, which BirdSells to fetch.
+     */
+    where?: BirdSellWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BirdSells to fetch.
+     */
+    orderBy?: BirdSellOrderByWithRelationInput | BirdSellOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BirdSells.
+     */
+    cursor?: BirdSellWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BirdSells from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BirdSells.
+     */
+    skip?: number
+    distinct?: BirdSellScalarFieldEnum | BirdSellScalarFieldEnum[]
+  }
+
+  /**
+   * BirdSell create
+   */
+  export type BirdSellCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BirdSell.
+     */
+    data: XOR<BirdSellCreateInput, BirdSellUncheckedCreateInput>
+  }
+
+  /**
+   * BirdSell createMany
+   */
+  export type BirdSellCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BirdSells.
+     */
+    data: BirdSellCreateManyInput | BirdSellCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BirdSell createManyAndReturn
+   */
+  export type BirdSellCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * The data used to create many BirdSells.
+     */
+    data: BirdSellCreateManyInput | BirdSellCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BirdSell update
+   */
+  export type BirdSellUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BirdSell.
+     */
+    data: XOR<BirdSellUpdateInput, BirdSellUncheckedUpdateInput>
+    /**
+     * Choose, which BirdSell to update.
+     */
+    where: BirdSellWhereUniqueInput
+  }
+
+  /**
+   * BirdSell updateMany
+   */
+  export type BirdSellUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BirdSells.
+     */
+    data: XOR<BirdSellUpdateManyMutationInput, BirdSellUncheckedUpdateManyInput>
+    /**
+     * Filter which BirdSells to update
+     */
+    where?: BirdSellWhereInput
+    /**
+     * Limit how many BirdSells to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BirdSell updateManyAndReturn
+   */
+  export type BirdSellUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * The data used to update BirdSells.
+     */
+    data: XOR<BirdSellUpdateManyMutationInput, BirdSellUncheckedUpdateManyInput>
+    /**
+     * Filter which BirdSells to update
+     */
+    where?: BirdSellWhereInput
+    /**
+     * Limit how many BirdSells to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BirdSell upsert
+   */
+  export type BirdSellUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BirdSell to update in case it exists.
+     */
+    where: BirdSellWhereUniqueInput
+    /**
+     * In case the BirdSell found by the `where` argument doesn't exist, create a new BirdSell with this data.
+     */
+    create: XOR<BirdSellCreateInput, BirdSellUncheckedCreateInput>
+    /**
+     * In case the BirdSell was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BirdSellUpdateInput, BirdSellUncheckedUpdateInput>
+  }
+
+  /**
+   * BirdSell delete
+   */
+  export type BirdSellDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellInclude<ExtArgs> | null
+    /**
+     * Filter which BirdSell to delete.
+     */
+    where: BirdSellWhereUniqueInput
+  }
+
+  /**
+   * BirdSell deleteMany
+   */
+  export type BirdSellDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BirdSells to delete
+     */
+    where?: BirdSellWhereInput
+    /**
+     * Limit how many BirdSells to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BirdSell without action
+   */
+  export type BirdSellDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BirdSell
+     */
+    select?: BirdSellSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BirdSell
+     */
+    omit?: BirdSellOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BirdSellInclude<ExtArgs> | null
   }
 
 
@@ -13534,6 +17898,7 @@ export namespace Prisma {
     createDate?: boolean
     FeedStock?: boolean | FeedNameCategory$FeedStockArgs<ExtArgs>
     transferFeedItem?: boolean | FeedNameCategory$transferFeedItemArgs<ExtArgs>
+    FeedSalesItem?: boolean | FeedNameCategory$FeedSalesItemArgs<ExtArgs>
     _count?: boolean | FeedNameCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["feedNameCategory"]>
 
@@ -13568,6 +17933,7 @@ export namespace Prisma {
   export type FeedNameCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     FeedStock?: boolean | FeedNameCategory$FeedStockArgs<ExtArgs>
     transferFeedItem?: boolean | FeedNameCategory$transferFeedItemArgs<ExtArgs>
+    FeedSalesItem?: boolean | FeedNameCategory$FeedSalesItemArgs<ExtArgs>
     _count?: boolean | FeedNameCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FeedNameCategoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -13578,6 +17944,7 @@ export namespace Prisma {
     objects: {
       FeedStock: Prisma.$FeedStockPayload<ExtArgs>[]
       transferFeedItem: Prisma.$TransferFeedItemPayload<ExtArgs>[]
+      FeedSalesItem: Prisma.$FeedSalesItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -13982,6 +18349,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     FeedStock<T extends FeedNameCategory$FeedStockArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategory$FeedStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     transferFeedItem<T extends FeedNameCategory$transferFeedItemArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategory$transferFeedItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FeedSalesItem<T extends FeedNameCategory$FeedSalesItemArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategory$FeedSalesItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14453,6 +18821,30 @@ export namespace Prisma {
   }
 
   /**
+   * FeedNameCategory.FeedSalesItem
+   */
+  export type FeedNameCategory$FeedSalesItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemInclude<ExtArgs> | null
+    where?: FeedSalesItemWhereInput
+    orderBy?: FeedSalesItemOrderByWithRelationInput | FeedSalesItemOrderByWithRelationInput[]
+    cursor?: FeedSalesItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedSalesItemScalarFieldEnum | FeedSalesItemScalarFieldEnum[]
+  }
+
+  /**
    * FeedNameCategory without action
    */
   export type FeedNameCategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14485,10 +18877,12 @@ export namespace Prisma {
 
   export type FeedStockAvgAggregateOutputType = {
     stock: number | null
+    unitPice: number | null
   }
 
   export type FeedStockSumAggregateOutputType = {
     stock: number | null
+    unitPice: number | null
   }
 
   export type FeedStockMinAggregateOutputType = {
@@ -14499,6 +18893,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     branchId: string | null
+    unitPice: number | null
     createDate: string | null
   }
 
@@ -14510,6 +18905,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     branchId: string | null
+    unitPice: number | null
     createDate: string | null
   }
 
@@ -14521,6 +18917,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     branchId: number
+    unitPice: number
     createDate: number
     _all: number
   }
@@ -14528,10 +18925,12 @@ export namespace Prisma {
 
   export type FeedStockAvgAggregateInputType = {
     stock?: true
+    unitPice?: true
   }
 
   export type FeedStockSumAggregateInputType = {
     stock?: true
+    unitPice?: true
   }
 
   export type FeedStockMinAggregateInputType = {
@@ -14542,6 +18941,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     branchId?: true
+    unitPice?: true
     createDate?: true
   }
 
@@ -14553,6 +18953,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     branchId?: true
+    unitPice?: true
     createDate?: true
   }
 
@@ -14564,6 +18965,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     branchId?: true
+    unitPice?: true
     createDate?: true
     _all?: true
   }
@@ -14662,6 +19064,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date
     branchId: string | null
+    unitPice: number
     createDate: string
     _count: FeedStockCountAggregateOutputType | null
     _avg: FeedStockAvgAggregateOutputType | null
@@ -14692,6 +19095,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     branchId?: boolean
+    unitPice?: boolean
     createDate?: boolean
     Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
     depot?: boolean | DepotDefaultArgs<ExtArgs>
@@ -14706,6 +19110,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     branchId?: boolean
+    unitPice?: boolean
     createDate?: boolean
     Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
     depot?: boolean | DepotDefaultArgs<ExtArgs>
@@ -14720,6 +19125,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     branchId?: boolean
+    unitPice?: boolean
     createDate?: boolean
     Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
     depot?: boolean | DepotDefaultArgs<ExtArgs>
@@ -14734,10 +19140,11 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     branchId?: boolean
+    unitPice?: boolean
     createDate?: boolean
   }
 
-  export type FeedStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "stock" | "depotName" | "createdAt" | "updatedAt" | "branchId" | "createDate", ExtArgs["result"]["feedStock"]>
+  export type FeedStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "stock" | "depotName" | "createdAt" | "updatedAt" | "branchId" | "unitPice" | "createDate", ExtArgs["result"]["feedStock"]>
   export type FeedStockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
     depot?: boolean | DepotDefaultArgs<ExtArgs>
@@ -14769,6 +19176,7 @@ export namespace Prisma {
       createdAt: Date | null
       updatedAt: Date
       branchId: string | null
+      unitPice: number
       createDate: string
     }, ExtArgs["result"]["feedStock"]>
     composites: {}
@@ -15203,6 +19611,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"FeedStock", 'DateTime'>
     readonly updatedAt: FieldRef<"FeedStock", 'DateTime'>
     readonly branchId: FieldRef<"FeedStock", 'String'>
+    readonly unitPice: FieldRef<"FeedStock", 'Int'>
     readonly createDate: FieldRef<"FeedStock", 'String'>
   }
     
@@ -15643,8 +20052,20 @@ export namespace Prisma {
 
   export type AggregateFeedStockTransfer = {
     _count: FeedStockTransferCountAggregateOutputType | null
+    _avg: FeedStockTransferAvgAggregateOutputType | null
+    _sum: FeedStockTransferSumAggregateOutputType | null
     _min: FeedStockTransferMinAggregateOutputType | null
     _max: FeedStockTransferMaxAggregateOutputType | null
+  }
+
+  export type FeedStockTransferAvgAggregateOutputType = {
+    totalKg: number | null
+    totalPrice: number | null
+  }
+
+  export type FeedStockTransferSumAggregateOutputType = {
+    totalKg: number | null
+    totalPrice: number | null
   }
 
   export type FeedStockTransferMinAggregateOutputType = {
@@ -15652,6 +20073,8 @@ export namespace Prisma {
     fromDepot: string | null
     toDepot: string | null
     transerFerDate: string | null
+    totalKg: number | null
+    totalPrice: number | null
     createDate: string | null
     trnasferBill: string | null
     createAt: Date | null
@@ -15664,6 +20087,8 @@ export namespace Prisma {
     fromDepot: string | null
     toDepot: string | null
     transerFerDate: string | null
+    totalKg: number | null
+    totalPrice: number | null
     createDate: string | null
     trnasferBill: string | null
     createAt: Date | null
@@ -15676,6 +20101,8 @@ export namespace Prisma {
     fromDepot: number
     toDepot: number
     transerFerDate: number
+    totalKg: number
+    totalPrice: number
     createDate: number
     trnasferBill: number
     createAt: number
@@ -15685,11 +20112,23 @@ export namespace Prisma {
   }
 
 
+  export type FeedStockTransferAvgAggregateInputType = {
+    totalKg?: true
+    totalPrice?: true
+  }
+
+  export type FeedStockTransferSumAggregateInputType = {
+    totalKg?: true
+    totalPrice?: true
+  }
+
   export type FeedStockTransferMinAggregateInputType = {
     id?: true
     fromDepot?: true
     toDepot?: true
     transerFerDate?: true
+    totalKg?: true
+    totalPrice?: true
     createDate?: true
     trnasferBill?: true
     createAt?: true
@@ -15702,6 +20141,8 @@ export namespace Prisma {
     fromDepot?: true
     toDepot?: true
     transerFerDate?: true
+    totalKg?: true
+    totalPrice?: true
     createDate?: true
     trnasferBill?: true
     createAt?: true
@@ -15714,6 +20155,8 @@ export namespace Prisma {
     fromDepot?: true
     toDepot?: true
     transerFerDate?: true
+    totalKg?: true
+    totalPrice?: true
     createDate?: true
     trnasferBill?: true
     createAt?: true
@@ -15760,6 +20203,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: FeedStockTransferAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FeedStockTransferSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: FeedStockTransferMinAggregateInputType
@@ -15790,6 +20245,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: FeedStockTransferCountAggregateInputType | true
+    _avg?: FeedStockTransferAvgAggregateInputType
+    _sum?: FeedStockTransferSumAggregateInputType
     _min?: FeedStockTransferMinAggregateInputType
     _max?: FeedStockTransferMaxAggregateInputType
   }
@@ -15799,12 +20256,16 @@ export namespace Prisma {
     fromDepot: string
     toDepot: string
     transerFerDate: string
+    totalKg: number
+    totalPrice: number
     createDate: string
     trnasferBill: string
     createAt: Date | null
     updateAt: Date
     depotId: string | null
     _count: FeedStockTransferCountAggregateOutputType | null
+    _avg: FeedStockTransferAvgAggregateOutputType | null
+    _sum: FeedStockTransferSumAggregateOutputType | null
     _min: FeedStockTransferMinAggregateOutputType | null
     _max: FeedStockTransferMaxAggregateOutputType | null
   }
@@ -15828,6 +20289,8 @@ export namespace Prisma {
     fromDepot?: boolean
     toDepot?: boolean
     transerFerDate?: boolean
+    totalKg?: boolean
+    totalPrice?: boolean
     createDate?: boolean
     trnasferBill?: boolean
     createAt?: boolean
@@ -15844,6 +20307,8 @@ export namespace Prisma {
     fromDepot?: boolean
     toDepot?: boolean
     transerFerDate?: boolean
+    totalKg?: boolean
+    totalPrice?: boolean
     createDate?: boolean
     trnasferBill?: boolean
     createAt?: boolean
@@ -15858,6 +20323,8 @@ export namespace Prisma {
     fromDepot?: boolean
     toDepot?: boolean
     transerFerDate?: boolean
+    totalKg?: boolean
+    totalPrice?: boolean
     createDate?: boolean
     trnasferBill?: boolean
     createAt?: boolean
@@ -15872,6 +20339,8 @@ export namespace Prisma {
     fromDepot?: boolean
     toDepot?: boolean
     transerFerDate?: boolean
+    totalKg?: boolean
+    totalPrice?: boolean
     createDate?: boolean
     trnasferBill?: boolean
     createAt?: boolean
@@ -15879,7 +20348,7 @@ export namespace Prisma {
     depotId?: boolean
   }
 
-  export type FeedStockTransferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fromDepot" | "toDepot" | "transerFerDate" | "createDate" | "trnasferBill" | "createAt" | "updateAt" | "depotId", ExtArgs["result"]["feedStockTransfer"]>
+  export type FeedStockTransferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fromDepot" | "toDepot" | "transerFerDate" | "totalKg" | "totalPrice" | "createDate" | "trnasferBill" | "createAt" | "updateAt" | "depotId", ExtArgs["result"]["feedStockTransfer"]>
   export type FeedStockTransferInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transferDepot?: boolean | DepotDefaultArgs<ExtArgs>
     reciveDepot?: boolean | DepotDefaultArgs<ExtArgs>
@@ -15907,6 +20376,8 @@ export namespace Prisma {
       fromDepot: string
       toDepot: string
       transerFerDate: string
+      totalKg: number
+      totalPrice: number
       createDate: string
       trnasferBill: string
       createAt: Date | null
@@ -16342,6 +20813,8 @@ export namespace Prisma {
     readonly fromDepot: FieldRef<"FeedStockTransfer", 'String'>
     readonly toDepot: FieldRef<"FeedStockTransfer", 'String'>
     readonly transerFerDate: FieldRef<"FeedStockTransfer", 'String'>
+    readonly totalKg: FieldRef<"FeedStockTransfer", 'Int'>
+    readonly totalPrice: FieldRef<"FeedStockTransfer", 'Int'>
     readonly createDate: FieldRef<"FeedStockTransfer", 'String'>
     readonly trnasferBill: FieldRef<"FeedStockTransfer", 'String'>
     readonly createAt: FieldRef<"FeedStockTransfer", 'DateTime'>
@@ -16791,8 +21264,18 @@ export namespace Prisma {
 
   export type AggregateTransferFeedItem = {
     _count: TransferFeedItemCountAggregateOutputType | null
+    _avg: TransferFeedItemAvgAggregateOutputType | null
+    _sum: TransferFeedItemSumAggregateOutputType | null
     _min: TransferFeedItemMinAggregateOutputType | null
     _max: TransferFeedItemMaxAggregateOutputType | null
+  }
+
+  export type TransferFeedItemAvgAggregateOutputType = {
+    price: number | null
+  }
+
+  export type TransferFeedItemSumAggregateOutputType = {
+    price: number | null
   }
 
   export type TransferFeedItemMinAggregateOutputType = {
@@ -16800,6 +21283,7 @@ export namespace Prisma {
     feedName: string | null
     createDate: string | null
     quntity: string | null
+    price: number | null
     tansferId: string | null
     createdAt: Date | null
     updateAt: Date | null
@@ -16810,6 +21294,7 @@ export namespace Prisma {
     feedName: string | null
     createDate: string | null
     quntity: string | null
+    price: number | null
     tansferId: string | null
     createdAt: Date | null
     updateAt: Date | null
@@ -16820,6 +21305,7 @@ export namespace Prisma {
     feedName: number
     createDate: number
     quntity: number
+    price: number
     tansferId: number
     createdAt: number
     updateAt: number
@@ -16827,11 +21313,20 @@ export namespace Prisma {
   }
 
 
+  export type TransferFeedItemAvgAggregateInputType = {
+    price?: true
+  }
+
+  export type TransferFeedItemSumAggregateInputType = {
+    price?: true
+  }
+
   export type TransferFeedItemMinAggregateInputType = {
     id?: true
     feedName?: true
     createDate?: true
     quntity?: true
+    price?: true
     tansferId?: true
     createdAt?: true
     updateAt?: true
@@ -16842,6 +21337,7 @@ export namespace Prisma {
     feedName?: true
     createDate?: true
     quntity?: true
+    price?: true
     tansferId?: true
     createdAt?: true
     updateAt?: true
@@ -16852,6 +21348,7 @@ export namespace Prisma {
     feedName?: true
     createDate?: true
     quntity?: true
+    price?: true
     tansferId?: true
     createdAt?: true
     updateAt?: true
@@ -16896,6 +21393,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: TransferFeedItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TransferFeedItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: TransferFeedItemMinAggregateInputType
@@ -16926,6 +21435,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: TransferFeedItemCountAggregateInputType | true
+    _avg?: TransferFeedItemAvgAggregateInputType
+    _sum?: TransferFeedItemSumAggregateInputType
     _min?: TransferFeedItemMinAggregateInputType
     _max?: TransferFeedItemMaxAggregateInputType
   }
@@ -16935,10 +21446,13 @@ export namespace Prisma {
     feedName: string
     createDate: string
     quntity: string
+    price: number
     tansferId: string
     createdAt: Date
     updateAt: Date
     _count: TransferFeedItemCountAggregateOutputType | null
+    _avg: TransferFeedItemAvgAggregateOutputType | null
+    _sum: TransferFeedItemSumAggregateOutputType | null
     _min: TransferFeedItemMinAggregateOutputType | null
     _max: TransferFeedItemMaxAggregateOutputType | null
   }
@@ -16962,6 +21476,7 @@ export namespace Prisma {
     feedName?: boolean
     createDate?: boolean
     quntity?: boolean
+    price?: boolean
     tansferId?: boolean
     createdAt?: boolean
     updateAt?: boolean
@@ -16974,6 +21489,7 @@ export namespace Prisma {
     feedName?: boolean
     createDate?: boolean
     quntity?: boolean
+    price?: boolean
     tansferId?: boolean
     createdAt?: boolean
     updateAt?: boolean
@@ -16986,6 +21502,7 @@ export namespace Prisma {
     feedName?: boolean
     createDate?: boolean
     quntity?: boolean
+    price?: boolean
     tansferId?: boolean
     createdAt?: boolean
     updateAt?: boolean
@@ -16998,12 +21515,13 @@ export namespace Prisma {
     feedName?: boolean
     createDate?: boolean
     quntity?: boolean
+    price?: boolean
     tansferId?: boolean
     createdAt?: boolean
     updateAt?: boolean
   }
 
-  export type TransferFeedItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "createDate" | "quntity" | "tansferId" | "createdAt" | "updateAt", ExtArgs["result"]["transferFeedItem"]>
+  export type TransferFeedItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "createDate" | "quntity" | "price" | "tansferId" | "createdAt" | "updateAt", ExtArgs["result"]["transferFeedItem"]>
   export type TransferFeedItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
     feedStckTranfer?: boolean | FeedStockTransferDefaultArgs<ExtArgs>
@@ -17028,6 +21546,7 @@ export namespace Prisma {
       feedName: string
       createDate: string
       quntity: string
+      price: number
       tansferId: string
       createdAt: Date
       updateAt: Date
@@ -17460,6 +21979,7 @@ export namespace Prisma {
     readonly feedName: FieldRef<"TransferFeedItem", 'String'>
     readonly createDate: FieldRef<"TransferFeedItem", 'String'>
     readonly quntity: FieldRef<"TransferFeedItem", 'String'>
+    readonly price: FieldRef<"TransferFeedItem", 'Int'>
     readonly tansferId: FieldRef<"TransferFeedItem", 'String'>
     readonly createdAt: FieldRef<"TransferFeedItem", 'DateTime'>
     readonly updateAt: FieldRef<"TransferFeedItem", 'DateTime'>
@@ -17874,6 +22394,2413 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: TransferFeedItemInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FeedSalesOrder
+   */
+
+  export type AggregateFeedSalesOrder = {
+    _count: FeedSalesOrderCountAggregateOutputType | null
+    _avg: FeedSalesOrderAvgAggregateOutputType | null
+    _sum: FeedSalesOrderSumAggregateOutputType | null
+    _min: FeedSalesOrderMinAggregateOutputType | null
+    _max: FeedSalesOrderMaxAggregateOutputType | null
+  }
+
+  export type FeedSalesOrderAvgAggregateOutputType = {
+    farmNumber: number | null
+    flockNumber: number | null
+    totalPrice: number | null
+    totalKg: number | null
+  }
+
+  export type FeedSalesOrderSumAggregateOutputType = {
+    farmNumber: number | null
+    flockNumber: number | null
+    totalPrice: number | null
+    totalKg: number | null
+  }
+
+  export type FeedSalesOrderMinAggregateOutputType = {
+    id: string | null
+    branchCode: string | null
+    depotName: string | null
+    saleInvoice: string | null
+    farmNumber: number | null
+    flockNumber: number | null
+    createDate: string | null
+    farmId: string | null
+    flockId: string | null
+    totalPrice: number | null
+    totalKg: number | null
+    description: string | null
+    status: $Enums.DeliveryStatus | null
+    createdAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type FeedSalesOrderMaxAggregateOutputType = {
+    id: string | null
+    branchCode: string | null
+    depotName: string | null
+    saleInvoice: string | null
+    farmNumber: number | null
+    flockNumber: number | null
+    createDate: string | null
+    farmId: string | null
+    flockId: string | null
+    totalPrice: number | null
+    totalKg: number | null
+    description: string | null
+    status: $Enums.DeliveryStatus | null
+    createdAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type FeedSalesOrderCountAggregateOutputType = {
+    id: number
+    branchCode: number
+    depotName: number
+    saleInvoice: number
+    farmNumber: number
+    flockNumber: number
+    createDate: number
+    farmId: number
+    flockId: number
+    totalPrice: number
+    totalKg: number
+    description: number
+    status: number
+    createdAt: number
+    updateAt: number
+    _all: number
+  }
+
+
+  export type FeedSalesOrderAvgAggregateInputType = {
+    farmNumber?: true
+    flockNumber?: true
+    totalPrice?: true
+    totalKg?: true
+  }
+
+  export type FeedSalesOrderSumAggregateInputType = {
+    farmNumber?: true
+    flockNumber?: true
+    totalPrice?: true
+    totalKg?: true
+  }
+
+  export type FeedSalesOrderMinAggregateInputType = {
+    id?: true
+    branchCode?: true
+    depotName?: true
+    saleInvoice?: true
+    farmNumber?: true
+    flockNumber?: true
+    createDate?: true
+    farmId?: true
+    flockId?: true
+    totalPrice?: true
+    totalKg?: true
+    description?: true
+    status?: true
+    createdAt?: true
+    updateAt?: true
+  }
+
+  export type FeedSalesOrderMaxAggregateInputType = {
+    id?: true
+    branchCode?: true
+    depotName?: true
+    saleInvoice?: true
+    farmNumber?: true
+    flockNumber?: true
+    createDate?: true
+    farmId?: true
+    flockId?: true
+    totalPrice?: true
+    totalKg?: true
+    description?: true
+    status?: true
+    createdAt?: true
+    updateAt?: true
+  }
+
+  export type FeedSalesOrderCountAggregateInputType = {
+    id?: true
+    branchCode?: true
+    depotName?: true
+    saleInvoice?: true
+    farmNumber?: true
+    flockNumber?: true
+    createDate?: true
+    farmId?: true
+    flockId?: true
+    totalPrice?: true
+    totalKg?: true
+    description?: true
+    status?: true
+    createdAt?: true
+    updateAt?: true
+    _all?: true
+  }
+
+  export type FeedSalesOrderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeedSalesOrder to aggregate.
+     */
+    where?: FeedSalesOrderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedSalesOrders to fetch.
+     */
+    orderBy?: FeedSalesOrderOrderByWithRelationInput | FeedSalesOrderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FeedSalesOrderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedSalesOrders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedSalesOrders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FeedSalesOrders
+    **/
+    _count?: true | FeedSalesOrderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FeedSalesOrderAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FeedSalesOrderSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FeedSalesOrderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FeedSalesOrderMaxAggregateInputType
+  }
+
+  export type GetFeedSalesOrderAggregateType<T extends FeedSalesOrderAggregateArgs> = {
+        [P in keyof T & keyof AggregateFeedSalesOrder]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFeedSalesOrder[P]>
+      : GetScalarType<T[P], AggregateFeedSalesOrder[P]>
+  }
+
+
+
+
+  export type FeedSalesOrderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedSalesOrderWhereInput
+    orderBy?: FeedSalesOrderOrderByWithAggregationInput | FeedSalesOrderOrderByWithAggregationInput[]
+    by: FeedSalesOrderScalarFieldEnum[] | FeedSalesOrderScalarFieldEnum
+    having?: FeedSalesOrderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FeedSalesOrderCountAggregateInputType | true
+    _avg?: FeedSalesOrderAvgAggregateInputType
+    _sum?: FeedSalesOrderSumAggregateInputType
+    _min?: FeedSalesOrderMinAggregateInputType
+    _max?: FeedSalesOrderMaxAggregateInputType
+  }
+
+  export type FeedSalesOrderGroupByOutputType = {
+    id: string
+    branchCode: string
+    depotName: string
+    saleInvoice: string
+    farmNumber: number
+    flockNumber: number
+    createDate: string
+    farmId: string
+    flockId: string
+    totalPrice: number
+    totalKg: number
+    description: string | null
+    status: $Enums.DeliveryStatus
+    createdAt: Date | null
+    updateAt: Date
+    _count: FeedSalesOrderCountAggregateOutputType | null
+    _avg: FeedSalesOrderAvgAggregateOutputType | null
+    _sum: FeedSalesOrderSumAggregateOutputType | null
+    _min: FeedSalesOrderMinAggregateOutputType | null
+    _max: FeedSalesOrderMaxAggregateOutputType | null
+  }
+
+  type GetFeedSalesOrderGroupByPayload<T extends FeedSalesOrderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FeedSalesOrderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FeedSalesOrderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FeedSalesOrderGroupByOutputType[P]>
+            : GetScalarType<T[P], FeedSalesOrderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FeedSalesOrderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    branchCode?: boolean
+    depotName?: boolean
+    saleInvoice?: boolean
+    farmNumber?: boolean
+    flockNumber?: boolean
+    createDate?: boolean
+    farmId?: boolean
+    flockId?: boolean
+    totalPrice?: boolean
+    totalKg?: boolean
+    description?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+    FeedSalesItem?: boolean | FeedSalesOrder$FeedSalesItemArgs<ExtArgs>
+    _count?: boolean | FeedSalesOrderCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedSalesOrder"]>
+
+  export type FeedSalesOrderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    branchCode?: boolean
+    depotName?: boolean
+    saleInvoice?: boolean
+    farmNumber?: boolean
+    flockNumber?: boolean
+    createDate?: boolean
+    farmId?: boolean
+    flockId?: boolean
+    totalPrice?: boolean
+    totalKg?: boolean
+    description?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedSalesOrder"]>
+
+  export type FeedSalesOrderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    branchCode?: boolean
+    depotName?: boolean
+    saleInvoice?: boolean
+    farmNumber?: boolean
+    flockNumber?: boolean
+    createDate?: boolean
+    farmId?: boolean
+    flockId?: boolean
+    totalPrice?: boolean
+    totalKg?: boolean
+    description?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedSalesOrder"]>
+
+  export type FeedSalesOrderSelectScalar = {
+    id?: boolean
+    branchCode?: boolean
+    depotName?: boolean
+    saleInvoice?: boolean
+    farmNumber?: boolean
+    flockNumber?: boolean
+    createDate?: boolean
+    farmId?: boolean
+    flockId?: boolean
+    totalPrice?: boolean
+    totalKg?: boolean
+    description?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
+  }
+
+  export type FeedSalesOrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branchCode" | "depotName" | "saleInvoice" | "farmNumber" | "flockNumber" | "createDate" | "farmId" | "flockId" | "totalPrice" | "totalKg" | "description" | "status" | "createdAt" | "updateAt", ExtArgs["result"]["feedSalesOrder"]>
+  export type FeedSalesOrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+    FeedSalesItem?: boolean | FeedSalesOrder$FeedSalesItemArgs<ExtArgs>
+    _count?: boolean | FeedSalesOrderCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FeedSalesOrderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+  export type FeedSalesOrderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+
+  export type $FeedSalesOrderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FeedSalesOrder"
+    objects: {
+      depot: Prisma.$DepotPayload<ExtArgs>
+      FeedSalesItem: Prisma.$FeedSalesItemPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      branchCode: string
+      depotName: string
+      saleInvoice: string
+      farmNumber: number
+      flockNumber: number
+      createDate: string
+      farmId: string
+      flockId: string
+      totalPrice: number
+      totalKg: number
+      description: string | null
+      status: $Enums.DeliveryStatus
+      createdAt: Date | null
+      updateAt: Date
+    }, ExtArgs["result"]["feedSalesOrder"]>
+    composites: {}
+  }
+
+  type FeedSalesOrderGetPayload<S extends boolean | null | undefined | FeedSalesOrderDefaultArgs> = $Result.GetResult<Prisma.$FeedSalesOrderPayload, S>
+
+  type FeedSalesOrderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FeedSalesOrderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FeedSalesOrderCountAggregateInputType | true
+    }
+
+  export interface FeedSalesOrderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FeedSalesOrder'], meta: { name: 'FeedSalesOrder' } }
+    /**
+     * Find zero or one FeedSalesOrder that matches the filter.
+     * @param {FeedSalesOrderFindUniqueArgs} args - Arguments to find a FeedSalesOrder
+     * @example
+     * // Get one FeedSalesOrder
+     * const feedSalesOrder = await prisma.feedSalesOrder.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FeedSalesOrderFindUniqueArgs>(args: SelectSubset<T, FeedSalesOrderFindUniqueArgs<ExtArgs>>): Prisma__FeedSalesOrderClient<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FeedSalesOrder that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FeedSalesOrderFindUniqueOrThrowArgs} args - Arguments to find a FeedSalesOrder
+     * @example
+     * // Get one FeedSalesOrder
+     * const feedSalesOrder = await prisma.feedSalesOrder.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FeedSalesOrderFindUniqueOrThrowArgs>(args: SelectSubset<T, FeedSalesOrderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FeedSalesOrderClient<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeedSalesOrder that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesOrderFindFirstArgs} args - Arguments to find a FeedSalesOrder
+     * @example
+     * // Get one FeedSalesOrder
+     * const feedSalesOrder = await prisma.feedSalesOrder.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FeedSalesOrderFindFirstArgs>(args?: SelectSubset<T, FeedSalesOrderFindFirstArgs<ExtArgs>>): Prisma__FeedSalesOrderClient<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeedSalesOrder that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesOrderFindFirstOrThrowArgs} args - Arguments to find a FeedSalesOrder
+     * @example
+     * // Get one FeedSalesOrder
+     * const feedSalesOrder = await prisma.feedSalesOrder.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FeedSalesOrderFindFirstOrThrowArgs>(args?: SelectSubset<T, FeedSalesOrderFindFirstOrThrowArgs<ExtArgs>>): Prisma__FeedSalesOrderClient<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FeedSalesOrders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesOrderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FeedSalesOrders
+     * const feedSalesOrders = await prisma.feedSalesOrder.findMany()
+     * 
+     * // Get first 10 FeedSalesOrders
+     * const feedSalesOrders = await prisma.feedSalesOrder.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const feedSalesOrderWithIdOnly = await prisma.feedSalesOrder.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FeedSalesOrderFindManyArgs>(args?: SelectSubset<T, FeedSalesOrderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FeedSalesOrder.
+     * @param {FeedSalesOrderCreateArgs} args - Arguments to create a FeedSalesOrder.
+     * @example
+     * // Create one FeedSalesOrder
+     * const FeedSalesOrder = await prisma.feedSalesOrder.create({
+     *   data: {
+     *     // ... data to create a FeedSalesOrder
+     *   }
+     * })
+     * 
+     */
+    create<T extends FeedSalesOrderCreateArgs>(args: SelectSubset<T, FeedSalesOrderCreateArgs<ExtArgs>>): Prisma__FeedSalesOrderClient<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FeedSalesOrders.
+     * @param {FeedSalesOrderCreateManyArgs} args - Arguments to create many FeedSalesOrders.
+     * @example
+     * // Create many FeedSalesOrders
+     * const feedSalesOrder = await prisma.feedSalesOrder.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FeedSalesOrderCreateManyArgs>(args?: SelectSubset<T, FeedSalesOrderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FeedSalesOrders and returns the data saved in the database.
+     * @param {FeedSalesOrderCreateManyAndReturnArgs} args - Arguments to create many FeedSalesOrders.
+     * @example
+     * // Create many FeedSalesOrders
+     * const feedSalesOrder = await prisma.feedSalesOrder.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FeedSalesOrders and only return the `id`
+     * const feedSalesOrderWithIdOnly = await prisma.feedSalesOrder.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FeedSalesOrderCreateManyAndReturnArgs>(args?: SelectSubset<T, FeedSalesOrderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FeedSalesOrder.
+     * @param {FeedSalesOrderDeleteArgs} args - Arguments to delete one FeedSalesOrder.
+     * @example
+     * // Delete one FeedSalesOrder
+     * const FeedSalesOrder = await prisma.feedSalesOrder.delete({
+     *   where: {
+     *     // ... filter to delete one FeedSalesOrder
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FeedSalesOrderDeleteArgs>(args: SelectSubset<T, FeedSalesOrderDeleteArgs<ExtArgs>>): Prisma__FeedSalesOrderClient<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FeedSalesOrder.
+     * @param {FeedSalesOrderUpdateArgs} args - Arguments to update one FeedSalesOrder.
+     * @example
+     * // Update one FeedSalesOrder
+     * const feedSalesOrder = await prisma.feedSalesOrder.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FeedSalesOrderUpdateArgs>(args: SelectSubset<T, FeedSalesOrderUpdateArgs<ExtArgs>>): Prisma__FeedSalesOrderClient<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FeedSalesOrders.
+     * @param {FeedSalesOrderDeleteManyArgs} args - Arguments to filter FeedSalesOrders to delete.
+     * @example
+     * // Delete a few FeedSalesOrders
+     * const { count } = await prisma.feedSalesOrder.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FeedSalesOrderDeleteManyArgs>(args?: SelectSubset<T, FeedSalesOrderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeedSalesOrders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesOrderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FeedSalesOrders
+     * const feedSalesOrder = await prisma.feedSalesOrder.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FeedSalesOrderUpdateManyArgs>(args: SelectSubset<T, FeedSalesOrderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeedSalesOrders and returns the data updated in the database.
+     * @param {FeedSalesOrderUpdateManyAndReturnArgs} args - Arguments to update many FeedSalesOrders.
+     * @example
+     * // Update many FeedSalesOrders
+     * const feedSalesOrder = await prisma.feedSalesOrder.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FeedSalesOrders and only return the `id`
+     * const feedSalesOrderWithIdOnly = await prisma.feedSalesOrder.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FeedSalesOrderUpdateManyAndReturnArgs>(args: SelectSubset<T, FeedSalesOrderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FeedSalesOrder.
+     * @param {FeedSalesOrderUpsertArgs} args - Arguments to update or create a FeedSalesOrder.
+     * @example
+     * // Update or create a FeedSalesOrder
+     * const feedSalesOrder = await prisma.feedSalesOrder.upsert({
+     *   create: {
+     *     // ... data to create a FeedSalesOrder
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FeedSalesOrder we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FeedSalesOrderUpsertArgs>(args: SelectSubset<T, FeedSalesOrderUpsertArgs<ExtArgs>>): Prisma__FeedSalesOrderClient<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FeedSalesOrders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesOrderCountArgs} args - Arguments to filter FeedSalesOrders to count.
+     * @example
+     * // Count the number of FeedSalesOrders
+     * const count = await prisma.feedSalesOrder.count({
+     *   where: {
+     *     // ... the filter for the FeedSalesOrders we want to count
+     *   }
+     * })
+    **/
+    count<T extends FeedSalesOrderCountArgs>(
+      args?: Subset<T, FeedSalesOrderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FeedSalesOrderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FeedSalesOrder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesOrderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FeedSalesOrderAggregateArgs>(args: Subset<T, FeedSalesOrderAggregateArgs>): Prisma.PrismaPromise<GetFeedSalesOrderAggregateType<T>>
+
+    /**
+     * Group by FeedSalesOrder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesOrderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FeedSalesOrderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FeedSalesOrderGroupByArgs['orderBy'] }
+        : { orderBy?: FeedSalesOrderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FeedSalesOrderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFeedSalesOrderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FeedSalesOrder model
+   */
+  readonly fields: FeedSalesOrderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FeedSalesOrder.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FeedSalesOrderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    depot<T extends DepotDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DepotDefaultArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    FeedSalesItem<T extends FeedSalesOrder$FeedSalesItemArgs<ExtArgs> = {}>(args?: Subset<T, FeedSalesOrder$FeedSalesItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FeedSalesOrder model
+   */
+  interface FeedSalesOrderFieldRefs {
+    readonly id: FieldRef<"FeedSalesOrder", 'String'>
+    readonly branchCode: FieldRef<"FeedSalesOrder", 'String'>
+    readonly depotName: FieldRef<"FeedSalesOrder", 'String'>
+    readonly saleInvoice: FieldRef<"FeedSalesOrder", 'String'>
+    readonly farmNumber: FieldRef<"FeedSalesOrder", 'Int'>
+    readonly flockNumber: FieldRef<"FeedSalesOrder", 'Int'>
+    readonly createDate: FieldRef<"FeedSalesOrder", 'String'>
+    readonly farmId: FieldRef<"FeedSalesOrder", 'String'>
+    readonly flockId: FieldRef<"FeedSalesOrder", 'String'>
+    readonly totalPrice: FieldRef<"FeedSalesOrder", 'Int'>
+    readonly totalKg: FieldRef<"FeedSalesOrder", 'Int'>
+    readonly description: FieldRef<"FeedSalesOrder", 'String'>
+    readonly status: FieldRef<"FeedSalesOrder", 'DeliveryStatus'>
+    readonly createdAt: FieldRef<"FeedSalesOrder", 'DateTime'>
+    readonly updateAt: FieldRef<"FeedSalesOrder", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FeedSalesOrder findUnique
+   */
+  export type FeedSalesOrderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedSalesOrder to fetch.
+     */
+    where: FeedSalesOrderWhereUniqueInput
+  }
+
+  /**
+   * FeedSalesOrder findUniqueOrThrow
+   */
+  export type FeedSalesOrderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedSalesOrder to fetch.
+     */
+    where: FeedSalesOrderWhereUniqueInput
+  }
+
+  /**
+   * FeedSalesOrder findFirst
+   */
+  export type FeedSalesOrderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedSalesOrder to fetch.
+     */
+    where?: FeedSalesOrderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedSalesOrders to fetch.
+     */
+    orderBy?: FeedSalesOrderOrderByWithRelationInput | FeedSalesOrderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeedSalesOrders.
+     */
+    cursor?: FeedSalesOrderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedSalesOrders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedSalesOrders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeedSalesOrders.
+     */
+    distinct?: FeedSalesOrderScalarFieldEnum | FeedSalesOrderScalarFieldEnum[]
+  }
+
+  /**
+   * FeedSalesOrder findFirstOrThrow
+   */
+  export type FeedSalesOrderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedSalesOrder to fetch.
+     */
+    where?: FeedSalesOrderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedSalesOrders to fetch.
+     */
+    orderBy?: FeedSalesOrderOrderByWithRelationInput | FeedSalesOrderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeedSalesOrders.
+     */
+    cursor?: FeedSalesOrderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedSalesOrders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedSalesOrders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeedSalesOrders.
+     */
+    distinct?: FeedSalesOrderScalarFieldEnum | FeedSalesOrderScalarFieldEnum[]
+  }
+
+  /**
+   * FeedSalesOrder findMany
+   */
+  export type FeedSalesOrderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedSalesOrders to fetch.
+     */
+    where?: FeedSalesOrderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedSalesOrders to fetch.
+     */
+    orderBy?: FeedSalesOrderOrderByWithRelationInput | FeedSalesOrderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FeedSalesOrders.
+     */
+    cursor?: FeedSalesOrderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedSalesOrders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedSalesOrders.
+     */
+    skip?: number
+    distinct?: FeedSalesOrderScalarFieldEnum | FeedSalesOrderScalarFieldEnum[]
+  }
+
+  /**
+   * FeedSalesOrder create
+   */
+  export type FeedSalesOrderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FeedSalesOrder.
+     */
+    data: XOR<FeedSalesOrderCreateInput, FeedSalesOrderUncheckedCreateInput>
+  }
+
+  /**
+   * FeedSalesOrder createMany
+   */
+  export type FeedSalesOrderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FeedSalesOrders.
+     */
+    data: FeedSalesOrderCreateManyInput | FeedSalesOrderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FeedSalesOrder createManyAndReturn
+   */
+  export type FeedSalesOrderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * The data used to create many FeedSalesOrders.
+     */
+    data: FeedSalesOrderCreateManyInput | FeedSalesOrderCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeedSalesOrder update
+   */
+  export type FeedSalesOrderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FeedSalesOrder.
+     */
+    data: XOR<FeedSalesOrderUpdateInput, FeedSalesOrderUncheckedUpdateInput>
+    /**
+     * Choose, which FeedSalesOrder to update.
+     */
+    where: FeedSalesOrderWhereUniqueInput
+  }
+
+  /**
+   * FeedSalesOrder updateMany
+   */
+  export type FeedSalesOrderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FeedSalesOrders.
+     */
+    data: XOR<FeedSalesOrderUpdateManyMutationInput, FeedSalesOrderUncheckedUpdateManyInput>
+    /**
+     * Filter which FeedSalesOrders to update
+     */
+    where?: FeedSalesOrderWhereInput
+    /**
+     * Limit how many FeedSalesOrders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeedSalesOrder updateManyAndReturn
+   */
+  export type FeedSalesOrderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * The data used to update FeedSalesOrders.
+     */
+    data: XOR<FeedSalesOrderUpdateManyMutationInput, FeedSalesOrderUncheckedUpdateManyInput>
+    /**
+     * Filter which FeedSalesOrders to update
+     */
+    where?: FeedSalesOrderWhereInput
+    /**
+     * Limit how many FeedSalesOrders to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeedSalesOrder upsert
+   */
+  export type FeedSalesOrderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FeedSalesOrder to update in case it exists.
+     */
+    where: FeedSalesOrderWhereUniqueInput
+    /**
+     * In case the FeedSalesOrder found by the `where` argument doesn't exist, create a new FeedSalesOrder with this data.
+     */
+    create: XOR<FeedSalesOrderCreateInput, FeedSalesOrderUncheckedCreateInput>
+    /**
+     * In case the FeedSalesOrder was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FeedSalesOrderUpdateInput, FeedSalesOrderUncheckedUpdateInput>
+  }
+
+  /**
+   * FeedSalesOrder delete
+   */
+  export type FeedSalesOrderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderInclude<ExtArgs> | null
+    /**
+     * Filter which FeedSalesOrder to delete.
+     */
+    where: FeedSalesOrderWhereUniqueInput
+  }
+
+  /**
+   * FeedSalesOrder deleteMany
+   */
+  export type FeedSalesOrderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeedSalesOrders to delete
+     */
+    where?: FeedSalesOrderWhereInput
+    /**
+     * Limit how many FeedSalesOrders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeedSalesOrder.FeedSalesItem
+   */
+  export type FeedSalesOrder$FeedSalesItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemInclude<ExtArgs> | null
+    where?: FeedSalesItemWhereInput
+    orderBy?: FeedSalesItemOrderByWithRelationInput | FeedSalesItemOrderByWithRelationInput[]
+    cursor?: FeedSalesItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedSalesItemScalarFieldEnum | FeedSalesItemScalarFieldEnum[]
+  }
+
+  /**
+   * FeedSalesOrder without action
+   */
+  export type FeedSalesOrderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FeedSalesItem
+   */
+
+  export type AggregateFeedSalesItem = {
+    _count: FeedSalesItemCountAggregateOutputType | null
+    _avg: FeedSalesItemAvgAggregateOutputType | null
+    _sum: FeedSalesItemSumAggregateOutputType | null
+    _min: FeedSalesItemMinAggregateOutputType | null
+    _max: FeedSalesItemMaxAggregateOutputType | null
+  }
+
+  export type FeedSalesItemAvgAggregateOutputType = {
+    quantity: number | null
+    totalPice: number | null
+  }
+
+  export type FeedSalesItemSumAggregateOutputType = {
+    quantity: number | null
+    totalPice: number | null
+  }
+
+  export type FeedSalesItemMinAggregateOutputType = {
+    id: string | null
+    feedName: string | null
+    salesInvoice: string | null
+    quantity: number | null
+    createDate: string | null
+    totalPice: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FeedSalesItemMaxAggregateOutputType = {
+    id: string | null
+    feedName: string | null
+    salesInvoice: string | null
+    quantity: number | null
+    createDate: string | null
+    totalPice: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FeedSalesItemCountAggregateOutputType = {
+    id: number
+    feedName: number
+    salesInvoice: number
+    quantity: number
+    createDate: number
+    totalPice: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FeedSalesItemAvgAggregateInputType = {
+    quantity?: true
+    totalPice?: true
+  }
+
+  export type FeedSalesItemSumAggregateInputType = {
+    quantity?: true
+    totalPice?: true
+  }
+
+  export type FeedSalesItemMinAggregateInputType = {
+    id?: true
+    feedName?: true
+    salesInvoice?: true
+    quantity?: true
+    createDate?: true
+    totalPice?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FeedSalesItemMaxAggregateInputType = {
+    id?: true
+    feedName?: true
+    salesInvoice?: true
+    quantity?: true
+    createDate?: true
+    totalPice?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FeedSalesItemCountAggregateInputType = {
+    id?: true
+    feedName?: true
+    salesInvoice?: true
+    quantity?: true
+    createDate?: true
+    totalPice?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FeedSalesItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeedSalesItem to aggregate.
+     */
+    where?: FeedSalesItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedSalesItems to fetch.
+     */
+    orderBy?: FeedSalesItemOrderByWithRelationInput | FeedSalesItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FeedSalesItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedSalesItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedSalesItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FeedSalesItems
+    **/
+    _count?: true | FeedSalesItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FeedSalesItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FeedSalesItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FeedSalesItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FeedSalesItemMaxAggregateInputType
+  }
+
+  export type GetFeedSalesItemAggregateType<T extends FeedSalesItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateFeedSalesItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFeedSalesItem[P]>
+      : GetScalarType<T[P], AggregateFeedSalesItem[P]>
+  }
+
+
+
+
+  export type FeedSalesItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedSalesItemWhereInput
+    orderBy?: FeedSalesItemOrderByWithAggregationInput | FeedSalesItemOrderByWithAggregationInput[]
+    by: FeedSalesItemScalarFieldEnum[] | FeedSalesItemScalarFieldEnum
+    having?: FeedSalesItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FeedSalesItemCountAggregateInputType | true
+    _avg?: FeedSalesItemAvgAggregateInputType
+    _sum?: FeedSalesItemSumAggregateInputType
+    _min?: FeedSalesItemMinAggregateInputType
+    _max?: FeedSalesItemMaxAggregateInputType
+  }
+
+  export type FeedSalesItemGroupByOutputType = {
+    id: string
+    feedName: string
+    salesInvoice: string
+    quantity: number
+    createDate: string
+    totalPice: number
+    createdAt: Date
+    updatedAt: Date
+    _count: FeedSalesItemCountAggregateOutputType | null
+    _avg: FeedSalesItemAvgAggregateOutputType | null
+    _sum: FeedSalesItemSumAggregateOutputType | null
+    _min: FeedSalesItemMinAggregateOutputType | null
+    _max: FeedSalesItemMaxAggregateOutputType | null
+  }
+
+  type GetFeedSalesItemGroupByPayload<T extends FeedSalesItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FeedSalesItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FeedSalesItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FeedSalesItemGroupByOutputType[P]>
+            : GetScalarType<T[P], FeedSalesItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FeedSalesItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    salesInvoice?: boolean
+    quantity?: boolean
+    createDate?: boolean
+    totalPice?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    salesOrder?: boolean | FeedSalesOrderDefaultArgs<ExtArgs>
+    feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedSalesItem"]>
+
+  export type FeedSalesItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    salesInvoice?: boolean
+    quantity?: boolean
+    createDate?: boolean
+    totalPice?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    salesOrder?: boolean | FeedSalesOrderDefaultArgs<ExtArgs>
+    feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedSalesItem"]>
+
+  export type FeedSalesItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    salesInvoice?: boolean
+    quantity?: boolean
+    createDate?: boolean
+    totalPice?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    salesOrder?: boolean | FeedSalesOrderDefaultArgs<ExtArgs>
+    feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedSalesItem"]>
+
+  export type FeedSalesItemSelectScalar = {
+    id?: boolean
+    feedName?: boolean
+    salesInvoice?: boolean
+    quantity?: boolean
+    createDate?: boolean
+    totalPice?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FeedSalesItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "salesInvoice" | "quantity" | "createDate" | "totalPice" | "createdAt" | "updatedAt", ExtArgs["result"]["feedSalesItem"]>
+  export type FeedSalesItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    salesOrder?: boolean | FeedSalesOrderDefaultArgs<ExtArgs>
+    feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+  }
+  export type FeedSalesItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    salesOrder?: boolean | FeedSalesOrderDefaultArgs<ExtArgs>
+    feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+  }
+  export type FeedSalesItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    salesOrder?: boolean | FeedSalesOrderDefaultArgs<ExtArgs>
+    feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+  }
+
+  export type $FeedSalesItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FeedSalesItem"
+    objects: {
+      salesOrder: Prisma.$FeedSalesOrderPayload<ExtArgs>
+      feedNameCategory: Prisma.$FeedNameCategoryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      feedName: string
+      salesInvoice: string
+      quantity: number
+      createDate: string
+      totalPice: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["feedSalesItem"]>
+    composites: {}
+  }
+
+  type FeedSalesItemGetPayload<S extends boolean | null | undefined | FeedSalesItemDefaultArgs> = $Result.GetResult<Prisma.$FeedSalesItemPayload, S>
+
+  type FeedSalesItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FeedSalesItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FeedSalesItemCountAggregateInputType | true
+    }
+
+  export interface FeedSalesItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FeedSalesItem'], meta: { name: 'FeedSalesItem' } }
+    /**
+     * Find zero or one FeedSalesItem that matches the filter.
+     * @param {FeedSalesItemFindUniqueArgs} args - Arguments to find a FeedSalesItem
+     * @example
+     * // Get one FeedSalesItem
+     * const feedSalesItem = await prisma.feedSalesItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FeedSalesItemFindUniqueArgs>(args: SelectSubset<T, FeedSalesItemFindUniqueArgs<ExtArgs>>): Prisma__FeedSalesItemClient<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FeedSalesItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FeedSalesItemFindUniqueOrThrowArgs} args - Arguments to find a FeedSalesItem
+     * @example
+     * // Get one FeedSalesItem
+     * const feedSalesItem = await prisma.feedSalesItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FeedSalesItemFindUniqueOrThrowArgs>(args: SelectSubset<T, FeedSalesItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FeedSalesItemClient<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeedSalesItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesItemFindFirstArgs} args - Arguments to find a FeedSalesItem
+     * @example
+     * // Get one FeedSalesItem
+     * const feedSalesItem = await prisma.feedSalesItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FeedSalesItemFindFirstArgs>(args?: SelectSubset<T, FeedSalesItemFindFirstArgs<ExtArgs>>): Prisma__FeedSalesItemClient<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeedSalesItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesItemFindFirstOrThrowArgs} args - Arguments to find a FeedSalesItem
+     * @example
+     * // Get one FeedSalesItem
+     * const feedSalesItem = await prisma.feedSalesItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FeedSalesItemFindFirstOrThrowArgs>(args?: SelectSubset<T, FeedSalesItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__FeedSalesItemClient<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FeedSalesItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FeedSalesItems
+     * const feedSalesItems = await prisma.feedSalesItem.findMany()
+     * 
+     * // Get first 10 FeedSalesItems
+     * const feedSalesItems = await prisma.feedSalesItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const feedSalesItemWithIdOnly = await prisma.feedSalesItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FeedSalesItemFindManyArgs>(args?: SelectSubset<T, FeedSalesItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FeedSalesItem.
+     * @param {FeedSalesItemCreateArgs} args - Arguments to create a FeedSalesItem.
+     * @example
+     * // Create one FeedSalesItem
+     * const FeedSalesItem = await prisma.feedSalesItem.create({
+     *   data: {
+     *     // ... data to create a FeedSalesItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends FeedSalesItemCreateArgs>(args: SelectSubset<T, FeedSalesItemCreateArgs<ExtArgs>>): Prisma__FeedSalesItemClient<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FeedSalesItems.
+     * @param {FeedSalesItemCreateManyArgs} args - Arguments to create many FeedSalesItems.
+     * @example
+     * // Create many FeedSalesItems
+     * const feedSalesItem = await prisma.feedSalesItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FeedSalesItemCreateManyArgs>(args?: SelectSubset<T, FeedSalesItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FeedSalesItems and returns the data saved in the database.
+     * @param {FeedSalesItemCreateManyAndReturnArgs} args - Arguments to create many FeedSalesItems.
+     * @example
+     * // Create many FeedSalesItems
+     * const feedSalesItem = await prisma.feedSalesItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FeedSalesItems and only return the `id`
+     * const feedSalesItemWithIdOnly = await prisma.feedSalesItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FeedSalesItemCreateManyAndReturnArgs>(args?: SelectSubset<T, FeedSalesItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FeedSalesItem.
+     * @param {FeedSalesItemDeleteArgs} args - Arguments to delete one FeedSalesItem.
+     * @example
+     * // Delete one FeedSalesItem
+     * const FeedSalesItem = await prisma.feedSalesItem.delete({
+     *   where: {
+     *     // ... filter to delete one FeedSalesItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FeedSalesItemDeleteArgs>(args: SelectSubset<T, FeedSalesItemDeleteArgs<ExtArgs>>): Prisma__FeedSalesItemClient<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FeedSalesItem.
+     * @param {FeedSalesItemUpdateArgs} args - Arguments to update one FeedSalesItem.
+     * @example
+     * // Update one FeedSalesItem
+     * const feedSalesItem = await prisma.feedSalesItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FeedSalesItemUpdateArgs>(args: SelectSubset<T, FeedSalesItemUpdateArgs<ExtArgs>>): Prisma__FeedSalesItemClient<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FeedSalesItems.
+     * @param {FeedSalesItemDeleteManyArgs} args - Arguments to filter FeedSalesItems to delete.
+     * @example
+     * // Delete a few FeedSalesItems
+     * const { count } = await prisma.feedSalesItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FeedSalesItemDeleteManyArgs>(args?: SelectSubset<T, FeedSalesItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeedSalesItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FeedSalesItems
+     * const feedSalesItem = await prisma.feedSalesItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FeedSalesItemUpdateManyArgs>(args: SelectSubset<T, FeedSalesItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeedSalesItems and returns the data updated in the database.
+     * @param {FeedSalesItemUpdateManyAndReturnArgs} args - Arguments to update many FeedSalesItems.
+     * @example
+     * // Update many FeedSalesItems
+     * const feedSalesItem = await prisma.feedSalesItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FeedSalesItems and only return the `id`
+     * const feedSalesItemWithIdOnly = await prisma.feedSalesItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FeedSalesItemUpdateManyAndReturnArgs>(args: SelectSubset<T, FeedSalesItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FeedSalesItem.
+     * @param {FeedSalesItemUpsertArgs} args - Arguments to update or create a FeedSalesItem.
+     * @example
+     * // Update or create a FeedSalesItem
+     * const feedSalesItem = await prisma.feedSalesItem.upsert({
+     *   create: {
+     *     // ... data to create a FeedSalesItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FeedSalesItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FeedSalesItemUpsertArgs>(args: SelectSubset<T, FeedSalesItemUpsertArgs<ExtArgs>>): Prisma__FeedSalesItemClient<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FeedSalesItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesItemCountArgs} args - Arguments to filter FeedSalesItems to count.
+     * @example
+     * // Count the number of FeedSalesItems
+     * const count = await prisma.feedSalesItem.count({
+     *   where: {
+     *     // ... the filter for the FeedSalesItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends FeedSalesItemCountArgs>(
+      args?: Subset<T, FeedSalesItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FeedSalesItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FeedSalesItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FeedSalesItemAggregateArgs>(args: Subset<T, FeedSalesItemAggregateArgs>): Prisma.PrismaPromise<GetFeedSalesItemAggregateType<T>>
+
+    /**
+     * Group by FeedSalesItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedSalesItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FeedSalesItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FeedSalesItemGroupByArgs['orderBy'] }
+        : { orderBy?: FeedSalesItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FeedSalesItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFeedSalesItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FeedSalesItem model
+   */
+  readonly fields: FeedSalesItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FeedSalesItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FeedSalesItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    salesOrder<T extends FeedSalesOrderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FeedSalesOrderDefaultArgs<ExtArgs>>): Prisma__FeedSalesOrderClient<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    feedNameCategory<T extends FeedNameCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategoryDefaultArgs<ExtArgs>>): Prisma__FeedNameCategoryClient<$Result.GetResult<Prisma.$FeedNameCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FeedSalesItem model
+   */
+  interface FeedSalesItemFieldRefs {
+    readonly id: FieldRef<"FeedSalesItem", 'String'>
+    readonly feedName: FieldRef<"FeedSalesItem", 'String'>
+    readonly salesInvoice: FieldRef<"FeedSalesItem", 'String'>
+    readonly quantity: FieldRef<"FeedSalesItem", 'Int'>
+    readonly createDate: FieldRef<"FeedSalesItem", 'String'>
+    readonly totalPice: FieldRef<"FeedSalesItem", 'Int'>
+    readonly createdAt: FieldRef<"FeedSalesItem", 'DateTime'>
+    readonly updatedAt: FieldRef<"FeedSalesItem", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FeedSalesItem findUnique
+   */
+  export type FeedSalesItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedSalesItem to fetch.
+     */
+    where: FeedSalesItemWhereUniqueInput
+  }
+
+  /**
+   * FeedSalesItem findUniqueOrThrow
+   */
+  export type FeedSalesItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedSalesItem to fetch.
+     */
+    where: FeedSalesItemWhereUniqueInput
+  }
+
+  /**
+   * FeedSalesItem findFirst
+   */
+  export type FeedSalesItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedSalesItem to fetch.
+     */
+    where?: FeedSalesItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedSalesItems to fetch.
+     */
+    orderBy?: FeedSalesItemOrderByWithRelationInput | FeedSalesItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeedSalesItems.
+     */
+    cursor?: FeedSalesItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedSalesItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedSalesItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeedSalesItems.
+     */
+    distinct?: FeedSalesItemScalarFieldEnum | FeedSalesItemScalarFieldEnum[]
+  }
+
+  /**
+   * FeedSalesItem findFirstOrThrow
+   */
+  export type FeedSalesItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedSalesItem to fetch.
+     */
+    where?: FeedSalesItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedSalesItems to fetch.
+     */
+    orderBy?: FeedSalesItemOrderByWithRelationInput | FeedSalesItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeedSalesItems.
+     */
+    cursor?: FeedSalesItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedSalesItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedSalesItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeedSalesItems.
+     */
+    distinct?: FeedSalesItemScalarFieldEnum | FeedSalesItemScalarFieldEnum[]
+  }
+
+  /**
+   * FeedSalesItem findMany
+   */
+  export type FeedSalesItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedSalesItems to fetch.
+     */
+    where?: FeedSalesItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedSalesItems to fetch.
+     */
+    orderBy?: FeedSalesItemOrderByWithRelationInput | FeedSalesItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FeedSalesItems.
+     */
+    cursor?: FeedSalesItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedSalesItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedSalesItems.
+     */
+    skip?: number
+    distinct?: FeedSalesItemScalarFieldEnum | FeedSalesItemScalarFieldEnum[]
+  }
+
+  /**
+   * FeedSalesItem create
+   */
+  export type FeedSalesItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FeedSalesItem.
+     */
+    data: XOR<FeedSalesItemCreateInput, FeedSalesItemUncheckedCreateInput>
+  }
+
+  /**
+   * FeedSalesItem createMany
+   */
+  export type FeedSalesItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FeedSalesItems.
+     */
+    data: FeedSalesItemCreateManyInput | FeedSalesItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FeedSalesItem createManyAndReturn
+   */
+  export type FeedSalesItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many FeedSalesItems.
+     */
+    data: FeedSalesItemCreateManyInput | FeedSalesItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeedSalesItem update
+   */
+  export type FeedSalesItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FeedSalesItem.
+     */
+    data: XOR<FeedSalesItemUpdateInput, FeedSalesItemUncheckedUpdateInput>
+    /**
+     * Choose, which FeedSalesItem to update.
+     */
+    where: FeedSalesItemWhereUniqueInput
+  }
+
+  /**
+   * FeedSalesItem updateMany
+   */
+  export type FeedSalesItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FeedSalesItems.
+     */
+    data: XOR<FeedSalesItemUpdateManyMutationInput, FeedSalesItemUncheckedUpdateManyInput>
+    /**
+     * Filter which FeedSalesItems to update
+     */
+    where?: FeedSalesItemWhereInput
+    /**
+     * Limit how many FeedSalesItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeedSalesItem updateManyAndReturn
+   */
+  export type FeedSalesItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * The data used to update FeedSalesItems.
+     */
+    data: XOR<FeedSalesItemUpdateManyMutationInput, FeedSalesItemUncheckedUpdateManyInput>
+    /**
+     * Filter which FeedSalesItems to update
+     */
+    where?: FeedSalesItemWhereInput
+    /**
+     * Limit how many FeedSalesItems to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeedSalesItem upsert
+   */
+  export type FeedSalesItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FeedSalesItem to update in case it exists.
+     */
+    where: FeedSalesItemWhereUniqueInput
+    /**
+     * In case the FeedSalesItem found by the `where` argument doesn't exist, create a new FeedSalesItem with this data.
+     */
+    create: XOR<FeedSalesItemCreateInput, FeedSalesItemUncheckedCreateInput>
+    /**
+     * In case the FeedSalesItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FeedSalesItemUpdateInput, FeedSalesItemUncheckedUpdateInput>
+  }
+
+  /**
+   * FeedSalesItem delete
+   */
+  export type FeedSalesItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemInclude<ExtArgs> | null
+    /**
+     * Filter which FeedSalesItem to delete.
+     */
+    where: FeedSalesItemWhereUniqueInput
+  }
+
+  /**
+   * FeedSalesItem deleteMany
+   */
+  export type FeedSalesItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeedSalesItems to delete
+     */
+    where?: FeedSalesItemWhereInput
+    /**
+     * Limit how many FeedSalesItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeedSalesItem without action
+   */
+  export type FeedSalesItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesItem
+     */
+    select?: FeedSalesItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesItem
+     */
+    omit?: FeedSalesItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesItemInclude<ExtArgs> | null
   }
 
 
@@ -23621,14 +30548,12 @@ export namespace Prisma {
 
   export type SellMedicineAvgAggregateOutputType = {
     billNumber: number | null
-    flockNumer: number | null
     totalQuantity: number | null
     totalPrice: number | null
   }
 
   export type SellMedicineSumAggregateOutputType = {
     billNumber: number | null
-    flockNumer: number | null
     totalQuantity: number | null
     totalPrice: number | null
   }
@@ -23637,7 +30562,7 @@ export namespace Prisma {
     id: string | null
     billNumber: number | null
     farmId: string | null
-    flockNumer: number | null
+    flockId: string | null
     totalQuantity: number | null
     totalPrice: number | null
     Delivery: $Enums.DeliveryStatus | null
@@ -23651,7 +30576,7 @@ export namespace Prisma {
     id: string | null
     billNumber: number | null
     farmId: string | null
-    flockNumer: number | null
+    flockId: string | null
     totalQuantity: number | null
     totalPrice: number | null
     Delivery: $Enums.DeliveryStatus | null
@@ -23665,7 +30590,7 @@ export namespace Prisma {
     id: number
     billNumber: number
     farmId: number
-    flockNumer: number
+    flockId: number
     totalQuantity: number
     totalPrice: number
     Delivery: number
@@ -23679,14 +30604,12 @@ export namespace Prisma {
 
   export type SellMedicineAvgAggregateInputType = {
     billNumber?: true
-    flockNumer?: true
     totalQuantity?: true
     totalPrice?: true
   }
 
   export type SellMedicineSumAggregateInputType = {
     billNumber?: true
-    flockNumer?: true
     totalQuantity?: true
     totalPrice?: true
   }
@@ -23695,7 +30618,7 @@ export namespace Prisma {
     id?: true
     billNumber?: true
     farmId?: true
-    flockNumer?: true
+    flockId?: true
     totalQuantity?: true
     totalPrice?: true
     Delivery?: true
@@ -23709,7 +30632,7 @@ export namespace Prisma {
     id?: true
     billNumber?: true
     farmId?: true
-    flockNumer?: true
+    flockId?: true
     totalQuantity?: true
     totalPrice?: true
     Delivery?: true
@@ -23723,7 +30646,7 @@ export namespace Prisma {
     id?: true
     billNumber?: true
     farmId?: true
-    flockNumer?: true
+    flockId?: true
     totalQuantity?: true
     totalPrice?: true
     Delivery?: true
@@ -23824,7 +30747,7 @@ export namespace Prisma {
     id: string
     billNumber: number
     farmId: string
-    flockNumer: number
+    flockId: string
     totalQuantity: number | null
     totalPrice: number | null
     Delivery: $Enums.DeliveryStatus
@@ -23857,7 +30780,7 @@ export namespace Prisma {
     id?: boolean
     billNumber?: boolean
     farmId?: boolean
-    flockNumer?: boolean
+    flockId?: boolean
     totalQuantity?: boolean
     totalPrice?: boolean
     Delivery?: boolean
@@ -23876,7 +30799,7 @@ export namespace Prisma {
     id?: boolean
     billNumber?: boolean
     farmId?: boolean
-    flockNumer?: boolean
+    flockId?: boolean
     totalQuantity?: boolean
     totalPrice?: boolean
     Delivery?: boolean
@@ -23893,7 +30816,7 @@ export namespace Prisma {
     id?: boolean
     billNumber?: boolean
     farmId?: boolean
-    flockNumer?: boolean
+    flockId?: boolean
     totalQuantity?: boolean
     totalPrice?: boolean
     Delivery?: boolean
@@ -23910,7 +30833,7 @@ export namespace Prisma {
     id?: boolean
     billNumber?: boolean
     farmId?: boolean
-    flockNumer?: boolean
+    flockId?: boolean
     totalQuantity?: boolean
     totalPrice?: boolean
     Delivery?: boolean
@@ -23920,7 +30843,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type SellMedicineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "billNumber" | "farmId" | "flockNumer" | "totalQuantity" | "totalPrice" | "Delivery" | "sellDate" | "branchCode" | "createdAt" | "updatedAt", ExtArgs["result"]["sellMedicine"]>
+  export type SellMedicineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "billNumber" | "farmId" | "flockId" | "totalQuantity" | "totalPrice" | "Delivery" | "sellDate" | "branchCode" | "createdAt" | "updatedAt", ExtArgs["result"]["sellMedicine"]>
   export type SellMedicineInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     MedicineItem?: boolean | SellMedicine$MedicineItemArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
@@ -23951,7 +30874,7 @@ export namespace Prisma {
       id: string
       billNumber: number
       farmId: string
-      flockNumer: number
+      flockId: string
       totalQuantity: number | null
       totalPrice: number | null
       Delivery: $Enums.DeliveryStatus
@@ -24389,7 +31312,7 @@ export namespace Prisma {
     readonly id: FieldRef<"SellMedicine", 'String'>
     readonly billNumber: FieldRef<"SellMedicine", 'Int'>
     readonly farmId: FieldRef<"SellMedicine", 'String'>
-    readonly flockNumer: FieldRef<"SellMedicine", 'Int'>
+    readonly flockId: FieldRef<"SellMedicine", 'String'>
     readonly totalQuantity: FieldRef<"SellMedicine", 'Int'>
     readonly totalPrice: FieldRef<"SellMedicine", 'Int'>
     readonly Delivery: FieldRef<"SellMedicine", 'DeliveryStatus'>
@@ -27217,6 +34140,57 @@ export namespace Prisma {
   export type FlockScalarFieldEnum = (typeof FlockScalarFieldEnum)[keyof typeof FlockScalarFieldEnum]
 
 
+  export const FarmFeedStockScalarFieldEnum: {
+    id: 'id',
+    flockId: 'flockId',
+    feedName: 'feedName',
+    stock: 'stock',
+    createdAt: 'createdAt',
+    updateAt: 'updateAt'
+  };
+
+  export type FarmFeedStockScalarFieldEnum = (typeof FarmFeedStockScalarFieldEnum)[keyof typeof FarmFeedStockScalarFieldEnum]
+
+
+  export const ChicksScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    branchCode: 'branchCode',
+    farmNumber: 'farmNumber',
+    farmId: 'farmId',
+    flockId: 'flockId',
+    currentPrice: 'currentPrice',
+    sellPrice: 'sellPrice',
+    quantity: 'quantity',
+    totalPrice: 'totalPrice',
+    createdBy: 'createdBy',
+    description: 'description',
+    createdAt: 'createdAt',
+    updateAt: 'updateAt'
+  };
+
+  export type ChicksScalarFieldEnum = (typeof ChicksScalarFieldEnum)[keyof typeof ChicksScalarFieldEnum]
+
+
+  export const BirdSellScalarFieldEnum: {
+    id: 'id',
+    buyerId: 'buyerId',
+    totalQantity: 'totalQantity',
+    totalWeight: 'totalWeight',
+    avgWeight: 'avgWeight',
+    pricePerkg: 'pricePerkg',
+    totalPrice: 'totalPrice',
+    paid: 'paid',
+    farmId: 'farmId',
+    branchCode: 'branchCode',
+    flockId: 'flockId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BirdSellScalarFieldEnum = (typeof BirdSellScalarFieldEnum)[keyof typeof BirdSellScalarFieldEnum]
+
+
   export const FlockReportScalarFieldEnum: {
     id: 'id',
     housedBirds: 'housedBirds',
@@ -27277,6 +34251,7 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     branchId: 'branchId',
+    unitPice: 'unitPice',
     createDate: 'createDate'
   };
 
@@ -27288,6 +34263,8 @@ export namespace Prisma {
     fromDepot: 'fromDepot',
     toDepot: 'toDepot',
     transerFerDate: 'transerFerDate',
+    totalKg: 'totalKg',
+    totalPrice: 'totalPrice',
     createDate: 'createDate',
     trnasferBill: 'trnasferBill',
     createAt: 'createAt',
@@ -27303,12 +34280,48 @@ export namespace Prisma {
     feedName: 'feedName',
     createDate: 'createDate',
     quntity: 'quntity',
+    price: 'price',
     tansferId: 'tansferId',
     createdAt: 'createdAt',
     updateAt: 'updateAt'
   };
 
   export type TransferFeedItemScalarFieldEnum = (typeof TransferFeedItemScalarFieldEnum)[keyof typeof TransferFeedItemScalarFieldEnum]
+
+
+  export const FeedSalesOrderScalarFieldEnum: {
+    id: 'id',
+    branchCode: 'branchCode',
+    depotName: 'depotName',
+    saleInvoice: 'saleInvoice',
+    farmNumber: 'farmNumber',
+    flockNumber: 'flockNumber',
+    createDate: 'createDate',
+    farmId: 'farmId',
+    flockId: 'flockId',
+    totalPrice: 'totalPrice',
+    totalKg: 'totalKg',
+    description: 'description',
+    status: 'status',
+    createdAt: 'createdAt',
+    updateAt: 'updateAt'
+  };
+
+  export type FeedSalesOrderScalarFieldEnum = (typeof FeedSalesOrderScalarFieldEnum)[keyof typeof FeedSalesOrderScalarFieldEnum]
+
+
+  export const FeedSalesItemScalarFieldEnum: {
+    id: 'id',
+    feedName: 'feedName',
+    salesInvoice: 'salesInvoice',
+    quantity: 'quantity',
+    createDate: 'createDate',
+    totalPice: 'totalPice',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FeedSalesItemScalarFieldEnum = (typeof FeedSalesItemScalarFieldEnum)[keyof typeof FeedSalesItemScalarFieldEnum]
 
 
   export const AllGenericMedicinScalarFieldEnum: {
@@ -27382,7 +34395,7 @@ export namespace Prisma {
     id: 'id',
     billNumber: 'billNumber',
     farmId: 'farmId',
-    flockNumer: 'flockNumer',
+    flockId: 'flockId',
     totalQuantity: 'totalQuantity',
     totalPrice: 'totalPrice',
     Delivery: 'Delivery',
@@ -27561,20 +34574,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Stored'
-   */
-  export type EnumStoredFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Stored'>
-    
-
-
-  /**
-   * Reference to a field of type 'Stored[]'
-   */
-  export type ListEnumStoredFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Stored[]'>
-    
-
-
-  /**
    * Reference to a field of type 'DeliveryStatus'
    */
   export type EnumDeliveryStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeliveryStatus'>
@@ -27585,6 +34584,20 @@ export namespace Prisma {
    * Reference to a field of type 'DeliveryStatus[]'
    */
   export type ListEnumDeliveryStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeliveryStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Stored'
+   */
+  export type EnumStoredFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Stored'>
+    
+
+
+  /**
+   * Reference to a field of type 'Stored[]'
+   */
+  export type ListEnumStoredFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Stored[]'>
     
   /**
    * Deep Input Types
@@ -27611,6 +34624,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockListRelationFilter
     medicineTransfer?: MedicineTransferListRelationFilter
     sellMedicine?: SellMedicineListRelationFilter
+    birdSell?: BirdSellListRelationFilter
+    chicks?: ChicksListRelationFilter
   }
 
   export type BranchOrderByWithRelationInput = {
@@ -27630,6 +34645,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockOrderByRelationAggregateInput
     medicineTransfer?: MedicineTransferOrderByRelationAggregateInput
     sellMedicine?: SellMedicineOrderByRelationAggregateInput
+    birdSell?: BirdSellOrderByRelationAggregateInput
+    chicks?: ChicksOrderByRelationAggregateInput
   }
 
   export type BranchWhereUniqueInput = Prisma.AtLeast<{
@@ -27652,6 +34669,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockListRelationFilter
     medicineTransfer?: MedicineTransferListRelationFilter
     sellMedicine?: SellMedicineListRelationFilter
+    birdSell?: BirdSellListRelationFilter
+    chicks?: ChicksListRelationFilter
   }, "id" | "locationName" | "branchCode">
 
   export type BranchOrderByWithAggregationInput = {
@@ -27693,6 +34712,7 @@ export namespace Prisma {
     feedStock?: FeedStockListRelationFilter
     sentTransfers?: FeedStockTransferListRelationFilter
     receivedTransfers?: FeedStockTransferListRelationFilter
+    FeedSalesOrder?: FeedSalesOrderListRelationFilter
   }
 
   export type DepotOrderByWithRelationInput = {
@@ -27705,6 +34725,7 @@ export namespace Prisma {
     feedStock?: FeedStockOrderByRelationAggregateInput
     sentTransfers?: FeedStockTransferOrderByRelationAggregateInput
     receivedTransfers?: FeedStockTransferOrderByRelationAggregateInput
+    FeedSalesOrder?: FeedSalesOrderOrderByRelationAggregateInput
   }
 
   export type DepotWhereUniqueInput = Prisma.AtLeast<{
@@ -27720,6 +34741,7 @@ export namespace Prisma {
     feedStock?: FeedStockListRelationFilter
     sentTransfers?: FeedStockTransferListRelationFilter
     receivedTransfers?: FeedStockTransferListRelationFilter
+    FeedSalesOrder?: FeedSalesOrderListRelationFilter
   }, "id" | "depotName">
 
   export type DepotOrderByWithAggregationInput = {
@@ -27769,6 +34791,8 @@ export namespace Prisma {
     flocks?: FlockListRelationFilter
     flockReport?: FlockReportListRelationFilter
     sellMedicine?: SellMedicineListRelationFilter
+    chicks?: ChicksListRelationFilter
+    birdSell?: BirdSellListRelationFilter
   }
 
   export type FarmerOrderByWithRelationInput = {
@@ -27791,6 +34815,8 @@ export namespace Prisma {
     flocks?: FlockOrderByRelationAggregateInput
     flockReport?: FlockReportOrderByRelationAggregateInput
     sellMedicine?: SellMedicineOrderByRelationAggregateInput
+    chicks?: ChicksOrderByRelationAggregateInput
+    birdSell?: BirdSellOrderByRelationAggregateInput
   }
 
   export type FarmerWhereUniqueInput = Prisma.AtLeast<{
@@ -27817,6 +34843,8 @@ export namespace Prisma {
     flocks?: FlockListRelationFilter
     flockReport?: FlockReportListRelationFilter
     sellMedicine?: SellMedicineListRelationFilter
+    chicks?: ChicksListRelationFilter
+    birdSell?: BirdSellListRelationFilter
   }, "id" | "addressId" | "branchCode_farmCode">
 
   export type FarmerOrderByWithAggregationInput = {
@@ -28126,6 +35154,9 @@ export namespace Prisma {
     flockReport?: FlockReportListRelationFilter
     medicineTransfer?: MedicineTransferListRelationFilter
     sellMedicine?: SellMedicineListRelationFilter
+    chicks?: ChicksListRelationFilter
+    birdSell?: BirdSellListRelationFilter
+    FarmFeedStock?: FarmFeedStockListRelationFilter
   }
 
   export type FlockOrderByWithRelationInput = {
@@ -28153,14 +35184,17 @@ export namespace Prisma {
     flockReport?: FlockReportOrderByRelationAggregateInput
     medicineTransfer?: MedicineTransferOrderByRelationAggregateInput
     sellMedicine?: SellMedicineOrderByRelationAggregateInput
+    chicks?: ChicksOrderByRelationAggregateInput
+    birdSell?: BirdSellOrderByRelationAggregateInput
+    FarmFeedStock?: FarmFeedStockOrderByRelationAggregateInput
   }
 
   export type FlockWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    flockNumber?: number
     AND?: FlockWhereInput | FlockWhereInput[]
     OR?: FlockWhereInput[]
     NOT?: FlockWhereInput | FlockWhereInput[]
+    flockNumber?: IntFilter<"Flock"> | number
     flockStatus?: EnumFlockStatusFilter<"Flock"> | $Enums.FlockStatus
     startDate?: DateTimeFilter<"Flock"> | Date | string
     endDate?: DateTimeNullableFilter<"Flock"> | Date | string | null
@@ -28183,7 +35217,10 @@ export namespace Prisma {
     flockReport?: FlockReportListRelationFilter
     medicineTransfer?: MedicineTransferListRelationFilter
     sellMedicine?: SellMedicineListRelationFilter
-  }, "id" | "flockNumber">
+    chicks?: ChicksListRelationFilter
+    birdSell?: BirdSellListRelationFilter
+    FarmFeedStock?: FarmFeedStockListRelationFilter
+  }, "id">
 
   export type FlockOrderByWithAggregationInput = {
     id?: SortOrder
@@ -28233,6 +35270,280 @@ export namespace Prisma {
     mortality?: IntWithAggregatesFilter<"Flock"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Flock"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Flock"> | Date | string
+  }
+
+  export type FarmFeedStockWhereInput = {
+    AND?: FarmFeedStockWhereInput | FarmFeedStockWhereInput[]
+    OR?: FarmFeedStockWhereInput[]
+    NOT?: FarmFeedStockWhereInput | FarmFeedStockWhereInput[]
+    id?: StringFilter<"FarmFeedStock"> | string
+    flockId?: StringFilter<"FarmFeedStock"> | string
+    feedName?: StringFilter<"FarmFeedStock"> | string
+    stock?: IntFilter<"FarmFeedStock"> | number
+    createdAt?: DateTimeNullableFilter<"FarmFeedStock"> | Date | string | null
+    updateAt?: DateTimeFilter<"FarmFeedStock"> | Date | string
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+  }
+
+  export type FarmFeedStockOrderByWithRelationInput = {
+    id?: SortOrder
+    flockId?: SortOrder
+    feedName?: SortOrder
+    stock?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updateAt?: SortOrder
+    flock?: FlockOrderByWithRelationInput
+  }
+
+  export type FarmFeedStockWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    flockId_feedName?: FarmFeedStockFlockIdFeedNameCompoundUniqueInput
+    AND?: FarmFeedStockWhereInput | FarmFeedStockWhereInput[]
+    OR?: FarmFeedStockWhereInput[]
+    NOT?: FarmFeedStockWhereInput | FarmFeedStockWhereInput[]
+    flockId?: StringFilter<"FarmFeedStock"> | string
+    feedName?: StringFilter<"FarmFeedStock"> | string
+    stock?: IntFilter<"FarmFeedStock"> | number
+    createdAt?: DateTimeNullableFilter<"FarmFeedStock"> | Date | string | null
+    updateAt?: DateTimeFilter<"FarmFeedStock"> | Date | string
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+  }, "id" | "flockId_feedName">
+
+  export type FarmFeedStockOrderByWithAggregationInput = {
+    id?: SortOrder
+    flockId?: SortOrder
+    feedName?: SortOrder
+    stock?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updateAt?: SortOrder
+    _count?: FarmFeedStockCountOrderByAggregateInput
+    _avg?: FarmFeedStockAvgOrderByAggregateInput
+    _max?: FarmFeedStockMaxOrderByAggregateInput
+    _min?: FarmFeedStockMinOrderByAggregateInput
+    _sum?: FarmFeedStockSumOrderByAggregateInput
+  }
+
+  export type FarmFeedStockScalarWhereWithAggregatesInput = {
+    AND?: FarmFeedStockScalarWhereWithAggregatesInput | FarmFeedStockScalarWhereWithAggregatesInput[]
+    OR?: FarmFeedStockScalarWhereWithAggregatesInput[]
+    NOT?: FarmFeedStockScalarWhereWithAggregatesInput | FarmFeedStockScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FarmFeedStock"> | string
+    flockId?: StringWithAggregatesFilter<"FarmFeedStock"> | string
+    feedName?: StringWithAggregatesFilter<"FarmFeedStock"> | string
+    stock?: IntWithAggregatesFilter<"FarmFeedStock"> | number
+    createdAt?: DateTimeNullableWithAggregatesFilter<"FarmFeedStock"> | Date | string | null
+    updateAt?: DateTimeWithAggregatesFilter<"FarmFeedStock"> | Date | string
+  }
+
+  export type ChicksWhereInput = {
+    AND?: ChicksWhereInput | ChicksWhereInput[]
+    OR?: ChicksWhereInput[]
+    NOT?: ChicksWhereInput | ChicksWhereInput[]
+    id?: StringFilter<"Chicks"> | string
+    name?: StringFilter<"Chicks"> | string
+    branchCode?: StringFilter<"Chicks"> | string
+    farmNumber?: IntFilter<"Chicks"> | number
+    farmId?: StringFilter<"Chicks"> | string
+    flockId?: StringFilter<"Chicks"> | string
+    currentPrice?: IntFilter<"Chicks"> | number
+    sellPrice?: IntFilter<"Chicks"> | number
+    quantity?: IntFilter<"Chicks"> | number
+    totalPrice?: IntFilter<"Chicks"> | number
+    createdBy?: StringFilter<"Chicks"> | string
+    description?: StringNullableFilter<"Chicks"> | string | null
+    createdAt?: DateTimeFilter<"Chicks"> | Date | string
+    updateAt?: DateTimeFilter<"Chicks"> | Date | string
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+    farm?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
+    branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+  }
+
+  export type ChicksOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    branchCode?: SortOrder
+    farmNumber?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    currentPrice?: SortOrder
+    sellPrice?: SortOrder
+    quantity?: SortOrder
+    totalPrice?: SortOrder
+    createdBy?: SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+    flock?: FlockOrderByWithRelationInput
+    farm?: FarmerOrderByWithRelationInput
+    branch?: BranchOrderByWithRelationInput
+  }
+
+  export type ChicksWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ChicksWhereInput | ChicksWhereInput[]
+    OR?: ChicksWhereInput[]
+    NOT?: ChicksWhereInput | ChicksWhereInput[]
+    name?: StringFilter<"Chicks"> | string
+    branchCode?: StringFilter<"Chicks"> | string
+    farmNumber?: IntFilter<"Chicks"> | number
+    farmId?: StringFilter<"Chicks"> | string
+    flockId?: StringFilter<"Chicks"> | string
+    currentPrice?: IntFilter<"Chicks"> | number
+    sellPrice?: IntFilter<"Chicks"> | number
+    quantity?: IntFilter<"Chicks"> | number
+    totalPrice?: IntFilter<"Chicks"> | number
+    createdBy?: StringFilter<"Chicks"> | string
+    description?: StringNullableFilter<"Chicks"> | string | null
+    createdAt?: DateTimeFilter<"Chicks"> | Date | string
+    updateAt?: DateTimeFilter<"Chicks"> | Date | string
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+    farm?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
+    branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+  }, "id">
+
+  export type ChicksOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    branchCode?: SortOrder
+    farmNumber?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    currentPrice?: SortOrder
+    sellPrice?: SortOrder
+    quantity?: SortOrder
+    totalPrice?: SortOrder
+    createdBy?: SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+    _count?: ChicksCountOrderByAggregateInput
+    _avg?: ChicksAvgOrderByAggregateInput
+    _max?: ChicksMaxOrderByAggregateInput
+    _min?: ChicksMinOrderByAggregateInput
+    _sum?: ChicksSumOrderByAggregateInput
+  }
+
+  export type ChicksScalarWhereWithAggregatesInput = {
+    AND?: ChicksScalarWhereWithAggregatesInput | ChicksScalarWhereWithAggregatesInput[]
+    OR?: ChicksScalarWhereWithAggregatesInput[]
+    NOT?: ChicksScalarWhereWithAggregatesInput | ChicksScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Chicks"> | string
+    name?: StringWithAggregatesFilter<"Chicks"> | string
+    branchCode?: StringWithAggregatesFilter<"Chicks"> | string
+    farmNumber?: IntWithAggregatesFilter<"Chicks"> | number
+    farmId?: StringWithAggregatesFilter<"Chicks"> | string
+    flockId?: StringWithAggregatesFilter<"Chicks"> | string
+    currentPrice?: IntWithAggregatesFilter<"Chicks"> | number
+    sellPrice?: IntWithAggregatesFilter<"Chicks"> | number
+    quantity?: IntWithAggregatesFilter<"Chicks"> | number
+    totalPrice?: IntWithAggregatesFilter<"Chicks"> | number
+    createdBy?: StringWithAggregatesFilter<"Chicks"> | string
+    description?: StringNullableWithAggregatesFilter<"Chicks"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Chicks"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"Chicks"> | Date | string
+  }
+
+  export type BirdSellWhereInput = {
+    AND?: BirdSellWhereInput | BirdSellWhereInput[]
+    OR?: BirdSellWhereInput[]
+    NOT?: BirdSellWhereInput | BirdSellWhereInput[]
+    id?: StringFilter<"BirdSell"> | string
+    buyerId?: StringFilter<"BirdSell"> | string
+    totalQantity?: IntFilter<"BirdSell"> | number
+    totalWeight?: FloatFilter<"BirdSell"> | number
+    avgWeight?: FloatFilter<"BirdSell"> | number
+    pricePerkg?: IntFilter<"BirdSell"> | number
+    totalPrice?: IntFilter<"BirdSell"> | number
+    paid?: BoolFilter<"BirdSell"> | boolean
+    farmId?: StringFilter<"BirdSell"> | string
+    branchCode?: StringFilter<"BirdSell"> | string
+    flockId?: StringFilter<"BirdSell"> | string
+    createdAt?: DateTimeNullableFilter<"BirdSell"> | Date | string | null
+    updatedAt?: DateTimeFilter<"BirdSell"> | Date | string
+    farm?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
+    branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+  }
+
+  export type BirdSellOrderByWithRelationInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    totalQantity?: SortOrder
+    totalWeight?: SortOrder
+    avgWeight?: SortOrder
+    pricePerkg?: SortOrder
+    totalPrice?: SortOrder
+    paid?: SortOrder
+    farmId?: SortOrder
+    branchCode?: SortOrder
+    flockId?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    farm?: FarmerOrderByWithRelationInput
+    branch?: BranchOrderByWithRelationInput
+    flock?: FlockOrderByWithRelationInput
+  }
+
+  export type BirdSellWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BirdSellWhereInput | BirdSellWhereInput[]
+    OR?: BirdSellWhereInput[]
+    NOT?: BirdSellWhereInput | BirdSellWhereInput[]
+    buyerId?: StringFilter<"BirdSell"> | string
+    totalQantity?: IntFilter<"BirdSell"> | number
+    totalWeight?: FloatFilter<"BirdSell"> | number
+    avgWeight?: FloatFilter<"BirdSell"> | number
+    pricePerkg?: IntFilter<"BirdSell"> | number
+    totalPrice?: IntFilter<"BirdSell"> | number
+    paid?: BoolFilter<"BirdSell"> | boolean
+    farmId?: StringFilter<"BirdSell"> | string
+    branchCode?: StringFilter<"BirdSell"> | string
+    flockId?: StringFilter<"BirdSell"> | string
+    createdAt?: DateTimeNullableFilter<"BirdSell"> | Date | string | null
+    updatedAt?: DateTimeFilter<"BirdSell"> | Date | string
+    farm?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
+    branch?: XOR<BranchScalarRelationFilter, BranchWhereInput>
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+  }, "id">
+
+  export type BirdSellOrderByWithAggregationInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    totalQantity?: SortOrder
+    totalWeight?: SortOrder
+    avgWeight?: SortOrder
+    pricePerkg?: SortOrder
+    totalPrice?: SortOrder
+    paid?: SortOrder
+    farmId?: SortOrder
+    branchCode?: SortOrder
+    flockId?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    _count?: BirdSellCountOrderByAggregateInput
+    _avg?: BirdSellAvgOrderByAggregateInput
+    _max?: BirdSellMaxOrderByAggregateInput
+    _min?: BirdSellMinOrderByAggregateInput
+    _sum?: BirdSellSumOrderByAggregateInput
+  }
+
+  export type BirdSellScalarWhereWithAggregatesInput = {
+    AND?: BirdSellScalarWhereWithAggregatesInput | BirdSellScalarWhereWithAggregatesInput[]
+    OR?: BirdSellScalarWhereWithAggregatesInput[]
+    NOT?: BirdSellScalarWhereWithAggregatesInput | BirdSellScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BirdSell"> | string
+    buyerId?: StringWithAggregatesFilter<"BirdSell"> | string
+    totalQantity?: IntWithAggregatesFilter<"BirdSell"> | number
+    totalWeight?: FloatWithAggregatesFilter<"BirdSell"> | number
+    avgWeight?: FloatWithAggregatesFilter<"BirdSell"> | number
+    pricePerkg?: IntWithAggregatesFilter<"BirdSell"> | number
+    totalPrice?: IntWithAggregatesFilter<"BirdSell"> | number
+    paid?: BoolWithAggregatesFilter<"BirdSell"> | boolean
+    farmId?: StringWithAggregatesFilter<"BirdSell"> | string
+    branchCode?: StringWithAggregatesFilter<"BirdSell"> | string
+    flockId?: StringWithAggregatesFilter<"BirdSell"> | string
+    createdAt?: DateTimeNullableWithAggregatesFilter<"BirdSell"> | Date | string | null
+    updatedAt?: DateTimeWithAggregatesFilter<"BirdSell"> | Date | string
   }
 
   export type FlockReportWhereInput = {
@@ -28455,6 +35766,7 @@ export namespace Prisma {
     createDate?: StringFilter<"FeedNameCategory"> | string
     FeedStock?: FeedStockListRelationFilter
     transferFeedItem?: TransferFeedItemListRelationFilter
+    FeedSalesItem?: FeedSalesItemListRelationFilter
   }
 
   export type FeedNameCategoryOrderByWithRelationInput = {
@@ -28466,6 +35778,7 @@ export namespace Prisma {
     createDate?: SortOrder
     FeedStock?: FeedStockOrderByRelationAggregateInput
     transferFeedItem?: TransferFeedItemOrderByRelationAggregateInput
+    FeedSalesItem?: FeedSalesItemOrderByRelationAggregateInput
   }
 
   export type FeedNameCategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -28480,6 +35793,7 @@ export namespace Prisma {
     createDate?: StringFilter<"FeedNameCategory"> | string
     FeedStock?: FeedStockListRelationFilter
     transferFeedItem?: TransferFeedItemListRelationFilter
+    FeedSalesItem?: FeedSalesItemListRelationFilter
   }, "id" | "feedName" | "feedCodeNumber">
 
   export type FeedNameCategoryOrderByWithAggregationInput = {
@@ -28519,6 +35833,7 @@ export namespace Prisma {
     createdAt?: DateTimeNullableFilter<"FeedStock"> | Date | string | null
     updatedAt?: DateTimeFilter<"FeedStock"> | Date | string
     branchId?: StringNullableFilter<"FeedStock"> | string | null
+    unitPice?: IntFilter<"FeedStock"> | number
     createDate?: StringFilter<"FeedStock"> | string
     Branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
     depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
@@ -28533,6 +35848,7 @@ export namespace Prisma {
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     branchId?: SortOrderInput | SortOrder
+    unitPice?: SortOrder
     createDate?: SortOrder
     Branch?: BranchOrderByWithRelationInput
     depot?: DepotOrderByWithRelationInput
@@ -28551,6 +35867,7 @@ export namespace Prisma {
     createdAt?: DateTimeNullableFilter<"FeedStock"> | Date | string | null
     updatedAt?: DateTimeFilter<"FeedStock"> | Date | string
     branchId?: StringNullableFilter<"FeedStock"> | string | null
+    unitPice?: IntFilter<"FeedStock"> | number
     createDate?: StringFilter<"FeedStock"> | string
     Branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
     depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
@@ -28565,6 +35882,7 @@ export namespace Prisma {
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     branchId?: SortOrderInput | SortOrder
+    unitPice?: SortOrder
     createDate?: SortOrder
     _count?: FeedStockCountOrderByAggregateInput
     _avg?: FeedStockAvgOrderByAggregateInput
@@ -28584,6 +35902,7 @@ export namespace Prisma {
     createdAt?: DateTimeNullableWithAggregatesFilter<"FeedStock"> | Date | string | null
     updatedAt?: DateTimeWithAggregatesFilter<"FeedStock"> | Date | string
     branchId?: StringNullableWithAggregatesFilter<"FeedStock"> | string | null
+    unitPice?: IntWithAggregatesFilter<"FeedStock"> | number
     createDate?: StringWithAggregatesFilter<"FeedStock"> | string
   }
 
@@ -28595,6 +35914,8 @@ export namespace Prisma {
     fromDepot?: StringFilter<"FeedStockTransfer"> | string
     toDepot?: StringFilter<"FeedStockTransfer"> | string
     transerFerDate?: StringFilter<"FeedStockTransfer"> | string
+    totalKg?: IntFilter<"FeedStockTransfer"> | number
+    totalPrice?: IntFilter<"FeedStockTransfer"> | number
     createDate?: StringFilter<"FeedStockTransfer"> | string
     trnasferBill?: StringFilter<"FeedStockTransfer"> | string
     createAt?: DateTimeNullableFilter<"FeedStockTransfer"> | Date | string | null
@@ -28610,6 +35931,8 @@ export namespace Prisma {
     fromDepot?: SortOrder
     toDepot?: SortOrder
     transerFerDate?: SortOrder
+    totalKg?: SortOrder
+    totalPrice?: SortOrder
     createDate?: SortOrder
     trnasferBill?: SortOrder
     createAt?: SortOrderInput | SortOrder
@@ -28629,6 +35952,8 @@ export namespace Prisma {
     fromDepot?: StringFilter<"FeedStockTransfer"> | string
     toDepot?: StringFilter<"FeedStockTransfer"> | string
     transerFerDate?: StringFilter<"FeedStockTransfer"> | string
+    totalKg?: IntFilter<"FeedStockTransfer"> | number
+    totalPrice?: IntFilter<"FeedStockTransfer"> | number
     createDate?: StringFilter<"FeedStockTransfer"> | string
     createAt?: DateTimeNullableFilter<"FeedStockTransfer"> | Date | string | null
     updateAt?: DateTimeFilter<"FeedStockTransfer"> | Date | string
@@ -28643,14 +35968,18 @@ export namespace Prisma {
     fromDepot?: SortOrder
     toDepot?: SortOrder
     transerFerDate?: SortOrder
+    totalKg?: SortOrder
+    totalPrice?: SortOrder
     createDate?: SortOrder
     trnasferBill?: SortOrder
     createAt?: SortOrderInput | SortOrder
     updateAt?: SortOrder
     depotId?: SortOrderInput | SortOrder
     _count?: FeedStockTransferCountOrderByAggregateInput
+    _avg?: FeedStockTransferAvgOrderByAggregateInput
     _max?: FeedStockTransferMaxOrderByAggregateInput
     _min?: FeedStockTransferMinOrderByAggregateInput
+    _sum?: FeedStockTransferSumOrderByAggregateInput
   }
 
   export type FeedStockTransferScalarWhereWithAggregatesInput = {
@@ -28661,6 +35990,8 @@ export namespace Prisma {
     fromDepot?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
     toDepot?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
     transerFerDate?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
+    totalKg?: IntWithAggregatesFilter<"FeedStockTransfer"> | number
+    totalPrice?: IntWithAggregatesFilter<"FeedStockTransfer"> | number
     createDate?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
     trnasferBill?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
     createAt?: DateTimeNullableWithAggregatesFilter<"FeedStockTransfer"> | Date | string | null
@@ -28676,6 +36007,7 @@ export namespace Prisma {
     feedName?: StringFilter<"TransferFeedItem"> | string
     createDate?: StringFilter<"TransferFeedItem"> | string
     quntity?: StringFilter<"TransferFeedItem"> | string
+    price?: IntFilter<"TransferFeedItem"> | number
     tansferId?: StringFilter<"TransferFeedItem"> | string
     createdAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
     updateAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
@@ -28688,6 +36020,7 @@ export namespace Prisma {
     feedName?: SortOrder
     createDate?: SortOrder
     quntity?: SortOrder
+    price?: SortOrder
     tansferId?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
@@ -28703,6 +36036,7 @@ export namespace Prisma {
     feedName?: StringFilter<"TransferFeedItem"> | string
     createDate?: StringFilter<"TransferFeedItem"> | string
     quntity?: StringFilter<"TransferFeedItem"> | string
+    price?: IntFilter<"TransferFeedItem"> | number
     tansferId?: StringFilter<"TransferFeedItem"> | string
     createdAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
     updateAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
@@ -28715,12 +36049,15 @@ export namespace Prisma {
     feedName?: SortOrder
     createDate?: SortOrder
     quntity?: SortOrder
+    price?: SortOrder
     tansferId?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
     _count?: TransferFeedItemCountOrderByAggregateInput
+    _avg?: TransferFeedItemAvgOrderByAggregateInput
     _max?: TransferFeedItemMaxOrderByAggregateInput
     _min?: TransferFeedItemMinOrderByAggregateInput
+    _sum?: TransferFeedItemSumOrderByAggregateInput
   }
 
   export type TransferFeedItemScalarWhereWithAggregatesInput = {
@@ -28731,9 +36068,195 @@ export namespace Prisma {
     feedName?: StringWithAggregatesFilter<"TransferFeedItem"> | string
     createDate?: StringWithAggregatesFilter<"TransferFeedItem"> | string
     quntity?: StringWithAggregatesFilter<"TransferFeedItem"> | string
+    price?: IntWithAggregatesFilter<"TransferFeedItem"> | number
     tansferId?: StringWithAggregatesFilter<"TransferFeedItem"> | string
     createdAt?: DateTimeWithAggregatesFilter<"TransferFeedItem"> | Date | string
     updateAt?: DateTimeWithAggregatesFilter<"TransferFeedItem"> | Date | string
+  }
+
+  export type FeedSalesOrderWhereInput = {
+    AND?: FeedSalesOrderWhereInput | FeedSalesOrderWhereInput[]
+    OR?: FeedSalesOrderWhereInput[]
+    NOT?: FeedSalesOrderWhereInput | FeedSalesOrderWhereInput[]
+    id?: StringFilter<"FeedSalesOrder"> | string
+    branchCode?: StringFilter<"FeedSalesOrder"> | string
+    depotName?: StringFilter<"FeedSalesOrder"> | string
+    saleInvoice?: StringFilter<"FeedSalesOrder"> | string
+    farmNumber?: IntFilter<"FeedSalesOrder"> | number
+    flockNumber?: IntFilter<"FeedSalesOrder"> | number
+    createDate?: StringFilter<"FeedSalesOrder"> | string
+    farmId?: StringFilter<"FeedSalesOrder"> | string
+    flockId?: StringFilter<"FeedSalesOrder"> | string
+    totalPrice?: IntFilter<"FeedSalesOrder"> | number
+    totalKg?: IntFilter<"FeedSalesOrder"> | number
+    description?: StringNullableFilter<"FeedSalesOrder"> | string | null
+    status?: EnumDeliveryStatusFilter<"FeedSalesOrder"> | $Enums.DeliveryStatus
+    createdAt?: DateTimeNullableFilter<"FeedSalesOrder"> | Date | string | null
+    updateAt?: DateTimeFilter<"FeedSalesOrder"> | Date | string
+    depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    FeedSalesItem?: FeedSalesItemListRelationFilter
+  }
+
+  export type FeedSalesOrderOrderByWithRelationInput = {
+    id?: SortOrder
+    branchCode?: SortOrder
+    depotName?: SortOrder
+    saleInvoice?: SortOrder
+    farmNumber?: SortOrder
+    flockNumber?: SortOrder
+    createDate?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    totalPrice?: SortOrder
+    totalKg?: SortOrder
+    description?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updateAt?: SortOrder
+    depot?: DepotOrderByWithRelationInput
+    FeedSalesItem?: FeedSalesItemOrderByRelationAggregateInput
+  }
+
+  export type FeedSalesOrderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    saleInvoice?: string
+    AND?: FeedSalesOrderWhereInput | FeedSalesOrderWhereInput[]
+    OR?: FeedSalesOrderWhereInput[]
+    NOT?: FeedSalesOrderWhereInput | FeedSalesOrderWhereInput[]
+    branchCode?: StringFilter<"FeedSalesOrder"> | string
+    depotName?: StringFilter<"FeedSalesOrder"> | string
+    farmNumber?: IntFilter<"FeedSalesOrder"> | number
+    flockNumber?: IntFilter<"FeedSalesOrder"> | number
+    createDate?: StringFilter<"FeedSalesOrder"> | string
+    farmId?: StringFilter<"FeedSalesOrder"> | string
+    flockId?: StringFilter<"FeedSalesOrder"> | string
+    totalPrice?: IntFilter<"FeedSalesOrder"> | number
+    totalKg?: IntFilter<"FeedSalesOrder"> | number
+    description?: StringNullableFilter<"FeedSalesOrder"> | string | null
+    status?: EnumDeliveryStatusFilter<"FeedSalesOrder"> | $Enums.DeliveryStatus
+    createdAt?: DateTimeNullableFilter<"FeedSalesOrder"> | Date | string | null
+    updateAt?: DateTimeFilter<"FeedSalesOrder"> | Date | string
+    depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    FeedSalesItem?: FeedSalesItemListRelationFilter
+  }, "id" | "saleInvoice">
+
+  export type FeedSalesOrderOrderByWithAggregationInput = {
+    id?: SortOrder
+    branchCode?: SortOrder
+    depotName?: SortOrder
+    saleInvoice?: SortOrder
+    farmNumber?: SortOrder
+    flockNumber?: SortOrder
+    createDate?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    totalPrice?: SortOrder
+    totalKg?: SortOrder
+    description?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updateAt?: SortOrder
+    _count?: FeedSalesOrderCountOrderByAggregateInput
+    _avg?: FeedSalesOrderAvgOrderByAggregateInput
+    _max?: FeedSalesOrderMaxOrderByAggregateInput
+    _min?: FeedSalesOrderMinOrderByAggregateInput
+    _sum?: FeedSalesOrderSumOrderByAggregateInput
+  }
+
+  export type FeedSalesOrderScalarWhereWithAggregatesInput = {
+    AND?: FeedSalesOrderScalarWhereWithAggregatesInput | FeedSalesOrderScalarWhereWithAggregatesInput[]
+    OR?: FeedSalesOrderScalarWhereWithAggregatesInput[]
+    NOT?: FeedSalesOrderScalarWhereWithAggregatesInput | FeedSalesOrderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FeedSalesOrder"> | string
+    branchCode?: StringWithAggregatesFilter<"FeedSalesOrder"> | string
+    depotName?: StringWithAggregatesFilter<"FeedSalesOrder"> | string
+    saleInvoice?: StringWithAggregatesFilter<"FeedSalesOrder"> | string
+    farmNumber?: IntWithAggregatesFilter<"FeedSalesOrder"> | number
+    flockNumber?: IntWithAggregatesFilter<"FeedSalesOrder"> | number
+    createDate?: StringWithAggregatesFilter<"FeedSalesOrder"> | string
+    farmId?: StringWithAggregatesFilter<"FeedSalesOrder"> | string
+    flockId?: StringWithAggregatesFilter<"FeedSalesOrder"> | string
+    totalPrice?: IntWithAggregatesFilter<"FeedSalesOrder"> | number
+    totalKg?: IntWithAggregatesFilter<"FeedSalesOrder"> | number
+    description?: StringNullableWithAggregatesFilter<"FeedSalesOrder"> | string | null
+    status?: EnumDeliveryStatusWithAggregatesFilter<"FeedSalesOrder"> | $Enums.DeliveryStatus
+    createdAt?: DateTimeNullableWithAggregatesFilter<"FeedSalesOrder"> | Date | string | null
+    updateAt?: DateTimeWithAggregatesFilter<"FeedSalesOrder"> | Date | string
+  }
+
+  export type FeedSalesItemWhereInput = {
+    AND?: FeedSalesItemWhereInput | FeedSalesItemWhereInput[]
+    OR?: FeedSalesItemWhereInput[]
+    NOT?: FeedSalesItemWhereInput | FeedSalesItemWhereInput[]
+    id?: StringFilter<"FeedSalesItem"> | string
+    feedName?: StringFilter<"FeedSalesItem"> | string
+    salesInvoice?: StringFilter<"FeedSalesItem"> | string
+    quantity?: IntFilter<"FeedSalesItem"> | number
+    createDate?: StringFilter<"FeedSalesItem"> | string
+    totalPice?: IntFilter<"FeedSalesItem"> | number
+    createdAt?: DateTimeFilter<"FeedSalesItem"> | Date | string
+    updatedAt?: DateTimeFilter<"FeedSalesItem"> | Date | string
+    salesOrder?: XOR<FeedSalesOrderScalarRelationFilter, FeedSalesOrderWhereInput>
+    feedNameCategory?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
+  }
+
+  export type FeedSalesItemOrderByWithRelationInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    salesInvoice?: SortOrder
+    quantity?: SortOrder
+    createDate?: SortOrder
+    totalPice?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    salesOrder?: FeedSalesOrderOrderByWithRelationInput
+    feedNameCategory?: FeedNameCategoryOrderByWithRelationInput
+  }
+
+  export type FeedSalesItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FeedSalesItemWhereInput | FeedSalesItemWhereInput[]
+    OR?: FeedSalesItemWhereInput[]
+    NOT?: FeedSalesItemWhereInput | FeedSalesItemWhereInput[]
+    feedName?: StringFilter<"FeedSalesItem"> | string
+    salesInvoice?: StringFilter<"FeedSalesItem"> | string
+    quantity?: IntFilter<"FeedSalesItem"> | number
+    createDate?: StringFilter<"FeedSalesItem"> | string
+    totalPice?: IntFilter<"FeedSalesItem"> | number
+    createdAt?: DateTimeFilter<"FeedSalesItem"> | Date | string
+    updatedAt?: DateTimeFilter<"FeedSalesItem"> | Date | string
+    salesOrder?: XOR<FeedSalesOrderScalarRelationFilter, FeedSalesOrderWhereInput>
+    feedNameCategory?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
+  }, "id">
+
+  export type FeedSalesItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    salesInvoice?: SortOrder
+    quantity?: SortOrder
+    createDate?: SortOrder
+    totalPice?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FeedSalesItemCountOrderByAggregateInput
+    _avg?: FeedSalesItemAvgOrderByAggregateInput
+    _max?: FeedSalesItemMaxOrderByAggregateInput
+    _min?: FeedSalesItemMinOrderByAggregateInput
+    _sum?: FeedSalesItemSumOrderByAggregateInput
+  }
+
+  export type FeedSalesItemScalarWhereWithAggregatesInput = {
+    AND?: FeedSalesItemScalarWhereWithAggregatesInput | FeedSalesItemScalarWhereWithAggregatesInput[]
+    OR?: FeedSalesItemScalarWhereWithAggregatesInput[]
+    NOT?: FeedSalesItemScalarWhereWithAggregatesInput | FeedSalesItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FeedSalesItem"> | string
+    feedName?: StringWithAggregatesFilter<"FeedSalesItem"> | string
+    salesInvoice?: StringWithAggregatesFilter<"FeedSalesItem"> | string
+    quantity?: IntWithAggregatesFilter<"FeedSalesItem"> | number
+    createDate?: StringWithAggregatesFilter<"FeedSalesItem"> | string
+    totalPice?: IntWithAggregatesFilter<"FeedSalesItem"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"FeedSalesItem"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FeedSalesItem"> | Date | string
   }
 
   export type AllGenericMedicinWhereInput = {
@@ -29109,7 +36632,7 @@ export namespace Prisma {
     id?: StringFilter<"SellMedicine"> | string
     billNumber?: IntFilter<"SellMedicine"> | number
     farmId?: StringFilter<"SellMedicine"> | string
-    flockNumer?: IntFilter<"SellMedicine"> | number
+    flockId?: StringFilter<"SellMedicine"> | string
     totalQuantity?: IntNullableFilter<"SellMedicine"> | number | null
     totalPrice?: IntNullableFilter<"SellMedicine"> | number | null
     Delivery?: EnumDeliveryStatusFilter<"SellMedicine"> | $Enums.DeliveryStatus
@@ -29127,7 +36650,7 @@ export namespace Prisma {
     id?: SortOrder
     billNumber?: SortOrder
     farmId?: SortOrder
-    flockNumer?: SortOrder
+    flockId?: SortOrder
     totalQuantity?: SortOrderInput | SortOrder
     totalPrice?: SortOrderInput | SortOrder
     Delivery?: SortOrder
@@ -29148,7 +36671,7 @@ export namespace Prisma {
     OR?: SellMedicineWhereInput[]
     NOT?: SellMedicineWhereInput | SellMedicineWhereInput[]
     farmId?: StringFilter<"SellMedicine"> | string
-    flockNumer?: IntFilter<"SellMedicine"> | number
+    flockId?: StringFilter<"SellMedicine"> | string
     totalQuantity?: IntNullableFilter<"SellMedicine"> | number | null
     totalPrice?: IntNullableFilter<"SellMedicine"> | number | null
     Delivery?: EnumDeliveryStatusFilter<"SellMedicine"> | $Enums.DeliveryStatus
@@ -29166,7 +36689,7 @@ export namespace Prisma {
     id?: SortOrder
     billNumber?: SortOrder
     farmId?: SortOrder
-    flockNumer?: SortOrder
+    flockId?: SortOrder
     totalQuantity?: SortOrderInput | SortOrder
     totalPrice?: SortOrderInput | SortOrder
     Delivery?: SortOrder
@@ -29188,7 +36711,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"SellMedicine"> | string
     billNumber?: IntWithAggregatesFilter<"SellMedicine"> | number
     farmId?: StringWithAggregatesFilter<"SellMedicine"> | string
-    flockNumer?: IntWithAggregatesFilter<"SellMedicine"> | number
+    flockId?: StringWithAggregatesFilter<"SellMedicine"> | string
     totalQuantity?: IntNullableWithAggregatesFilter<"SellMedicine"> | number | null
     totalPrice?: IntNullableWithAggregatesFilter<"SellMedicine"> | number | null
     Delivery?: EnumDeliveryStatusWithAggregatesFilter<"SellMedicine"> | $Enums.DeliveryStatus
@@ -29374,6 +36897,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellCreateNestedManyWithoutBranchInput
+    chicks?: ChicksCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateInput = {
@@ -29393,6 +36918,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutBranchInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUpdateInput = {
@@ -29412,6 +36939,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateInput = {
@@ -29431,6 +36960,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchCreateManyInput = {
@@ -29473,6 +37004,7 @@ export namespace Prisma {
     feedStock?: FeedStockCreateNestedManyWithoutDepotInput
     sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
     receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutDepotInput
   }
 
   export type DepotUncheckedCreateInput = {
@@ -29485,6 +37017,7 @@ export namespace Prisma {
     feedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
     sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
     receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutDepotInput
   }
 
   export type DepotUpdateInput = {
@@ -29497,6 +37030,7 @@ export namespace Prisma {
     feedStock?: FeedStockUpdateManyWithoutDepotNestedInput
     sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
     receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotUncheckedUpdateInput = {
@@ -29509,6 +37043,7 @@ export namespace Prisma {
     feedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
     sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
     receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotCreateManyInput = {
@@ -29556,6 +37091,8 @@ export namespace Prisma {
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateInput = {
@@ -29576,6 +37113,8 @@ export namespace Prisma {
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUpdateInput = {
@@ -29596,6 +37135,8 @@ export namespace Prisma {
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateInput = {
@@ -29616,6 +37157,8 @@ export namespace Prisma {
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerCreateManyInput = {
@@ -29954,6 +37497,9 @@ export namespace Prisma {
     flockReport?: FlockReportCreateNestedManyWithoutFlockInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    chicks?: ChicksCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateInput = {
@@ -29978,6 +37524,9 @@ export namespace Prisma {
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUpdateInput = {
@@ -30002,6 +37551,9 @@ export namespace Prisma {
     flockReport?: FlockReportUpdateManyWithoutFlockNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateInput = {
@@ -30026,6 +37578,9 @@ export namespace Prisma {
     flockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockCreateManyInput = {
@@ -30085,6 +37640,293 @@ export namespace Prisma {
     totalSellBirds?: IntFieldUpdateOperationsInput | number
     mortality?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FarmFeedStockCreateInput = {
+    id?: string
+    feedName: string
+    stock: number
+    createdAt?: Date | string | null
+    updateAt?: Date | string
+    flock: FlockCreateNestedOneWithoutFarmFeedStockInput
+  }
+
+  export type FarmFeedStockUncheckedCreateInput = {
+    id?: string
+    flockId: string
+    feedName: string
+    stock: number
+    createdAt?: Date | string | null
+    updateAt?: Date | string
+  }
+
+  export type FarmFeedStockUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flock?: FlockUpdateOneRequiredWithoutFarmFeedStockNestedInput
+  }
+
+  export type FarmFeedStockUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FarmFeedStockCreateManyInput = {
+    id?: string
+    flockId: string
+    feedName: string
+    stock: number
+    createdAt?: Date | string | null
+    updateAt?: Date | string
+  }
+
+  export type FarmFeedStockUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FarmFeedStockUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChicksCreateInput = {
+    id?: string
+    name: string
+    farmNumber: number
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: string
+    description?: string | null
+    createdAt?: Date | string
+    updateAt?: Date | string
+    flock: FlockCreateNestedOneWithoutChicksInput
+    farm: FarmerCreateNestedOneWithoutChicksInput
+    branch: BranchCreateNestedOneWithoutChicksInput
+  }
+
+  export type ChicksUncheckedCreateInput = {
+    id?: string
+    name: string
+    branchCode: string
+    farmNumber: number
+    farmId: string
+    flockId: string
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: string
+    description?: string | null
+    createdAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type ChicksUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    currentPrice?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    createdBy?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flock?: FlockUpdateOneRequiredWithoutChicksNestedInput
+    farm?: FarmerUpdateOneRequiredWithoutChicksNestedInput
+    branch?: BranchUpdateOneRequiredWithoutChicksNestedInput
+  }
+
+  export type ChicksUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    currentPrice?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    createdBy?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChicksCreateManyInput = {
+    id?: string
+    name: string
+    branchCode: string
+    farmNumber: number
+    farmId: string
+    flockId: string
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: string
+    description?: string | null
+    createdAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type ChicksUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    currentPrice?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    createdBy?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChicksUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    currentPrice?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    createdBy?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BirdSellCreateInput = {
+    id?: string
+    buyerId: string
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid?: boolean
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    farm: FarmerCreateNestedOneWithoutBirdSellInput
+    branch: BranchCreateNestedOneWithoutBirdSellInput
+    flock: FlockCreateNestedOneWithoutBirdSellInput
+  }
+
+  export type BirdSellUncheckedCreateInput = {
+    id?: string
+    buyerId: string
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid?: boolean
+    farmId: string
+    branchCode: string
+    flockId: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type BirdSellUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    totalQantity?: IntFieldUpdateOperationsInput | number
+    totalWeight?: FloatFieldUpdateOperationsInput | number
+    avgWeight?: FloatFieldUpdateOperationsInput | number
+    pricePerkg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farm?: FarmerUpdateOneRequiredWithoutBirdSellNestedInput
+    branch?: BranchUpdateOneRequiredWithoutBirdSellNestedInput
+    flock?: FlockUpdateOneRequiredWithoutBirdSellNestedInput
+  }
+
+  export type BirdSellUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    totalQantity?: IntFieldUpdateOperationsInput | number
+    totalWeight?: FloatFieldUpdateOperationsInput | number
+    avgWeight?: FloatFieldUpdateOperationsInput | number
+    pricePerkg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    farmId?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BirdSellCreateManyInput = {
+    id?: string
+    buyerId: string
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid?: boolean
+    farmId: string
+    branchCode: string
+    flockId: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type BirdSellUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    totalQantity?: IntFieldUpdateOperationsInput | number
+    totalWeight?: FloatFieldUpdateOperationsInput | number
+    avgWeight?: FloatFieldUpdateOperationsInput | number
+    pricePerkg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BirdSellUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    totalQantity?: IntFieldUpdateOperationsInput | number
+    totalWeight?: FloatFieldUpdateOperationsInput | number
+    avgWeight?: FloatFieldUpdateOperationsInput | number
+    pricePerkg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    farmId?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -30353,6 +38195,7 @@ export namespace Prisma {
     createDate: string
     FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
     transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedInput
+    FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutFeedNameCategoryInput
   }
 
   export type FeedNameCategoryUncheckedCreateInput = {
@@ -30364,6 +38207,7 @@ export namespace Prisma {
     createDate: string
     FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
     transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedInput
+    FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
   }
 
   export type FeedNameCategoryUpdateInput = {
@@ -30375,6 +38219,7 @@ export namespace Prisma {
     createDate?: StringFieldUpdateOperationsInput | string
     FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
     transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedNestedInput
+    FeedSalesItem?: FeedSalesItemUpdateManyWithoutFeedNameCategoryNestedInput
   }
 
   export type FeedNameCategoryUncheckedUpdateInput = {
@@ -30386,6 +38231,7 @@ export namespace Prisma {
     createDate?: StringFieldUpdateOperationsInput | string
     FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
     transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedNestedInput
+    FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
   }
 
   export type FeedNameCategoryCreateManyInput = {
@@ -30420,6 +38266,7 @@ export namespace Prisma {
     stock: number
     createdAt?: Date | string | null
     updatedAt?: Date | string
+    unitPice?: number
     createDate: string
     Branch?: BranchCreateNestedOneWithoutFeedStockInput
     depot: DepotCreateNestedOneWithoutFeedStockInput
@@ -30434,6 +38281,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     branchId?: string | null
+    unitPice?: number
     createDate: string
   }
 
@@ -30442,6 +38290,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    unitPice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     Branch?: BranchUpdateOneWithoutFeedStockNestedInput
     depot?: DepotUpdateOneRequiredWithoutFeedStockNestedInput
@@ -30456,6 +38305,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchId?: NullableStringFieldUpdateOperationsInput | string | null
+    unitPice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
   }
 
@@ -30467,6 +38317,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     branchId?: string | null
+    unitPice?: number
     createDate: string
   }
 
@@ -30475,6 +38326,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    unitPice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
   }
 
@@ -30486,12 +38338,15 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchId?: NullableStringFieldUpdateOperationsInput | string | null
+    unitPice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
   }
 
   export type FeedStockTransferCreateInput = {
     id?: string
     transerFerDate: string
+    totalKg?: number
+    totalPrice?: number
     createDate: string
     trnasferBill: string
     createAt?: Date | string | null
@@ -30507,6 +38362,8 @@ export namespace Prisma {
     fromDepot: string
     toDepot: string
     transerFerDate: string
+    totalKg?: number
+    totalPrice?: number
     createDate: string
     trnasferBill: string
     createAt?: Date | string | null
@@ -30518,6 +38375,8 @@ export namespace Prisma {
   export type FeedStockTransferUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     transerFerDate?: StringFieldUpdateOperationsInput | string
+    totalKg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     trnasferBill?: StringFieldUpdateOperationsInput | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -30533,6 +38392,8 @@ export namespace Prisma {
     fromDepot?: StringFieldUpdateOperationsInput | string
     toDepot?: StringFieldUpdateOperationsInput | string
     transerFerDate?: StringFieldUpdateOperationsInput | string
+    totalKg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     trnasferBill?: StringFieldUpdateOperationsInput | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -30546,6 +38407,8 @@ export namespace Prisma {
     fromDepot: string
     toDepot: string
     transerFerDate: string
+    totalKg?: number
+    totalPrice?: number
     createDate: string
     trnasferBill: string
     createAt?: Date | string | null
@@ -30556,6 +38419,8 @@ export namespace Prisma {
   export type FeedStockTransferUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     transerFerDate?: StringFieldUpdateOperationsInput | string
+    totalKg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     trnasferBill?: StringFieldUpdateOperationsInput | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -30568,6 +38433,8 @@ export namespace Prisma {
     fromDepot?: StringFieldUpdateOperationsInput | string
     toDepot?: StringFieldUpdateOperationsInput | string
     transerFerDate?: StringFieldUpdateOperationsInput | string
+    totalKg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     trnasferBill?: StringFieldUpdateOperationsInput | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -30579,6 +38446,7 @@ export namespace Prisma {
     id?: string
     createDate: string
     quntity: string
+    price?: number
     createdAt?: Date | string
     updateAt?: Date | string
     feed: FeedNameCategoryCreateNestedOneWithoutTransferFeedItemInput
@@ -30590,6 +38458,7 @@ export namespace Prisma {
     feedName: string
     createDate: string
     quntity: string
+    price?: number
     tansferId: string
     createdAt?: Date | string
     updateAt?: Date | string
@@ -30599,6 +38468,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     createDate?: StringFieldUpdateOperationsInput | string
     quntity?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     feed?: FeedNameCategoryUpdateOneRequiredWithoutTransferFeedItemNestedInput
@@ -30610,6 +38480,7 @@ export namespace Prisma {
     feedName?: StringFieldUpdateOperationsInput | string
     createDate?: StringFieldUpdateOperationsInput | string
     quntity?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     tansferId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30620,6 +38491,7 @@ export namespace Prisma {
     feedName: string
     createDate: string
     quntity: string
+    price?: number
     tansferId: string
     createdAt?: Date | string
     updateAt?: Date | string
@@ -30629,6 +38501,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     createDate?: StringFieldUpdateOperationsInput | string
     quntity?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -30638,9 +38511,214 @@ export namespace Prisma {
     feedName?: StringFieldUpdateOperationsInput | string
     createDate?: StringFieldUpdateOperationsInput | string
     quntity?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     tansferId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedSalesOrderCreateInput = {
+    id?: string
+    branchCode: string
+    saleInvoice: string
+    farmNumber: number
+    flockNumber: number
+    createDate: string
+    farmId: string
+    flockId: string
+    totalPrice?: number
+    totalKg?: number
+    description?: string | null
+    status?: $Enums.DeliveryStatus
+    createdAt?: Date | string | null
+    updateAt?: Date | string
+    depot: DepotCreateNestedOneWithoutFeedSalesOrderInput
+    FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutSalesOrderInput
+  }
+
+  export type FeedSalesOrderUncheckedCreateInput = {
+    id?: string
+    branchCode: string
+    depotName: string
+    saleInvoice: string
+    farmNumber: number
+    flockNumber: number
+    createDate: string
+    farmId: string
+    flockId: string
+    totalPrice?: number
+    totalKg?: number
+    description?: string | null
+    status?: $Enums.DeliveryStatus
+    createdAt?: Date | string | null
+    updateAt?: Date | string
+    FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutSalesOrderInput
+  }
+
+  export type FeedSalesOrderUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    saleInvoice?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    totalKg?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depot?: DepotUpdateOneRequiredWithoutFeedSalesOrderNestedInput
+    FeedSalesItem?: FeedSalesItemUpdateManyWithoutSalesOrderNestedInput
+  }
+
+  export type FeedSalesOrderUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    saleInvoice?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    totalKg?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutSalesOrderNestedInput
+  }
+
+  export type FeedSalesOrderCreateManyInput = {
+    id?: string
+    branchCode: string
+    depotName: string
+    saleInvoice: string
+    farmNumber: number
+    flockNumber: number
+    createDate: string
+    farmId: string
+    flockId: string
+    totalPrice?: number
+    totalKg?: number
+    description?: string | null
+    status?: $Enums.DeliveryStatus
+    createdAt?: Date | string | null
+    updateAt?: Date | string
+  }
+
+  export type FeedSalesOrderUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    saleInvoice?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    totalKg?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedSalesOrderUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    saleInvoice?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    totalKg?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedSalesItemCreateInput = {
+    id?: string
+    quantity: number
+    createDate: string
+    totalPice: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    salesOrder: FeedSalesOrderCreateNestedOneWithoutFeedSalesItemInput
+    feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedSalesItemInput
+  }
+
+  export type FeedSalesItemUncheckedCreateInput = {
+    id?: string
+    feedName: string
+    salesInvoice: string
+    quantity: number
+    createDate: string
+    totalPice: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FeedSalesItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    totalPice?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    salesOrder?: FeedSalesOrderUpdateOneRequiredWithoutFeedSalesItemNestedInput
+    feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedSalesItemNestedInput
+  }
+
+  export type FeedSalesItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    salesInvoice?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    totalPice?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedSalesItemCreateManyInput = {
+    id?: string
+    feedName: string
+    salesInvoice: string
+    quantity: number
+    createDate: string
+    totalPice: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FeedSalesItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    totalPice?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedSalesItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    salesInvoice?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    totalPice?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AllGenericMedicinCreateInput = {
@@ -31038,7 +39116,7 @@ export namespace Prisma {
     id?: string
     billNumber: number
     farmId: string
-    flockNumer: number
+    flockId: string
     totalQuantity?: number | null
     totalPrice?: number | null
     Delivery?: $Enums.DeliveryStatus
@@ -31068,7 +39146,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     billNumber?: IntFieldUpdateOperationsInput | number
     farmId?: StringFieldUpdateOperationsInput | string
-    flockNumer?: IntFieldUpdateOperationsInput | number
+    flockId?: StringFieldUpdateOperationsInput | string
     totalQuantity?: NullableIntFieldUpdateOperationsInput | number | null
     totalPrice?: NullableIntFieldUpdateOperationsInput | number | null
     Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
@@ -31083,7 +39161,7 @@ export namespace Prisma {
     id?: string
     billNumber: number
     farmId: string
-    flockNumer: number
+    flockId: string
     totalQuantity?: number | null
     totalPrice?: number | null
     Delivery?: $Enums.DeliveryStatus
@@ -31108,7 +39186,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     billNumber?: IntFieldUpdateOperationsInput | number
     farmId?: StringFieldUpdateOperationsInput | string
-    flockNumer?: IntFieldUpdateOperationsInput | number
+    flockId?: StringFieldUpdateOperationsInput | string
     totalQuantity?: NullableIntFieldUpdateOperationsInput | number | null
     totalPrice?: NullableIntFieldUpdateOperationsInput | number | null
     Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
@@ -31389,6 +39467,18 @@ export namespace Prisma {
     none?: SellMedicineWhereInput
   }
 
+  export type BirdSellListRelationFilter = {
+    every?: BirdSellWhereInput
+    some?: BirdSellWhereInput
+    none?: BirdSellWhereInput
+  }
+
+  export type ChicksListRelationFilter = {
+    every?: ChicksWhereInput
+    some?: ChicksWhereInput
+    none?: ChicksWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -31427,6 +39517,14 @@ export namespace Prisma {
   }
 
   export type SellMedicineOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BirdSellOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ChicksOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -31522,7 +39620,17 @@ export namespace Prisma {
     none?: FeedStockTransferWhereInput
   }
 
+  export type FeedSalesOrderListRelationFilter = {
+    every?: FeedSalesOrderWhereInput
+    some?: FeedSalesOrderWhereInput
+    none?: FeedSalesOrderWhereInput
+  }
+
   export type FeedStockTransferOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FeedSalesOrderOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -31874,6 +39982,16 @@ export namespace Prisma {
     isNot?: FarmerWhereInput
   }
 
+  export type FarmFeedStockListRelationFilter = {
+    every?: FarmFeedStockWhereInput
+    some?: FarmFeedStockWhereInput
+    none?: FarmFeedStockWhereInput
+  }
+
+  export type FarmFeedStockOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type FlockCountOrderByAggregateInput = {
     id?: SortOrder
     flockNumber?: SortOrder
@@ -31983,6 +40101,182 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type FlockScalarRelationFilter = {
+    is?: FlockWhereInput
+    isNot?: FlockWhereInput
+  }
+
+  export type FarmFeedStockFlockIdFeedNameCompoundUniqueInput = {
+    flockId: string
+    feedName: string
+  }
+
+  export type FarmFeedStockCountOrderByAggregateInput = {
+    id?: SortOrder
+    flockId?: SortOrder
+    feedName?: SortOrder
+    stock?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type FarmFeedStockAvgOrderByAggregateInput = {
+    stock?: SortOrder
+  }
+
+  export type FarmFeedStockMaxOrderByAggregateInput = {
+    id?: SortOrder
+    flockId?: SortOrder
+    feedName?: SortOrder
+    stock?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type FarmFeedStockMinOrderByAggregateInput = {
+    id?: SortOrder
+    flockId?: SortOrder
+    feedName?: SortOrder
+    stock?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type FarmFeedStockSumOrderByAggregateInput = {
+    stock?: SortOrder
+  }
+
+  export type ChicksCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    branchCode?: SortOrder
+    farmNumber?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    currentPrice?: SortOrder
+    sellPrice?: SortOrder
+    quantity?: SortOrder
+    totalPrice?: SortOrder
+    createdBy?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type ChicksAvgOrderByAggregateInput = {
+    farmNumber?: SortOrder
+    currentPrice?: SortOrder
+    sellPrice?: SortOrder
+    quantity?: SortOrder
+    totalPrice?: SortOrder
+  }
+
+  export type ChicksMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    branchCode?: SortOrder
+    farmNumber?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    currentPrice?: SortOrder
+    sellPrice?: SortOrder
+    quantity?: SortOrder
+    totalPrice?: SortOrder
+    createdBy?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type ChicksMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    branchCode?: SortOrder
+    farmNumber?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    currentPrice?: SortOrder
+    sellPrice?: SortOrder
+    quantity?: SortOrder
+    totalPrice?: SortOrder
+    createdBy?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type ChicksSumOrderByAggregateInput = {
+    farmNumber?: SortOrder
+    currentPrice?: SortOrder
+    sellPrice?: SortOrder
+    quantity?: SortOrder
+    totalPrice?: SortOrder
+  }
+
+  export type BirdSellCountOrderByAggregateInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    totalQantity?: SortOrder
+    totalWeight?: SortOrder
+    avgWeight?: SortOrder
+    pricePerkg?: SortOrder
+    totalPrice?: SortOrder
+    paid?: SortOrder
+    farmId?: SortOrder
+    branchCode?: SortOrder
+    flockId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BirdSellAvgOrderByAggregateInput = {
+    totalQantity?: SortOrder
+    totalWeight?: SortOrder
+    avgWeight?: SortOrder
+    pricePerkg?: SortOrder
+    totalPrice?: SortOrder
+  }
+
+  export type BirdSellMaxOrderByAggregateInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    totalQantity?: SortOrder
+    totalWeight?: SortOrder
+    avgWeight?: SortOrder
+    pricePerkg?: SortOrder
+    totalPrice?: SortOrder
+    paid?: SortOrder
+    farmId?: SortOrder
+    branchCode?: SortOrder
+    flockId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BirdSellMinOrderByAggregateInput = {
+    id?: SortOrder
+    buyerId?: SortOrder
+    totalQantity?: SortOrder
+    totalWeight?: SortOrder
+    avgWeight?: SortOrder
+    pricePerkg?: SortOrder
+    totalPrice?: SortOrder
+    paid?: SortOrder
+    farmId?: SortOrder
+    branchCode?: SortOrder
+    flockId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BirdSellSumOrderByAggregateInput = {
+    totalQantity?: SortOrder
+    totalWeight?: SortOrder
+    avgWeight?: SortOrder
+    pricePerkg?: SortOrder
+    totalPrice?: SortOrder
+  }
+
   export type FloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -32003,11 +40297,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type FlockScalarRelationFilter = {
-    is?: FlockWhereInput
-    isNot?: FlockWhereInput
   }
 
   export type FlockReportCountOrderByAggregateInput = {
@@ -32193,7 +40482,17 @@ export namespace Prisma {
     none?: TransferFeedItemWhereInput
   }
 
+  export type FeedSalesItemListRelationFilter = {
+    every?: FeedSalesItemWhereInput
+    some?: FeedSalesItemWhereInput
+    none?: FeedSalesItemWhereInput
+  }
+
   export type TransferFeedItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FeedSalesItemOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -32255,11 +40554,13 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     branchId?: SortOrder
+    unitPice?: SortOrder
     createDate?: SortOrder
   }
 
   export type FeedStockAvgOrderByAggregateInput = {
     stock?: SortOrder
+    unitPice?: SortOrder
   }
 
   export type FeedStockMaxOrderByAggregateInput = {
@@ -32270,6 +40571,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     branchId?: SortOrder
+    unitPice?: SortOrder
     createDate?: SortOrder
   }
 
@@ -32281,11 +40583,13 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     branchId?: SortOrder
+    unitPice?: SortOrder
     createDate?: SortOrder
   }
 
   export type FeedStockSumOrderByAggregateInput = {
     stock?: SortOrder
+    unitPice?: SortOrder
   }
 
   export type FeedStockTransferCountOrderByAggregateInput = {
@@ -32293,6 +40597,8 @@ export namespace Prisma {
     fromDepot?: SortOrder
     toDepot?: SortOrder
     transerFerDate?: SortOrder
+    totalKg?: SortOrder
+    totalPrice?: SortOrder
     createDate?: SortOrder
     trnasferBill?: SortOrder
     createAt?: SortOrder
@@ -32300,11 +40606,18 @@ export namespace Prisma {
     depotId?: SortOrder
   }
 
+  export type FeedStockTransferAvgOrderByAggregateInput = {
+    totalKg?: SortOrder
+    totalPrice?: SortOrder
+  }
+
   export type FeedStockTransferMaxOrderByAggregateInput = {
     id?: SortOrder
     fromDepot?: SortOrder
     toDepot?: SortOrder
     transerFerDate?: SortOrder
+    totalKg?: SortOrder
+    totalPrice?: SortOrder
     createDate?: SortOrder
     trnasferBill?: SortOrder
     createAt?: SortOrder
@@ -32317,11 +40630,18 @@ export namespace Prisma {
     fromDepot?: SortOrder
     toDepot?: SortOrder
     transerFerDate?: SortOrder
+    totalKg?: SortOrder
+    totalPrice?: SortOrder
     createDate?: SortOrder
     trnasferBill?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
     depotId?: SortOrder
+  }
+
+  export type FeedStockTransferSumOrderByAggregateInput = {
+    totalKg?: SortOrder
+    totalPrice?: SortOrder
   }
 
   export type FeedStockTransferScalarRelationFilter = {
@@ -32334,9 +40654,14 @@ export namespace Prisma {
     feedName?: SortOrder
     createDate?: SortOrder
     quntity?: SortOrder
+    price?: SortOrder
     tansferId?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
+  }
+
+  export type TransferFeedItemAvgOrderByAggregateInput = {
+    price?: SortOrder
   }
 
   export type TransferFeedItemMaxOrderByAggregateInput = {
@@ -32344,6 +40669,7 @@ export namespace Prisma {
     feedName?: SortOrder
     createDate?: SortOrder
     quntity?: SortOrder
+    price?: SortOrder
     tansferId?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
@@ -32354,9 +40680,147 @@ export namespace Prisma {
     feedName?: SortOrder
     createDate?: SortOrder
     quntity?: SortOrder
+    price?: SortOrder
     tansferId?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
+  }
+
+  export type TransferFeedItemSumOrderByAggregateInput = {
+    price?: SortOrder
+  }
+
+  export type EnumDeliveryStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumDeliveryStatusFilter<$PrismaModel> | $Enums.DeliveryStatus
+  }
+
+  export type FeedSalesOrderCountOrderByAggregateInput = {
+    id?: SortOrder
+    branchCode?: SortOrder
+    depotName?: SortOrder
+    saleInvoice?: SortOrder
+    farmNumber?: SortOrder
+    flockNumber?: SortOrder
+    createDate?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    totalPrice?: SortOrder
+    totalKg?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type FeedSalesOrderAvgOrderByAggregateInput = {
+    farmNumber?: SortOrder
+    flockNumber?: SortOrder
+    totalPrice?: SortOrder
+    totalKg?: SortOrder
+  }
+
+  export type FeedSalesOrderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    branchCode?: SortOrder
+    depotName?: SortOrder
+    saleInvoice?: SortOrder
+    farmNumber?: SortOrder
+    flockNumber?: SortOrder
+    createDate?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    totalPrice?: SortOrder
+    totalKg?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type FeedSalesOrderMinOrderByAggregateInput = {
+    id?: SortOrder
+    branchCode?: SortOrder
+    depotName?: SortOrder
+    saleInvoice?: SortOrder
+    farmNumber?: SortOrder
+    flockNumber?: SortOrder
+    createDate?: SortOrder
+    farmId?: SortOrder
+    flockId?: SortOrder
+    totalPrice?: SortOrder
+    totalKg?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type FeedSalesOrderSumOrderByAggregateInput = {
+    farmNumber?: SortOrder
+    flockNumber?: SortOrder
+    totalPrice?: SortOrder
+    totalKg?: SortOrder
+  }
+
+  export type EnumDeliveryStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumDeliveryStatusWithAggregatesFilter<$PrismaModel> | $Enums.DeliveryStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumDeliveryStatusFilter<$PrismaModel>
+    _max?: NestedEnumDeliveryStatusFilter<$PrismaModel>
+  }
+
+  export type FeedSalesOrderScalarRelationFilter = {
+    is?: FeedSalesOrderWhereInput
+    isNot?: FeedSalesOrderWhereInput
+  }
+
+  export type FeedSalesItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    salesInvoice?: SortOrder
+    quantity?: SortOrder
+    createDate?: SortOrder
+    totalPice?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FeedSalesItemAvgOrderByAggregateInput = {
+    quantity?: SortOrder
+    totalPice?: SortOrder
+  }
+
+  export type FeedSalesItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    salesInvoice?: SortOrder
+    quantity?: SortOrder
+    createDate?: SortOrder
+    totalPice?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FeedSalesItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    salesInvoice?: SortOrder
+    quantity?: SortOrder
+    createDate?: SortOrder
+    totalPice?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FeedSalesItemSumOrderByAggregateInput = {
+    quantity?: SortOrder
+    totalPice?: SortOrder
   }
 
   export type MedicineNameAddListRelationFilter = {
@@ -32599,13 +41063,6 @@ export namespace Prisma {
     quantity?: SortOrder
   }
 
-  export type EnumDeliveryStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumDeliveryStatusFilter<$PrismaModel> | $Enums.DeliveryStatus
-  }
-
   export type MedicineItemListRelationFilter = {
     every?: MedicineItemWhereInput
     some?: MedicineItemWhereInput
@@ -32620,7 +41077,7 @@ export namespace Prisma {
     id?: SortOrder
     billNumber?: SortOrder
     farmId?: SortOrder
-    flockNumer?: SortOrder
+    flockId?: SortOrder
     totalQuantity?: SortOrder
     totalPrice?: SortOrder
     Delivery?: SortOrder
@@ -32632,7 +41089,6 @@ export namespace Prisma {
 
   export type SellMedicineAvgOrderByAggregateInput = {
     billNumber?: SortOrder
-    flockNumer?: SortOrder
     totalQuantity?: SortOrder
     totalPrice?: SortOrder
   }
@@ -32641,7 +41097,7 @@ export namespace Prisma {
     id?: SortOrder
     billNumber?: SortOrder
     farmId?: SortOrder
-    flockNumer?: SortOrder
+    flockId?: SortOrder
     totalQuantity?: SortOrder
     totalPrice?: SortOrder
     Delivery?: SortOrder
@@ -32655,7 +41111,7 @@ export namespace Prisma {
     id?: SortOrder
     billNumber?: SortOrder
     farmId?: SortOrder
-    flockNumer?: SortOrder
+    flockId?: SortOrder
     totalQuantity?: SortOrder
     totalPrice?: SortOrder
     Delivery?: SortOrder
@@ -32667,19 +41123,8 @@ export namespace Prisma {
 
   export type SellMedicineSumOrderByAggregateInput = {
     billNumber?: SortOrder
-    flockNumer?: SortOrder
     totalQuantity?: SortOrder
     totalPrice?: SortOrder
-  }
-
-  export type EnumDeliveryStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumDeliveryStatusWithAggregatesFilter<$PrismaModel> | $Enums.DeliveryStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumDeliveryStatusFilter<$PrismaModel>
-    _max?: NestedEnumDeliveryStatusFilter<$PrismaModel>
   }
 
   export type StockTransferCountOrderByAggregateInput = {
@@ -32840,6 +41285,20 @@ export namespace Prisma {
     connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
   }
 
+  export type BirdSellCreateNestedManyWithoutBranchInput = {
+    create?: XOR<BirdSellCreateWithoutBranchInput, BirdSellUncheckedCreateWithoutBranchInput> | BirdSellCreateWithoutBranchInput[] | BirdSellUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: BirdSellCreateOrConnectWithoutBranchInput | BirdSellCreateOrConnectWithoutBranchInput[]
+    createMany?: BirdSellCreateManyBranchInputEnvelope
+    connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+  }
+
+  export type ChicksCreateNestedManyWithoutBranchInput = {
+    create?: XOR<ChicksCreateWithoutBranchInput, ChicksUncheckedCreateWithoutBranchInput> | ChicksCreateWithoutBranchInput[] | ChicksUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: ChicksCreateOrConnectWithoutBranchInput | ChicksCreateOrConnectWithoutBranchInput[]
+    createMany?: ChicksCreateManyBranchInputEnvelope
+    connect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+  }
+
   export type BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput = {
     create?: XOR<BranchEmployeeHistoryCreateWithoutBranchInput, BranchEmployeeHistoryUncheckedCreateWithoutBranchInput> | BranchEmployeeHistoryCreateWithoutBranchInput[] | BranchEmployeeHistoryUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: BranchEmployeeHistoryCreateOrConnectWithoutBranchInput | BranchEmployeeHistoryCreateOrConnectWithoutBranchInput[]
@@ -32901,6 +41360,20 @@ export namespace Prisma {
     connectOrCreate?: SellMedicineCreateOrConnectWithoutBranchInput | SellMedicineCreateOrConnectWithoutBranchInput[]
     createMany?: SellMedicineCreateManyBranchInputEnvelope
     connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+  }
+
+  export type BirdSellUncheckedCreateNestedManyWithoutBranchInput = {
+    create?: XOR<BirdSellCreateWithoutBranchInput, BirdSellUncheckedCreateWithoutBranchInput> | BirdSellCreateWithoutBranchInput[] | BirdSellUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: BirdSellCreateOrConnectWithoutBranchInput | BirdSellCreateOrConnectWithoutBranchInput[]
+    createMany?: BirdSellCreateManyBranchInputEnvelope
+    connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+  }
+
+  export type ChicksUncheckedCreateNestedManyWithoutBranchInput = {
+    create?: XOR<ChicksCreateWithoutBranchInput, ChicksUncheckedCreateWithoutBranchInput> | ChicksCreateWithoutBranchInput[] | ChicksUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: ChicksCreateOrConnectWithoutBranchInput | ChicksCreateOrConnectWithoutBranchInput[]
+    createMany?: ChicksCreateManyBranchInputEnvelope
+    connect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -33045,6 +41518,34 @@ export namespace Prisma {
     deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
   }
 
+  export type BirdSellUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<BirdSellCreateWithoutBranchInput, BirdSellUncheckedCreateWithoutBranchInput> | BirdSellCreateWithoutBranchInput[] | BirdSellUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: BirdSellCreateOrConnectWithoutBranchInput | BirdSellCreateOrConnectWithoutBranchInput[]
+    upsert?: BirdSellUpsertWithWhereUniqueWithoutBranchInput | BirdSellUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: BirdSellCreateManyBranchInputEnvelope
+    set?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    disconnect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    delete?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    update?: BirdSellUpdateWithWhereUniqueWithoutBranchInput | BirdSellUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: BirdSellUpdateManyWithWhereWithoutBranchInput | BirdSellUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: BirdSellScalarWhereInput | BirdSellScalarWhereInput[]
+  }
+
+  export type ChicksUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<ChicksCreateWithoutBranchInput, ChicksUncheckedCreateWithoutBranchInput> | ChicksCreateWithoutBranchInput[] | ChicksUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: ChicksCreateOrConnectWithoutBranchInput | ChicksCreateOrConnectWithoutBranchInput[]
+    upsert?: ChicksUpsertWithWhereUniqueWithoutBranchInput | ChicksUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: ChicksCreateManyBranchInputEnvelope
+    set?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    disconnect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    delete?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    connect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    update?: ChicksUpdateWithWhereUniqueWithoutBranchInput | ChicksUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: ChicksUpdateManyWithWhereWithoutBranchInput | ChicksUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: ChicksScalarWhereInput | ChicksScalarWhereInput[]
+  }
+
   export type BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput = {
     create?: XOR<BranchEmployeeHistoryCreateWithoutBranchInput, BranchEmployeeHistoryUncheckedCreateWithoutBranchInput> | BranchEmployeeHistoryCreateWithoutBranchInput[] | BranchEmployeeHistoryUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: BranchEmployeeHistoryCreateOrConnectWithoutBranchInput | BranchEmployeeHistoryCreateOrConnectWithoutBranchInput[]
@@ -33171,6 +41672,34 @@ export namespace Prisma {
     deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
   }
 
+  export type BirdSellUncheckedUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<BirdSellCreateWithoutBranchInput, BirdSellUncheckedCreateWithoutBranchInput> | BirdSellCreateWithoutBranchInput[] | BirdSellUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: BirdSellCreateOrConnectWithoutBranchInput | BirdSellCreateOrConnectWithoutBranchInput[]
+    upsert?: BirdSellUpsertWithWhereUniqueWithoutBranchInput | BirdSellUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: BirdSellCreateManyBranchInputEnvelope
+    set?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    disconnect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    delete?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    update?: BirdSellUpdateWithWhereUniqueWithoutBranchInput | BirdSellUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: BirdSellUpdateManyWithWhereWithoutBranchInput | BirdSellUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: BirdSellScalarWhereInput | BirdSellScalarWhereInput[]
+  }
+
+  export type ChicksUncheckedUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<ChicksCreateWithoutBranchInput, ChicksUncheckedCreateWithoutBranchInput> | ChicksCreateWithoutBranchInput[] | ChicksUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: ChicksCreateOrConnectWithoutBranchInput | ChicksCreateOrConnectWithoutBranchInput[]
+    upsert?: ChicksUpsertWithWhereUniqueWithoutBranchInput | ChicksUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: ChicksCreateManyBranchInputEnvelope
+    set?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    disconnect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    delete?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    connect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    update?: ChicksUpdateWithWhereUniqueWithoutBranchInput | ChicksUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: ChicksUpdateManyWithWhereWithoutBranchInput | ChicksUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: ChicksScalarWhereInput | ChicksScalarWhereInput[]
+  }
+
   export type FeedStockCreateNestedManyWithoutDepotInput = {
     create?: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput> | FeedStockCreateWithoutDepotInput[] | FeedStockUncheckedCreateWithoutDepotInput[]
     connectOrCreate?: FeedStockCreateOrConnectWithoutDepotInput | FeedStockCreateOrConnectWithoutDepotInput[]
@@ -33192,6 +41721,13 @@ export namespace Prisma {
     connect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
   }
 
+  export type FeedSalesOrderCreateNestedManyWithoutDepotInput = {
+    create?: XOR<FeedSalesOrderCreateWithoutDepotInput, FeedSalesOrderUncheckedCreateWithoutDepotInput> | FeedSalesOrderCreateWithoutDepotInput[] | FeedSalesOrderUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedSalesOrderCreateOrConnectWithoutDepotInput | FeedSalesOrderCreateOrConnectWithoutDepotInput[]
+    createMany?: FeedSalesOrderCreateManyDepotInputEnvelope
+    connect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+  }
+
   export type FeedStockUncheckedCreateNestedManyWithoutDepotInput = {
     create?: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput> | FeedStockCreateWithoutDepotInput[] | FeedStockUncheckedCreateWithoutDepotInput[]
     connectOrCreate?: FeedStockCreateOrConnectWithoutDepotInput | FeedStockCreateOrConnectWithoutDepotInput[]
@@ -33211,6 +41747,13 @@ export namespace Prisma {
     connectOrCreate?: FeedStockTransferCreateOrConnectWithoutReciveDepotInput | FeedStockTransferCreateOrConnectWithoutReciveDepotInput[]
     createMany?: FeedStockTransferCreateManyReciveDepotInputEnvelope
     connect?: FeedStockTransferWhereUniqueInput | FeedStockTransferWhereUniqueInput[]
+  }
+
+  export type FeedSalesOrderUncheckedCreateNestedManyWithoutDepotInput = {
+    create?: XOR<FeedSalesOrderCreateWithoutDepotInput, FeedSalesOrderUncheckedCreateWithoutDepotInput> | FeedSalesOrderCreateWithoutDepotInput[] | FeedSalesOrderUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedSalesOrderCreateOrConnectWithoutDepotInput | FeedSalesOrderCreateOrConnectWithoutDepotInput[]
+    createMany?: FeedSalesOrderCreateManyDepotInputEnvelope
+    connect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
   }
 
   export type FeedStockUpdateManyWithoutDepotNestedInput = {
@@ -33255,6 +41798,20 @@ export namespace Prisma {
     deleteMany?: FeedStockTransferScalarWhereInput | FeedStockTransferScalarWhereInput[]
   }
 
+  export type FeedSalesOrderUpdateManyWithoutDepotNestedInput = {
+    create?: XOR<FeedSalesOrderCreateWithoutDepotInput, FeedSalesOrderUncheckedCreateWithoutDepotInput> | FeedSalesOrderCreateWithoutDepotInput[] | FeedSalesOrderUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedSalesOrderCreateOrConnectWithoutDepotInput | FeedSalesOrderCreateOrConnectWithoutDepotInput[]
+    upsert?: FeedSalesOrderUpsertWithWhereUniqueWithoutDepotInput | FeedSalesOrderUpsertWithWhereUniqueWithoutDepotInput[]
+    createMany?: FeedSalesOrderCreateManyDepotInputEnvelope
+    set?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    disconnect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    delete?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    connect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    update?: FeedSalesOrderUpdateWithWhereUniqueWithoutDepotInput | FeedSalesOrderUpdateWithWhereUniqueWithoutDepotInput[]
+    updateMany?: FeedSalesOrderUpdateManyWithWhereWithoutDepotInput | FeedSalesOrderUpdateManyWithWhereWithoutDepotInput[]
+    deleteMany?: FeedSalesOrderScalarWhereInput | FeedSalesOrderScalarWhereInput[]
+  }
+
   export type FeedStockUncheckedUpdateManyWithoutDepotNestedInput = {
     create?: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput> | FeedStockCreateWithoutDepotInput[] | FeedStockUncheckedCreateWithoutDepotInput[]
     connectOrCreate?: FeedStockCreateOrConnectWithoutDepotInput | FeedStockCreateOrConnectWithoutDepotInput[]
@@ -33297,6 +41854,20 @@ export namespace Prisma {
     deleteMany?: FeedStockTransferScalarWhereInput | FeedStockTransferScalarWhereInput[]
   }
 
+  export type FeedSalesOrderUncheckedUpdateManyWithoutDepotNestedInput = {
+    create?: XOR<FeedSalesOrderCreateWithoutDepotInput, FeedSalesOrderUncheckedCreateWithoutDepotInput> | FeedSalesOrderCreateWithoutDepotInput[] | FeedSalesOrderUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedSalesOrderCreateOrConnectWithoutDepotInput | FeedSalesOrderCreateOrConnectWithoutDepotInput[]
+    upsert?: FeedSalesOrderUpsertWithWhereUniqueWithoutDepotInput | FeedSalesOrderUpsertWithWhereUniqueWithoutDepotInput[]
+    createMany?: FeedSalesOrderCreateManyDepotInputEnvelope
+    set?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    disconnect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    delete?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    connect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    update?: FeedSalesOrderUpdateWithWhereUniqueWithoutDepotInput | FeedSalesOrderUpdateWithWhereUniqueWithoutDepotInput[]
+    updateMany?: FeedSalesOrderUpdateManyWithWhereWithoutDepotInput | FeedSalesOrderUpdateManyWithWhereWithoutDepotInput[]
+    deleteMany?: FeedSalesOrderScalarWhereInput | FeedSalesOrderScalarWhereInput[]
+  }
+
   export type AddressCreateNestedOneWithoutFarmerInput = {
     create?: XOR<AddressCreateWithoutFarmerInput, AddressUncheckedCreateWithoutFarmerInput>
     connectOrCreate?: AddressCreateOrConnectWithoutFarmerInput
@@ -33330,6 +41901,20 @@ export namespace Prisma {
     connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
   }
 
+  export type ChicksCreateNestedManyWithoutFarmInput = {
+    create?: XOR<ChicksCreateWithoutFarmInput, ChicksUncheckedCreateWithoutFarmInput> | ChicksCreateWithoutFarmInput[] | ChicksUncheckedCreateWithoutFarmInput[]
+    connectOrCreate?: ChicksCreateOrConnectWithoutFarmInput | ChicksCreateOrConnectWithoutFarmInput[]
+    createMany?: ChicksCreateManyFarmInputEnvelope
+    connect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+  }
+
+  export type BirdSellCreateNestedManyWithoutFarmInput = {
+    create?: XOR<BirdSellCreateWithoutFarmInput, BirdSellUncheckedCreateWithoutFarmInput> | BirdSellCreateWithoutFarmInput[] | BirdSellUncheckedCreateWithoutFarmInput[]
+    connectOrCreate?: BirdSellCreateOrConnectWithoutFarmInput | BirdSellCreateOrConnectWithoutFarmInput[]
+    createMany?: BirdSellCreateManyFarmInputEnvelope
+    connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+  }
+
   export type FlockUncheckedCreateNestedManyWithoutFarmerInput = {
     create?: XOR<FlockCreateWithoutFarmerInput, FlockUncheckedCreateWithoutFarmerInput> | FlockCreateWithoutFarmerInput[] | FlockUncheckedCreateWithoutFarmerInput[]
     connectOrCreate?: FlockCreateOrConnectWithoutFarmerInput | FlockCreateOrConnectWithoutFarmerInput[]
@@ -33349,6 +41934,20 @@ export namespace Prisma {
     connectOrCreate?: SellMedicineCreateOrConnectWithoutFarmerInput | SellMedicineCreateOrConnectWithoutFarmerInput[]
     createMany?: SellMedicineCreateManyFarmerInputEnvelope
     connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+  }
+
+  export type ChicksUncheckedCreateNestedManyWithoutFarmInput = {
+    create?: XOR<ChicksCreateWithoutFarmInput, ChicksUncheckedCreateWithoutFarmInput> | ChicksCreateWithoutFarmInput[] | ChicksUncheckedCreateWithoutFarmInput[]
+    connectOrCreate?: ChicksCreateOrConnectWithoutFarmInput | ChicksCreateOrConnectWithoutFarmInput[]
+    createMany?: ChicksCreateManyFarmInputEnvelope
+    connect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+  }
+
+  export type BirdSellUncheckedCreateNestedManyWithoutFarmInput = {
+    create?: XOR<BirdSellCreateWithoutFarmInput, BirdSellUncheckedCreateWithoutFarmInput> | BirdSellCreateWithoutFarmInput[] | BirdSellUncheckedCreateWithoutFarmInput[]
+    connectOrCreate?: BirdSellCreateOrConnectWithoutFarmInput | BirdSellCreateOrConnectWithoutFarmInput[]
+    createMany?: BirdSellCreateManyFarmInputEnvelope
+    connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -33425,6 +42024,34 @@ export namespace Prisma {
     deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
   }
 
+  export type ChicksUpdateManyWithoutFarmNestedInput = {
+    create?: XOR<ChicksCreateWithoutFarmInput, ChicksUncheckedCreateWithoutFarmInput> | ChicksCreateWithoutFarmInput[] | ChicksUncheckedCreateWithoutFarmInput[]
+    connectOrCreate?: ChicksCreateOrConnectWithoutFarmInput | ChicksCreateOrConnectWithoutFarmInput[]
+    upsert?: ChicksUpsertWithWhereUniqueWithoutFarmInput | ChicksUpsertWithWhereUniqueWithoutFarmInput[]
+    createMany?: ChicksCreateManyFarmInputEnvelope
+    set?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    disconnect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    delete?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    connect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    update?: ChicksUpdateWithWhereUniqueWithoutFarmInput | ChicksUpdateWithWhereUniqueWithoutFarmInput[]
+    updateMany?: ChicksUpdateManyWithWhereWithoutFarmInput | ChicksUpdateManyWithWhereWithoutFarmInput[]
+    deleteMany?: ChicksScalarWhereInput | ChicksScalarWhereInput[]
+  }
+
+  export type BirdSellUpdateManyWithoutFarmNestedInput = {
+    create?: XOR<BirdSellCreateWithoutFarmInput, BirdSellUncheckedCreateWithoutFarmInput> | BirdSellCreateWithoutFarmInput[] | BirdSellUncheckedCreateWithoutFarmInput[]
+    connectOrCreate?: BirdSellCreateOrConnectWithoutFarmInput | BirdSellCreateOrConnectWithoutFarmInput[]
+    upsert?: BirdSellUpsertWithWhereUniqueWithoutFarmInput | BirdSellUpsertWithWhereUniqueWithoutFarmInput[]
+    createMany?: BirdSellCreateManyFarmInputEnvelope
+    set?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    disconnect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    delete?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    update?: BirdSellUpdateWithWhereUniqueWithoutFarmInput | BirdSellUpdateWithWhereUniqueWithoutFarmInput[]
+    updateMany?: BirdSellUpdateManyWithWhereWithoutFarmInput | BirdSellUpdateManyWithWhereWithoutFarmInput[]
+    deleteMany?: BirdSellScalarWhereInput | BirdSellScalarWhereInput[]
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
@@ -33469,6 +42096,34 @@ export namespace Prisma {
     update?: SellMedicineUpdateWithWhereUniqueWithoutFarmerInput | SellMedicineUpdateWithWhereUniqueWithoutFarmerInput[]
     updateMany?: SellMedicineUpdateManyWithWhereWithoutFarmerInput | SellMedicineUpdateManyWithWhereWithoutFarmerInput[]
     deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
+  }
+
+  export type ChicksUncheckedUpdateManyWithoutFarmNestedInput = {
+    create?: XOR<ChicksCreateWithoutFarmInput, ChicksUncheckedCreateWithoutFarmInput> | ChicksCreateWithoutFarmInput[] | ChicksUncheckedCreateWithoutFarmInput[]
+    connectOrCreate?: ChicksCreateOrConnectWithoutFarmInput | ChicksCreateOrConnectWithoutFarmInput[]
+    upsert?: ChicksUpsertWithWhereUniqueWithoutFarmInput | ChicksUpsertWithWhereUniqueWithoutFarmInput[]
+    createMany?: ChicksCreateManyFarmInputEnvelope
+    set?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    disconnect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    delete?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    connect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    update?: ChicksUpdateWithWhereUniqueWithoutFarmInput | ChicksUpdateWithWhereUniqueWithoutFarmInput[]
+    updateMany?: ChicksUpdateManyWithWhereWithoutFarmInput | ChicksUpdateManyWithWhereWithoutFarmInput[]
+    deleteMany?: ChicksScalarWhereInput | ChicksScalarWhereInput[]
+  }
+
+  export type BirdSellUncheckedUpdateManyWithoutFarmNestedInput = {
+    create?: XOR<BirdSellCreateWithoutFarmInput, BirdSellUncheckedCreateWithoutFarmInput> | BirdSellCreateWithoutFarmInput[] | BirdSellUncheckedCreateWithoutFarmInput[]
+    connectOrCreate?: BirdSellCreateOrConnectWithoutFarmInput | BirdSellCreateOrConnectWithoutFarmInput[]
+    upsert?: BirdSellUpsertWithWhereUniqueWithoutFarmInput | BirdSellUpsertWithWhereUniqueWithoutFarmInput[]
+    createMany?: BirdSellCreateManyFarmInputEnvelope
+    set?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    disconnect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    delete?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    update?: BirdSellUpdateWithWhereUniqueWithoutFarmInput | BirdSellUpdateWithWhereUniqueWithoutFarmInput[]
+    updateMany?: BirdSellUpdateManyWithWhereWithoutFarmInput | BirdSellUpdateManyWithWhereWithoutFarmInput[]
+    deleteMany?: BirdSellScalarWhereInput | BirdSellScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedOneWithoutAddressInput = {
@@ -33706,6 +42361,27 @@ export namespace Prisma {
     connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
   }
 
+  export type ChicksCreateNestedManyWithoutFlockInput = {
+    create?: XOR<ChicksCreateWithoutFlockInput, ChicksUncheckedCreateWithoutFlockInput> | ChicksCreateWithoutFlockInput[] | ChicksUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: ChicksCreateOrConnectWithoutFlockInput | ChicksCreateOrConnectWithoutFlockInput[]
+    createMany?: ChicksCreateManyFlockInputEnvelope
+    connect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+  }
+
+  export type BirdSellCreateNestedManyWithoutFlockInput = {
+    create?: XOR<BirdSellCreateWithoutFlockInput, BirdSellUncheckedCreateWithoutFlockInput> | BirdSellCreateWithoutFlockInput[] | BirdSellUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: BirdSellCreateOrConnectWithoutFlockInput | BirdSellCreateOrConnectWithoutFlockInput[]
+    createMany?: BirdSellCreateManyFlockInputEnvelope
+    connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+  }
+
+  export type FarmFeedStockCreateNestedManyWithoutFlockInput = {
+    create?: XOR<FarmFeedStockCreateWithoutFlockInput, FarmFeedStockUncheckedCreateWithoutFlockInput> | FarmFeedStockCreateWithoutFlockInput[] | FarmFeedStockUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FarmFeedStockCreateOrConnectWithoutFlockInput | FarmFeedStockCreateOrConnectWithoutFlockInput[]
+    createMany?: FarmFeedStockCreateManyFlockInputEnvelope
+    connect?: FarmFeedStockWhereUniqueInput | FarmFeedStockWhereUniqueInput[]
+  }
+
   export type FlockReportUncheckedCreateNestedManyWithoutFlockInput = {
     create?: XOR<FlockReportCreateWithoutFlockInput, FlockReportUncheckedCreateWithoutFlockInput> | FlockReportCreateWithoutFlockInput[] | FlockReportUncheckedCreateWithoutFlockInput[]
     connectOrCreate?: FlockReportCreateOrConnectWithoutFlockInput | FlockReportCreateOrConnectWithoutFlockInput[]
@@ -33725,6 +42401,27 @@ export namespace Prisma {
     connectOrCreate?: SellMedicineCreateOrConnectWithoutFlockInput | SellMedicineCreateOrConnectWithoutFlockInput[]
     createMany?: SellMedicineCreateManyFlockInputEnvelope
     connect?: SellMedicineWhereUniqueInput | SellMedicineWhereUniqueInput[]
+  }
+
+  export type ChicksUncheckedCreateNestedManyWithoutFlockInput = {
+    create?: XOR<ChicksCreateWithoutFlockInput, ChicksUncheckedCreateWithoutFlockInput> | ChicksCreateWithoutFlockInput[] | ChicksUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: ChicksCreateOrConnectWithoutFlockInput | ChicksCreateOrConnectWithoutFlockInput[]
+    createMany?: ChicksCreateManyFlockInputEnvelope
+    connect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+  }
+
+  export type BirdSellUncheckedCreateNestedManyWithoutFlockInput = {
+    create?: XOR<BirdSellCreateWithoutFlockInput, BirdSellUncheckedCreateWithoutFlockInput> | BirdSellCreateWithoutFlockInput[] | BirdSellUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: BirdSellCreateOrConnectWithoutFlockInput | BirdSellCreateOrConnectWithoutFlockInput[]
+    createMany?: BirdSellCreateManyFlockInputEnvelope
+    connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+  }
+
+  export type FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput = {
+    create?: XOR<FarmFeedStockCreateWithoutFlockInput, FarmFeedStockUncheckedCreateWithoutFlockInput> | FarmFeedStockCreateWithoutFlockInput[] | FarmFeedStockUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FarmFeedStockCreateOrConnectWithoutFlockInput | FarmFeedStockCreateOrConnectWithoutFlockInput[]
+    createMany?: FarmFeedStockCreateManyFlockInputEnvelope
+    connect?: FarmFeedStockWhereUniqueInput | FarmFeedStockWhereUniqueInput[]
   }
 
   export type EnumFlockStatusFieldUpdateOperationsInput = {
@@ -33805,6 +42502,48 @@ export namespace Prisma {
     deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
   }
 
+  export type ChicksUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<ChicksCreateWithoutFlockInput, ChicksUncheckedCreateWithoutFlockInput> | ChicksCreateWithoutFlockInput[] | ChicksUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: ChicksCreateOrConnectWithoutFlockInput | ChicksCreateOrConnectWithoutFlockInput[]
+    upsert?: ChicksUpsertWithWhereUniqueWithoutFlockInput | ChicksUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: ChicksCreateManyFlockInputEnvelope
+    set?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    disconnect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    delete?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    connect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    update?: ChicksUpdateWithWhereUniqueWithoutFlockInput | ChicksUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: ChicksUpdateManyWithWhereWithoutFlockInput | ChicksUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: ChicksScalarWhereInput | ChicksScalarWhereInput[]
+  }
+
+  export type BirdSellUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<BirdSellCreateWithoutFlockInput, BirdSellUncheckedCreateWithoutFlockInput> | BirdSellCreateWithoutFlockInput[] | BirdSellUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: BirdSellCreateOrConnectWithoutFlockInput | BirdSellCreateOrConnectWithoutFlockInput[]
+    upsert?: BirdSellUpsertWithWhereUniqueWithoutFlockInput | BirdSellUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: BirdSellCreateManyFlockInputEnvelope
+    set?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    disconnect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    delete?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    update?: BirdSellUpdateWithWhereUniqueWithoutFlockInput | BirdSellUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: BirdSellUpdateManyWithWhereWithoutFlockInput | BirdSellUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: BirdSellScalarWhereInput | BirdSellScalarWhereInput[]
+  }
+
+  export type FarmFeedStockUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<FarmFeedStockCreateWithoutFlockInput, FarmFeedStockUncheckedCreateWithoutFlockInput> | FarmFeedStockCreateWithoutFlockInput[] | FarmFeedStockUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FarmFeedStockCreateOrConnectWithoutFlockInput | FarmFeedStockCreateOrConnectWithoutFlockInput[]
+    upsert?: FarmFeedStockUpsertWithWhereUniqueWithoutFlockInput | FarmFeedStockUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: FarmFeedStockCreateManyFlockInputEnvelope
+    set?: FarmFeedStockWhereUniqueInput | FarmFeedStockWhereUniqueInput[]
+    disconnect?: FarmFeedStockWhereUniqueInput | FarmFeedStockWhereUniqueInput[]
+    delete?: FarmFeedStockWhereUniqueInput | FarmFeedStockWhereUniqueInput[]
+    connect?: FarmFeedStockWhereUniqueInput | FarmFeedStockWhereUniqueInput[]
+    update?: FarmFeedStockUpdateWithWhereUniqueWithoutFlockInput | FarmFeedStockUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: FarmFeedStockUpdateManyWithWhereWithoutFlockInput | FarmFeedStockUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: FarmFeedStockScalarWhereInput | FarmFeedStockScalarWhereInput[]
+  }
+
   export type FlockReportUncheckedUpdateManyWithoutFlockNestedInput = {
     create?: XOR<FlockReportCreateWithoutFlockInput, FlockReportUncheckedCreateWithoutFlockInput> | FlockReportCreateWithoutFlockInput[] | FlockReportUncheckedCreateWithoutFlockInput[]
     connectOrCreate?: FlockReportCreateOrConnectWithoutFlockInput | FlockReportCreateOrConnectWithoutFlockInput[]
@@ -33845,6 +42584,146 @@ export namespace Prisma {
     update?: SellMedicineUpdateWithWhereUniqueWithoutFlockInput | SellMedicineUpdateWithWhereUniqueWithoutFlockInput[]
     updateMany?: SellMedicineUpdateManyWithWhereWithoutFlockInput | SellMedicineUpdateManyWithWhereWithoutFlockInput[]
     deleteMany?: SellMedicineScalarWhereInput | SellMedicineScalarWhereInput[]
+  }
+
+  export type ChicksUncheckedUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<ChicksCreateWithoutFlockInput, ChicksUncheckedCreateWithoutFlockInput> | ChicksCreateWithoutFlockInput[] | ChicksUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: ChicksCreateOrConnectWithoutFlockInput | ChicksCreateOrConnectWithoutFlockInput[]
+    upsert?: ChicksUpsertWithWhereUniqueWithoutFlockInput | ChicksUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: ChicksCreateManyFlockInputEnvelope
+    set?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    disconnect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    delete?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    connect?: ChicksWhereUniqueInput | ChicksWhereUniqueInput[]
+    update?: ChicksUpdateWithWhereUniqueWithoutFlockInput | ChicksUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: ChicksUpdateManyWithWhereWithoutFlockInput | ChicksUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: ChicksScalarWhereInput | ChicksScalarWhereInput[]
+  }
+
+  export type BirdSellUncheckedUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<BirdSellCreateWithoutFlockInput, BirdSellUncheckedCreateWithoutFlockInput> | BirdSellCreateWithoutFlockInput[] | BirdSellUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: BirdSellCreateOrConnectWithoutFlockInput | BirdSellCreateOrConnectWithoutFlockInput[]
+    upsert?: BirdSellUpsertWithWhereUniqueWithoutFlockInput | BirdSellUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: BirdSellCreateManyFlockInputEnvelope
+    set?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    disconnect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    delete?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+    update?: BirdSellUpdateWithWhereUniqueWithoutFlockInput | BirdSellUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: BirdSellUpdateManyWithWhereWithoutFlockInput | BirdSellUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: BirdSellScalarWhereInput | BirdSellScalarWhereInput[]
+  }
+
+  export type FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<FarmFeedStockCreateWithoutFlockInput, FarmFeedStockUncheckedCreateWithoutFlockInput> | FarmFeedStockCreateWithoutFlockInput[] | FarmFeedStockUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FarmFeedStockCreateOrConnectWithoutFlockInput | FarmFeedStockCreateOrConnectWithoutFlockInput[]
+    upsert?: FarmFeedStockUpsertWithWhereUniqueWithoutFlockInput | FarmFeedStockUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: FarmFeedStockCreateManyFlockInputEnvelope
+    set?: FarmFeedStockWhereUniqueInput | FarmFeedStockWhereUniqueInput[]
+    disconnect?: FarmFeedStockWhereUniqueInput | FarmFeedStockWhereUniqueInput[]
+    delete?: FarmFeedStockWhereUniqueInput | FarmFeedStockWhereUniqueInput[]
+    connect?: FarmFeedStockWhereUniqueInput | FarmFeedStockWhereUniqueInput[]
+    update?: FarmFeedStockUpdateWithWhereUniqueWithoutFlockInput | FarmFeedStockUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: FarmFeedStockUpdateManyWithWhereWithoutFlockInput | FarmFeedStockUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: FarmFeedStockScalarWhereInput | FarmFeedStockScalarWhereInput[]
+  }
+
+  export type FlockCreateNestedOneWithoutFarmFeedStockInput = {
+    create?: XOR<FlockCreateWithoutFarmFeedStockInput, FlockUncheckedCreateWithoutFarmFeedStockInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutFarmFeedStockInput
+    connect?: FlockWhereUniqueInput
+  }
+
+  export type FlockUpdateOneRequiredWithoutFarmFeedStockNestedInput = {
+    create?: XOR<FlockCreateWithoutFarmFeedStockInput, FlockUncheckedCreateWithoutFarmFeedStockInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutFarmFeedStockInput
+    upsert?: FlockUpsertWithoutFarmFeedStockInput
+    connect?: FlockWhereUniqueInput
+    update?: XOR<XOR<FlockUpdateToOneWithWhereWithoutFarmFeedStockInput, FlockUpdateWithoutFarmFeedStockInput>, FlockUncheckedUpdateWithoutFarmFeedStockInput>
+  }
+
+  export type FlockCreateNestedOneWithoutChicksInput = {
+    create?: XOR<FlockCreateWithoutChicksInput, FlockUncheckedCreateWithoutChicksInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutChicksInput
+    connect?: FlockWhereUniqueInput
+  }
+
+  export type FarmerCreateNestedOneWithoutChicksInput = {
+    create?: XOR<FarmerCreateWithoutChicksInput, FarmerUncheckedCreateWithoutChicksInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutChicksInput
+    connect?: FarmerWhereUniqueInput
+  }
+
+  export type BranchCreateNestedOneWithoutChicksInput = {
+    create?: XOR<BranchCreateWithoutChicksInput, BranchUncheckedCreateWithoutChicksInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutChicksInput
+    connect?: BranchWhereUniqueInput
+  }
+
+  export type FlockUpdateOneRequiredWithoutChicksNestedInput = {
+    create?: XOR<FlockCreateWithoutChicksInput, FlockUncheckedCreateWithoutChicksInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutChicksInput
+    upsert?: FlockUpsertWithoutChicksInput
+    connect?: FlockWhereUniqueInput
+    update?: XOR<XOR<FlockUpdateToOneWithWhereWithoutChicksInput, FlockUpdateWithoutChicksInput>, FlockUncheckedUpdateWithoutChicksInput>
+  }
+
+  export type FarmerUpdateOneRequiredWithoutChicksNestedInput = {
+    create?: XOR<FarmerCreateWithoutChicksInput, FarmerUncheckedCreateWithoutChicksInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutChicksInput
+    upsert?: FarmerUpsertWithoutChicksInput
+    connect?: FarmerWhereUniqueInput
+    update?: XOR<XOR<FarmerUpdateToOneWithWhereWithoutChicksInput, FarmerUpdateWithoutChicksInput>, FarmerUncheckedUpdateWithoutChicksInput>
+  }
+
+  export type BranchUpdateOneRequiredWithoutChicksNestedInput = {
+    create?: XOR<BranchCreateWithoutChicksInput, BranchUncheckedCreateWithoutChicksInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutChicksInput
+    upsert?: BranchUpsertWithoutChicksInput
+    connect?: BranchWhereUniqueInput
+    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutChicksInput, BranchUpdateWithoutChicksInput>, BranchUncheckedUpdateWithoutChicksInput>
+  }
+
+  export type FarmerCreateNestedOneWithoutBirdSellInput = {
+    create?: XOR<FarmerCreateWithoutBirdSellInput, FarmerUncheckedCreateWithoutBirdSellInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutBirdSellInput
+    connect?: FarmerWhereUniqueInput
+  }
+
+  export type BranchCreateNestedOneWithoutBirdSellInput = {
+    create?: XOR<BranchCreateWithoutBirdSellInput, BranchUncheckedCreateWithoutBirdSellInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutBirdSellInput
+    connect?: BranchWhereUniqueInput
+  }
+
+  export type FlockCreateNestedOneWithoutBirdSellInput = {
+    create?: XOR<FlockCreateWithoutBirdSellInput, FlockUncheckedCreateWithoutBirdSellInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutBirdSellInput
+    connect?: FlockWhereUniqueInput
+  }
+
+  export type FarmerUpdateOneRequiredWithoutBirdSellNestedInput = {
+    create?: XOR<FarmerCreateWithoutBirdSellInput, FarmerUncheckedCreateWithoutBirdSellInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutBirdSellInput
+    upsert?: FarmerUpsertWithoutBirdSellInput
+    connect?: FarmerWhereUniqueInput
+    update?: XOR<XOR<FarmerUpdateToOneWithWhereWithoutBirdSellInput, FarmerUpdateWithoutBirdSellInput>, FarmerUncheckedUpdateWithoutBirdSellInput>
+  }
+
+  export type BranchUpdateOneRequiredWithoutBirdSellNestedInput = {
+    create?: XOR<BranchCreateWithoutBirdSellInput, BranchUncheckedCreateWithoutBirdSellInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutBirdSellInput
+    upsert?: BranchUpsertWithoutBirdSellInput
+    connect?: BranchWhereUniqueInput
+    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutBirdSellInput, BranchUpdateWithoutBirdSellInput>, BranchUncheckedUpdateWithoutBirdSellInput>
+  }
+
+  export type FlockUpdateOneRequiredWithoutBirdSellNestedInput = {
+    create?: XOR<FlockCreateWithoutBirdSellInput, FlockUncheckedCreateWithoutBirdSellInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutBirdSellInput
+    upsert?: FlockUpsertWithoutBirdSellInput
+    connect?: FlockWhereUniqueInput
+    update?: XOR<XOR<FlockUpdateToOneWithWhereWithoutBirdSellInput, FlockUpdateWithoutBirdSellInput>, FlockUncheckedUpdateWithoutBirdSellInput>
   }
 
   export type BranchCreateNestedOneWithoutFlockReportInput = {
@@ -33919,6 +42798,13 @@ export namespace Prisma {
     connect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
   }
 
+  export type FeedSalesItemCreateNestedManyWithoutFeedNameCategoryInput = {
+    create?: XOR<FeedSalesItemCreateWithoutFeedNameCategoryInput, FeedSalesItemUncheckedCreateWithoutFeedNameCategoryInput> | FeedSalesItemCreateWithoutFeedNameCategoryInput[] | FeedSalesItemUncheckedCreateWithoutFeedNameCategoryInput[]
+    connectOrCreate?: FeedSalesItemCreateOrConnectWithoutFeedNameCategoryInput | FeedSalesItemCreateOrConnectWithoutFeedNameCategoryInput[]
+    createMany?: FeedSalesItemCreateManyFeedNameCategoryInputEnvelope
+    connect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+  }
+
   export type FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput = {
     create?: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput> | FeedStockCreateWithoutFeedNameCategoryInput[] | FeedStockUncheckedCreateWithoutFeedNameCategoryInput[]
     connectOrCreate?: FeedStockCreateOrConnectWithoutFeedNameCategoryInput | FeedStockCreateOrConnectWithoutFeedNameCategoryInput[]
@@ -33931,6 +42817,13 @@ export namespace Prisma {
     connectOrCreate?: TransferFeedItemCreateOrConnectWithoutFeedInput | TransferFeedItemCreateOrConnectWithoutFeedInput[]
     createMany?: TransferFeedItemCreateManyFeedInputEnvelope
     connect?: TransferFeedItemWhereUniqueInput | TransferFeedItemWhereUniqueInput[]
+  }
+
+  export type FeedSalesItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput = {
+    create?: XOR<FeedSalesItemCreateWithoutFeedNameCategoryInput, FeedSalesItemUncheckedCreateWithoutFeedNameCategoryInput> | FeedSalesItemCreateWithoutFeedNameCategoryInput[] | FeedSalesItemUncheckedCreateWithoutFeedNameCategoryInput[]
+    connectOrCreate?: FeedSalesItemCreateOrConnectWithoutFeedNameCategoryInput | FeedSalesItemCreateOrConnectWithoutFeedNameCategoryInput[]
+    createMany?: FeedSalesItemCreateManyFeedNameCategoryInputEnvelope
+    connect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
   }
 
   export type FeedStockUpdateManyWithoutFeedNameCategoryNestedInput = {
@@ -33961,6 +42854,20 @@ export namespace Prisma {
     deleteMany?: TransferFeedItemScalarWhereInput | TransferFeedItemScalarWhereInput[]
   }
 
+  export type FeedSalesItemUpdateManyWithoutFeedNameCategoryNestedInput = {
+    create?: XOR<FeedSalesItemCreateWithoutFeedNameCategoryInput, FeedSalesItemUncheckedCreateWithoutFeedNameCategoryInput> | FeedSalesItemCreateWithoutFeedNameCategoryInput[] | FeedSalesItemUncheckedCreateWithoutFeedNameCategoryInput[]
+    connectOrCreate?: FeedSalesItemCreateOrConnectWithoutFeedNameCategoryInput | FeedSalesItemCreateOrConnectWithoutFeedNameCategoryInput[]
+    upsert?: FeedSalesItemUpsertWithWhereUniqueWithoutFeedNameCategoryInput | FeedSalesItemUpsertWithWhereUniqueWithoutFeedNameCategoryInput[]
+    createMany?: FeedSalesItemCreateManyFeedNameCategoryInputEnvelope
+    set?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    disconnect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    delete?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    connect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    update?: FeedSalesItemUpdateWithWhereUniqueWithoutFeedNameCategoryInput | FeedSalesItemUpdateWithWhereUniqueWithoutFeedNameCategoryInput[]
+    updateMany?: FeedSalesItemUpdateManyWithWhereWithoutFeedNameCategoryInput | FeedSalesItemUpdateManyWithWhereWithoutFeedNameCategoryInput[]
+    deleteMany?: FeedSalesItemScalarWhereInput | FeedSalesItemScalarWhereInput[]
+  }
+
   export type FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput = {
     create?: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput> | FeedStockCreateWithoutFeedNameCategoryInput[] | FeedStockUncheckedCreateWithoutFeedNameCategoryInput[]
     connectOrCreate?: FeedStockCreateOrConnectWithoutFeedNameCategoryInput | FeedStockCreateOrConnectWithoutFeedNameCategoryInput[]
@@ -33987,6 +42894,20 @@ export namespace Prisma {
     update?: TransferFeedItemUpdateWithWhereUniqueWithoutFeedInput | TransferFeedItemUpdateWithWhereUniqueWithoutFeedInput[]
     updateMany?: TransferFeedItemUpdateManyWithWhereWithoutFeedInput | TransferFeedItemUpdateManyWithWhereWithoutFeedInput[]
     deleteMany?: TransferFeedItemScalarWhereInput | TransferFeedItemScalarWhereInput[]
+  }
+
+  export type FeedSalesItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput = {
+    create?: XOR<FeedSalesItemCreateWithoutFeedNameCategoryInput, FeedSalesItemUncheckedCreateWithoutFeedNameCategoryInput> | FeedSalesItemCreateWithoutFeedNameCategoryInput[] | FeedSalesItemUncheckedCreateWithoutFeedNameCategoryInput[]
+    connectOrCreate?: FeedSalesItemCreateOrConnectWithoutFeedNameCategoryInput | FeedSalesItemCreateOrConnectWithoutFeedNameCategoryInput[]
+    upsert?: FeedSalesItemUpsertWithWhereUniqueWithoutFeedNameCategoryInput | FeedSalesItemUpsertWithWhereUniqueWithoutFeedNameCategoryInput[]
+    createMany?: FeedSalesItemCreateManyFeedNameCategoryInputEnvelope
+    set?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    disconnect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    delete?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    connect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    update?: FeedSalesItemUpdateWithWhereUniqueWithoutFeedNameCategoryInput | FeedSalesItemUpdateWithWhereUniqueWithoutFeedNameCategoryInput[]
+    updateMany?: FeedSalesItemUpdateManyWithWhereWithoutFeedNameCategoryInput | FeedSalesItemUpdateManyWithWhereWithoutFeedNameCategoryInput[]
+    deleteMany?: FeedSalesItemScalarWhereInput | FeedSalesItemScalarWhereInput[]
   }
 
   export type BranchCreateNestedOneWithoutFeedStockInput = {
@@ -34129,6 +43050,94 @@ export namespace Prisma {
     upsert?: FeedStockTransferUpsertWithoutTransferFeedItemInput
     connect?: FeedStockTransferWhereUniqueInput
     update?: XOR<XOR<FeedStockTransferUpdateToOneWithWhereWithoutTransferFeedItemInput, FeedStockTransferUpdateWithoutTransferFeedItemInput>, FeedStockTransferUncheckedUpdateWithoutTransferFeedItemInput>
+  }
+
+  export type DepotCreateNestedOneWithoutFeedSalesOrderInput = {
+    create?: XOR<DepotCreateWithoutFeedSalesOrderInput, DepotUncheckedCreateWithoutFeedSalesOrderInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutFeedSalesOrderInput
+    connect?: DepotWhereUniqueInput
+  }
+
+  export type FeedSalesItemCreateNestedManyWithoutSalesOrderInput = {
+    create?: XOR<FeedSalesItemCreateWithoutSalesOrderInput, FeedSalesItemUncheckedCreateWithoutSalesOrderInput> | FeedSalesItemCreateWithoutSalesOrderInput[] | FeedSalesItemUncheckedCreateWithoutSalesOrderInput[]
+    connectOrCreate?: FeedSalesItemCreateOrConnectWithoutSalesOrderInput | FeedSalesItemCreateOrConnectWithoutSalesOrderInput[]
+    createMany?: FeedSalesItemCreateManySalesOrderInputEnvelope
+    connect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+  }
+
+  export type FeedSalesItemUncheckedCreateNestedManyWithoutSalesOrderInput = {
+    create?: XOR<FeedSalesItemCreateWithoutSalesOrderInput, FeedSalesItemUncheckedCreateWithoutSalesOrderInput> | FeedSalesItemCreateWithoutSalesOrderInput[] | FeedSalesItemUncheckedCreateWithoutSalesOrderInput[]
+    connectOrCreate?: FeedSalesItemCreateOrConnectWithoutSalesOrderInput | FeedSalesItemCreateOrConnectWithoutSalesOrderInput[]
+    createMany?: FeedSalesItemCreateManySalesOrderInputEnvelope
+    connect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+  }
+
+  export type EnumDeliveryStatusFieldUpdateOperationsInput = {
+    set?: $Enums.DeliveryStatus
+  }
+
+  export type DepotUpdateOneRequiredWithoutFeedSalesOrderNestedInput = {
+    create?: XOR<DepotCreateWithoutFeedSalesOrderInput, DepotUncheckedCreateWithoutFeedSalesOrderInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutFeedSalesOrderInput
+    upsert?: DepotUpsertWithoutFeedSalesOrderInput
+    connect?: DepotWhereUniqueInput
+    update?: XOR<XOR<DepotUpdateToOneWithWhereWithoutFeedSalesOrderInput, DepotUpdateWithoutFeedSalesOrderInput>, DepotUncheckedUpdateWithoutFeedSalesOrderInput>
+  }
+
+  export type FeedSalesItemUpdateManyWithoutSalesOrderNestedInput = {
+    create?: XOR<FeedSalesItemCreateWithoutSalesOrderInput, FeedSalesItemUncheckedCreateWithoutSalesOrderInput> | FeedSalesItemCreateWithoutSalesOrderInput[] | FeedSalesItemUncheckedCreateWithoutSalesOrderInput[]
+    connectOrCreate?: FeedSalesItemCreateOrConnectWithoutSalesOrderInput | FeedSalesItemCreateOrConnectWithoutSalesOrderInput[]
+    upsert?: FeedSalesItemUpsertWithWhereUniqueWithoutSalesOrderInput | FeedSalesItemUpsertWithWhereUniqueWithoutSalesOrderInput[]
+    createMany?: FeedSalesItemCreateManySalesOrderInputEnvelope
+    set?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    disconnect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    delete?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    connect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    update?: FeedSalesItemUpdateWithWhereUniqueWithoutSalesOrderInput | FeedSalesItemUpdateWithWhereUniqueWithoutSalesOrderInput[]
+    updateMany?: FeedSalesItemUpdateManyWithWhereWithoutSalesOrderInput | FeedSalesItemUpdateManyWithWhereWithoutSalesOrderInput[]
+    deleteMany?: FeedSalesItemScalarWhereInput | FeedSalesItemScalarWhereInput[]
+  }
+
+  export type FeedSalesItemUncheckedUpdateManyWithoutSalesOrderNestedInput = {
+    create?: XOR<FeedSalesItemCreateWithoutSalesOrderInput, FeedSalesItemUncheckedCreateWithoutSalesOrderInput> | FeedSalesItemCreateWithoutSalesOrderInput[] | FeedSalesItemUncheckedCreateWithoutSalesOrderInput[]
+    connectOrCreate?: FeedSalesItemCreateOrConnectWithoutSalesOrderInput | FeedSalesItemCreateOrConnectWithoutSalesOrderInput[]
+    upsert?: FeedSalesItemUpsertWithWhereUniqueWithoutSalesOrderInput | FeedSalesItemUpsertWithWhereUniqueWithoutSalesOrderInput[]
+    createMany?: FeedSalesItemCreateManySalesOrderInputEnvelope
+    set?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    disconnect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    delete?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    connect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
+    update?: FeedSalesItemUpdateWithWhereUniqueWithoutSalesOrderInput | FeedSalesItemUpdateWithWhereUniqueWithoutSalesOrderInput[]
+    updateMany?: FeedSalesItemUpdateManyWithWhereWithoutSalesOrderInput | FeedSalesItemUpdateManyWithWhereWithoutSalesOrderInput[]
+    deleteMany?: FeedSalesItemScalarWhereInput | FeedSalesItemScalarWhereInput[]
+  }
+
+  export type FeedSalesOrderCreateNestedOneWithoutFeedSalesItemInput = {
+    create?: XOR<FeedSalesOrderCreateWithoutFeedSalesItemInput, FeedSalesOrderUncheckedCreateWithoutFeedSalesItemInput>
+    connectOrCreate?: FeedSalesOrderCreateOrConnectWithoutFeedSalesItemInput
+    connect?: FeedSalesOrderWhereUniqueInput
+  }
+
+  export type FeedNameCategoryCreateNestedOneWithoutFeedSalesItemInput = {
+    create?: XOR<FeedNameCategoryCreateWithoutFeedSalesItemInput, FeedNameCategoryUncheckedCreateWithoutFeedSalesItemInput>
+    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutFeedSalesItemInput
+    connect?: FeedNameCategoryWhereUniqueInput
+  }
+
+  export type FeedSalesOrderUpdateOneRequiredWithoutFeedSalesItemNestedInput = {
+    create?: XOR<FeedSalesOrderCreateWithoutFeedSalesItemInput, FeedSalesOrderUncheckedCreateWithoutFeedSalesItemInput>
+    connectOrCreate?: FeedSalesOrderCreateOrConnectWithoutFeedSalesItemInput
+    upsert?: FeedSalesOrderUpsertWithoutFeedSalesItemInput
+    connect?: FeedSalesOrderWhereUniqueInput
+    update?: XOR<XOR<FeedSalesOrderUpdateToOneWithWhereWithoutFeedSalesItemInput, FeedSalesOrderUpdateWithoutFeedSalesItemInput>, FeedSalesOrderUncheckedUpdateWithoutFeedSalesItemInput>
+  }
+
+  export type FeedNameCategoryUpdateOneRequiredWithoutFeedSalesItemNestedInput = {
+    create?: XOR<FeedNameCategoryCreateWithoutFeedSalesItemInput, FeedNameCategoryUncheckedCreateWithoutFeedSalesItemInput>
+    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutFeedSalesItemInput
+    upsert?: FeedNameCategoryUpsertWithoutFeedSalesItemInput
+    connect?: FeedNameCategoryWhereUniqueInput
+    update?: XOR<XOR<FeedNameCategoryUpdateToOneWithWhereWithoutFeedSalesItemInput, FeedNameCategoryUpdateWithoutFeedSalesItemInput>, FeedNameCategoryUncheckedUpdateWithoutFeedSalesItemInput>
   }
 
   export type MedicineNameAddCreateNestedManyWithoutMedicineCategoryInput = {
@@ -34487,10 +43496,6 @@ export namespace Prisma {
     connectOrCreate?: MedicineItemCreateOrConnectWithoutSellMedicineInput | MedicineItemCreateOrConnectWithoutSellMedicineInput[]
     createMany?: MedicineItemCreateManySellMedicineInputEnvelope
     connect?: MedicineItemWhereUniqueInput | MedicineItemWhereUniqueInput[]
-  }
-
-  export type EnumDeliveryStatusFieldUpdateOperationsInput = {
-    set?: $Enums.DeliveryStatus
   }
 
   export type MedicineItemUpdateManyWithoutSellMedicineNestedInput = {
@@ -34857,23 +43862,6 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type NestedEnumStoredFilter<$PrismaModel = never> = {
-    equals?: $Enums.Stored | EnumStoredFieldRefInput<$PrismaModel>
-    in?: $Enums.Stored[] | ListEnumStoredFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Stored[] | ListEnumStoredFieldRefInput<$PrismaModel>
-    not?: NestedEnumStoredFilter<$PrismaModel> | $Enums.Stored
-  }
-
-  export type NestedEnumStoredWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Stored | EnumStoredFieldRefInput<$PrismaModel>
-    in?: $Enums.Stored[] | ListEnumStoredFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Stored[] | ListEnumStoredFieldRefInput<$PrismaModel>
-    not?: NestedEnumStoredWithAggregatesFilter<$PrismaModel> | $Enums.Stored
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumStoredFilter<$PrismaModel>
-    _max?: NestedEnumStoredFilter<$PrismaModel>
-  }
-
   export type NestedEnumDeliveryStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
     in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
@@ -34889,6 +43877,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumDeliveryStatusFilter<$PrismaModel>
     _max?: NestedEnumDeliveryStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumStoredFilter<$PrismaModel = never> = {
+    equals?: $Enums.Stored | EnumStoredFieldRefInput<$PrismaModel>
+    in?: $Enums.Stored[] | ListEnumStoredFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Stored[] | ListEnumStoredFieldRefInput<$PrismaModel>
+    not?: NestedEnumStoredFilter<$PrismaModel> | $Enums.Stored
+  }
+
+  export type NestedEnumStoredWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Stored | EnumStoredFieldRefInput<$PrismaModel>
+    in?: $Enums.Stored[] | ListEnumStoredFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Stored[] | ListEnumStoredFieldRefInput<$PrismaModel>
+    not?: NestedEnumStoredWithAggregatesFilter<$PrismaModel> | $Enums.Stored
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStoredFilter<$PrismaModel>
+    _max?: NestedEnumStoredFilter<$PrismaModel>
   }
 
   export type BranchEmployeeHistoryCreateWithoutBranchInput = {
@@ -34938,6 +43943,8 @@ export namespace Prisma {
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateWithoutBranchInput = {
@@ -34957,6 +43964,8 @@ export namespace Prisma {
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerCreateOrConnectWithoutBranchInput = {
@@ -34974,6 +43983,7 @@ export namespace Prisma {
     stock: number
     createdAt?: Date | string | null
     updatedAt?: Date | string
+    unitPice?: number
     createDate: string
     depot: DepotCreateNestedOneWithoutFeedStockInput
     feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedStockInput
@@ -34986,6 +43996,7 @@ export namespace Prisma {
     depotName: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
+    unitPice?: number
     createDate: string
   }
 
@@ -35020,6 +44031,9 @@ export namespace Prisma {
     flockReport?: FlockReportCreateNestedManyWithoutFlockInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    chicks?: ChicksCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutBranchInput = {
@@ -35043,6 +44057,9 @@ export namespace Prisma {
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutBranchInput = {
@@ -35263,7 +44280,7 @@ export namespace Prisma {
     id?: string
     billNumber: number
     farmId: string
-    flockNumer: number
+    flockId: string
     totalQuantity?: number | null
     totalPrice?: number | null
     Delivery?: $Enums.DeliveryStatus
@@ -35280,6 +44297,88 @@ export namespace Prisma {
 
   export type SellMedicineCreateManyBranchInputEnvelope = {
     data: SellMedicineCreateManyBranchInput | SellMedicineCreateManyBranchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BirdSellCreateWithoutBranchInput = {
+    id?: string
+    buyerId: string
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid?: boolean
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    farm: FarmerCreateNestedOneWithoutBirdSellInput
+    flock: FlockCreateNestedOneWithoutBirdSellInput
+  }
+
+  export type BirdSellUncheckedCreateWithoutBranchInput = {
+    id?: string
+    buyerId: string
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid?: boolean
+    farmId: string
+    flockId: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type BirdSellCreateOrConnectWithoutBranchInput = {
+    where: BirdSellWhereUniqueInput
+    create: XOR<BirdSellCreateWithoutBranchInput, BirdSellUncheckedCreateWithoutBranchInput>
+  }
+
+  export type BirdSellCreateManyBranchInputEnvelope = {
+    data: BirdSellCreateManyBranchInput | BirdSellCreateManyBranchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ChicksCreateWithoutBranchInput = {
+    id?: string
+    name: string
+    farmNumber: number
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: string
+    description?: string | null
+    createdAt?: Date | string
+    updateAt?: Date | string
+    flock: FlockCreateNestedOneWithoutChicksInput
+    farm: FarmerCreateNestedOneWithoutChicksInput
+  }
+
+  export type ChicksUncheckedCreateWithoutBranchInput = {
+    id?: string
+    name: string
+    farmNumber: number
+    farmId: string
+    flockId: string
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: string
+    description?: string | null
+    createdAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type ChicksCreateOrConnectWithoutBranchInput = {
+    where: ChicksWhereUniqueInput
+    create: XOR<ChicksCreateWithoutBranchInput, ChicksUncheckedCreateWithoutBranchInput>
+  }
+
+  export type ChicksCreateManyBranchInputEnvelope = {
+    data: ChicksCreateManyBranchInput | ChicksCreateManyBranchInput[]
     skipDuplicates?: boolean
   }
 
@@ -35376,6 +44475,7 @@ export namespace Prisma {
     createdAt?: DateTimeNullableFilter<"FeedStock"> | Date | string | null
     updatedAt?: DateTimeFilter<"FeedStock"> | Date | string
     branchId?: StringNullableFilter<"FeedStock"> | string | null
+    unitPice?: IntFilter<"FeedStock"> | number
     createDate?: StringFilter<"FeedStock"> | string
   }
 
@@ -35597,7 +44697,7 @@ export namespace Prisma {
     id?: StringFilter<"SellMedicine"> | string
     billNumber?: IntFilter<"SellMedicine"> | number
     farmId?: StringFilter<"SellMedicine"> | string
-    flockNumer?: IntFilter<"SellMedicine"> | number
+    flockId?: StringFilter<"SellMedicine"> | string
     totalQuantity?: IntNullableFilter<"SellMedicine"> | number | null
     totalPrice?: IntNullableFilter<"SellMedicine"> | number | null
     Delivery?: EnumDeliveryStatusFilter<"SellMedicine"> | $Enums.DeliveryStatus
@@ -35607,11 +44707,83 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"SellMedicine"> | Date | string
   }
 
+  export type BirdSellUpsertWithWhereUniqueWithoutBranchInput = {
+    where: BirdSellWhereUniqueInput
+    update: XOR<BirdSellUpdateWithoutBranchInput, BirdSellUncheckedUpdateWithoutBranchInput>
+    create: XOR<BirdSellCreateWithoutBranchInput, BirdSellUncheckedCreateWithoutBranchInput>
+  }
+
+  export type BirdSellUpdateWithWhereUniqueWithoutBranchInput = {
+    where: BirdSellWhereUniqueInput
+    data: XOR<BirdSellUpdateWithoutBranchInput, BirdSellUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type BirdSellUpdateManyWithWhereWithoutBranchInput = {
+    where: BirdSellScalarWhereInput
+    data: XOR<BirdSellUpdateManyMutationInput, BirdSellUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type BirdSellScalarWhereInput = {
+    AND?: BirdSellScalarWhereInput | BirdSellScalarWhereInput[]
+    OR?: BirdSellScalarWhereInput[]
+    NOT?: BirdSellScalarWhereInput | BirdSellScalarWhereInput[]
+    id?: StringFilter<"BirdSell"> | string
+    buyerId?: StringFilter<"BirdSell"> | string
+    totalQantity?: IntFilter<"BirdSell"> | number
+    totalWeight?: FloatFilter<"BirdSell"> | number
+    avgWeight?: FloatFilter<"BirdSell"> | number
+    pricePerkg?: IntFilter<"BirdSell"> | number
+    totalPrice?: IntFilter<"BirdSell"> | number
+    paid?: BoolFilter<"BirdSell"> | boolean
+    farmId?: StringFilter<"BirdSell"> | string
+    branchCode?: StringFilter<"BirdSell"> | string
+    flockId?: StringFilter<"BirdSell"> | string
+    createdAt?: DateTimeNullableFilter<"BirdSell"> | Date | string | null
+    updatedAt?: DateTimeFilter<"BirdSell"> | Date | string
+  }
+
+  export type ChicksUpsertWithWhereUniqueWithoutBranchInput = {
+    where: ChicksWhereUniqueInput
+    update: XOR<ChicksUpdateWithoutBranchInput, ChicksUncheckedUpdateWithoutBranchInput>
+    create: XOR<ChicksCreateWithoutBranchInput, ChicksUncheckedCreateWithoutBranchInput>
+  }
+
+  export type ChicksUpdateWithWhereUniqueWithoutBranchInput = {
+    where: ChicksWhereUniqueInput
+    data: XOR<ChicksUpdateWithoutBranchInput, ChicksUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type ChicksUpdateManyWithWhereWithoutBranchInput = {
+    where: ChicksScalarWhereInput
+    data: XOR<ChicksUpdateManyMutationInput, ChicksUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type ChicksScalarWhereInput = {
+    AND?: ChicksScalarWhereInput | ChicksScalarWhereInput[]
+    OR?: ChicksScalarWhereInput[]
+    NOT?: ChicksScalarWhereInput | ChicksScalarWhereInput[]
+    id?: StringFilter<"Chicks"> | string
+    name?: StringFilter<"Chicks"> | string
+    branchCode?: StringFilter<"Chicks"> | string
+    farmNumber?: IntFilter<"Chicks"> | number
+    farmId?: StringFilter<"Chicks"> | string
+    flockId?: StringFilter<"Chicks"> | string
+    currentPrice?: IntFilter<"Chicks"> | number
+    sellPrice?: IntFilter<"Chicks"> | number
+    quantity?: IntFilter<"Chicks"> | number
+    totalPrice?: IntFilter<"Chicks"> | number
+    createdBy?: StringFilter<"Chicks"> | string
+    description?: StringNullableFilter<"Chicks"> | string | null
+    createdAt?: DateTimeFilter<"Chicks"> | Date | string
+    updateAt?: DateTimeFilter<"Chicks"> | Date | string
+  }
+
   export type FeedStockCreateWithoutDepotInput = {
     id?: string
     stock: number
     createdAt?: Date | string | null
     updatedAt?: Date | string
+    unitPice?: number
     createDate: string
     Branch?: BranchCreateNestedOneWithoutFeedStockInput
     feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedStockInput
@@ -35624,6 +44796,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     branchId?: string | null
+    unitPice?: number
     createDate: string
   }
 
@@ -35640,6 +44813,8 @@ export namespace Prisma {
   export type FeedStockTransferCreateWithoutTransferDepotInput = {
     id?: string
     transerFerDate: string
+    totalKg?: number
+    totalPrice?: number
     createDate: string
     trnasferBill: string
     createAt?: Date | string | null
@@ -35653,6 +44828,8 @@ export namespace Prisma {
     id?: string
     toDepot: string
     transerFerDate: string
+    totalKg?: number
+    totalPrice?: number
     createDate: string
     trnasferBill: string
     createAt?: Date | string | null
@@ -35674,6 +44851,8 @@ export namespace Prisma {
   export type FeedStockTransferCreateWithoutReciveDepotInput = {
     id?: string
     transerFerDate: string
+    totalKg?: number
+    totalPrice?: number
     createDate: string
     trnasferBill: string
     createAt?: Date | string | null
@@ -35687,6 +44866,8 @@ export namespace Prisma {
     id?: string
     fromDepot: string
     transerFerDate: string
+    totalKg?: number
+    totalPrice?: number
     createDate: string
     trnasferBill: string
     createAt?: Date | string | null
@@ -35702,6 +44883,52 @@ export namespace Prisma {
 
   export type FeedStockTransferCreateManyReciveDepotInputEnvelope = {
     data: FeedStockTransferCreateManyReciveDepotInput | FeedStockTransferCreateManyReciveDepotInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeedSalesOrderCreateWithoutDepotInput = {
+    id?: string
+    branchCode: string
+    saleInvoice: string
+    farmNumber: number
+    flockNumber: number
+    createDate: string
+    farmId: string
+    flockId: string
+    totalPrice?: number
+    totalKg?: number
+    description?: string | null
+    status?: $Enums.DeliveryStatus
+    createdAt?: Date | string | null
+    updateAt?: Date | string
+    FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutSalesOrderInput
+  }
+
+  export type FeedSalesOrderUncheckedCreateWithoutDepotInput = {
+    id?: string
+    branchCode: string
+    saleInvoice: string
+    farmNumber: number
+    flockNumber: number
+    createDate: string
+    farmId: string
+    flockId: string
+    totalPrice?: number
+    totalKg?: number
+    description?: string | null
+    status?: $Enums.DeliveryStatus
+    createdAt?: Date | string | null
+    updateAt?: Date | string
+    FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutSalesOrderInput
+  }
+
+  export type FeedSalesOrderCreateOrConnectWithoutDepotInput = {
+    where: FeedSalesOrderWhereUniqueInput
+    create: XOR<FeedSalesOrderCreateWithoutDepotInput, FeedSalesOrderUncheckedCreateWithoutDepotInput>
+  }
+
+  export type FeedSalesOrderCreateManyDepotInputEnvelope = {
+    data: FeedSalesOrderCreateManyDepotInput | FeedSalesOrderCreateManyDepotInput[]
     skipDuplicates?: boolean
   }
 
@@ -35745,6 +44972,8 @@ export namespace Prisma {
     fromDepot?: StringFilter<"FeedStockTransfer"> | string
     toDepot?: StringFilter<"FeedStockTransfer"> | string
     transerFerDate?: StringFilter<"FeedStockTransfer"> | string
+    totalKg?: IntFilter<"FeedStockTransfer"> | number
+    totalPrice?: IntFilter<"FeedStockTransfer"> | number
     createDate?: StringFilter<"FeedStockTransfer"> | string
     trnasferBill?: StringFilter<"FeedStockTransfer"> | string
     createAt?: DateTimeNullableFilter<"FeedStockTransfer"> | Date | string | null
@@ -35766,6 +44995,43 @@ export namespace Prisma {
   export type FeedStockTransferUpdateManyWithWhereWithoutReciveDepotInput = {
     where: FeedStockTransferScalarWhereInput
     data: XOR<FeedStockTransferUpdateManyMutationInput, FeedStockTransferUncheckedUpdateManyWithoutReciveDepotInput>
+  }
+
+  export type FeedSalesOrderUpsertWithWhereUniqueWithoutDepotInput = {
+    where: FeedSalesOrderWhereUniqueInput
+    update: XOR<FeedSalesOrderUpdateWithoutDepotInput, FeedSalesOrderUncheckedUpdateWithoutDepotInput>
+    create: XOR<FeedSalesOrderCreateWithoutDepotInput, FeedSalesOrderUncheckedCreateWithoutDepotInput>
+  }
+
+  export type FeedSalesOrderUpdateWithWhereUniqueWithoutDepotInput = {
+    where: FeedSalesOrderWhereUniqueInput
+    data: XOR<FeedSalesOrderUpdateWithoutDepotInput, FeedSalesOrderUncheckedUpdateWithoutDepotInput>
+  }
+
+  export type FeedSalesOrderUpdateManyWithWhereWithoutDepotInput = {
+    where: FeedSalesOrderScalarWhereInput
+    data: XOR<FeedSalesOrderUpdateManyMutationInput, FeedSalesOrderUncheckedUpdateManyWithoutDepotInput>
+  }
+
+  export type FeedSalesOrderScalarWhereInput = {
+    AND?: FeedSalesOrderScalarWhereInput | FeedSalesOrderScalarWhereInput[]
+    OR?: FeedSalesOrderScalarWhereInput[]
+    NOT?: FeedSalesOrderScalarWhereInput | FeedSalesOrderScalarWhereInput[]
+    id?: StringFilter<"FeedSalesOrder"> | string
+    branchCode?: StringFilter<"FeedSalesOrder"> | string
+    depotName?: StringFilter<"FeedSalesOrder"> | string
+    saleInvoice?: StringFilter<"FeedSalesOrder"> | string
+    farmNumber?: IntFilter<"FeedSalesOrder"> | number
+    flockNumber?: IntFilter<"FeedSalesOrder"> | number
+    createDate?: StringFilter<"FeedSalesOrder"> | string
+    farmId?: StringFilter<"FeedSalesOrder"> | string
+    flockId?: StringFilter<"FeedSalesOrder"> | string
+    totalPrice?: IntFilter<"FeedSalesOrder"> | number
+    totalKg?: IntFilter<"FeedSalesOrder"> | number
+    description?: StringNullableFilter<"FeedSalesOrder"> | string | null
+    status?: EnumDeliveryStatusFilter<"FeedSalesOrder"> | $Enums.DeliveryStatus
+    createdAt?: DateTimeNullableFilter<"FeedSalesOrder"> | Date | string | null
+    updateAt?: DateTimeFilter<"FeedSalesOrder"> | Date | string
   }
 
   export type AddressCreateWithoutFarmerInput = {
@@ -35815,6 +45081,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellCreateNestedManyWithoutBranchInput
+    chicks?: ChicksCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutFarmerInput = {
@@ -35833,6 +45101,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutBranchInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutFarmerInput = {
@@ -35861,6 +45131,9 @@ export namespace Prisma {
     flockReport?: FlockReportCreateNestedManyWithoutFlockInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    chicks?: ChicksCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutFarmerInput = {
@@ -35884,6 +45157,9 @@ export namespace Prisma {
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutFarmerInput = {
@@ -35995,7 +45271,7 @@ export namespace Prisma {
   export type SellMedicineUncheckedCreateWithoutFarmerInput = {
     id?: string
     billNumber: number
-    flockNumer: number
+    flockId: string
     totalQuantity?: number | null
     totalPrice?: number | null
     Delivery?: $Enums.DeliveryStatus
@@ -36013,6 +45289,88 @@ export namespace Prisma {
 
   export type SellMedicineCreateManyFarmerInputEnvelope = {
     data: SellMedicineCreateManyFarmerInput | SellMedicineCreateManyFarmerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ChicksCreateWithoutFarmInput = {
+    id?: string
+    name: string
+    farmNumber: number
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: string
+    description?: string | null
+    createdAt?: Date | string
+    updateAt?: Date | string
+    flock: FlockCreateNestedOneWithoutChicksInput
+    branch: BranchCreateNestedOneWithoutChicksInput
+  }
+
+  export type ChicksUncheckedCreateWithoutFarmInput = {
+    id?: string
+    name: string
+    branchCode: string
+    farmNumber: number
+    flockId: string
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: string
+    description?: string | null
+    createdAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type ChicksCreateOrConnectWithoutFarmInput = {
+    where: ChicksWhereUniqueInput
+    create: XOR<ChicksCreateWithoutFarmInput, ChicksUncheckedCreateWithoutFarmInput>
+  }
+
+  export type ChicksCreateManyFarmInputEnvelope = {
+    data: ChicksCreateManyFarmInput | ChicksCreateManyFarmInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BirdSellCreateWithoutFarmInput = {
+    id?: string
+    buyerId: string
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid?: boolean
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    branch: BranchCreateNestedOneWithoutBirdSellInput
+    flock: FlockCreateNestedOneWithoutBirdSellInput
+  }
+
+  export type BirdSellUncheckedCreateWithoutFarmInput = {
+    id?: string
+    buyerId: string
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid?: boolean
+    branchCode: string
+    flockId: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type BirdSellCreateOrConnectWithoutFarmInput = {
+    where: BirdSellWhereUniqueInput
+    create: XOR<BirdSellCreateWithoutFarmInput, BirdSellUncheckedCreateWithoutFarmInput>
+  }
+
+  export type BirdSellCreateManyFarmInputEnvelope = {
+    data: BirdSellCreateManyFarmInput | BirdSellCreateManyFarmInput[]
     skipDuplicates?: boolean
   }
 
@@ -36080,6 +45438,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutFarmerInput = {
@@ -36098,6 +45458,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type FlockUpsertWithWhereUniqueWithoutFarmerInput = {
@@ -36146,6 +45508,38 @@ export namespace Prisma {
   export type SellMedicineUpdateManyWithWhereWithoutFarmerInput = {
     where: SellMedicineScalarWhereInput
     data: XOR<SellMedicineUpdateManyMutationInput, SellMedicineUncheckedUpdateManyWithoutFarmerInput>
+  }
+
+  export type ChicksUpsertWithWhereUniqueWithoutFarmInput = {
+    where: ChicksWhereUniqueInput
+    update: XOR<ChicksUpdateWithoutFarmInput, ChicksUncheckedUpdateWithoutFarmInput>
+    create: XOR<ChicksCreateWithoutFarmInput, ChicksUncheckedCreateWithoutFarmInput>
+  }
+
+  export type ChicksUpdateWithWhereUniqueWithoutFarmInput = {
+    where: ChicksWhereUniqueInput
+    data: XOR<ChicksUpdateWithoutFarmInput, ChicksUncheckedUpdateWithoutFarmInput>
+  }
+
+  export type ChicksUpdateManyWithWhereWithoutFarmInput = {
+    where: ChicksScalarWhereInput
+    data: XOR<ChicksUpdateManyMutationInput, ChicksUncheckedUpdateManyWithoutFarmInput>
+  }
+
+  export type BirdSellUpsertWithWhereUniqueWithoutFarmInput = {
+    where: BirdSellWhereUniqueInput
+    update: XOR<BirdSellUpdateWithoutFarmInput, BirdSellUncheckedUpdateWithoutFarmInput>
+    create: XOR<BirdSellCreateWithoutFarmInput, BirdSellUncheckedCreateWithoutFarmInput>
+  }
+
+  export type BirdSellUpdateWithWhereUniqueWithoutFarmInput = {
+    where: BirdSellWhereUniqueInput
+    data: XOR<BirdSellUpdateWithoutFarmInput, BirdSellUncheckedUpdateWithoutFarmInput>
+  }
+
+  export type BirdSellUpdateManyWithWhereWithoutFarmInput = {
+    where: BirdSellScalarWhereInput
+    data: XOR<BirdSellUpdateManyMutationInput, BirdSellUncheckedUpdateManyWithoutFarmInput>
   }
 
   export type EmployeeCreateWithoutAddressInput = {
@@ -36198,6 +45592,8 @@ export namespace Prisma {
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateWithoutAddressInput = {
@@ -36217,6 +45613,8 @@ export namespace Prisma {
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerCreateOrConnectWithoutAddressInput = {
@@ -36291,6 +45689,8 @@ export namespace Prisma {
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutAddressInput = {
@@ -36310,6 +45710,8 @@ export namespace Prisma {
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type BranchCreateWithoutBranchEmployeeHistoryInput = {
@@ -36328,6 +45730,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellCreateNestedManyWithoutBranchInput
+    chicks?: ChicksCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutBranchEmployeeHistoryInput = {
@@ -36346,6 +45750,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutBranchInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutBranchEmployeeHistoryInput = {
@@ -36413,6 +45819,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutBranchEmployeeHistoryInput = {
@@ -36431,6 +45839,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type EmployeeUpsertWithoutBranchEmployeeHistoryInput = {
@@ -36554,6 +45964,9 @@ export namespace Prisma {
     flockReport?: FlockReportCreateNestedManyWithoutFlockInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    chicks?: ChicksCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutEmployeeInput = {
@@ -36577,6 +45990,9 @@ export namespace Prisma {
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutEmployeeInput = {
@@ -36674,6 +46090,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellCreateNestedManyWithoutBranchInput
+    chicks?: ChicksCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutFlocksInput = {
@@ -36692,6 +46110,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutBranchInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutFlocksInput = {
@@ -36749,6 +46169,8 @@ export namespace Prisma {
     branch?: BranchCreateNestedOneWithoutFarmerInput
     flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateWithoutFlocksInput = {
@@ -36768,6 +46190,8 @@ export namespace Prisma {
     createDate: string
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerCreateOrConnectWithoutFlocksInput = {
@@ -36929,6 +46353,114 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ChicksCreateWithoutFlockInput = {
+    id?: string
+    name: string
+    farmNumber: number
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: string
+    description?: string | null
+    createdAt?: Date | string
+    updateAt?: Date | string
+    farm: FarmerCreateNestedOneWithoutChicksInput
+    branch: BranchCreateNestedOneWithoutChicksInput
+  }
+
+  export type ChicksUncheckedCreateWithoutFlockInput = {
+    id?: string
+    name: string
+    branchCode: string
+    farmNumber: number
+    farmId: string
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: string
+    description?: string | null
+    createdAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type ChicksCreateOrConnectWithoutFlockInput = {
+    where: ChicksWhereUniqueInput
+    create: XOR<ChicksCreateWithoutFlockInput, ChicksUncheckedCreateWithoutFlockInput>
+  }
+
+  export type ChicksCreateManyFlockInputEnvelope = {
+    data: ChicksCreateManyFlockInput | ChicksCreateManyFlockInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BirdSellCreateWithoutFlockInput = {
+    id?: string
+    buyerId: string
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid?: boolean
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    farm: FarmerCreateNestedOneWithoutBirdSellInput
+    branch: BranchCreateNestedOneWithoutBirdSellInput
+  }
+
+  export type BirdSellUncheckedCreateWithoutFlockInput = {
+    id?: string
+    buyerId: string
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid?: boolean
+    farmId: string
+    branchCode: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type BirdSellCreateOrConnectWithoutFlockInput = {
+    where: BirdSellWhereUniqueInput
+    create: XOR<BirdSellCreateWithoutFlockInput, BirdSellUncheckedCreateWithoutFlockInput>
+  }
+
+  export type BirdSellCreateManyFlockInputEnvelope = {
+    data: BirdSellCreateManyFlockInput | BirdSellCreateManyFlockInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FarmFeedStockCreateWithoutFlockInput = {
+    id?: string
+    feedName: string
+    stock: number
+    createdAt?: Date | string | null
+    updateAt?: Date | string
+  }
+
+  export type FarmFeedStockUncheckedCreateWithoutFlockInput = {
+    id?: string
+    feedName: string
+    stock: number
+    createdAt?: Date | string | null
+    updateAt?: Date | string
+  }
+
+  export type FarmFeedStockCreateOrConnectWithoutFlockInput = {
+    where: FarmFeedStockWhereUniqueInput
+    create: XOR<FarmFeedStockCreateWithoutFlockInput, FarmFeedStockUncheckedCreateWithoutFlockInput>
+  }
+
+  export type FarmFeedStockCreateManyFlockInputEnvelope = {
+    data: FarmFeedStockCreateManyFlockInput | FarmFeedStockCreateManyFlockInput[]
+    skipDuplicates?: boolean
+  }
+
   export type BranchUpsertWithoutFlocksInput = {
     update: XOR<BranchUpdateWithoutFlocksInput, BranchUncheckedUpdateWithoutFlocksInput>
     create: XOR<BranchCreateWithoutFlocksInput, BranchUncheckedCreateWithoutFlocksInput>
@@ -36956,6 +46488,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutFlocksInput = {
@@ -36974,6 +46508,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type EmployeeUpsertWithoutFlocksInput = {
@@ -37043,6 +46579,8 @@ export namespace Prisma {
     branch?: BranchUpdateOneWithoutFarmerNestedInput
     flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutFlocksInput = {
@@ -37062,6 +46600,8 @@ export namespace Prisma {
     createDate?: StringFieldUpdateOperationsInput | string
     flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type FlockReportUpsertWithWhereUniqueWithoutFlockInput = {
@@ -37112,6 +46652,818 @@ export namespace Prisma {
     data: XOR<SellMedicineUpdateManyMutationInput, SellMedicineUncheckedUpdateManyWithoutFlockInput>
   }
 
+  export type ChicksUpsertWithWhereUniqueWithoutFlockInput = {
+    where: ChicksWhereUniqueInput
+    update: XOR<ChicksUpdateWithoutFlockInput, ChicksUncheckedUpdateWithoutFlockInput>
+    create: XOR<ChicksCreateWithoutFlockInput, ChicksUncheckedCreateWithoutFlockInput>
+  }
+
+  export type ChicksUpdateWithWhereUniqueWithoutFlockInput = {
+    where: ChicksWhereUniqueInput
+    data: XOR<ChicksUpdateWithoutFlockInput, ChicksUncheckedUpdateWithoutFlockInput>
+  }
+
+  export type ChicksUpdateManyWithWhereWithoutFlockInput = {
+    where: ChicksScalarWhereInput
+    data: XOR<ChicksUpdateManyMutationInput, ChicksUncheckedUpdateManyWithoutFlockInput>
+  }
+
+  export type BirdSellUpsertWithWhereUniqueWithoutFlockInput = {
+    where: BirdSellWhereUniqueInput
+    update: XOR<BirdSellUpdateWithoutFlockInput, BirdSellUncheckedUpdateWithoutFlockInput>
+    create: XOR<BirdSellCreateWithoutFlockInput, BirdSellUncheckedCreateWithoutFlockInput>
+  }
+
+  export type BirdSellUpdateWithWhereUniqueWithoutFlockInput = {
+    where: BirdSellWhereUniqueInput
+    data: XOR<BirdSellUpdateWithoutFlockInput, BirdSellUncheckedUpdateWithoutFlockInput>
+  }
+
+  export type BirdSellUpdateManyWithWhereWithoutFlockInput = {
+    where: BirdSellScalarWhereInput
+    data: XOR<BirdSellUpdateManyMutationInput, BirdSellUncheckedUpdateManyWithoutFlockInput>
+  }
+
+  export type FarmFeedStockUpsertWithWhereUniqueWithoutFlockInput = {
+    where: FarmFeedStockWhereUniqueInput
+    update: XOR<FarmFeedStockUpdateWithoutFlockInput, FarmFeedStockUncheckedUpdateWithoutFlockInput>
+    create: XOR<FarmFeedStockCreateWithoutFlockInput, FarmFeedStockUncheckedCreateWithoutFlockInput>
+  }
+
+  export type FarmFeedStockUpdateWithWhereUniqueWithoutFlockInput = {
+    where: FarmFeedStockWhereUniqueInput
+    data: XOR<FarmFeedStockUpdateWithoutFlockInput, FarmFeedStockUncheckedUpdateWithoutFlockInput>
+  }
+
+  export type FarmFeedStockUpdateManyWithWhereWithoutFlockInput = {
+    where: FarmFeedStockScalarWhereInput
+    data: XOR<FarmFeedStockUpdateManyMutationInput, FarmFeedStockUncheckedUpdateManyWithoutFlockInput>
+  }
+
+  export type FarmFeedStockScalarWhereInput = {
+    AND?: FarmFeedStockScalarWhereInput | FarmFeedStockScalarWhereInput[]
+    OR?: FarmFeedStockScalarWhereInput[]
+    NOT?: FarmFeedStockScalarWhereInput | FarmFeedStockScalarWhereInput[]
+    id?: StringFilter<"FarmFeedStock"> | string
+    flockId?: StringFilter<"FarmFeedStock"> | string
+    feedName?: StringFilter<"FarmFeedStock"> | string
+    stock?: IntFilter<"FarmFeedStock"> | number
+    createdAt?: DateTimeNullableFilter<"FarmFeedStock"> | Date | string | null
+    updateAt?: DateTimeFilter<"FarmFeedStock"> | Date | string
+  }
+
+  export type FlockCreateWithoutFarmFeedStockInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    branch: BranchCreateNestedOneWithoutFlocksInput
+    employee: EmployeeCreateNestedOneWithoutFlocksInput
+    farmer: FarmerCreateNestedOneWithoutFlocksInput
+    flockReport?: FlockReportCreateNestedManyWithoutFlockInput
+    medicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
+    sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    chicks?: ChicksCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockUncheckedCreateWithoutFarmFeedStockInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    executiveId: string
+    farmId: string
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    branchCode: string
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    flockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
+    medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
+    sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockCreateOrConnectWithoutFarmFeedStockInput = {
+    where: FlockWhereUniqueInput
+    create: XOR<FlockCreateWithoutFarmFeedStockInput, FlockUncheckedCreateWithoutFarmFeedStockInput>
+  }
+
+  export type FlockUpsertWithoutFarmFeedStockInput = {
+    update: XOR<FlockUpdateWithoutFarmFeedStockInput, FlockUncheckedUpdateWithoutFarmFeedStockInput>
+    create: XOR<FlockCreateWithoutFarmFeedStockInput, FlockUncheckedCreateWithoutFarmFeedStockInput>
+    where?: FlockWhereInput
+  }
+
+  export type FlockUpdateToOneWithWhereWithoutFarmFeedStockInput = {
+    where?: FlockWhereInput
+    data: XOR<FlockUpdateWithoutFarmFeedStockInput, FlockUncheckedUpdateWithoutFarmFeedStockInput>
+  }
+
+  export type FlockUpdateWithoutFarmFeedStockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
+    employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
+    flockReport?: FlockReportUpdateManyWithoutFlockNestedInput
+    medicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
+    sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FlockUncheckedUpdateWithoutFarmFeedStockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    executiveId?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    branchCode?: StringFieldUpdateOperationsInput | string
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
+    medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+    sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FlockCreateWithoutChicksInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    branch: BranchCreateNestedOneWithoutFlocksInput
+    employee: EmployeeCreateNestedOneWithoutFlocksInput
+    farmer: FarmerCreateNestedOneWithoutFlocksInput
+    flockReport?: FlockReportCreateNestedManyWithoutFlockInput
+    medicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
+    sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockUncheckedCreateWithoutChicksInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    executiveId: string
+    farmId: string
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    branchCode: string
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    flockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
+    medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
+    sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockCreateOrConnectWithoutChicksInput = {
+    where: FlockWhereUniqueInput
+    create: XOR<FlockCreateWithoutChicksInput, FlockUncheckedCreateWithoutChicksInput>
+  }
+
+  export type FarmerCreateWithoutChicksInput = {
+    id?: string
+    farmCode: number
+    name: string
+    farmType: $Enums.Custtype
+    totalShed: number
+    totalSquare: number
+    phoneNumber: string
+    capacity: number
+    nid: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: string
+    address?: AddressCreateNestedOneWithoutFarmerInput
+    branch?: BranchCreateNestedOneWithoutFarmerInput
+    flocks?: FlockCreateNestedManyWithoutFarmerInput
+    flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
+    sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+    birdSell?: BirdSellCreateNestedManyWithoutFarmInput
+  }
+
+  export type FarmerUncheckedCreateWithoutChicksInput = {
+    id?: string
+    branchCode?: string | null
+    farmCode: number
+    name: string
+    farmType: $Enums.Custtype
+    totalShed: number
+    totalSquare: number
+    phoneNumber: string
+    capacity: number
+    addressId?: string | null
+    nid: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: string
+    flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
+    flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
+    sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
+  }
+
+  export type FarmerCreateOrConnectWithoutChicksInput = {
+    where: FarmerWhereUniqueInput
+    create: XOR<FarmerCreateWithoutChicksInput, FarmerUncheckedCreateWithoutChicksInput>
+  }
+
+  export type BranchCreateWithoutChicksInput = {
+    id?: string
+    locationName: string
+    type: $Enums.BranchType
+    branchCode: string
+    createDate: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
+    farmer?: FarmerCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
+    flocks?: FlockCreateNestedManyWithoutBranchInput
+    flockReport?: FlockReportCreateNestedManyWithoutBranchInput
+    medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
+    medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
+    medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+    sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchUncheckedCreateWithoutChicksInput = {
+    id?: string
+    locationName: string
+    type: $Enums.BranchType
+    branchCode: string
+    createDate: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
+    farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
+    flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
+    flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
+    medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
+    medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
+    medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+    sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchCreateOrConnectWithoutChicksInput = {
+    where: BranchWhereUniqueInput
+    create: XOR<BranchCreateWithoutChicksInput, BranchUncheckedCreateWithoutChicksInput>
+  }
+
+  export type FlockUpsertWithoutChicksInput = {
+    update: XOR<FlockUpdateWithoutChicksInput, FlockUncheckedUpdateWithoutChicksInput>
+    create: XOR<FlockCreateWithoutChicksInput, FlockUncheckedCreateWithoutChicksInput>
+    where?: FlockWhereInput
+  }
+
+  export type FlockUpdateToOneWithWhereWithoutChicksInput = {
+    where?: FlockWhereInput
+    data: XOR<FlockUpdateWithoutChicksInput, FlockUncheckedUpdateWithoutChicksInput>
+  }
+
+  export type FlockUpdateWithoutChicksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
+    employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
+    flockReport?: FlockReportUpdateManyWithoutFlockNestedInput
+    medicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
+    sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FlockUncheckedUpdateWithoutChicksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    executiveId?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    branchCode?: StringFieldUpdateOperationsInput | string
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
+    medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+    sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FarmerUpsertWithoutChicksInput = {
+    update: XOR<FarmerUpdateWithoutChicksInput, FarmerUncheckedUpdateWithoutChicksInput>
+    create: XOR<FarmerCreateWithoutChicksInput, FarmerUncheckedCreateWithoutChicksInput>
+    where?: FarmerWhereInput
+  }
+
+  export type FarmerUpdateToOneWithWhereWithoutChicksInput = {
+    where?: FarmerWhereInput
+    data: XOR<FarmerUpdateWithoutChicksInput, FarmerUncheckedUpdateWithoutChicksInput>
+  }
+
+  export type FarmerUpdateWithoutChicksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
+    totalShed?: IntFieldUpdateOperationsInput | number
+    totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    nid?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    address?: AddressUpdateOneWithoutFarmerNestedInput
+    branch?: BranchUpdateOneWithoutFarmerNestedInput
+    flocks?: FlockUpdateManyWithoutFarmerNestedInput
+    flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
+    sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
+  }
+
+  export type FarmerUncheckedUpdateWithoutChicksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: NullableStringFieldUpdateOperationsInput | string | null
+    farmCode?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
+    totalShed?: IntFieldUpdateOperationsInput | number
+    totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
+    nid?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
+    flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
+    sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
+  }
+
+  export type BranchUpsertWithoutChicksInput = {
+    update: XOR<BranchUpdateWithoutChicksInput, BranchUncheckedUpdateWithoutChicksInput>
+    create: XOR<BranchCreateWithoutChicksInput, BranchUncheckedCreateWithoutChicksInput>
+    where?: BranchWhereInput
+  }
+
+  export type BranchUpdateToOneWithWhereWithoutChicksInput = {
+    where?: BranchWhereInput
+    data: XOR<BranchUpdateWithoutChicksInput, BranchUncheckedUpdateWithoutChicksInput>
+  }
+
+  export type BranchUpdateWithoutChicksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    branchCode?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
+    flocks?: FlockUpdateManyWithoutBranchNestedInput
+    flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
+    medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
+    medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
+    medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+    sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUpdateManyWithoutBranchNestedInput
+  }
+
+  export type BranchUncheckedUpdateWithoutChicksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    branchCode?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
+    flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
+    flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
+    medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
+    medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
+    medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+    sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutBranchNestedInput
+  }
+
+  export type FarmerCreateWithoutBirdSellInput = {
+    id?: string
+    farmCode: number
+    name: string
+    farmType: $Enums.Custtype
+    totalShed: number
+    totalSquare: number
+    phoneNumber: string
+    capacity: number
+    nid: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: string
+    address?: AddressCreateNestedOneWithoutFarmerInput
+    branch?: BranchCreateNestedOneWithoutFarmerInput
+    flocks?: FlockCreateNestedManyWithoutFarmerInput
+    flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
+    sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksCreateNestedManyWithoutFarmInput
+  }
+
+  export type FarmerUncheckedCreateWithoutBirdSellInput = {
+    id?: string
+    branchCode?: string | null
+    farmCode: number
+    name: string
+    farmType: $Enums.Custtype
+    totalShed: number
+    totalSquare: number
+    phoneNumber: string
+    capacity: number
+    addressId?: string | null
+    nid: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: string
+    flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
+    flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
+    sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
+  }
+
+  export type FarmerCreateOrConnectWithoutBirdSellInput = {
+    where: FarmerWhereUniqueInput
+    create: XOR<FarmerCreateWithoutBirdSellInput, FarmerUncheckedCreateWithoutBirdSellInput>
+  }
+
+  export type BranchCreateWithoutBirdSellInput = {
+    id?: string
+    locationName: string
+    type: $Enums.BranchType
+    branchCode: string
+    createDate: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
+    farmer?: FarmerCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
+    flocks?: FlockCreateNestedManyWithoutBranchInput
+    flockReport?: FlockReportCreateNestedManyWithoutBranchInput
+    medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
+    medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
+    medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+    sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    chicks?: ChicksCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchUncheckedCreateWithoutBirdSellInput = {
+    id?: string
+    locationName: string
+    type: $Enums.BranchType
+    branchCode: string
+    createDate: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
+    farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
+    flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
+    flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
+    medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
+    medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
+    medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+    sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchCreateOrConnectWithoutBirdSellInput = {
+    where: BranchWhereUniqueInput
+    create: XOR<BranchCreateWithoutBirdSellInput, BranchUncheckedCreateWithoutBirdSellInput>
+  }
+
+  export type FlockCreateWithoutBirdSellInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    branch: BranchCreateNestedOneWithoutFlocksInput
+    employee: EmployeeCreateNestedOneWithoutFlocksInput
+    farmer: FarmerCreateNestedOneWithoutFlocksInput
+    flockReport?: FlockReportCreateNestedManyWithoutFlockInput
+    medicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
+    sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    chicks?: ChicksCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockUncheckedCreateWithoutBirdSellInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    executiveId: string
+    farmId: string
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    branchCode: string
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    flockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
+    medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
+    sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockCreateOrConnectWithoutBirdSellInput = {
+    where: FlockWhereUniqueInput
+    create: XOR<FlockCreateWithoutBirdSellInput, FlockUncheckedCreateWithoutBirdSellInput>
+  }
+
+  export type FarmerUpsertWithoutBirdSellInput = {
+    update: XOR<FarmerUpdateWithoutBirdSellInput, FarmerUncheckedUpdateWithoutBirdSellInput>
+    create: XOR<FarmerCreateWithoutBirdSellInput, FarmerUncheckedCreateWithoutBirdSellInput>
+    where?: FarmerWhereInput
+  }
+
+  export type FarmerUpdateToOneWithWhereWithoutBirdSellInput = {
+    where?: FarmerWhereInput
+    data: XOR<FarmerUpdateWithoutBirdSellInput, FarmerUncheckedUpdateWithoutBirdSellInput>
+  }
+
+  export type FarmerUpdateWithoutBirdSellInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
+    totalShed?: IntFieldUpdateOperationsInput | number
+    totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    nid?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    address?: AddressUpdateOneWithoutFarmerNestedInput
+    branch?: BranchUpdateOneWithoutFarmerNestedInput
+    flocks?: FlockUpdateManyWithoutFarmerNestedInput
+    flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
+    sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUpdateManyWithoutFarmNestedInput
+  }
+
+  export type FarmerUncheckedUpdateWithoutBirdSellInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: NullableStringFieldUpdateOperationsInput | string | null
+    farmCode?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
+    totalShed?: IntFieldUpdateOperationsInput | number
+    totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
+    nid?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
+    flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
+    sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
+  }
+
+  export type BranchUpsertWithoutBirdSellInput = {
+    update: XOR<BranchUpdateWithoutBirdSellInput, BranchUncheckedUpdateWithoutBirdSellInput>
+    create: XOR<BranchCreateWithoutBirdSellInput, BranchUncheckedCreateWithoutBirdSellInput>
+    where?: BranchWhereInput
+  }
+
+  export type BranchUpdateToOneWithWhereWithoutBirdSellInput = {
+    where?: BranchWhereInput
+    data: XOR<BranchUpdateWithoutBirdSellInput, BranchUncheckedUpdateWithoutBirdSellInput>
+  }
+
+  export type BranchUpdateWithoutBirdSellInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    branchCode?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
+    flocks?: FlockUpdateManyWithoutBranchNestedInput
+    flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
+    medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
+    medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
+    medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+    sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUpdateManyWithoutBranchNestedInput
+  }
+
+  export type BranchUncheckedUpdateWithoutBirdSellInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
+    branchCode?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
+    farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
+    flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
+    flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
+    medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
+    medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
+    medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+    sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutBranchNestedInput
+  }
+
+  export type FlockUpsertWithoutBirdSellInput = {
+    update: XOR<FlockUpdateWithoutBirdSellInput, FlockUncheckedUpdateWithoutBirdSellInput>
+    create: XOR<FlockCreateWithoutBirdSellInput, FlockUncheckedCreateWithoutBirdSellInput>
+    where?: FlockWhereInput
+  }
+
+  export type FlockUpdateToOneWithWhereWithoutBirdSellInput = {
+    where?: FlockWhereInput
+    data: XOR<FlockUpdateWithoutBirdSellInput, FlockUncheckedUpdateWithoutBirdSellInput>
+  }
+
+  export type FlockUpdateWithoutBirdSellInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
+    employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
+    flockReport?: FlockReportUpdateManyWithoutFlockNestedInput
+    medicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
+    sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FlockUncheckedUpdateWithoutBirdSellInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    executiveId?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    branchCode?: StringFieldUpdateOperationsInput | string
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
+    medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+    sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
+  }
+
   export type BranchCreateWithoutFlockReportInput = {
     id?: string
     locationName: string
@@ -37128,6 +47480,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellCreateNestedManyWithoutBranchInput
+    chicks?: ChicksCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutFlockReportInput = {
@@ -37146,6 +47500,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutBranchInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutFlockReportInput = {
@@ -37170,6 +47526,8 @@ export namespace Prisma {
     branch?: BranchCreateNestedOneWithoutFarmerInput
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateWithoutFlockReportInput = {
@@ -37189,6 +47547,8 @@ export namespace Prisma {
     createDate: string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerCreateOrConnectWithoutFlockReportInput = {
@@ -37217,6 +47577,9 @@ export namespace Prisma {
     farmer: FarmerCreateNestedOneWithoutFlocksInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    chicks?: ChicksCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutFlockReportInput = {
@@ -37240,6 +47603,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutFlockReportInput = {
@@ -37274,6 +47640,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutFlockReportInput = {
@@ -37292,6 +47660,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type FarmerUpsertWithoutFlockReportInput = {
@@ -37322,6 +47692,8 @@ export namespace Prisma {
     branch?: BranchUpdateOneWithoutFarmerNestedInput
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutFlockReportInput = {
@@ -37341,6 +47713,8 @@ export namespace Prisma {
     createDate?: StringFieldUpdateOperationsInput | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type FlockUpsertWithoutFlockReportInput = {
@@ -37375,6 +47749,9 @@ export namespace Prisma {
     farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutFlockReportInput = {
@@ -37398,6 +47775,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FeedStockCreateWithoutFeedNameCategoryInput = {
@@ -37405,6 +47785,7 @@ export namespace Prisma {
     stock: number
     createdAt?: Date | string | null
     updatedAt?: Date | string
+    unitPice?: number
     createDate: string
     Branch?: BranchCreateNestedOneWithoutFeedStockInput
     depot: DepotCreateNestedOneWithoutFeedStockInput
@@ -37417,6 +47798,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     branchId?: string | null
+    unitPice?: number
     createDate: string
   }
 
@@ -37434,6 +47816,7 @@ export namespace Prisma {
     id?: string
     createDate: string
     quntity: string
+    price?: number
     createdAt?: Date | string
     updateAt?: Date | string
     feedStckTranfer: FeedStockTransferCreateNestedOneWithoutTransferFeedItemInput
@@ -37443,6 +47826,7 @@ export namespace Prisma {
     id?: string
     createDate: string
     quntity: string
+    price?: number
     tansferId: string
     createdAt?: Date | string
     updateAt?: Date | string
@@ -37455,6 +47839,36 @@ export namespace Prisma {
 
   export type TransferFeedItemCreateManyFeedInputEnvelope = {
     data: TransferFeedItemCreateManyFeedInput | TransferFeedItemCreateManyFeedInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeedSalesItemCreateWithoutFeedNameCategoryInput = {
+    id?: string
+    quantity: number
+    createDate: string
+    totalPice: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    salesOrder: FeedSalesOrderCreateNestedOneWithoutFeedSalesItemInput
+  }
+
+  export type FeedSalesItemUncheckedCreateWithoutFeedNameCategoryInput = {
+    id?: string
+    salesInvoice: string
+    quantity: number
+    createDate: string
+    totalPice: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FeedSalesItemCreateOrConnectWithoutFeedNameCategoryInput = {
+    where: FeedSalesItemWhereUniqueInput
+    create: XOR<FeedSalesItemCreateWithoutFeedNameCategoryInput, FeedSalesItemUncheckedCreateWithoutFeedNameCategoryInput>
+  }
+
+  export type FeedSalesItemCreateManyFeedNameCategoryInputEnvelope = {
+    data: FeedSalesItemCreateManyFeedNameCategoryInput | FeedSalesItemCreateManyFeedNameCategoryInput[]
     skipDuplicates?: boolean
   }
 
@@ -37498,9 +47912,40 @@ export namespace Prisma {
     feedName?: StringFilter<"TransferFeedItem"> | string
     createDate?: StringFilter<"TransferFeedItem"> | string
     quntity?: StringFilter<"TransferFeedItem"> | string
+    price?: IntFilter<"TransferFeedItem"> | number
     tansferId?: StringFilter<"TransferFeedItem"> | string
     createdAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
     updateAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
+  }
+
+  export type FeedSalesItemUpsertWithWhereUniqueWithoutFeedNameCategoryInput = {
+    where: FeedSalesItemWhereUniqueInput
+    update: XOR<FeedSalesItemUpdateWithoutFeedNameCategoryInput, FeedSalesItemUncheckedUpdateWithoutFeedNameCategoryInput>
+    create: XOR<FeedSalesItemCreateWithoutFeedNameCategoryInput, FeedSalesItemUncheckedCreateWithoutFeedNameCategoryInput>
+  }
+
+  export type FeedSalesItemUpdateWithWhereUniqueWithoutFeedNameCategoryInput = {
+    where: FeedSalesItemWhereUniqueInput
+    data: XOR<FeedSalesItemUpdateWithoutFeedNameCategoryInput, FeedSalesItemUncheckedUpdateWithoutFeedNameCategoryInput>
+  }
+
+  export type FeedSalesItemUpdateManyWithWhereWithoutFeedNameCategoryInput = {
+    where: FeedSalesItemScalarWhereInput
+    data: XOR<FeedSalesItemUpdateManyMutationInput, FeedSalesItemUncheckedUpdateManyWithoutFeedNameCategoryInput>
+  }
+
+  export type FeedSalesItemScalarWhereInput = {
+    AND?: FeedSalesItemScalarWhereInput | FeedSalesItemScalarWhereInput[]
+    OR?: FeedSalesItemScalarWhereInput[]
+    NOT?: FeedSalesItemScalarWhereInput | FeedSalesItemScalarWhereInput[]
+    id?: StringFilter<"FeedSalesItem"> | string
+    feedName?: StringFilter<"FeedSalesItem"> | string
+    salesInvoice?: StringFilter<"FeedSalesItem"> | string
+    quantity?: IntFilter<"FeedSalesItem"> | number
+    createDate?: StringFilter<"FeedSalesItem"> | string
+    totalPice?: IntFilter<"FeedSalesItem"> | number
+    createdAt?: DateTimeFilter<"FeedSalesItem"> | Date | string
+    updatedAt?: DateTimeFilter<"FeedSalesItem"> | Date | string
   }
 
   export type BranchCreateWithoutFeedStockInput = {
@@ -37519,6 +47964,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellCreateNestedManyWithoutBranchInput
+    chicks?: ChicksCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutFeedStockInput = {
@@ -37537,6 +47984,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutBranchInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutFeedStockInput = {
@@ -37553,6 +48002,7 @@ export namespace Prisma {
     updateAt?: Date | string
     sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
     receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutDepotInput
   }
 
   export type DepotUncheckedCreateWithoutFeedStockInput = {
@@ -37564,6 +48014,7 @@ export namespace Prisma {
     updateAt?: Date | string
     sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
     receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutDepotInput
   }
 
   export type DepotCreateOrConnectWithoutFeedStockInput = {
@@ -37579,6 +48030,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createDate: string
     transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedInput
+    FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutFeedNameCategoryInput
   }
 
   export type FeedNameCategoryUncheckedCreateWithoutFeedStockInput = {
@@ -37589,6 +48041,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createDate: string
     transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedInput
+    FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
   }
 
   export type FeedNameCategoryCreateOrConnectWithoutFeedStockInput = {
@@ -37623,6 +48076,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutFeedStockInput = {
@@ -37641,6 +48096,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type DepotUpsertWithoutFeedStockInput = {
@@ -37663,6 +48120,7 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
     receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotUncheckedUpdateWithoutFeedStockInput = {
@@ -37674,6 +48132,7 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
     receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutDepotNestedInput
   }
 
   export type FeedNameCategoryUpsertWithoutFeedStockInput = {
@@ -37695,6 +48154,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createDate?: StringFieldUpdateOperationsInput | string
     transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedNestedInput
+    FeedSalesItem?: FeedSalesItemUpdateManyWithoutFeedNameCategoryNestedInput
   }
 
   export type FeedNameCategoryUncheckedUpdateWithoutFeedStockInput = {
@@ -37705,6 +48165,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createDate?: StringFieldUpdateOperationsInput | string
     transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedNestedInput
+    FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
   }
 
   export type DepotCreateWithoutSentTransfersInput = {
@@ -37716,6 +48177,7 @@ export namespace Prisma {
     updateAt?: Date | string
     feedStock?: FeedStockCreateNestedManyWithoutDepotInput
     receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutDepotInput
   }
 
   export type DepotUncheckedCreateWithoutSentTransfersInput = {
@@ -37727,6 +48189,7 @@ export namespace Prisma {
     updateAt?: Date | string
     feedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
     receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutDepotInput
   }
 
   export type DepotCreateOrConnectWithoutSentTransfersInput = {
@@ -37743,6 +48206,7 @@ export namespace Prisma {
     updateAt?: Date | string
     feedStock?: FeedStockCreateNestedManyWithoutDepotInput
     sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutDepotInput
   }
 
   export type DepotUncheckedCreateWithoutReceivedTransfersInput = {
@@ -37754,6 +48218,7 @@ export namespace Prisma {
     updateAt?: Date | string
     feedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
     sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutDepotInput
   }
 
   export type DepotCreateOrConnectWithoutReceivedTransfersInput = {
@@ -37765,6 +48230,7 @@ export namespace Prisma {
     id?: string
     createDate: string
     quntity: string
+    price?: number
     createdAt?: Date | string
     updateAt?: Date | string
     feed: FeedNameCategoryCreateNestedOneWithoutTransferFeedItemInput
@@ -37775,6 +48241,7 @@ export namespace Prisma {
     feedName: string
     createDate: string
     quntity: string
+    price?: number
     createdAt?: Date | string
     updateAt?: Date | string
   }
@@ -37809,6 +48276,7 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     feedStock?: FeedStockUpdateManyWithoutDepotNestedInput
     receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotUncheckedUpdateWithoutSentTransfersInput = {
@@ -37820,6 +48288,7 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     feedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
     receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotUpsertWithoutReceivedTransfersInput = {
@@ -37842,6 +48311,7 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     feedStock?: FeedStockUpdateManyWithoutDepotNestedInput
     sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotUncheckedUpdateWithoutReceivedTransfersInput = {
@@ -37853,6 +48323,7 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     feedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
     sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutDepotNestedInput
   }
 
   export type TransferFeedItemUpsertWithWhereUniqueWithoutFeedStckTranferInput = {
@@ -37879,6 +48350,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createDate: string
     FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
+    FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutFeedNameCategoryInput
   }
 
   export type FeedNameCategoryUncheckedCreateWithoutTransferFeedItemInput = {
@@ -37889,6 +48361,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createDate: string
     FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
   }
 
   export type FeedNameCategoryCreateOrConnectWithoutTransferFeedItemInput = {
@@ -37899,6 +48372,8 @@ export namespace Prisma {
   export type FeedStockTransferCreateWithoutTransferFeedItemInput = {
     id?: string
     transerFerDate: string
+    totalKg?: number
+    totalPrice?: number
     createDate: string
     trnasferBill: string
     createAt?: Date | string | null
@@ -37913,6 +48388,8 @@ export namespace Prisma {
     fromDepot: string
     toDepot: string
     transerFerDate: string
+    totalKg?: number
+    totalPrice?: number
     createDate: string
     trnasferBill: string
     createAt?: Date | string | null
@@ -37944,6 +48421,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createDate?: StringFieldUpdateOperationsInput | string
     FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedSalesItem?: FeedSalesItemUpdateManyWithoutFeedNameCategoryNestedInput
   }
 
   export type FeedNameCategoryUncheckedUpdateWithoutTransferFeedItemInput = {
@@ -37954,6 +48432,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createDate?: StringFieldUpdateOperationsInput | string
     FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
   }
 
   export type FeedStockTransferUpsertWithoutTransferFeedItemInput = {
@@ -37970,6 +48449,8 @@ export namespace Prisma {
   export type FeedStockTransferUpdateWithoutTransferFeedItemInput = {
     id?: StringFieldUpdateOperationsInput | string
     transerFerDate?: StringFieldUpdateOperationsInput | string
+    totalKg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     trnasferBill?: StringFieldUpdateOperationsInput | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -37984,11 +48465,271 @@ export namespace Prisma {
     fromDepot?: StringFieldUpdateOperationsInput | string
     toDepot?: StringFieldUpdateOperationsInput | string
     transerFerDate?: StringFieldUpdateOperationsInput | string
+    totalKg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     trnasferBill?: StringFieldUpdateOperationsInput | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     depotId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DepotCreateWithoutFeedSalesOrderInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    feedStock?: FeedStockCreateNestedManyWithoutDepotInput
+    sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
+  }
+
+  export type DepotUncheckedCreateWithoutFeedSalesOrderInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    feedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
+    sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
+  }
+
+  export type DepotCreateOrConnectWithoutFeedSalesOrderInput = {
+    where: DepotWhereUniqueInput
+    create: XOR<DepotCreateWithoutFeedSalesOrderInput, DepotUncheckedCreateWithoutFeedSalesOrderInput>
+  }
+
+  export type FeedSalesItemCreateWithoutSalesOrderInput = {
+    id?: string
+    quantity: number
+    createDate: string
+    totalPice: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedSalesItemInput
+  }
+
+  export type FeedSalesItemUncheckedCreateWithoutSalesOrderInput = {
+    id?: string
+    feedName: string
+    quantity: number
+    createDate: string
+    totalPice: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FeedSalesItemCreateOrConnectWithoutSalesOrderInput = {
+    where: FeedSalesItemWhereUniqueInput
+    create: XOR<FeedSalesItemCreateWithoutSalesOrderInput, FeedSalesItemUncheckedCreateWithoutSalesOrderInput>
+  }
+
+  export type FeedSalesItemCreateManySalesOrderInputEnvelope = {
+    data: FeedSalesItemCreateManySalesOrderInput | FeedSalesItemCreateManySalesOrderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DepotUpsertWithoutFeedSalesOrderInput = {
+    update: XOR<DepotUpdateWithoutFeedSalesOrderInput, DepotUncheckedUpdateWithoutFeedSalesOrderInput>
+    create: XOR<DepotCreateWithoutFeedSalesOrderInput, DepotUncheckedCreateWithoutFeedSalesOrderInput>
+    where?: DepotWhereInput
+  }
+
+  export type DepotUpdateToOneWithWhereWithoutFeedSalesOrderInput = {
+    where?: DepotWhereInput
+    data: XOR<DepotUpdateWithoutFeedSalesOrderInput, DepotUncheckedUpdateWithoutFeedSalesOrderInput>
+  }
+
+  export type DepotUpdateWithoutFeedSalesOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedStock?: FeedStockUpdateManyWithoutDepotNestedInput
+    sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
+  }
+
+  export type DepotUncheckedUpdateWithoutFeedSalesOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
+    sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
+  }
+
+  export type FeedSalesItemUpsertWithWhereUniqueWithoutSalesOrderInput = {
+    where: FeedSalesItemWhereUniqueInput
+    update: XOR<FeedSalesItemUpdateWithoutSalesOrderInput, FeedSalesItemUncheckedUpdateWithoutSalesOrderInput>
+    create: XOR<FeedSalesItemCreateWithoutSalesOrderInput, FeedSalesItemUncheckedCreateWithoutSalesOrderInput>
+  }
+
+  export type FeedSalesItemUpdateWithWhereUniqueWithoutSalesOrderInput = {
+    where: FeedSalesItemWhereUniqueInput
+    data: XOR<FeedSalesItemUpdateWithoutSalesOrderInput, FeedSalesItemUncheckedUpdateWithoutSalesOrderInput>
+  }
+
+  export type FeedSalesItemUpdateManyWithWhereWithoutSalesOrderInput = {
+    where: FeedSalesItemScalarWhereInput
+    data: XOR<FeedSalesItemUpdateManyMutationInput, FeedSalesItemUncheckedUpdateManyWithoutSalesOrderInput>
+  }
+
+  export type FeedSalesOrderCreateWithoutFeedSalesItemInput = {
+    id?: string
+    branchCode: string
+    saleInvoice: string
+    farmNumber: number
+    flockNumber: number
+    createDate: string
+    farmId: string
+    flockId: string
+    totalPrice?: number
+    totalKg?: number
+    description?: string | null
+    status?: $Enums.DeliveryStatus
+    createdAt?: Date | string | null
+    updateAt?: Date | string
+    depot: DepotCreateNestedOneWithoutFeedSalesOrderInput
+  }
+
+  export type FeedSalesOrderUncheckedCreateWithoutFeedSalesItemInput = {
+    id?: string
+    branchCode: string
+    depotName: string
+    saleInvoice: string
+    farmNumber: number
+    flockNumber: number
+    createDate: string
+    farmId: string
+    flockId: string
+    totalPrice?: number
+    totalKg?: number
+    description?: string | null
+    status?: $Enums.DeliveryStatus
+    createdAt?: Date | string | null
+    updateAt?: Date | string
+  }
+
+  export type FeedSalesOrderCreateOrConnectWithoutFeedSalesItemInput = {
+    where: FeedSalesOrderWhereUniqueInput
+    create: XOR<FeedSalesOrderCreateWithoutFeedSalesItemInput, FeedSalesOrderUncheckedCreateWithoutFeedSalesItemInput>
+  }
+
+  export type FeedNameCategoryCreateWithoutFeedSalesItemInput = {
+    id?: string
+    feedName: string
+    feedCodeNumber: number
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: string
+    FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
+    transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedInput
+  }
+
+  export type FeedNameCategoryUncheckedCreateWithoutFeedSalesItemInput = {
+    id?: string
+    feedName: string
+    feedCodeNumber: number
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: string
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedInput
+  }
+
+  export type FeedNameCategoryCreateOrConnectWithoutFeedSalesItemInput = {
+    where: FeedNameCategoryWhereUniqueInput
+    create: XOR<FeedNameCategoryCreateWithoutFeedSalesItemInput, FeedNameCategoryUncheckedCreateWithoutFeedSalesItemInput>
+  }
+
+  export type FeedSalesOrderUpsertWithoutFeedSalesItemInput = {
+    update: XOR<FeedSalesOrderUpdateWithoutFeedSalesItemInput, FeedSalesOrderUncheckedUpdateWithoutFeedSalesItemInput>
+    create: XOR<FeedSalesOrderCreateWithoutFeedSalesItemInput, FeedSalesOrderUncheckedCreateWithoutFeedSalesItemInput>
+    where?: FeedSalesOrderWhereInput
+  }
+
+  export type FeedSalesOrderUpdateToOneWithWhereWithoutFeedSalesItemInput = {
+    where?: FeedSalesOrderWhereInput
+    data: XOR<FeedSalesOrderUpdateWithoutFeedSalesItemInput, FeedSalesOrderUncheckedUpdateWithoutFeedSalesItemInput>
+  }
+
+  export type FeedSalesOrderUpdateWithoutFeedSalesItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    saleInvoice?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    totalKg?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depot?: DepotUpdateOneRequiredWithoutFeedSalesOrderNestedInput
+  }
+
+  export type FeedSalesOrderUncheckedUpdateWithoutFeedSalesItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    saleInvoice?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    totalKg?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedNameCategoryUpsertWithoutFeedSalesItemInput = {
+    update: XOR<FeedNameCategoryUpdateWithoutFeedSalesItemInput, FeedNameCategoryUncheckedUpdateWithoutFeedSalesItemInput>
+    create: XOR<FeedNameCategoryCreateWithoutFeedSalesItemInput, FeedNameCategoryUncheckedCreateWithoutFeedSalesItemInput>
+    where?: FeedNameCategoryWhereInput
+  }
+
+  export type FeedNameCategoryUpdateToOneWithWhereWithoutFeedSalesItemInput = {
+    where?: FeedNameCategoryWhereInput
+    data: XOR<FeedNameCategoryUpdateWithoutFeedSalesItemInput, FeedNameCategoryUncheckedUpdateWithoutFeedSalesItemInput>
+  }
+
+  export type FeedNameCategoryUpdateWithoutFeedSalesItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
+    transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedNestedInput
+  }
+
+  export type FeedNameCategoryUncheckedUpdateWithoutFeedSalesItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: StringFieldUpdateOperationsInput | string
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedNestedInput
   }
 
   export type MedicineNameAddCreateWithoutMedicineCategoryInput = {
@@ -38329,6 +49070,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellCreateNestedManyWithoutBranchInput
+    chicks?: ChicksCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutMedicinePurchessInput = {
@@ -38347,6 +49090,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutBranchInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutMedicinePurchessInput = {
@@ -38429,6 +49174,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutMedicinePurchessInput = {
@@ -38447,6 +49194,8 @@ export namespace Prisma {
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type AllGenericMedicinUpsertWithoutMedicinePurchessInput = {
@@ -38525,6 +49274,8 @@ export namespace Prisma {
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellCreateNestedManyWithoutBranchInput
+    chicks?: ChicksCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutMedicineStockInput = {
@@ -38543,6 +49294,8 @@ export namespace Prisma {
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutBranchInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutMedicineStockInput = {
@@ -38625,6 +49378,8 @@ export namespace Prisma {
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutMedicineStockInput = {
@@ -38643,6 +49398,8 @@ export namespace Prisma {
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type AllGenericMedicinUpsertWithoutMedicineStockInput = {
@@ -38723,7 +49480,7 @@ export namespace Prisma {
     id?: string
     billNumber: number
     farmId: string
-    flockNumer: number
+    flockId: string
     totalQuantity?: number | null
     totalPrice?: number | null
     Delivery?: $Enums.DeliveryStatus
@@ -38767,7 +49524,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     billNumber?: IntFieldUpdateOperationsInput | number
     farmId?: StringFieldUpdateOperationsInput | string
-    flockNumer?: IntFieldUpdateOperationsInput | number
+    flockId?: StringFieldUpdateOperationsInput | string
     totalQuantity?: NullableIntFieldUpdateOperationsInput | number | null
     totalPrice?: NullableIntFieldUpdateOperationsInput | number | null
     Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
@@ -38815,6 +49572,8 @@ export namespace Prisma {
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
+    birdSell?: BirdSellCreateNestedManyWithoutBranchInput
+    chicks?: ChicksCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutSellMedicineInput = {
@@ -38833,6 +49592,8 @@ export namespace Prisma {
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutBranchInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutSellMedicineInput = {
@@ -38857,6 +49618,8 @@ export namespace Prisma {
     branch?: BranchCreateNestedOneWithoutFarmerInput
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateWithoutSellMedicineInput = {
@@ -38876,6 +49639,8 @@ export namespace Prisma {
     createDate: string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerCreateOrConnectWithoutSellMedicineInput = {
@@ -38904,6 +49669,9 @@ export namespace Prisma {
     farmer: FarmerCreateNestedOneWithoutFlocksInput
     flockReport?: FlockReportCreateNestedManyWithoutFlockInput
     medicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
+    chicks?: ChicksCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutSellMedicineInput = {
@@ -38927,6 +49695,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
     medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutSellMedicineInput = {
@@ -38987,6 +49758,8 @@ export namespace Prisma {
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
+    birdSell?: BirdSellUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutSellMedicineInput = {
@@ -39005,6 +49778,8 @@ export namespace Prisma {
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type FarmerUpsertWithoutSellMedicineInput = {
@@ -39035,6 +49810,8 @@ export namespace Prisma {
     branch?: BranchUpdateOneWithoutFarmerNestedInput
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutSellMedicineInput = {
@@ -39054,6 +49831,8 @@ export namespace Prisma {
     createDate?: StringFieldUpdateOperationsInput | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type FlockUpsertWithoutSellMedicineInput = {
@@ -39088,6 +49867,9 @@ export namespace Prisma {
     farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
     flockReport?: FlockReportUpdateManyWithoutFlockNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutSellMedicineInput = {
@@ -39111,6 +49893,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     flockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type BranchCreateWithoutMedicineTransferInput = {
@@ -39129,6 +49914,8 @@ export namespace Prisma {
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellCreateNestedManyWithoutBranchInput
+    chicks?: ChicksCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutMedicineTransferInput = {
@@ -39147,6 +49934,8 @@ export namespace Prisma {
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutBranchInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutMedicineTransferInput = {
@@ -39175,6 +49964,9 @@ export namespace Prisma {
     farmer: FarmerCreateNestedOneWithoutFlocksInput
     flockReport?: FlockReportCreateNestedManyWithoutFlockInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    chicks?: ChicksCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutMedicineTransferInput = {
@@ -39198,6 +49990,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutMedicineTransferInput = {
@@ -39232,6 +50027,8 @@ export namespace Prisma {
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutMedicineTransferInput = {
@@ -39250,6 +50047,8 @@ export namespace Prisma {
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutBranchNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type FlockUpsertWithoutMedicineTransferInput = {
@@ -39284,6 +50083,9 @@ export namespace Prisma {
     farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
     flockReport?: FlockReportUpdateManyWithoutFlockNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutMedicineTransferInput = {
@@ -39307,6 +50109,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     flockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type BranchEmployeeHistoryCreateManyBranchInput = {
@@ -39342,6 +50147,7 @@ export namespace Prisma {
     depotName: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
+    unitPice?: number
     createDate: string
   }
 
@@ -39444,13 +50250,44 @@ export namespace Prisma {
     id?: string
     billNumber: number
     farmId: string
-    flockNumer: number
+    flockId: string
     totalQuantity?: number | null
     totalPrice?: number | null
     Delivery?: $Enums.DeliveryStatus
     sellDate: string
     createdAt: Date | string
     updatedAt?: Date | string
+  }
+
+  export type BirdSellCreateManyBranchInput = {
+    id?: string
+    buyerId: string
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid?: boolean
+    farmId: string
+    flockId: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type ChicksCreateManyBranchInput = {
+    id?: string
+    name: string
+    farmNumber: number
+    farmId: string
+    flockId: string
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: string
+    description?: string | null
+    createdAt?: Date | string
+    updateAt?: Date | string
   }
 
   export type BranchEmployeeHistoryUpdateWithoutBranchInput = {
@@ -39500,6 +50337,8 @@ export namespace Prisma {
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutBranchInput = {
@@ -39519,6 +50358,8 @@ export namespace Prisma {
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateManyWithoutBranchInput = {
@@ -39542,6 +50383,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    unitPice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     depot?: DepotUpdateOneRequiredWithoutFeedStockNestedInput
     feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedStockNestedInput
@@ -39554,6 +50396,7 @@ export namespace Prisma {
     depotName?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    unitPice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
   }
 
@@ -39564,6 +50407,7 @@ export namespace Prisma {
     depotName?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    unitPice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
   }
 
@@ -39588,6 +50432,9 @@ export namespace Prisma {
     flockReport?: FlockReportUpdateManyWithoutFlockNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutBranchInput = {
@@ -39611,6 +50458,9 @@ export namespace Prisma {
     flockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateManyWithoutBranchInput = {
@@ -39876,7 +50726,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     billNumber?: IntFieldUpdateOperationsInput | number
     farmId?: StringFieldUpdateOperationsInput | string
-    flockNumer?: IntFieldUpdateOperationsInput | number
+    flockId?: StringFieldUpdateOperationsInput | string
     totalQuantity?: NullableIntFieldUpdateOperationsInput | number | null
     totalPrice?: NullableIntFieldUpdateOperationsInput | number | null
     Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
@@ -39890,13 +50740,106 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     billNumber?: IntFieldUpdateOperationsInput | number
     farmId?: StringFieldUpdateOperationsInput | string
-    flockNumer?: IntFieldUpdateOperationsInput | number
+    flockId?: StringFieldUpdateOperationsInput | string
     totalQuantity?: NullableIntFieldUpdateOperationsInput | number | null
     totalPrice?: NullableIntFieldUpdateOperationsInput | number | null
     Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     sellDate?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BirdSellUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    totalQantity?: IntFieldUpdateOperationsInput | number
+    totalWeight?: FloatFieldUpdateOperationsInput | number
+    avgWeight?: FloatFieldUpdateOperationsInput | number
+    pricePerkg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farm?: FarmerUpdateOneRequiredWithoutBirdSellNestedInput
+    flock?: FlockUpdateOneRequiredWithoutBirdSellNestedInput
+  }
+
+  export type BirdSellUncheckedUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    totalQantity?: IntFieldUpdateOperationsInput | number
+    totalWeight?: FloatFieldUpdateOperationsInput | number
+    avgWeight?: FloatFieldUpdateOperationsInput | number
+    pricePerkg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BirdSellUncheckedUpdateManyWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    totalQantity?: IntFieldUpdateOperationsInput | number
+    totalWeight?: FloatFieldUpdateOperationsInput | number
+    avgWeight?: FloatFieldUpdateOperationsInput | number
+    pricePerkg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChicksUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    currentPrice?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    createdBy?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flock?: FlockUpdateOneRequiredWithoutChicksNestedInput
+    farm?: FarmerUpdateOneRequiredWithoutChicksNestedInput
+  }
+
+  export type ChicksUncheckedUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    currentPrice?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    createdBy?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChicksUncheckedUpdateManyWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    currentPrice?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    createdBy?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FeedStockCreateManyDepotInput = {
@@ -39906,6 +50849,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     branchId?: string | null
+    unitPice?: number
     createDate: string
   }
 
@@ -39913,6 +50857,8 @@ export namespace Prisma {
     id?: string
     toDepot: string
     transerFerDate: string
+    totalKg?: number
+    totalPrice?: number
     createDate: string
     trnasferBill: string
     createAt?: Date | string | null
@@ -39924,6 +50870,8 @@ export namespace Prisma {
     id?: string
     fromDepot: string
     transerFerDate: string
+    totalKg?: number
+    totalPrice?: number
     createDate: string
     trnasferBill: string
     createAt?: Date | string | null
@@ -39931,11 +50879,29 @@ export namespace Prisma {
     depotId?: string | null
   }
 
+  export type FeedSalesOrderCreateManyDepotInput = {
+    id?: string
+    branchCode: string
+    saleInvoice: string
+    farmNumber: number
+    flockNumber: number
+    createDate: string
+    farmId: string
+    flockId: string
+    totalPrice?: number
+    totalKg?: number
+    description?: string | null
+    status?: $Enums.DeliveryStatus
+    createdAt?: Date | string | null
+    updateAt?: Date | string
+  }
+
   export type FeedStockUpdateWithoutDepotInput = {
     id?: StringFieldUpdateOperationsInput | string
     stock?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    unitPice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     Branch?: BranchUpdateOneWithoutFeedStockNestedInput
     feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedStockNestedInput
@@ -39948,6 +50914,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchId?: NullableStringFieldUpdateOperationsInput | string | null
+    unitPice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
   }
 
@@ -39958,12 +50925,15 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchId?: NullableStringFieldUpdateOperationsInput | string | null
+    unitPice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
   }
 
   export type FeedStockTransferUpdateWithoutTransferDepotInput = {
     id?: StringFieldUpdateOperationsInput | string
     transerFerDate?: StringFieldUpdateOperationsInput | string
+    totalKg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     trnasferBill?: StringFieldUpdateOperationsInput | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39977,6 +50947,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     toDepot?: StringFieldUpdateOperationsInput | string
     transerFerDate?: StringFieldUpdateOperationsInput | string
+    totalKg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     trnasferBill?: StringFieldUpdateOperationsInput | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39989,6 +50961,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     toDepot?: StringFieldUpdateOperationsInput | string
     transerFerDate?: StringFieldUpdateOperationsInput | string
+    totalKg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     trnasferBill?: StringFieldUpdateOperationsInput | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39999,6 +50973,8 @@ export namespace Prisma {
   export type FeedStockTransferUpdateWithoutReciveDepotInput = {
     id?: StringFieldUpdateOperationsInput | string
     transerFerDate?: StringFieldUpdateOperationsInput | string
+    totalKg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     trnasferBill?: StringFieldUpdateOperationsInput | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -40012,6 +50988,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fromDepot?: StringFieldUpdateOperationsInput | string
     transerFerDate?: StringFieldUpdateOperationsInput | string
+    totalKg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     trnasferBill?: StringFieldUpdateOperationsInput | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -40024,11 +51002,66 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fromDepot?: StringFieldUpdateOperationsInput | string
     transerFerDate?: StringFieldUpdateOperationsInput | string
+    totalKg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     trnasferBill?: StringFieldUpdateOperationsInput | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     depotId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FeedSalesOrderUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    saleInvoice?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    totalKg?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    FeedSalesItem?: FeedSalesItemUpdateManyWithoutSalesOrderNestedInput
+  }
+
+  export type FeedSalesOrderUncheckedUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    saleInvoice?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    totalKg?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutSalesOrderNestedInput
+  }
+
+  export type FeedSalesOrderUncheckedUpdateManyWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    saleInvoice?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    totalKg?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FlockCreateManyFarmerInput = {
@@ -40090,13 +51123,44 @@ export namespace Prisma {
   export type SellMedicineCreateManyFarmerInput = {
     id?: string
     billNumber: number
-    flockNumer: number
+    flockId: string
     totalQuantity?: number | null
     totalPrice?: number | null
     Delivery?: $Enums.DeliveryStatus
     sellDate: string
     branchCode: string
     createdAt: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ChicksCreateManyFarmInput = {
+    id?: string
+    name: string
+    branchCode: string
+    farmNumber: number
+    flockId: string
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: string
+    description?: string | null
+    createdAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type BirdSellCreateManyFarmInput = {
+    id?: string
+    buyerId: string
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid?: boolean
+    branchCode: string
+    flockId: string
+    createdAt?: Date | string | null
     updatedAt?: Date | string
   }
 
@@ -40121,6 +51185,9 @@ export namespace Prisma {
     flockReport?: FlockReportUpdateManyWithoutFlockNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutFarmerInput = {
@@ -40144,6 +51211,9 @@ export namespace Prisma {
     flockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateManyWithoutFarmerInput = {
@@ -40291,7 +51361,7 @@ export namespace Prisma {
   export type SellMedicineUncheckedUpdateWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
     billNumber?: IntFieldUpdateOperationsInput | number
-    flockNumer?: IntFieldUpdateOperationsInput | number
+    flockId?: StringFieldUpdateOperationsInput | string
     totalQuantity?: NullableIntFieldUpdateOperationsInput | number | null
     totalPrice?: NullableIntFieldUpdateOperationsInput | number | null
     Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
@@ -40305,13 +51375,106 @@ export namespace Prisma {
   export type SellMedicineUncheckedUpdateManyWithoutFarmerInput = {
     id?: StringFieldUpdateOperationsInput | string
     billNumber?: IntFieldUpdateOperationsInput | number
-    flockNumer?: IntFieldUpdateOperationsInput | number
+    flockId?: StringFieldUpdateOperationsInput | string
     totalQuantity?: NullableIntFieldUpdateOperationsInput | number | null
     totalPrice?: NullableIntFieldUpdateOperationsInput | number | null
     Delivery?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     sellDate?: StringFieldUpdateOperationsInput | string
     branchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChicksUpdateWithoutFarmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    currentPrice?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    createdBy?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flock?: FlockUpdateOneRequiredWithoutChicksNestedInput
+    branch?: BranchUpdateOneRequiredWithoutChicksNestedInput
+  }
+
+  export type ChicksUncheckedUpdateWithoutFarmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockId?: StringFieldUpdateOperationsInput | string
+    currentPrice?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    createdBy?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChicksUncheckedUpdateManyWithoutFarmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockId?: StringFieldUpdateOperationsInput | string
+    currentPrice?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    createdBy?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BirdSellUpdateWithoutFarmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    totalQantity?: IntFieldUpdateOperationsInput | number
+    totalWeight?: FloatFieldUpdateOperationsInput | number
+    avgWeight?: FloatFieldUpdateOperationsInput | number
+    pricePerkg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: BranchUpdateOneRequiredWithoutBirdSellNestedInput
+    flock?: FlockUpdateOneRequiredWithoutBirdSellNestedInput
+  }
+
+  export type BirdSellUncheckedUpdateWithoutFarmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    totalQantity?: IntFieldUpdateOperationsInput | number
+    totalWeight?: FloatFieldUpdateOperationsInput | number
+    avgWeight?: FloatFieldUpdateOperationsInput | number
+    pricePerkg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    branchCode?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BirdSellUncheckedUpdateManyWithoutFarmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    totalQantity?: IntFieldUpdateOperationsInput | number
+    totalWeight?: FloatFieldUpdateOperationsInput | number
+    avgWeight?: FloatFieldUpdateOperationsInput | number
+    pricePerkg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    branchCode?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -40396,6 +51559,9 @@ export namespace Prisma {
     flockReport?: FlockReportUpdateManyWithoutFlockNestedInput
     medicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutEmployeeInput = {
@@ -40419,6 +51585,9 @@ export namespace Prisma {
     flockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
     medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateManyWithoutEmployeeInput = {
@@ -40500,6 +51669,45 @@ export namespace Prisma {
     branchCode: string
     createdAt: Date | string
     updatedAt?: Date | string
+  }
+
+  export type ChicksCreateManyFlockInput = {
+    id?: string
+    name: string
+    branchCode: string
+    farmNumber: number
+    farmId: string
+    currentPrice: number
+    sellPrice: number
+    quantity: number
+    totalPrice: number
+    createdBy: string
+    description?: string | null
+    createdAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type BirdSellCreateManyFlockInput = {
+    id?: string
+    buyerId: string
+    totalQantity: number
+    totalWeight: number
+    avgWeight: number
+    pricePerkg: number
+    totalPrice: number
+    paid?: boolean
+    farmId: string
+    branchCode: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type FarmFeedStockCreateManyFlockInput = {
+    id?: string
+    feedName: string
+    stock: number
+    createdAt?: Date | string | null
+    updateAt?: Date | string
   }
 
   export type FlockReportUpdateWithoutFlockInput = {
@@ -40687,6 +51895,123 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ChicksUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    currentPrice?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    createdBy?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farm?: FarmerUpdateOneRequiredWithoutChicksNestedInput
+    branch?: BranchUpdateOneRequiredWithoutChicksNestedInput
+  }
+
+  export type ChicksUncheckedUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    farmId?: StringFieldUpdateOperationsInput | string
+    currentPrice?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    createdBy?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChicksUncheckedUpdateManyWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    farmId?: StringFieldUpdateOperationsInput | string
+    currentPrice?: IntFieldUpdateOperationsInput | number
+    sellPrice?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    createdBy?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BirdSellUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    totalQantity?: IntFieldUpdateOperationsInput | number
+    totalWeight?: FloatFieldUpdateOperationsInput | number
+    avgWeight?: FloatFieldUpdateOperationsInput | number
+    pricePerkg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farm?: FarmerUpdateOneRequiredWithoutBirdSellNestedInput
+    branch?: BranchUpdateOneRequiredWithoutBirdSellNestedInput
+  }
+
+  export type BirdSellUncheckedUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    totalQantity?: IntFieldUpdateOperationsInput | number
+    totalWeight?: FloatFieldUpdateOperationsInput | number
+    avgWeight?: FloatFieldUpdateOperationsInput | number
+    pricePerkg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    farmId?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BirdSellUncheckedUpdateManyWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    buyerId?: StringFieldUpdateOperationsInput | string
+    totalQantity?: IntFieldUpdateOperationsInput | number
+    totalWeight?: FloatFieldUpdateOperationsInput | number
+    avgWeight?: FloatFieldUpdateOperationsInput | number
+    pricePerkg?: IntFieldUpdateOperationsInput | number
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    farmId?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FarmFeedStockUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FarmFeedStockUncheckedUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FarmFeedStockUncheckedUpdateManyWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type FeedStockCreateManyFeedNameCategoryInput = {
     id?: string
     stock: number
@@ -40694,6 +52019,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     branchId?: string | null
+    unitPice?: number
     createDate: string
   }
 
@@ -40701,9 +52027,20 @@ export namespace Prisma {
     id?: string
     createDate: string
     quntity: string
+    price?: number
     tansferId: string
     createdAt?: Date | string
     updateAt?: Date | string
+  }
+
+  export type FeedSalesItemCreateManyFeedNameCategoryInput = {
+    id?: string
+    salesInvoice: string
+    quantity: number
+    createDate: string
+    totalPice: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type FeedStockUpdateWithoutFeedNameCategoryInput = {
@@ -40711,6 +52048,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    unitPice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
     Branch?: BranchUpdateOneWithoutFeedStockNestedInput
     depot?: DepotUpdateOneRequiredWithoutFeedStockNestedInput
@@ -40723,6 +52061,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchId?: NullableStringFieldUpdateOperationsInput | string | null
+    unitPice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
   }
 
@@ -40733,6 +52072,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchId?: NullableStringFieldUpdateOperationsInput | string | null
+    unitPice?: IntFieldUpdateOperationsInput | number
     createDate?: StringFieldUpdateOperationsInput | string
   }
 
@@ -40740,6 +52080,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     createDate?: StringFieldUpdateOperationsInput | string
     quntity?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     feedStckTranfer?: FeedStockTransferUpdateOneRequiredWithoutTransferFeedItemNestedInput
@@ -40749,6 +52090,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     createDate?: StringFieldUpdateOperationsInput | string
     quntity?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     tansferId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -40758,9 +52100,40 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     createDate?: StringFieldUpdateOperationsInput | string
     quntity?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     tansferId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedSalesItemUpdateWithoutFeedNameCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    totalPice?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    salesOrder?: FeedSalesOrderUpdateOneRequiredWithoutFeedSalesItemNestedInput
+  }
+
+  export type FeedSalesItemUncheckedUpdateWithoutFeedNameCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    salesInvoice?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    totalPice?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedSalesItemUncheckedUpdateManyWithoutFeedNameCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    salesInvoice?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    totalPice?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TransferFeedItemCreateManyFeedStckTranferInput = {
@@ -40768,6 +52141,7 @@ export namespace Prisma {
     feedName: string
     createDate: string
     quntity: string
+    price?: number
     createdAt?: Date | string
     updateAt?: Date | string
   }
@@ -40776,6 +52150,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     createDate?: StringFieldUpdateOperationsInput | string
     quntity?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     feed?: FeedNameCategoryUpdateOneRequiredWithoutTransferFeedItemNestedInput
@@ -40786,6 +52161,7 @@ export namespace Prisma {
     feedName?: StringFieldUpdateOperationsInput | string
     createDate?: StringFieldUpdateOperationsInput | string
     quntity?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -40795,8 +52171,49 @@ export namespace Prisma {
     feedName?: StringFieldUpdateOperationsInput | string
     createDate?: StringFieldUpdateOperationsInput | string
     quntity?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedSalesItemCreateManySalesOrderInput = {
+    id?: string
+    feedName: string
+    quantity: number
+    createDate: string
+    totalPice: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FeedSalesItemUpdateWithoutSalesOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    totalPice?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedSalesItemNestedInput
+  }
+
+  export type FeedSalesItemUncheckedUpdateWithoutSalesOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    totalPice?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedSalesItemUncheckedUpdateManyWithoutSalesOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createDate?: StringFieldUpdateOperationsInput | string
+    totalPice?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MedicineNameAddCreateManyMedicineCategoryInput = {

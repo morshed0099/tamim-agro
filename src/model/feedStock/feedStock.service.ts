@@ -42,7 +42,29 @@ const deleteFeedStock = async (id: string) => {
   });
 };
 
+const getFeedStock = async (query: any) => {
+  const { feedName, depotName } = query;
+  try {
+    if (feedName && depotName) {
+      const result = await prismaClient.feedStock.findFirst({
+        where: {
+          depotName: depotName,
+          feedName: {
+            contains: feedName,
+            mode: "insensitive",
+          },
+        },
+      });
+      return result;
+    }
+    return null;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const feedStockService = {
   createFeedStock,
   deleteFeedStock,
+  getFeedStock,
 };

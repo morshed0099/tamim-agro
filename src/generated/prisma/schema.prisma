@@ -25,6 +25,8 @@ model Branch {
   medicineStock         MedicineStock[]
   medicineTransfer      MedicineTransfer[]
   sellMedicine          SellMedicine[]
+  birdSell              BirdSell[]
+  chicks                Chicks[]
 
   @@map("branch")
 }
@@ -39,6 +41,7 @@ model Depot {
   feedStock         FeedStock[]
   sentTransfers     FeedStockTransfer[] @relation("FromDepot")
   receivedTransfers FeedStockTransfer[] @relation("ToDepot")
+  FeedSalesOrder    FeedSalesOrder[]
 
   @@index([depotName])
   @@map("depot")
@@ -64,6 +67,8 @@ model Farmer {
   flocks       Flock[]
   flockReport  FlockReport[]
   sellMedicine SellMedicine[]
+  chicks       Chicks[]
+  birdSell     BirdSell[]
 
   @@unique([branchCode, farmCode])
   @@index([farmCode])
@@ -123,7 +128,7 @@ model Employee {
 
 model Flock {
   id               String             @id @default(uuid())
-  flockNumber      Int                @unique
+  flockNumber      Int
   flockStatus      FlockStatus        @default(PENDING)
   startDate        DateTime
   endDate          DateTime?
@@ -146,8 +151,69 @@ model Flock {
   flockReport      FlockReport[]
   medicineTransfer MedicineTransfer[]
   sellMedicine     SellMedicine[]
+  chicks           Chicks[]
+  birdSell         BirdSell[]
+  FarmFeedStock    FarmFeedStock[]
 
+  @@index([flockNumber])
   @@map("flock")
+}
+
+// flock wise farm feed stock 
+model FarmFeedStock {
+  id        String    @id @default(uuid())
+  flockId   String
+  feedName  String
+  stock     Int
+  flock     Flock     @relation(fields: [flockId], references: [id])
+  createdAt DateTime? @default(now())
+  updateAt  DateTime  @default(now())
+
+  @@unique([flockId, feedName])
+  @@map("farmFeedStock")
+}
+
+model Chicks {
+  id           String   @id @default(uuid())
+  name         String
+  branchCode   String
+  farmNumber   Int
+  farmId       String
+  flockId      String
+  currentPrice Int
+  sellPrice    Int
+  quantity     Int
+  flock        Flock    @relation(fields: [flockId], references: [id])
+  farm         Farmer   @relation(fields: [farmId], references: [id])
+  branch       Branch   @relation(fields: [branchCode], references: [branchCode])
+  totalPrice   Int
+  createdBy    String
+  description  String?
+  createdAt    DateTime @default(now())
+  updateAt     DateTime @default(now())
+
+  @@map("chicks")
+}
+
+model BirdSell {
+  id           String    @id @default(uuid())
+  buyerId      String
+  totalQantity Int
+  totalWeight  Float
+  avgWeight    Float
+  pricePerkg   Int
+  totalPrice   Int
+  paid         Boolean   @default(true)
+  farmId       String
+  farm         Farmer    @relation(fields: [farmId], references: [id])
+  branchCode   String
+  branch       Branch    @relation(fields: [branchCode], references: [branchCode])
+  flockId      String
+  flock        Flock     @relation(fields: [flockId], references: [id])
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime  @default(now())
+
+  @@map("birdSell")
 }
 
 model FlockReport {
@@ -201,6 +267,7 @@ model FeedNameCategory {
   createDate       String
   FeedStock        FeedStock[]
   transferFeedItem TransferFeedItem[]
+  FeedSalesItem    FeedSalesItem[]
 
   @@map("feedNameCategory")
 }
@@ -213,6 +280,7 @@ model FeedStock {
   createdAt        DateTime?        @default(now())
   updatedAt        DateTime         @default(now())
   branchId         String?
+  unitPice         Int              @default(60)
   createDate       String
   Branch           Branch?          @relation(fields: [branchId], references: [id])
   depot            Depot            @relation(fields: [depotName], references: [depotName])
@@ -227,6 +295,8 @@ model FeedStockTransfer {
   fromDepot        String
   toDepot          String
   transerFerDate   String
+  totalKg          Int                @default(0)
+  totalPrice       Int                @default(0)
   createDate       String
   trnasferBill     String             @unique
   createAt         DateTime?          @default(now())
@@ -245,6 +315,7 @@ model TransferFeedItem {
   feedName        String
   createDate      String
   quntity         String
+  price           Int               @default(0)
   tansferId       String
   createdAt       DateTime          @default(now())
   updateAt        DateTime          @default(now())
@@ -252,6 +323,45 @@ model TransferFeedItem {
   feedStckTranfer FeedStockTransfer @relation(fields: [tansferId], references: [trnasferBill])
 
   @@map("transferFeedItem")
+}
+
+model FeedSalesOrder {
+  id            String          @id @default(uuid())
+  branchCode    String
+  depotName     String
+  saleInvoice   String          @unique
+  farmNumber    Int
+  flockNumber   Int
+  createDate    String
+  farmId        String
+  flockId       String
+  totalPrice    Int             @default(0)
+  totalKg       Int             @default(0)
+  depot         Depot           @relation(fields: [depotName], references: [depotName])
+  description   String?
+  status        DeliveryStatus  @default(PENDING)
+  createdAt     DateTime?       @default(now())
+  updateAt      DateTime        @default(now())
+  FeedSalesItem FeedSalesItem[]
+
+  @@index([saleInvoice])
+  @@map("feedSalesOrder")
+}
+
+model FeedSalesItem {
+  id               String           @id @default(uuid())
+  feedName         String
+  salesInvoice     String
+  quantity         Int
+  createDate       String
+  totalPice        Int
+  salesOrder       FeedSalesOrder   @relation(fields: [salesInvoice], references: [saleInvoice], onDelete: Cascade)
+  feedNameCategory FeedNameCategory @relation(fields: [feedName], references: [feedName])
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @default(now())
+
+  @@index([salesInvoice])
+  @@map("feedSalesItem")
 }
 
 model AllGenericMedicin {
@@ -334,7 +444,7 @@ model SellMedicine {
   id            String         @id @default(uuid())
   billNumber    Int            @unique
   farmId        String
-  flockNumer    Int
+  flockId       String
   totalQuantity Int?
   totalPrice    Int?
   Delivery      DeliveryStatus @default(DELIVER)
@@ -345,7 +455,7 @@ model SellMedicine {
   MedicineItem  MedicineItem[]
   branch        Branch         @relation(fields: [branchCode], references: [branchCode], onDelete: Cascade)
   farmer        Farmer         @relation(fields: [farmId], references: [id], onDelete: Cascade)
-  flock         Flock          @relation(fields: [flockNumer], references: [flockNumber], onDelete: Cascade)
+  flock         Flock          @relation(fields: [flockId], references: [id], onDelete: Cascade)
 
   @@index([billNumber])
   @@map("sellMedicine")
@@ -404,7 +514,6 @@ enum Stored {
 }
 
 enum DeliveryStatus {
-  RETURN
-  TRANSFER
+  PENDING
   DELIVER
 }

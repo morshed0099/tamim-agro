@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "feedSalesOrder" ADD COLUMN     "totalKg" INTEGER NOT NULL DEFAULT 0,
+ADD COLUMN     "totalPrice" INTEGER NOT NULL DEFAULT 0;

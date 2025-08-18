@@ -130,9 +130,35 @@ const updateFarmer = async (payload: any, farmId: string) => {
   return result;
 };
 
+const getSpecificFarmer = async (query: any) => {
+  try {
+    const { branchCode, farmCode } = query;
+
+    if (branchCode && farmCode) {
+      const result = await prismaClient.farmer.findFirst({
+        where: {
+          branchCode,
+          farmCode: parseInt(farmCode),
+        },
+        include: {
+          address: true,
+        },
+      });
+
+      return result;
+    }
+
+    return null;
+  } catch (err) {
+    console.error("Error in getSpecificFarmer:", err);
+    throw err;
+  }
+};
+
 export const farmService = {
   createFarm,
   getFarmer,
   getSingleFarmer,
   updateFarmer,
+  getSpecificFarmer,
 };

@@ -11,6 +11,6 @@ router.post(
 
 router.get("/", feedStockTransferControler.getAllFeedTransferDepot);
 router.get("/:id", feedStockTransferControler.getFeedTransferDepotToDepotById);
-router.put("/:id", feedStockTransferControler.editTransfer);
+router.put("/:id", feedStockTransferControler.editTransferg);
 
 export const feedStockTransferRouter = router;

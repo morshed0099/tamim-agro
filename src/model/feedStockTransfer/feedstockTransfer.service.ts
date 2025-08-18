@@ -1,20 +1,6 @@
-import { Console } from "console";
 import prismaClient from "../../helper/prismaClient";
-import { create } from "domain";
-
-type ToldStock = {
-  fromDepot?: string;
-  id: string;
-  feedName: string;
-  stock: number;
-  depotName: string;
-  createDate: string;
-  createdAt: Date | null;
-  updatedAt: Date;
-  branchId: string | null;
-  quantity?: number;
-  toDepot?: string;
-};
+import { Prisma } from "../../generated/prisma";
+import AppError from "../../middileware/AppError";
 
 const createFeedStockTransfer = async (payload: any) => {
   let isvilAvilStok;
@@ -100,6 +86,8 @@ const createFeedStockTransfer = async (payload: any) => {
         trnasferBill: bill,
         fromDepot: payload.fromDepot,
         toDepot: payload.toDepot,
+        totalKg: payload.totalKg,
+        totalPrice: payload.totalPrice,
       },
     });
 
@@ -112,6 +100,7 @@ const createFeedStockTransfer = async (payload: any) => {
           quntity: String(feed.quantity),
           feedName: feed.feedName,
           tansferId: bill,
+          price: feed.totalPrice,
         },
       });
 
@@ -124,6 +113,117 @@ const createFeedStockTransfer = async (payload: any) => {
   }
 };
 
+const getAllDepotFeedTransfer = async (payload: any) => {
+  const { serarchTerm, ...filterData } = payload;
+
+  console.log(serarchTerm);
+  const andCondition: Prisma.FeedStockTransferWhereInput[] = [];
+  const searchFields = ["trnasferBill", "fromDepot", "toDepot"];
+  if (serarchTerm) {
+    andCondition.push({
+      OR: searchFields.map((feilds) => ({
+        [feilds]: {
+          contains: serarchTerm,
+          mode: "insensitive",
+        },
+      })),
+    });
+  }
+
+  if (Object.keys(filterData).length > 0) {
+    andCondition.push({
+      AND: Object.keys(filterData).map((key) => ({
+        [key]: {
+          equals: filterData[key],
+        },
+      })),
+    });
+  }
+  const whereCondition: Prisma.FeedStockTransferWhereInput = {
+    AND: andCondition,
+  };
+
+  const result = await prismaClient.feedStockTransfer.findMany({
+    where: whereCondition,
+  });
+  return result;
+};
+
+const getFeedTransferDepotToDepotById = async (id: string) => {
+  const result = await prismaClient.feedStockTransfer.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      transferFeedItem: true,
+    },
+  });
+
+  return {
+    feedTransfer: result,
+    item: result?.transferFeedItem,
+  };
+};
+
+const deleteById = async (id: string) => {
+  const feedTranser = await prismaClient.feedStockTransfer.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      transferFeedItem: true,
+    },
+  });
+
+  if (!feedTranser?.transferFeedItem) {
+    throw new AppError(400, "feedStransfer not found!!");
+  }
+
+  for (const item of feedTranser?.transferFeedItem) {
+    const result = await prismaClient.$transaction(async (tx) => {
+      await tx.feedStock.update({
+        where: {
+          feedName_depotName: {
+            depotName: feedTranser.fromDepot,
+            feedName: item.feedName,
+          },
+        },
+        data: {
+          stock: {
+            increment: Number(item.quntity),
+          },
+        },
+      });
+      await tx.feedStock.update({
+        where: {
+          feedName_depotName: {
+            depotName: feedTranser.toDepot,
+            feedName: item.feedName,
+          },
+        },
+        data: {
+          stock: {
+            decrement: Number(item.quntity),
+          },
+        },
+      });
+    });
+  }
+  const result = await prismaClient.feedStockTransfer.delete({
+    where: {
+      id,
+    },
+  });
+};
+
+const editTransfer = async (id: string, payload: any) => {
+  console.log("edit");
+};
+
 export const feedStockTransferService = {
   createFeedStockTransfer,
+  getAllDepotFeedTransfer,
+  getFeedTransferDepotToDepotById,
+  deleteById,
+  editTransfer,
 };

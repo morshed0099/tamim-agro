@@ -213,6 +213,48 @@ exports.Prisma.FlockScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.FarmFeedStockScalarFieldEnum = {
+  id: 'id',
+  flockId: 'flockId',
+  feedName: 'feedName',
+  stock: 'stock',
+  createdAt: 'createdAt',
+  updateAt: 'updateAt'
+};
+
+exports.Prisma.ChicksScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  branchCode: 'branchCode',
+  farmNumber: 'farmNumber',
+  farmId: 'farmId',
+  flockId: 'flockId',
+  currentPrice: 'currentPrice',
+  sellPrice: 'sellPrice',
+  quantity: 'quantity',
+  totalPrice: 'totalPrice',
+  createdBy: 'createdBy',
+  description: 'description',
+  createdAt: 'createdAt',
+  updateAt: 'updateAt'
+};
+
+exports.Prisma.BirdSellScalarFieldEnum = {
+  id: 'id',
+  buyerId: 'buyerId',
+  totalQantity: 'totalQantity',
+  totalWeight: 'totalWeight',
+  avgWeight: 'avgWeight',
+  pricePerkg: 'pricePerkg',
+  totalPrice: 'totalPrice',
+  paid: 'paid',
+  farmId: 'farmId',
+  branchCode: 'branchCode',
+  flockId: 'flockId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.FlockReportScalarFieldEnum = {
   id: 'id',
   housedBirds: 'housedBirds',
@@ -267,6 +309,7 @@ exports.Prisma.FeedStockScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   branchId: 'branchId',
+  unitPice: 'unitPice',
   createDate: 'createDate'
 };
 
@@ -275,6 +318,8 @@ exports.Prisma.FeedStockTransferScalarFieldEnum = {
   fromDepot: 'fromDepot',
   toDepot: 'toDepot',
   transerFerDate: 'transerFerDate',
+  totalKg: 'totalKg',
+  totalPrice: 'totalPrice',
   createDate: 'createDate',
   trnasferBill: 'trnasferBill',
   createAt: 'createAt',
@@ -287,9 +332,39 @@ exports.Prisma.TransferFeedItemScalarFieldEnum = {
   feedName: 'feedName',
   createDate: 'createDate',
   quntity: 'quntity',
+  price: 'price',
   tansferId: 'tansferId',
   createdAt: 'createdAt',
   updateAt: 'updateAt'
+};
+
+exports.Prisma.FeedSalesOrderScalarFieldEnum = {
+  id: 'id',
+  branchCode: 'branchCode',
+  depotName: 'depotName',
+  saleInvoice: 'saleInvoice',
+  farmNumber: 'farmNumber',
+  flockNumber: 'flockNumber',
+  createDate: 'createDate',
+  farmId: 'farmId',
+  flockId: 'flockId',
+  totalPrice: 'totalPrice',
+  totalKg: 'totalKg',
+  description: 'description',
+  status: 'status',
+  createdAt: 'createdAt',
+  updateAt: 'updateAt'
+};
+
+exports.Prisma.FeedSalesItemScalarFieldEnum = {
+  id: 'id',
+  feedName: 'feedName',
+  salesInvoice: 'salesInvoice',
+  quantity: 'quantity',
+  createDate: 'createDate',
+  totalPice: 'totalPice',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.AllGenericMedicinScalarFieldEnum = {
@@ -348,7 +423,7 @@ exports.Prisma.SellMedicineScalarFieldEnum = {
   id: 'id',
   billNumber: 'billNumber',
   farmId: 'farmId',
-  flockNumer: 'flockNumer',
+  flockId: 'flockId',
   totalQuantity: 'totalQuantity',
   totalPrice: 'totalPrice',
   Delivery: 'Delivery',
@@ -415,15 +490,14 @@ exports.FlockStatus = exports.$Enums.FlockStatus = {
   CLOSED: 'CLOSED'
 };
 
+exports.DeliveryStatus = exports.$Enums.DeliveryStatus = {
+  PENDING: 'PENDING',
+  DELIVER: 'DELIVER'
+};
+
 exports.Stored = exports.$Enums.Stored = {
   FACTORY: 'FACTORY',
   DEPOT: 'DEPOT'
-};
-
-exports.DeliveryStatus = exports.$Enums.DeliveryStatus = {
-  RETURN: 'RETURN',
-  TRANSFER: 'TRANSFER',
-  DELIVER: 'DELIVER'
 };
 
 exports.Prisma.ModelName = {
@@ -434,11 +508,16 @@ exports.Prisma.ModelName = {
   BranchEmployeeHistory: 'BranchEmployeeHistory',
   Employee: 'Employee',
   Flock: 'Flock',
+  FarmFeedStock: 'FarmFeedStock',
+  Chicks: 'Chicks',
+  BirdSell: 'BirdSell',
   FlockReport: 'FlockReport',
   FeedNameCategory: 'FeedNameCategory',
   FeedStock: 'FeedStock',
   FeedStockTransfer: 'FeedStockTransfer',
   TransferFeedItem: 'TransferFeedItem',
+  FeedSalesOrder: 'FeedSalesOrder',
+  FeedSalesItem: 'FeedSalesItem',
   AllGenericMedicin: 'AllGenericMedicin',
   MedicineNameAdd: 'MedicineNameAdd',
   MedicinePurchess: 'MedicinePurchess',

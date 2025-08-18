@@ -11,6 +11,8 @@ import { feedCategoryRouter } from "../model/feedCateogy/feedCategory.router";
 import { feedStockRouter } from "../model/feedStock/feedStock.router";
 import { feedStockTransferRouter } from "../model/feedStockTransfer/feedStockTransfer.router";
 import { feedSalesOrderRouter } from "../model/feedSalesOrder/salesOder.router";
+import { chicksSellRouter } from "../model/chikcsSales/chicksSales.router";
+import { feedSaleItemRouter } from "../model/feedSlaesItem/feedSalesItem.router";
 
 const router = Router();
 
@@ -62,6 +64,14 @@ const moduleRouter = [
   {
     path: "/feedsales",
     route: feedSalesOrderRouter,
+  },
+  {
+    path: "/chicks",
+    route: chicksSellRouter,
+  },
+  {
+    path: "/feed-sales-item",
+    route: feedSaleItemRouter,
   },
 ];
 
