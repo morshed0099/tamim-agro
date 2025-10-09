@@ -3,6 +3,7 @@ import cors from "cors";
 import notFound from "./middileware/notFound";
 import globalError from "./middileware/globalError";
 import router from "./router";
+import { cronJob, startCronJobs } from "./helper/cronJob";
 const app: Application = express();
 
 app.use(express.json());

@@ -1,6 +1,8 @@
+import { Prisma } from "../../generated/prisma";
 import prismaClient from "../../helper/prismaClient";
 
 const createFeedStock = async (payload: any) => {
+  payload.createDate = new Date(payload.createDate);
   const results = [];
   for (const itm of payload.item) {
     const findOldQuntity = await prismaClient.feedStock.findFirst({
@@ -9,7 +11,7 @@ const createFeedStock = async (payload: any) => {
       },
     });
     if (findOldQuntity) {
-      const newQuntity = findOldQuntity.stock + parseInt(itm.quntity);
+      const newQuntity = findOldQuntity.stock + parseInt(itm.quantity);
       const result = await prismaClient.feedStock.update({
         where: {
           id: findOldQuntity.id,
@@ -22,8 +24,8 @@ const createFeedStock = async (payload: any) => {
     } else {
       const result = await prismaClient.feedStock.create({
         data: {
-          createDate: payload?.createDate,
-          stock: itm.quntity,
+          createAt: payload?.createDate,
+          stock: itm.quantity,
           feedName: itm.feedName,
           depotName: payload?.depotName,
         },
@@ -44,22 +46,17 @@ const deleteFeedStock = async (id: string) => {
 
 const getFeedStock = async (query: any) => {
   const { feedName, depotName } = query;
-  try {
-    if (feedName && depotName) {
-      const result = await prismaClient.feedStock.findFirst({
-        where: {
-          depotName: depotName,
-          feedName: {
-            contains: feedName,
-            mode: "insensitive",
-          },
+  if (feedName && depotName) {
+    const result = await prismaClient.feedStock.findMany({
+      where: {
+        depotName: depotName,
+        feedName: {
+          contains: feedName,
+          mode: "insensitive",
         },
-      });
-      return result;
-    }
-    return null;
-  } catch (error) {
-    console.log(error);
+      },
+    });
+    return result;
   }
 };
 

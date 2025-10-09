@@ -37,7 +37,7 @@ const createFarm = async (payload: any) => {
         totalSquare: payload.totalSquare,
         capacity: payload.capacity,
         nid: payload.nid,
-        createDate: payload.createDate,
+        createDate: new Date(payload.createDate),
       },
     });
     return {

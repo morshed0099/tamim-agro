@@ -13,8 +13,9 @@ const createSalesOrder = catchAsync(async (req, res) => {
 });
 
 const salesOrderPosting = catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const result = await feedSalesOrderService.salesOrderPosting(id);
+  const updateData = req.body;
+
+  const result = await feedSalesOrderService.salesOrderPosting(updateData);
 
   res.status(httpStatus.OK).json({
     success: true,
@@ -34,7 +35,7 @@ const deleteSalesOder = catchAsync(async (req, res) => {
 });
 
 const updateSalesOrder = catchAsync(async (req, res) => {
-  console.log('hiii')
+  console.log("hiii");
   const { id } = req.params;
   const updateData = req.body;
   const result = await feedSalesOrderService.updateSalesOrder(id, updateData);

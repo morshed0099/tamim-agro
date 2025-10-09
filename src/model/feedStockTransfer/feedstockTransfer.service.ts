@@ -1,70 +1,15 @@
 import prismaClient from "../../helper/prismaClient";
-import { Prisma } from "../../generated/prisma";
+import { DeliveryStatus, Prisma } from "../../generated/prisma";
 import AppError from "../../middileware/AppError";
 
 const createFeedStockTransfer = async (payload: any) => {
-  let isvilAvilStok;
-
-  for (const feed of payload.item) {
-    isvilAvilStok = await prismaClient.feedStock.findUnique({
-      where: {
-        feedName_depotName: {
-          feedName: feed.feedName,
-          depotName: payload.fromDepot,
-        },
-        stock: {
-          gte: feed.quantity,
-        },
-      },
-    });
-    if (!isvilAvilStok) {
-      return { message: "depot feed quantity no sufficient" };
-    }
-  }
-  let updateStock;
-  let createStock;
-  for (const feed of payload.item) {
-    const result = await prismaClient.$transaction(async (tx) => {
-      updateStock = await tx.feedStock.update({
-        where: {
-          feedName_depotName: {
-            feedName: feed.feedName,
-            depotName: payload.fromDepot,
-          },
-        },
-        data: {
-          stock: {
-            decrement: feed.quantity,
-          },
-        },
-      });
-
-      createStock = await tx.feedStock.upsert({
-        where: {
-          feedName_depotName: {
-            feedName: feed.feedName,
-            depotName: payload.toDepot,
-          },
-        },
-        update: {
-          stock: {
-            increment: feed.quantity!,
-          },
-        },
-        create: {
-          createDate: payload.createDate,
-          depotName: payload.toDepot,
-          stock: feed.quantity,
-          feedName: feed.feedName,
-        },
-      });
-      return { updateStock, createStock };
-    });
+  if (payload.toDepot == payload.fromDepot) {
+    throw new AppError(400, "from depot and to depot name same ");
   }
   let bill;
   const oldBil = await prismaClient.feedStockTransfer.findFirst({
     orderBy: {
-      createAt: "desc",
+      updateAt: "desc",
     },
   });
 
@@ -76,41 +21,37 @@ const createFeedStockTransfer = async (payload: any) => {
     bill = "FST-" + "000" + last;
   }
 
-  let feedTransfer;
-
-  if (updateStock && createStock) {
-    feedTransfer = await prismaClient.feedStockTransfer.create({
+  const createTransfer = await prismaClient.feedStockTransfer.create({
+    data: {
+      createAt: new Date(payload.createAt),
+      trnasferBill: bill,
+      fromDepot: payload.fromDepot,
+      toDepot: payload.toDepot,
+      totalPrice: payload.totalPrice,
+      totalQuantity: payload.totalQuantity,
+    },
+  });
+  for (const itm of payload.item) {
+    await prismaClient.transferFeedItem.create({
       data: {
-        createDate: payload.createDate,
-        transerFerDate: payload.createDate,
-        trnasferBill: bill,
-        fromDepot: payload.fromDepot,
-        toDepot: payload.toDepot,
-        totalKg: payload.totalKg,
-        totalPrice: payload.totalPrice,
+        createDate: new Date(payload.createAt),
+        quantity: itm.quantity,
+        createdAt: new Date(payload.createAt),
+        feedName: itm.feedName,
+        price: itm.price,
+        tansferId: bill,
       },
     });
-
-    let feedItem = [];
-
-    for (const feed of payload.item) {
-      const item = await prismaClient.transferFeedItem.create({
-        data: {
-          createDate: payload.createDate,
-          quntity: String(feed.quantity),
-          feedName: feed.feedName,
-          tansferId: bill,
-          price: feed.totalPrice,
-        },
-      });
-
-      feedItem.push(item);
-    }
-    return {
-      feedTransfer,
-      item: feedItem,
-    };
   }
+  const result = await prismaClient.feedStockTransfer.findUnique({
+    where: {
+      id: createTransfer.id,
+    },
+    include: {
+      transferFeedItem: true,
+    },
+  });
+  return result;
 };
 
 const getAllDepotFeedTransfer = async (payload: any) => {
@@ -190,7 +131,7 @@ const deleteById = async (id: string) => {
         },
         data: {
           stock: {
-            increment: Number(item.quntity),
+            increment: Number(item.quantity),
           },
         },
       });
@@ -203,7 +144,7 @@ const deleteById = async (id: string) => {
         },
         data: {
           stock: {
-            decrement: Number(item.quntity),
+            decrement: Number(item.quantity),
           },
         },
       });
@@ -217,7 +158,133 @@ const deleteById = async (id: string) => {
 };
 
 const editTransfer = async (id: string, payload: any) => {
-  console.log("edit");
+  const transferold = await prismaClient.feedStockTransfer.findUnique({
+    where: {
+      id,
+    },
+  });
+  if (!transferold) {
+    throw new AppError(400, "transfer order not found!!");
+  }
+  const bill = transferold.trnasferBill;
+  const delteOld = await prismaClient.feedStockTransfer.delete({
+    where: {
+      id,
+    },
+  });
+
+  const createTransfer = await prismaClient.feedStockTransfer.create({
+    data: {
+      createAt: new Date(payload.createAt),
+      trnasferBill: bill,
+      id,
+      fromDepot: payload.fromDepot,
+      totalPrice: payload.totalPrice,
+      toDepot: payload.toDepot,
+      totalQuantity: payload.totalQuantity,
+    },
+  });
+  for (const itm of payload.item) {
+    const createItem = await prismaClient.transferFeedItem.create({
+      data: {
+        createDate: new Date(payload.createAt),
+        quantity: itm.quantity,
+        createdAt: new Date(payload.createAt),
+        feedName: itm.feedName,
+        tansferId: bill,
+        price: itm.price,
+        unitPrice: itm.unitPrice,
+      },
+    });
+  }
+  const result = await prismaClient.feedStockTransfer.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      transferFeedItem: true,
+    },
+  });
+  return result;
+};
+
+const postingFeedStockTransfer = async (payload: any) => {
+  console.log(payload.deliverDate);
+  const findTransferOrder = await prismaClient.feedStockTransfer.findUnique({
+    where: {
+      id: payload.rowId,
+    },
+    include: {
+      transferFeedItem: true,
+    },
+  });
+  if (!findTransferOrder) {
+    throw new AppError(400, "feed Stock transfer not forund");
+  }
+
+  const result = await prismaClient.$transaction(async (tx) => {
+    for (const item of findTransferOrder.transferFeedItem) {
+      const stockCheck = await tx.feedStock.findUnique({
+        where: {
+          depotName_feedName: {
+            depotName: findTransferOrder.fromDepot,
+            feedName: item.feedName,
+          },
+        },
+      });
+      if (!stockCheck || stockCheck.stock < item.quantity) {
+        throw new AppError(400, "feed stock quantity and feed not avileable");
+      }
+      await tx.feedStock.upsert({
+        where: {
+          depotName_feedName: {
+            depotName: findTransferOrder.toDepot,
+            feedName: item.feedName,
+          },
+        },
+        update: {
+          stock: {
+            increment: item.quantity,
+          },
+        },
+        create: {
+          createAt: new Date(payload.deliverDate),
+          stock: item.quantity,
+          depotName: findTransferOrder.toDepot,
+          feedName: item.feedName,
+          unitPrice: item.unitPrice,
+        },
+      });
+      await tx.feedStock.update({
+        where: {
+          depotName_feedName: {
+            depotName: findTransferOrder.fromDepot,
+            feedName: item.feedName,
+          },
+        },
+        data: {
+          stock: {
+            decrement: item.quantity,
+          },
+        },
+      });
+    }
+
+    const final = await tx.feedStockTransfer.update({
+      where: {
+        id: findTransferOrder.id,
+      },
+      data: {
+        status: DeliveryStatus.DELIVER,
+        deliveryDate: new Date(payload.deliverDate),
+      },
+      include: {
+        transferFeedItem: true,
+      },
+    });
+    return final;
+  });
+  return result;
 };
 
 export const feedStockTransferService = {
@@ -226,4 +293,5 @@ export const feedStockTransferService = {
   getFeedTransferDepotToDepotById,
   deleteById,
   editTransfer,
+  postingFeedStockTransfer,
 };

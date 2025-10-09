@@ -8,11 +8,15 @@ import { farmRouter } from "../model/farmar/farmar.router";
 import { branchAssinEmployeeRouter } from "../model/branceAssinEmployee/branceAssinEmployee.service";
 import { depotRouter } from "../model/depot/depot.router";
 import { feedCategoryRouter } from "../model/feedCateogy/feedCategory.router";
-import { feedStockRouter } from "../model/feedStock/feedStock.router";
 import { feedStockTransferRouter } from "../model/feedStockTransfer/feedStockTransfer.router";
 import { feedSalesOrderRouter } from "../model/feedSalesOrder/salesOder.router";
 import { chicksSellRouter } from "../model/chikcsSales/chicksSales.router";
 import { feedSaleItemRouter } from "../model/feedSlaesItem/feedSalesItem.router";
+import { feedReturnRouter } from "../model/feedSalesRetun/feedReturn.router";
+import { birdsSalesRouter } from "../model/birdsSles/birdsSales.router";
+import { feedStockRepotRouter } from "../model/feedStockRepot/feedStockReport.router";
+import { feedAddStockRouter } from "../model/feedAddStock/feedAddStock.router";
+import { feedStockRouter } from "../model/feedStock/feedStock.router";
 
 const router = Router();
 
@@ -72,6 +76,22 @@ const moduleRouter = [
   {
     path: "/feed-sales-item",
     route: feedSaleItemRouter,
+  },
+  {
+    path: "/feed-return",
+    route: feedReturnRouter,
+  },
+  {
+    path: "/birds",
+    route: birdsSalesRouter,
+  },
+  {
+    path: "/feed-stock-repot",
+    route: feedStockRepotRouter,
+  },
+  {
+    path: "/add-stock",
+    route: feedAddStockRouter,
   },
 ];
 

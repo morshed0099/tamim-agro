@@ -9,6 +9,9 @@ const createSalesOrder = async (payload: any) => {
       farmCode: Number(payload.farmCode),
     },
   });
+  if (!farm) {
+    throw new AppError(400, "farmer not found");
+  }
   payload.farmId = farm?.id;
 
   const flock = await prismaClient.flock.findFirst({
@@ -17,6 +20,9 @@ const createSalesOrder = async (payload: any) => {
       flockStatus: FlockStatus.RUNNING,
     },
   });
+  if (!flock) {
+    throw new AppError(400, "flock is not found");
+  }
 
   payload.flockId = flock?.id;
   payload.flockNumber = flock?.flockNumber;
@@ -41,28 +47,28 @@ const createSalesOrder = async (payload: any) => {
     const order = await tx.feedSalesOrder.create({
       data: {
         branchCode: payload.branchCode,
-        createDate: payload.createDate,
+        createdAt: new Date(payload.createAt),
         farmId: payload.farmId,
         farmNumber: Number(payload.farmCode),
-        flockId: payload.flockId,
         flockNumber: payload.flockNumber,
         saleInvoice: invoice,
-        totalKg: Number(payload.totalKg),
-        totalPrice: Number(payload.totalprice),
+        totalQuantity: Number(payload.totalQuantiy),
+        totalPrice: Number(payload.totalPrice),
         depot: {
           connect: {
             depotName: payload.depotName,
           },
         },
+        flock: { connect: { id: flock?.id } },
       },
     });
 
     for (const itm of payload.item) {
       const feedItem = await tx.feedSalesItem.create({
         data: {
-          createDate: payload.createDate,
+          createdAt: new Date(payload.createAt),
           quantity: Number(itm.quantity),
-          totalPice: Number(itm.price),
+          price: Number(itm.price),
           feedName: itm.feedName,
           salesInvoice: invoice,
         },
@@ -83,91 +89,63 @@ const createSalesOrder = async (payload: any) => {
   return salesOrder;
 };
 
-const salesOrderPosting = async (id: string) => {
-  const salesorder = await prismaClient.feedSalesOrder.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      FeedSalesItem: true,
-    },
+const salesOrderPosting = async (updateData: any) => {
+  const salesOrder = await prismaClient.feedSalesOrder.findUnique({
+    where: { id: updateData.id },
+    include: { FeedSalesItem: true },
   });
-  if (!salesorder) {
-    throw new AppError(400, "sales order not found");
-  }
 
-  let stockUpdae = [];
-  let stockAdd = [];
-  for (const order of salesorder.FeedSalesItem) {
-    const checkStock = await prismaClient.feedStock.findUnique({
-      where: {
-        feedName_depotName: {
-          feedName: order.feedName,
-          depotName: salesorder.depotName,
+  if (!salesOrder) throw new AppError(400, "Sales order not found");
+
+  await prismaClient.$transaction(async (prisma) => {
+    for (const item of salesOrder.FeedSalesItem) {
+      // Find stock for depot + feedName + date
+      const stocks = await prisma.feedStock.findUnique({
+        where: {
+          depotName_feedName: {
+            depotName: salesOrder.depotName,
+            feedName: item.feedName,
+          },
         },
-      },
-    });
+      });
 
-    if (!checkStock) {
-      throw new AppError(400, "feed stock not found");
+      if (!stocks) {
+        throw new AppError(
+          400,
+          `No stock history found for ${item.feedName} at ${salesOrder.depotName} on ${updateData.deliverDate}`
+        );
+      }
+
+      if (stocks.stock < item.quantity) {
+        throw new AppError(
+          400,
+          `Stock not enough for ${item.feedName}. Available: ${stocks.stock}, Requested: ${item.quantity}`
+        );
+      }
+
+      // Update stock history
+      await prisma.feedStock.update({
+        where: { id: stocks.id },
+        data: {
+          stock: { decrement: item.quantity },
+          updateAt: new Date(),
+        },
+      });
     }
 
-    if (checkStock?.stock < order.quantity) {
-      throw new AppError(400, "feed stock is less then the sales order ");
-    }
+    // Update sales order status
+    await prisma.feedSalesOrder.update({
+      where: { id: salesOrder.id },
 
-    const decrimentStock = await prismaClient.feedStock.update({
-      where: {
-        feedName_depotName: {
-          feedName: order.feedName,
-          depotName: salesorder.depotName,
-        },
-      },
       data: {
-        stock: {
-          decrement: order.quantity,
-        },
+        status: "DELIVER",
+        updateAt: new Date(),
+        deliveryDate: new Date(updateData.deliverDate),
       },
     });
-    stockUpdae.push(decrimentStock);
-    const farmStockIcrement = await prismaClient.farmFeedStock.upsert({
-      where: {
-        flockId_feedName: {
-          feedName: order.feedName,
-          flockId: salesorder.flockId,
-        },
-      },
-      create: {
-        feedName: order.feedName,
-        flockId: salesorder.flockId,
-        stock: order.quantity,
-      },
-      update: {
-        stock: {
-          increment: order.quantity,
-        },
-      },
-    });
-    stockAdd.push(farmStockIcrement);
-  }
-
-  const updateStatus = await prismaClient.feedSalesOrder.update({
-    where: {
-      id,
-    },
-    data: {
-      status: DeliveryStatus.DELIVER,
-    },
   });
-  if (!stockAdd && !stockUpdae) {
-    return { message: "not sotck updated successfully " };
-  }
 
-  return {
-    updateStatus,
-    stockAdd,
-    stockUpdae,
-  };
+  return { message: "Sales order delivered successfully" };
 };
 
 const deleteSaleOder = async (id: string) => {
@@ -302,59 +280,78 @@ const getSingleSalesOrder = async (id: string) => {
 const updateSalesOrder = async (id: string, updateData: any) => {
   const { id: orderId, ...updateEle } = updateData;
 
-  console.log(updateEle);
-
-  const farm = await prismaClient.farmer.findFirst({
+  const findFarm = await prismaClient.farmer.findFirst({
     where: {
-      farmCode: Number(updateEle.farmCode),
       branchCode: updateData.branchCode,
+      farmCode: updateData.farmCode,
     },
   });
 
-  console.log(farm);
-  updateEle.farmId = farm?.id;
+  if (!findFarm) {
+    throw new AppError(400, "farm is not found");
+  }
 
   const flock = await prismaClient.flock.findFirst({
     where: {
-      farmId: farm?.id,
+      farmId: findFarm.id,
       flockStatus: FlockStatus.RUNNING,
     },
   });
 
-  updateEle.flockNumber = flock?.flockNumber;
-  updateEle.flockId = flock?.id;
-
-  const oldSalesOrder = await prismaClient.feedSalesOrder.findFirst({
-    where: {
-      saleInvoice: updateEle.saleInvoice,
-    },
-  });
-
-  if (oldSalesOrder?.status == DeliveryStatus.DELIVER) {
-    throw new AppError(400, "sales order alredy posting you can't update ");
+  if (!flock) {
+    throw new AppError(400, "flock is not found");
   }
 
-  const salesOrder = await prismaClient.feedSalesOrder.update({
+  const findSles = await prismaClient.feedSalesOrder.findUnique({
     where: {
       id,
     },
+  });
+
+  if (!findSles) {
+    throw new AppError(400, "sales order not found");
+  }
+
+  const invoice = findSles.saleInvoice;
+  const salesId = findSles.id;
+
+  const deleteOld = await prismaClient.feedSalesOrder.delete({
+    where: {
+      id,
+    },
+  });
+  const createSales = await prismaClient.feedSalesOrder.create({
     data: {
-      branchCode: updateEle.branchCode,
-      createDate: updateEle.createDate,
-      depotName: updateEle.depotName,
-      farmId: farm?.id,
-      farmNumber: farm?.farmCode,
-      flockId: flock?.id,
-      flockNumber: flock?.flockNumber,
-      saleInvoice: updateEle.saleInvoice,
-      totalKg: updateEle.totalKg,
-      totalPrice: updateEle.totalPrice,
+      branchCode: updateData.branchCode,
+      createdAt: new Date(updateData.createAt),
+      farmId: findFarm.id,
+      farmNumber: updateData.farmCode,
+      flockNumber: flock.flockNumber,
+      saleInvoice: invoice,
+      id: salesId,
+      depotName: updateData.depotName,
+      flockId: flock.id,
+    },
+  });
+  for (const itm of updateData.item) {
+    await prismaClient.feedSalesItem.create({
+      data: {
+        createdAt: new Date(updateData.createAt),
+        price: itm.price,
+        quantity: itm.quantity,
+        feedName: itm.feedName,
+        salesInvoice: invoice,
+      },
+    });
+  }
+  const salesOrder = await prismaClient.feedSalesOrder.findUnique({
+    where: {
+      id: salesId,
     },
     include: {
       FeedSalesItem: true,
     },
   });
-
   return salesOrder;
 };
 

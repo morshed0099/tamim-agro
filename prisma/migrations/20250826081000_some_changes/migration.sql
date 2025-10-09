@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "feedStockHistory" ADD COLUMN     "addStock" INTEGER NOT NULL DEFAULT 0,
+ADD COLUMN     "recive" INTEGER NOT NULL DEFAULT 0;

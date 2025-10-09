@@ -51,9 +51,22 @@ const editTransfer = catchAsync(async (req, res) => {
   });
 });
 
+const postingFeedStockTransfer = catchAsync(async (req, res) => {
+  const postingData = req.body;
+  const result = await feedStockTransferService.postingFeedStockTransfer(
+    postingData
+  );
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "feed stock transfer posting successfully",
+    data: result,
+  });
+});
+
 export const feedStockTransferControler = {
   createFeedStockTransfer,
   getAllFeedTransferDepot,
   getFeedTransferDepotToDepotById,
+  postingFeedStockTransfer,
   editTransfer,
 };

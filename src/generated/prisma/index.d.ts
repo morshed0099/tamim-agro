@@ -79,6 +79,26 @@ export type FeedNameCategory = $Result.DefaultSelection<Prisma.$FeedNameCategory
  */
 export type FeedStock = $Result.DefaultSelection<Prisma.$FeedStockPayload>
 /**
+ * Model AddStock
+ * 
+ */
+export type AddStock = $Result.DefaultSelection<Prisma.$AddStockPayload>
+/**
+ * Model AddStockItem
+ * 
+ */
+export type AddStockItem = $Result.DefaultSelection<Prisma.$AddStockItemPayload>
+/**
+ * Model FeedStockHistory
+ * 
+ */
+export type FeedStockHistory = $Result.DefaultSelection<Prisma.$FeedStockHistoryPayload>
+/**
+ * Model feedTransActionHeader
+ * 
+ */
+export type feedTransActionHeader = $Result.DefaultSelection<Prisma.$feedTransActionHeaderPayload>
+/**
  * Model FeedStockTransfer
  * 
  */
@@ -98,6 +118,16 @@ export type FeedSalesOrder = $Result.DefaultSelection<Prisma.$FeedSalesOrderPayl
  * 
  */
 export type FeedSalesItem = $Result.DefaultSelection<Prisma.$FeedSalesItemPayload>
+/**
+ * Model FeedRetun
+ * 
+ */
+export type FeedRetun = $Result.DefaultSelection<Prisma.$FeedRetunPayload>
+/**
+ * Model RetunFeedItem
+ * 
+ */
+export type RetunFeedItem = $Result.DefaultSelection<Prisma.$RetunFeedItemPayload>
 /**
  * Model AllGenericMedicin
  * 
@@ -143,7 +173,26 @@ export type MedicineTransfer = $Result.DefaultSelection<Prisma.$MedicineTransfer
  * Enums
  */
 export namespace $Enums {
-  export const FlockStatus: {
+  export const Source: {
+  FACTORY: 'FACTORY',
+  PURCHESS: 'PURCHESS'
+};
+
+export type Source = (typeof Source)[keyof typeof Source]
+
+
+export const TransactionType: {
+  RETURN: 'RETURN',
+  SALES: 'SALES',
+  TRANSFERIN: 'TRANSFERIN',
+  TRANSFEROUT: 'TRANSFEROUT',
+  INITIAL: 'INITIAL'
+};
+
+export type TransactionType = (typeof TransactionType)[keyof typeof TransactionType]
+
+
+export const FlockStatus: {
   PENDING: 'PENDING',
   RUNNING: 'RUNNING',
   CLOSED: 'CLOSED'
@@ -180,12 +229,21 @@ export type Stored = (typeof Stored)[keyof typeof Stored]
 
 export const DeliveryStatus: {
   PENDING: 'PENDING',
-  DELIVER: 'DELIVER'
+  DELIVER: 'DELIVER',
+  CANCEL: 'CANCEL'
 };
 
 export type DeliveryStatus = (typeof DeliveryStatus)[keyof typeof DeliveryStatus]
 
 }
+
+export type Source = $Enums.Source
+
+export const Source: typeof $Enums.Source
+
+export type TransactionType = $Enums.TransactionType
+
+export const TransactionType: typeof $Enums.TransactionType
 
 export type FlockStatus = $Enums.FlockStatus
 
@@ -463,6 +521,46 @@ export class PrismaClient<
   get feedStock(): Prisma.FeedStockDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.addStock`: Exposes CRUD operations for the **AddStock** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AddStocks
+    * const addStocks = await prisma.addStock.findMany()
+    * ```
+    */
+  get addStock(): Prisma.AddStockDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.addStockItem`: Exposes CRUD operations for the **AddStockItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AddStockItems
+    * const addStockItems = await prisma.addStockItem.findMany()
+    * ```
+    */
+  get addStockItem(): Prisma.AddStockItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.feedStockHistory`: Exposes CRUD operations for the **FeedStockHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FeedStockHistories
+    * const feedStockHistories = await prisma.feedStockHistory.findMany()
+    * ```
+    */
+  get feedStockHistory(): Prisma.FeedStockHistoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.feedTransActionHeader`: Exposes CRUD operations for the **feedTransActionHeader** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FeedTransActionHeaders
+    * const feedTransActionHeaders = await prisma.feedTransActionHeader.findMany()
+    * ```
+    */
+  get feedTransActionHeader(): Prisma.feedTransActionHeaderDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.feedStockTransfer`: Exposes CRUD operations for the **FeedStockTransfer** model.
     * Example usage:
     * ```ts
@@ -501,6 +599,26 @@ export class PrismaClient<
     * ```
     */
   get feedSalesItem(): Prisma.FeedSalesItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.feedRetun`: Exposes CRUD operations for the **FeedRetun** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FeedRetuns
+    * const feedRetuns = await prisma.feedRetun.findMany()
+    * ```
+    */
+  get feedRetun(): Prisma.FeedRetunDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.retunFeedItem`: Exposes CRUD operations for the **RetunFeedItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RetunFeedItems
+    * const retunFeedItems = await prisma.retunFeedItem.findMany()
+    * ```
+    */
+  get retunFeedItem(): Prisma.RetunFeedItemDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.allGenericMedicin`: Exposes CRUD operations for the **AllGenericMedicin** model.
@@ -1034,10 +1152,16 @@ export namespace Prisma {
     FlockReport: 'FlockReport',
     FeedNameCategory: 'FeedNameCategory',
     FeedStock: 'FeedStock',
+    AddStock: 'AddStock',
+    AddStockItem: 'AddStockItem',
+    FeedStockHistory: 'FeedStockHistory',
+    feedTransActionHeader: 'feedTransActionHeader',
     FeedStockTransfer: 'FeedStockTransfer',
     TransferFeedItem: 'TransferFeedItem',
     FeedSalesOrder: 'FeedSalesOrder',
     FeedSalesItem: 'FeedSalesItem',
+    FeedRetun: 'FeedRetun',
+    RetunFeedItem: 'RetunFeedItem',
     AllGenericMedicin: 'AllGenericMedicin',
     MedicineNameAdd: 'MedicineNameAdd',
     MedicinePurchess: 'MedicinePurchess',
@@ -1064,7 +1188,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "branch" | "depot" | "farmer" | "address" | "branchEmployeeHistory" | "employee" | "flock" | "farmFeedStock" | "chicks" | "birdSell" | "flockReport" | "feedNameCategory" | "feedStock" | "feedStockTransfer" | "transferFeedItem" | "feedSalesOrder" | "feedSalesItem" | "allGenericMedicin" | "medicineNameAdd" | "medicinePurchess" | "medicineStock" | "medicineItem" | "sellMedicine" | "stockTransfer" | "medicineTransfer"
+      modelProps: "branch" | "depot" | "farmer" | "address" | "branchEmployeeHistory" | "employee" | "flock" | "farmFeedStock" | "chicks" | "birdSell" | "flockReport" | "feedNameCategory" | "feedStock" | "addStock" | "addStockItem" | "feedStockHistory" | "feedTransActionHeader" | "feedStockTransfer" | "transferFeedItem" | "feedSalesOrder" | "feedSalesItem" | "feedRetun" | "retunFeedItem" | "allGenericMedicin" | "medicineNameAdd" | "medicinePurchess" | "medicineStock" | "medicineItem" | "sellMedicine" | "stockTransfer" | "medicineTransfer"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2030,6 +2154,302 @@ export namespace Prisma {
           }
         }
       }
+      AddStock: {
+        payload: Prisma.$AddStockPayload<ExtArgs>
+        fields: Prisma.AddStockFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AddStockFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AddStockFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockPayload>
+          }
+          findFirst: {
+            args: Prisma.AddStockFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AddStockFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockPayload>
+          }
+          findMany: {
+            args: Prisma.AddStockFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockPayload>[]
+          }
+          create: {
+            args: Prisma.AddStockCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockPayload>
+          }
+          createMany: {
+            args: Prisma.AddStockCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AddStockCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockPayload>[]
+          }
+          delete: {
+            args: Prisma.AddStockDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockPayload>
+          }
+          update: {
+            args: Prisma.AddStockUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockPayload>
+          }
+          deleteMany: {
+            args: Prisma.AddStockDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AddStockUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AddStockUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockPayload>[]
+          }
+          upsert: {
+            args: Prisma.AddStockUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockPayload>
+          }
+          aggregate: {
+            args: Prisma.AddStockAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAddStock>
+          }
+          groupBy: {
+            args: Prisma.AddStockGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AddStockGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AddStockCountArgs<ExtArgs>
+            result: $Utils.Optional<AddStockCountAggregateOutputType> | number
+          }
+        }
+      }
+      AddStockItem: {
+        payload: Prisma.$AddStockItemPayload<ExtArgs>
+        fields: Prisma.AddStockItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AddStockItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AddStockItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockItemPayload>
+          }
+          findFirst: {
+            args: Prisma.AddStockItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AddStockItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockItemPayload>
+          }
+          findMany: {
+            args: Prisma.AddStockItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockItemPayload>[]
+          }
+          create: {
+            args: Prisma.AddStockItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockItemPayload>
+          }
+          createMany: {
+            args: Prisma.AddStockItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AddStockItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockItemPayload>[]
+          }
+          delete: {
+            args: Prisma.AddStockItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockItemPayload>
+          }
+          update: {
+            args: Prisma.AddStockItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.AddStockItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AddStockItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AddStockItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.AddStockItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddStockItemPayload>
+          }
+          aggregate: {
+            args: Prisma.AddStockItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAddStockItem>
+          }
+          groupBy: {
+            args: Prisma.AddStockItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AddStockItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AddStockItemCountArgs<ExtArgs>
+            result: $Utils.Optional<AddStockItemCountAggregateOutputType> | number
+          }
+        }
+      }
+      FeedStockHistory: {
+        payload: Prisma.$FeedStockHistoryPayload<ExtArgs>
+        fields: Prisma.FeedStockHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FeedStockHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FeedStockHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.FeedStockHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FeedStockHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.FeedStockHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.FeedStockHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.FeedStockHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FeedStockHistoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockHistoryPayload>[]
+          }
+          delete: {
+            args: Prisma.FeedStockHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockHistoryPayload>
+          }
+          update: {
+            args: Prisma.FeedStockHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.FeedStockHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FeedStockHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FeedStockHistoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockHistoryPayload>[]
+          }
+          upsert: {
+            args: Prisma.FeedStockHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedStockHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.FeedStockHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFeedStockHistory>
+          }
+          groupBy: {
+            args: Prisma.FeedStockHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FeedStockHistoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FeedStockHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<FeedStockHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      feedTransActionHeader: {
+        payload: Prisma.$feedTransActionHeaderPayload<ExtArgs>
+        fields: Prisma.feedTransActionHeaderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.feedTransActionHeaderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$feedTransActionHeaderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.feedTransActionHeaderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$feedTransActionHeaderPayload>
+          }
+          findFirst: {
+            args: Prisma.feedTransActionHeaderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$feedTransActionHeaderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.feedTransActionHeaderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$feedTransActionHeaderPayload>
+          }
+          findMany: {
+            args: Prisma.feedTransActionHeaderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$feedTransActionHeaderPayload>[]
+          }
+          create: {
+            args: Prisma.feedTransActionHeaderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$feedTransActionHeaderPayload>
+          }
+          createMany: {
+            args: Prisma.feedTransActionHeaderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.feedTransActionHeaderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$feedTransActionHeaderPayload>[]
+          }
+          delete: {
+            args: Prisma.feedTransActionHeaderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$feedTransActionHeaderPayload>
+          }
+          update: {
+            args: Prisma.feedTransActionHeaderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$feedTransActionHeaderPayload>
+          }
+          deleteMany: {
+            args: Prisma.feedTransActionHeaderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.feedTransActionHeaderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.feedTransActionHeaderUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$feedTransActionHeaderPayload>[]
+          }
+          upsert: {
+            args: Prisma.feedTransActionHeaderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$feedTransActionHeaderPayload>
+          }
+          aggregate: {
+            args: Prisma.FeedTransActionHeaderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFeedTransActionHeader>
+          }
+          groupBy: {
+            args: Prisma.feedTransActionHeaderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FeedTransActionHeaderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.feedTransActionHeaderCountArgs<ExtArgs>
+            result: $Utils.Optional<FeedTransActionHeaderCountAggregateOutputType> | number
+          }
+        }
+      }
       FeedStockTransfer: {
         payload: Prisma.$FeedStockTransferPayload<ExtArgs>
         fields: Prisma.FeedStockTransferFieldRefs
@@ -2323,6 +2743,154 @@ export namespace Prisma {
           count: {
             args: Prisma.FeedSalesItemCountArgs<ExtArgs>
             result: $Utils.Optional<FeedSalesItemCountAggregateOutputType> | number
+          }
+        }
+      }
+      FeedRetun: {
+        payload: Prisma.$FeedRetunPayload<ExtArgs>
+        fields: Prisma.FeedRetunFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FeedRetunFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedRetunPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FeedRetunFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedRetunPayload>
+          }
+          findFirst: {
+            args: Prisma.FeedRetunFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedRetunPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FeedRetunFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedRetunPayload>
+          }
+          findMany: {
+            args: Prisma.FeedRetunFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedRetunPayload>[]
+          }
+          create: {
+            args: Prisma.FeedRetunCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedRetunPayload>
+          }
+          createMany: {
+            args: Prisma.FeedRetunCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FeedRetunCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedRetunPayload>[]
+          }
+          delete: {
+            args: Prisma.FeedRetunDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedRetunPayload>
+          }
+          update: {
+            args: Prisma.FeedRetunUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedRetunPayload>
+          }
+          deleteMany: {
+            args: Prisma.FeedRetunDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FeedRetunUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FeedRetunUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedRetunPayload>[]
+          }
+          upsert: {
+            args: Prisma.FeedRetunUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedRetunPayload>
+          }
+          aggregate: {
+            args: Prisma.FeedRetunAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFeedRetun>
+          }
+          groupBy: {
+            args: Prisma.FeedRetunGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FeedRetunGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FeedRetunCountArgs<ExtArgs>
+            result: $Utils.Optional<FeedRetunCountAggregateOutputType> | number
+          }
+        }
+      }
+      RetunFeedItem: {
+        payload: Prisma.$RetunFeedItemPayload<ExtArgs>
+        fields: Prisma.RetunFeedItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RetunFeedItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetunFeedItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RetunFeedItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetunFeedItemPayload>
+          }
+          findFirst: {
+            args: Prisma.RetunFeedItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetunFeedItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RetunFeedItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetunFeedItemPayload>
+          }
+          findMany: {
+            args: Prisma.RetunFeedItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetunFeedItemPayload>[]
+          }
+          create: {
+            args: Prisma.RetunFeedItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetunFeedItemPayload>
+          }
+          createMany: {
+            args: Prisma.RetunFeedItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RetunFeedItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetunFeedItemPayload>[]
+          }
+          delete: {
+            args: Prisma.RetunFeedItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetunFeedItemPayload>
+          }
+          update: {
+            args: Prisma.RetunFeedItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetunFeedItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.RetunFeedItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RetunFeedItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RetunFeedItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetunFeedItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.RetunFeedItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetunFeedItemPayload>
+          }
+          aggregate: {
+            args: Prisma.RetunFeedItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRetunFeedItem>
+          }
+          groupBy: {
+            args: Prisma.RetunFeedItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RetunFeedItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RetunFeedItemCountArgs<ExtArgs>
+            result: $Utils.Optional<RetunFeedItemCountAggregateOutputType> | number
           }
         }
       }
@@ -3015,10 +3583,16 @@ export namespace Prisma {
     flockReport?: FlockReportOmit
     feedNameCategory?: FeedNameCategoryOmit
     feedStock?: FeedStockOmit
+    addStock?: AddStockOmit
+    addStockItem?: AddStockItemOmit
+    feedStockHistory?: FeedStockHistoryOmit
+    feedTransActionHeader?: feedTransActionHeaderOmit
     feedStockTransfer?: FeedStockTransferOmit
     transferFeedItem?: TransferFeedItemOmit
     feedSalesOrder?: FeedSalesOrderOmit
     feedSalesItem?: FeedSalesItemOmit
+    feedRetun?: FeedRetunOmit
+    retunFeedItem?: RetunFeedItemOmit
     allGenericMedicin?: AllGenericMedicinOmit
     medicineNameAdd?: MedicineNameAddOmit
     medicinePurchess?: MedicinePurchessOmit
@@ -3123,7 +3697,6 @@ export namespace Prisma {
   export type BranchCountOutputType = {
     branchEmployeeHistory: number
     farmer: number
-    FeedStock: number
     flocks: number
     flockReport: number
     medicinePurchess: number
@@ -3137,7 +3710,6 @@ export namespace Prisma {
   export type BranchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     branchEmployeeHistory?: boolean | BranchCountOutputTypeCountBranchEmployeeHistoryArgs
     farmer?: boolean | BranchCountOutputTypeCountFarmerArgs
-    FeedStock?: boolean | BranchCountOutputTypeCountFeedStockArgs
     flocks?: boolean | BranchCountOutputTypeCountFlocksArgs
     flockReport?: boolean | BranchCountOutputTypeCountFlockReportArgs
     medicinePurchess?: boolean | BranchCountOutputTypeCountMedicinePurchessArgs
@@ -3171,13 +3743,6 @@ export namespace Prisma {
    */
   export type BranchCountOutputTypeCountFarmerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FarmerWhereInput
-  }
-
-  /**
-   * BranchCountOutputType without action
-   */
-  export type BranchCountOutputTypeCountFeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FeedStockWhereInput
   }
 
   /**
@@ -3242,17 +3807,25 @@ export namespace Prisma {
    */
 
   export type DepotCountOutputType = {
-    feedStock: number
     sentTransfers: number
     receivedTransfers: number
     FeedSalesOrder: number
+    FeedRetun: number
+    FeedStockHistory: number
+    feedTransActionHeader: number
+    AddStock: number
+    FeedStock: number
   }
 
   export type DepotCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    feedStock?: boolean | DepotCountOutputTypeCountFeedStockArgs
     sentTransfers?: boolean | DepotCountOutputTypeCountSentTransfersArgs
     receivedTransfers?: boolean | DepotCountOutputTypeCountReceivedTransfersArgs
     FeedSalesOrder?: boolean | DepotCountOutputTypeCountFeedSalesOrderArgs
+    FeedRetun?: boolean | DepotCountOutputTypeCountFeedRetunArgs
+    FeedStockHistory?: boolean | DepotCountOutputTypeCountFeedStockHistoryArgs
+    feedTransActionHeader?: boolean | DepotCountOutputTypeCountFeedTransActionHeaderArgs
+    AddStock?: boolean | DepotCountOutputTypeCountAddStockArgs
+    FeedStock?: boolean | DepotCountOutputTypeCountFeedStockArgs
   }
 
   // Custom InputTypes
@@ -3264,13 +3837,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the DepotCountOutputType
      */
     select?: DepotCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * DepotCountOutputType without action
-   */
-  export type DepotCountOutputTypeCountFeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FeedStockWhereInput
   }
 
   /**
@@ -3294,6 +3860,41 @@ export namespace Prisma {
     where?: FeedSalesOrderWhereInput
   }
 
+  /**
+   * DepotCountOutputType without action
+   */
+  export type DepotCountOutputTypeCountFeedRetunArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedRetunWhereInput
+  }
+
+  /**
+   * DepotCountOutputType without action
+   */
+  export type DepotCountOutputTypeCountFeedStockHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedStockHistoryWhereInput
+  }
+
+  /**
+   * DepotCountOutputType without action
+   */
+  export type DepotCountOutputTypeCountFeedTransActionHeaderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: feedTransActionHeaderWhereInput
+  }
+
+  /**
+   * DepotCountOutputType without action
+   */
+  export type DepotCountOutputTypeCountAddStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AddStockWhereInput
+  }
+
+  /**
+   * DepotCountOutputType without action
+   */
+  export type DepotCountOutputTypeCountFeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedStockWhereInput
+  }
+
 
   /**
    * Count Type FarmerCountOutputType
@@ -3305,6 +3906,7 @@ export namespace Prisma {
     sellMedicine: number
     chicks: number
     birdSell: number
+    FeedRetun: number
   }
 
   export type FarmerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3313,6 +3915,7 @@ export namespace Prisma {
     sellMedicine?: boolean | FarmerCountOutputTypeCountSellMedicineArgs
     chicks?: boolean | FarmerCountOutputTypeCountChicksArgs
     birdSell?: boolean | FarmerCountOutputTypeCountBirdSellArgs
+    FeedRetun?: boolean | FarmerCountOutputTypeCountFeedRetunArgs
   }
 
   // Custom InputTypes
@@ -3359,6 +3962,13 @@ export namespace Prisma {
    */
   export type FarmerCountOutputTypeCountBirdSellArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BirdSellWhereInput
+  }
+
+  /**
+   * FarmerCountOutputType without action
+   */
+  export type FarmerCountOutputTypeCountFeedRetunArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedRetunWhereInput
   }
 
 
@@ -3413,6 +4023,8 @@ export namespace Prisma {
     chicks: number
     birdSell: number
     FarmFeedStock: number
+    FeedRetun: number
+    FeedSalesOrder: number
   }
 
   export type FlockCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3422,6 +4034,8 @@ export namespace Prisma {
     chicks?: boolean | FlockCountOutputTypeCountChicksArgs
     birdSell?: boolean | FlockCountOutputTypeCountBirdSellArgs
     FarmFeedStock?: boolean | FlockCountOutputTypeCountFarmFeedStockArgs
+    FeedRetun?: boolean | FlockCountOutputTypeCountFeedRetunArgs
+    FeedSalesOrder?: boolean | FlockCountOutputTypeCountFeedSalesOrderArgs
   }
 
   // Custom InputTypes
@@ -3477,21 +4091,41 @@ export namespace Prisma {
     where?: FarmFeedStockWhereInput
   }
 
+  /**
+   * FlockCountOutputType without action
+   */
+  export type FlockCountOutputTypeCountFeedRetunArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedRetunWhereInput
+  }
+
+  /**
+   * FlockCountOutputType without action
+   */
+  export type FlockCountOutputTypeCountFeedSalesOrderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedSalesOrderWhereInput
+  }
+
 
   /**
    * Count Type FeedNameCategoryCountOutputType
    */
 
   export type FeedNameCategoryCountOutputType = {
-    FeedStock: number
     transferFeedItem: number
     FeedSalesItem: number
+    RetunFeedItem: number
+    FeedStockHistory: number
+    AddStockItem: number
+    FeedStock: number
   }
 
   export type FeedNameCategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    FeedStock?: boolean | FeedNameCategoryCountOutputTypeCountFeedStockArgs
     transferFeedItem?: boolean | FeedNameCategoryCountOutputTypeCountTransferFeedItemArgs
     FeedSalesItem?: boolean | FeedNameCategoryCountOutputTypeCountFeedSalesItemArgs
+    RetunFeedItem?: boolean | FeedNameCategoryCountOutputTypeCountRetunFeedItemArgs
+    FeedStockHistory?: boolean | FeedNameCategoryCountOutputTypeCountFeedStockHistoryArgs
+    AddStockItem?: boolean | FeedNameCategoryCountOutputTypeCountAddStockItemArgs
+    FeedStock?: boolean | FeedNameCategoryCountOutputTypeCountFeedStockArgs
   }
 
   // Custom InputTypes
@@ -3508,13 +4142,6 @@ export namespace Prisma {
   /**
    * FeedNameCategoryCountOutputType without action
    */
-  export type FeedNameCategoryCountOutputTypeCountFeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FeedStockWhereInput
-  }
-
-  /**
-   * FeedNameCategoryCountOutputType without action
-   */
   export type FeedNameCategoryCountOutputTypeCountTransferFeedItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TransferFeedItemWhereInput
   }
@@ -3524,6 +4151,65 @@ export namespace Prisma {
    */
   export type FeedNameCategoryCountOutputTypeCountFeedSalesItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FeedSalesItemWhereInput
+  }
+
+  /**
+   * FeedNameCategoryCountOutputType without action
+   */
+  export type FeedNameCategoryCountOutputTypeCountRetunFeedItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RetunFeedItemWhereInput
+  }
+
+  /**
+   * FeedNameCategoryCountOutputType without action
+   */
+  export type FeedNameCategoryCountOutputTypeCountFeedStockHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedStockHistoryWhereInput
+  }
+
+  /**
+   * FeedNameCategoryCountOutputType without action
+   */
+  export type FeedNameCategoryCountOutputTypeCountAddStockItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AddStockItemWhereInput
+  }
+
+  /**
+   * FeedNameCategoryCountOutputType without action
+   */
+  export type FeedNameCategoryCountOutputTypeCountFeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedStockWhereInput
+  }
+
+
+  /**
+   * Count Type AddStockCountOutputType
+   */
+
+  export type AddStockCountOutputType = {
+    AddStockItem: number
+  }
+
+  export type AddStockCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    AddStockItem?: boolean | AddStockCountOutputTypeCountAddStockItemArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AddStockCountOutputType without action
+   */
+  export type AddStockCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockCountOutputType
+     */
+    select?: AddStockCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AddStockCountOutputType without action
+   */
+  export type AddStockCountOutputTypeCountAddStockItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AddStockItemWhereInput
   }
 
 
@@ -3586,6 +4272,37 @@ export namespace Prisma {
    */
   export type FeedSalesOrderCountOutputTypeCountFeedSalesItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FeedSalesItemWhereInput
+  }
+
+
+  /**
+   * Count Type FeedRetunCountOutputType
+   */
+
+  export type FeedRetunCountOutputType = {
+    RetunFeedItem: number
+  }
+
+  export type FeedRetunCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    RetunFeedItem?: boolean | FeedRetunCountOutputTypeCountRetunFeedItemArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FeedRetunCountOutputType without action
+   */
+  export type FeedRetunCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetunCountOutputType
+     */
+    select?: FeedRetunCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FeedRetunCountOutputType without action
+   */
+  export type FeedRetunCountOutputTypeCountRetunFeedItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RetunFeedItemWhereInput
   }
 
 
@@ -3895,7 +4612,6 @@ export namespace Prisma {
     updatedAt?: boolean
     branchEmployeeHistory?: boolean | Branch$branchEmployeeHistoryArgs<ExtArgs>
     farmer?: boolean | Branch$farmerArgs<ExtArgs>
-    FeedStock?: boolean | Branch$FeedStockArgs<ExtArgs>
     flocks?: boolean | Branch$flocksArgs<ExtArgs>
     flockReport?: boolean | Branch$flockReportArgs<ExtArgs>
     medicinePurchess?: boolean | Branch$medicinePurchessArgs<ExtArgs>
@@ -3941,7 +4657,6 @@ export namespace Prisma {
   export type BranchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     branchEmployeeHistory?: boolean | Branch$branchEmployeeHistoryArgs<ExtArgs>
     farmer?: boolean | Branch$farmerArgs<ExtArgs>
-    FeedStock?: boolean | Branch$FeedStockArgs<ExtArgs>
     flocks?: boolean | Branch$flocksArgs<ExtArgs>
     flockReport?: boolean | Branch$flockReportArgs<ExtArgs>
     medicinePurchess?: boolean | Branch$medicinePurchessArgs<ExtArgs>
@@ -3960,7 +4675,6 @@ export namespace Prisma {
     objects: {
       branchEmployeeHistory: Prisma.$BranchEmployeeHistoryPayload<ExtArgs>[]
       farmer: Prisma.$FarmerPayload<ExtArgs>[]
-      FeedStock: Prisma.$FeedStockPayload<ExtArgs>[]
       flocks: Prisma.$FlockPayload<ExtArgs>[]
       flockReport: Prisma.$FlockReportPayload<ExtArgs>[]
       medicinePurchess: Prisma.$MedicinePurchessPayload<ExtArgs>[]
@@ -4374,7 +5088,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     branchEmployeeHistory<T extends Branch$branchEmployeeHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Branch$branchEmployeeHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BranchEmployeeHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     farmer<T extends Branch$farmerArgs<ExtArgs> = {}>(args?: Subset<T, Branch$farmerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    FeedStock<T extends Branch$FeedStockArgs<ExtArgs> = {}>(args?: Subset<T, Branch$FeedStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     flocks<T extends Branch$flocksArgs<ExtArgs> = {}>(args?: Subset<T, Branch$flocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     flockReport<T extends Branch$flockReportArgs<ExtArgs> = {}>(args?: Subset<T, Branch$flockReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FlockReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     medicinePurchess<T extends Branch$medicinePurchessArgs<ExtArgs> = {}>(args?: Subset<T, Branch$medicinePurchessArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicinePurchessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -4855,30 +5568,6 @@ export namespace Prisma {
   }
 
   /**
-   * Branch.FeedStock
-   */
-  export type Branch$FeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FeedStock
-     */
-    select?: FeedStockSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FeedStock
-     */
-    omit?: FeedStockOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedStockInclude<ExtArgs> | null
-    where?: FeedStockWhereInput
-    orderBy?: FeedStockOrderByWithRelationInput | FeedStockOrderByWithRelationInput[]
-    cursor?: FeedStockWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: FeedStockScalarFieldEnum | FeedStockScalarFieldEnum[]
-  }
-
-  /**
    * Branch.flocks
    */
   export type Branch$flocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5103,7 +5792,7 @@ export namespace Prisma {
     id: string | null
     locationName: string | null
     depotName: string | null
-    createDate: string | null
+    createDate: Date | null
     createAt: Date | null
     updateAt: Date | null
   }
@@ -5112,7 +5801,7 @@ export namespace Prisma {
     id: string | null
     locationName: string | null
     depotName: string | null
-    createDate: string | null
+    createDate: Date | null
     createAt: Date | null
     updateAt: Date | null
   }
@@ -5232,7 +5921,7 @@ export namespace Prisma {
     id: string
     locationName: string
     depotName: string
-    createDate: string
+    createDate: Date
     createAt: Date | null
     updateAt: Date
     _count: DepotCountAggregateOutputType | null
@@ -5261,10 +5950,14 @@ export namespace Prisma {
     createDate?: boolean
     createAt?: boolean
     updateAt?: boolean
-    feedStock?: boolean | Depot$feedStockArgs<ExtArgs>
     sentTransfers?: boolean | Depot$sentTransfersArgs<ExtArgs>
     receivedTransfers?: boolean | Depot$receivedTransfersArgs<ExtArgs>
     FeedSalesOrder?: boolean | Depot$FeedSalesOrderArgs<ExtArgs>
+    FeedRetun?: boolean | Depot$FeedRetunArgs<ExtArgs>
+    FeedStockHistory?: boolean | Depot$FeedStockHistoryArgs<ExtArgs>
+    feedTransActionHeader?: boolean | Depot$feedTransActionHeaderArgs<ExtArgs>
+    AddStock?: boolean | Depot$AddStockArgs<ExtArgs>
+    FeedStock?: boolean | Depot$FeedStockArgs<ExtArgs>
     _count?: boolean | DepotCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["depot"]>
 
@@ -5297,10 +5990,14 @@ export namespace Prisma {
 
   export type DepotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locationName" | "depotName" | "createDate" | "createAt" | "updateAt", ExtArgs["result"]["depot"]>
   export type DepotInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    feedStock?: boolean | Depot$feedStockArgs<ExtArgs>
     sentTransfers?: boolean | Depot$sentTransfersArgs<ExtArgs>
     receivedTransfers?: boolean | Depot$receivedTransfersArgs<ExtArgs>
     FeedSalesOrder?: boolean | Depot$FeedSalesOrderArgs<ExtArgs>
+    FeedRetun?: boolean | Depot$FeedRetunArgs<ExtArgs>
+    FeedStockHistory?: boolean | Depot$FeedStockHistoryArgs<ExtArgs>
+    feedTransActionHeader?: boolean | Depot$feedTransActionHeaderArgs<ExtArgs>
+    AddStock?: boolean | Depot$AddStockArgs<ExtArgs>
+    FeedStock?: boolean | Depot$FeedStockArgs<ExtArgs>
     _count?: boolean | DepotCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DepotIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5309,16 +6006,20 @@ export namespace Prisma {
   export type $DepotPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Depot"
     objects: {
-      feedStock: Prisma.$FeedStockPayload<ExtArgs>[]
       sentTransfers: Prisma.$FeedStockTransferPayload<ExtArgs>[]
       receivedTransfers: Prisma.$FeedStockTransferPayload<ExtArgs>[]
       FeedSalesOrder: Prisma.$FeedSalesOrderPayload<ExtArgs>[]
+      FeedRetun: Prisma.$FeedRetunPayload<ExtArgs>[]
+      FeedStockHistory: Prisma.$FeedStockHistoryPayload<ExtArgs>[]
+      feedTransActionHeader: Prisma.$feedTransActionHeaderPayload<ExtArgs>[]
+      AddStock: Prisma.$AddStockPayload<ExtArgs>[]
+      FeedStock: Prisma.$FeedStockPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       locationName: string
       depotName: string
-      createDate: string
+      createDate: Date
       createAt: Date | null
       updateAt: Date
     }, ExtArgs["result"]["depot"]>
@@ -5715,10 +6416,14 @@ export namespace Prisma {
    */
   export interface Prisma__DepotClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    feedStock<T extends Depot$feedStockArgs<ExtArgs> = {}>(args?: Subset<T, Depot$feedStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sentTransfers<T extends Depot$sentTransfersArgs<ExtArgs> = {}>(args?: Subset<T, Depot$sentTransfersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     receivedTransfers<T extends Depot$receivedTransfersArgs<ExtArgs> = {}>(args?: Subset<T, Depot$receivedTransfersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     FeedSalesOrder<T extends Depot$FeedSalesOrderArgs<ExtArgs> = {}>(args?: Subset<T, Depot$FeedSalesOrderArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FeedRetun<T extends Depot$FeedRetunArgs<ExtArgs> = {}>(args?: Subset<T, Depot$FeedRetunArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FeedStockHistory<T extends Depot$FeedStockHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Depot$FeedStockHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    feedTransActionHeader<T extends Depot$feedTransActionHeaderArgs<ExtArgs> = {}>(args?: Subset<T, Depot$feedTransActionHeaderArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$feedTransActionHeaderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    AddStock<T extends Depot$AddStockArgs<ExtArgs> = {}>(args?: Subset<T, Depot$AddStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FeedStock<T extends Depot$FeedStockArgs<ExtArgs> = {}>(args?: Subset<T, Depot$FeedStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5751,7 +6456,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Depot", 'String'>
     readonly locationName: FieldRef<"Depot", 'String'>
     readonly depotName: FieldRef<"Depot", 'String'>
-    readonly createDate: FieldRef<"Depot", 'String'>
+    readonly createDate: FieldRef<"Depot", 'DateTime'>
     readonly createAt: FieldRef<"Depot", 'DateTime'>
     readonly updateAt: FieldRef<"Depot", 'DateTime'>
   }
@@ -6142,30 +6847,6 @@ export namespace Prisma {
   }
 
   /**
-   * Depot.feedStock
-   */
-  export type Depot$feedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FeedStock
-     */
-    select?: FeedStockSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FeedStock
-     */
-    omit?: FeedStockOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedStockInclude<ExtArgs> | null
-    where?: FeedStockWhereInput
-    orderBy?: FeedStockOrderByWithRelationInput | FeedStockOrderByWithRelationInput[]
-    cursor?: FeedStockWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: FeedStockScalarFieldEnum | FeedStockScalarFieldEnum[]
-  }
-
-  /**
    * Depot.sentTransfers
    */
   export type Depot$sentTransfersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6238,6 +6919,126 @@ export namespace Prisma {
   }
 
   /**
+   * Depot.FeedRetun
+   */
+  export type Depot$FeedRetunArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunInclude<ExtArgs> | null
+    where?: FeedRetunWhereInput
+    orderBy?: FeedRetunOrderByWithRelationInput | FeedRetunOrderByWithRelationInput[]
+    cursor?: FeedRetunWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedRetunScalarFieldEnum | FeedRetunScalarFieldEnum[]
+  }
+
+  /**
+   * Depot.FeedStockHistory
+   */
+  export type Depot$FeedStockHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryInclude<ExtArgs> | null
+    where?: FeedStockHistoryWhereInput
+    orderBy?: FeedStockHistoryOrderByWithRelationInput | FeedStockHistoryOrderByWithRelationInput[]
+    cursor?: FeedStockHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedStockHistoryScalarFieldEnum | FeedStockHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * Depot.feedTransActionHeader
+   */
+  export type Depot$feedTransActionHeaderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the feedTransActionHeader
+     */
+    select?: feedTransActionHeaderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the feedTransActionHeader
+     */
+    omit?: feedTransActionHeaderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: feedTransActionHeaderInclude<ExtArgs> | null
+    where?: feedTransActionHeaderWhereInput
+    orderBy?: feedTransActionHeaderOrderByWithRelationInput | feedTransActionHeaderOrderByWithRelationInput[]
+    cursor?: feedTransActionHeaderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedTransActionHeaderScalarFieldEnum | FeedTransActionHeaderScalarFieldEnum[]
+  }
+
+  /**
+   * Depot.AddStock
+   */
+  export type Depot$AddStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStock
+     */
+    select?: AddStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStock
+     */
+    omit?: AddStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockInclude<ExtArgs> | null
+    where?: AddStockWhereInput
+    orderBy?: AddStockOrderByWithRelationInput | AddStockOrderByWithRelationInput[]
+    cursor?: AddStockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AddStockScalarFieldEnum | AddStockScalarFieldEnum[]
+  }
+
+  /**
+   * Depot.FeedStock
+   */
+  export type Depot$FeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStock
+     */
+    select?: FeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStock
+     */
+    omit?: FeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockInclude<ExtArgs> | null
+    where?: FeedStockWhereInput
+    orderBy?: FeedStockOrderByWithRelationInput | FeedStockOrderByWithRelationInput[]
+    cursor?: FeedStockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedStockScalarFieldEnum | FeedStockScalarFieldEnum[]
+  }
+
+  /**
    * Depot without action
    */
   export type DepotDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6296,7 +7097,7 @@ export namespace Prisma {
     nid: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    createDate: string | null
+    createDate: Date | null
   }
 
   export type FarmerMaxAggregateOutputType = {
@@ -6313,7 +7114,7 @@ export namespace Prisma {
     nid: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    createDate: string | null
+    createDate: Date | null
   }
 
   export type FarmerCountAggregateOutputType = {
@@ -6501,7 +7302,7 @@ export namespace Prisma {
     nid: string
     createdAt: Date | null
     updatedAt: Date
-    createDate: string
+    createDate: Date
     _count: FarmerCountAggregateOutputType | null
     _avg: FarmerAvgAggregateOutputType | null
     _sum: FarmerSumAggregateOutputType | null
@@ -6545,6 +7346,7 @@ export namespace Prisma {
     sellMedicine?: boolean | Farmer$sellMedicineArgs<ExtArgs>
     chicks?: boolean | Farmer$chicksArgs<ExtArgs>
     birdSell?: boolean | Farmer$birdSellArgs<ExtArgs>
+    FeedRetun?: boolean | Farmer$FeedRetunArgs<ExtArgs>
     _count?: boolean | FarmerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["farmer"]>
 
@@ -6612,6 +7414,7 @@ export namespace Prisma {
     sellMedicine?: boolean | Farmer$sellMedicineArgs<ExtArgs>
     chicks?: boolean | Farmer$chicksArgs<ExtArgs>
     birdSell?: boolean | Farmer$birdSellArgs<ExtArgs>
+    FeedRetun?: boolean | Farmer$FeedRetunArgs<ExtArgs>
     _count?: boolean | FarmerCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FarmerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6633,6 +7436,7 @@ export namespace Prisma {
       sellMedicine: Prisma.$SellMedicinePayload<ExtArgs>[]
       chicks: Prisma.$ChicksPayload<ExtArgs>[]
       birdSell: Prisma.$BirdSellPayload<ExtArgs>[]
+      FeedRetun: Prisma.$FeedRetunPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6648,7 +7452,7 @@ export namespace Prisma {
       nid: string
       createdAt: Date | null
       updatedAt: Date
-      createDate: string
+      createDate: Date
     }, ExtArgs["result"]["farmer"]>
     composites: {}
   }
@@ -7050,6 +7854,7 @@ export namespace Prisma {
     sellMedicine<T extends Farmer$sellMedicineArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$sellMedicineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellMedicinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     chicks<T extends Farmer$chicksArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$chicksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     birdSell<T extends Farmer$birdSellArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$birdSellArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FeedRetun<T extends Farmer$FeedRetunArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$FeedRetunArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7092,7 +7897,7 @@ export namespace Prisma {
     readonly nid: FieldRef<"Farmer", 'String'>
     readonly createdAt: FieldRef<"Farmer", 'DateTime'>
     readonly updatedAt: FieldRef<"Farmer", 'DateTime'>
-    readonly createDate: FieldRef<"Farmer", 'String'>
+    readonly createDate: FieldRef<"Farmer", 'DateTime'>
   }
     
 
@@ -7644,6 +8449,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: BirdSellScalarFieldEnum | BirdSellScalarFieldEnum[]
+  }
+
+  /**
+   * Farmer.FeedRetun
+   */
+  export type Farmer$FeedRetunArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunInclude<ExtArgs> | null
+    where?: FeedRetunWhereInput
+    orderBy?: FeedRetunOrderByWithRelationInput | FeedRetunOrderByWithRelationInput[]
+    cursor?: FeedRetunWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedRetunScalarFieldEnum | FeedRetunScalarFieldEnum[]
   }
 
   /**
@@ -8816,8 +9645,8 @@ export namespace Prisma {
   export type BranchEmployeeHistoryMinAggregateOutputType = {
     id: string | null
     employeeId: string | null
-    startDate: string | null
-    endDate: string | null
+    startDate: Date | null
+    endDate: Date | null
     isActive: boolean | null
     branchCode: string | null
     createdAt: Date | null
@@ -8827,8 +9656,8 @@ export namespace Prisma {
   export type BranchEmployeeHistoryMaxAggregateOutputType = {
     id: string | null
     employeeId: string | null
-    startDate: string | null
-    endDate: string | null
+    startDate: Date | null
+    endDate: Date | null
     isActive: boolean | null
     branchCode: string | null
     createdAt: Date | null
@@ -8957,8 +9786,8 @@ export namespace Prisma {
   export type BranchEmployeeHistoryGroupByOutputType = {
     id: string
     employeeId: string
-    startDate: string
-    endDate: string | null
+    startDate: Date
+    endDate: Date | null
     isActive: boolean
     branchCode: string
     createdAt: Date | null
@@ -9055,8 +9884,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       employeeId: string
-      startDate: string
-      endDate: string | null
+      startDate: Date
+      endDate: Date | null
       isActive: boolean
       branchCode: string
       createdAt: Date | null
@@ -9488,8 +10317,8 @@ export namespace Prisma {
   interface BranchEmployeeHistoryFieldRefs {
     readonly id: FieldRef<"BranchEmployeeHistory", 'String'>
     readonly employeeId: FieldRef<"BranchEmployeeHistory", 'String'>
-    readonly startDate: FieldRef<"BranchEmployeeHistory", 'String'>
-    readonly endDate: FieldRef<"BranchEmployeeHistory", 'String'>
+    readonly startDate: FieldRef<"BranchEmployeeHistory", 'DateTime'>
+    readonly endDate: FieldRef<"BranchEmployeeHistory", 'DateTime'>
     readonly isActive: FieldRef<"BranchEmployeeHistory", 'Boolean'>
     readonly branchCode: FieldRef<"BranchEmployeeHistory", 'String'>
     readonly createdAt: FieldRef<"BranchEmployeeHistory", 'DateTime'>
@@ -11443,6 +12272,8 @@ export namespace Prisma {
     chicks?: boolean | Flock$chicksArgs<ExtArgs>
     birdSell?: boolean | Flock$birdSellArgs<ExtArgs>
     FarmFeedStock?: boolean | Flock$FarmFeedStockArgs<ExtArgs>
+    FeedRetun?: boolean | Flock$FeedRetunArgs<ExtArgs>
+    FeedSalesOrder?: boolean | Flock$FeedSalesOrderArgs<ExtArgs>
     _count?: boolean | FlockCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["flock"]>
 
@@ -11526,6 +12357,8 @@ export namespace Prisma {
     chicks?: boolean | Flock$chicksArgs<ExtArgs>
     birdSell?: boolean | Flock$birdSellArgs<ExtArgs>
     FarmFeedStock?: boolean | Flock$FarmFeedStockArgs<ExtArgs>
+    FeedRetun?: boolean | Flock$FeedRetunArgs<ExtArgs>
+    FeedSalesOrder?: boolean | Flock$FeedSalesOrderArgs<ExtArgs>
     _count?: boolean | FlockCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FlockIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11551,6 +12384,8 @@ export namespace Prisma {
       chicks: Prisma.$ChicksPayload<ExtArgs>[]
       birdSell: Prisma.$BirdSellPayload<ExtArgs>[]
       FarmFeedStock: Prisma.$FarmFeedStockPayload<ExtArgs>[]
+      FeedRetun: Prisma.$FeedRetunPayload<ExtArgs>[]
+      FeedSalesOrder: Prisma.$FeedSalesOrderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11974,6 +12809,8 @@ export namespace Prisma {
     chicks<T extends Flock$chicksArgs<ExtArgs> = {}>(args?: Subset<T, Flock$chicksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChicksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     birdSell<T extends Flock$birdSellArgs<ExtArgs> = {}>(args?: Subset<T, Flock$birdSellArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BirdSellPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     FarmFeedStock<T extends Flock$FarmFeedStockArgs<ExtArgs> = {}>(args?: Subset<T, Flock$FarmFeedStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FarmFeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FeedRetun<T extends Flock$FeedRetunArgs<ExtArgs> = {}>(args?: Subset<T, Flock$FeedRetunArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FeedSalesOrder<T extends Flock$FeedSalesOrderArgs<ExtArgs> = {}>(args?: Subset<T, Flock$FeedSalesOrderArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedSalesOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12558,6 +13395,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FarmFeedStockScalarFieldEnum | FarmFeedStockScalarFieldEnum[]
+  }
+
+  /**
+   * Flock.FeedRetun
+   */
+  export type Flock$FeedRetunArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunInclude<ExtArgs> | null
+    where?: FeedRetunWhereInput
+    orderBy?: FeedRetunOrderByWithRelationInput | FeedRetunOrderByWithRelationInput[]
+    cursor?: FeedRetunWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedRetunScalarFieldEnum | FeedRetunScalarFieldEnum[]
+  }
+
+  /**
+   * Flock.FeedSalesOrder
+   */
+  export type Flock$FeedSalesOrderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedSalesOrder
+     */
+    select?: FeedSalesOrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedSalesOrder
+     */
+    omit?: FeedSalesOrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedSalesOrderInclude<ExtArgs> | null
+    where?: FeedSalesOrderWhereInput
+    orderBy?: FeedSalesOrderOrderByWithRelationInput | FeedSalesOrderOrderByWithRelationInput[]
+    cursor?: FeedSalesOrderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedSalesOrderScalarFieldEnum | FeedSalesOrderScalarFieldEnum[]
   }
 
   /**
@@ -14955,7 +15840,9 @@ export namespace Prisma {
 
   export type BirdSellMinAggregateOutputType = {
     id: string | null
-    buyerId: string | null
+    buyerName: string | null
+    buyerPhoneNumber: string | null
+    buyerAddress: string | null
     totalQantity: number | null
     totalWeight: number | null
     avgWeight: number | null
@@ -14971,7 +15858,9 @@ export namespace Prisma {
 
   export type BirdSellMaxAggregateOutputType = {
     id: string | null
-    buyerId: string | null
+    buyerName: string | null
+    buyerPhoneNumber: string | null
+    buyerAddress: string | null
     totalQantity: number | null
     totalWeight: number | null
     avgWeight: number | null
@@ -14987,7 +15876,9 @@ export namespace Prisma {
 
   export type BirdSellCountAggregateOutputType = {
     id: number
-    buyerId: number
+    buyerName: number
+    buyerPhoneNumber: number
+    buyerAddress: number
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -15021,7 +15912,9 @@ export namespace Prisma {
 
   export type BirdSellMinAggregateInputType = {
     id?: true
-    buyerId?: true
+    buyerName?: true
+    buyerPhoneNumber?: true
+    buyerAddress?: true
     totalQantity?: true
     totalWeight?: true
     avgWeight?: true
@@ -15037,7 +15930,9 @@ export namespace Prisma {
 
   export type BirdSellMaxAggregateInputType = {
     id?: true
-    buyerId?: true
+    buyerName?: true
+    buyerPhoneNumber?: true
+    buyerAddress?: true
     totalQantity?: true
     totalWeight?: true
     avgWeight?: true
@@ -15053,7 +15948,9 @@ export namespace Prisma {
 
   export type BirdSellCountAggregateInputType = {
     id?: true
-    buyerId?: true
+    buyerName?: true
+    buyerPhoneNumber?: true
+    buyerAddress?: true
     totalQantity?: true
     totalWeight?: true
     avgWeight?: true
@@ -15156,7 +16053,9 @@ export namespace Prisma {
 
   export type BirdSellGroupByOutputType = {
     id: string
-    buyerId: string
+    buyerName: string
+    buyerPhoneNumber: string
+    buyerAddress: string
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -15191,7 +16090,9 @@ export namespace Prisma {
 
   export type BirdSellSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    buyerId?: boolean
+    buyerName?: boolean
+    buyerPhoneNumber?: boolean
+    buyerAddress?: boolean
     totalQantity?: boolean
     totalWeight?: boolean
     avgWeight?: boolean
@@ -15210,7 +16111,9 @@ export namespace Prisma {
 
   export type BirdSellSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    buyerId?: boolean
+    buyerName?: boolean
+    buyerPhoneNumber?: boolean
+    buyerAddress?: boolean
     totalQantity?: boolean
     totalWeight?: boolean
     avgWeight?: boolean
@@ -15229,7 +16132,9 @@ export namespace Prisma {
 
   export type BirdSellSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    buyerId?: boolean
+    buyerName?: boolean
+    buyerPhoneNumber?: boolean
+    buyerAddress?: boolean
     totalQantity?: boolean
     totalWeight?: boolean
     avgWeight?: boolean
@@ -15248,7 +16153,9 @@ export namespace Prisma {
 
   export type BirdSellSelectScalar = {
     id?: boolean
-    buyerId?: boolean
+    buyerName?: boolean
+    buyerPhoneNumber?: boolean
+    buyerAddress?: boolean
     totalQantity?: boolean
     totalWeight?: boolean
     avgWeight?: boolean
@@ -15262,7 +16169,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type BirdSellOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerId" | "totalQantity" | "totalWeight" | "avgWeight" | "pricePerkg" | "totalPrice" | "paid" | "farmId" | "branchCode" | "flockId" | "createdAt" | "updatedAt", ExtArgs["result"]["birdSell"]>
+  export type BirdSellOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "buyerName" | "buyerPhoneNumber" | "buyerAddress" | "totalQantity" | "totalWeight" | "avgWeight" | "pricePerkg" | "totalPrice" | "paid" | "farmId" | "branchCode" | "flockId" | "createdAt" | "updatedAt", ExtArgs["result"]["birdSell"]>
   export type BirdSellInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     farm?: boolean | FarmerDefaultArgs<ExtArgs>
     branch?: boolean | BranchDefaultArgs<ExtArgs>
@@ -15288,7 +16195,9 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      buyerId: string
+      buyerName: string
+      buyerPhoneNumber: string
+      buyerAddress: string
       totalQantity: number
       totalWeight: number
       avgWeight: number
@@ -15727,7 +16636,9 @@ export namespace Prisma {
    */
   interface BirdSellFieldRefs {
     readonly id: FieldRef<"BirdSell", 'String'>
-    readonly buyerId: FieldRef<"BirdSell", 'String'>
+    readonly buyerName: FieldRef<"BirdSell", 'String'>
+    readonly buyerPhoneNumber: FieldRef<"BirdSell", 'String'>
+    readonly buyerAddress: FieldRef<"BirdSell", 'String'>
     readonly totalQantity: FieldRef<"BirdSell", 'Int'>
     readonly totalWeight: FieldRef<"BirdSell", 'Float'>
     readonly avgWeight: FieldRef<"BirdSell", 'Float'>
@@ -17704,34 +18615,39 @@ export namespace Prisma {
 
   export type FeedNameCategoryAvgAggregateOutputType = {
     feedCodeNumber: number | null
+    unitPrice: number | null
   }
 
   export type FeedNameCategorySumAggregateOutputType = {
     feedCodeNumber: number | null
+    unitPrice: number | null
   }
 
   export type FeedNameCategoryMinAggregateOutputType = {
     id: string | null
     feedName: string | null
     feedCodeNumber: number | null
+    unitPrice: number | null
     createdAt: Date | null
     updatedAt: Date | null
-    createDate: string | null
+    createDate: Date | null
   }
 
   export type FeedNameCategoryMaxAggregateOutputType = {
     id: string | null
     feedName: string | null
     feedCodeNumber: number | null
+    unitPrice: number | null
     createdAt: Date | null
     updatedAt: Date | null
-    createDate: string | null
+    createDate: Date | null
   }
 
   export type FeedNameCategoryCountAggregateOutputType = {
     id: number
     feedName: number
     feedCodeNumber: number
+    unitPrice: number
     createdAt: number
     updatedAt: number
     createDate: number
@@ -17741,16 +18657,19 @@ export namespace Prisma {
 
   export type FeedNameCategoryAvgAggregateInputType = {
     feedCodeNumber?: true
+    unitPrice?: true
   }
 
   export type FeedNameCategorySumAggregateInputType = {
     feedCodeNumber?: true
+    unitPrice?: true
   }
 
   export type FeedNameCategoryMinAggregateInputType = {
     id?: true
     feedName?: true
     feedCodeNumber?: true
+    unitPrice?: true
     createdAt?: true
     updatedAt?: true
     createDate?: true
@@ -17760,6 +18679,7 @@ export namespace Prisma {
     id?: true
     feedName?: true
     feedCodeNumber?: true
+    unitPrice?: true
     createdAt?: true
     updatedAt?: true
     createDate?: true
@@ -17769,6 +18689,7 @@ export namespace Prisma {
     id?: true
     feedName?: true
     feedCodeNumber?: true
+    unitPrice?: true
     createdAt?: true
     updatedAt?: true
     createDate?: true
@@ -17865,9 +18786,10 @@ export namespace Prisma {
     id: string
     feedName: string
     feedCodeNumber: number
+    unitPrice: number
     createdAt: Date | null
     updatedAt: Date
-    createDate: string
+    createDate: Date
     _count: FeedNameCategoryCountAggregateOutputType | null
     _avg: FeedNameCategoryAvgAggregateOutputType | null
     _sum: FeedNameCategorySumAggregateOutputType | null
@@ -17893,12 +18815,16 @@ export namespace Prisma {
     id?: boolean
     feedName?: boolean
     feedCodeNumber?: boolean
+    unitPrice?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     createDate?: boolean
-    FeedStock?: boolean | FeedNameCategory$FeedStockArgs<ExtArgs>
     transferFeedItem?: boolean | FeedNameCategory$transferFeedItemArgs<ExtArgs>
     FeedSalesItem?: boolean | FeedNameCategory$FeedSalesItemArgs<ExtArgs>
+    RetunFeedItem?: boolean | FeedNameCategory$RetunFeedItemArgs<ExtArgs>
+    FeedStockHistory?: boolean | FeedNameCategory$FeedStockHistoryArgs<ExtArgs>
+    AddStockItem?: boolean | FeedNameCategory$AddStockItemArgs<ExtArgs>
+    FeedStock?: boolean | FeedNameCategory$FeedStockArgs<ExtArgs>
     _count?: boolean | FeedNameCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["feedNameCategory"]>
 
@@ -17906,6 +18832,7 @@ export namespace Prisma {
     id?: boolean
     feedName?: boolean
     feedCodeNumber?: boolean
+    unitPrice?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     createDate?: boolean
@@ -17915,6 +18842,7 @@ export namespace Prisma {
     id?: boolean
     feedName?: boolean
     feedCodeNumber?: boolean
+    unitPrice?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     createDate?: boolean
@@ -17924,16 +18852,20 @@ export namespace Prisma {
     id?: boolean
     feedName?: boolean
     feedCodeNumber?: boolean
+    unitPrice?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     createDate?: boolean
   }
 
-  export type FeedNameCategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "feedCodeNumber" | "createdAt" | "updatedAt" | "createDate", ExtArgs["result"]["feedNameCategory"]>
+  export type FeedNameCategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "feedCodeNumber" | "unitPrice" | "createdAt" | "updatedAt" | "createDate", ExtArgs["result"]["feedNameCategory"]>
   export type FeedNameCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    FeedStock?: boolean | FeedNameCategory$FeedStockArgs<ExtArgs>
     transferFeedItem?: boolean | FeedNameCategory$transferFeedItemArgs<ExtArgs>
     FeedSalesItem?: boolean | FeedNameCategory$FeedSalesItemArgs<ExtArgs>
+    RetunFeedItem?: boolean | FeedNameCategory$RetunFeedItemArgs<ExtArgs>
+    FeedStockHistory?: boolean | FeedNameCategory$FeedStockHistoryArgs<ExtArgs>
+    AddStockItem?: boolean | FeedNameCategory$AddStockItemArgs<ExtArgs>
+    FeedStock?: boolean | FeedNameCategory$FeedStockArgs<ExtArgs>
     _count?: boolean | FeedNameCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FeedNameCategoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -17942,17 +18874,21 @@ export namespace Prisma {
   export type $FeedNameCategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "FeedNameCategory"
     objects: {
-      FeedStock: Prisma.$FeedStockPayload<ExtArgs>[]
       transferFeedItem: Prisma.$TransferFeedItemPayload<ExtArgs>[]
       FeedSalesItem: Prisma.$FeedSalesItemPayload<ExtArgs>[]
+      RetunFeedItem: Prisma.$RetunFeedItemPayload<ExtArgs>[]
+      FeedStockHistory: Prisma.$FeedStockHistoryPayload<ExtArgs>[]
+      AddStockItem: Prisma.$AddStockItemPayload<ExtArgs>[]
+      FeedStock: Prisma.$FeedStockPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       feedName: string
       feedCodeNumber: number
+      unitPrice: number
       createdAt: Date | null
       updatedAt: Date
-      createDate: string
+      createDate: Date
     }, ExtArgs["result"]["feedNameCategory"]>
     composites: {}
   }
@@ -18347,9 +19283,12 @@ export namespace Prisma {
    */
   export interface Prisma__FeedNameCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    FeedStock<T extends FeedNameCategory$FeedStockArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategory$FeedStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     transferFeedItem<T extends FeedNameCategory$transferFeedItemArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategory$transferFeedItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferFeedItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     FeedSalesItem<T extends FeedNameCategory$FeedSalesItemArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategory$FeedSalesItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    RetunFeedItem<T extends FeedNameCategory$RetunFeedItemArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategory$RetunFeedItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RetunFeedItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FeedStockHistory<T extends FeedNameCategory$FeedStockHistoryArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategory$FeedStockHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    AddStockItem<T extends FeedNameCategory$AddStockItemArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategory$AddStockItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddStockItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FeedStock<T extends FeedNameCategory$FeedStockArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategory$FeedStockArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18382,9 +19321,10 @@ export namespace Prisma {
     readonly id: FieldRef<"FeedNameCategory", 'String'>
     readonly feedName: FieldRef<"FeedNameCategory", 'String'>
     readonly feedCodeNumber: FieldRef<"FeedNameCategory", 'Int'>
+    readonly unitPrice: FieldRef<"FeedNameCategory", 'Int'>
     readonly createdAt: FieldRef<"FeedNameCategory", 'DateTime'>
     readonly updatedAt: FieldRef<"FeedNameCategory", 'DateTime'>
-    readonly createDate: FieldRef<"FeedNameCategory", 'String'>
+    readonly createDate: FieldRef<"FeedNameCategory", 'DateTime'>
   }
     
 
@@ -18773,30 +19713,6 @@ export namespace Prisma {
   }
 
   /**
-   * FeedNameCategory.FeedStock
-   */
-  export type FeedNameCategory$FeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FeedStock
-     */
-    select?: FeedStockSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FeedStock
-     */
-    omit?: FeedStockOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedStockInclude<ExtArgs> | null
-    where?: FeedStockWhereInput
-    orderBy?: FeedStockOrderByWithRelationInput | FeedStockOrderByWithRelationInput[]
-    cursor?: FeedStockWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: FeedStockScalarFieldEnum | FeedStockScalarFieldEnum[]
-  }
-
-  /**
    * FeedNameCategory.transferFeedItem
    */
   export type FeedNameCategory$transferFeedItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18845,6 +19761,102 @@ export namespace Prisma {
   }
 
   /**
+   * FeedNameCategory.RetunFeedItem
+   */
+  export type FeedNameCategory$RetunFeedItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemInclude<ExtArgs> | null
+    where?: RetunFeedItemWhereInput
+    orderBy?: RetunFeedItemOrderByWithRelationInput | RetunFeedItemOrderByWithRelationInput[]
+    cursor?: RetunFeedItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RetunFeedItemScalarFieldEnum | RetunFeedItemScalarFieldEnum[]
+  }
+
+  /**
+   * FeedNameCategory.FeedStockHistory
+   */
+  export type FeedNameCategory$FeedStockHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryInclude<ExtArgs> | null
+    where?: FeedStockHistoryWhereInput
+    orderBy?: FeedStockHistoryOrderByWithRelationInput | FeedStockHistoryOrderByWithRelationInput[]
+    cursor?: FeedStockHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedStockHistoryScalarFieldEnum | FeedStockHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * FeedNameCategory.AddStockItem
+   */
+  export type FeedNameCategory$AddStockItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemInclude<ExtArgs> | null
+    where?: AddStockItemWhereInput
+    orderBy?: AddStockItemOrderByWithRelationInput | AddStockItemOrderByWithRelationInput[]
+    cursor?: AddStockItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AddStockItemScalarFieldEnum | AddStockItemScalarFieldEnum[]
+  }
+
+  /**
+   * FeedNameCategory.FeedStock
+   */
+  export type FeedNameCategory$FeedStockArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStock
+     */
+    select?: FeedStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStock
+     */
+    omit?: FeedStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockInclude<ExtArgs> | null
+    where?: FeedStockWhereInput
+    orderBy?: FeedStockOrderByWithRelationInput | FeedStockOrderByWithRelationInput[]
+    cursor?: FeedStockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedStockScalarFieldEnum | FeedStockScalarFieldEnum[]
+  }
+
+  /**
    * FeedNameCategory without action
    */
   export type FeedNameCategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18877,96 +19889,84 @@ export namespace Prisma {
 
   export type FeedStockAvgAggregateOutputType = {
     stock: number | null
-    unitPice: number | null
+    unitPrice: number | null
   }
 
   export type FeedStockSumAggregateOutputType = {
     stock: number | null
-    unitPice: number | null
+    unitPrice: number | null
   }
 
   export type FeedStockMinAggregateOutputType = {
     id: string | null
     feedName: string | null
-    stock: number | null
     depotName: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-    branchId: string | null
-    unitPice: number | null
-    createDate: string | null
+    stock: number | null
+    unitPrice: number | null
+    createAt: Date | null
+    updateAt: Date | null
   }
 
   export type FeedStockMaxAggregateOutputType = {
     id: string | null
     feedName: string | null
-    stock: number | null
     depotName: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-    branchId: string | null
-    unitPice: number | null
-    createDate: string | null
+    stock: number | null
+    unitPrice: number | null
+    createAt: Date | null
+    updateAt: Date | null
   }
 
   export type FeedStockCountAggregateOutputType = {
     id: number
     feedName: number
-    stock: number
     depotName: number
-    createdAt: number
-    updatedAt: number
-    branchId: number
-    unitPice: number
-    createDate: number
+    stock: number
+    unitPrice: number
+    createAt: number
+    updateAt: number
     _all: number
   }
 
 
   export type FeedStockAvgAggregateInputType = {
     stock?: true
-    unitPice?: true
+    unitPrice?: true
   }
 
   export type FeedStockSumAggregateInputType = {
     stock?: true
-    unitPice?: true
+    unitPrice?: true
   }
 
   export type FeedStockMinAggregateInputType = {
     id?: true
     feedName?: true
-    stock?: true
     depotName?: true
-    createdAt?: true
-    updatedAt?: true
-    branchId?: true
-    unitPice?: true
-    createDate?: true
+    stock?: true
+    unitPrice?: true
+    createAt?: true
+    updateAt?: true
   }
 
   export type FeedStockMaxAggregateInputType = {
     id?: true
     feedName?: true
-    stock?: true
     depotName?: true
-    createdAt?: true
-    updatedAt?: true
-    branchId?: true
-    unitPice?: true
-    createDate?: true
+    stock?: true
+    unitPrice?: true
+    createAt?: true
+    updateAt?: true
   }
 
   export type FeedStockCountAggregateInputType = {
     id?: true
     feedName?: true
-    stock?: true
     depotName?: true
-    createdAt?: true
-    updatedAt?: true
-    branchId?: true
-    unitPice?: true
-    createDate?: true
+    stock?: true
+    unitPrice?: true
+    createAt?: true
+    updateAt?: true
     _all?: true
   }
 
@@ -19059,13 +20059,11 @@ export namespace Prisma {
   export type FeedStockGroupByOutputType = {
     id: string
     feedName: string
-    stock: number
     depotName: string
-    createdAt: Date | null
-    updatedAt: Date
-    branchId: string | null
-    unitPice: number
-    createDate: string
+    stock: number
+    unitPrice: number
+    createAt: Date
+    updateAt: Date
     _count: FeedStockCountAggregateOutputType | null
     _avg: FeedStockAvgAggregateOutputType | null
     _sum: FeedStockSumAggregateOutputType | null
@@ -19090,14 +20088,11 @@ export namespace Prisma {
   export type FeedStockSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     feedName?: boolean
-    stock?: boolean
     depotName?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    branchId?: boolean
-    unitPice?: boolean
-    createDate?: boolean
-    Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
+    stock?: boolean
+    unitPrice?: boolean
+    createAt?: boolean
+    updateAt?: boolean
     depot?: boolean | DepotDefaultArgs<ExtArgs>
     feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["feedStock"]>
@@ -19105,14 +20100,11 @@ export namespace Prisma {
   export type FeedStockSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     feedName?: boolean
-    stock?: boolean
     depotName?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    branchId?: boolean
-    unitPice?: boolean
-    createDate?: boolean
-    Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
+    stock?: boolean
+    unitPrice?: boolean
+    createAt?: boolean
+    updateAt?: boolean
     depot?: boolean | DepotDefaultArgs<ExtArgs>
     feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["feedStock"]>
@@ -19120,14 +20112,11 @@ export namespace Prisma {
   export type FeedStockSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     feedName?: boolean
-    stock?: boolean
     depotName?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    branchId?: boolean
-    unitPice?: boolean
-    createDate?: boolean
-    Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
+    stock?: boolean
+    unitPrice?: boolean
+    createAt?: boolean
+    updateAt?: boolean
     depot?: boolean | DepotDefaultArgs<ExtArgs>
     feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["feedStock"]>
@@ -19135,28 +20124,23 @@ export namespace Prisma {
   export type FeedStockSelectScalar = {
     id?: boolean
     feedName?: boolean
-    stock?: boolean
     depotName?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    branchId?: boolean
-    unitPice?: boolean
-    createDate?: boolean
+    stock?: boolean
+    unitPrice?: boolean
+    createAt?: boolean
+    updateAt?: boolean
   }
 
-  export type FeedStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "stock" | "depotName" | "createdAt" | "updatedAt" | "branchId" | "unitPice" | "createDate", ExtArgs["result"]["feedStock"]>
+  export type FeedStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "depotName" | "stock" | "unitPrice" | "createAt" | "updateAt", ExtArgs["result"]["feedStock"]>
   export type FeedStockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
     depot?: boolean | DepotDefaultArgs<ExtArgs>
     feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
   }
   export type FeedStockIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
     depot?: boolean | DepotDefaultArgs<ExtArgs>
     feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
   }
   export type FeedStockIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Branch?: boolean | FeedStock$BranchArgs<ExtArgs>
     depot?: boolean | DepotDefaultArgs<ExtArgs>
     feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
   }
@@ -19164,20 +20148,17 @@ export namespace Prisma {
   export type $FeedStockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "FeedStock"
     objects: {
-      Branch: Prisma.$BranchPayload<ExtArgs> | null
       depot: Prisma.$DepotPayload<ExtArgs>
       feedNameCategory: Prisma.$FeedNameCategoryPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       feedName: string
-      stock: number
       depotName: string
-      createdAt: Date | null
-      updatedAt: Date
-      branchId: string | null
-      unitPice: number
-      createDate: string
+      stock: number
+      unitPrice: number
+      createAt: Date
+      updateAt: Date
     }, ExtArgs["result"]["feedStock"]>
     composites: {}
   }
@@ -19572,7 +20553,6 @@ export namespace Prisma {
    */
   export interface Prisma__FeedStockClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Branch<T extends FeedStock$BranchArgs<ExtArgs> = {}>(args?: Subset<T, FeedStock$BranchArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     depot<T extends DepotDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DepotDefaultArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     feedNameCategory<T extends FeedNameCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategoryDefaultArgs<ExtArgs>>): Prisma__FeedNameCategoryClient<$Result.GetResult<Prisma.$FeedNameCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -19606,13 +20586,11 @@ export namespace Prisma {
   interface FeedStockFieldRefs {
     readonly id: FieldRef<"FeedStock", 'String'>
     readonly feedName: FieldRef<"FeedStock", 'String'>
-    readonly stock: FieldRef<"FeedStock", 'Int'>
     readonly depotName: FieldRef<"FeedStock", 'String'>
-    readonly createdAt: FieldRef<"FeedStock", 'DateTime'>
-    readonly updatedAt: FieldRef<"FeedStock", 'DateTime'>
-    readonly branchId: FieldRef<"FeedStock", 'String'>
-    readonly unitPice: FieldRef<"FeedStock", 'Int'>
-    readonly createDate: FieldRef<"FeedStock", 'String'>
+    readonly stock: FieldRef<"FeedStock", 'Int'>
+    readonly unitPrice: FieldRef<"FeedStock", 'Int'>
+    readonly createAt: FieldRef<"FeedStock", 'DateTime'>
+    readonly updateAt: FieldRef<"FeedStock", 'DateTime'>
   }
     
 
@@ -20009,25 +20987,6 @@ export namespace Prisma {
   }
 
   /**
-   * FeedStock.Branch
-   */
-  export type FeedStock$BranchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Branch
-     */
-    select?: BranchSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Branch
-     */
-    omit?: BranchOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BranchInclude<ExtArgs> | null
-    where?: BranchWhereInput
-  }
-
-  /**
    * FeedStock without action
    */
   export type FeedStockDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20047,6 +21006,4681 @@ export namespace Prisma {
 
 
   /**
+   * Model AddStock
+   */
+
+  export type AggregateAddStock = {
+    _count: AddStockCountAggregateOutputType | null
+    _avg: AddStockAvgAggregateOutputType | null
+    _sum: AddStockSumAggregateOutputType | null
+    _min: AddStockMinAggregateOutputType | null
+    _max: AddStockMaxAggregateOutputType | null
+  }
+
+  export type AddStockAvgAggregateOutputType = {
+    quantity: number | null
+    price: number | null
+  }
+
+  export type AddStockSumAggregateOutputType = {
+    quantity: number | null
+    price: number | null
+  }
+
+  export type AddStockMinAggregateOutputType = {
+    id: string | null
+    source: $Enums.Source | null
+    depotName: string | null
+    status: $Enums.DeliveryStatus | null
+    deliveryDate: Date | null
+    quantity: number | null
+    price: number | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type AddStockMaxAggregateOutputType = {
+    id: string | null
+    source: $Enums.Source | null
+    depotName: string | null
+    status: $Enums.DeliveryStatus | null
+    deliveryDate: Date | null
+    quantity: number | null
+    price: number | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type AddStockCountAggregateOutputType = {
+    id: number
+    source: number
+    depotName: number
+    status: number
+    deliveryDate: number
+    quantity: number
+    price: number
+    createAt: number
+    updateAt: number
+    _all: number
+  }
+
+
+  export type AddStockAvgAggregateInputType = {
+    quantity?: true
+    price?: true
+  }
+
+  export type AddStockSumAggregateInputType = {
+    quantity?: true
+    price?: true
+  }
+
+  export type AddStockMinAggregateInputType = {
+    id?: true
+    source?: true
+    depotName?: true
+    status?: true
+    deliveryDate?: true
+    quantity?: true
+    price?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type AddStockMaxAggregateInputType = {
+    id?: true
+    source?: true
+    depotName?: true
+    status?: true
+    deliveryDate?: true
+    quantity?: true
+    price?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type AddStockCountAggregateInputType = {
+    id?: true
+    source?: true
+    depotName?: true
+    status?: true
+    deliveryDate?: true
+    quantity?: true
+    price?: true
+    createAt?: true
+    updateAt?: true
+    _all?: true
+  }
+
+  export type AddStockAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AddStock to aggregate.
+     */
+    where?: AddStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddStocks to fetch.
+     */
+    orderBy?: AddStockOrderByWithRelationInput | AddStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AddStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddStocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AddStocks
+    **/
+    _count?: true | AddStockCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AddStockAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AddStockSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AddStockMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AddStockMaxAggregateInputType
+  }
+
+  export type GetAddStockAggregateType<T extends AddStockAggregateArgs> = {
+        [P in keyof T & keyof AggregateAddStock]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAddStock[P]>
+      : GetScalarType<T[P], AggregateAddStock[P]>
+  }
+
+
+
+
+  export type AddStockGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AddStockWhereInput
+    orderBy?: AddStockOrderByWithAggregationInput | AddStockOrderByWithAggregationInput[]
+    by: AddStockScalarFieldEnum[] | AddStockScalarFieldEnum
+    having?: AddStockScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AddStockCountAggregateInputType | true
+    _avg?: AddStockAvgAggregateInputType
+    _sum?: AddStockSumAggregateInputType
+    _min?: AddStockMinAggregateInputType
+    _max?: AddStockMaxAggregateInputType
+  }
+
+  export type AddStockGroupByOutputType = {
+    id: string
+    source: $Enums.Source
+    depotName: string
+    status: $Enums.DeliveryStatus
+    deliveryDate: Date | null
+    quantity: number
+    price: number
+    createAt: Date
+    updateAt: Date
+    _count: AddStockCountAggregateOutputType | null
+    _avg: AddStockAvgAggregateOutputType | null
+    _sum: AddStockSumAggregateOutputType | null
+    _min: AddStockMinAggregateOutputType | null
+    _max: AddStockMaxAggregateOutputType | null
+  }
+
+  type GetAddStockGroupByPayload<T extends AddStockGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AddStockGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AddStockGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AddStockGroupByOutputType[P]>
+            : GetScalarType<T[P], AddStockGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AddStockSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    source?: boolean
+    depotName?: boolean
+    status?: boolean
+    deliveryDate?: boolean
+    quantity?: boolean
+    price?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+    AddStockItem?: boolean | AddStock$AddStockItemArgs<ExtArgs>
+    _count?: boolean | AddStockCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["addStock"]>
+
+  export type AddStockSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    source?: boolean
+    depotName?: boolean
+    status?: boolean
+    deliveryDate?: boolean
+    quantity?: boolean
+    price?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["addStock"]>
+
+  export type AddStockSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    source?: boolean
+    depotName?: boolean
+    status?: boolean
+    deliveryDate?: boolean
+    quantity?: boolean
+    price?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["addStock"]>
+
+  export type AddStockSelectScalar = {
+    id?: boolean
+    source?: boolean
+    depotName?: boolean
+    status?: boolean
+    deliveryDate?: boolean
+    quantity?: boolean
+    price?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+  }
+
+  export type AddStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "source" | "depotName" | "status" | "deliveryDate" | "quantity" | "price" | "createAt" | "updateAt", ExtArgs["result"]["addStock"]>
+  export type AddStockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+    AddStockItem?: boolean | AddStock$AddStockItemArgs<ExtArgs>
+    _count?: boolean | AddStockCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AddStockIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+  export type AddStockIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+
+  export type $AddStockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AddStock"
+    objects: {
+      depot: Prisma.$DepotPayload<ExtArgs>
+      AddStockItem: Prisma.$AddStockItemPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      source: $Enums.Source
+      depotName: string
+      status: $Enums.DeliveryStatus
+      deliveryDate: Date | null
+      quantity: number
+      price: number
+      createAt: Date
+      updateAt: Date
+    }, ExtArgs["result"]["addStock"]>
+    composites: {}
+  }
+
+  type AddStockGetPayload<S extends boolean | null | undefined | AddStockDefaultArgs> = $Result.GetResult<Prisma.$AddStockPayload, S>
+
+  type AddStockCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AddStockFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AddStockCountAggregateInputType | true
+    }
+
+  export interface AddStockDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AddStock'], meta: { name: 'AddStock' } }
+    /**
+     * Find zero or one AddStock that matches the filter.
+     * @param {AddStockFindUniqueArgs} args - Arguments to find a AddStock
+     * @example
+     * // Get one AddStock
+     * const addStock = await prisma.addStock.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AddStockFindUniqueArgs>(args: SelectSubset<T, AddStockFindUniqueArgs<ExtArgs>>): Prisma__AddStockClient<$Result.GetResult<Prisma.$AddStockPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AddStock that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AddStockFindUniqueOrThrowArgs} args - Arguments to find a AddStock
+     * @example
+     * // Get one AddStock
+     * const addStock = await prisma.addStock.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AddStockFindUniqueOrThrowArgs>(args: SelectSubset<T, AddStockFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AddStockClient<$Result.GetResult<Prisma.$AddStockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AddStock that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockFindFirstArgs} args - Arguments to find a AddStock
+     * @example
+     * // Get one AddStock
+     * const addStock = await prisma.addStock.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AddStockFindFirstArgs>(args?: SelectSubset<T, AddStockFindFirstArgs<ExtArgs>>): Prisma__AddStockClient<$Result.GetResult<Prisma.$AddStockPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AddStock that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockFindFirstOrThrowArgs} args - Arguments to find a AddStock
+     * @example
+     * // Get one AddStock
+     * const addStock = await prisma.addStock.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AddStockFindFirstOrThrowArgs>(args?: SelectSubset<T, AddStockFindFirstOrThrowArgs<ExtArgs>>): Prisma__AddStockClient<$Result.GetResult<Prisma.$AddStockPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AddStocks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AddStocks
+     * const addStocks = await prisma.addStock.findMany()
+     * 
+     * // Get first 10 AddStocks
+     * const addStocks = await prisma.addStock.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const addStockWithIdOnly = await prisma.addStock.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AddStockFindManyArgs>(args?: SelectSubset<T, AddStockFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AddStock.
+     * @param {AddStockCreateArgs} args - Arguments to create a AddStock.
+     * @example
+     * // Create one AddStock
+     * const AddStock = await prisma.addStock.create({
+     *   data: {
+     *     // ... data to create a AddStock
+     *   }
+     * })
+     * 
+     */
+    create<T extends AddStockCreateArgs>(args: SelectSubset<T, AddStockCreateArgs<ExtArgs>>): Prisma__AddStockClient<$Result.GetResult<Prisma.$AddStockPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AddStocks.
+     * @param {AddStockCreateManyArgs} args - Arguments to create many AddStocks.
+     * @example
+     * // Create many AddStocks
+     * const addStock = await prisma.addStock.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AddStockCreateManyArgs>(args?: SelectSubset<T, AddStockCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AddStocks and returns the data saved in the database.
+     * @param {AddStockCreateManyAndReturnArgs} args - Arguments to create many AddStocks.
+     * @example
+     * // Create many AddStocks
+     * const addStock = await prisma.addStock.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AddStocks and only return the `id`
+     * const addStockWithIdOnly = await prisma.addStock.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AddStockCreateManyAndReturnArgs>(args?: SelectSubset<T, AddStockCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddStockPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AddStock.
+     * @param {AddStockDeleteArgs} args - Arguments to delete one AddStock.
+     * @example
+     * // Delete one AddStock
+     * const AddStock = await prisma.addStock.delete({
+     *   where: {
+     *     // ... filter to delete one AddStock
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AddStockDeleteArgs>(args: SelectSubset<T, AddStockDeleteArgs<ExtArgs>>): Prisma__AddStockClient<$Result.GetResult<Prisma.$AddStockPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AddStock.
+     * @param {AddStockUpdateArgs} args - Arguments to update one AddStock.
+     * @example
+     * // Update one AddStock
+     * const addStock = await prisma.addStock.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AddStockUpdateArgs>(args: SelectSubset<T, AddStockUpdateArgs<ExtArgs>>): Prisma__AddStockClient<$Result.GetResult<Prisma.$AddStockPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AddStocks.
+     * @param {AddStockDeleteManyArgs} args - Arguments to filter AddStocks to delete.
+     * @example
+     * // Delete a few AddStocks
+     * const { count } = await prisma.addStock.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AddStockDeleteManyArgs>(args?: SelectSubset<T, AddStockDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AddStocks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AddStocks
+     * const addStock = await prisma.addStock.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AddStockUpdateManyArgs>(args: SelectSubset<T, AddStockUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AddStocks and returns the data updated in the database.
+     * @param {AddStockUpdateManyAndReturnArgs} args - Arguments to update many AddStocks.
+     * @example
+     * // Update many AddStocks
+     * const addStock = await prisma.addStock.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AddStocks and only return the `id`
+     * const addStockWithIdOnly = await prisma.addStock.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AddStockUpdateManyAndReturnArgs>(args: SelectSubset<T, AddStockUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddStockPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AddStock.
+     * @param {AddStockUpsertArgs} args - Arguments to update or create a AddStock.
+     * @example
+     * // Update or create a AddStock
+     * const addStock = await prisma.addStock.upsert({
+     *   create: {
+     *     // ... data to create a AddStock
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AddStock we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AddStockUpsertArgs>(args: SelectSubset<T, AddStockUpsertArgs<ExtArgs>>): Prisma__AddStockClient<$Result.GetResult<Prisma.$AddStockPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AddStocks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockCountArgs} args - Arguments to filter AddStocks to count.
+     * @example
+     * // Count the number of AddStocks
+     * const count = await prisma.addStock.count({
+     *   where: {
+     *     // ... the filter for the AddStocks we want to count
+     *   }
+     * })
+    **/
+    count<T extends AddStockCountArgs>(
+      args?: Subset<T, AddStockCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AddStockCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AddStock.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AddStockAggregateArgs>(args: Subset<T, AddStockAggregateArgs>): Prisma.PrismaPromise<GetAddStockAggregateType<T>>
+
+    /**
+     * Group by AddStock.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AddStockGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AddStockGroupByArgs['orderBy'] }
+        : { orderBy?: AddStockGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AddStockGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAddStockGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AddStock model
+   */
+  readonly fields: AddStockFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AddStock.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AddStockClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    depot<T extends DepotDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DepotDefaultArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    AddStockItem<T extends AddStock$AddStockItemArgs<ExtArgs> = {}>(args?: Subset<T, AddStock$AddStockItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddStockItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AddStock model
+   */
+  interface AddStockFieldRefs {
+    readonly id: FieldRef<"AddStock", 'String'>
+    readonly source: FieldRef<"AddStock", 'Source'>
+    readonly depotName: FieldRef<"AddStock", 'String'>
+    readonly status: FieldRef<"AddStock", 'DeliveryStatus'>
+    readonly deliveryDate: FieldRef<"AddStock", 'DateTime'>
+    readonly quantity: FieldRef<"AddStock", 'Int'>
+    readonly price: FieldRef<"AddStock", 'Int'>
+    readonly createAt: FieldRef<"AddStock", 'DateTime'>
+    readonly updateAt: FieldRef<"AddStock", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AddStock findUnique
+   */
+  export type AddStockFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStock
+     */
+    select?: AddStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStock
+     */
+    omit?: AddStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockInclude<ExtArgs> | null
+    /**
+     * Filter, which AddStock to fetch.
+     */
+    where: AddStockWhereUniqueInput
+  }
+
+  /**
+   * AddStock findUniqueOrThrow
+   */
+  export type AddStockFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStock
+     */
+    select?: AddStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStock
+     */
+    omit?: AddStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockInclude<ExtArgs> | null
+    /**
+     * Filter, which AddStock to fetch.
+     */
+    where: AddStockWhereUniqueInput
+  }
+
+  /**
+   * AddStock findFirst
+   */
+  export type AddStockFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStock
+     */
+    select?: AddStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStock
+     */
+    omit?: AddStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockInclude<ExtArgs> | null
+    /**
+     * Filter, which AddStock to fetch.
+     */
+    where?: AddStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddStocks to fetch.
+     */
+    orderBy?: AddStockOrderByWithRelationInput | AddStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AddStocks.
+     */
+    cursor?: AddStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddStocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AddStocks.
+     */
+    distinct?: AddStockScalarFieldEnum | AddStockScalarFieldEnum[]
+  }
+
+  /**
+   * AddStock findFirstOrThrow
+   */
+  export type AddStockFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStock
+     */
+    select?: AddStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStock
+     */
+    omit?: AddStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockInclude<ExtArgs> | null
+    /**
+     * Filter, which AddStock to fetch.
+     */
+    where?: AddStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddStocks to fetch.
+     */
+    orderBy?: AddStockOrderByWithRelationInput | AddStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AddStocks.
+     */
+    cursor?: AddStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddStocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AddStocks.
+     */
+    distinct?: AddStockScalarFieldEnum | AddStockScalarFieldEnum[]
+  }
+
+  /**
+   * AddStock findMany
+   */
+  export type AddStockFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStock
+     */
+    select?: AddStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStock
+     */
+    omit?: AddStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockInclude<ExtArgs> | null
+    /**
+     * Filter, which AddStocks to fetch.
+     */
+    where?: AddStockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddStocks to fetch.
+     */
+    orderBy?: AddStockOrderByWithRelationInput | AddStockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AddStocks.
+     */
+    cursor?: AddStockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddStocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddStocks.
+     */
+    skip?: number
+    distinct?: AddStockScalarFieldEnum | AddStockScalarFieldEnum[]
+  }
+
+  /**
+   * AddStock create
+   */
+  export type AddStockCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStock
+     */
+    select?: AddStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStock
+     */
+    omit?: AddStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AddStock.
+     */
+    data: XOR<AddStockCreateInput, AddStockUncheckedCreateInput>
+  }
+
+  /**
+   * AddStock createMany
+   */
+  export type AddStockCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AddStocks.
+     */
+    data: AddStockCreateManyInput | AddStockCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AddStock createManyAndReturn
+   */
+  export type AddStockCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStock
+     */
+    select?: AddStockSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStock
+     */
+    omit?: AddStockOmit<ExtArgs> | null
+    /**
+     * The data used to create many AddStocks.
+     */
+    data: AddStockCreateManyInput | AddStockCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AddStock update
+   */
+  export type AddStockUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStock
+     */
+    select?: AddStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStock
+     */
+    omit?: AddStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AddStock.
+     */
+    data: XOR<AddStockUpdateInput, AddStockUncheckedUpdateInput>
+    /**
+     * Choose, which AddStock to update.
+     */
+    where: AddStockWhereUniqueInput
+  }
+
+  /**
+   * AddStock updateMany
+   */
+  export type AddStockUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AddStocks.
+     */
+    data: XOR<AddStockUpdateManyMutationInput, AddStockUncheckedUpdateManyInput>
+    /**
+     * Filter which AddStocks to update
+     */
+    where?: AddStockWhereInput
+    /**
+     * Limit how many AddStocks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AddStock updateManyAndReturn
+   */
+  export type AddStockUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStock
+     */
+    select?: AddStockSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStock
+     */
+    omit?: AddStockOmit<ExtArgs> | null
+    /**
+     * The data used to update AddStocks.
+     */
+    data: XOR<AddStockUpdateManyMutationInput, AddStockUncheckedUpdateManyInput>
+    /**
+     * Filter which AddStocks to update
+     */
+    where?: AddStockWhereInput
+    /**
+     * Limit how many AddStocks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AddStock upsert
+   */
+  export type AddStockUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStock
+     */
+    select?: AddStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStock
+     */
+    omit?: AddStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AddStock to update in case it exists.
+     */
+    where: AddStockWhereUniqueInput
+    /**
+     * In case the AddStock found by the `where` argument doesn't exist, create a new AddStock with this data.
+     */
+    create: XOR<AddStockCreateInput, AddStockUncheckedCreateInput>
+    /**
+     * In case the AddStock was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AddStockUpdateInput, AddStockUncheckedUpdateInput>
+  }
+
+  /**
+   * AddStock delete
+   */
+  export type AddStockDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStock
+     */
+    select?: AddStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStock
+     */
+    omit?: AddStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockInclude<ExtArgs> | null
+    /**
+     * Filter which AddStock to delete.
+     */
+    where: AddStockWhereUniqueInput
+  }
+
+  /**
+   * AddStock deleteMany
+   */
+  export type AddStockDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AddStocks to delete
+     */
+    where?: AddStockWhereInput
+    /**
+     * Limit how many AddStocks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AddStock.AddStockItem
+   */
+  export type AddStock$AddStockItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemInclude<ExtArgs> | null
+    where?: AddStockItemWhereInput
+    orderBy?: AddStockItemOrderByWithRelationInput | AddStockItemOrderByWithRelationInput[]
+    cursor?: AddStockItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AddStockItemScalarFieldEnum | AddStockItemScalarFieldEnum[]
+  }
+
+  /**
+   * AddStock without action
+   */
+  export type AddStockDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStock
+     */
+    select?: AddStockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStock
+     */
+    omit?: AddStockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AddStockItem
+   */
+
+  export type AggregateAddStockItem = {
+    _count: AddStockItemCountAggregateOutputType | null
+    _avg: AddStockItemAvgAggregateOutputType | null
+    _sum: AddStockItemSumAggregateOutputType | null
+    _min: AddStockItemMinAggregateOutputType | null
+    _max: AddStockItemMaxAggregateOutputType | null
+  }
+
+  export type AddStockItemAvgAggregateOutputType = {
+    quantity: number | null
+    unitPrice: number | null
+    price: number | null
+  }
+
+  export type AddStockItemSumAggregateOutputType = {
+    quantity: number | null
+    unitPrice: number | null
+    price: number | null
+  }
+
+  export type AddStockItemMinAggregateOutputType = {
+    id: string | null
+    feedName: string | null
+    quantity: number | null
+    unitPrice: number | null
+    price: number | null
+    addStockId: string | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type AddStockItemMaxAggregateOutputType = {
+    id: string | null
+    feedName: string | null
+    quantity: number | null
+    unitPrice: number | null
+    price: number | null
+    addStockId: string | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type AddStockItemCountAggregateOutputType = {
+    id: number
+    feedName: number
+    quantity: number
+    unitPrice: number
+    price: number
+    addStockId: number
+    createAt: number
+    updateAt: number
+    _all: number
+  }
+
+
+  export type AddStockItemAvgAggregateInputType = {
+    quantity?: true
+    unitPrice?: true
+    price?: true
+  }
+
+  export type AddStockItemSumAggregateInputType = {
+    quantity?: true
+    unitPrice?: true
+    price?: true
+  }
+
+  export type AddStockItemMinAggregateInputType = {
+    id?: true
+    feedName?: true
+    quantity?: true
+    unitPrice?: true
+    price?: true
+    addStockId?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type AddStockItemMaxAggregateInputType = {
+    id?: true
+    feedName?: true
+    quantity?: true
+    unitPrice?: true
+    price?: true
+    addStockId?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type AddStockItemCountAggregateInputType = {
+    id?: true
+    feedName?: true
+    quantity?: true
+    unitPrice?: true
+    price?: true
+    addStockId?: true
+    createAt?: true
+    updateAt?: true
+    _all?: true
+  }
+
+  export type AddStockItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AddStockItem to aggregate.
+     */
+    where?: AddStockItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddStockItems to fetch.
+     */
+    orderBy?: AddStockItemOrderByWithRelationInput | AddStockItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AddStockItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddStockItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddStockItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AddStockItems
+    **/
+    _count?: true | AddStockItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AddStockItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AddStockItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AddStockItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AddStockItemMaxAggregateInputType
+  }
+
+  export type GetAddStockItemAggregateType<T extends AddStockItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateAddStockItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAddStockItem[P]>
+      : GetScalarType<T[P], AggregateAddStockItem[P]>
+  }
+
+
+
+
+  export type AddStockItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AddStockItemWhereInput
+    orderBy?: AddStockItemOrderByWithAggregationInput | AddStockItemOrderByWithAggregationInput[]
+    by: AddStockItemScalarFieldEnum[] | AddStockItemScalarFieldEnum
+    having?: AddStockItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AddStockItemCountAggregateInputType | true
+    _avg?: AddStockItemAvgAggregateInputType
+    _sum?: AddStockItemSumAggregateInputType
+    _min?: AddStockItemMinAggregateInputType
+    _max?: AddStockItemMaxAggregateInputType
+  }
+
+  export type AddStockItemGroupByOutputType = {
+    id: string
+    feedName: string
+    quantity: number
+    unitPrice: number
+    price: number
+    addStockId: string
+    createAt: Date
+    updateAt: Date
+    _count: AddStockItemCountAggregateOutputType | null
+    _avg: AddStockItemAvgAggregateOutputType | null
+    _sum: AddStockItemSumAggregateOutputType | null
+    _min: AddStockItemMinAggregateOutputType | null
+    _max: AddStockItemMaxAggregateOutputType | null
+  }
+
+  type GetAddStockItemGroupByPayload<T extends AddStockItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AddStockItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AddStockItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AddStockItemGroupByOutputType[P]>
+            : GetScalarType<T[P], AddStockItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AddStockItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    quantity?: boolean
+    unitPrice?: boolean
+    price?: boolean
+    addStockId?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    addStock?: boolean | AddStockDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["addStockItem"]>
+
+  export type AddStockItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    quantity?: boolean
+    unitPrice?: boolean
+    price?: boolean
+    addStockId?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    addStock?: boolean | AddStockDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["addStockItem"]>
+
+  export type AddStockItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    quantity?: boolean
+    unitPrice?: boolean
+    price?: boolean
+    addStockId?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    addStock?: boolean | AddStockDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["addStockItem"]>
+
+  export type AddStockItemSelectScalar = {
+    id?: boolean
+    feedName?: boolean
+    quantity?: boolean
+    unitPrice?: boolean
+    price?: boolean
+    addStockId?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+  }
+
+  export type AddStockItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "quantity" | "unitPrice" | "price" | "addStockId" | "createAt" | "updateAt", ExtArgs["result"]["addStockItem"]>
+  export type AddStockItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    addStock?: boolean | AddStockDefaultArgs<ExtArgs>
+  }
+  export type AddStockItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    addStock?: boolean | AddStockDefaultArgs<ExtArgs>
+  }
+  export type AddStockItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    addStock?: boolean | AddStockDefaultArgs<ExtArgs>
+  }
+
+  export type $AddStockItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AddStockItem"
+    objects: {
+      feed: Prisma.$FeedNameCategoryPayload<ExtArgs>
+      addStock: Prisma.$AddStockPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      feedName: string
+      quantity: number
+      unitPrice: number
+      price: number
+      addStockId: string
+      createAt: Date
+      updateAt: Date
+    }, ExtArgs["result"]["addStockItem"]>
+    composites: {}
+  }
+
+  type AddStockItemGetPayload<S extends boolean | null | undefined | AddStockItemDefaultArgs> = $Result.GetResult<Prisma.$AddStockItemPayload, S>
+
+  type AddStockItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AddStockItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AddStockItemCountAggregateInputType | true
+    }
+
+  export interface AddStockItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AddStockItem'], meta: { name: 'AddStockItem' } }
+    /**
+     * Find zero or one AddStockItem that matches the filter.
+     * @param {AddStockItemFindUniqueArgs} args - Arguments to find a AddStockItem
+     * @example
+     * // Get one AddStockItem
+     * const addStockItem = await prisma.addStockItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AddStockItemFindUniqueArgs>(args: SelectSubset<T, AddStockItemFindUniqueArgs<ExtArgs>>): Prisma__AddStockItemClient<$Result.GetResult<Prisma.$AddStockItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AddStockItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AddStockItemFindUniqueOrThrowArgs} args - Arguments to find a AddStockItem
+     * @example
+     * // Get one AddStockItem
+     * const addStockItem = await prisma.addStockItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AddStockItemFindUniqueOrThrowArgs>(args: SelectSubset<T, AddStockItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AddStockItemClient<$Result.GetResult<Prisma.$AddStockItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AddStockItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockItemFindFirstArgs} args - Arguments to find a AddStockItem
+     * @example
+     * // Get one AddStockItem
+     * const addStockItem = await prisma.addStockItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AddStockItemFindFirstArgs>(args?: SelectSubset<T, AddStockItemFindFirstArgs<ExtArgs>>): Prisma__AddStockItemClient<$Result.GetResult<Prisma.$AddStockItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AddStockItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockItemFindFirstOrThrowArgs} args - Arguments to find a AddStockItem
+     * @example
+     * // Get one AddStockItem
+     * const addStockItem = await prisma.addStockItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AddStockItemFindFirstOrThrowArgs>(args?: SelectSubset<T, AddStockItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__AddStockItemClient<$Result.GetResult<Prisma.$AddStockItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AddStockItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AddStockItems
+     * const addStockItems = await prisma.addStockItem.findMany()
+     * 
+     * // Get first 10 AddStockItems
+     * const addStockItems = await prisma.addStockItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const addStockItemWithIdOnly = await prisma.addStockItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AddStockItemFindManyArgs>(args?: SelectSubset<T, AddStockItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddStockItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AddStockItem.
+     * @param {AddStockItemCreateArgs} args - Arguments to create a AddStockItem.
+     * @example
+     * // Create one AddStockItem
+     * const AddStockItem = await prisma.addStockItem.create({
+     *   data: {
+     *     // ... data to create a AddStockItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends AddStockItemCreateArgs>(args: SelectSubset<T, AddStockItemCreateArgs<ExtArgs>>): Prisma__AddStockItemClient<$Result.GetResult<Prisma.$AddStockItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AddStockItems.
+     * @param {AddStockItemCreateManyArgs} args - Arguments to create many AddStockItems.
+     * @example
+     * // Create many AddStockItems
+     * const addStockItem = await prisma.addStockItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AddStockItemCreateManyArgs>(args?: SelectSubset<T, AddStockItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AddStockItems and returns the data saved in the database.
+     * @param {AddStockItemCreateManyAndReturnArgs} args - Arguments to create many AddStockItems.
+     * @example
+     * // Create many AddStockItems
+     * const addStockItem = await prisma.addStockItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AddStockItems and only return the `id`
+     * const addStockItemWithIdOnly = await prisma.addStockItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AddStockItemCreateManyAndReturnArgs>(args?: SelectSubset<T, AddStockItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddStockItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AddStockItem.
+     * @param {AddStockItemDeleteArgs} args - Arguments to delete one AddStockItem.
+     * @example
+     * // Delete one AddStockItem
+     * const AddStockItem = await prisma.addStockItem.delete({
+     *   where: {
+     *     // ... filter to delete one AddStockItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AddStockItemDeleteArgs>(args: SelectSubset<T, AddStockItemDeleteArgs<ExtArgs>>): Prisma__AddStockItemClient<$Result.GetResult<Prisma.$AddStockItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AddStockItem.
+     * @param {AddStockItemUpdateArgs} args - Arguments to update one AddStockItem.
+     * @example
+     * // Update one AddStockItem
+     * const addStockItem = await prisma.addStockItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AddStockItemUpdateArgs>(args: SelectSubset<T, AddStockItemUpdateArgs<ExtArgs>>): Prisma__AddStockItemClient<$Result.GetResult<Prisma.$AddStockItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AddStockItems.
+     * @param {AddStockItemDeleteManyArgs} args - Arguments to filter AddStockItems to delete.
+     * @example
+     * // Delete a few AddStockItems
+     * const { count } = await prisma.addStockItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AddStockItemDeleteManyArgs>(args?: SelectSubset<T, AddStockItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AddStockItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AddStockItems
+     * const addStockItem = await prisma.addStockItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AddStockItemUpdateManyArgs>(args: SelectSubset<T, AddStockItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AddStockItems and returns the data updated in the database.
+     * @param {AddStockItemUpdateManyAndReturnArgs} args - Arguments to update many AddStockItems.
+     * @example
+     * // Update many AddStockItems
+     * const addStockItem = await prisma.addStockItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AddStockItems and only return the `id`
+     * const addStockItemWithIdOnly = await prisma.addStockItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AddStockItemUpdateManyAndReturnArgs>(args: SelectSubset<T, AddStockItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddStockItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AddStockItem.
+     * @param {AddStockItemUpsertArgs} args - Arguments to update or create a AddStockItem.
+     * @example
+     * // Update or create a AddStockItem
+     * const addStockItem = await prisma.addStockItem.upsert({
+     *   create: {
+     *     // ... data to create a AddStockItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AddStockItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AddStockItemUpsertArgs>(args: SelectSubset<T, AddStockItemUpsertArgs<ExtArgs>>): Prisma__AddStockItemClient<$Result.GetResult<Prisma.$AddStockItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AddStockItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockItemCountArgs} args - Arguments to filter AddStockItems to count.
+     * @example
+     * // Count the number of AddStockItems
+     * const count = await prisma.addStockItem.count({
+     *   where: {
+     *     // ... the filter for the AddStockItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends AddStockItemCountArgs>(
+      args?: Subset<T, AddStockItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AddStockItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AddStockItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AddStockItemAggregateArgs>(args: Subset<T, AddStockItemAggregateArgs>): Prisma.PrismaPromise<GetAddStockItemAggregateType<T>>
+
+    /**
+     * Group by AddStockItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddStockItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AddStockItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AddStockItemGroupByArgs['orderBy'] }
+        : { orderBy?: AddStockItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AddStockItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAddStockItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AddStockItem model
+   */
+  readonly fields: AddStockItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AddStockItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AddStockItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    feed<T extends FeedNameCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategoryDefaultArgs<ExtArgs>>): Prisma__FeedNameCategoryClient<$Result.GetResult<Prisma.$FeedNameCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    addStock<T extends AddStockDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddStockDefaultArgs<ExtArgs>>): Prisma__AddStockClient<$Result.GetResult<Prisma.$AddStockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AddStockItem model
+   */
+  interface AddStockItemFieldRefs {
+    readonly id: FieldRef<"AddStockItem", 'String'>
+    readonly feedName: FieldRef<"AddStockItem", 'String'>
+    readonly quantity: FieldRef<"AddStockItem", 'Int'>
+    readonly unitPrice: FieldRef<"AddStockItem", 'Int'>
+    readonly price: FieldRef<"AddStockItem", 'Int'>
+    readonly addStockId: FieldRef<"AddStockItem", 'String'>
+    readonly createAt: FieldRef<"AddStockItem", 'DateTime'>
+    readonly updateAt: FieldRef<"AddStockItem", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AddStockItem findUnique
+   */
+  export type AddStockItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemInclude<ExtArgs> | null
+    /**
+     * Filter, which AddStockItem to fetch.
+     */
+    where: AddStockItemWhereUniqueInput
+  }
+
+  /**
+   * AddStockItem findUniqueOrThrow
+   */
+  export type AddStockItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemInclude<ExtArgs> | null
+    /**
+     * Filter, which AddStockItem to fetch.
+     */
+    where: AddStockItemWhereUniqueInput
+  }
+
+  /**
+   * AddStockItem findFirst
+   */
+  export type AddStockItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemInclude<ExtArgs> | null
+    /**
+     * Filter, which AddStockItem to fetch.
+     */
+    where?: AddStockItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddStockItems to fetch.
+     */
+    orderBy?: AddStockItemOrderByWithRelationInput | AddStockItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AddStockItems.
+     */
+    cursor?: AddStockItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddStockItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddStockItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AddStockItems.
+     */
+    distinct?: AddStockItemScalarFieldEnum | AddStockItemScalarFieldEnum[]
+  }
+
+  /**
+   * AddStockItem findFirstOrThrow
+   */
+  export type AddStockItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemInclude<ExtArgs> | null
+    /**
+     * Filter, which AddStockItem to fetch.
+     */
+    where?: AddStockItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddStockItems to fetch.
+     */
+    orderBy?: AddStockItemOrderByWithRelationInput | AddStockItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AddStockItems.
+     */
+    cursor?: AddStockItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddStockItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddStockItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AddStockItems.
+     */
+    distinct?: AddStockItemScalarFieldEnum | AddStockItemScalarFieldEnum[]
+  }
+
+  /**
+   * AddStockItem findMany
+   */
+  export type AddStockItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemInclude<ExtArgs> | null
+    /**
+     * Filter, which AddStockItems to fetch.
+     */
+    where?: AddStockItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AddStockItems to fetch.
+     */
+    orderBy?: AddStockItemOrderByWithRelationInput | AddStockItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AddStockItems.
+     */
+    cursor?: AddStockItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AddStockItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AddStockItems.
+     */
+    skip?: number
+    distinct?: AddStockItemScalarFieldEnum | AddStockItemScalarFieldEnum[]
+  }
+
+  /**
+   * AddStockItem create
+   */
+  export type AddStockItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AddStockItem.
+     */
+    data: XOR<AddStockItemCreateInput, AddStockItemUncheckedCreateInput>
+  }
+
+  /**
+   * AddStockItem createMany
+   */
+  export type AddStockItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AddStockItems.
+     */
+    data: AddStockItemCreateManyInput | AddStockItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AddStockItem createManyAndReturn
+   */
+  export type AddStockItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many AddStockItems.
+     */
+    data: AddStockItemCreateManyInput | AddStockItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AddStockItem update
+   */
+  export type AddStockItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AddStockItem.
+     */
+    data: XOR<AddStockItemUpdateInput, AddStockItemUncheckedUpdateInput>
+    /**
+     * Choose, which AddStockItem to update.
+     */
+    where: AddStockItemWhereUniqueInput
+  }
+
+  /**
+   * AddStockItem updateMany
+   */
+  export type AddStockItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AddStockItems.
+     */
+    data: XOR<AddStockItemUpdateManyMutationInput, AddStockItemUncheckedUpdateManyInput>
+    /**
+     * Filter which AddStockItems to update
+     */
+    where?: AddStockItemWhereInput
+    /**
+     * Limit how many AddStockItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AddStockItem updateManyAndReturn
+   */
+  export type AddStockItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * The data used to update AddStockItems.
+     */
+    data: XOR<AddStockItemUpdateManyMutationInput, AddStockItemUncheckedUpdateManyInput>
+    /**
+     * Filter which AddStockItems to update
+     */
+    where?: AddStockItemWhereInput
+    /**
+     * Limit how many AddStockItems to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AddStockItem upsert
+   */
+  export type AddStockItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AddStockItem to update in case it exists.
+     */
+    where: AddStockItemWhereUniqueInput
+    /**
+     * In case the AddStockItem found by the `where` argument doesn't exist, create a new AddStockItem with this data.
+     */
+    create: XOR<AddStockItemCreateInput, AddStockItemUncheckedCreateInput>
+    /**
+     * In case the AddStockItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AddStockItemUpdateInput, AddStockItemUncheckedUpdateInput>
+  }
+
+  /**
+   * AddStockItem delete
+   */
+  export type AddStockItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemInclude<ExtArgs> | null
+    /**
+     * Filter which AddStockItem to delete.
+     */
+    where: AddStockItemWhereUniqueInput
+  }
+
+  /**
+   * AddStockItem deleteMany
+   */
+  export type AddStockItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AddStockItems to delete
+     */
+    where?: AddStockItemWhereInput
+    /**
+     * Limit how many AddStockItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AddStockItem without action
+   */
+  export type AddStockItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddStockItem
+     */
+    select?: AddStockItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AddStockItem
+     */
+    omit?: AddStockItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddStockItemInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FeedStockHistory
+   */
+
+  export type AggregateFeedStockHistory = {
+    _count: FeedStockHistoryCountAggregateOutputType | null
+    _avg: FeedStockHistoryAvgAggregateOutputType | null
+    _sum: FeedStockHistorySumAggregateOutputType | null
+    _min: FeedStockHistoryMinAggregateOutputType | null
+    _max: FeedStockHistoryMaxAggregateOutputType | null
+  }
+
+  export type FeedStockHistoryAvgAggregateOutputType = {
+    opening: number | null
+    sales: number | null
+    return: number | null
+    addStock: number | null
+    delivary: number | null
+    intialAdd: number | null
+    transferIn: number | null
+    transferOut: number | null
+    recive: number | null
+    closing: number | null
+  }
+
+  export type FeedStockHistorySumAggregateOutputType = {
+    opening: number | null
+    sales: number | null
+    return: number | null
+    addStock: number | null
+    delivary: number | null
+    intialAdd: number | null
+    transferIn: number | null
+    transferOut: number | null
+    recive: number | null
+    closing: number | null
+  }
+
+  export type FeedStockHistoryMinAggregateOutputType = {
+    id: string | null
+    feedName: string | null
+    depotName: string | null
+    opening: number | null
+    sales: number | null
+    return: number | null
+    addStock: number | null
+    delivary: number | null
+    intialAdd: number | null
+    transferIn: number | null
+    transferOut: number | null
+    recive: number | null
+    closing: number | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type FeedStockHistoryMaxAggregateOutputType = {
+    id: string | null
+    feedName: string | null
+    depotName: string | null
+    opening: number | null
+    sales: number | null
+    return: number | null
+    addStock: number | null
+    delivary: number | null
+    intialAdd: number | null
+    transferIn: number | null
+    transferOut: number | null
+    recive: number | null
+    closing: number | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type FeedStockHistoryCountAggregateOutputType = {
+    id: number
+    feedName: number
+    depotName: number
+    opening: number
+    sales: number
+    return: number
+    addStock: number
+    delivary: number
+    intialAdd: number
+    transferIn: number
+    transferOut: number
+    recive: number
+    closing: number
+    createAt: number
+    updateAt: number
+    _all: number
+  }
+
+
+  export type FeedStockHistoryAvgAggregateInputType = {
+    opening?: true
+    sales?: true
+    return?: true
+    addStock?: true
+    delivary?: true
+    intialAdd?: true
+    transferIn?: true
+    transferOut?: true
+    recive?: true
+    closing?: true
+  }
+
+  export type FeedStockHistorySumAggregateInputType = {
+    opening?: true
+    sales?: true
+    return?: true
+    addStock?: true
+    delivary?: true
+    intialAdd?: true
+    transferIn?: true
+    transferOut?: true
+    recive?: true
+    closing?: true
+  }
+
+  export type FeedStockHistoryMinAggregateInputType = {
+    id?: true
+    feedName?: true
+    depotName?: true
+    opening?: true
+    sales?: true
+    return?: true
+    addStock?: true
+    delivary?: true
+    intialAdd?: true
+    transferIn?: true
+    transferOut?: true
+    recive?: true
+    closing?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type FeedStockHistoryMaxAggregateInputType = {
+    id?: true
+    feedName?: true
+    depotName?: true
+    opening?: true
+    sales?: true
+    return?: true
+    addStock?: true
+    delivary?: true
+    intialAdd?: true
+    transferIn?: true
+    transferOut?: true
+    recive?: true
+    closing?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type FeedStockHistoryCountAggregateInputType = {
+    id?: true
+    feedName?: true
+    depotName?: true
+    opening?: true
+    sales?: true
+    return?: true
+    addStock?: true
+    delivary?: true
+    intialAdd?: true
+    transferIn?: true
+    transferOut?: true
+    recive?: true
+    closing?: true
+    createAt?: true
+    updateAt?: true
+    _all?: true
+  }
+
+  export type FeedStockHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeedStockHistory to aggregate.
+     */
+    where?: FeedStockHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedStockHistories to fetch.
+     */
+    orderBy?: FeedStockHistoryOrderByWithRelationInput | FeedStockHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FeedStockHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedStockHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedStockHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FeedStockHistories
+    **/
+    _count?: true | FeedStockHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FeedStockHistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FeedStockHistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FeedStockHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FeedStockHistoryMaxAggregateInputType
+  }
+
+  export type GetFeedStockHistoryAggregateType<T extends FeedStockHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateFeedStockHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFeedStockHistory[P]>
+      : GetScalarType<T[P], AggregateFeedStockHistory[P]>
+  }
+
+
+
+
+  export type FeedStockHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedStockHistoryWhereInput
+    orderBy?: FeedStockHistoryOrderByWithAggregationInput | FeedStockHistoryOrderByWithAggregationInput[]
+    by: FeedStockHistoryScalarFieldEnum[] | FeedStockHistoryScalarFieldEnum
+    having?: FeedStockHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FeedStockHistoryCountAggregateInputType | true
+    _avg?: FeedStockHistoryAvgAggregateInputType
+    _sum?: FeedStockHistorySumAggregateInputType
+    _min?: FeedStockHistoryMinAggregateInputType
+    _max?: FeedStockHistoryMaxAggregateInputType
+  }
+
+  export type FeedStockHistoryGroupByOutputType = {
+    id: string
+    feedName: string
+    depotName: string
+    opening: number
+    sales: number
+    return: number
+    addStock: number
+    delivary: number
+    intialAdd: number
+    transferIn: number
+    transferOut: number
+    recive: number
+    closing: number
+    createAt: Date
+    updateAt: Date
+    _count: FeedStockHistoryCountAggregateOutputType | null
+    _avg: FeedStockHistoryAvgAggregateOutputType | null
+    _sum: FeedStockHistorySumAggregateOutputType | null
+    _min: FeedStockHistoryMinAggregateOutputType | null
+    _max: FeedStockHistoryMaxAggregateOutputType | null
+  }
+
+  type GetFeedStockHistoryGroupByPayload<T extends FeedStockHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FeedStockHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FeedStockHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FeedStockHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], FeedStockHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FeedStockHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    depotName?: boolean
+    opening?: boolean
+    sales?: boolean
+    return?: boolean
+    addStock?: boolean
+    delivary?: boolean
+    intialAdd?: boolean
+    transferIn?: boolean
+    transferOut?: boolean
+    recive?: boolean
+    closing?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedStockHistory"]>
+
+  export type FeedStockHistorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    depotName?: boolean
+    opening?: boolean
+    sales?: boolean
+    return?: boolean
+    addStock?: boolean
+    delivary?: boolean
+    intialAdd?: boolean
+    transferIn?: boolean
+    transferOut?: boolean
+    recive?: boolean
+    closing?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedStockHistory"]>
+
+  export type FeedStockHistorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    depotName?: boolean
+    opening?: boolean
+    sales?: boolean
+    return?: boolean
+    addStock?: boolean
+    delivary?: boolean
+    intialAdd?: boolean
+    transferIn?: boolean
+    transferOut?: boolean
+    recive?: boolean
+    closing?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedStockHistory"]>
+
+  export type FeedStockHistorySelectScalar = {
+    id?: boolean
+    feedName?: boolean
+    depotName?: boolean
+    opening?: boolean
+    sales?: boolean
+    return?: boolean
+    addStock?: boolean
+    delivary?: boolean
+    intialAdd?: boolean
+    transferIn?: boolean
+    transferOut?: boolean
+    recive?: boolean
+    closing?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+  }
+
+  export type FeedStockHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "depotName" | "opening" | "sales" | "return" | "addStock" | "delivary" | "intialAdd" | "transferIn" | "transferOut" | "recive" | "closing" | "createAt" | "updateAt", ExtArgs["result"]["feedStockHistory"]>
+  export type FeedStockHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+  export type FeedStockHistoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+  export type FeedStockHistoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+
+  export type $FeedStockHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FeedStockHistory"
+    objects: {
+      feed: Prisma.$FeedNameCategoryPayload<ExtArgs>
+      depot: Prisma.$DepotPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      feedName: string
+      depotName: string
+      opening: number
+      sales: number
+      return: number
+      addStock: number
+      delivary: number
+      intialAdd: number
+      transferIn: number
+      transferOut: number
+      recive: number
+      closing: number
+      createAt: Date
+      updateAt: Date
+    }, ExtArgs["result"]["feedStockHistory"]>
+    composites: {}
+  }
+
+  type FeedStockHistoryGetPayload<S extends boolean | null | undefined | FeedStockHistoryDefaultArgs> = $Result.GetResult<Prisma.$FeedStockHistoryPayload, S>
+
+  type FeedStockHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FeedStockHistoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FeedStockHistoryCountAggregateInputType | true
+    }
+
+  export interface FeedStockHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FeedStockHistory'], meta: { name: 'FeedStockHistory' } }
+    /**
+     * Find zero or one FeedStockHistory that matches the filter.
+     * @param {FeedStockHistoryFindUniqueArgs} args - Arguments to find a FeedStockHistory
+     * @example
+     * // Get one FeedStockHistory
+     * const feedStockHistory = await prisma.feedStockHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FeedStockHistoryFindUniqueArgs>(args: SelectSubset<T, FeedStockHistoryFindUniqueArgs<ExtArgs>>): Prisma__FeedStockHistoryClient<$Result.GetResult<Prisma.$FeedStockHistoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FeedStockHistory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FeedStockHistoryFindUniqueOrThrowArgs} args - Arguments to find a FeedStockHistory
+     * @example
+     * // Get one FeedStockHistory
+     * const feedStockHistory = await prisma.feedStockHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FeedStockHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, FeedStockHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FeedStockHistoryClient<$Result.GetResult<Prisma.$FeedStockHistoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeedStockHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockHistoryFindFirstArgs} args - Arguments to find a FeedStockHistory
+     * @example
+     * // Get one FeedStockHistory
+     * const feedStockHistory = await prisma.feedStockHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FeedStockHistoryFindFirstArgs>(args?: SelectSubset<T, FeedStockHistoryFindFirstArgs<ExtArgs>>): Prisma__FeedStockHistoryClient<$Result.GetResult<Prisma.$FeedStockHistoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeedStockHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockHistoryFindFirstOrThrowArgs} args - Arguments to find a FeedStockHistory
+     * @example
+     * // Get one FeedStockHistory
+     * const feedStockHistory = await prisma.feedStockHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FeedStockHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, FeedStockHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__FeedStockHistoryClient<$Result.GetResult<Prisma.$FeedStockHistoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FeedStockHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FeedStockHistories
+     * const feedStockHistories = await prisma.feedStockHistory.findMany()
+     * 
+     * // Get first 10 FeedStockHistories
+     * const feedStockHistories = await prisma.feedStockHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const feedStockHistoryWithIdOnly = await prisma.feedStockHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FeedStockHistoryFindManyArgs>(args?: SelectSubset<T, FeedStockHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FeedStockHistory.
+     * @param {FeedStockHistoryCreateArgs} args - Arguments to create a FeedStockHistory.
+     * @example
+     * // Create one FeedStockHistory
+     * const FeedStockHistory = await prisma.feedStockHistory.create({
+     *   data: {
+     *     // ... data to create a FeedStockHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends FeedStockHistoryCreateArgs>(args: SelectSubset<T, FeedStockHistoryCreateArgs<ExtArgs>>): Prisma__FeedStockHistoryClient<$Result.GetResult<Prisma.$FeedStockHistoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FeedStockHistories.
+     * @param {FeedStockHistoryCreateManyArgs} args - Arguments to create many FeedStockHistories.
+     * @example
+     * // Create many FeedStockHistories
+     * const feedStockHistory = await prisma.feedStockHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FeedStockHistoryCreateManyArgs>(args?: SelectSubset<T, FeedStockHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FeedStockHistories and returns the data saved in the database.
+     * @param {FeedStockHistoryCreateManyAndReturnArgs} args - Arguments to create many FeedStockHistories.
+     * @example
+     * // Create many FeedStockHistories
+     * const feedStockHistory = await prisma.feedStockHistory.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FeedStockHistories and only return the `id`
+     * const feedStockHistoryWithIdOnly = await prisma.feedStockHistory.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FeedStockHistoryCreateManyAndReturnArgs>(args?: SelectSubset<T, FeedStockHistoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockHistoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FeedStockHistory.
+     * @param {FeedStockHistoryDeleteArgs} args - Arguments to delete one FeedStockHistory.
+     * @example
+     * // Delete one FeedStockHistory
+     * const FeedStockHistory = await prisma.feedStockHistory.delete({
+     *   where: {
+     *     // ... filter to delete one FeedStockHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FeedStockHistoryDeleteArgs>(args: SelectSubset<T, FeedStockHistoryDeleteArgs<ExtArgs>>): Prisma__FeedStockHistoryClient<$Result.GetResult<Prisma.$FeedStockHistoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FeedStockHistory.
+     * @param {FeedStockHistoryUpdateArgs} args - Arguments to update one FeedStockHistory.
+     * @example
+     * // Update one FeedStockHistory
+     * const feedStockHistory = await prisma.feedStockHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FeedStockHistoryUpdateArgs>(args: SelectSubset<T, FeedStockHistoryUpdateArgs<ExtArgs>>): Prisma__FeedStockHistoryClient<$Result.GetResult<Prisma.$FeedStockHistoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FeedStockHistories.
+     * @param {FeedStockHistoryDeleteManyArgs} args - Arguments to filter FeedStockHistories to delete.
+     * @example
+     * // Delete a few FeedStockHistories
+     * const { count } = await prisma.feedStockHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FeedStockHistoryDeleteManyArgs>(args?: SelectSubset<T, FeedStockHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeedStockHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FeedStockHistories
+     * const feedStockHistory = await prisma.feedStockHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FeedStockHistoryUpdateManyArgs>(args: SelectSubset<T, FeedStockHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeedStockHistories and returns the data updated in the database.
+     * @param {FeedStockHistoryUpdateManyAndReturnArgs} args - Arguments to update many FeedStockHistories.
+     * @example
+     * // Update many FeedStockHistories
+     * const feedStockHistory = await prisma.feedStockHistory.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FeedStockHistories and only return the `id`
+     * const feedStockHistoryWithIdOnly = await prisma.feedStockHistory.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FeedStockHistoryUpdateManyAndReturnArgs>(args: SelectSubset<T, FeedStockHistoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedStockHistoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FeedStockHistory.
+     * @param {FeedStockHistoryUpsertArgs} args - Arguments to update or create a FeedStockHistory.
+     * @example
+     * // Update or create a FeedStockHistory
+     * const feedStockHistory = await prisma.feedStockHistory.upsert({
+     *   create: {
+     *     // ... data to create a FeedStockHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FeedStockHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FeedStockHistoryUpsertArgs>(args: SelectSubset<T, FeedStockHistoryUpsertArgs<ExtArgs>>): Prisma__FeedStockHistoryClient<$Result.GetResult<Prisma.$FeedStockHistoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FeedStockHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockHistoryCountArgs} args - Arguments to filter FeedStockHistories to count.
+     * @example
+     * // Count the number of FeedStockHistories
+     * const count = await prisma.feedStockHistory.count({
+     *   where: {
+     *     // ... the filter for the FeedStockHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends FeedStockHistoryCountArgs>(
+      args?: Subset<T, FeedStockHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FeedStockHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FeedStockHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FeedStockHistoryAggregateArgs>(args: Subset<T, FeedStockHistoryAggregateArgs>): Prisma.PrismaPromise<GetFeedStockHistoryAggregateType<T>>
+
+    /**
+     * Group by FeedStockHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedStockHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FeedStockHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FeedStockHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: FeedStockHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FeedStockHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFeedStockHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FeedStockHistory model
+   */
+  readonly fields: FeedStockHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FeedStockHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FeedStockHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    feed<T extends FeedNameCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategoryDefaultArgs<ExtArgs>>): Prisma__FeedNameCategoryClient<$Result.GetResult<Prisma.$FeedNameCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    depot<T extends DepotDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DepotDefaultArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FeedStockHistory model
+   */
+  interface FeedStockHistoryFieldRefs {
+    readonly id: FieldRef<"FeedStockHistory", 'String'>
+    readonly feedName: FieldRef<"FeedStockHistory", 'String'>
+    readonly depotName: FieldRef<"FeedStockHistory", 'String'>
+    readonly opening: FieldRef<"FeedStockHistory", 'Int'>
+    readonly sales: FieldRef<"FeedStockHistory", 'Int'>
+    readonly return: FieldRef<"FeedStockHistory", 'Int'>
+    readonly addStock: FieldRef<"FeedStockHistory", 'Int'>
+    readonly delivary: FieldRef<"FeedStockHistory", 'Int'>
+    readonly intialAdd: FieldRef<"FeedStockHistory", 'Int'>
+    readonly transferIn: FieldRef<"FeedStockHistory", 'Int'>
+    readonly transferOut: FieldRef<"FeedStockHistory", 'Int'>
+    readonly recive: FieldRef<"FeedStockHistory", 'Int'>
+    readonly closing: FieldRef<"FeedStockHistory", 'Int'>
+    readonly createAt: FieldRef<"FeedStockHistory", 'DateTime'>
+    readonly updateAt: FieldRef<"FeedStockHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FeedStockHistory findUnique
+   */
+  export type FeedStockHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedStockHistory to fetch.
+     */
+    where: FeedStockHistoryWhereUniqueInput
+  }
+
+  /**
+   * FeedStockHistory findUniqueOrThrow
+   */
+  export type FeedStockHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedStockHistory to fetch.
+     */
+    where: FeedStockHistoryWhereUniqueInput
+  }
+
+  /**
+   * FeedStockHistory findFirst
+   */
+  export type FeedStockHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedStockHistory to fetch.
+     */
+    where?: FeedStockHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedStockHistories to fetch.
+     */
+    orderBy?: FeedStockHistoryOrderByWithRelationInput | FeedStockHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeedStockHistories.
+     */
+    cursor?: FeedStockHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedStockHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedStockHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeedStockHistories.
+     */
+    distinct?: FeedStockHistoryScalarFieldEnum | FeedStockHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * FeedStockHistory findFirstOrThrow
+   */
+  export type FeedStockHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedStockHistory to fetch.
+     */
+    where?: FeedStockHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedStockHistories to fetch.
+     */
+    orderBy?: FeedStockHistoryOrderByWithRelationInput | FeedStockHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeedStockHistories.
+     */
+    cursor?: FeedStockHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedStockHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedStockHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeedStockHistories.
+     */
+    distinct?: FeedStockHistoryScalarFieldEnum | FeedStockHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * FeedStockHistory findMany
+   */
+  export type FeedStockHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedStockHistories to fetch.
+     */
+    where?: FeedStockHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedStockHistories to fetch.
+     */
+    orderBy?: FeedStockHistoryOrderByWithRelationInput | FeedStockHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FeedStockHistories.
+     */
+    cursor?: FeedStockHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedStockHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedStockHistories.
+     */
+    skip?: number
+    distinct?: FeedStockHistoryScalarFieldEnum | FeedStockHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * FeedStockHistory create
+   */
+  export type FeedStockHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FeedStockHistory.
+     */
+    data: XOR<FeedStockHistoryCreateInput, FeedStockHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * FeedStockHistory createMany
+   */
+  export type FeedStockHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FeedStockHistories.
+     */
+    data: FeedStockHistoryCreateManyInput | FeedStockHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FeedStockHistory createManyAndReturn
+   */
+  export type FeedStockHistoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * The data used to create many FeedStockHistories.
+     */
+    data: FeedStockHistoryCreateManyInput | FeedStockHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeedStockHistory update
+   */
+  export type FeedStockHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FeedStockHistory.
+     */
+    data: XOR<FeedStockHistoryUpdateInput, FeedStockHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which FeedStockHistory to update.
+     */
+    where: FeedStockHistoryWhereUniqueInput
+  }
+
+  /**
+   * FeedStockHistory updateMany
+   */
+  export type FeedStockHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FeedStockHistories.
+     */
+    data: XOR<FeedStockHistoryUpdateManyMutationInput, FeedStockHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which FeedStockHistories to update
+     */
+    where?: FeedStockHistoryWhereInput
+    /**
+     * Limit how many FeedStockHistories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeedStockHistory updateManyAndReturn
+   */
+  export type FeedStockHistoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * The data used to update FeedStockHistories.
+     */
+    data: XOR<FeedStockHistoryUpdateManyMutationInput, FeedStockHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which FeedStockHistories to update
+     */
+    where?: FeedStockHistoryWhereInput
+    /**
+     * Limit how many FeedStockHistories to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeedStockHistory upsert
+   */
+  export type FeedStockHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FeedStockHistory to update in case it exists.
+     */
+    where: FeedStockHistoryWhereUniqueInput
+    /**
+     * In case the FeedStockHistory found by the `where` argument doesn't exist, create a new FeedStockHistory with this data.
+     */
+    create: XOR<FeedStockHistoryCreateInput, FeedStockHistoryUncheckedCreateInput>
+    /**
+     * In case the FeedStockHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FeedStockHistoryUpdateInput, FeedStockHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * FeedStockHistory delete
+   */
+  export type FeedStockHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryInclude<ExtArgs> | null
+    /**
+     * Filter which FeedStockHistory to delete.
+     */
+    where: FeedStockHistoryWhereUniqueInput
+  }
+
+  /**
+   * FeedStockHistory deleteMany
+   */
+  export type FeedStockHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeedStockHistories to delete
+     */
+    where?: FeedStockHistoryWhereInput
+    /**
+     * Limit how many FeedStockHistories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeedStockHistory without action
+   */
+  export type FeedStockHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedStockHistory
+     */
+    select?: FeedStockHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedStockHistory
+     */
+    omit?: FeedStockHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedStockHistoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model feedTransActionHeader
+   */
+
+  export type AggregateFeedTransActionHeader = {
+    _count: FeedTransActionHeaderCountAggregateOutputType | null
+    _min: FeedTransActionHeaderMinAggregateOutputType | null
+    _max: FeedTransActionHeaderMaxAggregateOutputType | null
+  }
+
+  export type FeedTransActionHeaderMinAggregateOutputType = {
+    id: string | null
+    depotName: string | null
+    refId: string | null
+    transactionType: $Enums.TransactionType | null
+    status: $Enums.DeliveryStatus | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type FeedTransActionHeaderMaxAggregateOutputType = {
+    id: string | null
+    depotName: string | null
+    refId: string | null
+    transactionType: $Enums.TransactionType | null
+    status: $Enums.DeliveryStatus | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type FeedTransActionHeaderCountAggregateOutputType = {
+    id: number
+    depotName: number
+    refId: number
+    transactionType: number
+    status: number
+    createAt: number
+    updateAt: number
+    _all: number
+  }
+
+
+  export type FeedTransActionHeaderMinAggregateInputType = {
+    id?: true
+    depotName?: true
+    refId?: true
+    transactionType?: true
+    status?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type FeedTransActionHeaderMaxAggregateInputType = {
+    id?: true
+    depotName?: true
+    refId?: true
+    transactionType?: true
+    status?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type FeedTransActionHeaderCountAggregateInputType = {
+    id?: true
+    depotName?: true
+    refId?: true
+    transactionType?: true
+    status?: true
+    createAt?: true
+    updateAt?: true
+    _all?: true
+  }
+
+  export type FeedTransActionHeaderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which feedTransActionHeader to aggregate.
+     */
+    where?: feedTransActionHeaderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of feedTransActionHeaders to fetch.
+     */
+    orderBy?: feedTransActionHeaderOrderByWithRelationInput | feedTransActionHeaderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: feedTransActionHeaderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` feedTransActionHeaders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` feedTransActionHeaders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned feedTransActionHeaders
+    **/
+    _count?: true | FeedTransActionHeaderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FeedTransActionHeaderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FeedTransActionHeaderMaxAggregateInputType
+  }
+
+  export type GetFeedTransActionHeaderAggregateType<T extends FeedTransActionHeaderAggregateArgs> = {
+        [P in keyof T & keyof AggregateFeedTransActionHeader]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFeedTransActionHeader[P]>
+      : GetScalarType<T[P], AggregateFeedTransActionHeader[P]>
+  }
+
+
+
+
+  export type feedTransActionHeaderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: feedTransActionHeaderWhereInput
+    orderBy?: feedTransActionHeaderOrderByWithAggregationInput | feedTransActionHeaderOrderByWithAggregationInput[]
+    by: FeedTransActionHeaderScalarFieldEnum[] | FeedTransActionHeaderScalarFieldEnum
+    having?: feedTransActionHeaderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FeedTransActionHeaderCountAggregateInputType | true
+    _min?: FeedTransActionHeaderMinAggregateInputType
+    _max?: FeedTransActionHeaderMaxAggregateInputType
+  }
+
+  export type FeedTransActionHeaderGroupByOutputType = {
+    id: string
+    depotName: string
+    refId: string
+    transactionType: $Enums.TransactionType
+    status: $Enums.DeliveryStatus
+    createAt: Date
+    updateAt: Date
+    _count: FeedTransActionHeaderCountAggregateOutputType | null
+    _min: FeedTransActionHeaderMinAggregateOutputType | null
+    _max: FeedTransActionHeaderMaxAggregateOutputType | null
+  }
+
+  type GetFeedTransActionHeaderGroupByPayload<T extends feedTransActionHeaderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FeedTransActionHeaderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FeedTransActionHeaderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FeedTransActionHeaderGroupByOutputType[P]>
+            : GetScalarType<T[P], FeedTransActionHeaderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type feedTransActionHeaderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    depotName?: boolean
+    refId?: boolean
+    transactionType?: boolean
+    status?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedTransActionHeader"]>
+
+  export type feedTransActionHeaderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    depotName?: boolean
+    refId?: boolean
+    transactionType?: boolean
+    status?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedTransActionHeader"]>
+
+  export type feedTransActionHeaderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    depotName?: boolean
+    refId?: boolean
+    transactionType?: boolean
+    status?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedTransActionHeader"]>
+
+  export type feedTransActionHeaderSelectScalar = {
+    id?: boolean
+    depotName?: boolean
+    refId?: boolean
+    transactionType?: boolean
+    status?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+  }
+
+  export type feedTransActionHeaderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "depotName" | "refId" | "transactionType" | "status" | "createAt" | "updateAt", ExtArgs["result"]["feedTransActionHeader"]>
+  export type feedTransActionHeaderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+  export type feedTransActionHeaderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+  export type feedTransActionHeaderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+
+  export type $feedTransActionHeaderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "feedTransActionHeader"
+    objects: {
+      depot: Prisma.$DepotPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      depotName: string
+      refId: string
+      transactionType: $Enums.TransactionType
+      status: $Enums.DeliveryStatus
+      createAt: Date
+      updateAt: Date
+    }, ExtArgs["result"]["feedTransActionHeader"]>
+    composites: {}
+  }
+
+  type feedTransActionHeaderGetPayload<S extends boolean | null | undefined | feedTransActionHeaderDefaultArgs> = $Result.GetResult<Prisma.$feedTransActionHeaderPayload, S>
+
+  type feedTransActionHeaderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<feedTransActionHeaderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FeedTransActionHeaderCountAggregateInputType | true
+    }
+
+  export interface feedTransActionHeaderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['feedTransActionHeader'], meta: { name: 'feedTransActionHeader' } }
+    /**
+     * Find zero or one FeedTransActionHeader that matches the filter.
+     * @param {feedTransActionHeaderFindUniqueArgs} args - Arguments to find a FeedTransActionHeader
+     * @example
+     * // Get one FeedTransActionHeader
+     * const feedTransActionHeader = await prisma.feedTransActionHeader.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends feedTransActionHeaderFindUniqueArgs>(args: SelectSubset<T, feedTransActionHeaderFindUniqueArgs<ExtArgs>>): Prisma__feedTransActionHeaderClient<$Result.GetResult<Prisma.$feedTransActionHeaderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FeedTransActionHeader that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {feedTransActionHeaderFindUniqueOrThrowArgs} args - Arguments to find a FeedTransActionHeader
+     * @example
+     * // Get one FeedTransActionHeader
+     * const feedTransActionHeader = await prisma.feedTransActionHeader.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends feedTransActionHeaderFindUniqueOrThrowArgs>(args: SelectSubset<T, feedTransActionHeaderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__feedTransActionHeaderClient<$Result.GetResult<Prisma.$feedTransActionHeaderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeedTransActionHeader that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {feedTransActionHeaderFindFirstArgs} args - Arguments to find a FeedTransActionHeader
+     * @example
+     * // Get one FeedTransActionHeader
+     * const feedTransActionHeader = await prisma.feedTransActionHeader.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends feedTransActionHeaderFindFirstArgs>(args?: SelectSubset<T, feedTransActionHeaderFindFirstArgs<ExtArgs>>): Prisma__feedTransActionHeaderClient<$Result.GetResult<Prisma.$feedTransActionHeaderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeedTransActionHeader that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {feedTransActionHeaderFindFirstOrThrowArgs} args - Arguments to find a FeedTransActionHeader
+     * @example
+     * // Get one FeedTransActionHeader
+     * const feedTransActionHeader = await prisma.feedTransActionHeader.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends feedTransActionHeaderFindFirstOrThrowArgs>(args?: SelectSubset<T, feedTransActionHeaderFindFirstOrThrowArgs<ExtArgs>>): Prisma__feedTransActionHeaderClient<$Result.GetResult<Prisma.$feedTransActionHeaderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FeedTransActionHeaders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {feedTransActionHeaderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FeedTransActionHeaders
+     * const feedTransActionHeaders = await prisma.feedTransActionHeader.findMany()
+     * 
+     * // Get first 10 FeedTransActionHeaders
+     * const feedTransActionHeaders = await prisma.feedTransActionHeader.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const feedTransActionHeaderWithIdOnly = await prisma.feedTransActionHeader.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends feedTransActionHeaderFindManyArgs>(args?: SelectSubset<T, feedTransActionHeaderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$feedTransActionHeaderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FeedTransActionHeader.
+     * @param {feedTransActionHeaderCreateArgs} args - Arguments to create a FeedTransActionHeader.
+     * @example
+     * // Create one FeedTransActionHeader
+     * const FeedTransActionHeader = await prisma.feedTransActionHeader.create({
+     *   data: {
+     *     // ... data to create a FeedTransActionHeader
+     *   }
+     * })
+     * 
+     */
+    create<T extends feedTransActionHeaderCreateArgs>(args: SelectSubset<T, feedTransActionHeaderCreateArgs<ExtArgs>>): Prisma__feedTransActionHeaderClient<$Result.GetResult<Prisma.$feedTransActionHeaderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FeedTransActionHeaders.
+     * @param {feedTransActionHeaderCreateManyArgs} args - Arguments to create many FeedTransActionHeaders.
+     * @example
+     * // Create many FeedTransActionHeaders
+     * const feedTransActionHeader = await prisma.feedTransActionHeader.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends feedTransActionHeaderCreateManyArgs>(args?: SelectSubset<T, feedTransActionHeaderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FeedTransActionHeaders and returns the data saved in the database.
+     * @param {feedTransActionHeaderCreateManyAndReturnArgs} args - Arguments to create many FeedTransActionHeaders.
+     * @example
+     * // Create many FeedTransActionHeaders
+     * const feedTransActionHeader = await prisma.feedTransActionHeader.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FeedTransActionHeaders and only return the `id`
+     * const feedTransActionHeaderWithIdOnly = await prisma.feedTransActionHeader.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends feedTransActionHeaderCreateManyAndReturnArgs>(args?: SelectSubset<T, feedTransActionHeaderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$feedTransActionHeaderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FeedTransActionHeader.
+     * @param {feedTransActionHeaderDeleteArgs} args - Arguments to delete one FeedTransActionHeader.
+     * @example
+     * // Delete one FeedTransActionHeader
+     * const FeedTransActionHeader = await prisma.feedTransActionHeader.delete({
+     *   where: {
+     *     // ... filter to delete one FeedTransActionHeader
+     *   }
+     * })
+     * 
+     */
+    delete<T extends feedTransActionHeaderDeleteArgs>(args: SelectSubset<T, feedTransActionHeaderDeleteArgs<ExtArgs>>): Prisma__feedTransActionHeaderClient<$Result.GetResult<Prisma.$feedTransActionHeaderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FeedTransActionHeader.
+     * @param {feedTransActionHeaderUpdateArgs} args - Arguments to update one FeedTransActionHeader.
+     * @example
+     * // Update one FeedTransActionHeader
+     * const feedTransActionHeader = await prisma.feedTransActionHeader.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends feedTransActionHeaderUpdateArgs>(args: SelectSubset<T, feedTransActionHeaderUpdateArgs<ExtArgs>>): Prisma__feedTransActionHeaderClient<$Result.GetResult<Prisma.$feedTransActionHeaderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FeedTransActionHeaders.
+     * @param {feedTransActionHeaderDeleteManyArgs} args - Arguments to filter FeedTransActionHeaders to delete.
+     * @example
+     * // Delete a few FeedTransActionHeaders
+     * const { count } = await prisma.feedTransActionHeader.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends feedTransActionHeaderDeleteManyArgs>(args?: SelectSubset<T, feedTransActionHeaderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeedTransActionHeaders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {feedTransActionHeaderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FeedTransActionHeaders
+     * const feedTransActionHeader = await prisma.feedTransActionHeader.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends feedTransActionHeaderUpdateManyArgs>(args: SelectSubset<T, feedTransActionHeaderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeedTransActionHeaders and returns the data updated in the database.
+     * @param {feedTransActionHeaderUpdateManyAndReturnArgs} args - Arguments to update many FeedTransActionHeaders.
+     * @example
+     * // Update many FeedTransActionHeaders
+     * const feedTransActionHeader = await prisma.feedTransActionHeader.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FeedTransActionHeaders and only return the `id`
+     * const feedTransActionHeaderWithIdOnly = await prisma.feedTransActionHeader.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends feedTransActionHeaderUpdateManyAndReturnArgs>(args: SelectSubset<T, feedTransActionHeaderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$feedTransActionHeaderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FeedTransActionHeader.
+     * @param {feedTransActionHeaderUpsertArgs} args - Arguments to update or create a FeedTransActionHeader.
+     * @example
+     * // Update or create a FeedTransActionHeader
+     * const feedTransActionHeader = await prisma.feedTransActionHeader.upsert({
+     *   create: {
+     *     // ... data to create a FeedTransActionHeader
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FeedTransActionHeader we want to update
+     *   }
+     * })
+     */
+    upsert<T extends feedTransActionHeaderUpsertArgs>(args: SelectSubset<T, feedTransActionHeaderUpsertArgs<ExtArgs>>): Prisma__feedTransActionHeaderClient<$Result.GetResult<Prisma.$feedTransActionHeaderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FeedTransActionHeaders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {feedTransActionHeaderCountArgs} args - Arguments to filter FeedTransActionHeaders to count.
+     * @example
+     * // Count the number of FeedTransActionHeaders
+     * const count = await prisma.feedTransActionHeader.count({
+     *   where: {
+     *     // ... the filter for the FeedTransActionHeaders we want to count
+     *   }
+     * })
+    **/
+    count<T extends feedTransActionHeaderCountArgs>(
+      args?: Subset<T, feedTransActionHeaderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FeedTransActionHeaderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FeedTransActionHeader.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedTransActionHeaderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FeedTransActionHeaderAggregateArgs>(args: Subset<T, FeedTransActionHeaderAggregateArgs>): Prisma.PrismaPromise<GetFeedTransActionHeaderAggregateType<T>>
+
+    /**
+     * Group by FeedTransActionHeader.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {feedTransActionHeaderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends feedTransActionHeaderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: feedTransActionHeaderGroupByArgs['orderBy'] }
+        : { orderBy?: feedTransActionHeaderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, feedTransActionHeaderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFeedTransActionHeaderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the feedTransActionHeader model
+   */
+  readonly fields: feedTransActionHeaderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for feedTransActionHeader.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__feedTransActionHeaderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    depot<T extends DepotDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DepotDefaultArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the feedTransActionHeader model
+   */
+  interface feedTransActionHeaderFieldRefs {
+    readonly id: FieldRef<"feedTransActionHeader", 'String'>
+    readonly depotName: FieldRef<"feedTransActionHeader", 'String'>
+    readonly refId: FieldRef<"feedTransActionHeader", 'String'>
+    readonly transactionType: FieldRef<"feedTransActionHeader", 'TransactionType'>
+    readonly status: FieldRef<"feedTransActionHeader", 'DeliveryStatus'>
+    readonly createAt: FieldRef<"feedTransActionHeader", 'DateTime'>
+    readonly updateAt: FieldRef<"feedTransActionHeader", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * feedTransActionHeader findUnique
+   */
+  export type feedTransActionHeaderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the feedTransActionHeader
+     */
+    select?: feedTransActionHeaderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the feedTransActionHeader
+     */
+    omit?: feedTransActionHeaderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: feedTransActionHeaderInclude<ExtArgs> | null
+    /**
+     * Filter, which feedTransActionHeader to fetch.
+     */
+    where: feedTransActionHeaderWhereUniqueInput
+  }
+
+  /**
+   * feedTransActionHeader findUniqueOrThrow
+   */
+  export type feedTransActionHeaderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the feedTransActionHeader
+     */
+    select?: feedTransActionHeaderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the feedTransActionHeader
+     */
+    omit?: feedTransActionHeaderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: feedTransActionHeaderInclude<ExtArgs> | null
+    /**
+     * Filter, which feedTransActionHeader to fetch.
+     */
+    where: feedTransActionHeaderWhereUniqueInput
+  }
+
+  /**
+   * feedTransActionHeader findFirst
+   */
+  export type feedTransActionHeaderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the feedTransActionHeader
+     */
+    select?: feedTransActionHeaderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the feedTransActionHeader
+     */
+    omit?: feedTransActionHeaderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: feedTransActionHeaderInclude<ExtArgs> | null
+    /**
+     * Filter, which feedTransActionHeader to fetch.
+     */
+    where?: feedTransActionHeaderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of feedTransActionHeaders to fetch.
+     */
+    orderBy?: feedTransActionHeaderOrderByWithRelationInput | feedTransActionHeaderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for feedTransActionHeaders.
+     */
+    cursor?: feedTransActionHeaderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` feedTransActionHeaders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` feedTransActionHeaders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of feedTransActionHeaders.
+     */
+    distinct?: FeedTransActionHeaderScalarFieldEnum | FeedTransActionHeaderScalarFieldEnum[]
+  }
+
+  /**
+   * feedTransActionHeader findFirstOrThrow
+   */
+  export type feedTransActionHeaderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the feedTransActionHeader
+     */
+    select?: feedTransActionHeaderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the feedTransActionHeader
+     */
+    omit?: feedTransActionHeaderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: feedTransActionHeaderInclude<ExtArgs> | null
+    /**
+     * Filter, which feedTransActionHeader to fetch.
+     */
+    where?: feedTransActionHeaderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of feedTransActionHeaders to fetch.
+     */
+    orderBy?: feedTransActionHeaderOrderByWithRelationInput | feedTransActionHeaderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for feedTransActionHeaders.
+     */
+    cursor?: feedTransActionHeaderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` feedTransActionHeaders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` feedTransActionHeaders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of feedTransActionHeaders.
+     */
+    distinct?: FeedTransActionHeaderScalarFieldEnum | FeedTransActionHeaderScalarFieldEnum[]
+  }
+
+  /**
+   * feedTransActionHeader findMany
+   */
+  export type feedTransActionHeaderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the feedTransActionHeader
+     */
+    select?: feedTransActionHeaderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the feedTransActionHeader
+     */
+    omit?: feedTransActionHeaderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: feedTransActionHeaderInclude<ExtArgs> | null
+    /**
+     * Filter, which feedTransActionHeaders to fetch.
+     */
+    where?: feedTransActionHeaderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of feedTransActionHeaders to fetch.
+     */
+    orderBy?: feedTransActionHeaderOrderByWithRelationInput | feedTransActionHeaderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing feedTransActionHeaders.
+     */
+    cursor?: feedTransActionHeaderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` feedTransActionHeaders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` feedTransActionHeaders.
+     */
+    skip?: number
+    distinct?: FeedTransActionHeaderScalarFieldEnum | FeedTransActionHeaderScalarFieldEnum[]
+  }
+
+  /**
+   * feedTransActionHeader create
+   */
+  export type feedTransActionHeaderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the feedTransActionHeader
+     */
+    select?: feedTransActionHeaderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the feedTransActionHeader
+     */
+    omit?: feedTransActionHeaderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: feedTransActionHeaderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a feedTransActionHeader.
+     */
+    data: XOR<feedTransActionHeaderCreateInput, feedTransActionHeaderUncheckedCreateInput>
+  }
+
+  /**
+   * feedTransActionHeader createMany
+   */
+  export type feedTransActionHeaderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many feedTransActionHeaders.
+     */
+    data: feedTransActionHeaderCreateManyInput | feedTransActionHeaderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * feedTransActionHeader createManyAndReturn
+   */
+  export type feedTransActionHeaderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the feedTransActionHeader
+     */
+    select?: feedTransActionHeaderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the feedTransActionHeader
+     */
+    omit?: feedTransActionHeaderOmit<ExtArgs> | null
+    /**
+     * The data used to create many feedTransActionHeaders.
+     */
+    data: feedTransActionHeaderCreateManyInput | feedTransActionHeaderCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: feedTransActionHeaderIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * feedTransActionHeader update
+   */
+  export type feedTransActionHeaderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the feedTransActionHeader
+     */
+    select?: feedTransActionHeaderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the feedTransActionHeader
+     */
+    omit?: feedTransActionHeaderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: feedTransActionHeaderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a feedTransActionHeader.
+     */
+    data: XOR<feedTransActionHeaderUpdateInput, feedTransActionHeaderUncheckedUpdateInput>
+    /**
+     * Choose, which feedTransActionHeader to update.
+     */
+    where: feedTransActionHeaderWhereUniqueInput
+  }
+
+  /**
+   * feedTransActionHeader updateMany
+   */
+  export type feedTransActionHeaderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update feedTransActionHeaders.
+     */
+    data: XOR<feedTransActionHeaderUpdateManyMutationInput, feedTransActionHeaderUncheckedUpdateManyInput>
+    /**
+     * Filter which feedTransActionHeaders to update
+     */
+    where?: feedTransActionHeaderWhereInput
+    /**
+     * Limit how many feedTransActionHeaders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * feedTransActionHeader updateManyAndReturn
+   */
+  export type feedTransActionHeaderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the feedTransActionHeader
+     */
+    select?: feedTransActionHeaderSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the feedTransActionHeader
+     */
+    omit?: feedTransActionHeaderOmit<ExtArgs> | null
+    /**
+     * The data used to update feedTransActionHeaders.
+     */
+    data: XOR<feedTransActionHeaderUpdateManyMutationInput, feedTransActionHeaderUncheckedUpdateManyInput>
+    /**
+     * Filter which feedTransActionHeaders to update
+     */
+    where?: feedTransActionHeaderWhereInput
+    /**
+     * Limit how many feedTransActionHeaders to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: feedTransActionHeaderIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * feedTransActionHeader upsert
+   */
+  export type feedTransActionHeaderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the feedTransActionHeader
+     */
+    select?: feedTransActionHeaderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the feedTransActionHeader
+     */
+    omit?: feedTransActionHeaderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: feedTransActionHeaderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the feedTransActionHeader to update in case it exists.
+     */
+    where: feedTransActionHeaderWhereUniqueInput
+    /**
+     * In case the feedTransActionHeader found by the `where` argument doesn't exist, create a new feedTransActionHeader with this data.
+     */
+    create: XOR<feedTransActionHeaderCreateInput, feedTransActionHeaderUncheckedCreateInput>
+    /**
+     * In case the feedTransActionHeader was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<feedTransActionHeaderUpdateInput, feedTransActionHeaderUncheckedUpdateInput>
+  }
+
+  /**
+   * feedTransActionHeader delete
+   */
+  export type feedTransActionHeaderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the feedTransActionHeader
+     */
+    select?: feedTransActionHeaderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the feedTransActionHeader
+     */
+    omit?: feedTransActionHeaderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: feedTransActionHeaderInclude<ExtArgs> | null
+    /**
+     * Filter which feedTransActionHeader to delete.
+     */
+    where: feedTransActionHeaderWhereUniqueInput
+  }
+
+  /**
+   * feedTransActionHeader deleteMany
+   */
+  export type feedTransActionHeaderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which feedTransActionHeaders to delete
+     */
+    where?: feedTransActionHeaderWhereInput
+    /**
+     * Limit how many feedTransActionHeaders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * feedTransActionHeader without action
+   */
+  export type feedTransActionHeaderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the feedTransActionHeader
+     */
+    select?: feedTransActionHeaderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the feedTransActionHeader
+     */
+    omit?: feedTransActionHeaderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: feedTransActionHeaderInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model FeedStockTransfer
    */
 
@@ -20059,12 +25693,12 @@ export namespace Prisma {
   }
 
   export type FeedStockTransferAvgAggregateOutputType = {
-    totalKg: number | null
+    totalQuantity: number | null
     totalPrice: number | null
   }
 
   export type FeedStockTransferSumAggregateOutputType = {
-    totalKg: number | null
+    totalQuantity: number | null
     totalPrice: number | null
   }
 
@@ -20072,53 +25706,50 @@ export namespace Prisma {
     id: string | null
     fromDepot: string | null
     toDepot: string | null
-    transerFerDate: string | null
-    totalKg: number | null
+    totalQuantity: number | null
     totalPrice: number | null
-    createDate: string | null
+    deliveryDate: Date | null
+    status: $Enums.DeliveryStatus | null
     trnasferBill: string | null
     createAt: Date | null
     updateAt: Date | null
-    depotId: string | null
   }
 
   export type FeedStockTransferMaxAggregateOutputType = {
     id: string | null
     fromDepot: string | null
     toDepot: string | null
-    transerFerDate: string | null
-    totalKg: number | null
+    totalQuantity: number | null
     totalPrice: number | null
-    createDate: string | null
+    deliveryDate: Date | null
+    status: $Enums.DeliveryStatus | null
     trnasferBill: string | null
     createAt: Date | null
     updateAt: Date | null
-    depotId: string | null
   }
 
   export type FeedStockTransferCountAggregateOutputType = {
     id: number
     fromDepot: number
     toDepot: number
-    transerFerDate: number
-    totalKg: number
+    totalQuantity: number
     totalPrice: number
-    createDate: number
+    deliveryDate: number
+    status: number
     trnasferBill: number
     createAt: number
     updateAt: number
-    depotId: number
     _all: number
   }
 
 
   export type FeedStockTransferAvgAggregateInputType = {
-    totalKg?: true
+    totalQuantity?: true
     totalPrice?: true
   }
 
   export type FeedStockTransferSumAggregateInputType = {
-    totalKg?: true
+    totalQuantity?: true
     totalPrice?: true
   }
 
@@ -20126,42 +25757,39 @@ export namespace Prisma {
     id?: true
     fromDepot?: true
     toDepot?: true
-    transerFerDate?: true
-    totalKg?: true
+    totalQuantity?: true
     totalPrice?: true
-    createDate?: true
+    deliveryDate?: true
+    status?: true
     trnasferBill?: true
     createAt?: true
     updateAt?: true
-    depotId?: true
   }
 
   export type FeedStockTransferMaxAggregateInputType = {
     id?: true
     fromDepot?: true
     toDepot?: true
-    transerFerDate?: true
-    totalKg?: true
+    totalQuantity?: true
     totalPrice?: true
-    createDate?: true
+    deliveryDate?: true
+    status?: true
     trnasferBill?: true
     createAt?: true
     updateAt?: true
-    depotId?: true
   }
 
   export type FeedStockTransferCountAggregateInputType = {
     id?: true
     fromDepot?: true
     toDepot?: true
-    transerFerDate?: true
-    totalKg?: true
+    totalQuantity?: true
     totalPrice?: true
-    createDate?: true
+    deliveryDate?: true
+    status?: true
     trnasferBill?: true
     createAt?: true
     updateAt?: true
-    depotId?: true
     _all?: true
   }
 
@@ -20255,14 +25883,13 @@ export namespace Prisma {
     id: string
     fromDepot: string
     toDepot: string
-    transerFerDate: string
-    totalKg: number
+    totalQuantity: number
     totalPrice: number
-    createDate: string
+    deliveryDate: Date | null
+    status: $Enums.DeliveryStatus
     trnasferBill: string
-    createAt: Date | null
+    createAt: Date
     updateAt: Date
-    depotId: string | null
     _count: FeedStockTransferCountAggregateOutputType | null
     _avg: FeedStockTransferAvgAggregateOutputType | null
     _sum: FeedStockTransferSumAggregateOutputType | null
@@ -20288,14 +25915,13 @@ export namespace Prisma {
     id?: boolean
     fromDepot?: boolean
     toDepot?: boolean
-    transerFerDate?: boolean
-    totalKg?: boolean
+    totalQuantity?: boolean
     totalPrice?: boolean
-    createDate?: boolean
+    deliveryDate?: boolean
+    status?: boolean
     trnasferBill?: boolean
     createAt?: boolean
     updateAt?: boolean
-    depotId?: boolean
     transferDepot?: boolean | DepotDefaultArgs<ExtArgs>
     reciveDepot?: boolean | DepotDefaultArgs<ExtArgs>
     transferFeedItem?: boolean | FeedStockTransfer$transferFeedItemArgs<ExtArgs>
@@ -20306,14 +25932,13 @@ export namespace Prisma {
     id?: boolean
     fromDepot?: boolean
     toDepot?: boolean
-    transerFerDate?: boolean
-    totalKg?: boolean
+    totalQuantity?: boolean
     totalPrice?: boolean
-    createDate?: boolean
+    deliveryDate?: boolean
+    status?: boolean
     trnasferBill?: boolean
     createAt?: boolean
     updateAt?: boolean
-    depotId?: boolean
     transferDepot?: boolean | DepotDefaultArgs<ExtArgs>
     reciveDepot?: boolean | DepotDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["feedStockTransfer"]>
@@ -20322,14 +25947,13 @@ export namespace Prisma {
     id?: boolean
     fromDepot?: boolean
     toDepot?: boolean
-    transerFerDate?: boolean
-    totalKg?: boolean
+    totalQuantity?: boolean
     totalPrice?: boolean
-    createDate?: boolean
+    deliveryDate?: boolean
+    status?: boolean
     trnasferBill?: boolean
     createAt?: boolean
     updateAt?: boolean
-    depotId?: boolean
     transferDepot?: boolean | DepotDefaultArgs<ExtArgs>
     reciveDepot?: boolean | DepotDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["feedStockTransfer"]>
@@ -20338,17 +25962,16 @@ export namespace Prisma {
     id?: boolean
     fromDepot?: boolean
     toDepot?: boolean
-    transerFerDate?: boolean
-    totalKg?: boolean
+    totalQuantity?: boolean
     totalPrice?: boolean
-    createDate?: boolean
+    deliveryDate?: boolean
+    status?: boolean
     trnasferBill?: boolean
     createAt?: boolean
     updateAt?: boolean
-    depotId?: boolean
   }
 
-  export type FeedStockTransferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fromDepot" | "toDepot" | "transerFerDate" | "totalKg" | "totalPrice" | "createDate" | "trnasferBill" | "createAt" | "updateAt" | "depotId", ExtArgs["result"]["feedStockTransfer"]>
+  export type FeedStockTransferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fromDepot" | "toDepot" | "totalQuantity" | "totalPrice" | "deliveryDate" | "status" | "trnasferBill" | "createAt" | "updateAt", ExtArgs["result"]["feedStockTransfer"]>
   export type FeedStockTransferInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transferDepot?: boolean | DepotDefaultArgs<ExtArgs>
     reciveDepot?: boolean | DepotDefaultArgs<ExtArgs>
@@ -20375,14 +25998,13 @@ export namespace Prisma {
       id: string
       fromDepot: string
       toDepot: string
-      transerFerDate: string
-      totalKg: number
+      totalQuantity: number
       totalPrice: number
-      createDate: string
+      deliveryDate: Date | null
+      status: $Enums.DeliveryStatus
       trnasferBill: string
-      createAt: Date | null
+      createAt: Date
       updateAt: Date
-      depotId: string | null
     }, ExtArgs["result"]["feedStockTransfer"]>
     composites: {}
   }
@@ -20812,14 +26434,13 @@ export namespace Prisma {
     readonly id: FieldRef<"FeedStockTransfer", 'String'>
     readonly fromDepot: FieldRef<"FeedStockTransfer", 'String'>
     readonly toDepot: FieldRef<"FeedStockTransfer", 'String'>
-    readonly transerFerDate: FieldRef<"FeedStockTransfer", 'String'>
-    readonly totalKg: FieldRef<"FeedStockTransfer", 'Int'>
+    readonly totalQuantity: FieldRef<"FeedStockTransfer", 'Int'>
     readonly totalPrice: FieldRef<"FeedStockTransfer", 'Int'>
-    readonly createDate: FieldRef<"FeedStockTransfer", 'String'>
+    readonly deliveryDate: FieldRef<"FeedStockTransfer", 'DateTime'>
+    readonly status: FieldRef<"FeedStockTransfer", 'DeliveryStatus'>
     readonly trnasferBill: FieldRef<"FeedStockTransfer", 'String'>
     readonly createAt: FieldRef<"FeedStockTransfer", 'DateTime'>
     readonly updateAt: FieldRef<"FeedStockTransfer", 'DateTime'>
-    readonly depotId: FieldRef<"FeedStockTransfer", 'String'>
   }
     
 
@@ -21271,20 +26892,26 @@ export namespace Prisma {
   }
 
   export type TransferFeedItemAvgAggregateOutputType = {
+    quantity: number | null
     price: number | null
+    unitPrice: number | null
   }
 
   export type TransferFeedItemSumAggregateOutputType = {
+    quantity: number | null
     price: number | null
+    unitPrice: number | null
   }
 
   export type TransferFeedItemMinAggregateOutputType = {
     id: string | null
     feedName: string | null
-    createDate: string | null
-    quntity: string | null
+    createDate: Date | null
+    quantity: number | null
     price: number | null
+    unitPrice: number | null
     tansferId: string | null
+    status: $Enums.DeliveryStatus | null
     createdAt: Date | null
     updateAt: Date | null
   }
@@ -21292,10 +26919,12 @@ export namespace Prisma {
   export type TransferFeedItemMaxAggregateOutputType = {
     id: string | null
     feedName: string | null
-    createDate: string | null
-    quntity: string | null
+    createDate: Date | null
+    quantity: number | null
     price: number | null
+    unitPrice: number | null
     tansferId: string | null
+    status: $Enums.DeliveryStatus | null
     createdAt: Date | null
     updateAt: Date | null
   }
@@ -21304,9 +26933,11 @@ export namespace Prisma {
     id: number
     feedName: number
     createDate: number
-    quntity: number
+    quantity: number
     price: number
+    unitPrice: number
     tansferId: number
+    status: number
     createdAt: number
     updateAt: number
     _all: number
@@ -21314,20 +26945,26 @@ export namespace Prisma {
 
 
   export type TransferFeedItemAvgAggregateInputType = {
+    quantity?: true
     price?: true
+    unitPrice?: true
   }
 
   export type TransferFeedItemSumAggregateInputType = {
+    quantity?: true
     price?: true
+    unitPrice?: true
   }
 
   export type TransferFeedItemMinAggregateInputType = {
     id?: true
     feedName?: true
     createDate?: true
-    quntity?: true
+    quantity?: true
     price?: true
+    unitPrice?: true
     tansferId?: true
+    status?: true
     createdAt?: true
     updateAt?: true
   }
@@ -21336,9 +26973,11 @@ export namespace Prisma {
     id?: true
     feedName?: true
     createDate?: true
-    quntity?: true
+    quantity?: true
     price?: true
+    unitPrice?: true
     tansferId?: true
+    status?: true
     createdAt?: true
     updateAt?: true
   }
@@ -21347,9 +26986,11 @@ export namespace Prisma {
     id?: true
     feedName?: true
     createDate?: true
-    quntity?: true
+    quantity?: true
     price?: true
+    unitPrice?: true
     tansferId?: true
+    status?: true
     createdAt?: true
     updateAt?: true
     _all?: true
@@ -21444,10 +27085,12 @@ export namespace Prisma {
   export type TransferFeedItemGroupByOutputType = {
     id: string
     feedName: string
-    createDate: string
-    quntity: string
+    createDate: Date
+    quantity: number
     price: number
+    unitPrice: number
     tansferId: string
+    status: $Enums.DeliveryStatus
     createdAt: Date
     updateAt: Date
     _count: TransferFeedItemCountAggregateOutputType | null
@@ -21475,9 +27118,11 @@ export namespace Prisma {
     id?: boolean
     feedName?: boolean
     createDate?: boolean
-    quntity?: boolean
+    quantity?: boolean
     price?: boolean
+    unitPrice?: boolean
     tansferId?: boolean
+    status?: boolean
     createdAt?: boolean
     updateAt?: boolean
     feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
@@ -21488,9 +27133,11 @@ export namespace Prisma {
     id?: boolean
     feedName?: boolean
     createDate?: boolean
-    quntity?: boolean
+    quantity?: boolean
     price?: boolean
+    unitPrice?: boolean
     tansferId?: boolean
+    status?: boolean
     createdAt?: boolean
     updateAt?: boolean
     feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
@@ -21501,9 +27148,11 @@ export namespace Prisma {
     id?: boolean
     feedName?: boolean
     createDate?: boolean
-    quntity?: boolean
+    quantity?: boolean
     price?: boolean
+    unitPrice?: boolean
     tansferId?: boolean
+    status?: boolean
     createdAt?: boolean
     updateAt?: boolean
     feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
@@ -21514,14 +27163,16 @@ export namespace Prisma {
     id?: boolean
     feedName?: boolean
     createDate?: boolean
-    quntity?: boolean
+    quantity?: boolean
     price?: boolean
+    unitPrice?: boolean
     tansferId?: boolean
+    status?: boolean
     createdAt?: boolean
     updateAt?: boolean
   }
 
-  export type TransferFeedItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "createDate" | "quntity" | "price" | "tansferId" | "createdAt" | "updateAt", ExtArgs["result"]["transferFeedItem"]>
+  export type TransferFeedItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "createDate" | "quantity" | "price" | "unitPrice" | "tansferId" | "status" | "createdAt" | "updateAt", ExtArgs["result"]["transferFeedItem"]>
   export type TransferFeedItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     feed?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
     feedStckTranfer?: boolean | FeedStockTransferDefaultArgs<ExtArgs>
@@ -21544,10 +27195,12 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       feedName: string
-      createDate: string
-      quntity: string
+      createDate: Date
+      quantity: number
       price: number
+      unitPrice: number
       tansferId: string
+      status: $Enums.DeliveryStatus
       createdAt: Date
       updateAt: Date
     }, ExtArgs["result"]["transferFeedItem"]>
@@ -21977,10 +27630,12 @@ export namespace Prisma {
   interface TransferFeedItemFieldRefs {
     readonly id: FieldRef<"TransferFeedItem", 'String'>
     readonly feedName: FieldRef<"TransferFeedItem", 'String'>
-    readonly createDate: FieldRef<"TransferFeedItem", 'String'>
-    readonly quntity: FieldRef<"TransferFeedItem", 'String'>
+    readonly createDate: FieldRef<"TransferFeedItem", 'DateTime'>
+    readonly quantity: FieldRef<"TransferFeedItem", 'Int'>
     readonly price: FieldRef<"TransferFeedItem", 'Int'>
+    readonly unitPrice: FieldRef<"TransferFeedItem", 'Int'>
     readonly tansferId: FieldRef<"TransferFeedItem", 'String'>
+    readonly status: FieldRef<"TransferFeedItem", 'DeliveryStatus'>
     readonly createdAt: FieldRef<"TransferFeedItem", 'DateTime'>
     readonly updateAt: FieldRef<"TransferFeedItem", 'DateTime'>
   }
@@ -22413,14 +28068,14 @@ export namespace Prisma {
     farmNumber: number | null
     flockNumber: number | null
     totalPrice: number | null
-    totalKg: number | null
+    totalQuantity: number | null
   }
 
   export type FeedSalesOrderSumAggregateOutputType = {
     farmNumber: number | null
     flockNumber: number | null
     totalPrice: number | null
-    totalKg: number | null
+    totalQuantity: number | null
   }
 
   export type FeedSalesOrderMinAggregateOutputType = {
@@ -22430,11 +28085,11 @@ export namespace Prisma {
     saleInvoice: string | null
     farmNumber: number | null
     flockNumber: number | null
-    createDate: string | null
+    deliveryDate: Date | null
     farmId: string | null
     flockId: string | null
     totalPrice: number | null
-    totalKg: number | null
+    totalQuantity: number | null
     description: string | null
     status: $Enums.DeliveryStatus | null
     createdAt: Date | null
@@ -22448,11 +28103,11 @@ export namespace Prisma {
     saleInvoice: string | null
     farmNumber: number | null
     flockNumber: number | null
-    createDate: string | null
+    deliveryDate: Date | null
     farmId: string | null
     flockId: string | null
     totalPrice: number | null
-    totalKg: number | null
+    totalQuantity: number | null
     description: string | null
     status: $Enums.DeliveryStatus | null
     createdAt: Date | null
@@ -22466,11 +28121,11 @@ export namespace Prisma {
     saleInvoice: number
     farmNumber: number
     flockNumber: number
-    createDate: number
+    deliveryDate: number
     farmId: number
     flockId: number
     totalPrice: number
-    totalKg: number
+    totalQuantity: number
     description: number
     status: number
     createdAt: number
@@ -22483,14 +28138,14 @@ export namespace Prisma {
     farmNumber?: true
     flockNumber?: true
     totalPrice?: true
-    totalKg?: true
+    totalQuantity?: true
   }
 
   export type FeedSalesOrderSumAggregateInputType = {
     farmNumber?: true
     flockNumber?: true
     totalPrice?: true
-    totalKg?: true
+    totalQuantity?: true
   }
 
   export type FeedSalesOrderMinAggregateInputType = {
@@ -22500,11 +28155,11 @@ export namespace Prisma {
     saleInvoice?: true
     farmNumber?: true
     flockNumber?: true
-    createDate?: true
+    deliveryDate?: true
     farmId?: true
     flockId?: true
     totalPrice?: true
-    totalKg?: true
+    totalQuantity?: true
     description?: true
     status?: true
     createdAt?: true
@@ -22518,11 +28173,11 @@ export namespace Prisma {
     saleInvoice?: true
     farmNumber?: true
     flockNumber?: true
-    createDate?: true
+    deliveryDate?: true
     farmId?: true
     flockId?: true
     totalPrice?: true
-    totalKg?: true
+    totalQuantity?: true
     description?: true
     status?: true
     createdAt?: true
@@ -22536,11 +28191,11 @@ export namespace Prisma {
     saleInvoice?: true
     farmNumber?: true
     flockNumber?: true
-    createDate?: true
+    deliveryDate?: true
     farmId?: true
     flockId?: true
     totalPrice?: true
-    totalKg?: true
+    totalQuantity?: true
     description?: true
     status?: true
     createdAt?: true
@@ -22641,14 +28296,14 @@ export namespace Prisma {
     saleInvoice: string
     farmNumber: number
     flockNumber: number
-    createDate: string
+    deliveryDate: Date | null
     farmId: string
     flockId: string
     totalPrice: number
-    totalKg: number
+    totalQuantity: number
     description: string | null
     status: $Enums.DeliveryStatus
-    createdAt: Date | null
+    createdAt: Date
     updateAt: Date
     _count: FeedSalesOrderCountAggregateOutputType | null
     _avg: FeedSalesOrderAvgAggregateOutputType | null
@@ -22678,16 +28333,17 @@ export namespace Prisma {
     saleInvoice?: boolean
     farmNumber?: boolean
     flockNumber?: boolean
-    createDate?: boolean
+    deliveryDate?: boolean
     farmId?: boolean
     flockId?: boolean
     totalPrice?: boolean
-    totalKg?: boolean
+    totalQuantity?: boolean
     description?: boolean
     status?: boolean
     createdAt?: boolean
     updateAt?: boolean
     depot?: boolean | DepotDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
     FeedSalesItem?: boolean | FeedSalesOrder$FeedSalesItemArgs<ExtArgs>
     _count?: boolean | FeedSalesOrderCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["feedSalesOrder"]>
@@ -22699,16 +28355,17 @@ export namespace Prisma {
     saleInvoice?: boolean
     farmNumber?: boolean
     flockNumber?: boolean
-    createDate?: boolean
+    deliveryDate?: boolean
     farmId?: boolean
     flockId?: boolean
     totalPrice?: boolean
-    totalKg?: boolean
+    totalQuantity?: boolean
     description?: boolean
     status?: boolean
     createdAt?: boolean
     updateAt?: boolean
     depot?: boolean | DepotDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["feedSalesOrder"]>
 
   export type FeedSalesOrderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -22718,16 +28375,17 @@ export namespace Prisma {
     saleInvoice?: boolean
     farmNumber?: boolean
     flockNumber?: boolean
-    createDate?: boolean
+    deliveryDate?: boolean
     farmId?: boolean
     flockId?: boolean
     totalPrice?: boolean
-    totalKg?: boolean
+    totalQuantity?: boolean
     description?: boolean
     status?: boolean
     createdAt?: boolean
     updateAt?: boolean
     depot?: boolean | DepotDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["feedSalesOrder"]>
 
   export type FeedSalesOrderSelectScalar = {
@@ -22737,34 +28395,38 @@ export namespace Prisma {
     saleInvoice?: boolean
     farmNumber?: boolean
     flockNumber?: boolean
-    createDate?: boolean
+    deliveryDate?: boolean
     farmId?: boolean
     flockId?: boolean
     totalPrice?: boolean
-    totalKg?: boolean
+    totalQuantity?: boolean
     description?: boolean
     status?: boolean
     createdAt?: boolean
     updateAt?: boolean
   }
 
-  export type FeedSalesOrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branchCode" | "depotName" | "saleInvoice" | "farmNumber" | "flockNumber" | "createDate" | "farmId" | "flockId" | "totalPrice" | "totalKg" | "description" | "status" | "createdAt" | "updateAt", ExtArgs["result"]["feedSalesOrder"]>
+  export type FeedSalesOrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branchCode" | "depotName" | "saleInvoice" | "farmNumber" | "flockNumber" | "deliveryDate" | "farmId" | "flockId" | "totalPrice" | "totalQuantity" | "description" | "status" | "createdAt" | "updateAt", ExtArgs["result"]["feedSalesOrder"]>
   export type FeedSalesOrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     depot?: boolean | DepotDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
     FeedSalesItem?: boolean | FeedSalesOrder$FeedSalesItemArgs<ExtArgs>
     _count?: boolean | FeedSalesOrderCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FeedSalesOrderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     depot?: boolean | DepotDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
   }
   export type FeedSalesOrderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     depot?: boolean | DepotDefaultArgs<ExtArgs>
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
   }
 
   export type $FeedSalesOrderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "FeedSalesOrder"
     objects: {
       depot: Prisma.$DepotPayload<ExtArgs>
+      flock: Prisma.$FlockPayload<ExtArgs>
       FeedSalesItem: Prisma.$FeedSalesItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -22774,14 +28436,14 @@ export namespace Prisma {
       saleInvoice: string
       farmNumber: number
       flockNumber: number
-      createDate: string
+      deliveryDate: Date | null
       farmId: string
       flockId: string
       totalPrice: number
-      totalKg: number
+      totalQuantity: number
       description: string | null
       status: $Enums.DeliveryStatus
-      createdAt: Date | null
+      createdAt: Date
       updateAt: Date
     }, ExtArgs["result"]["feedSalesOrder"]>
     composites: {}
@@ -23178,6 +28840,7 @@ export namespace Prisma {
   export interface Prisma__FeedSalesOrderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     depot<T extends DepotDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DepotDefaultArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    flock<T extends FlockDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FlockDefaultArgs<ExtArgs>>): Prisma__FlockClient<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     FeedSalesItem<T extends FeedSalesOrder$FeedSalesItemArgs<ExtArgs> = {}>(args?: Subset<T, FeedSalesOrder$FeedSalesItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedSalesItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -23214,11 +28877,11 @@ export namespace Prisma {
     readonly saleInvoice: FieldRef<"FeedSalesOrder", 'String'>
     readonly farmNumber: FieldRef<"FeedSalesOrder", 'Int'>
     readonly flockNumber: FieldRef<"FeedSalesOrder", 'Int'>
-    readonly createDate: FieldRef<"FeedSalesOrder", 'String'>
+    readonly deliveryDate: FieldRef<"FeedSalesOrder", 'DateTime'>
     readonly farmId: FieldRef<"FeedSalesOrder", 'String'>
     readonly flockId: FieldRef<"FeedSalesOrder", 'String'>
     readonly totalPrice: FieldRef<"FeedSalesOrder", 'Int'>
-    readonly totalKg: FieldRef<"FeedSalesOrder", 'Int'>
+    readonly totalQuantity: FieldRef<"FeedSalesOrder", 'Int'>
     readonly description: FieldRef<"FeedSalesOrder", 'String'>
     readonly status: FieldRef<"FeedSalesOrder", 'DeliveryStatus'>
     readonly createdAt: FieldRef<"FeedSalesOrder", 'DateTime'>
@@ -23675,12 +29338,14 @@ export namespace Prisma {
 
   export type FeedSalesItemAvgAggregateOutputType = {
     quantity: number | null
-    totalPice: number | null
+    unitPrice: number | null
+    price: number | null
   }
 
   export type FeedSalesItemSumAggregateOutputType = {
     quantity: number | null
-    totalPice: number | null
+    unitPrice: number | null
+    price: number | null
   }
 
   export type FeedSalesItemMinAggregateOutputType = {
@@ -23688,8 +29353,8 @@ export namespace Prisma {
     feedName: string | null
     salesInvoice: string | null
     quantity: number | null
-    createDate: string | null
-    totalPice: number | null
+    unitPrice: number | null
+    price: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -23699,8 +29364,8 @@ export namespace Prisma {
     feedName: string | null
     salesInvoice: string | null
     quantity: number | null
-    createDate: string | null
-    totalPice: number | null
+    unitPrice: number | null
+    price: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -23710,8 +29375,8 @@ export namespace Prisma {
     feedName: number
     salesInvoice: number
     quantity: number
-    createDate: number
-    totalPice: number
+    unitPrice: number
+    price: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -23720,12 +29385,14 @@ export namespace Prisma {
 
   export type FeedSalesItemAvgAggregateInputType = {
     quantity?: true
-    totalPice?: true
+    unitPrice?: true
+    price?: true
   }
 
   export type FeedSalesItemSumAggregateInputType = {
     quantity?: true
-    totalPice?: true
+    unitPrice?: true
+    price?: true
   }
 
   export type FeedSalesItemMinAggregateInputType = {
@@ -23733,8 +29400,8 @@ export namespace Prisma {
     feedName?: true
     salesInvoice?: true
     quantity?: true
-    createDate?: true
-    totalPice?: true
+    unitPrice?: true
+    price?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -23744,8 +29411,8 @@ export namespace Prisma {
     feedName?: true
     salesInvoice?: true
     quantity?: true
-    createDate?: true
-    totalPice?: true
+    unitPrice?: true
+    price?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -23755,8 +29422,8 @@ export namespace Prisma {
     feedName?: true
     salesInvoice?: true
     quantity?: true
-    createDate?: true
-    totalPice?: true
+    unitPrice?: true
+    price?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -23853,8 +29520,8 @@ export namespace Prisma {
     feedName: string
     salesInvoice: string
     quantity: number
-    createDate: string
-    totalPice: number
+    unitPrice: number
+    price: number
     createdAt: Date
     updatedAt: Date
     _count: FeedSalesItemCountAggregateOutputType | null
@@ -23883,8 +29550,8 @@ export namespace Prisma {
     feedName?: boolean
     salesInvoice?: boolean
     quantity?: boolean
-    createDate?: boolean
-    totalPice?: boolean
+    unitPrice?: boolean
+    price?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     salesOrder?: boolean | FeedSalesOrderDefaultArgs<ExtArgs>
@@ -23896,8 +29563,8 @@ export namespace Prisma {
     feedName?: boolean
     salesInvoice?: boolean
     quantity?: boolean
-    createDate?: boolean
-    totalPice?: boolean
+    unitPrice?: boolean
+    price?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     salesOrder?: boolean | FeedSalesOrderDefaultArgs<ExtArgs>
@@ -23909,8 +29576,8 @@ export namespace Prisma {
     feedName?: boolean
     salesInvoice?: boolean
     quantity?: boolean
-    createDate?: boolean
-    totalPice?: boolean
+    unitPrice?: boolean
+    price?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     salesOrder?: boolean | FeedSalesOrderDefaultArgs<ExtArgs>
@@ -23922,13 +29589,13 @@ export namespace Prisma {
     feedName?: boolean
     salesInvoice?: boolean
     quantity?: boolean
-    createDate?: boolean
-    totalPice?: boolean
+    unitPrice?: boolean
+    price?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type FeedSalesItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "salesInvoice" | "quantity" | "createDate" | "totalPice" | "createdAt" | "updatedAt", ExtArgs["result"]["feedSalesItem"]>
+  export type FeedSalesItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "salesInvoice" | "quantity" | "unitPrice" | "price" | "createdAt" | "updatedAt", ExtArgs["result"]["feedSalesItem"]>
   export type FeedSalesItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     salesOrder?: boolean | FeedSalesOrderDefaultArgs<ExtArgs>
     feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
@@ -23953,8 +29620,8 @@ export namespace Prisma {
       feedName: string
       salesInvoice: string
       quantity: number
-      createDate: string
-      totalPice: number
+      unitPrice: number
+      price: number
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["feedSalesItem"]>
@@ -24386,8 +30053,8 @@ export namespace Prisma {
     readonly feedName: FieldRef<"FeedSalesItem", 'String'>
     readonly salesInvoice: FieldRef<"FeedSalesItem", 'String'>
     readonly quantity: FieldRef<"FeedSalesItem", 'Int'>
-    readonly createDate: FieldRef<"FeedSalesItem", 'String'>
-    readonly totalPice: FieldRef<"FeedSalesItem", 'Int'>
+    readonly unitPrice: FieldRef<"FeedSalesItem", 'Int'>
+    readonly price: FieldRef<"FeedSalesItem", 'Int'>
     readonly createdAt: FieldRef<"FeedSalesItem", 'DateTime'>
     readonly updatedAt: FieldRef<"FeedSalesItem", 'DateTime'>
   }
@@ -24801,6 +30468,2399 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: FeedSalesItemInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FeedRetun
+   */
+
+  export type AggregateFeedRetun = {
+    _count: FeedRetunCountAggregateOutputType | null
+    _avg: FeedRetunAvgAggregateOutputType | null
+    _sum: FeedRetunSumAggregateOutputType | null
+    _min: FeedRetunMinAggregateOutputType | null
+    _max: FeedRetunMaxAggregateOutputType | null
+  }
+
+  export type FeedRetunAvgAggregateOutputType = {
+    farmCode: number | null
+    flockNumber: number | null
+  }
+
+  export type FeedRetunSumAggregateOutputType = {
+    farmCode: number | null
+    flockNumber: number | null
+  }
+
+  export type FeedRetunMinAggregateOutputType = {
+    id: string | null
+    flockId: string | null
+    branChCode: string | null
+    farmCode: number | null
+    flockNumber: number | null
+    returnInvoice: string | null
+    createDate: Date | null
+    deliveryDate: Date | null
+    farmId: string | null
+    status: $Enums.DeliveryStatus | null
+    depotName: string | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type FeedRetunMaxAggregateOutputType = {
+    id: string | null
+    flockId: string | null
+    branChCode: string | null
+    farmCode: number | null
+    flockNumber: number | null
+    returnInvoice: string | null
+    createDate: Date | null
+    deliveryDate: Date | null
+    farmId: string | null
+    status: $Enums.DeliveryStatus | null
+    depotName: string | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type FeedRetunCountAggregateOutputType = {
+    id: number
+    flockId: number
+    branChCode: number
+    farmCode: number
+    flockNumber: number
+    returnInvoice: number
+    createDate: number
+    deliveryDate: number
+    farmId: number
+    status: number
+    depotName: number
+    createAt: number
+    updateAt: number
+    _all: number
+  }
+
+
+  export type FeedRetunAvgAggregateInputType = {
+    farmCode?: true
+    flockNumber?: true
+  }
+
+  export type FeedRetunSumAggregateInputType = {
+    farmCode?: true
+    flockNumber?: true
+  }
+
+  export type FeedRetunMinAggregateInputType = {
+    id?: true
+    flockId?: true
+    branChCode?: true
+    farmCode?: true
+    flockNumber?: true
+    returnInvoice?: true
+    createDate?: true
+    deliveryDate?: true
+    farmId?: true
+    status?: true
+    depotName?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type FeedRetunMaxAggregateInputType = {
+    id?: true
+    flockId?: true
+    branChCode?: true
+    farmCode?: true
+    flockNumber?: true
+    returnInvoice?: true
+    createDate?: true
+    deliveryDate?: true
+    farmId?: true
+    status?: true
+    depotName?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type FeedRetunCountAggregateInputType = {
+    id?: true
+    flockId?: true
+    branChCode?: true
+    farmCode?: true
+    flockNumber?: true
+    returnInvoice?: true
+    createDate?: true
+    deliveryDate?: true
+    farmId?: true
+    status?: true
+    depotName?: true
+    createAt?: true
+    updateAt?: true
+    _all?: true
+  }
+
+  export type FeedRetunAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeedRetun to aggregate.
+     */
+    where?: FeedRetunWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedRetuns to fetch.
+     */
+    orderBy?: FeedRetunOrderByWithRelationInput | FeedRetunOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FeedRetunWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedRetuns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedRetuns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FeedRetuns
+    **/
+    _count?: true | FeedRetunCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FeedRetunAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FeedRetunSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FeedRetunMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FeedRetunMaxAggregateInputType
+  }
+
+  export type GetFeedRetunAggregateType<T extends FeedRetunAggregateArgs> = {
+        [P in keyof T & keyof AggregateFeedRetun]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFeedRetun[P]>
+      : GetScalarType<T[P], AggregateFeedRetun[P]>
+  }
+
+
+
+
+  export type FeedRetunGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedRetunWhereInput
+    orderBy?: FeedRetunOrderByWithAggregationInput | FeedRetunOrderByWithAggregationInput[]
+    by: FeedRetunScalarFieldEnum[] | FeedRetunScalarFieldEnum
+    having?: FeedRetunScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FeedRetunCountAggregateInputType | true
+    _avg?: FeedRetunAvgAggregateInputType
+    _sum?: FeedRetunSumAggregateInputType
+    _min?: FeedRetunMinAggregateInputType
+    _max?: FeedRetunMaxAggregateInputType
+  }
+
+  export type FeedRetunGroupByOutputType = {
+    id: string
+    flockId: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date
+    deliveryDate: Date | null
+    farmId: string
+    status: $Enums.DeliveryStatus
+    depotName: string
+    createAt: Date
+    updateAt: Date
+    _count: FeedRetunCountAggregateOutputType | null
+    _avg: FeedRetunAvgAggregateOutputType | null
+    _sum: FeedRetunSumAggregateOutputType | null
+    _min: FeedRetunMinAggregateOutputType | null
+    _max: FeedRetunMaxAggregateOutputType | null
+  }
+
+  type GetFeedRetunGroupByPayload<T extends FeedRetunGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FeedRetunGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FeedRetunGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FeedRetunGroupByOutputType[P]>
+            : GetScalarType<T[P], FeedRetunGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FeedRetunSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    flockId?: boolean
+    branChCode?: boolean
+    farmCode?: boolean
+    flockNumber?: boolean
+    returnInvoice?: boolean
+    createDate?: boolean
+    deliveryDate?: boolean
+    farmId?: boolean
+    status?: boolean
+    depotName?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+    RetunFeedItem?: boolean | FeedRetun$RetunFeedItemArgs<ExtArgs>
+    _count?: boolean | FeedRetunCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedRetun"]>
+
+  export type FeedRetunSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    flockId?: boolean
+    branChCode?: boolean
+    farmCode?: boolean
+    flockNumber?: boolean
+    returnInvoice?: boolean
+    createDate?: boolean
+    deliveryDate?: boolean
+    farmId?: boolean
+    status?: boolean
+    depotName?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedRetun"]>
+
+  export type FeedRetunSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    flockId?: boolean
+    branChCode?: boolean
+    farmCode?: boolean
+    flockNumber?: boolean
+    returnInvoice?: boolean
+    createDate?: boolean
+    deliveryDate?: boolean
+    farmId?: boolean
+    status?: boolean
+    depotName?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedRetun"]>
+
+  export type FeedRetunSelectScalar = {
+    id?: boolean
+    flockId?: boolean
+    branChCode?: boolean
+    farmCode?: boolean
+    flockNumber?: boolean
+    returnInvoice?: boolean
+    createDate?: boolean
+    deliveryDate?: boolean
+    farmId?: boolean
+    status?: boolean
+    depotName?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+  }
+
+  export type FeedRetunOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "flockId" | "branChCode" | "farmCode" | "flockNumber" | "returnInvoice" | "createDate" | "deliveryDate" | "farmId" | "status" | "depotName" | "createAt" | "updateAt", ExtArgs["result"]["feedRetun"]>
+  export type FeedRetunInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+    RetunFeedItem?: boolean | FeedRetun$RetunFeedItemArgs<ExtArgs>
+    _count?: boolean | FeedRetunCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FeedRetunIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+  export type FeedRetunIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    flock?: boolean | FlockDefaultArgs<ExtArgs>
+    farm?: boolean | FarmerDefaultArgs<ExtArgs>
+    depot?: boolean | DepotDefaultArgs<ExtArgs>
+  }
+
+  export type $FeedRetunPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FeedRetun"
+    objects: {
+      flock: Prisma.$FlockPayload<ExtArgs>
+      farm: Prisma.$FarmerPayload<ExtArgs>
+      depot: Prisma.$DepotPayload<ExtArgs>
+      RetunFeedItem: Prisma.$RetunFeedItemPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      flockId: string
+      branChCode: string
+      farmCode: number
+      flockNumber: number
+      returnInvoice: string
+      createDate: Date
+      deliveryDate: Date | null
+      farmId: string
+      status: $Enums.DeliveryStatus
+      depotName: string
+      createAt: Date
+      updateAt: Date
+    }, ExtArgs["result"]["feedRetun"]>
+    composites: {}
+  }
+
+  type FeedRetunGetPayload<S extends boolean | null | undefined | FeedRetunDefaultArgs> = $Result.GetResult<Prisma.$FeedRetunPayload, S>
+
+  type FeedRetunCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FeedRetunFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FeedRetunCountAggregateInputType | true
+    }
+
+  export interface FeedRetunDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FeedRetun'], meta: { name: 'FeedRetun' } }
+    /**
+     * Find zero or one FeedRetun that matches the filter.
+     * @param {FeedRetunFindUniqueArgs} args - Arguments to find a FeedRetun
+     * @example
+     * // Get one FeedRetun
+     * const feedRetun = await prisma.feedRetun.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FeedRetunFindUniqueArgs>(args: SelectSubset<T, FeedRetunFindUniqueArgs<ExtArgs>>): Prisma__FeedRetunClient<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FeedRetun that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FeedRetunFindUniqueOrThrowArgs} args - Arguments to find a FeedRetun
+     * @example
+     * // Get one FeedRetun
+     * const feedRetun = await prisma.feedRetun.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FeedRetunFindUniqueOrThrowArgs>(args: SelectSubset<T, FeedRetunFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FeedRetunClient<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeedRetun that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedRetunFindFirstArgs} args - Arguments to find a FeedRetun
+     * @example
+     * // Get one FeedRetun
+     * const feedRetun = await prisma.feedRetun.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FeedRetunFindFirstArgs>(args?: SelectSubset<T, FeedRetunFindFirstArgs<ExtArgs>>): Prisma__FeedRetunClient<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeedRetun that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedRetunFindFirstOrThrowArgs} args - Arguments to find a FeedRetun
+     * @example
+     * // Get one FeedRetun
+     * const feedRetun = await prisma.feedRetun.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FeedRetunFindFirstOrThrowArgs>(args?: SelectSubset<T, FeedRetunFindFirstOrThrowArgs<ExtArgs>>): Prisma__FeedRetunClient<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FeedRetuns that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedRetunFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FeedRetuns
+     * const feedRetuns = await prisma.feedRetun.findMany()
+     * 
+     * // Get first 10 FeedRetuns
+     * const feedRetuns = await prisma.feedRetun.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const feedRetunWithIdOnly = await prisma.feedRetun.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FeedRetunFindManyArgs>(args?: SelectSubset<T, FeedRetunFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FeedRetun.
+     * @param {FeedRetunCreateArgs} args - Arguments to create a FeedRetun.
+     * @example
+     * // Create one FeedRetun
+     * const FeedRetun = await prisma.feedRetun.create({
+     *   data: {
+     *     // ... data to create a FeedRetun
+     *   }
+     * })
+     * 
+     */
+    create<T extends FeedRetunCreateArgs>(args: SelectSubset<T, FeedRetunCreateArgs<ExtArgs>>): Prisma__FeedRetunClient<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FeedRetuns.
+     * @param {FeedRetunCreateManyArgs} args - Arguments to create many FeedRetuns.
+     * @example
+     * // Create many FeedRetuns
+     * const feedRetun = await prisma.feedRetun.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FeedRetunCreateManyArgs>(args?: SelectSubset<T, FeedRetunCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FeedRetuns and returns the data saved in the database.
+     * @param {FeedRetunCreateManyAndReturnArgs} args - Arguments to create many FeedRetuns.
+     * @example
+     * // Create many FeedRetuns
+     * const feedRetun = await prisma.feedRetun.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FeedRetuns and only return the `id`
+     * const feedRetunWithIdOnly = await prisma.feedRetun.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FeedRetunCreateManyAndReturnArgs>(args?: SelectSubset<T, FeedRetunCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FeedRetun.
+     * @param {FeedRetunDeleteArgs} args - Arguments to delete one FeedRetun.
+     * @example
+     * // Delete one FeedRetun
+     * const FeedRetun = await prisma.feedRetun.delete({
+     *   where: {
+     *     // ... filter to delete one FeedRetun
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FeedRetunDeleteArgs>(args: SelectSubset<T, FeedRetunDeleteArgs<ExtArgs>>): Prisma__FeedRetunClient<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FeedRetun.
+     * @param {FeedRetunUpdateArgs} args - Arguments to update one FeedRetun.
+     * @example
+     * // Update one FeedRetun
+     * const feedRetun = await prisma.feedRetun.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FeedRetunUpdateArgs>(args: SelectSubset<T, FeedRetunUpdateArgs<ExtArgs>>): Prisma__FeedRetunClient<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FeedRetuns.
+     * @param {FeedRetunDeleteManyArgs} args - Arguments to filter FeedRetuns to delete.
+     * @example
+     * // Delete a few FeedRetuns
+     * const { count } = await prisma.feedRetun.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FeedRetunDeleteManyArgs>(args?: SelectSubset<T, FeedRetunDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeedRetuns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedRetunUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FeedRetuns
+     * const feedRetun = await prisma.feedRetun.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FeedRetunUpdateManyArgs>(args: SelectSubset<T, FeedRetunUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeedRetuns and returns the data updated in the database.
+     * @param {FeedRetunUpdateManyAndReturnArgs} args - Arguments to update many FeedRetuns.
+     * @example
+     * // Update many FeedRetuns
+     * const feedRetun = await prisma.feedRetun.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FeedRetuns and only return the `id`
+     * const feedRetunWithIdOnly = await prisma.feedRetun.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FeedRetunUpdateManyAndReturnArgs>(args: SelectSubset<T, FeedRetunUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FeedRetun.
+     * @param {FeedRetunUpsertArgs} args - Arguments to update or create a FeedRetun.
+     * @example
+     * // Update or create a FeedRetun
+     * const feedRetun = await prisma.feedRetun.upsert({
+     *   create: {
+     *     // ... data to create a FeedRetun
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FeedRetun we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FeedRetunUpsertArgs>(args: SelectSubset<T, FeedRetunUpsertArgs<ExtArgs>>): Prisma__FeedRetunClient<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FeedRetuns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedRetunCountArgs} args - Arguments to filter FeedRetuns to count.
+     * @example
+     * // Count the number of FeedRetuns
+     * const count = await prisma.feedRetun.count({
+     *   where: {
+     *     // ... the filter for the FeedRetuns we want to count
+     *   }
+     * })
+    **/
+    count<T extends FeedRetunCountArgs>(
+      args?: Subset<T, FeedRetunCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FeedRetunCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FeedRetun.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedRetunAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FeedRetunAggregateArgs>(args: Subset<T, FeedRetunAggregateArgs>): Prisma.PrismaPromise<GetFeedRetunAggregateType<T>>
+
+    /**
+     * Group by FeedRetun.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedRetunGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FeedRetunGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FeedRetunGroupByArgs['orderBy'] }
+        : { orderBy?: FeedRetunGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FeedRetunGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFeedRetunGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FeedRetun model
+   */
+  readonly fields: FeedRetunFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FeedRetun.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FeedRetunClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    flock<T extends FlockDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FlockDefaultArgs<ExtArgs>>): Prisma__FlockClient<$Result.GetResult<Prisma.$FlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    farm<T extends FarmerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FarmerDefaultArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    depot<T extends DepotDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DepotDefaultArgs<ExtArgs>>): Prisma__DepotClient<$Result.GetResult<Prisma.$DepotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    RetunFeedItem<T extends FeedRetun$RetunFeedItemArgs<ExtArgs> = {}>(args?: Subset<T, FeedRetun$RetunFeedItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RetunFeedItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FeedRetun model
+   */
+  interface FeedRetunFieldRefs {
+    readonly id: FieldRef<"FeedRetun", 'String'>
+    readonly flockId: FieldRef<"FeedRetun", 'String'>
+    readonly branChCode: FieldRef<"FeedRetun", 'String'>
+    readonly farmCode: FieldRef<"FeedRetun", 'Int'>
+    readonly flockNumber: FieldRef<"FeedRetun", 'Int'>
+    readonly returnInvoice: FieldRef<"FeedRetun", 'String'>
+    readonly createDate: FieldRef<"FeedRetun", 'DateTime'>
+    readonly deliveryDate: FieldRef<"FeedRetun", 'DateTime'>
+    readonly farmId: FieldRef<"FeedRetun", 'String'>
+    readonly status: FieldRef<"FeedRetun", 'DeliveryStatus'>
+    readonly depotName: FieldRef<"FeedRetun", 'String'>
+    readonly createAt: FieldRef<"FeedRetun", 'DateTime'>
+    readonly updateAt: FieldRef<"FeedRetun", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FeedRetun findUnique
+   */
+  export type FeedRetunFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedRetun to fetch.
+     */
+    where: FeedRetunWhereUniqueInput
+  }
+
+  /**
+   * FeedRetun findUniqueOrThrow
+   */
+  export type FeedRetunFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedRetun to fetch.
+     */
+    where: FeedRetunWhereUniqueInput
+  }
+
+  /**
+   * FeedRetun findFirst
+   */
+  export type FeedRetunFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedRetun to fetch.
+     */
+    where?: FeedRetunWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedRetuns to fetch.
+     */
+    orderBy?: FeedRetunOrderByWithRelationInput | FeedRetunOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeedRetuns.
+     */
+    cursor?: FeedRetunWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedRetuns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedRetuns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeedRetuns.
+     */
+    distinct?: FeedRetunScalarFieldEnum | FeedRetunScalarFieldEnum[]
+  }
+
+  /**
+   * FeedRetun findFirstOrThrow
+   */
+  export type FeedRetunFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedRetun to fetch.
+     */
+    where?: FeedRetunWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedRetuns to fetch.
+     */
+    orderBy?: FeedRetunOrderByWithRelationInput | FeedRetunOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeedRetuns.
+     */
+    cursor?: FeedRetunWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedRetuns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedRetuns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeedRetuns.
+     */
+    distinct?: FeedRetunScalarFieldEnum | FeedRetunScalarFieldEnum[]
+  }
+
+  /**
+   * FeedRetun findMany
+   */
+  export type FeedRetunFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunInclude<ExtArgs> | null
+    /**
+     * Filter, which FeedRetuns to fetch.
+     */
+    where?: FeedRetunWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeedRetuns to fetch.
+     */
+    orderBy?: FeedRetunOrderByWithRelationInput | FeedRetunOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FeedRetuns.
+     */
+    cursor?: FeedRetunWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeedRetuns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeedRetuns.
+     */
+    skip?: number
+    distinct?: FeedRetunScalarFieldEnum | FeedRetunScalarFieldEnum[]
+  }
+
+  /**
+   * FeedRetun create
+   */
+  export type FeedRetunCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FeedRetun.
+     */
+    data: XOR<FeedRetunCreateInput, FeedRetunUncheckedCreateInput>
+  }
+
+  /**
+   * FeedRetun createMany
+   */
+  export type FeedRetunCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FeedRetuns.
+     */
+    data: FeedRetunCreateManyInput | FeedRetunCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FeedRetun createManyAndReturn
+   */
+  export type FeedRetunCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * The data used to create many FeedRetuns.
+     */
+    data: FeedRetunCreateManyInput | FeedRetunCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeedRetun update
+   */
+  export type FeedRetunUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FeedRetun.
+     */
+    data: XOR<FeedRetunUpdateInput, FeedRetunUncheckedUpdateInput>
+    /**
+     * Choose, which FeedRetun to update.
+     */
+    where: FeedRetunWhereUniqueInput
+  }
+
+  /**
+   * FeedRetun updateMany
+   */
+  export type FeedRetunUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FeedRetuns.
+     */
+    data: XOR<FeedRetunUpdateManyMutationInput, FeedRetunUncheckedUpdateManyInput>
+    /**
+     * Filter which FeedRetuns to update
+     */
+    where?: FeedRetunWhereInput
+    /**
+     * Limit how many FeedRetuns to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeedRetun updateManyAndReturn
+   */
+  export type FeedRetunUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * The data used to update FeedRetuns.
+     */
+    data: XOR<FeedRetunUpdateManyMutationInput, FeedRetunUncheckedUpdateManyInput>
+    /**
+     * Filter which FeedRetuns to update
+     */
+    where?: FeedRetunWhereInput
+    /**
+     * Limit how many FeedRetuns to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeedRetun upsert
+   */
+  export type FeedRetunUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FeedRetun to update in case it exists.
+     */
+    where: FeedRetunWhereUniqueInput
+    /**
+     * In case the FeedRetun found by the `where` argument doesn't exist, create a new FeedRetun with this data.
+     */
+    create: XOR<FeedRetunCreateInput, FeedRetunUncheckedCreateInput>
+    /**
+     * In case the FeedRetun was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FeedRetunUpdateInput, FeedRetunUncheckedUpdateInput>
+  }
+
+  /**
+   * FeedRetun delete
+   */
+  export type FeedRetunDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunInclude<ExtArgs> | null
+    /**
+     * Filter which FeedRetun to delete.
+     */
+    where: FeedRetunWhereUniqueInput
+  }
+
+  /**
+   * FeedRetun deleteMany
+   */
+  export type FeedRetunDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeedRetuns to delete
+     */
+    where?: FeedRetunWhereInput
+    /**
+     * Limit how many FeedRetuns to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeedRetun.RetunFeedItem
+   */
+  export type FeedRetun$RetunFeedItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemInclude<ExtArgs> | null
+    where?: RetunFeedItemWhereInput
+    orderBy?: RetunFeedItemOrderByWithRelationInput | RetunFeedItemOrderByWithRelationInput[]
+    cursor?: RetunFeedItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RetunFeedItemScalarFieldEnum | RetunFeedItemScalarFieldEnum[]
+  }
+
+  /**
+   * FeedRetun without action
+   */
+  export type FeedRetunDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeedRetun
+     */
+    select?: FeedRetunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeedRetun
+     */
+    omit?: FeedRetunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedRetunInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RetunFeedItem
+   */
+
+  export type AggregateRetunFeedItem = {
+    _count: RetunFeedItemCountAggregateOutputType | null
+    _avg: RetunFeedItemAvgAggregateOutputType | null
+    _sum: RetunFeedItemSumAggregateOutputType | null
+    _min: RetunFeedItemMinAggregateOutputType | null
+    _max: RetunFeedItemMaxAggregateOutputType | null
+  }
+
+  export type RetunFeedItemAvgAggregateOutputType = {
+    quantity: number | null
+    price: number | null
+    unitPrice: number | null
+  }
+
+  export type RetunFeedItemSumAggregateOutputType = {
+    quantity: number | null
+    price: number | null
+    unitPrice: number | null
+  }
+
+  export type RetunFeedItemMinAggregateOutputType = {
+    id: string | null
+    feedName: string | null
+    quantity: number | null
+    price: number | null
+    returnInvoice: string | null
+    unitPrice: number | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type RetunFeedItemMaxAggregateOutputType = {
+    id: string | null
+    feedName: string | null
+    quantity: number | null
+    price: number | null
+    returnInvoice: string | null
+    unitPrice: number | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type RetunFeedItemCountAggregateOutputType = {
+    id: number
+    feedName: number
+    quantity: number
+    price: number
+    returnInvoice: number
+    unitPrice: number
+    createAt: number
+    updateAt: number
+    _all: number
+  }
+
+
+  export type RetunFeedItemAvgAggregateInputType = {
+    quantity?: true
+    price?: true
+    unitPrice?: true
+  }
+
+  export type RetunFeedItemSumAggregateInputType = {
+    quantity?: true
+    price?: true
+    unitPrice?: true
+  }
+
+  export type RetunFeedItemMinAggregateInputType = {
+    id?: true
+    feedName?: true
+    quantity?: true
+    price?: true
+    returnInvoice?: true
+    unitPrice?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type RetunFeedItemMaxAggregateInputType = {
+    id?: true
+    feedName?: true
+    quantity?: true
+    price?: true
+    returnInvoice?: true
+    unitPrice?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type RetunFeedItemCountAggregateInputType = {
+    id?: true
+    feedName?: true
+    quantity?: true
+    price?: true
+    returnInvoice?: true
+    unitPrice?: true
+    createAt?: true
+    updateAt?: true
+    _all?: true
+  }
+
+  export type RetunFeedItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RetunFeedItem to aggregate.
+     */
+    where?: RetunFeedItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RetunFeedItems to fetch.
+     */
+    orderBy?: RetunFeedItemOrderByWithRelationInput | RetunFeedItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RetunFeedItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RetunFeedItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RetunFeedItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RetunFeedItems
+    **/
+    _count?: true | RetunFeedItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RetunFeedItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RetunFeedItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RetunFeedItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RetunFeedItemMaxAggregateInputType
+  }
+
+  export type GetRetunFeedItemAggregateType<T extends RetunFeedItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateRetunFeedItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRetunFeedItem[P]>
+      : GetScalarType<T[P], AggregateRetunFeedItem[P]>
+  }
+
+
+
+
+  export type RetunFeedItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RetunFeedItemWhereInput
+    orderBy?: RetunFeedItemOrderByWithAggregationInput | RetunFeedItemOrderByWithAggregationInput[]
+    by: RetunFeedItemScalarFieldEnum[] | RetunFeedItemScalarFieldEnum
+    having?: RetunFeedItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RetunFeedItemCountAggregateInputType | true
+    _avg?: RetunFeedItemAvgAggregateInputType
+    _sum?: RetunFeedItemSumAggregateInputType
+    _min?: RetunFeedItemMinAggregateInputType
+    _max?: RetunFeedItemMaxAggregateInputType
+  }
+
+  export type RetunFeedItemGroupByOutputType = {
+    id: string
+    feedName: string
+    quantity: number
+    price: number
+    returnInvoice: string
+    unitPrice: number
+    createAt: Date
+    updateAt: Date
+    _count: RetunFeedItemCountAggregateOutputType | null
+    _avg: RetunFeedItemAvgAggregateOutputType | null
+    _sum: RetunFeedItemSumAggregateOutputType | null
+    _min: RetunFeedItemMinAggregateOutputType | null
+    _max: RetunFeedItemMaxAggregateOutputType | null
+  }
+
+  type GetRetunFeedItemGroupByPayload<T extends RetunFeedItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RetunFeedItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RetunFeedItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RetunFeedItemGroupByOutputType[P]>
+            : GetScalarType<T[P], RetunFeedItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RetunFeedItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    quantity?: boolean
+    price?: boolean
+    returnInvoice?: boolean
+    unitPrice?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    feedRetun?: boolean | FeedRetunDefaultArgs<ExtArgs>
+    feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["retunFeedItem"]>
+
+  export type RetunFeedItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    quantity?: boolean
+    price?: boolean
+    returnInvoice?: boolean
+    unitPrice?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    feedRetun?: boolean | FeedRetunDefaultArgs<ExtArgs>
+    feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["retunFeedItem"]>
+
+  export type RetunFeedItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    feedName?: boolean
+    quantity?: boolean
+    price?: boolean
+    returnInvoice?: boolean
+    unitPrice?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    feedRetun?: boolean | FeedRetunDefaultArgs<ExtArgs>
+    feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["retunFeedItem"]>
+
+  export type RetunFeedItemSelectScalar = {
+    id?: boolean
+    feedName?: boolean
+    quantity?: boolean
+    price?: boolean
+    returnInvoice?: boolean
+    unitPrice?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+  }
+
+  export type RetunFeedItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "feedName" | "quantity" | "price" | "returnInvoice" | "unitPrice" | "createAt" | "updateAt", ExtArgs["result"]["retunFeedItem"]>
+  export type RetunFeedItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feedRetun?: boolean | FeedRetunDefaultArgs<ExtArgs>
+    feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+  }
+  export type RetunFeedItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feedRetun?: boolean | FeedRetunDefaultArgs<ExtArgs>
+    feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+  }
+  export type RetunFeedItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feedRetun?: boolean | FeedRetunDefaultArgs<ExtArgs>
+    feedNameCategory?: boolean | FeedNameCategoryDefaultArgs<ExtArgs>
+  }
+
+  export type $RetunFeedItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RetunFeedItem"
+    objects: {
+      feedRetun: Prisma.$FeedRetunPayload<ExtArgs>
+      feedNameCategory: Prisma.$FeedNameCategoryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      feedName: string
+      quantity: number
+      price: number
+      returnInvoice: string
+      unitPrice: number
+      createAt: Date
+      updateAt: Date
+    }, ExtArgs["result"]["retunFeedItem"]>
+    composites: {}
+  }
+
+  type RetunFeedItemGetPayload<S extends boolean | null | undefined | RetunFeedItemDefaultArgs> = $Result.GetResult<Prisma.$RetunFeedItemPayload, S>
+
+  type RetunFeedItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RetunFeedItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RetunFeedItemCountAggregateInputType | true
+    }
+
+  export interface RetunFeedItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RetunFeedItem'], meta: { name: 'RetunFeedItem' } }
+    /**
+     * Find zero or one RetunFeedItem that matches the filter.
+     * @param {RetunFeedItemFindUniqueArgs} args - Arguments to find a RetunFeedItem
+     * @example
+     * // Get one RetunFeedItem
+     * const retunFeedItem = await prisma.retunFeedItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RetunFeedItemFindUniqueArgs>(args: SelectSubset<T, RetunFeedItemFindUniqueArgs<ExtArgs>>): Prisma__RetunFeedItemClient<$Result.GetResult<Prisma.$RetunFeedItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RetunFeedItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RetunFeedItemFindUniqueOrThrowArgs} args - Arguments to find a RetunFeedItem
+     * @example
+     * // Get one RetunFeedItem
+     * const retunFeedItem = await prisma.retunFeedItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RetunFeedItemFindUniqueOrThrowArgs>(args: SelectSubset<T, RetunFeedItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RetunFeedItemClient<$Result.GetResult<Prisma.$RetunFeedItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RetunFeedItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetunFeedItemFindFirstArgs} args - Arguments to find a RetunFeedItem
+     * @example
+     * // Get one RetunFeedItem
+     * const retunFeedItem = await prisma.retunFeedItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RetunFeedItemFindFirstArgs>(args?: SelectSubset<T, RetunFeedItemFindFirstArgs<ExtArgs>>): Prisma__RetunFeedItemClient<$Result.GetResult<Prisma.$RetunFeedItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RetunFeedItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetunFeedItemFindFirstOrThrowArgs} args - Arguments to find a RetunFeedItem
+     * @example
+     * // Get one RetunFeedItem
+     * const retunFeedItem = await prisma.retunFeedItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RetunFeedItemFindFirstOrThrowArgs>(args?: SelectSubset<T, RetunFeedItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__RetunFeedItemClient<$Result.GetResult<Prisma.$RetunFeedItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RetunFeedItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetunFeedItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RetunFeedItems
+     * const retunFeedItems = await prisma.retunFeedItem.findMany()
+     * 
+     * // Get first 10 RetunFeedItems
+     * const retunFeedItems = await prisma.retunFeedItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const retunFeedItemWithIdOnly = await prisma.retunFeedItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RetunFeedItemFindManyArgs>(args?: SelectSubset<T, RetunFeedItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RetunFeedItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RetunFeedItem.
+     * @param {RetunFeedItemCreateArgs} args - Arguments to create a RetunFeedItem.
+     * @example
+     * // Create one RetunFeedItem
+     * const RetunFeedItem = await prisma.retunFeedItem.create({
+     *   data: {
+     *     // ... data to create a RetunFeedItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends RetunFeedItemCreateArgs>(args: SelectSubset<T, RetunFeedItemCreateArgs<ExtArgs>>): Prisma__RetunFeedItemClient<$Result.GetResult<Prisma.$RetunFeedItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RetunFeedItems.
+     * @param {RetunFeedItemCreateManyArgs} args - Arguments to create many RetunFeedItems.
+     * @example
+     * // Create many RetunFeedItems
+     * const retunFeedItem = await prisma.retunFeedItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RetunFeedItemCreateManyArgs>(args?: SelectSubset<T, RetunFeedItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RetunFeedItems and returns the data saved in the database.
+     * @param {RetunFeedItemCreateManyAndReturnArgs} args - Arguments to create many RetunFeedItems.
+     * @example
+     * // Create many RetunFeedItems
+     * const retunFeedItem = await prisma.retunFeedItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RetunFeedItems and only return the `id`
+     * const retunFeedItemWithIdOnly = await prisma.retunFeedItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RetunFeedItemCreateManyAndReturnArgs>(args?: SelectSubset<T, RetunFeedItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RetunFeedItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RetunFeedItem.
+     * @param {RetunFeedItemDeleteArgs} args - Arguments to delete one RetunFeedItem.
+     * @example
+     * // Delete one RetunFeedItem
+     * const RetunFeedItem = await prisma.retunFeedItem.delete({
+     *   where: {
+     *     // ... filter to delete one RetunFeedItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RetunFeedItemDeleteArgs>(args: SelectSubset<T, RetunFeedItemDeleteArgs<ExtArgs>>): Prisma__RetunFeedItemClient<$Result.GetResult<Prisma.$RetunFeedItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RetunFeedItem.
+     * @param {RetunFeedItemUpdateArgs} args - Arguments to update one RetunFeedItem.
+     * @example
+     * // Update one RetunFeedItem
+     * const retunFeedItem = await prisma.retunFeedItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RetunFeedItemUpdateArgs>(args: SelectSubset<T, RetunFeedItemUpdateArgs<ExtArgs>>): Prisma__RetunFeedItemClient<$Result.GetResult<Prisma.$RetunFeedItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RetunFeedItems.
+     * @param {RetunFeedItemDeleteManyArgs} args - Arguments to filter RetunFeedItems to delete.
+     * @example
+     * // Delete a few RetunFeedItems
+     * const { count } = await prisma.retunFeedItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RetunFeedItemDeleteManyArgs>(args?: SelectSubset<T, RetunFeedItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RetunFeedItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetunFeedItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RetunFeedItems
+     * const retunFeedItem = await prisma.retunFeedItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RetunFeedItemUpdateManyArgs>(args: SelectSubset<T, RetunFeedItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RetunFeedItems and returns the data updated in the database.
+     * @param {RetunFeedItemUpdateManyAndReturnArgs} args - Arguments to update many RetunFeedItems.
+     * @example
+     * // Update many RetunFeedItems
+     * const retunFeedItem = await prisma.retunFeedItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RetunFeedItems and only return the `id`
+     * const retunFeedItemWithIdOnly = await prisma.retunFeedItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RetunFeedItemUpdateManyAndReturnArgs>(args: SelectSubset<T, RetunFeedItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RetunFeedItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RetunFeedItem.
+     * @param {RetunFeedItemUpsertArgs} args - Arguments to update or create a RetunFeedItem.
+     * @example
+     * // Update or create a RetunFeedItem
+     * const retunFeedItem = await prisma.retunFeedItem.upsert({
+     *   create: {
+     *     // ... data to create a RetunFeedItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RetunFeedItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RetunFeedItemUpsertArgs>(args: SelectSubset<T, RetunFeedItemUpsertArgs<ExtArgs>>): Prisma__RetunFeedItemClient<$Result.GetResult<Prisma.$RetunFeedItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RetunFeedItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetunFeedItemCountArgs} args - Arguments to filter RetunFeedItems to count.
+     * @example
+     * // Count the number of RetunFeedItems
+     * const count = await prisma.retunFeedItem.count({
+     *   where: {
+     *     // ... the filter for the RetunFeedItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends RetunFeedItemCountArgs>(
+      args?: Subset<T, RetunFeedItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RetunFeedItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RetunFeedItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetunFeedItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RetunFeedItemAggregateArgs>(args: Subset<T, RetunFeedItemAggregateArgs>): Prisma.PrismaPromise<GetRetunFeedItemAggregateType<T>>
+
+    /**
+     * Group by RetunFeedItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetunFeedItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RetunFeedItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RetunFeedItemGroupByArgs['orderBy'] }
+        : { orderBy?: RetunFeedItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RetunFeedItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRetunFeedItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RetunFeedItem model
+   */
+  readonly fields: RetunFeedItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RetunFeedItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RetunFeedItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    feedRetun<T extends FeedRetunDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FeedRetunDefaultArgs<ExtArgs>>): Prisma__FeedRetunClient<$Result.GetResult<Prisma.$FeedRetunPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    feedNameCategory<T extends FeedNameCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FeedNameCategoryDefaultArgs<ExtArgs>>): Prisma__FeedNameCategoryClient<$Result.GetResult<Prisma.$FeedNameCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RetunFeedItem model
+   */
+  interface RetunFeedItemFieldRefs {
+    readonly id: FieldRef<"RetunFeedItem", 'String'>
+    readonly feedName: FieldRef<"RetunFeedItem", 'String'>
+    readonly quantity: FieldRef<"RetunFeedItem", 'Int'>
+    readonly price: FieldRef<"RetunFeedItem", 'Int'>
+    readonly returnInvoice: FieldRef<"RetunFeedItem", 'String'>
+    readonly unitPrice: FieldRef<"RetunFeedItem", 'Int'>
+    readonly createAt: FieldRef<"RetunFeedItem", 'DateTime'>
+    readonly updateAt: FieldRef<"RetunFeedItem", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RetunFeedItem findUnique
+   */
+  export type RetunFeedItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which RetunFeedItem to fetch.
+     */
+    where: RetunFeedItemWhereUniqueInput
+  }
+
+  /**
+   * RetunFeedItem findUniqueOrThrow
+   */
+  export type RetunFeedItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which RetunFeedItem to fetch.
+     */
+    where: RetunFeedItemWhereUniqueInput
+  }
+
+  /**
+   * RetunFeedItem findFirst
+   */
+  export type RetunFeedItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which RetunFeedItem to fetch.
+     */
+    where?: RetunFeedItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RetunFeedItems to fetch.
+     */
+    orderBy?: RetunFeedItemOrderByWithRelationInput | RetunFeedItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RetunFeedItems.
+     */
+    cursor?: RetunFeedItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RetunFeedItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RetunFeedItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RetunFeedItems.
+     */
+    distinct?: RetunFeedItemScalarFieldEnum | RetunFeedItemScalarFieldEnum[]
+  }
+
+  /**
+   * RetunFeedItem findFirstOrThrow
+   */
+  export type RetunFeedItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which RetunFeedItem to fetch.
+     */
+    where?: RetunFeedItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RetunFeedItems to fetch.
+     */
+    orderBy?: RetunFeedItemOrderByWithRelationInput | RetunFeedItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RetunFeedItems.
+     */
+    cursor?: RetunFeedItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RetunFeedItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RetunFeedItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RetunFeedItems.
+     */
+    distinct?: RetunFeedItemScalarFieldEnum | RetunFeedItemScalarFieldEnum[]
+  }
+
+  /**
+   * RetunFeedItem findMany
+   */
+  export type RetunFeedItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemInclude<ExtArgs> | null
+    /**
+     * Filter, which RetunFeedItems to fetch.
+     */
+    where?: RetunFeedItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RetunFeedItems to fetch.
+     */
+    orderBy?: RetunFeedItemOrderByWithRelationInput | RetunFeedItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RetunFeedItems.
+     */
+    cursor?: RetunFeedItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RetunFeedItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RetunFeedItems.
+     */
+    skip?: number
+    distinct?: RetunFeedItemScalarFieldEnum | RetunFeedItemScalarFieldEnum[]
+  }
+
+  /**
+   * RetunFeedItem create
+   */
+  export type RetunFeedItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RetunFeedItem.
+     */
+    data: XOR<RetunFeedItemCreateInput, RetunFeedItemUncheckedCreateInput>
+  }
+
+  /**
+   * RetunFeedItem createMany
+   */
+  export type RetunFeedItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RetunFeedItems.
+     */
+    data: RetunFeedItemCreateManyInput | RetunFeedItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RetunFeedItem createManyAndReturn
+   */
+  export type RetunFeedItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many RetunFeedItems.
+     */
+    data: RetunFeedItemCreateManyInput | RetunFeedItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RetunFeedItem update
+   */
+  export type RetunFeedItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RetunFeedItem.
+     */
+    data: XOR<RetunFeedItemUpdateInput, RetunFeedItemUncheckedUpdateInput>
+    /**
+     * Choose, which RetunFeedItem to update.
+     */
+    where: RetunFeedItemWhereUniqueInput
+  }
+
+  /**
+   * RetunFeedItem updateMany
+   */
+  export type RetunFeedItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RetunFeedItems.
+     */
+    data: XOR<RetunFeedItemUpdateManyMutationInput, RetunFeedItemUncheckedUpdateManyInput>
+    /**
+     * Filter which RetunFeedItems to update
+     */
+    where?: RetunFeedItemWhereInput
+    /**
+     * Limit how many RetunFeedItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RetunFeedItem updateManyAndReturn
+   */
+  export type RetunFeedItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * The data used to update RetunFeedItems.
+     */
+    data: XOR<RetunFeedItemUpdateManyMutationInput, RetunFeedItemUncheckedUpdateManyInput>
+    /**
+     * Filter which RetunFeedItems to update
+     */
+    where?: RetunFeedItemWhereInput
+    /**
+     * Limit how many RetunFeedItems to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RetunFeedItem upsert
+   */
+  export type RetunFeedItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RetunFeedItem to update in case it exists.
+     */
+    where: RetunFeedItemWhereUniqueInput
+    /**
+     * In case the RetunFeedItem found by the `where` argument doesn't exist, create a new RetunFeedItem with this data.
+     */
+    create: XOR<RetunFeedItemCreateInput, RetunFeedItemUncheckedCreateInput>
+    /**
+     * In case the RetunFeedItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RetunFeedItemUpdateInput, RetunFeedItemUncheckedUpdateInput>
+  }
+
+  /**
+   * RetunFeedItem delete
+   */
+  export type RetunFeedItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemInclude<ExtArgs> | null
+    /**
+     * Filter which RetunFeedItem to delete.
+     */
+    where: RetunFeedItemWhereUniqueInput
+  }
+
+  /**
+   * RetunFeedItem deleteMany
+   */
+  export type RetunFeedItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RetunFeedItems to delete
+     */
+    where?: RetunFeedItemWhereInput
+    /**
+     * Limit how many RetunFeedItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RetunFeedItem without action
+   */
+  export type RetunFeedItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetunFeedItem
+     */
+    select?: RetunFeedItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetunFeedItem
+     */
+    omit?: RetunFeedItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetunFeedItemInclude<ExtArgs> | null
   }
 
 
@@ -34174,7 +42234,9 @@ export namespace Prisma {
 
   export const BirdSellScalarFieldEnum: {
     id: 'id',
-    buyerId: 'buyerId',
+    buyerName: 'buyerName',
+    buyerPhoneNumber: 'buyerPhoneNumber',
+    buyerAddress: 'buyerAddress',
     totalQantity: 'totalQantity',
     totalWeight: 'totalWeight',
     avgWeight: 'avgWeight',
@@ -34235,6 +42297,7 @@ export namespace Prisma {
     id: 'id',
     feedName: 'feedName',
     feedCodeNumber: 'feedCodeNumber',
+    unitPrice: 'unitPrice',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     createDate: 'createDate'
@@ -34246,30 +42309,90 @@ export namespace Prisma {
   export const FeedStockScalarFieldEnum: {
     id: 'id',
     feedName: 'feedName',
-    stock: 'stock',
     depotName: 'depotName',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    branchId: 'branchId',
-    unitPice: 'unitPice',
-    createDate: 'createDate'
+    stock: 'stock',
+    unitPrice: 'unitPrice',
+    createAt: 'createAt',
+    updateAt: 'updateAt'
   };
 
   export type FeedStockScalarFieldEnum = (typeof FeedStockScalarFieldEnum)[keyof typeof FeedStockScalarFieldEnum]
+
+
+  export const AddStockScalarFieldEnum: {
+    id: 'id',
+    source: 'source',
+    depotName: 'depotName',
+    status: 'status',
+    deliveryDate: 'deliveryDate',
+    quantity: 'quantity',
+    price: 'price',
+    createAt: 'createAt',
+    updateAt: 'updateAt'
+  };
+
+  export type AddStockScalarFieldEnum = (typeof AddStockScalarFieldEnum)[keyof typeof AddStockScalarFieldEnum]
+
+
+  export const AddStockItemScalarFieldEnum: {
+    id: 'id',
+    feedName: 'feedName',
+    quantity: 'quantity',
+    unitPrice: 'unitPrice',
+    price: 'price',
+    addStockId: 'addStockId',
+    createAt: 'createAt',
+    updateAt: 'updateAt'
+  };
+
+  export type AddStockItemScalarFieldEnum = (typeof AddStockItemScalarFieldEnum)[keyof typeof AddStockItemScalarFieldEnum]
+
+
+  export const FeedStockHistoryScalarFieldEnum: {
+    id: 'id',
+    feedName: 'feedName',
+    depotName: 'depotName',
+    opening: 'opening',
+    sales: 'sales',
+    return: 'return',
+    addStock: 'addStock',
+    delivary: 'delivary',
+    intialAdd: 'intialAdd',
+    transferIn: 'transferIn',
+    transferOut: 'transferOut',
+    recive: 'recive',
+    closing: 'closing',
+    createAt: 'createAt',
+    updateAt: 'updateAt'
+  };
+
+  export type FeedStockHistoryScalarFieldEnum = (typeof FeedStockHistoryScalarFieldEnum)[keyof typeof FeedStockHistoryScalarFieldEnum]
+
+
+  export const FeedTransActionHeaderScalarFieldEnum: {
+    id: 'id',
+    depotName: 'depotName',
+    refId: 'refId',
+    transactionType: 'transactionType',
+    status: 'status',
+    createAt: 'createAt',
+    updateAt: 'updateAt'
+  };
+
+  export type FeedTransActionHeaderScalarFieldEnum = (typeof FeedTransActionHeaderScalarFieldEnum)[keyof typeof FeedTransActionHeaderScalarFieldEnum]
 
 
   export const FeedStockTransferScalarFieldEnum: {
     id: 'id',
     fromDepot: 'fromDepot',
     toDepot: 'toDepot',
-    transerFerDate: 'transerFerDate',
-    totalKg: 'totalKg',
+    totalQuantity: 'totalQuantity',
     totalPrice: 'totalPrice',
-    createDate: 'createDate',
+    deliveryDate: 'deliveryDate',
+    status: 'status',
     trnasferBill: 'trnasferBill',
     createAt: 'createAt',
-    updateAt: 'updateAt',
-    depotId: 'depotId'
+    updateAt: 'updateAt'
   };
 
   export type FeedStockTransferScalarFieldEnum = (typeof FeedStockTransferScalarFieldEnum)[keyof typeof FeedStockTransferScalarFieldEnum]
@@ -34279,9 +42402,11 @@ export namespace Prisma {
     id: 'id',
     feedName: 'feedName',
     createDate: 'createDate',
-    quntity: 'quntity',
+    quantity: 'quantity',
     price: 'price',
+    unitPrice: 'unitPrice',
     tansferId: 'tansferId',
+    status: 'status',
     createdAt: 'createdAt',
     updateAt: 'updateAt'
   };
@@ -34296,11 +42421,11 @@ export namespace Prisma {
     saleInvoice: 'saleInvoice',
     farmNumber: 'farmNumber',
     flockNumber: 'flockNumber',
-    createDate: 'createDate',
+    deliveryDate: 'deliveryDate',
     farmId: 'farmId',
     flockId: 'flockId',
     totalPrice: 'totalPrice',
-    totalKg: 'totalKg',
+    totalQuantity: 'totalQuantity',
     description: 'description',
     status: 'status',
     createdAt: 'createdAt',
@@ -34315,13 +42440,46 @@ export namespace Prisma {
     feedName: 'feedName',
     salesInvoice: 'salesInvoice',
     quantity: 'quantity',
-    createDate: 'createDate',
-    totalPice: 'totalPice',
+    unitPrice: 'unitPrice',
+    price: 'price',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type FeedSalesItemScalarFieldEnum = (typeof FeedSalesItemScalarFieldEnum)[keyof typeof FeedSalesItemScalarFieldEnum]
+
+
+  export const FeedRetunScalarFieldEnum: {
+    id: 'id',
+    flockId: 'flockId',
+    branChCode: 'branChCode',
+    farmCode: 'farmCode',
+    flockNumber: 'flockNumber',
+    returnInvoice: 'returnInvoice',
+    createDate: 'createDate',
+    deliveryDate: 'deliveryDate',
+    farmId: 'farmId',
+    status: 'status',
+    depotName: 'depotName',
+    createAt: 'createAt',
+    updateAt: 'updateAt'
+  };
+
+  export type FeedRetunScalarFieldEnum = (typeof FeedRetunScalarFieldEnum)[keyof typeof FeedRetunScalarFieldEnum]
+
+
+  export const RetunFeedItemScalarFieldEnum: {
+    id: 'id',
+    feedName: 'feedName',
+    quantity: 'quantity',
+    price: 'price',
+    returnInvoice: 'returnInvoice',
+    unitPrice: 'unitPrice',
+    createAt: 'createAt',
+    updateAt: 'updateAt'
+  };
+
+  export type RetunFeedItemScalarFieldEnum = (typeof RetunFeedItemScalarFieldEnum)[keyof typeof RetunFeedItemScalarFieldEnum]
 
 
   export const AllGenericMedicinScalarFieldEnum: {
@@ -34574,6 +42732,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Source'
+   */
+  export type EnumSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Source'>
+    
+
+
+  /**
+   * Reference to a field of type 'Source[]'
+   */
+  export type ListEnumSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Source[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DeliveryStatus'
    */
   export type EnumDeliveryStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeliveryStatus'>
@@ -34584,6 +42756,20 @@ export namespace Prisma {
    * Reference to a field of type 'DeliveryStatus[]'
    */
   export type ListEnumDeliveryStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeliveryStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'TransactionType'
+   */
+  export type EnumTransactionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransactionType'>
+    
+
+
+  /**
+   * Reference to a field of type 'TransactionType[]'
+   */
+  export type ListEnumTransactionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransactionType[]'>
     
 
 
@@ -34617,7 +42803,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Branch"> | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryListRelationFilter
     farmer?: FarmerListRelationFilter
-    FeedStock?: FeedStockListRelationFilter
     flocks?: FlockListRelationFilter
     flockReport?: FlockReportListRelationFilter
     medicinePurchess?: MedicinePurchessListRelationFilter
@@ -34638,7 +42823,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
     branchEmployeeHistory?: BranchEmployeeHistoryOrderByRelationAggregateInput
     farmer?: FarmerOrderByRelationAggregateInput
-    FeedStock?: FeedStockOrderByRelationAggregateInput
     flocks?: FlockOrderByRelationAggregateInput
     flockReport?: FlockReportOrderByRelationAggregateInput
     medicinePurchess?: MedicinePurchessOrderByRelationAggregateInput
@@ -34662,7 +42846,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Branch"> | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryListRelationFilter
     farmer?: FarmerListRelationFilter
-    FeedStock?: FeedStockListRelationFilter
     flocks?: FlockListRelationFilter
     flockReport?: FlockReportListRelationFilter
     medicinePurchess?: MedicinePurchessListRelationFilter
@@ -34706,13 +42889,17 @@ export namespace Prisma {
     id?: StringFilter<"Depot"> | string
     locationName?: StringFilter<"Depot"> | string
     depotName?: StringFilter<"Depot"> | string
-    createDate?: StringFilter<"Depot"> | string
+    createDate?: DateTimeFilter<"Depot"> | Date | string
     createAt?: DateTimeNullableFilter<"Depot"> | Date | string | null
     updateAt?: DateTimeFilter<"Depot"> | Date | string
-    feedStock?: FeedStockListRelationFilter
     sentTransfers?: FeedStockTransferListRelationFilter
     receivedTransfers?: FeedStockTransferListRelationFilter
     FeedSalesOrder?: FeedSalesOrderListRelationFilter
+    FeedRetun?: FeedRetunListRelationFilter
+    FeedStockHistory?: FeedStockHistoryListRelationFilter
+    feedTransActionHeader?: FeedTransActionHeaderListRelationFilter
+    AddStock?: AddStockListRelationFilter
+    FeedStock?: FeedStockListRelationFilter
   }
 
   export type DepotOrderByWithRelationInput = {
@@ -34722,10 +42909,14 @@ export namespace Prisma {
     createDate?: SortOrder
     createAt?: SortOrderInput | SortOrder
     updateAt?: SortOrder
-    feedStock?: FeedStockOrderByRelationAggregateInput
     sentTransfers?: FeedStockTransferOrderByRelationAggregateInput
     receivedTransfers?: FeedStockTransferOrderByRelationAggregateInput
     FeedSalesOrder?: FeedSalesOrderOrderByRelationAggregateInput
+    FeedRetun?: FeedRetunOrderByRelationAggregateInput
+    FeedStockHistory?: FeedStockHistoryOrderByRelationAggregateInput
+    feedTransActionHeader?: feedTransActionHeaderOrderByRelationAggregateInput
+    AddStock?: AddStockOrderByRelationAggregateInput
+    FeedStock?: FeedStockOrderByRelationAggregateInput
   }
 
   export type DepotWhereUniqueInput = Prisma.AtLeast<{
@@ -34735,13 +42926,17 @@ export namespace Prisma {
     OR?: DepotWhereInput[]
     NOT?: DepotWhereInput | DepotWhereInput[]
     locationName?: StringFilter<"Depot"> | string
-    createDate?: StringFilter<"Depot"> | string
+    createDate?: DateTimeFilter<"Depot"> | Date | string
     createAt?: DateTimeNullableFilter<"Depot"> | Date | string | null
     updateAt?: DateTimeFilter<"Depot"> | Date | string
-    feedStock?: FeedStockListRelationFilter
     sentTransfers?: FeedStockTransferListRelationFilter
     receivedTransfers?: FeedStockTransferListRelationFilter
     FeedSalesOrder?: FeedSalesOrderListRelationFilter
+    FeedRetun?: FeedRetunListRelationFilter
+    FeedStockHistory?: FeedStockHistoryListRelationFilter
+    feedTransActionHeader?: FeedTransActionHeaderListRelationFilter
+    AddStock?: AddStockListRelationFilter
+    FeedStock?: FeedStockListRelationFilter
   }, "id" | "depotName">
 
   export type DepotOrderByWithAggregationInput = {
@@ -34763,7 +42958,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Depot"> | string
     locationName?: StringWithAggregatesFilter<"Depot"> | string
     depotName?: StringWithAggregatesFilter<"Depot"> | string
-    createDate?: StringWithAggregatesFilter<"Depot"> | string
+    createDate?: DateTimeWithAggregatesFilter<"Depot"> | Date | string
     createAt?: DateTimeNullableWithAggregatesFilter<"Depot"> | Date | string | null
     updateAt?: DateTimeWithAggregatesFilter<"Depot"> | Date | string
   }
@@ -34785,7 +42980,7 @@ export namespace Prisma {
     nid?: StringFilter<"Farmer"> | string
     createdAt?: DateTimeNullableFilter<"Farmer"> | Date | string | null
     updatedAt?: DateTimeFilter<"Farmer"> | Date | string
-    createDate?: StringFilter<"Farmer"> | string
+    createDate?: DateTimeFilter<"Farmer"> | Date | string
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
     flocks?: FlockListRelationFilter
@@ -34793,6 +42988,7 @@ export namespace Prisma {
     sellMedicine?: SellMedicineListRelationFilter
     chicks?: ChicksListRelationFilter
     birdSell?: BirdSellListRelationFilter
+    FeedRetun?: FeedRetunListRelationFilter
   }
 
   export type FarmerOrderByWithRelationInput = {
@@ -34817,6 +43013,7 @@ export namespace Prisma {
     sellMedicine?: SellMedicineOrderByRelationAggregateInput
     chicks?: ChicksOrderByRelationAggregateInput
     birdSell?: BirdSellOrderByRelationAggregateInput
+    FeedRetun?: FeedRetunOrderByRelationAggregateInput
   }
 
   export type FarmerWhereUniqueInput = Prisma.AtLeast<{
@@ -34837,7 +43034,7 @@ export namespace Prisma {
     nid?: StringFilter<"Farmer"> | string
     createdAt?: DateTimeNullableFilter<"Farmer"> | Date | string | null
     updatedAt?: DateTimeFilter<"Farmer"> | Date | string
-    createDate?: StringFilter<"Farmer"> | string
+    createDate?: DateTimeFilter<"Farmer"> | Date | string
     address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
     flocks?: FlockListRelationFilter
@@ -34845,6 +43042,7 @@ export namespace Prisma {
     sellMedicine?: SellMedicineListRelationFilter
     chicks?: ChicksListRelationFilter
     birdSell?: BirdSellListRelationFilter
+    FeedRetun?: FeedRetunListRelationFilter
   }, "id" | "addressId" | "branchCode_farmCode">
 
   export type FarmerOrderByWithAggregationInput = {
@@ -34886,7 +43084,7 @@ export namespace Prisma {
     nid?: StringWithAggregatesFilter<"Farmer"> | string
     createdAt?: DateTimeNullableWithAggregatesFilter<"Farmer"> | Date | string | null
     updatedAt?: DateTimeWithAggregatesFilter<"Farmer"> | Date | string
-    createDate?: StringWithAggregatesFilter<"Farmer"> | string
+    createDate?: DateTimeWithAggregatesFilter<"Farmer"> | Date | string
   }
 
   export type AddressWhereInput = {
@@ -34973,8 +43171,8 @@ export namespace Prisma {
     NOT?: BranchEmployeeHistoryWhereInput | BranchEmployeeHistoryWhereInput[]
     id?: StringFilter<"BranchEmployeeHistory"> | string
     employeeId?: StringFilter<"BranchEmployeeHistory"> | string
-    startDate?: StringFilter<"BranchEmployeeHistory"> | string
-    endDate?: StringNullableFilter<"BranchEmployeeHistory"> | string | null
+    startDate?: DateTimeFilter<"BranchEmployeeHistory"> | Date | string
+    endDate?: DateTimeNullableFilter<"BranchEmployeeHistory"> | Date | string | null
     isActive?: BoolFilter<"BranchEmployeeHistory"> | boolean
     branchCode?: StringFilter<"BranchEmployeeHistory"> | string
     createdAt?: DateTimeNullableFilter<"BranchEmployeeHistory"> | Date | string | null
@@ -35002,8 +43200,8 @@ export namespace Prisma {
     OR?: BranchEmployeeHistoryWhereInput[]
     NOT?: BranchEmployeeHistoryWhereInput | BranchEmployeeHistoryWhereInput[]
     employeeId?: StringFilter<"BranchEmployeeHistory"> | string
-    startDate?: StringFilter<"BranchEmployeeHistory"> | string
-    endDate?: StringNullableFilter<"BranchEmployeeHistory"> | string | null
+    startDate?: DateTimeFilter<"BranchEmployeeHistory"> | Date | string
+    endDate?: DateTimeNullableFilter<"BranchEmployeeHistory"> | Date | string | null
     isActive?: BoolFilter<"BranchEmployeeHistory"> | boolean
     branchCode?: StringFilter<"BranchEmployeeHistory"> | string
     createdAt?: DateTimeNullableFilter<"BranchEmployeeHistory"> | Date | string | null
@@ -35032,8 +43230,8 @@ export namespace Prisma {
     NOT?: BranchEmployeeHistoryScalarWhereWithAggregatesInput | BranchEmployeeHistoryScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"BranchEmployeeHistory"> | string
     employeeId?: StringWithAggregatesFilter<"BranchEmployeeHistory"> | string
-    startDate?: StringWithAggregatesFilter<"BranchEmployeeHistory"> | string
-    endDate?: StringNullableWithAggregatesFilter<"BranchEmployeeHistory"> | string | null
+    startDate?: DateTimeWithAggregatesFilter<"BranchEmployeeHistory"> | Date | string
+    endDate?: DateTimeNullableWithAggregatesFilter<"BranchEmployeeHistory"> | Date | string | null
     isActive?: BoolWithAggregatesFilter<"BranchEmployeeHistory"> | boolean
     branchCode?: StringWithAggregatesFilter<"BranchEmployeeHistory"> | string
     createdAt?: DateTimeNullableWithAggregatesFilter<"BranchEmployeeHistory"> | Date | string | null
@@ -35157,6 +43355,8 @@ export namespace Prisma {
     chicks?: ChicksListRelationFilter
     birdSell?: BirdSellListRelationFilter
     FarmFeedStock?: FarmFeedStockListRelationFilter
+    FeedRetun?: FeedRetunListRelationFilter
+    FeedSalesOrder?: FeedSalesOrderListRelationFilter
   }
 
   export type FlockOrderByWithRelationInput = {
@@ -35187,6 +43387,8 @@ export namespace Prisma {
     chicks?: ChicksOrderByRelationAggregateInput
     birdSell?: BirdSellOrderByRelationAggregateInput
     FarmFeedStock?: FarmFeedStockOrderByRelationAggregateInput
+    FeedRetun?: FeedRetunOrderByRelationAggregateInput
+    FeedSalesOrder?: FeedSalesOrderOrderByRelationAggregateInput
   }
 
   export type FlockWhereUniqueInput = Prisma.AtLeast<{
@@ -35220,6 +43422,8 @@ export namespace Prisma {
     chicks?: ChicksListRelationFilter
     birdSell?: BirdSellListRelationFilter
     FarmFeedStock?: FarmFeedStockListRelationFilter
+    FeedRetun?: FeedRetunListRelationFilter
+    FeedSalesOrder?: FeedSalesOrderListRelationFilter
   }, "id">
 
   export type FlockOrderByWithAggregationInput = {
@@ -35448,7 +43652,9 @@ export namespace Prisma {
     OR?: BirdSellWhereInput[]
     NOT?: BirdSellWhereInput | BirdSellWhereInput[]
     id?: StringFilter<"BirdSell"> | string
-    buyerId?: StringFilter<"BirdSell"> | string
+    buyerName?: StringFilter<"BirdSell"> | string
+    buyerPhoneNumber?: StringFilter<"BirdSell"> | string
+    buyerAddress?: StringFilter<"BirdSell"> | string
     totalQantity?: IntFilter<"BirdSell"> | number
     totalWeight?: FloatFilter<"BirdSell"> | number
     avgWeight?: FloatFilter<"BirdSell"> | number
@@ -35467,7 +43673,9 @@ export namespace Prisma {
 
   export type BirdSellOrderByWithRelationInput = {
     id?: SortOrder
-    buyerId?: SortOrder
+    buyerName?: SortOrder
+    buyerPhoneNumber?: SortOrder
+    buyerAddress?: SortOrder
     totalQantity?: SortOrder
     totalWeight?: SortOrder
     avgWeight?: SortOrder
@@ -35489,7 +43697,9 @@ export namespace Prisma {
     AND?: BirdSellWhereInput | BirdSellWhereInput[]
     OR?: BirdSellWhereInput[]
     NOT?: BirdSellWhereInput | BirdSellWhereInput[]
-    buyerId?: StringFilter<"BirdSell"> | string
+    buyerName?: StringFilter<"BirdSell"> | string
+    buyerPhoneNumber?: StringFilter<"BirdSell"> | string
+    buyerAddress?: StringFilter<"BirdSell"> | string
     totalQantity?: IntFilter<"BirdSell"> | number
     totalWeight?: FloatFilter<"BirdSell"> | number
     avgWeight?: FloatFilter<"BirdSell"> | number
@@ -35508,7 +43718,9 @@ export namespace Prisma {
 
   export type BirdSellOrderByWithAggregationInput = {
     id?: SortOrder
-    buyerId?: SortOrder
+    buyerName?: SortOrder
+    buyerPhoneNumber?: SortOrder
+    buyerAddress?: SortOrder
     totalQantity?: SortOrder
     totalWeight?: SortOrder
     avgWeight?: SortOrder
@@ -35532,7 +43744,9 @@ export namespace Prisma {
     OR?: BirdSellScalarWhereWithAggregatesInput[]
     NOT?: BirdSellScalarWhereWithAggregatesInput | BirdSellScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"BirdSell"> | string
-    buyerId?: StringWithAggregatesFilter<"BirdSell"> | string
+    buyerName?: StringWithAggregatesFilter<"BirdSell"> | string
+    buyerPhoneNumber?: StringWithAggregatesFilter<"BirdSell"> | string
+    buyerAddress?: StringWithAggregatesFilter<"BirdSell"> | string
     totalQantity?: IntWithAggregatesFilter<"BirdSell"> | number
     totalWeight?: FloatWithAggregatesFilter<"BirdSell"> | number
     avgWeight?: FloatWithAggregatesFilter<"BirdSell"> | number
@@ -35761,24 +43975,32 @@ export namespace Prisma {
     id?: StringFilter<"FeedNameCategory"> | string
     feedName?: StringFilter<"FeedNameCategory"> | string
     feedCodeNumber?: IntFilter<"FeedNameCategory"> | number
+    unitPrice?: IntFilter<"FeedNameCategory"> | number
     createdAt?: DateTimeNullableFilter<"FeedNameCategory"> | Date | string | null
     updatedAt?: DateTimeFilter<"FeedNameCategory"> | Date | string
-    createDate?: StringFilter<"FeedNameCategory"> | string
-    FeedStock?: FeedStockListRelationFilter
+    createDate?: DateTimeFilter<"FeedNameCategory"> | Date | string
     transferFeedItem?: TransferFeedItemListRelationFilter
     FeedSalesItem?: FeedSalesItemListRelationFilter
+    RetunFeedItem?: RetunFeedItemListRelationFilter
+    FeedStockHistory?: FeedStockHistoryListRelationFilter
+    AddStockItem?: AddStockItemListRelationFilter
+    FeedStock?: FeedStockListRelationFilter
   }
 
   export type FeedNameCategoryOrderByWithRelationInput = {
     id?: SortOrder
     feedName?: SortOrder
     feedCodeNumber?: SortOrder
+    unitPrice?: SortOrder
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     createDate?: SortOrder
-    FeedStock?: FeedStockOrderByRelationAggregateInput
     transferFeedItem?: TransferFeedItemOrderByRelationAggregateInput
     FeedSalesItem?: FeedSalesItemOrderByRelationAggregateInput
+    RetunFeedItem?: RetunFeedItemOrderByRelationAggregateInput
+    FeedStockHistory?: FeedStockHistoryOrderByRelationAggregateInput
+    AddStockItem?: AddStockItemOrderByRelationAggregateInput
+    FeedStock?: FeedStockOrderByRelationAggregateInput
   }
 
   export type FeedNameCategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -35788,18 +44010,23 @@ export namespace Prisma {
     AND?: FeedNameCategoryWhereInput | FeedNameCategoryWhereInput[]
     OR?: FeedNameCategoryWhereInput[]
     NOT?: FeedNameCategoryWhereInput | FeedNameCategoryWhereInput[]
+    unitPrice?: IntFilter<"FeedNameCategory"> | number
     createdAt?: DateTimeNullableFilter<"FeedNameCategory"> | Date | string | null
     updatedAt?: DateTimeFilter<"FeedNameCategory"> | Date | string
-    createDate?: StringFilter<"FeedNameCategory"> | string
-    FeedStock?: FeedStockListRelationFilter
+    createDate?: DateTimeFilter<"FeedNameCategory"> | Date | string
     transferFeedItem?: TransferFeedItemListRelationFilter
     FeedSalesItem?: FeedSalesItemListRelationFilter
+    RetunFeedItem?: RetunFeedItemListRelationFilter
+    FeedStockHistory?: FeedStockHistoryListRelationFilter
+    AddStockItem?: AddStockItemListRelationFilter
+    FeedStock?: FeedStockListRelationFilter
   }, "id" | "feedName" | "feedCodeNumber">
 
   export type FeedNameCategoryOrderByWithAggregationInput = {
     id?: SortOrder
     feedName?: SortOrder
     feedCodeNumber?: SortOrder
+    unitPrice?: SortOrder
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     createDate?: SortOrder
@@ -35817,9 +44044,10 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"FeedNameCategory"> | string
     feedName?: StringWithAggregatesFilter<"FeedNameCategory"> | string
     feedCodeNumber?: IntWithAggregatesFilter<"FeedNameCategory"> | number
+    unitPrice?: IntWithAggregatesFilter<"FeedNameCategory"> | number
     createdAt?: DateTimeNullableWithAggregatesFilter<"FeedNameCategory"> | Date | string | null
     updatedAt?: DateTimeWithAggregatesFilter<"FeedNameCategory"> | Date | string
-    createDate?: StringWithAggregatesFilter<"FeedNameCategory"> | string
+    createDate?: DateTimeWithAggregatesFilter<"FeedNameCategory"> | Date | string
   }
 
   export type FeedStockWhereInput = {
@@ -35828,14 +44056,11 @@ export namespace Prisma {
     NOT?: FeedStockWhereInput | FeedStockWhereInput[]
     id?: StringFilter<"FeedStock"> | string
     feedName?: StringFilter<"FeedStock"> | string
-    stock?: IntFilter<"FeedStock"> | number
     depotName?: StringFilter<"FeedStock"> | string
-    createdAt?: DateTimeNullableFilter<"FeedStock"> | Date | string | null
-    updatedAt?: DateTimeFilter<"FeedStock"> | Date | string
-    branchId?: StringNullableFilter<"FeedStock"> | string | null
-    unitPice?: IntFilter<"FeedStock"> | number
-    createDate?: StringFilter<"FeedStock"> | string
-    Branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
+    stock?: IntFilter<"FeedStock"> | number
+    unitPrice?: IntFilter<"FeedStock"> | number
+    createAt?: DateTimeFilter<"FeedStock"> | Date | string
+    updateAt?: DateTimeFilter<"FeedStock"> | Date | string
     depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
     feedNameCategory?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
   }
@@ -35843,47 +44068,39 @@ export namespace Prisma {
   export type FeedStockOrderByWithRelationInput = {
     id?: SortOrder
     feedName?: SortOrder
-    stock?: SortOrder
     depotName?: SortOrder
-    createdAt?: SortOrderInput | SortOrder
-    updatedAt?: SortOrder
-    branchId?: SortOrderInput | SortOrder
-    unitPice?: SortOrder
-    createDate?: SortOrder
-    Branch?: BranchOrderByWithRelationInput
+    stock?: SortOrder
+    unitPrice?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
     depot?: DepotOrderByWithRelationInput
     feedNameCategory?: FeedNameCategoryOrderByWithRelationInput
   }
 
   export type FeedStockWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    feedName_depotName?: FeedStockFeedName_depotNameCompoundUniqueInput
+    depotName_feedName?: FeedStockDepotNameFeedNameCompoundUniqueInput
     AND?: FeedStockWhereInput | FeedStockWhereInput[]
     OR?: FeedStockWhereInput[]
     NOT?: FeedStockWhereInput | FeedStockWhereInput[]
     feedName?: StringFilter<"FeedStock"> | string
-    stock?: IntFilter<"FeedStock"> | number
     depotName?: StringFilter<"FeedStock"> | string
-    createdAt?: DateTimeNullableFilter<"FeedStock"> | Date | string | null
-    updatedAt?: DateTimeFilter<"FeedStock"> | Date | string
-    branchId?: StringNullableFilter<"FeedStock"> | string | null
-    unitPice?: IntFilter<"FeedStock"> | number
-    createDate?: StringFilter<"FeedStock"> | string
-    Branch?: XOR<BranchNullableScalarRelationFilter, BranchWhereInput> | null
+    stock?: IntFilter<"FeedStock"> | number
+    unitPrice?: IntFilter<"FeedStock"> | number
+    createAt?: DateTimeFilter<"FeedStock"> | Date | string
+    updateAt?: DateTimeFilter<"FeedStock"> | Date | string
     depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
     feedNameCategory?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
-  }, "id" | "feedName_depotName">
+  }, "id" | "depotName_feedName">
 
   export type FeedStockOrderByWithAggregationInput = {
     id?: SortOrder
     feedName?: SortOrder
-    stock?: SortOrder
     depotName?: SortOrder
-    createdAt?: SortOrderInput | SortOrder
-    updatedAt?: SortOrder
-    branchId?: SortOrderInput | SortOrder
-    unitPice?: SortOrder
-    createDate?: SortOrder
+    stock?: SortOrder
+    unitPrice?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
     _count?: FeedStockCountOrderByAggregateInput
     _avg?: FeedStockAvgOrderByAggregateInput
     _max?: FeedStockMaxOrderByAggregateInput
@@ -35897,13 +44114,342 @@ export namespace Prisma {
     NOT?: FeedStockScalarWhereWithAggregatesInput | FeedStockScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"FeedStock"> | string
     feedName?: StringWithAggregatesFilter<"FeedStock"> | string
-    stock?: IntWithAggregatesFilter<"FeedStock"> | number
     depotName?: StringWithAggregatesFilter<"FeedStock"> | string
-    createdAt?: DateTimeNullableWithAggregatesFilter<"FeedStock"> | Date | string | null
-    updatedAt?: DateTimeWithAggregatesFilter<"FeedStock"> | Date | string
-    branchId?: StringNullableWithAggregatesFilter<"FeedStock"> | string | null
-    unitPice?: IntWithAggregatesFilter<"FeedStock"> | number
-    createDate?: StringWithAggregatesFilter<"FeedStock"> | string
+    stock?: IntWithAggregatesFilter<"FeedStock"> | number
+    unitPrice?: IntWithAggregatesFilter<"FeedStock"> | number
+    createAt?: DateTimeWithAggregatesFilter<"FeedStock"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"FeedStock"> | Date | string
+  }
+
+  export type AddStockWhereInput = {
+    AND?: AddStockWhereInput | AddStockWhereInput[]
+    OR?: AddStockWhereInput[]
+    NOT?: AddStockWhereInput | AddStockWhereInput[]
+    id?: StringFilter<"AddStock"> | string
+    source?: EnumSourceFilter<"AddStock"> | $Enums.Source
+    depotName?: StringFilter<"AddStock"> | string
+    status?: EnumDeliveryStatusFilter<"AddStock"> | $Enums.DeliveryStatus
+    deliveryDate?: DateTimeNullableFilter<"AddStock"> | Date | string | null
+    quantity?: IntFilter<"AddStock"> | number
+    price?: IntFilter<"AddStock"> | number
+    createAt?: DateTimeFilter<"AddStock"> | Date | string
+    updateAt?: DateTimeFilter<"AddStock"> | Date | string
+    depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    AddStockItem?: AddStockItemListRelationFilter
+  }
+
+  export type AddStockOrderByWithRelationInput = {
+    id?: SortOrder
+    source?: SortOrder
+    depotName?: SortOrder
+    status?: SortOrder
+    deliveryDate?: SortOrderInput | SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    depot?: DepotOrderByWithRelationInput
+    AddStockItem?: AddStockItemOrderByRelationAggregateInput
+  }
+
+  export type AddStockWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AddStockWhereInput | AddStockWhereInput[]
+    OR?: AddStockWhereInput[]
+    NOT?: AddStockWhereInput | AddStockWhereInput[]
+    source?: EnumSourceFilter<"AddStock"> | $Enums.Source
+    depotName?: StringFilter<"AddStock"> | string
+    status?: EnumDeliveryStatusFilter<"AddStock"> | $Enums.DeliveryStatus
+    deliveryDate?: DateTimeNullableFilter<"AddStock"> | Date | string | null
+    quantity?: IntFilter<"AddStock"> | number
+    price?: IntFilter<"AddStock"> | number
+    createAt?: DateTimeFilter<"AddStock"> | Date | string
+    updateAt?: DateTimeFilter<"AddStock"> | Date | string
+    depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    AddStockItem?: AddStockItemListRelationFilter
+  }, "id">
+
+  export type AddStockOrderByWithAggregationInput = {
+    id?: SortOrder
+    source?: SortOrder
+    depotName?: SortOrder
+    status?: SortOrder
+    deliveryDate?: SortOrderInput | SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    _count?: AddStockCountOrderByAggregateInput
+    _avg?: AddStockAvgOrderByAggregateInput
+    _max?: AddStockMaxOrderByAggregateInput
+    _min?: AddStockMinOrderByAggregateInput
+    _sum?: AddStockSumOrderByAggregateInput
+  }
+
+  export type AddStockScalarWhereWithAggregatesInput = {
+    AND?: AddStockScalarWhereWithAggregatesInput | AddStockScalarWhereWithAggregatesInput[]
+    OR?: AddStockScalarWhereWithAggregatesInput[]
+    NOT?: AddStockScalarWhereWithAggregatesInput | AddStockScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AddStock"> | string
+    source?: EnumSourceWithAggregatesFilter<"AddStock"> | $Enums.Source
+    depotName?: StringWithAggregatesFilter<"AddStock"> | string
+    status?: EnumDeliveryStatusWithAggregatesFilter<"AddStock"> | $Enums.DeliveryStatus
+    deliveryDate?: DateTimeNullableWithAggregatesFilter<"AddStock"> | Date | string | null
+    quantity?: IntWithAggregatesFilter<"AddStock"> | number
+    price?: IntWithAggregatesFilter<"AddStock"> | number
+    createAt?: DateTimeWithAggregatesFilter<"AddStock"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"AddStock"> | Date | string
+  }
+
+  export type AddStockItemWhereInput = {
+    AND?: AddStockItemWhereInput | AddStockItemWhereInput[]
+    OR?: AddStockItemWhereInput[]
+    NOT?: AddStockItemWhereInput | AddStockItemWhereInput[]
+    id?: StringFilter<"AddStockItem"> | string
+    feedName?: StringFilter<"AddStockItem"> | string
+    quantity?: IntFilter<"AddStockItem"> | number
+    unitPrice?: IntFilter<"AddStockItem"> | number
+    price?: IntFilter<"AddStockItem"> | number
+    addStockId?: StringFilter<"AddStockItem"> | string
+    createAt?: DateTimeFilter<"AddStockItem"> | Date | string
+    updateAt?: DateTimeFilter<"AddStockItem"> | Date | string
+    feed?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
+    addStock?: XOR<AddStockScalarRelationFilter, AddStockWhereInput>
+  }
+
+  export type AddStockItemOrderByWithRelationInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    quantity?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
+    addStockId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    feed?: FeedNameCategoryOrderByWithRelationInput
+    addStock?: AddStockOrderByWithRelationInput
+  }
+
+  export type AddStockItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AddStockItemWhereInput | AddStockItemWhereInput[]
+    OR?: AddStockItemWhereInput[]
+    NOT?: AddStockItemWhereInput | AddStockItemWhereInput[]
+    feedName?: StringFilter<"AddStockItem"> | string
+    quantity?: IntFilter<"AddStockItem"> | number
+    unitPrice?: IntFilter<"AddStockItem"> | number
+    price?: IntFilter<"AddStockItem"> | number
+    addStockId?: StringFilter<"AddStockItem"> | string
+    createAt?: DateTimeFilter<"AddStockItem"> | Date | string
+    updateAt?: DateTimeFilter<"AddStockItem"> | Date | string
+    feed?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
+    addStock?: XOR<AddStockScalarRelationFilter, AddStockWhereInput>
+  }, "id">
+
+  export type AddStockItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    quantity?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
+    addStockId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    _count?: AddStockItemCountOrderByAggregateInput
+    _avg?: AddStockItemAvgOrderByAggregateInput
+    _max?: AddStockItemMaxOrderByAggregateInput
+    _min?: AddStockItemMinOrderByAggregateInput
+    _sum?: AddStockItemSumOrderByAggregateInput
+  }
+
+  export type AddStockItemScalarWhereWithAggregatesInput = {
+    AND?: AddStockItemScalarWhereWithAggregatesInput | AddStockItemScalarWhereWithAggregatesInput[]
+    OR?: AddStockItemScalarWhereWithAggregatesInput[]
+    NOT?: AddStockItemScalarWhereWithAggregatesInput | AddStockItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AddStockItem"> | string
+    feedName?: StringWithAggregatesFilter<"AddStockItem"> | string
+    quantity?: IntWithAggregatesFilter<"AddStockItem"> | number
+    unitPrice?: IntWithAggregatesFilter<"AddStockItem"> | number
+    price?: IntWithAggregatesFilter<"AddStockItem"> | number
+    addStockId?: StringWithAggregatesFilter<"AddStockItem"> | string
+    createAt?: DateTimeWithAggregatesFilter<"AddStockItem"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"AddStockItem"> | Date | string
+  }
+
+  export type FeedStockHistoryWhereInput = {
+    AND?: FeedStockHistoryWhereInput | FeedStockHistoryWhereInput[]
+    OR?: FeedStockHistoryWhereInput[]
+    NOT?: FeedStockHistoryWhereInput | FeedStockHistoryWhereInput[]
+    id?: StringFilter<"FeedStockHistory"> | string
+    feedName?: StringFilter<"FeedStockHistory"> | string
+    depotName?: StringFilter<"FeedStockHistory"> | string
+    opening?: IntFilter<"FeedStockHistory"> | number
+    sales?: IntFilter<"FeedStockHistory"> | number
+    return?: IntFilter<"FeedStockHistory"> | number
+    addStock?: IntFilter<"FeedStockHistory"> | number
+    delivary?: IntFilter<"FeedStockHistory"> | number
+    intialAdd?: IntFilter<"FeedStockHistory"> | number
+    transferIn?: IntFilter<"FeedStockHistory"> | number
+    transferOut?: IntFilter<"FeedStockHistory"> | number
+    recive?: IntFilter<"FeedStockHistory"> | number
+    closing?: IntFilter<"FeedStockHistory"> | number
+    createAt?: DateTimeFilter<"FeedStockHistory"> | Date | string
+    updateAt?: DateTimeFilter<"FeedStockHistory"> | Date | string
+    feed?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
+    depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+  }
+
+  export type FeedStockHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    depotName?: SortOrder
+    opening?: SortOrder
+    sales?: SortOrder
+    return?: SortOrder
+    addStock?: SortOrder
+    delivary?: SortOrder
+    intialAdd?: SortOrder
+    transferIn?: SortOrder
+    transferOut?: SortOrder
+    recive?: SortOrder
+    closing?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    feed?: FeedNameCategoryOrderByWithRelationInput
+    depot?: DepotOrderByWithRelationInput
+  }
+
+  export type FeedStockHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    depotName_feedName_createAt?: FeedStockHistoryDepotNameFeedNameCreateAtCompoundUniqueInput
+    AND?: FeedStockHistoryWhereInput | FeedStockHistoryWhereInput[]
+    OR?: FeedStockHistoryWhereInput[]
+    NOT?: FeedStockHistoryWhereInput | FeedStockHistoryWhereInput[]
+    feedName?: StringFilter<"FeedStockHistory"> | string
+    depotName?: StringFilter<"FeedStockHistory"> | string
+    opening?: IntFilter<"FeedStockHistory"> | number
+    sales?: IntFilter<"FeedStockHistory"> | number
+    return?: IntFilter<"FeedStockHistory"> | number
+    addStock?: IntFilter<"FeedStockHistory"> | number
+    delivary?: IntFilter<"FeedStockHistory"> | number
+    intialAdd?: IntFilter<"FeedStockHistory"> | number
+    transferIn?: IntFilter<"FeedStockHistory"> | number
+    transferOut?: IntFilter<"FeedStockHistory"> | number
+    recive?: IntFilter<"FeedStockHistory"> | number
+    closing?: IntFilter<"FeedStockHistory"> | number
+    createAt?: DateTimeFilter<"FeedStockHistory"> | Date | string
+    updateAt?: DateTimeFilter<"FeedStockHistory"> | Date | string
+    feed?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
+    depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+  }, "id" | "depotName_feedName_createAt">
+
+  export type FeedStockHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    depotName?: SortOrder
+    opening?: SortOrder
+    sales?: SortOrder
+    return?: SortOrder
+    addStock?: SortOrder
+    delivary?: SortOrder
+    intialAdd?: SortOrder
+    transferIn?: SortOrder
+    transferOut?: SortOrder
+    recive?: SortOrder
+    closing?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    _count?: FeedStockHistoryCountOrderByAggregateInput
+    _avg?: FeedStockHistoryAvgOrderByAggregateInput
+    _max?: FeedStockHistoryMaxOrderByAggregateInput
+    _min?: FeedStockHistoryMinOrderByAggregateInput
+    _sum?: FeedStockHistorySumOrderByAggregateInput
+  }
+
+  export type FeedStockHistoryScalarWhereWithAggregatesInput = {
+    AND?: FeedStockHistoryScalarWhereWithAggregatesInput | FeedStockHistoryScalarWhereWithAggregatesInput[]
+    OR?: FeedStockHistoryScalarWhereWithAggregatesInput[]
+    NOT?: FeedStockHistoryScalarWhereWithAggregatesInput | FeedStockHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FeedStockHistory"> | string
+    feedName?: StringWithAggregatesFilter<"FeedStockHistory"> | string
+    depotName?: StringWithAggregatesFilter<"FeedStockHistory"> | string
+    opening?: IntWithAggregatesFilter<"FeedStockHistory"> | number
+    sales?: IntWithAggregatesFilter<"FeedStockHistory"> | number
+    return?: IntWithAggregatesFilter<"FeedStockHistory"> | number
+    addStock?: IntWithAggregatesFilter<"FeedStockHistory"> | number
+    delivary?: IntWithAggregatesFilter<"FeedStockHistory"> | number
+    intialAdd?: IntWithAggregatesFilter<"FeedStockHistory"> | number
+    transferIn?: IntWithAggregatesFilter<"FeedStockHistory"> | number
+    transferOut?: IntWithAggregatesFilter<"FeedStockHistory"> | number
+    recive?: IntWithAggregatesFilter<"FeedStockHistory"> | number
+    closing?: IntWithAggregatesFilter<"FeedStockHistory"> | number
+    createAt?: DateTimeWithAggregatesFilter<"FeedStockHistory"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"FeedStockHistory"> | Date | string
+  }
+
+  export type feedTransActionHeaderWhereInput = {
+    AND?: feedTransActionHeaderWhereInput | feedTransActionHeaderWhereInput[]
+    OR?: feedTransActionHeaderWhereInput[]
+    NOT?: feedTransActionHeaderWhereInput | feedTransActionHeaderWhereInput[]
+    id?: StringFilter<"feedTransActionHeader"> | string
+    depotName?: StringFilter<"feedTransActionHeader"> | string
+    refId?: StringFilter<"feedTransActionHeader"> | string
+    transactionType?: EnumTransactionTypeFilter<"feedTransActionHeader"> | $Enums.TransactionType
+    status?: EnumDeliveryStatusFilter<"feedTransActionHeader"> | $Enums.DeliveryStatus
+    createAt?: DateTimeFilter<"feedTransActionHeader"> | Date | string
+    updateAt?: DateTimeFilter<"feedTransActionHeader"> | Date | string
+    depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+  }
+
+  export type feedTransActionHeaderOrderByWithRelationInput = {
+    id?: SortOrder
+    depotName?: SortOrder
+    refId?: SortOrder
+    transactionType?: SortOrder
+    status?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    depot?: DepotOrderByWithRelationInput
+  }
+
+  export type feedTransActionHeaderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: feedTransActionHeaderWhereInput | feedTransActionHeaderWhereInput[]
+    OR?: feedTransActionHeaderWhereInput[]
+    NOT?: feedTransActionHeaderWhereInput | feedTransActionHeaderWhereInput[]
+    depotName?: StringFilter<"feedTransActionHeader"> | string
+    refId?: StringFilter<"feedTransActionHeader"> | string
+    transactionType?: EnumTransactionTypeFilter<"feedTransActionHeader"> | $Enums.TransactionType
+    status?: EnumDeliveryStatusFilter<"feedTransActionHeader"> | $Enums.DeliveryStatus
+    createAt?: DateTimeFilter<"feedTransActionHeader"> | Date | string
+    updateAt?: DateTimeFilter<"feedTransActionHeader"> | Date | string
+    depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+  }, "id">
+
+  export type feedTransActionHeaderOrderByWithAggregationInput = {
+    id?: SortOrder
+    depotName?: SortOrder
+    refId?: SortOrder
+    transactionType?: SortOrder
+    status?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    _count?: feedTransActionHeaderCountOrderByAggregateInput
+    _max?: feedTransActionHeaderMaxOrderByAggregateInput
+    _min?: feedTransActionHeaderMinOrderByAggregateInput
+  }
+
+  export type feedTransActionHeaderScalarWhereWithAggregatesInput = {
+    AND?: feedTransActionHeaderScalarWhereWithAggregatesInput | feedTransActionHeaderScalarWhereWithAggregatesInput[]
+    OR?: feedTransActionHeaderScalarWhereWithAggregatesInput[]
+    NOT?: feedTransActionHeaderScalarWhereWithAggregatesInput | feedTransActionHeaderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"feedTransActionHeader"> | string
+    depotName?: StringWithAggregatesFilter<"feedTransActionHeader"> | string
+    refId?: StringWithAggregatesFilter<"feedTransActionHeader"> | string
+    transactionType?: EnumTransactionTypeWithAggregatesFilter<"feedTransActionHeader"> | $Enums.TransactionType
+    status?: EnumDeliveryStatusWithAggregatesFilter<"feedTransActionHeader"> | $Enums.DeliveryStatus
+    createAt?: DateTimeWithAggregatesFilter<"feedTransActionHeader"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"feedTransActionHeader"> | Date | string
   }
 
   export type FeedStockTransferWhereInput = {
@@ -35913,14 +44459,13 @@ export namespace Prisma {
     id?: StringFilter<"FeedStockTransfer"> | string
     fromDepot?: StringFilter<"FeedStockTransfer"> | string
     toDepot?: StringFilter<"FeedStockTransfer"> | string
-    transerFerDate?: StringFilter<"FeedStockTransfer"> | string
-    totalKg?: IntFilter<"FeedStockTransfer"> | number
+    totalQuantity?: IntFilter<"FeedStockTransfer"> | number
     totalPrice?: IntFilter<"FeedStockTransfer"> | number
-    createDate?: StringFilter<"FeedStockTransfer"> | string
+    deliveryDate?: DateTimeNullableFilter<"FeedStockTransfer"> | Date | string | null
+    status?: EnumDeliveryStatusFilter<"FeedStockTransfer"> | $Enums.DeliveryStatus
     trnasferBill?: StringFilter<"FeedStockTransfer"> | string
-    createAt?: DateTimeNullableFilter<"FeedStockTransfer"> | Date | string | null
+    createAt?: DateTimeFilter<"FeedStockTransfer"> | Date | string
     updateAt?: DateTimeFilter<"FeedStockTransfer"> | Date | string
-    depotId?: StringNullableFilter<"FeedStockTransfer"> | string | null
     transferDepot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
     reciveDepot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
     transferFeedItem?: TransferFeedItemListRelationFilter
@@ -35930,14 +44475,13 @@ export namespace Prisma {
     id?: SortOrder
     fromDepot?: SortOrder
     toDepot?: SortOrder
-    transerFerDate?: SortOrder
-    totalKg?: SortOrder
+    totalQuantity?: SortOrder
     totalPrice?: SortOrder
-    createDate?: SortOrder
+    deliveryDate?: SortOrderInput | SortOrder
+    status?: SortOrder
     trnasferBill?: SortOrder
-    createAt?: SortOrderInput | SortOrder
+    createAt?: SortOrder
     updateAt?: SortOrder
-    depotId?: SortOrderInput | SortOrder
     transferDepot?: DepotOrderByWithRelationInput
     reciveDepot?: DepotOrderByWithRelationInput
     transferFeedItem?: TransferFeedItemOrderByRelationAggregateInput
@@ -35951,13 +44495,12 @@ export namespace Prisma {
     NOT?: FeedStockTransferWhereInput | FeedStockTransferWhereInput[]
     fromDepot?: StringFilter<"FeedStockTransfer"> | string
     toDepot?: StringFilter<"FeedStockTransfer"> | string
-    transerFerDate?: StringFilter<"FeedStockTransfer"> | string
-    totalKg?: IntFilter<"FeedStockTransfer"> | number
+    totalQuantity?: IntFilter<"FeedStockTransfer"> | number
     totalPrice?: IntFilter<"FeedStockTransfer"> | number
-    createDate?: StringFilter<"FeedStockTransfer"> | string
-    createAt?: DateTimeNullableFilter<"FeedStockTransfer"> | Date | string | null
+    deliveryDate?: DateTimeNullableFilter<"FeedStockTransfer"> | Date | string | null
+    status?: EnumDeliveryStatusFilter<"FeedStockTransfer"> | $Enums.DeliveryStatus
+    createAt?: DateTimeFilter<"FeedStockTransfer"> | Date | string
     updateAt?: DateTimeFilter<"FeedStockTransfer"> | Date | string
-    depotId?: StringNullableFilter<"FeedStockTransfer"> | string | null
     transferDepot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
     reciveDepot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
     transferFeedItem?: TransferFeedItemListRelationFilter
@@ -35967,14 +44510,13 @@ export namespace Prisma {
     id?: SortOrder
     fromDepot?: SortOrder
     toDepot?: SortOrder
-    transerFerDate?: SortOrder
-    totalKg?: SortOrder
+    totalQuantity?: SortOrder
     totalPrice?: SortOrder
-    createDate?: SortOrder
+    deliveryDate?: SortOrderInput | SortOrder
+    status?: SortOrder
     trnasferBill?: SortOrder
-    createAt?: SortOrderInput | SortOrder
+    createAt?: SortOrder
     updateAt?: SortOrder
-    depotId?: SortOrderInput | SortOrder
     _count?: FeedStockTransferCountOrderByAggregateInput
     _avg?: FeedStockTransferAvgOrderByAggregateInput
     _max?: FeedStockTransferMaxOrderByAggregateInput
@@ -35989,14 +44531,13 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
     fromDepot?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
     toDepot?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
-    transerFerDate?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
-    totalKg?: IntWithAggregatesFilter<"FeedStockTransfer"> | number
+    totalQuantity?: IntWithAggregatesFilter<"FeedStockTransfer"> | number
     totalPrice?: IntWithAggregatesFilter<"FeedStockTransfer"> | number
-    createDate?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
+    deliveryDate?: DateTimeNullableWithAggregatesFilter<"FeedStockTransfer"> | Date | string | null
+    status?: EnumDeliveryStatusWithAggregatesFilter<"FeedStockTransfer"> | $Enums.DeliveryStatus
     trnasferBill?: StringWithAggregatesFilter<"FeedStockTransfer"> | string
-    createAt?: DateTimeNullableWithAggregatesFilter<"FeedStockTransfer"> | Date | string | null
+    createAt?: DateTimeWithAggregatesFilter<"FeedStockTransfer"> | Date | string
     updateAt?: DateTimeWithAggregatesFilter<"FeedStockTransfer"> | Date | string
-    depotId?: StringNullableWithAggregatesFilter<"FeedStockTransfer"> | string | null
   }
 
   export type TransferFeedItemWhereInput = {
@@ -36005,10 +44546,12 @@ export namespace Prisma {
     NOT?: TransferFeedItemWhereInput | TransferFeedItemWhereInput[]
     id?: StringFilter<"TransferFeedItem"> | string
     feedName?: StringFilter<"TransferFeedItem"> | string
-    createDate?: StringFilter<"TransferFeedItem"> | string
-    quntity?: StringFilter<"TransferFeedItem"> | string
+    createDate?: DateTimeFilter<"TransferFeedItem"> | Date | string
+    quantity?: IntFilter<"TransferFeedItem"> | number
     price?: IntFilter<"TransferFeedItem"> | number
+    unitPrice?: IntFilter<"TransferFeedItem"> | number
     tansferId?: StringFilter<"TransferFeedItem"> | string
+    status?: EnumDeliveryStatusFilter<"TransferFeedItem"> | $Enums.DeliveryStatus
     createdAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
     updateAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
     feed?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
@@ -36019,9 +44562,11 @@ export namespace Prisma {
     id?: SortOrder
     feedName?: SortOrder
     createDate?: SortOrder
-    quntity?: SortOrder
+    quantity?: SortOrder
     price?: SortOrder
+    unitPrice?: SortOrder
     tansferId?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
     feed?: FeedNameCategoryOrderByWithRelationInput
@@ -36034,10 +44579,12 @@ export namespace Prisma {
     OR?: TransferFeedItemWhereInput[]
     NOT?: TransferFeedItemWhereInput | TransferFeedItemWhereInput[]
     feedName?: StringFilter<"TransferFeedItem"> | string
-    createDate?: StringFilter<"TransferFeedItem"> | string
-    quntity?: StringFilter<"TransferFeedItem"> | string
+    createDate?: DateTimeFilter<"TransferFeedItem"> | Date | string
+    quantity?: IntFilter<"TransferFeedItem"> | number
     price?: IntFilter<"TransferFeedItem"> | number
+    unitPrice?: IntFilter<"TransferFeedItem"> | number
     tansferId?: StringFilter<"TransferFeedItem"> | string
+    status?: EnumDeliveryStatusFilter<"TransferFeedItem"> | $Enums.DeliveryStatus
     createdAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
     updateAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
     feed?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
@@ -36048,9 +44595,11 @@ export namespace Prisma {
     id?: SortOrder
     feedName?: SortOrder
     createDate?: SortOrder
-    quntity?: SortOrder
+    quantity?: SortOrder
     price?: SortOrder
+    unitPrice?: SortOrder
     tansferId?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
     _count?: TransferFeedItemCountOrderByAggregateInput
@@ -36066,10 +44615,12 @@ export namespace Prisma {
     NOT?: TransferFeedItemScalarWhereWithAggregatesInput | TransferFeedItemScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"TransferFeedItem"> | string
     feedName?: StringWithAggregatesFilter<"TransferFeedItem"> | string
-    createDate?: StringWithAggregatesFilter<"TransferFeedItem"> | string
-    quntity?: StringWithAggregatesFilter<"TransferFeedItem"> | string
+    createDate?: DateTimeWithAggregatesFilter<"TransferFeedItem"> | Date | string
+    quantity?: IntWithAggregatesFilter<"TransferFeedItem"> | number
     price?: IntWithAggregatesFilter<"TransferFeedItem"> | number
+    unitPrice?: IntWithAggregatesFilter<"TransferFeedItem"> | number
     tansferId?: StringWithAggregatesFilter<"TransferFeedItem"> | string
+    status?: EnumDeliveryStatusWithAggregatesFilter<"TransferFeedItem"> | $Enums.DeliveryStatus
     createdAt?: DateTimeWithAggregatesFilter<"TransferFeedItem"> | Date | string
     updateAt?: DateTimeWithAggregatesFilter<"TransferFeedItem"> | Date | string
   }
@@ -36084,16 +44635,17 @@ export namespace Prisma {
     saleInvoice?: StringFilter<"FeedSalesOrder"> | string
     farmNumber?: IntFilter<"FeedSalesOrder"> | number
     flockNumber?: IntFilter<"FeedSalesOrder"> | number
-    createDate?: StringFilter<"FeedSalesOrder"> | string
+    deliveryDate?: DateTimeNullableFilter<"FeedSalesOrder"> | Date | string | null
     farmId?: StringFilter<"FeedSalesOrder"> | string
     flockId?: StringFilter<"FeedSalesOrder"> | string
     totalPrice?: IntFilter<"FeedSalesOrder"> | number
-    totalKg?: IntFilter<"FeedSalesOrder"> | number
+    totalQuantity?: IntFilter<"FeedSalesOrder"> | number
     description?: StringNullableFilter<"FeedSalesOrder"> | string | null
     status?: EnumDeliveryStatusFilter<"FeedSalesOrder"> | $Enums.DeliveryStatus
-    createdAt?: DateTimeNullableFilter<"FeedSalesOrder"> | Date | string | null
+    createdAt?: DateTimeFilter<"FeedSalesOrder"> | Date | string
     updateAt?: DateTimeFilter<"FeedSalesOrder"> | Date | string
     depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
     FeedSalesItem?: FeedSalesItemListRelationFilter
   }
 
@@ -36104,16 +44656,17 @@ export namespace Prisma {
     saleInvoice?: SortOrder
     farmNumber?: SortOrder
     flockNumber?: SortOrder
-    createDate?: SortOrder
+    deliveryDate?: SortOrderInput | SortOrder
     farmId?: SortOrder
     flockId?: SortOrder
     totalPrice?: SortOrder
-    totalKg?: SortOrder
+    totalQuantity?: SortOrder
     description?: SortOrderInput | SortOrder
     status?: SortOrder
-    createdAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     updateAt?: SortOrder
     depot?: DepotOrderByWithRelationInput
+    flock?: FlockOrderByWithRelationInput
     FeedSalesItem?: FeedSalesItemOrderByRelationAggregateInput
   }
 
@@ -36127,16 +44680,17 @@ export namespace Prisma {
     depotName?: StringFilter<"FeedSalesOrder"> | string
     farmNumber?: IntFilter<"FeedSalesOrder"> | number
     flockNumber?: IntFilter<"FeedSalesOrder"> | number
-    createDate?: StringFilter<"FeedSalesOrder"> | string
+    deliveryDate?: DateTimeNullableFilter<"FeedSalesOrder"> | Date | string | null
     farmId?: StringFilter<"FeedSalesOrder"> | string
     flockId?: StringFilter<"FeedSalesOrder"> | string
     totalPrice?: IntFilter<"FeedSalesOrder"> | number
-    totalKg?: IntFilter<"FeedSalesOrder"> | number
+    totalQuantity?: IntFilter<"FeedSalesOrder"> | number
     description?: StringNullableFilter<"FeedSalesOrder"> | string | null
     status?: EnumDeliveryStatusFilter<"FeedSalesOrder"> | $Enums.DeliveryStatus
-    createdAt?: DateTimeNullableFilter<"FeedSalesOrder"> | Date | string | null
+    createdAt?: DateTimeFilter<"FeedSalesOrder"> | Date | string
     updateAt?: DateTimeFilter<"FeedSalesOrder"> | Date | string
     depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
     FeedSalesItem?: FeedSalesItemListRelationFilter
   }, "id" | "saleInvoice">
 
@@ -36147,14 +44701,14 @@ export namespace Prisma {
     saleInvoice?: SortOrder
     farmNumber?: SortOrder
     flockNumber?: SortOrder
-    createDate?: SortOrder
+    deliveryDate?: SortOrderInput | SortOrder
     farmId?: SortOrder
     flockId?: SortOrder
     totalPrice?: SortOrder
-    totalKg?: SortOrder
+    totalQuantity?: SortOrder
     description?: SortOrderInput | SortOrder
     status?: SortOrder
-    createdAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     updateAt?: SortOrder
     _count?: FeedSalesOrderCountOrderByAggregateInput
     _avg?: FeedSalesOrderAvgOrderByAggregateInput
@@ -36173,14 +44727,14 @@ export namespace Prisma {
     saleInvoice?: StringWithAggregatesFilter<"FeedSalesOrder"> | string
     farmNumber?: IntWithAggregatesFilter<"FeedSalesOrder"> | number
     flockNumber?: IntWithAggregatesFilter<"FeedSalesOrder"> | number
-    createDate?: StringWithAggregatesFilter<"FeedSalesOrder"> | string
+    deliveryDate?: DateTimeNullableWithAggregatesFilter<"FeedSalesOrder"> | Date | string | null
     farmId?: StringWithAggregatesFilter<"FeedSalesOrder"> | string
     flockId?: StringWithAggregatesFilter<"FeedSalesOrder"> | string
     totalPrice?: IntWithAggregatesFilter<"FeedSalesOrder"> | number
-    totalKg?: IntWithAggregatesFilter<"FeedSalesOrder"> | number
+    totalQuantity?: IntWithAggregatesFilter<"FeedSalesOrder"> | number
     description?: StringNullableWithAggregatesFilter<"FeedSalesOrder"> | string | null
     status?: EnumDeliveryStatusWithAggregatesFilter<"FeedSalesOrder"> | $Enums.DeliveryStatus
-    createdAt?: DateTimeNullableWithAggregatesFilter<"FeedSalesOrder"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"FeedSalesOrder"> | Date | string
     updateAt?: DateTimeWithAggregatesFilter<"FeedSalesOrder"> | Date | string
   }
 
@@ -36192,8 +44746,8 @@ export namespace Prisma {
     feedName?: StringFilter<"FeedSalesItem"> | string
     salesInvoice?: StringFilter<"FeedSalesItem"> | string
     quantity?: IntFilter<"FeedSalesItem"> | number
-    createDate?: StringFilter<"FeedSalesItem"> | string
-    totalPice?: IntFilter<"FeedSalesItem"> | number
+    unitPrice?: IntFilter<"FeedSalesItem"> | number
+    price?: IntFilter<"FeedSalesItem"> | number
     createdAt?: DateTimeFilter<"FeedSalesItem"> | Date | string
     updatedAt?: DateTimeFilter<"FeedSalesItem"> | Date | string
     salesOrder?: XOR<FeedSalesOrderScalarRelationFilter, FeedSalesOrderWhereInput>
@@ -36205,8 +44759,8 @@ export namespace Prisma {
     feedName?: SortOrder
     salesInvoice?: SortOrder
     quantity?: SortOrder
-    createDate?: SortOrder
-    totalPice?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     salesOrder?: FeedSalesOrderOrderByWithRelationInput
@@ -36221,8 +44775,8 @@ export namespace Prisma {
     feedName?: StringFilter<"FeedSalesItem"> | string
     salesInvoice?: StringFilter<"FeedSalesItem"> | string
     quantity?: IntFilter<"FeedSalesItem"> | number
-    createDate?: StringFilter<"FeedSalesItem"> | string
-    totalPice?: IntFilter<"FeedSalesItem"> | number
+    unitPrice?: IntFilter<"FeedSalesItem"> | number
+    price?: IntFilter<"FeedSalesItem"> | number
     createdAt?: DateTimeFilter<"FeedSalesItem"> | Date | string
     updatedAt?: DateTimeFilter<"FeedSalesItem"> | Date | string
     salesOrder?: XOR<FeedSalesOrderScalarRelationFilter, FeedSalesOrderWhereInput>
@@ -36234,8 +44788,8 @@ export namespace Prisma {
     feedName?: SortOrder
     salesInvoice?: SortOrder
     quantity?: SortOrder
-    createDate?: SortOrder
-    totalPice?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: FeedSalesItemCountOrderByAggregateInput
@@ -36253,10 +44807,191 @@ export namespace Prisma {
     feedName?: StringWithAggregatesFilter<"FeedSalesItem"> | string
     salesInvoice?: StringWithAggregatesFilter<"FeedSalesItem"> | string
     quantity?: IntWithAggregatesFilter<"FeedSalesItem"> | number
-    createDate?: StringWithAggregatesFilter<"FeedSalesItem"> | string
-    totalPice?: IntWithAggregatesFilter<"FeedSalesItem"> | number
+    unitPrice?: IntWithAggregatesFilter<"FeedSalesItem"> | number
+    price?: IntWithAggregatesFilter<"FeedSalesItem"> | number
     createdAt?: DateTimeWithAggregatesFilter<"FeedSalesItem"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"FeedSalesItem"> | Date | string
+  }
+
+  export type FeedRetunWhereInput = {
+    AND?: FeedRetunWhereInput | FeedRetunWhereInput[]
+    OR?: FeedRetunWhereInput[]
+    NOT?: FeedRetunWhereInput | FeedRetunWhereInput[]
+    id?: StringFilter<"FeedRetun"> | string
+    flockId?: StringFilter<"FeedRetun"> | string
+    branChCode?: StringFilter<"FeedRetun"> | string
+    farmCode?: IntFilter<"FeedRetun"> | number
+    flockNumber?: IntFilter<"FeedRetun"> | number
+    returnInvoice?: StringFilter<"FeedRetun"> | string
+    createDate?: DateTimeFilter<"FeedRetun"> | Date | string
+    deliveryDate?: DateTimeNullableFilter<"FeedRetun"> | Date | string | null
+    farmId?: StringFilter<"FeedRetun"> | string
+    status?: EnumDeliveryStatusFilter<"FeedRetun"> | $Enums.DeliveryStatus
+    depotName?: StringFilter<"FeedRetun"> | string
+    createAt?: DateTimeFilter<"FeedRetun"> | Date | string
+    updateAt?: DateTimeFilter<"FeedRetun"> | Date | string
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+    farm?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
+    depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    RetunFeedItem?: RetunFeedItemListRelationFilter
+  }
+
+  export type FeedRetunOrderByWithRelationInput = {
+    id?: SortOrder
+    flockId?: SortOrder
+    branChCode?: SortOrder
+    farmCode?: SortOrder
+    flockNumber?: SortOrder
+    returnInvoice?: SortOrder
+    createDate?: SortOrder
+    deliveryDate?: SortOrderInput | SortOrder
+    farmId?: SortOrder
+    status?: SortOrder
+    depotName?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    flock?: FlockOrderByWithRelationInput
+    farm?: FarmerOrderByWithRelationInput
+    depot?: DepotOrderByWithRelationInput
+    RetunFeedItem?: RetunFeedItemOrderByRelationAggregateInput
+  }
+
+  export type FeedRetunWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    returnInvoice?: string
+    AND?: FeedRetunWhereInput | FeedRetunWhereInput[]
+    OR?: FeedRetunWhereInput[]
+    NOT?: FeedRetunWhereInput | FeedRetunWhereInput[]
+    flockId?: StringFilter<"FeedRetun"> | string
+    branChCode?: StringFilter<"FeedRetun"> | string
+    farmCode?: IntFilter<"FeedRetun"> | number
+    flockNumber?: IntFilter<"FeedRetun"> | number
+    createDate?: DateTimeFilter<"FeedRetun"> | Date | string
+    deliveryDate?: DateTimeNullableFilter<"FeedRetun"> | Date | string | null
+    farmId?: StringFilter<"FeedRetun"> | string
+    status?: EnumDeliveryStatusFilter<"FeedRetun"> | $Enums.DeliveryStatus
+    depotName?: StringFilter<"FeedRetun"> | string
+    createAt?: DateTimeFilter<"FeedRetun"> | Date | string
+    updateAt?: DateTimeFilter<"FeedRetun"> | Date | string
+    flock?: XOR<FlockScalarRelationFilter, FlockWhereInput>
+    farm?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
+    depot?: XOR<DepotScalarRelationFilter, DepotWhereInput>
+    RetunFeedItem?: RetunFeedItemListRelationFilter
+  }, "id" | "returnInvoice">
+
+  export type FeedRetunOrderByWithAggregationInput = {
+    id?: SortOrder
+    flockId?: SortOrder
+    branChCode?: SortOrder
+    farmCode?: SortOrder
+    flockNumber?: SortOrder
+    returnInvoice?: SortOrder
+    createDate?: SortOrder
+    deliveryDate?: SortOrderInput | SortOrder
+    farmId?: SortOrder
+    status?: SortOrder
+    depotName?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    _count?: FeedRetunCountOrderByAggregateInput
+    _avg?: FeedRetunAvgOrderByAggregateInput
+    _max?: FeedRetunMaxOrderByAggregateInput
+    _min?: FeedRetunMinOrderByAggregateInput
+    _sum?: FeedRetunSumOrderByAggregateInput
+  }
+
+  export type FeedRetunScalarWhereWithAggregatesInput = {
+    AND?: FeedRetunScalarWhereWithAggregatesInput | FeedRetunScalarWhereWithAggregatesInput[]
+    OR?: FeedRetunScalarWhereWithAggregatesInput[]
+    NOT?: FeedRetunScalarWhereWithAggregatesInput | FeedRetunScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FeedRetun"> | string
+    flockId?: StringWithAggregatesFilter<"FeedRetun"> | string
+    branChCode?: StringWithAggregatesFilter<"FeedRetun"> | string
+    farmCode?: IntWithAggregatesFilter<"FeedRetun"> | number
+    flockNumber?: IntWithAggregatesFilter<"FeedRetun"> | number
+    returnInvoice?: StringWithAggregatesFilter<"FeedRetun"> | string
+    createDate?: DateTimeWithAggregatesFilter<"FeedRetun"> | Date | string
+    deliveryDate?: DateTimeNullableWithAggregatesFilter<"FeedRetun"> | Date | string | null
+    farmId?: StringWithAggregatesFilter<"FeedRetun"> | string
+    status?: EnumDeliveryStatusWithAggregatesFilter<"FeedRetun"> | $Enums.DeliveryStatus
+    depotName?: StringWithAggregatesFilter<"FeedRetun"> | string
+    createAt?: DateTimeWithAggregatesFilter<"FeedRetun"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"FeedRetun"> | Date | string
+  }
+
+  export type RetunFeedItemWhereInput = {
+    AND?: RetunFeedItemWhereInput | RetunFeedItemWhereInput[]
+    OR?: RetunFeedItemWhereInput[]
+    NOT?: RetunFeedItemWhereInput | RetunFeedItemWhereInput[]
+    id?: StringFilter<"RetunFeedItem"> | string
+    feedName?: StringFilter<"RetunFeedItem"> | string
+    quantity?: IntFilter<"RetunFeedItem"> | number
+    price?: IntFilter<"RetunFeedItem"> | number
+    returnInvoice?: StringFilter<"RetunFeedItem"> | string
+    unitPrice?: IntFilter<"RetunFeedItem"> | number
+    createAt?: DateTimeFilter<"RetunFeedItem"> | Date | string
+    updateAt?: DateTimeFilter<"RetunFeedItem"> | Date | string
+    feedRetun?: XOR<FeedRetunScalarRelationFilter, FeedRetunWhereInput>
+    feedNameCategory?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
+  }
+
+  export type RetunFeedItemOrderByWithRelationInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    returnInvoice?: SortOrder
+    unitPrice?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    feedRetun?: FeedRetunOrderByWithRelationInput
+    feedNameCategory?: FeedNameCategoryOrderByWithRelationInput
+  }
+
+  export type RetunFeedItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RetunFeedItemWhereInput | RetunFeedItemWhereInput[]
+    OR?: RetunFeedItemWhereInput[]
+    NOT?: RetunFeedItemWhereInput | RetunFeedItemWhereInput[]
+    feedName?: StringFilter<"RetunFeedItem"> | string
+    quantity?: IntFilter<"RetunFeedItem"> | number
+    price?: IntFilter<"RetunFeedItem"> | number
+    returnInvoice?: StringFilter<"RetunFeedItem"> | string
+    unitPrice?: IntFilter<"RetunFeedItem"> | number
+    createAt?: DateTimeFilter<"RetunFeedItem"> | Date | string
+    updateAt?: DateTimeFilter<"RetunFeedItem"> | Date | string
+    feedRetun?: XOR<FeedRetunScalarRelationFilter, FeedRetunWhereInput>
+    feedNameCategory?: XOR<FeedNameCategoryScalarRelationFilter, FeedNameCategoryWhereInput>
+  }, "id">
+
+  export type RetunFeedItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    returnInvoice?: SortOrder
+    unitPrice?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    _count?: RetunFeedItemCountOrderByAggregateInput
+    _avg?: RetunFeedItemAvgOrderByAggregateInput
+    _max?: RetunFeedItemMaxOrderByAggregateInput
+    _min?: RetunFeedItemMinOrderByAggregateInput
+    _sum?: RetunFeedItemSumOrderByAggregateInput
+  }
+
+  export type RetunFeedItemScalarWhereWithAggregatesInput = {
+    AND?: RetunFeedItemScalarWhereWithAggregatesInput | RetunFeedItemScalarWhereWithAggregatesInput[]
+    OR?: RetunFeedItemScalarWhereWithAggregatesInput[]
+    NOT?: RetunFeedItemScalarWhereWithAggregatesInput | RetunFeedItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RetunFeedItem"> | string
+    feedName?: StringWithAggregatesFilter<"RetunFeedItem"> | string
+    quantity?: IntWithAggregatesFilter<"RetunFeedItem"> | number
+    price?: IntWithAggregatesFilter<"RetunFeedItem"> | number
+    returnInvoice?: StringWithAggregatesFilter<"RetunFeedItem"> | string
+    unitPrice?: IntWithAggregatesFilter<"RetunFeedItem"> | number
+    createAt?: DateTimeWithAggregatesFilter<"RetunFeedItem"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"RetunFeedItem"> | Date | string
   }
 
   export type AllGenericMedicinWhereInput = {
@@ -36890,7 +45625,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
     farmer?: FarmerCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
@@ -36911,7 +45645,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
@@ -36932,7 +45665,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
@@ -36953,7 +45685,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
@@ -36998,59 +45729,75 @@ export namespace Prisma {
     id?: string
     locationName: string
     depotName: string
-    createDate: string
+    createDate: Date | string
     createAt?: Date | string | null
     updateAt?: Date | string
-    feedStock?: FeedStockCreateNestedManyWithoutDepotInput
     sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
     receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
     FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockCreateNestedManyWithoutDepotInput
   }
 
   export type DepotUncheckedCreateInput = {
     id?: string
     locationName: string
     depotName: string
-    createDate: string
+    createDate: Date | string
     createAt?: Date | string | null
     updateAt?: Date | string
-    feedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
     sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
     receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
     FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockUncheckedCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
   }
 
   export type DepotUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     depotName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    feedStock?: FeedStockUpdateManyWithoutDepotNestedInput
     sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
     receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
     FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     depotName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    feedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
     sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
     receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
     FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotCreateManyInput = {
     id?: string
     locationName: string
     depotName: string
-    createDate: string
+    createDate: Date | string
     createAt?: Date | string | null
     updateAt?: Date | string
   }
@@ -37059,7 +45806,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     depotName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -37068,7 +45815,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     depotName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -37085,7 +45832,7 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     address?: AddressCreateNestedOneWithoutFarmerInput
     branch?: BranchCreateNestedOneWithoutFarmerInput
     flocks?: FlockCreateNestedManyWithoutFarmerInput
@@ -37093,6 +45840,7 @@ export namespace Prisma {
     sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
     chicks?: ChicksCreateNestedManyWithoutFarmInput
     birdSell?: BirdSellCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateInput = {
@@ -37109,12 +45857,13 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
     chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUpdateInput = {
@@ -37129,7 +45878,7 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: AddressUpdateOneWithoutFarmerNestedInput
     branch?: BranchUpdateOneWithoutFarmerNestedInput
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
@@ -37137,6 +45886,7 @@ export namespace Prisma {
     sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUpdateManyWithoutFarmNestedInput
     birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateInput = {
@@ -37153,12 +45903,13 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerCreateManyInput = {
@@ -37175,7 +45926,7 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
   }
 
   export type FarmerUpdateManyMutationInput = {
@@ -37190,7 +45941,7 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FarmerUncheckedUpdateManyInput = {
@@ -37207,7 +45958,7 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AddressCreateInput = {
@@ -37304,8 +46055,8 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryCreateInput = {
     id?: string
-    startDate: string
-    endDate?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string
@@ -37316,8 +46067,8 @@ export namespace Prisma {
   export type BranchEmployeeHistoryUncheckedCreateInput = {
     id?: string
     employeeId: string
-    startDate: string
-    endDate?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
     isActive?: boolean
     branchCode: string
     createdAt?: Date | string | null
@@ -37326,8 +46077,8 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    startDate?: StringFieldUpdateOperationsInput | string
-    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -37338,8 +46089,8 @@ export namespace Prisma {
   export type BranchEmployeeHistoryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    startDate?: StringFieldUpdateOperationsInput | string
-    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     branchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -37349,8 +46100,8 @@ export namespace Prisma {
   export type BranchEmployeeHistoryCreateManyInput = {
     id?: string
     employeeId: string
-    startDate: string
-    endDate?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
     isActive?: boolean
     branchCode: string
     createdAt?: Date | string | null
@@ -37359,8 +46110,8 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    startDate?: StringFieldUpdateOperationsInput | string
-    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -37369,8 +46120,8 @@ export namespace Prisma {
   export type BranchEmployeeHistoryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    startDate?: StringFieldUpdateOperationsInput | string
-    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     branchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -37500,6 +46251,8 @@ export namespace Prisma {
     chicks?: ChicksCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateInput = {
@@ -37527,6 +46280,8 @@ export namespace Prisma {
     chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUpdateInput = {
@@ -37554,6 +46309,8 @@ export namespace Prisma {
     chicks?: ChicksUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateInput = {
@@ -37581,6 +46338,8 @@ export namespace Prisma {
     chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockCreateManyInput = {
@@ -37823,7 +46582,9 @@ export namespace Prisma {
 
   export type BirdSellCreateInput = {
     id?: string
-    buyerId: string
+    buyerName: string
+    buyerPhoneNumber: string
+    buyerAddress: string
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -37839,7 +46600,9 @@ export namespace Prisma {
 
   export type BirdSellUncheckedCreateInput = {
     id?: string
-    buyerId: string
+    buyerName: string
+    buyerPhoneNumber: string
+    buyerAddress: string
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -37855,7 +46618,9 @@ export namespace Prisma {
 
   export type BirdSellUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    buyerId?: StringFieldUpdateOperationsInput | string
+    buyerName?: StringFieldUpdateOperationsInput | string
+    buyerPhoneNumber?: StringFieldUpdateOperationsInput | string
+    buyerAddress?: StringFieldUpdateOperationsInput | string
     totalQantity?: IntFieldUpdateOperationsInput | number
     totalWeight?: FloatFieldUpdateOperationsInput | number
     avgWeight?: FloatFieldUpdateOperationsInput | number
@@ -37871,7 +46636,9 @@ export namespace Prisma {
 
   export type BirdSellUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    buyerId?: StringFieldUpdateOperationsInput | string
+    buyerName?: StringFieldUpdateOperationsInput | string
+    buyerPhoneNumber?: StringFieldUpdateOperationsInput | string
+    buyerAddress?: StringFieldUpdateOperationsInput | string
     totalQantity?: IntFieldUpdateOperationsInput | number
     totalWeight?: FloatFieldUpdateOperationsInput | number
     avgWeight?: FloatFieldUpdateOperationsInput | number
@@ -37887,7 +46654,9 @@ export namespace Prisma {
 
   export type BirdSellCreateManyInput = {
     id?: string
-    buyerId: string
+    buyerName: string
+    buyerPhoneNumber: string
+    buyerAddress: string
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -37903,7 +46672,9 @@ export namespace Prisma {
 
   export type BirdSellUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    buyerId?: StringFieldUpdateOperationsInput | string
+    buyerName?: StringFieldUpdateOperationsInput | string
+    buyerPhoneNumber?: StringFieldUpdateOperationsInput | string
+    buyerAddress?: StringFieldUpdateOperationsInput | string
     totalQantity?: IntFieldUpdateOperationsInput | number
     totalWeight?: FloatFieldUpdateOperationsInput | number
     avgWeight?: FloatFieldUpdateOperationsInput | number
@@ -37916,7 +46687,9 @@ export namespace Prisma {
 
   export type BirdSellUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    buyerId?: StringFieldUpdateOperationsInput | string
+    buyerName?: StringFieldUpdateOperationsInput | string
+    buyerPhoneNumber?: StringFieldUpdateOperationsInput | string
+    buyerAddress?: StringFieldUpdateOperationsInput | string
     totalQantity?: IntFieldUpdateOperationsInput | number
     totalWeight?: FloatFieldUpdateOperationsInput | number
     avgWeight?: FloatFieldUpdateOperationsInput | number
@@ -38190,85 +46963,102 @@ export namespace Prisma {
     id?: string
     feedName: string
     feedCodeNumber: number
+    unitPrice: number
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
-    FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
+    createDate: Date | string
     transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedInput
     FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutFeedNameCategoryInput
+    RetunFeedItem?: RetunFeedItemCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutFeedInput
+    AddStockItem?: AddStockItemCreateNestedManyWithoutFeedInput
+    FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
   }
 
   export type FeedNameCategoryUncheckedCreateInput = {
     id?: string
     feedName: string
     feedCodeNumber: number
+    unitPrice: number
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    createDate: Date | string
     transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedInput
     FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    RetunFeedItem?: RetunFeedItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutFeedInput
+    AddStockItem?: AddStockItemUncheckedCreateNestedManyWithoutFeedInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
   }
 
   export type FeedNameCategoryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedNestedInput
     FeedSalesItem?: FeedSalesItemUpdateManyWithoutFeedNameCategoryNestedInput
+    RetunFeedItem?: RetunFeedItemUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutFeedNestedInput
+    AddStockItem?: AddStockItemUpdateManyWithoutFeedNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
   }
 
   export type FeedNameCategoryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedNestedInput
     FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    RetunFeedItem?: RetunFeedItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutFeedNestedInput
+    AddStockItem?: AddStockItemUncheckedUpdateManyWithoutFeedNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
   }
 
   export type FeedNameCategoryCreateManyInput = {
     id?: string
     feedName: string
     feedCodeNumber: number
+    unitPrice: number
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
   }
 
   export type FeedNameCategoryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FeedNameCategoryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FeedStockCreateInput = {
     id?: string
     stock: number
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    unitPice?: number
-    createDate: string
-    Branch?: BranchCreateNestedOneWithoutFeedStockInput
+    unitPrice?: number
+    createAt: Date | string
+    updateAt?: Date | string
     depot: DepotCreateNestedOneWithoutFeedStockInput
     feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedStockInput
   }
@@ -38276,23 +47066,19 @@ export namespace Prisma {
   export type FeedStockUncheckedCreateInput = {
     id?: string
     feedName: string
-    stock: number
     depotName: string
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    branchId?: string | null
-    unitPice?: number
-    createDate: string
+    stock: number
+    unitPrice?: number
+    createAt: Date | string
+    updateAt?: Date | string
   }
 
   export type FeedStockUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    unitPice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    Branch?: BranchUpdateOneWithoutFeedStockNestedInput
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     depot?: DepotUpdateOneRequiredWithoutFeedStockNestedInput
     feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedStockNestedInput
   }
@@ -38300,58 +47086,405 @@ export namespace Prisma {
   export type FeedStockUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
     depotName?: StringFieldUpdateOperationsInput | string
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
-    unitPice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FeedStockCreateManyInput = {
     id?: string
     feedName: string
-    stock: number
     depotName: string
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    branchId?: string | null
-    unitPice?: number
-    createDate: string
+    stock: number
+    unitPrice?: number
+    createAt: Date | string
+    updateAt?: Date | string
   }
 
   export type FeedStockUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    unitPice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FeedStockUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
     depotName?: StringFieldUpdateOperationsInput | string
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
-    unitPice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddStockCreateInput = {
+    id?: string
+    source?: $Enums.Source
+    status?: $Enums.DeliveryStatus
+    deliveryDate?: Date | string | null
+    quantity: number
+    price: number
+    createAt: Date | string
+    updateAt?: Date | string
+    depot: DepotCreateNestedOneWithoutAddStockInput
+    AddStockItem?: AddStockItemCreateNestedManyWithoutAddStockInput
+  }
+
+  export type AddStockUncheckedCreateInput = {
+    id?: string
+    source?: $Enums.Source
+    depotName: string
+    status?: $Enums.DeliveryStatus
+    deliveryDate?: Date | string | null
+    quantity: number
+    price: number
+    createAt: Date | string
+    updateAt?: Date | string
+    AddStockItem?: AddStockItemUncheckedCreateNestedManyWithoutAddStockInput
+  }
+
+  export type AddStockUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumSourceFieldUpdateOperationsInput | $Enums.Source
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depot?: DepotUpdateOneRequiredWithoutAddStockNestedInput
+    AddStockItem?: AddStockItemUpdateManyWithoutAddStockNestedInput
+  }
+
+  export type AddStockUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumSourceFieldUpdateOperationsInput | $Enums.Source
+    depotName?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    AddStockItem?: AddStockItemUncheckedUpdateManyWithoutAddStockNestedInput
+  }
+
+  export type AddStockCreateManyInput = {
+    id?: string
+    source?: $Enums.Source
+    depotName: string
+    status?: $Enums.DeliveryStatus
+    deliveryDate?: Date | string | null
+    quantity: number
+    price: number
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type AddStockUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumSourceFieldUpdateOperationsInput | $Enums.Source
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddStockUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumSourceFieldUpdateOperationsInput | $Enums.Source
+    depotName?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddStockItemCreateInput = {
+    id?: string
+    quantity: number
+    unitPrice?: number
+    price: number
+    createAt: Date | string
+    updateAt?: Date | string
+    feed: FeedNameCategoryCreateNestedOneWithoutAddStockItemInput
+    addStock: AddStockCreateNestedOneWithoutAddStockItemInput
+  }
+
+  export type AddStockItemUncheckedCreateInput = {
+    id?: string
+    feedName: string
+    quantity: number
+    unitPrice?: number
+    price: number
+    addStockId: string
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type AddStockItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feed?: FeedNameCategoryUpdateOneRequiredWithoutAddStockItemNestedInput
+    addStock?: AddStockUpdateOneRequiredWithoutAddStockItemNestedInput
+  }
+
+  export type AddStockItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    addStockId?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddStockItemCreateManyInput = {
+    id?: string
+    feedName: string
+    quantity: number
+    unitPrice?: number
+    price: number
+    addStockId: string
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type AddStockItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddStockItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    addStockId?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockHistoryCreateInput = {
+    id?: string
+    opening?: number
+    sales?: number
+    return?: number
+    addStock?: number
+    delivary?: number
+    intialAdd?: number
+    transferIn?: number
+    transferOut?: number
+    recive?: number
+    closing?: number
+    createAt: Date | string
+    updateAt?: Date | string
+    feed: FeedNameCategoryCreateNestedOneWithoutFeedStockHistoryInput
+    depot: DepotCreateNestedOneWithoutFeedStockHistoryInput
+  }
+
+  export type FeedStockHistoryUncheckedCreateInput = {
+    id?: string
+    feedName: string
+    depotName: string
+    opening?: number
+    sales?: number
+    return?: number
+    addStock?: number
+    delivary?: number
+    intialAdd?: number
+    transferIn?: number
+    transferOut?: number
+    recive?: number
+    closing?: number
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type FeedStockHistoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    opening?: IntFieldUpdateOperationsInput | number
+    sales?: IntFieldUpdateOperationsInput | number
+    return?: IntFieldUpdateOperationsInput | number
+    addStock?: IntFieldUpdateOperationsInput | number
+    delivary?: IntFieldUpdateOperationsInput | number
+    intialAdd?: IntFieldUpdateOperationsInput | number
+    transferIn?: IntFieldUpdateOperationsInput | number
+    transferOut?: IntFieldUpdateOperationsInput | number
+    recive?: IntFieldUpdateOperationsInput | number
+    closing?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feed?: FeedNameCategoryUpdateOneRequiredWithoutFeedStockHistoryNestedInput
+    depot?: DepotUpdateOneRequiredWithoutFeedStockHistoryNestedInput
+  }
+
+  export type FeedStockHistoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    opening?: IntFieldUpdateOperationsInput | number
+    sales?: IntFieldUpdateOperationsInput | number
+    return?: IntFieldUpdateOperationsInput | number
+    addStock?: IntFieldUpdateOperationsInput | number
+    delivary?: IntFieldUpdateOperationsInput | number
+    intialAdd?: IntFieldUpdateOperationsInput | number
+    transferIn?: IntFieldUpdateOperationsInput | number
+    transferOut?: IntFieldUpdateOperationsInput | number
+    recive?: IntFieldUpdateOperationsInput | number
+    closing?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockHistoryCreateManyInput = {
+    id?: string
+    feedName: string
+    depotName: string
+    opening?: number
+    sales?: number
+    return?: number
+    addStock?: number
+    delivary?: number
+    intialAdd?: number
+    transferIn?: number
+    transferOut?: number
+    recive?: number
+    closing?: number
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type FeedStockHistoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    opening?: IntFieldUpdateOperationsInput | number
+    sales?: IntFieldUpdateOperationsInput | number
+    return?: IntFieldUpdateOperationsInput | number
+    addStock?: IntFieldUpdateOperationsInput | number
+    delivary?: IntFieldUpdateOperationsInput | number
+    intialAdd?: IntFieldUpdateOperationsInput | number
+    transferIn?: IntFieldUpdateOperationsInput | number
+    transferOut?: IntFieldUpdateOperationsInput | number
+    recive?: IntFieldUpdateOperationsInput | number
+    closing?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockHistoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    opening?: IntFieldUpdateOperationsInput | number
+    sales?: IntFieldUpdateOperationsInput | number
+    return?: IntFieldUpdateOperationsInput | number
+    addStock?: IntFieldUpdateOperationsInput | number
+    delivary?: IntFieldUpdateOperationsInput | number
+    intialAdd?: IntFieldUpdateOperationsInput | number
+    transferIn?: IntFieldUpdateOperationsInput | number
+    transferOut?: IntFieldUpdateOperationsInput | number
+    recive?: IntFieldUpdateOperationsInput | number
+    closing?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type feedTransActionHeaderCreateInput = {
+    id?: string
+    refId: string
+    transactionType: $Enums.TransactionType
+    status: $Enums.DeliveryStatus
+    createAt: Date | string
+    updateAt?: Date | string
+    depot: DepotCreateNestedOneWithoutFeedTransActionHeaderInput
+  }
+
+  export type feedTransActionHeaderUncheckedCreateInput = {
+    id?: string
+    depotName: string
+    refId: string
+    transactionType: $Enums.TransactionType
+    status: $Enums.DeliveryStatus
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type feedTransActionHeaderUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    refId?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depot?: DepotUpdateOneRequiredWithoutFeedTransActionHeaderNestedInput
+  }
+
+  export type feedTransActionHeaderUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    refId?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type feedTransActionHeaderCreateManyInput = {
+    id?: string
+    depotName: string
+    refId: string
+    transactionType: $Enums.TransactionType
+    status: $Enums.DeliveryStatus
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type feedTransActionHeaderUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    refId?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type feedTransActionHeaderUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    refId?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FeedStockTransferCreateInput = {
     id?: string
-    transerFerDate: string
-    totalKg?: number
+    totalQuantity?: number
     totalPrice?: number
-    createDate: string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
     trnasferBill: string
-    createAt?: Date | string | null
+    createAt: Date | string
     updateAt?: Date | string
-    depotId?: string | null
     transferDepot: DepotCreateNestedOneWithoutSentTransfersInput
     reciveDepot: DepotCreateNestedOneWithoutReceivedTransfersInput
     transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedStckTranferInput
@@ -38361,27 +47494,25 @@ export namespace Prisma {
     id?: string
     fromDepot: string
     toDepot: string
-    transerFerDate: string
-    totalKg?: number
+    totalQuantity?: number
     totalPrice?: number
-    createDate: string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
     trnasferBill: string
-    createAt?: Date | string | null
+    createAt: Date | string
     updateAt?: Date | string
-    depotId?: string | null
     transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedStckTranferInput
   }
 
   export type FeedStockTransferUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    transerFerDate?: StringFieldUpdateOperationsInput | string
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     totalPrice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     trnasferBill?: StringFieldUpdateOperationsInput | string
-    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depotId?: NullableStringFieldUpdateOperationsInput | string | null
     transferDepot?: DepotUpdateOneRequiredWithoutSentTransfersNestedInput
     reciveDepot?: DepotUpdateOneRequiredWithoutReceivedTransfersNestedInput
     transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedStckTranferNestedInput
@@ -38391,14 +47522,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fromDepot?: StringFieldUpdateOperationsInput | string
     toDepot?: StringFieldUpdateOperationsInput | string
-    transerFerDate?: StringFieldUpdateOperationsInput | string
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     totalPrice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     trnasferBill?: StringFieldUpdateOperationsInput | string
-    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depotId?: NullableStringFieldUpdateOperationsInput | string | null
     transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedStckTranferNestedInput
   }
 
@@ -38406,47 +47536,46 @@ export namespace Prisma {
     id?: string
     fromDepot: string
     toDepot: string
-    transerFerDate: string
-    totalKg?: number
+    totalQuantity?: number
     totalPrice?: number
-    createDate: string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
     trnasferBill: string
-    createAt?: Date | string | null
+    createAt: Date | string
     updateAt?: Date | string
-    depotId?: string | null
   }
 
   export type FeedStockTransferUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    transerFerDate?: StringFieldUpdateOperationsInput | string
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     totalPrice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     trnasferBill?: StringFieldUpdateOperationsInput | string
-    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depotId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FeedStockTransferUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     fromDepot?: StringFieldUpdateOperationsInput | string
     toDepot?: StringFieldUpdateOperationsInput | string
-    transerFerDate?: StringFieldUpdateOperationsInput | string
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     totalPrice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     trnasferBill?: StringFieldUpdateOperationsInput | string
-    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depotId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TransferFeedItemCreateInput = {
     id?: string
-    createDate: string
-    quntity: string
+    createDate: Date | string
+    quantity: number
     price?: number
+    unitPrice?: number
+    status?: $Enums.DeliveryStatus
     createdAt?: Date | string
     updateAt?: Date | string
     feed: FeedNameCategoryCreateNestedOneWithoutTransferFeedItemInput
@@ -38456,19 +47585,23 @@ export namespace Prisma {
   export type TransferFeedItemUncheckedCreateInput = {
     id?: string
     feedName: string
-    createDate: string
-    quntity: string
+    createDate: Date | string
+    quantity: number
     price?: number
+    unitPrice?: number
     tansferId: string
+    status?: $Enums.DeliveryStatus
     createdAt?: Date | string
     updateAt?: Date | string
   }
 
   export type TransferFeedItemUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    quntity?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    quantity?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     feed?: FeedNameCategoryUpdateOneRequiredWithoutTransferFeedItemNestedInput
@@ -38478,10 +47611,12 @@ export namespace Prisma {
   export type TransferFeedItemUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    quntity?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    quantity?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     tansferId?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38489,19 +47624,23 @@ export namespace Prisma {
   export type TransferFeedItemCreateManyInput = {
     id?: string
     feedName: string
-    createDate: string
-    quntity: string
+    createDate: Date | string
+    quantity: number
     price?: number
+    unitPrice?: number
     tansferId: string
+    status?: $Enums.DeliveryStatus
     createdAt?: Date | string
     updateAt?: Date | string
   }
 
   export type TransferFeedItemUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    quntity?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    quantity?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38509,10 +47648,12 @@ export namespace Prisma {
   export type TransferFeedItemUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    quntity?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    quantity?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     tansferId?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38523,16 +47664,16 @@ export namespace Prisma {
     saleInvoice: string
     farmNumber: number
     flockNumber: number
-    createDate: string
+    deliveryDate?: Date | string | null
     farmId: string
-    flockId: string
     totalPrice?: number
-    totalKg?: number
+    totalQuantity?: number
     description?: string | null
     status?: $Enums.DeliveryStatus
-    createdAt?: Date | string | null
+    createdAt: Date | string
     updateAt?: Date | string
     depot: DepotCreateNestedOneWithoutFeedSalesOrderInput
+    flock: FlockCreateNestedOneWithoutFeedSalesOrderInput
     FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutSalesOrderInput
   }
 
@@ -38543,14 +47684,14 @@ export namespace Prisma {
     saleInvoice: string
     farmNumber: number
     flockNumber: number
-    createDate: string
+    deliveryDate?: Date | string | null
     farmId: string
     flockId: string
     totalPrice?: number
-    totalKg?: number
+    totalQuantity?: number
     description?: string | null
     status?: $Enums.DeliveryStatus
-    createdAt?: Date | string | null
+    createdAt: Date | string
     updateAt?: Date | string
     FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutSalesOrderInput
   }
@@ -38561,16 +47702,16 @@ export namespace Prisma {
     saleInvoice?: StringFieldUpdateOperationsInput | string
     farmNumber?: IntFieldUpdateOperationsInput | number
     flockNumber?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     farmId?: StringFieldUpdateOperationsInput | string
-    flockId?: StringFieldUpdateOperationsInput | string
     totalPrice?: IntFieldUpdateOperationsInput | number
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     depot?: DepotUpdateOneRequiredWithoutFeedSalesOrderNestedInput
+    flock?: FlockUpdateOneRequiredWithoutFeedSalesOrderNestedInput
     FeedSalesItem?: FeedSalesItemUpdateManyWithoutSalesOrderNestedInput
   }
 
@@ -38581,14 +47722,14 @@ export namespace Prisma {
     saleInvoice?: StringFieldUpdateOperationsInput | string
     farmNumber?: IntFieldUpdateOperationsInput | number
     flockNumber?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     farmId?: StringFieldUpdateOperationsInput | string
     flockId?: StringFieldUpdateOperationsInput | string
     totalPrice?: IntFieldUpdateOperationsInput | number
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutSalesOrderNestedInput
   }
@@ -38600,14 +47741,14 @@ export namespace Prisma {
     saleInvoice: string
     farmNumber: number
     flockNumber: number
-    createDate: string
+    deliveryDate?: Date | string | null
     farmId: string
     flockId: string
     totalPrice?: number
-    totalKg?: number
+    totalQuantity?: number
     description?: string | null
     status?: $Enums.DeliveryStatus
-    createdAt?: Date | string | null
+    createdAt: Date | string
     updateAt?: Date | string
   }
 
@@ -38617,14 +47758,13 @@ export namespace Prisma {
     saleInvoice?: StringFieldUpdateOperationsInput | string
     farmNumber?: IntFieldUpdateOperationsInput | number
     flockNumber?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     farmId?: StringFieldUpdateOperationsInput | string
-    flockId?: StringFieldUpdateOperationsInput | string
     totalPrice?: IntFieldUpdateOperationsInput | number
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -38635,23 +47775,23 @@ export namespace Prisma {
     saleInvoice?: StringFieldUpdateOperationsInput | string
     farmNumber?: IntFieldUpdateOperationsInput | number
     flockNumber?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     farmId?: StringFieldUpdateOperationsInput | string
     flockId?: StringFieldUpdateOperationsInput | string
     totalPrice?: IntFieldUpdateOperationsInput | number
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FeedSalesItemCreateInput = {
     id?: string
     quantity: number
-    createDate: string
-    totalPice: number
-    createdAt?: Date | string
+    unitPrice?: number
+    price: number
+    createdAt: Date | string
     updatedAt?: Date | string
     salesOrder: FeedSalesOrderCreateNestedOneWithoutFeedSalesItemInput
     feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedSalesItemInput
@@ -38662,17 +47802,17 @@ export namespace Prisma {
     feedName: string
     salesInvoice: string
     quantity: number
-    createDate: string
-    totalPice: number
-    createdAt?: Date | string
+    unitPrice?: number
+    price: number
+    createdAt: Date | string
     updatedAt?: Date | string
   }
 
   export type FeedSalesItemUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    totalPice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     salesOrder?: FeedSalesOrderUpdateOneRequiredWithoutFeedSalesItemNestedInput
@@ -38684,8 +47824,8 @@ export namespace Prisma {
     feedName?: StringFieldUpdateOperationsInput | string
     salesInvoice?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    totalPice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38695,17 +47835,17 @@ export namespace Prisma {
     feedName: string
     salesInvoice: string
     quantity: number
-    createDate: string
-    totalPice: number
-    createdAt?: Date | string
+    unitPrice?: number
+    price: number
+    createdAt: Date | string
     updatedAt?: Date | string
   }
 
   export type FeedSalesItemUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    totalPice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38715,10 +47855,198 @@ export namespace Prisma {
     feedName?: StringFieldUpdateOperationsInput | string
     salesInvoice?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    totalPice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedRetunCreateInput = {
+    id?: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
+    createAt?: Date | string
+    updateAt?: Date | string
+    flock: FlockCreateNestedOneWithoutFeedRetunInput
+    farm: FarmerCreateNestedOneWithoutFeedRetunInput
+    depot: DepotCreateNestedOneWithoutFeedRetunInput
+    RetunFeedItem?: RetunFeedItemCreateNestedManyWithoutFeedRetunInput
+  }
+
+  export type FeedRetunUncheckedCreateInput = {
+    id?: string
+    flockId: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    farmId: string
+    status?: $Enums.DeliveryStatus
+    depotName: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    RetunFeedItem?: RetunFeedItemUncheckedCreateNestedManyWithoutFeedRetunInput
+  }
+
+  export type FeedRetunUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flock?: FlockUpdateOneRequiredWithoutFeedRetunNestedInput
+    farm?: FarmerUpdateOneRequiredWithoutFeedRetunNestedInput
+    depot?: DepotUpdateOneRequiredWithoutFeedRetunNestedInput
+    RetunFeedItem?: RetunFeedItemUpdateManyWithoutFeedRetunNestedInput
+  }
+
+  export type FeedRetunUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    farmId?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    depotName?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    RetunFeedItem?: RetunFeedItemUncheckedUpdateManyWithoutFeedRetunNestedInput
+  }
+
+  export type FeedRetunCreateManyInput = {
+    id?: string
+    flockId: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    farmId: string
+    status?: $Enums.DeliveryStatus
+    depotName: string
+    createAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type FeedRetunUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedRetunUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    farmId?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    depotName?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RetunFeedItemCreateInput = {
+    id?: string
+    quantity: number
+    price: number
+    unitPrice?: number
+    createAt?: Date | string
+    updateAt?: Date | string
+    feedRetun: FeedRetunCreateNestedOneWithoutRetunFeedItemInput
+    feedNameCategory: FeedNameCategoryCreateNestedOneWithoutRetunFeedItemInput
+  }
+
+  export type RetunFeedItemUncheckedCreateInput = {
+    id?: string
+    feedName: string
+    quantity: number
+    price: number
+    returnInvoice: string
+    unitPrice?: number
+    createAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type RetunFeedItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedRetun?: FeedRetunUpdateOneRequiredWithoutRetunFeedItemNestedInput
+    feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutRetunFeedItemNestedInput
+  }
+
+  export type RetunFeedItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RetunFeedItemCreateManyInput = {
+    id?: string
+    feedName: string
+    quantity: number
+    price: number
+    returnInvoice: string
+    unitPrice?: number
+    createAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type RetunFeedItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RetunFeedItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AllGenericMedicinCreateInput = {
@@ -39425,12 +48753,6 @@ export namespace Prisma {
     none?: FarmerWhereInput
   }
 
-  export type FeedStockListRelationFilter = {
-    every?: FeedStockWhereInput
-    some?: FeedStockWhereInput
-    none?: FeedStockWhereInput
-  }
-
   export type FlockListRelationFilter = {
     every?: FlockWhereInput
     some?: FlockWhereInput
@@ -39489,10 +48811,6 @@ export namespace Prisma {
   }
 
   export type FarmerOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type FeedStockOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -39626,11 +48944,61 @@ export namespace Prisma {
     none?: FeedSalesOrderWhereInput
   }
 
+  export type FeedRetunListRelationFilter = {
+    every?: FeedRetunWhereInput
+    some?: FeedRetunWhereInput
+    none?: FeedRetunWhereInput
+  }
+
+  export type FeedStockHistoryListRelationFilter = {
+    every?: FeedStockHistoryWhereInput
+    some?: FeedStockHistoryWhereInput
+    none?: FeedStockHistoryWhereInput
+  }
+
+  export type FeedTransActionHeaderListRelationFilter = {
+    every?: feedTransActionHeaderWhereInput
+    some?: feedTransActionHeaderWhereInput
+    none?: feedTransActionHeaderWhereInput
+  }
+
+  export type AddStockListRelationFilter = {
+    every?: AddStockWhereInput
+    some?: AddStockWhereInput
+    none?: AddStockWhereInput
+  }
+
+  export type FeedStockListRelationFilter = {
+    every?: FeedStockWhereInput
+    some?: FeedStockWhereInput
+    none?: FeedStockWhereInput
+  }
+
   export type FeedStockTransferOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type FeedSalesOrderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FeedRetunOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FeedStockHistoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type feedTransActionHeaderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AddStockOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FeedStockOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -40215,7 +49583,9 @@ export namespace Prisma {
 
   export type BirdSellCountOrderByAggregateInput = {
     id?: SortOrder
-    buyerId?: SortOrder
+    buyerName?: SortOrder
+    buyerPhoneNumber?: SortOrder
+    buyerAddress?: SortOrder
     totalQantity?: SortOrder
     totalWeight?: SortOrder
     avgWeight?: SortOrder
@@ -40239,7 +49609,9 @@ export namespace Prisma {
 
   export type BirdSellMaxOrderByAggregateInput = {
     id?: SortOrder
-    buyerId?: SortOrder
+    buyerName?: SortOrder
+    buyerPhoneNumber?: SortOrder
+    buyerAddress?: SortOrder
     totalQantity?: SortOrder
     totalWeight?: SortOrder
     avgWeight?: SortOrder
@@ -40255,7 +49627,9 @@ export namespace Prisma {
 
   export type BirdSellMinOrderByAggregateInput = {
     id?: SortOrder
-    buyerId?: SortOrder
+    buyerName?: SortOrder
+    buyerPhoneNumber?: SortOrder
+    buyerAddress?: SortOrder
     totalQantity?: SortOrder
     totalWeight?: SortOrder
     avgWeight?: SortOrder
@@ -40488,6 +49862,18 @@ export namespace Prisma {
     none?: FeedSalesItemWhereInput
   }
 
+  export type RetunFeedItemListRelationFilter = {
+    every?: RetunFeedItemWhereInput
+    some?: RetunFeedItemWhereInput
+    none?: RetunFeedItemWhereInput
+  }
+
+  export type AddStockItemListRelationFilter = {
+    every?: AddStockItemWhereInput
+    some?: AddStockItemWhereInput
+    none?: AddStockItemWhereInput
+  }
+
   export type TransferFeedItemOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -40496,10 +49882,19 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type RetunFeedItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AddStockItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type FeedNameCategoryCountOrderByAggregateInput = {
     id?: SortOrder
     feedName?: SortOrder
     feedCodeNumber?: SortOrder
+    unitPrice?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     createDate?: SortOrder
@@ -40507,12 +49902,14 @@ export namespace Prisma {
 
   export type FeedNameCategoryAvgOrderByAggregateInput = {
     feedCodeNumber?: SortOrder
+    unitPrice?: SortOrder
   }
 
   export type FeedNameCategoryMaxOrderByAggregateInput = {
     id?: SortOrder
     feedName?: SortOrder
     feedCodeNumber?: SortOrder
+    unitPrice?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     createDate?: SortOrder
@@ -40522,6 +49919,7 @@ export namespace Prisma {
     id?: SortOrder
     feedName?: SortOrder
     feedCodeNumber?: SortOrder
+    unitPrice?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     createDate?: SortOrder
@@ -40529,6 +49927,7 @@ export namespace Prisma {
 
   export type FeedNameCategorySumOrderByAggregateInput = {
     feedCodeNumber?: SortOrder
+    unitPrice?: SortOrder
   }
 
   export type DepotScalarRelationFilter = {
@@ -40541,73 +49940,329 @@ export namespace Prisma {
     isNot?: FeedNameCategoryWhereInput
   }
 
-  export type FeedStockFeedName_depotNameCompoundUniqueInput = {
-    feedName: string
+  export type FeedStockDepotNameFeedNameCompoundUniqueInput = {
     depotName: string
+    feedName: string
   }
 
   export type FeedStockCountOrderByAggregateInput = {
     id?: SortOrder
     feedName?: SortOrder
-    stock?: SortOrder
     depotName?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    branchId?: SortOrder
-    unitPice?: SortOrder
-    createDate?: SortOrder
+    stock?: SortOrder
+    unitPrice?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
   }
 
   export type FeedStockAvgOrderByAggregateInput = {
     stock?: SortOrder
-    unitPice?: SortOrder
+    unitPrice?: SortOrder
   }
 
   export type FeedStockMaxOrderByAggregateInput = {
     id?: SortOrder
     feedName?: SortOrder
-    stock?: SortOrder
     depotName?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    branchId?: SortOrder
-    unitPice?: SortOrder
-    createDate?: SortOrder
+    stock?: SortOrder
+    unitPrice?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
   }
 
   export type FeedStockMinOrderByAggregateInput = {
     id?: SortOrder
     feedName?: SortOrder
-    stock?: SortOrder
     depotName?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    branchId?: SortOrder
-    unitPice?: SortOrder
-    createDate?: SortOrder
+    stock?: SortOrder
+    unitPrice?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
   }
 
   export type FeedStockSumOrderByAggregateInput = {
     stock?: SortOrder
-    unitPice?: SortOrder
+    unitPrice?: SortOrder
+  }
+
+  export type EnumSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.Source | EnumSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.Source[] | ListEnumSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Source[] | ListEnumSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumSourceFilter<$PrismaModel> | $Enums.Source
+  }
+
+  export type EnumDeliveryStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumDeliveryStatusFilter<$PrismaModel> | $Enums.DeliveryStatus
+  }
+
+  export type AddStockCountOrderByAggregateInput = {
+    id?: SortOrder
+    source?: SortOrder
+    depotName?: SortOrder
+    status?: SortOrder
+    deliveryDate?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type AddStockAvgOrderByAggregateInput = {
+    quantity?: SortOrder
+    price?: SortOrder
+  }
+
+  export type AddStockMaxOrderByAggregateInput = {
+    id?: SortOrder
+    source?: SortOrder
+    depotName?: SortOrder
+    status?: SortOrder
+    deliveryDate?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type AddStockMinOrderByAggregateInput = {
+    id?: SortOrder
+    source?: SortOrder
+    depotName?: SortOrder
+    status?: SortOrder
+    deliveryDate?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type AddStockSumOrderByAggregateInput = {
+    quantity?: SortOrder
+    price?: SortOrder
+  }
+
+  export type EnumSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Source | EnumSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.Source[] | ListEnumSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Source[] | ListEnumSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumSourceWithAggregatesFilter<$PrismaModel> | $Enums.Source
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSourceFilter<$PrismaModel>
+    _max?: NestedEnumSourceFilter<$PrismaModel>
+  }
+
+  export type EnumDeliveryStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumDeliveryStatusWithAggregatesFilter<$PrismaModel> | $Enums.DeliveryStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumDeliveryStatusFilter<$PrismaModel>
+    _max?: NestedEnumDeliveryStatusFilter<$PrismaModel>
+  }
+
+  export type AddStockScalarRelationFilter = {
+    is?: AddStockWhereInput
+    isNot?: AddStockWhereInput
+  }
+
+  export type AddStockItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    quantity?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
+    addStockId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type AddStockItemAvgOrderByAggregateInput = {
+    quantity?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
+  }
+
+  export type AddStockItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    quantity?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
+    addStockId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type AddStockItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    quantity?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
+    addStockId?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type AddStockItemSumOrderByAggregateInput = {
+    quantity?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
+  }
+
+  export type FeedStockHistoryDepotNameFeedNameCreateAtCompoundUniqueInput = {
+    depotName: string
+    feedName: string
+    createAt: Date | string
+  }
+
+  export type FeedStockHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    depotName?: SortOrder
+    opening?: SortOrder
+    sales?: SortOrder
+    return?: SortOrder
+    addStock?: SortOrder
+    delivary?: SortOrder
+    intialAdd?: SortOrder
+    transferIn?: SortOrder
+    transferOut?: SortOrder
+    recive?: SortOrder
+    closing?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type FeedStockHistoryAvgOrderByAggregateInput = {
+    opening?: SortOrder
+    sales?: SortOrder
+    return?: SortOrder
+    addStock?: SortOrder
+    delivary?: SortOrder
+    intialAdd?: SortOrder
+    transferIn?: SortOrder
+    transferOut?: SortOrder
+    recive?: SortOrder
+    closing?: SortOrder
+  }
+
+  export type FeedStockHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    depotName?: SortOrder
+    opening?: SortOrder
+    sales?: SortOrder
+    return?: SortOrder
+    addStock?: SortOrder
+    delivary?: SortOrder
+    intialAdd?: SortOrder
+    transferIn?: SortOrder
+    transferOut?: SortOrder
+    recive?: SortOrder
+    closing?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type FeedStockHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    depotName?: SortOrder
+    opening?: SortOrder
+    sales?: SortOrder
+    return?: SortOrder
+    addStock?: SortOrder
+    delivary?: SortOrder
+    intialAdd?: SortOrder
+    transferIn?: SortOrder
+    transferOut?: SortOrder
+    recive?: SortOrder
+    closing?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type FeedStockHistorySumOrderByAggregateInput = {
+    opening?: SortOrder
+    sales?: SortOrder
+    return?: SortOrder
+    addStock?: SortOrder
+    delivary?: SortOrder
+    intialAdd?: SortOrder
+    transferIn?: SortOrder
+    transferOut?: SortOrder
+    recive?: SortOrder
+    closing?: SortOrder
+  }
+
+  export type EnumTransactionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.TransactionType | EnumTransactionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumTransactionTypeFilter<$PrismaModel> | $Enums.TransactionType
+  }
+
+  export type feedTransActionHeaderCountOrderByAggregateInput = {
+    id?: SortOrder
+    depotName?: SortOrder
+    refId?: SortOrder
+    transactionType?: SortOrder
+    status?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type feedTransActionHeaderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    depotName?: SortOrder
+    refId?: SortOrder
+    transactionType?: SortOrder
+    status?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type feedTransActionHeaderMinOrderByAggregateInput = {
+    id?: SortOrder
+    depotName?: SortOrder
+    refId?: SortOrder
+    transactionType?: SortOrder
+    status?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type EnumTransactionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TransactionType | EnumTransactionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumTransactionTypeWithAggregatesFilter<$PrismaModel> | $Enums.TransactionType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTransactionTypeFilter<$PrismaModel>
+    _max?: NestedEnumTransactionTypeFilter<$PrismaModel>
   }
 
   export type FeedStockTransferCountOrderByAggregateInput = {
     id?: SortOrder
     fromDepot?: SortOrder
     toDepot?: SortOrder
-    transerFerDate?: SortOrder
-    totalKg?: SortOrder
+    totalQuantity?: SortOrder
     totalPrice?: SortOrder
-    createDate?: SortOrder
+    deliveryDate?: SortOrder
+    status?: SortOrder
     trnasferBill?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
-    depotId?: SortOrder
   }
 
   export type FeedStockTransferAvgOrderByAggregateInput = {
-    totalKg?: SortOrder
+    totalQuantity?: SortOrder
     totalPrice?: SortOrder
   }
 
@@ -40615,32 +50270,30 @@ export namespace Prisma {
     id?: SortOrder
     fromDepot?: SortOrder
     toDepot?: SortOrder
-    transerFerDate?: SortOrder
-    totalKg?: SortOrder
+    totalQuantity?: SortOrder
     totalPrice?: SortOrder
-    createDate?: SortOrder
+    deliveryDate?: SortOrder
+    status?: SortOrder
     trnasferBill?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
-    depotId?: SortOrder
   }
 
   export type FeedStockTransferMinOrderByAggregateInput = {
     id?: SortOrder
     fromDepot?: SortOrder
     toDepot?: SortOrder
-    transerFerDate?: SortOrder
-    totalKg?: SortOrder
+    totalQuantity?: SortOrder
     totalPrice?: SortOrder
-    createDate?: SortOrder
+    deliveryDate?: SortOrder
+    status?: SortOrder
     trnasferBill?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
-    depotId?: SortOrder
   }
 
   export type FeedStockTransferSumOrderByAggregateInput = {
-    totalKg?: SortOrder
+    totalQuantity?: SortOrder
     totalPrice?: SortOrder
   }
 
@@ -40653,24 +50306,30 @@ export namespace Prisma {
     id?: SortOrder
     feedName?: SortOrder
     createDate?: SortOrder
-    quntity?: SortOrder
+    quantity?: SortOrder
     price?: SortOrder
+    unitPrice?: SortOrder
     tansferId?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
   }
 
   export type TransferFeedItemAvgOrderByAggregateInput = {
+    quantity?: SortOrder
     price?: SortOrder
+    unitPrice?: SortOrder
   }
 
   export type TransferFeedItemMaxOrderByAggregateInput = {
     id?: SortOrder
     feedName?: SortOrder
     createDate?: SortOrder
-    quntity?: SortOrder
+    quantity?: SortOrder
     price?: SortOrder
+    unitPrice?: SortOrder
     tansferId?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
   }
@@ -40679,22 +50338,19 @@ export namespace Prisma {
     id?: SortOrder
     feedName?: SortOrder
     createDate?: SortOrder
-    quntity?: SortOrder
+    quantity?: SortOrder
     price?: SortOrder
+    unitPrice?: SortOrder
     tansferId?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updateAt?: SortOrder
   }
 
   export type TransferFeedItemSumOrderByAggregateInput = {
+    quantity?: SortOrder
     price?: SortOrder
-  }
-
-  export type EnumDeliveryStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumDeliveryStatusFilter<$PrismaModel> | $Enums.DeliveryStatus
+    unitPrice?: SortOrder
   }
 
   export type FeedSalesOrderCountOrderByAggregateInput = {
@@ -40704,11 +50360,11 @@ export namespace Prisma {
     saleInvoice?: SortOrder
     farmNumber?: SortOrder
     flockNumber?: SortOrder
-    createDate?: SortOrder
+    deliveryDate?: SortOrder
     farmId?: SortOrder
     flockId?: SortOrder
     totalPrice?: SortOrder
-    totalKg?: SortOrder
+    totalQuantity?: SortOrder
     description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
@@ -40719,7 +50375,7 @@ export namespace Prisma {
     farmNumber?: SortOrder
     flockNumber?: SortOrder
     totalPrice?: SortOrder
-    totalKg?: SortOrder
+    totalQuantity?: SortOrder
   }
 
   export type FeedSalesOrderMaxOrderByAggregateInput = {
@@ -40729,11 +50385,11 @@ export namespace Prisma {
     saleInvoice?: SortOrder
     farmNumber?: SortOrder
     flockNumber?: SortOrder
-    createDate?: SortOrder
+    deliveryDate?: SortOrder
     farmId?: SortOrder
     flockId?: SortOrder
     totalPrice?: SortOrder
-    totalKg?: SortOrder
+    totalQuantity?: SortOrder
     description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
@@ -40747,11 +50403,11 @@ export namespace Prisma {
     saleInvoice?: SortOrder
     farmNumber?: SortOrder
     flockNumber?: SortOrder
-    createDate?: SortOrder
+    deliveryDate?: SortOrder
     farmId?: SortOrder
     flockId?: SortOrder
     totalPrice?: SortOrder
-    totalKg?: SortOrder
+    totalQuantity?: SortOrder
     description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
@@ -40762,17 +50418,7 @@ export namespace Prisma {
     farmNumber?: SortOrder
     flockNumber?: SortOrder
     totalPrice?: SortOrder
-    totalKg?: SortOrder
-  }
-
-  export type EnumDeliveryStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumDeliveryStatusWithAggregatesFilter<$PrismaModel> | $Enums.DeliveryStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumDeliveryStatusFilter<$PrismaModel>
-    _max?: NestedEnumDeliveryStatusFilter<$PrismaModel>
+    totalQuantity?: SortOrder
   }
 
   export type FeedSalesOrderScalarRelationFilter = {
@@ -40785,15 +50431,16 @@ export namespace Prisma {
     feedName?: SortOrder
     salesInvoice?: SortOrder
     quantity?: SortOrder
-    createDate?: SortOrder
-    totalPice?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type FeedSalesItemAvgOrderByAggregateInput = {
     quantity?: SortOrder
-    totalPice?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
   }
 
   export type FeedSalesItemMaxOrderByAggregateInput = {
@@ -40801,8 +50448,8 @@ export namespace Prisma {
     feedName?: SortOrder
     salesInvoice?: SortOrder
     quantity?: SortOrder
-    createDate?: SortOrder
-    totalPice?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -40812,15 +50459,124 @@ export namespace Prisma {
     feedName?: SortOrder
     salesInvoice?: SortOrder
     quantity?: SortOrder
-    createDate?: SortOrder
-    totalPice?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type FeedSalesItemSumOrderByAggregateInput = {
     quantity?: SortOrder
-    totalPice?: SortOrder
+    unitPrice?: SortOrder
+    price?: SortOrder
+  }
+
+  export type FeedRetunCountOrderByAggregateInput = {
+    id?: SortOrder
+    flockId?: SortOrder
+    branChCode?: SortOrder
+    farmCode?: SortOrder
+    flockNumber?: SortOrder
+    returnInvoice?: SortOrder
+    createDate?: SortOrder
+    deliveryDate?: SortOrder
+    farmId?: SortOrder
+    status?: SortOrder
+    depotName?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type FeedRetunAvgOrderByAggregateInput = {
+    farmCode?: SortOrder
+    flockNumber?: SortOrder
+  }
+
+  export type FeedRetunMaxOrderByAggregateInput = {
+    id?: SortOrder
+    flockId?: SortOrder
+    branChCode?: SortOrder
+    farmCode?: SortOrder
+    flockNumber?: SortOrder
+    returnInvoice?: SortOrder
+    createDate?: SortOrder
+    deliveryDate?: SortOrder
+    farmId?: SortOrder
+    status?: SortOrder
+    depotName?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type FeedRetunMinOrderByAggregateInput = {
+    id?: SortOrder
+    flockId?: SortOrder
+    branChCode?: SortOrder
+    farmCode?: SortOrder
+    flockNumber?: SortOrder
+    returnInvoice?: SortOrder
+    createDate?: SortOrder
+    deliveryDate?: SortOrder
+    farmId?: SortOrder
+    status?: SortOrder
+    depotName?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type FeedRetunSumOrderByAggregateInput = {
+    farmCode?: SortOrder
+    flockNumber?: SortOrder
+  }
+
+  export type FeedRetunScalarRelationFilter = {
+    is?: FeedRetunWhereInput
+    isNot?: FeedRetunWhereInput
+  }
+
+  export type RetunFeedItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    returnInvoice?: SortOrder
+    unitPrice?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type RetunFeedItemAvgOrderByAggregateInput = {
+    quantity?: SortOrder
+    price?: SortOrder
+    unitPrice?: SortOrder
+  }
+
+  export type RetunFeedItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    returnInvoice?: SortOrder
+    unitPrice?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type RetunFeedItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    feedName?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    returnInvoice?: SortOrder
+    unitPrice?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type RetunFeedItemSumOrderByAggregateInput = {
+    quantity?: SortOrder
+    price?: SortOrder
+    unitPrice?: SortOrder
   }
 
   export type MedicineNameAddListRelationFilter = {
@@ -41236,13 +50992,6 @@ export namespace Prisma {
     connect?: FarmerWhereUniqueInput | FarmerWhereUniqueInput[]
   }
 
-  export type FeedStockCreateNestedManyWithoutBranchInput = {
-    create?: XOR<FeedStockCreateWithoutBranchInput, FeedStockUncheckedCreateWithoutBranchInput> | FeedStockCreateWithoutBranchInput[] | FeedStockUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: FeedStockCreateOrConnectWithoutBranchInput | FeedStockCreateOrConnectWithoutBranchInput[]
-    createMany?: FeedStockCreateManyBranchInputEnvelope
-    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-  }
-
   export type FlockCreateNestedManyWithoutBranchInput = {
     create?: XOR<FlockCreateWithoutBranchInput, FlockUncheckedCreateWithoutBranchInput> | FlockCreateWithoutBranchInput[] | FlockUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: FlockCreateOrConnectWithoutBranchInput | FlockCreateOrConnectWithoutBranchInput[]
@@ -41311,13 +51060,6 @@ export namespace Prisma {
     connectOrCreate?: FarmerCreateOrConnectWithoutBranchInput | FarmerCreateOrConnectWithoutBranchInput[]
     createMany?: FarmerCreateManyBranchInputEnvelope
     connect?: FarmerWhereUniqueInput | FarmerWhereUniqueInput[]
-  }
-
-  export type FeedStockUncheckedCreateNestedManyWithoutBranchInput = {
-    create?: XOR<FeedStockCreateWithoutBranchInput, FeedStockUncheckedCreateWithoutBranchInput> | FeedStockCreateWithoutBranchInput[] | FeedStockUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: FeedStockCreateOrConnectWithoutBranchInput | FeedStockCreateOrConnectWithoutBranchInput[]
-    createMany?: FeedStockCreateManyBranchInputEnvelope
-    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
   }
 
   export type FlockUncheckedCreateNestedManyWithoutBranchInput = {
@@ -41418,20 +51160,6 @@ export namespace Prisma {
     update?: FarmerUpdateWithWhereUniqueWithoutBranchInput | FarmerUpdateWithWhereUniqueWithoutBranchInput[]
     updateMany?: FarmerUpdateManyWithWhereWithoutBranchInput | FarmerUpdateManyWithWhereWithoutBranchInput[]
     deleteMany?: FarmerScalarWhereInput | FarmerScalarWhereInput[]
-  }
-
-  export type FeedStockUpdateManyWithoutBranchNestedInput = {
-    create?: XOR<FeedStockCreateWithoutBranchInput, FeedStockUncheckedCreateWithoutBranchInput> | FeedStockCreateWithoutBranchInput[] | FeedStockUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: FeedStockCreateOrConnectWithoutBranchInput | FeedStockCreateOrConnectWithoutBranchInput[]
-    upsert?: FeedStockUpsertWithWhereUniqueWithoutBranchInput | FeedStockUpsertWithWhereUniqueWithoutBranchInput[]
-    createMany?: FeedStockCreateManyBranchInputEnvelope
-    set?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    disconnect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    delete?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    update?: FeedStockUpdateWithWhereUniqueWithoutBranchInput | FeedStockUpdateWithWhereUniqueWithoutBranchInput[]
-    updateMany?: FeedStockUpdateManyWithWhereWithoutBranchInput | FeedStockUpdateManyWithWhereWithoutBranchInput[]
-    deleteMany?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
   }
 
   export type FlockUpdateManyWithoutBranchNestedInput = {
@@ -41574,20 +51302,6 @@ export namespace Prisma {
     deleteMany?: FarmerScalarWhereInput | FarmerScalarWhereInput[]
   }
 
-  export type FeedStockUncheckedUpdateManyWithoutBranchNestedInput = {
-    create?: XOR<FeedStockCreateWithoutBranchInput, FeedStockUncheckedCreateWithoutBranchInput> | FeedStockCreateWithoutBranchInput[] | FeedStockUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: FeedStockCreateOrConnectWithoutBranchInput | FeedStockCreateOrConnectWithoutBranchInput[]
-    upsert?: FeedStockUpsertWithWhereUniqueWithoutBranchInput | FeedStockUpsertWithWhereUniqueWithoutBranchInput[]
-    createMany?: FeedStockCreateManyBranchInputEnvelope
-    set?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    disconnect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    delete?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    update?: FeedStockUpdateWithWhereUniqueWithoutBranchInput | FeedStockUpdateWithWhereUniqueWithoutBranchInput[]
-    updateMany?: FeedStockUpdateManyWithWhereWithoutBranchInput | FeedStockUpdateManyWithWhereWithoutBranchInput[]
-    deleteMany?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
-  }
-
   export type FlockUncheckedUpdateManyWithoutBranchNestedInput = {
     create?: XOR<FlockCreateWithoutBranchInput, FlockUncheckedCreateWithoutBranchInput> | FlockCreateWithoutBranchInput[] | FlockUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: FlockCreateOrConnectWithoutBranchInput | FlockCreateOrConnectWithoutBranchInput[]
@@ -41700,13 +51414,6 @@ export namespace Prisma {
     deleteMany?: ChicksScalarWhereInput | ChicksScalarWhereInput[]
   }
 
-  export type FeedStockCreateNestedManyWithoutDepotInput = {
-    create?: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput> | FeedStockCreateWithoutDepotInput[] | FeedStockUncheckedCreateWithoutDepotInput[]
-    connectOrCreate?: FeedStockCreateOrConnectWithoutDepotInput | FeedStockCreateOrConnectWithoutDepotInput[]
-    createMany?: FeedStockCreateManyDepotInputEnvelope
-    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-  }
-
   export type FeedStockTransferCreateNestedManyWithoutTransferDepotInput = {
     create?: XOR<FeedStockTransferCreateWithoutTransferDepotInput, FeedStockTransferUncheckedCreateWithoutTransferDepotInput> | FeedStockTransferCreateWithoutTransferDepotInput[] | FeedStockTransferUncheckedCreateWithoutTransferDepotInput[]
     connectOrCreate?: FeedStockTransferCreateOrConnectWithoutTransferDepotInput | FeedStockTransferCreateOrConnectWithoutTransferDepotInput[]
@@ -41728,7 +51435,35 @@ export namespace Prisma {
     connect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
   }
 
-  export type FeedStockUncheckedCreateNestedManyWithoutDepotInput = {
+  export type FeedRetunCreateNestedManyWithoutDepotInput = {
+    create?: XOR<FeedRetunCreateWithoutDepotInput, FeedRetunUncheckedCreateWithoutDepotInput> | FeedRetunCreateWithoutDepotInput[] | FeedRetunUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutDepotInput | FeedRetunCreateOrConnectWithoutDepotInput[]
+    createMany?: FeedRetunCreateManyDepotInputEnvelope
+    connect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+  }
+
+  export type FeedStockHistoryCreateNestedManyWithoutDepotInput = {
+    create?: XOR<FeedStockHistoryCreateWithoutDepotInput, FeedStockHistoryUncheckedCreateWithoutDepotInput> | FeedStockHistoryCreateWithoutDepotInput[] | FeedStockHistoryUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedStockHistoryCreateOrConnectWithoutDepotInput | FeedStockHistoryCreateOrConnectWithoutDepotInput[]
+    createMany?: FeedStockHistoryCreateManyDepotInputEnvelope
+    connect?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+  }
+
+  export type feedTransActionHeaderCreateNestedManyWithoutDepotInput = {
+    create?: XOR<feedTransActionHeaderCreateWithoutDepotInput, feedTransActionHeaderUncheckedCreateWithoutDepotInput> | feedTransActionHeaderCreateWithoutDepotInput[] | feedTransActionHeaderUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: feedTransActionHeaderCreateOrConnectWithoutDepotInput | feedTransActionHeaderCreateOrConnectWithoutDepotInput[]
+    createMany?: feedTransActionHeaderCreateManyDepotInputEnvelope
+    connect?: feedTransActionHeaderWhereUniqueInput | feedTransActionHeaderWhereUniqueInput[]
+  }
+
+  export type AddStockCreateNestedManyWithoutDepotInput = {
+    create?: XOR<AddStockCreateWithoutDepotInput, AddStockUncheckedCreateWithoutDepotInput> | AddStockCreateWithoutDepotInput[] | AddStockUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: AddStockCreateOrConnectWithoutDepotInput | AddStockCreateOrConnectWithoutDepotInput[]
+    createMany?: AddStockCreateManyDepotInputEnvelope
+    connect?: AddStockWhereUniqueInput | AddStockWhereUniqueInput[]
+  }
+
+  export type FeedStockCreateNestedManyWithoutDepotInput = {
     create?: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput> | FeedStockCreateWithoutDepotInput[] | FeedStockUncheckedCreateWithoutDepotInput[]
     connectOrCreate?: FeedStockCreateOrConnectWithoutDepotInput | FeedStockCreateOrConnectWithoutDepotInput[]
     createMany?: FeedStockCreateManyDepotInputEnvelope
@@ -41756,18 +51491,39 @@ export namespace Prisma {
     connect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
   }
 
-  export type FeedStockUpdateManyWithoutDepotNestedInput = {
+  export type FeedRetunUncheckedCreateNestedManyWithoutDepotInput = {
+    create?: XOR<FeedRetunCreateWithoutDepotInput, FeedRetunUncheckedCreateWithoutDepotInput> | FeedRetunCreateWithoutDepotInput[] | FeedRetunUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutDepotInput | FeedRetunCreateOrConnectWithoutDepotInput[]
+    createMany?: FeedRetunCreateManyDepotInputEnvelope
+    connect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+  }
+
+  export type FeedStockHistoryUncheckedCreateNestedManyWithoutDepotInput = {
+    create?: XOR<FeedStockHistoryCreateWithoutDepotInput, FeedStockHistoryUncheckedCreateWithoutDepotInput> | FeedStockHistoryCreateWithoutDepotInput[] | FeedStockHistoryUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedStockHistoryCreateOrConnectWithoutDepotInput | FeedStockHistoryCreateOrConnectWithoutDepotInput[]
+    createMany?: FeedStockHistoryCreateManyDepotInputEnvelope
+    connect?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+  }
+
+  export type feedTransActionHeaderUncheckedCreateNestedManyWithoutDepotInput = {
+    create?: XOR<feedTransActionHeaderCreateWithoutDepotInput, feedTransActionHeaderUncheckedCreateWithoutDepotInput> | feedTransActionHeaderCreateWithoutDepotInput[] | feedTransActionHeaderUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: feedTransActionHeaderCreateOrConnectWithoutDepotInput | feedTransActionHeaderCreateOrConnectWithoutDepotInput[]
+    createMany?: feedTransActionHeaderCreateManyDepotInputEnvelope
+    connect?: feedTransActionHeaderWhereUniqueInput | feedTransActionHeaderWhereUniqueInput[]
+  }
+
+  export type AddStockUncheckedCreateNestedManyWithoutDepotInput = {
+    create?: XOR<AddStockCreateWithoutDepotInput, AddStockUncheckedCreateWithoutDepotInput> | AddStockCreateWithoutDepotInput[] | AddStockUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: AddStockCreateOrConnectWithoutDepotInput | AddStockCreateOrConnectWithoutDepotInput[]
+    createMany?: AddStockCreateManyDepotInputEnvelope
+    connect?: AddStockWhereUniqueInput | AddStockWhereUniqueInput[]
+  }
+
+  export type FeedStockUncheckedCreateNestedManyWithoutDepotInput = {
     create?: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput> | FeedStockCreateWithoutDepotInput[] | FeedStockUncheckedCreateWithoutDepotInput[]
     connectOrCreate?: FeedStockCreateOrConnectWithoutDepotInput | FeedStockCreateOrConnectWithoutDepotInput[]
-    upsert?: FeedStockUpsertWithWhereUniqueWithoutDepotInput | FeedStockUpsertWithWhereUniqueWithoutDepotInput[]
     createMany?: FeedStockCreateManyDepotInputEnvelope
-    set?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    disconnect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    delete?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
     connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    update?: FeedStockUpdateWithWhereUniqueWithoutDepotInput | FeedStockUpdateWithWhereUniqueWithoutDepotInput[]
-    updateMany?: FeedStockUpdateManyWithWhereWithoutDepotInput | FeedStockUpdateManyWithWhereWithoutDepotInput[]
-    deleteMany?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
   }
 
   export type FeedStockTransferUpdateManyWithoutTransferDepotNestedInput = {
@@ -41812,7 +51568,63 @@ export namespace Prisma {
     deleteMany?: FeedSalesOrderScalarWhereInput | FeedSalesOrderScalarWhereInput[]
   }
 
-  export type FeedStockUncheckedUpdateManyWithoutDepotNestedInput = {
+  export type FeedRetunUpdateManyWithoutDepotNestedInput = {
+    create?: XOR<FeedRetunCreateWithoutDepotInput, FeedRetunUncheckedCreateWithoutDepotInput> | FeedRetunCreateWithoutDepotInput[] | FeedRetunUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutDepotInput | FeedRetunCreateOrConnectWithoutDepotInput[]
+    upsert?: FeedRetunUpsertWithWhereUniqueWithoutDepotInput | FeedRetunUpsertWithWhereUniqueWithoutDepotInput[]
+    createMany?: FeedRetunCreateManyDepotInputEnvelope
+    set?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    disconnect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    delete?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    connect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    update?: FeedRetunUpdateWithWhereUniqueWithoutDepotInput | FeedRetunUpdateWithWhereUniqueWithoutDepotInput[]
+    updateMany?: FeedRetunUpdateManyWithWhereWithoutDepotInput | FeedRetunUpdateManyWithWhereWithoutDepotInput[]
+    deleteMany?: FeedRetunScalarWhereInput | FeedRetunScalarWhereInput[]
+  }
+
+  export type FeedStockHistoryUpdateManyWithoutDepotNestedInput = {
+    create?: XOR<FeedStockHistoryCreateWithoutDepotInput, FeedStockHistoryUncheckedCreateWithoutDepotInput> | FeedStockHistoryCreateWithoutDepotInput[] | FeedStockHistoryUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedStockHistoryCreateOrConnectWithoutDepotInput | FeedStockHistoryCreateOrConnectWithoutDepotInput[]
+    upsert?: FeedStockHistoryUpsertWithWhereUniqueWithoutDepotInput | FeedStockHistoryUpsertWithWhereUniqueWithoutDepotInput[]
+    createMany?: FeedStockHistoryCreateManyDepotInputEnvelope
+    set?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    disconnect?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    delete?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    connect?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    update?: FeedStockHistoryUpdateWithWhereUniqueWithoutDepotInput | FeedStockHistoryUpdateWithWhereUniqueWithoutDepotInput[]
+    updateMany?: FeedStockHistoryUpdateManyWithWhereWithoutDepotInput | FeedStockHistoryUpdateManyWithWhereWithoutDepotInput[]
+    deleteMany?: FeedStockHistoryScalarWhereInput | FeedStockHistoryScalarWhereInput[]
+  }
+
+  export type feedTransActionHeaderUpdateManyWithoutDepotNestedInput = {
+    create?: XOR<feedTransActionHeaderCreateWithoutDepotInput, feedTransActionHeaderUncheckedCreateWithoutDepotInput> | feedTransActionHeaderCreateWithoutDepotInput[] | feedTransActionHeaderUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: feedTransActionHeaderCreateOrConnectWithoutDepotInput | feedTransActionHeaderCreateOrConnectWithoutDepotInput[]
+    upsert?: feedTransActionHeaderUpsertWithWhereUniqueWithoutDepotInput | feedTransActionHeaderUpsertWithWhereUniqueWithoutDepotInput[]
+    createMany?: feedTransActionHeaderCreateManyDepotInputEnvelope
+    set?: feedTransActionHeaderWhereUniqueInput | feedTransActionHeaderWhereUniqueInput[]
+    disconnect?: feedTransActionHeaderWhereUniqueInput | feedTransActionHeaderWhereUniqueInput[]
+    delete?: feedTransActionHeaderWhereUniqueInput | feedTransActionHeaderWhereUniqueInput[]
+    connect?: feedTransActionHeaderWhereUniqueInput | feedTransActionHeaderWhereUniqueInput[]
+    update?: feedTransActionHeaderUpdateWithWhereUniqueWithoutDepotInput | feedTransActionHeaderUpdateWithWhereUniqueWithoutDepotInput[]
+    updateMany?: feedTransActionHeaderUpdateManyWithWhereWithoutDepotInput | feedTransActionHeaderUpdateManyWithWhereWithoutDepotInput[]
+    deleteMany?: feedTransActionHeaderScalarWhereInput | feedTransActionHeaderScalarWhereInput[]
+  }
+
+  export type AddStockUpdateManyWithoutDepotNestedInput = {
+    create?: XOR<AddStockCreateWithoutDepotInput, AddStockUncheckedCreateWithoutDepotInput> | AddStockCreateWithoutDepotInput[] | AddStockUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: AddStockCreateOrConnectWithoutDepotInput | AddStockCreateOrConnectWithoutDepotInput[]
+    upsert?: AddStockUpsertWithWhereUniqueWithoutDepotInput | AddStockUpsertWithWhereUniqueWithoutDepotInput[]
+    createMany?: AddStockCreateManyDepotInputEnvelope
+    set?: AddStockWhereUniqueInput | AddStockWhereUniqueInput[]
+    disconnect?: AddStockWhereUniqueInput | AddStockWhereUniqueInput[]
+    delete?: AddStockWhereUniqueInput | AddStockWhereUniqueInput[]
+    connect?: AddStockWhereUniqueInput | AddStockWhereUniqueInput[]
+    update?: AddStockUpdateWithWhereUniqueWithoutDepotInput | AddStockUpdateWithWhereUniqueWithoutDepotInput[]
+    updateMany?: AddStockUpdateManyWithWhereWithoutDepotInput | AddStockUpdateManyWithWhereWithoutDepotInput[]
+    deleteMany?: AddStockScalarWhereInput | AddStockScalarWhereInput[]
+  }
+
+  export type FeedStockUpdateManyWithoutDepotNestedInput = {
     create?: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput> | FeedStockCreateWithoutDepotInput[] | FeedStockUncheckedCreateWithoutDepotInput[]
     connectOrCreate?: FeedStockCreateOrConnectWithoutDepotInput | FeedStockCreateOrConnectWithoutDepotInput[]
     upsert?: FeedStockUpsertWithWhereUniqueWithoutDepotInput | FeedStockUpsertWithWhereUniqueWithoutDepotInput[]
@@ -41868,6 +51680,76 @@ export namespace Prisma {
     deleteMany?: FeedSalesOrderScalarWhereInput | FeedSalesOrderScalarWhereInput[]
   }
 
+  export type FeedRetunUncheckedUpdateManyWithoutDepotNestedInput = {
+    create?: XOR<FeedRetunCreateWithoutDepotInput, FeedRetunUncheckedCreateWithoutDepotInput> | FeedRetunCreateWithoutDepotInput[] | FeedRetunUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutDepotInput | FeedRetunCreateOrConnectWithoutDepotInput[]
+    upsert?: FeedRetunUpsertWithWhereUniqueWithoutDepotInput | FeedRetunUpsertWithWhereUniqueWithoutDepotInput[]
+    createMany?: FeedRetunCreateManyDepotInputEnvelope
+    set?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    disconnect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    delete?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    connect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    update?: FeedRetunUpdateWithWhereUniqueWithoutDepotInput | FeedRetunUpdateWithWhereUniqueWithoutDepotInput[]
+    updateMany?: FeedRetunUpdateManyWithWhereWithoutDepotInput | FeedRetunUpdateManyWithWhereWithoutDepotInput[]
+    deleteMany?: FeedRetunScalarWhereInput | FeedRetunScalarWhereInput[]
+  }
+
+  export type FeedStockHistoryUncheckedUpdateManyWithoutDepotNestedInput = {
+    create?: XOR<FeedStockHistoryCreateWithoutDepotInput, FeedStockHistoryUncheckedCreateWithoutDepotInput> | FeedStockHistoryCreateWithoutDepotInput[] | FeedStockHistoryUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedStockHistoryCreateOrConnectWithoutDepotInput | FeedStockHistoryCreateOrConnectWithoutDepotInput[]
+    upsert?: FeedStockHistoryUpsertWithWhereUniqueWithoutDepotInput | FeedStockHistoryUpsertWithWhereUniqueWithoutDepotInput[]
+    createMany?: FeedStockHistoryCreateManyDepotInputEnvelope
+    set?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    disconnect?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    delete?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    connect?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    update?: FeedStockHistoryUpdateWithWhereUniqueWithoutDepotInput | FeedStockHistoryUpdateWithWhereUniqueWithoutDepotInput[]
+    updateMany?: FeedStockHistoryUpdateManyWithWhereWithoutDepotInput | FeedStockHistoryUpdateManyWithWhereWithoutDepotInput[]
+    deleteMany?: FeedStockHistoryScalarWhereInput | FeedStockHistoryScalarWhereInput[]
+  }
+
+  export type feedTransActionHeaderUncheckedUpdateManyWithoutDepotNestedInput = {
+    create?: XOR<feedTransActionHeaderCreateWithoutDepotInput, feedTransActionHeaderUncheckedCreateWithoutDepotInput> | feedTransActionHeaderCreateWithoutDepotInput[] | feedTransActionHeaderUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: feedTransActionHeaderCreateOrConnectWithoutDepotInput | feedTransActionHeaderCreateOrConnectWithoutDepotInput[]
+    upsert?: feedTransActionHeaderUpsertWithWhereUniqueWithoutDepotInput | feedTransActionHeaderUpsertWithWhereUniqueWithoutDepotInput[]
+    createMany?: feedTransActionHeaderCreateManyDepotInputEnvelope
+    set?: feedTransActionHeaderWhereUniqueInput | feedTransActionHeaderWhereUniqueInput[]
+    disconnect?: feedTransActionHeaderWhereUniqueInput | feedTransActionHeaderWhereUniqueInput[]
+    delete?: feedTransActionHeaderWhereUniqueInput | feedTransActionHeaderWhereUniqueInput[]
+    connect?: feedTransActionHeaderWhereUniqueInput | feedTransActionHeaderWhereUniqueInput[]
+    update?: feedTransActionHeaderUpdateWithWhereUniqueWithoutDepotInput | feedTransActionHeaderUpdateWithWhereUniqueWithoutDepotInput[]
+    updateMany?: feedTransActionHeaderUpdateManyWithWhereWithoutDepotInput | feedTransActionHeaderUpdateManyWithWhereWithoutDepotInput[]
+    deleteMany?: feedTransActionHeaderScalarWhereInput | feedTransActionHeaderScalarWhereInput[]
+  }
+
+  export type AddStockUncheckedUpdateManyWithoutDepotNestedInput = {
+    create?: XOR<AddStockCreateWithoutDepotInput, AddStockUncheckedCreateWithoutDepotInput> | AddStockCreateWithoutDepotInput[] | AddStockUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: AddStockCreateOrConnectWithoutDepotInput | AddStockCreateOrConnectWithoutDepotInput[]
+    upsert?: AddStockUpsertWithWhereUniqueWithoutDepotInput | AddStockUpsertWithWhereUniqueWithoutDepotInput[]
+    createMany?: AddStockCreateManyDepotInputEnvelope
+    set?: AddStockWhereUniqueInput | AddStockWhereUniqueInput[]
+    disconnect?: AddStockWhereUniqueInput | AddStockWhereUniqueInput[]
+    delete?: AddStockWhereUniqueInput | AddStockWhereUniqueInput[]
+    connect?: AddStockWhereUniqueInput | AddStockWhereUniqueInput[]
+    update?: AddStockUpdateWithWhereUniqueWithoutDepotInput | AddStockUpdateWithWhereUniqueWithoutDepotInput[]
+    updateMany?: AddStockUpdateManyWithWhereWithoutDepotInput | AddStockUpdateManyWithWhereWithoutDepotInput[]
+    deleteMany?: AddStockScalarWhereInput | AddStockScalarWhereInput[]
+  }
+
+  export type FeedStockUncheckedUpdateManyWithoutDepotNestedInput = {
+    create?: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput> | FeedStockCreateWithoutDepotInput[] | FeedStockUncheckedCreateWithoutDepotInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutDepotInput | FeedStockCreateOrConnectWithoutDepotInput[]
+    upsert?: FeedStockUpsertWithWhereUniqueWithoutDepotInput | FeedStockUpsertWithWhereUniqueWithoutDepotInput[]
+    createMany?: FeedStockCreateManyDepotInputEnvelope
+    set?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    disconnect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    delete?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    update?: FeedStockUpdateWithWhereUniqueWithoutDepotInput | FeedStockUpdateWithWhereUniqueWithoutDepotInput[]
+    updateMany?: FeedStockUpdateManyWithWhereWithoutDepotInput | FeedStockUpdateManyWithWhereWithoutDepotInput[]
+    deleteMany?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
+  }
+
   export type AddressCreateNestedOneWithoutFarmerInput = {
     create?: XOR<AddressCreateWithoutFarmerInput, AddressUncheckedCreateWithoutFarmerInput>
     connectOrCreate?: AddressCreateOrConnectWithoutFarmerInput
@@ -41915,6 +51797,13 @@ export namespace Prisma {
     connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
   }
 
+  export type FeedRetunCreateNestedManyWithoutFarmInput = {
+    create?: XOR<FeedRetunCreateWithoutFarmInput, FeedRetunUncheckedCreateWithoutFarmInput> | FeedRetunCreateWithoutFarmInput[] | FeedRetunUncheckedCreateWithoutFarmInput[]
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutFarmInput | FeedRetunCreateOrConnectWithoutFarmInput[]
+    createMany?: FeedRetunCreateManyFarmInputEnvelope
+    connect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+  }
+
   export type FlockUncheckedCreateNestedManyWithoutFarmerInput = {
     create?: XOR<FlockCreateWithoutFarmerInput, FlockUncheckedCreateWithoutFarmerInput> | FlockCreateWithoutFarmerInput[] | FlockUncheckedCreateWithoutFarmerInput[]
     connectOrCreate?: FlockCreateOrConnectWithoutFarmerInput | FlockCreateOrConnectWithoutFarmerInput[]
@@ -41948,6 +51837,13 @@ export namespace Prisma {
     connectOrCreate?: BirdSellCreateOrConnectWithoutFarmInput | BirdSellCreateOrConnectWithoutFarmInput[]
     createMany?: BirdSellCreateManyFarmInputEnvelope
     connect?: BirdSellWhereUniqueInput | BirdSellWhereUniqueInput[]
+  }
+
+  export type FeedRetunUncheckedCreateNestedManyWithoutFarmInput = {
+    create?: XOR<FeedRetunCreateWithoutFarmInput, FeedRetunUncheckedCreateWithoutFarmInput> | FeedRetunCreateWithoutFarmInput[] | FeedRetunUncheckedCreateWithoutFarmInput[]
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutFarmInput | FeedRetunCreateOrConnectWithoutFarmInput[]
+    createMany?: FeedRetunCreateManyFarmInputEnvelope
+    connect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -42052,6 +51948,20 @@ export namespace Prisma {
     deleteMany?: BirdSellScalarWhereInput | BirdSellScalarWhereInput[]
   }
 
+  export type FeedRetunUpdateManyWithoutFarmNestedInput = {
+    create?: XOR<FeedRetunCreateWithoutFarmInput, FeedRetunUncheckedCreateWithoutFarmInput> | FeedRetunCreateWithoutFarmInput[] | FeedRetunUncheckedCreateWithoutFarmInput[]
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutFarmInput | FeedRetunCreateOrConnectWithoutFarmInput[]
+    upsert?: FeedRetunUpsertWithWhereUniqueWithoutFarmInput | FeedRetunUpsertWithWhereUniqueWithoutFarmInput[]
+    createMany?: FeedRetunCreateManyFarmInputEnvelope
+    set?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    disconnect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    delete?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    connect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    update?: FeedRetunUpdateWithWhereUniqueWithoutFarmInput | FeedRetunUpdateWithWhereUniqueWithoutFarmInput[]
+    updateMany?: FeedRetunUpdateManyWithWhereWithoutFarmInput | FeedRetunUpdateManyWithWhereWithoutFarmInput[]
+    deleteMany?: FeedRetunScalarWhereInput | FeedRetunScalarWhereInput[]
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
@@ -42124,6 +52034,20 @@ export namespace Prisma {
     update?: BirdSellUpdateWithWhereUniqueWithoutFarmInput | BirdSellUpdateWithWhereUniqueWithoutFarmInput[]
     updateMany?: BirdSellUpdateManyWithWhereWithoutFarmInput | BirdSellUpdateManyWithWhereWithoutFarmInput[]
     deleteMany?: BirdSellScalarWhereInput | BirdSellScalarWhereInput[]
+  }
+
+  export type FeedRetunUncheckedUpdateManyWithoutFarmNestedInput = {
+    create?: XOR<FeedRetunCreateWithoutFarmInput, FeedRetunUncheckedCreateWithoutFarmInput> | FeedRetunCreateWithoutFarmInput[] | FeedRetunUncheckedCreateWithoutFarmInput[]
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutFarmInput | FeedRetunCreateOrConnectWithoutFarmInput[]
+    upsert?: FeedRetunUpsertWithWhereUniqueWithoutFarmInput | FeedRetunUpsertWithWhereUniqueWithoutFarmInput[]
+    createMany?: FeedRetunCreateManyFarmInputEnvelope
+    set?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    disconnect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    delete?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    connect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    update?: FeedRetunUpdateWithWhereUniqueWithoutFarmInput | FeedRetunUpdateWithWhereUniqueWithoutFarmInput[]
+    updateMany?: FeedRetunUpdateManyWithWhereWithoutFarmInput | FeedRetunUpdateManyWithWhereWithoutFarmInput[]
+    deleteMany?: FeedRetunScalarWhereInput | FeedRetunScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedOneWithoutAddressInput = {
@@ -42382,6 +52306,20 @@ export namespace Prisma {
     connect?: FarmFeedStockWhereUniqueInput | FarmFeedStockWhereUniqueInput[]
   }
 
+  export type FeedRetunCreateNestedManyWithoutFlockInput = {
+    create?: XOR<FeedRetunCreateWithoutFlockInput, FeedRetunUncheckedCreateWithoutFlockInput> | FeedRetunCreateWithoutFlockInput[] | FeedRetunUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutFlockInput | FeedRetunCreateOrConnectWithoutFlockInput[]
+    createMany?: FeedRetunCreateManyFlockInputEnvelope
+    connect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+  }
+
+  export type FeedSalesOrderCreateNestedManyWithoutFlockInput = {
+    create?: XOR<FeedSalesOrderCreateWithoutFlockInput, FeedSalesOrderUncheckedCreateWithoutFlockInput> | FeedSalesOrderCreateWithoutFlockInput[] | FeedSalesOrderUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FeedSalesOrderCreateOrConnectWithoutFlockInput | FeedSalesOrderCreateOrConnectWithoutFlockInput[]
+    createMany?: FeedSalesOrderCreateManyFlockInputEnvelope
+    connect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+  }
+
   export type FlockReportUncheckedCreateNestedManyWithoutFlockInput = {
     create?: XOR<FlockReportCreateWithoutFlockInput, FlockReportUncheckedCreateWithoutFlockInput> | FlockReportCreateWithoutFlockInput[] | FlockReportUncheckedCreateWithoutFlockInput[]
     connectOrCreate?: FlockReportCreateOrConnectWithoutFlockInput | FlockReportCreateOrConnectWithoutFlockInput[]
@@ -42422,6 +52360,20 @@ export namespace Prisma {
     connectOrCreate?: FarmFeedStockCreateOrConnectWithoutFlockInput | FarmFeedStockCreateOrConnectWithoutFlockInput[]
     createMany?: FarmFeedStockCreateManyFlockInputEnvelope
     connect?: FarmFeedStockWhereUniqueInput | FarmFeedStockWhereUniqueInput[]
+  }
+
+  export type FeedRetunUncheckedCreateNestedManyWithoutFlockInput = {
+    create?: XOR<FeedRetunCreateWithoutFlockInput, FeedRetunUncheckedCreateWithoutFlockInput> | FeedRetunCreateWithoutFlockInput[] | FeedRetunUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutFlockInput | FeedRetunCreateOrConnectWithoutFlockInput[]
+    createMany?: FeedRetunCreateManyFlockInputEnvelope
+    connect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+  }
+
+  export type FeedSalesOrderUncheckedCreateNestedManyWithoutFlockInput = {
+    create?: XOR<FeedSalesOrderCreateWithoutFlockInput, FeedSalesOrderUncheckedCreateWithoutFlockInput> | FeedSalesOrderCreateWithoutFlockInput[] | FeedSalesOrderUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FeedSalesOrderCreateOrConnectWithoutFlockInput | FeedSalesOrderCreateOrConnectWithoutFlockInput[]
+    createMany?: FeedSalesOrderCreateManyFlockInputEnvelope
+    connect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
   }
 
   export type EnumFlockStatusFieldUpdateOperationsInput = {
@@ -42544,6 +52496,34 @@ export namespace Prisma {
     deleteMany?: FarmFeedStockScalarWhereInput | FarmFeedStockScalarWhereInput[]
   }
 
+  export type FeedRetunUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<FeedRetunCreateWithoutFlockInput, FeedRetunUncheckedCreateWithoutFlockInput> | FeedRetunCreateWithoutFlockInput[] | FeedRetunUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutFlockInput | FeedRetunCreateOrConnectWithoutFlockInput[]
+    upsert?: FeedRetunUpsertWithWhereUniqueWithoutFlockInput | FeedRetunUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: FeedRetunCreateManyFlockInputEnvelope
+    set?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    disconnect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    delete?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    connect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    update?: FeedRetunUpdateWithWhereUniqueWithoutFlockInput | FeedRetunUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: FeedRetunUpdateManyWithWhereWithoutFlockInput | FeedRetunUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: FeedRetunScalarWhereInput | FeedRetunScalarWhereInput[]
+  }
+
+  export type FeedSalesOrderUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<FeedSalesOrderCreateWithoutFlockInput, FeedSalesOrderUncheckedCreateWithoutFlockInput> | FeedSalesOrderCreateWithoutFlockInput[] | FeedSalesOrderUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FeedSalesOrderCreateOrConnectWithoutFlockInput | FeedSalesOrderCreateOrConnectWithoutFlockInput[]
+    upsert?: FeedSalesOrderUpsertWithWhereUniqueWithoutFlockInput | FeedSalesOrderUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: FeedSalesOrderCreateManyFlockInputEnvelope
+    set?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    disconnect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    delete?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    connect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    update?: FeedSalesOrderUpdateWithWhereUniqueWithoutFlockInput | FeedSalesOrderUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: FeedSalesOrderUpdateManyWithWhereWithoutFlockInput | FeedSalesOrderUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: FeedSalesOrderScalarWhereInput | FeedSalesOrderScalarWhereInput[]
+  }
+
   export type FlockReportUncheckedUpdateManyWithoutFlockNestedInput = {
     create?: XOR<FlockReportCreateWithoutFlockInput, FlockReportUncheckedCreateWithoutFlockInput> | FlockReportCreateWithoutFlockInput[] | FlockReportUncheckedCreateWithoutFlockInput[]
     connectOrCreate?: FlockReportCreateOrConnectWithoutFlockInput | FlockReportCreateOrConnectWithoutFlockInput[]
@@ -42626,6 +52606,34 @@ export namespace Prisma {
     update?: FarmFeedStockUpdateWithWhereUniqueWithoutFlockInput | FarmFeedStockUpdateWithWhereUniqueWithoutFlockInput[]
     updateMany?: FarmFeedStockUpdateManyWithWhereWithoutFlockInput | FarmFeedStockUpdateManyWithWhereWithoutFlockInput[]
     deleteMany?: FarmFeedStockScalarWhereInput | FarmFeedStockScalarWhereInput[]
+  }
+
+  export type FeedRetunUncheckedUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<FeedRetunCreateWithoutFlockInput, FeedRetunUncheckedCreateWithoutFlockInput> | FeedRetunCreateWithoutFlockInput[] | FeedRetunUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutFlockInput | FeedRetunCreateOrConnectWithoutFlockInput[]
+    upsert?: FeedRetunUpsertWithWhereUniqueWithoutFlockInput | FeedRetunUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: FeedRetunCreateManyFlockInputEnvelope
+    set?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    disconnect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    delete?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    connect?: FeedRetunWhereUniqueInput | FeedRetunWhereUniqueInput[]
+    update?: FeedRetunUpdateWithWhereUniqueWithoutFlockInput | FeedRetunUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: FeedRetunUpdateManyWithWhereWithoutFlockInput | FeedRetunUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: FeedRetunScalarWhereInput | FeedRetunScalarWhereInput[]
+  }
+
+  export type FeedSalesOrderUncheckedUpdateManyWithoutFlockNestedInput = {
+    create?: XOR<FeedSalesOrderCreateWithoutFlockInput, FeedSalesOrderUncheckedCreateWithoutFlockInput> | FeedSalesOrderCreateWithoutFlockInput[] | FeedSalesOrderUncheckedCreateWithoutFlockInput[]
+    connectOrCreate?: FeedSalesOrderCreateOrConnectWithoutFlockInput | FeedSalesOrderCreateOrConnectWithoutFlockInput[]
+    upsert?: FeedSalesOrderUpsertWithWhereUniqueWithoutFlockInput | FeedSalesOrderUpsertWithWhereUniqueWithoutFlockInput[]
+    createMany?: FeedSalesOrderCreateManyFlockInputEnvelope
+    set?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    disconnect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    delete?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    connect?: FeedSalesOrderWhereUniqueInput | FeedSalesOrderWhereUniqueInput[]
+    update?: FeedSalesOrderUpdateWithWhereUniqueWithoutFlockInput | FeedSalesOrderUpdateWithWhereUniqueWithoutFlockInput[]
+    updateMany?: FeedSalesOrderUpdateManyWithWhereWithoutFlockInput | FeedSalesOrderUpdateManyWithWhereWithoutFlockInput[]
+    deleteMany?: FeedSalesOrderScalarWhereInput | FeedSalesOrderScalarWhereInput[]
   }
 
   export type FlockCreateNestedOneWithoutFarmFeedStockInput = {
@@ -42784,13 +52792,6 @@ export namespace Prisma {
     update?: XOR<XOR<FlockUpdateToOneWithWhereWithoutFlockReportInput, FlockUpdateWithoutFlockReportInput>, FlockUncheckedUpdateWithoutFlockReportInput>
   }
 
-  export type FeedStockCreateNestedManyWithoutFeedNameCategoryInput = {
-    create?: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput> | FeedStockCreateWithoutFeedNameCategoryInput[] | FeedStockUncheckedCreateWithoutFeedNameCategoryInput[]
-    connectOrCreate?: FeedStockCreateOrConnectWithoutFeedNameCategoryInput | FeedStockCreateOrConnectWithoutFeedNameCategoryInput[]
-    createMany?: FeedStockCreateManyFeedNameCategoryInputEnvelope
-    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-  }
-
   export type TransferFeedItemCreateNestedManyWithoutFeedInput = {
     create?: XOR<TransferFeedItemCreateWithoutFeedInput, TransferFeedItemUncheckedCreateWithoutFeedInput> | TransferFeedItemCreateWithoutFeedInput[] | TransferFeedItemUncheckedCreateWithoutFeedInput[]
     connectOrCreate?: TransferFeedItemCreateOrConnectWithoutFeedInput | TransferFeedItemCreateOrConnectWithoutFeedInput[]
@@ -42805,7 +52806,28 @@ export namespace Prisma {
     connect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
   }
 
-  export type FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput = {
+  export type RetunFeedItemCreateNestedManyWithoutFeedNameCategoryInput = {
+    create?: XOR<RetunFeedItemCreateWithoutFeedNameCategoryInput, RetunFeedItemUncheckedCreateWithoutFeedNameCategoryInput> | RetunFeedItemCreateWithoutFeedNameCategoryInput[] | RetunFeedItemUncheckedCreateWithoutFeedNameCategoryInput[]
+    connectOrCreate?: RetunFeedItemCreateOrConnectWithoutFeedNameCategoryInput | RetunFeedItemCreateOrConnectWithoutFeedNameCategoryInput[]
+    createMany?: RetunFeedItemCreateManyFeedNameCategoryInputEnvelope
+    connect?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+  }
+
+  export type FeedStockHistoryCreateNestedManyWithoutFeedInput = {
+    create?: XOR<FeedStockHistoryCreateWithoutFeedInput, FeedStockHistoryUncheckedCreateWithoutFeedInput> | FeedStockHistoryCreateWithoutFeedInput[] | FeedStockHistoryUncheckedCreateWithoutFeedInput[]
+    connectOrCreate?: FeedStockHistoryCreateOrConnectWithoutFeedInput | FeedStockHistoryCreateOrConnectWithoutFeedInput[]
+    createMany?: FeedStockHistoryCreateManyFeedInputEnvelope
+    connect?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+  }
+
+  export type AddStockItemCreateNestedManyWithoutFeedInput = {
+    create?: XOR<AddStockItemCreateWithoutFeedInput, AddStockItemUncheckedCreateWithoutFeedInput> | AddStockItemCreateWithoutFeedInput[] | AddStockItemUncheckedCreateWithoutFeedInput[]
+    connectOrCreate?: AddStockItemCreateOrConnectWithoutFeedInput | AddStockItemCreateOrConnectWithoutFeedInput[]
+    createMany?: AddStockItemCreateManyFeedInputEnvelope
+    connect?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+  }
+
+  export type FeedStockCreateNestedManyWithoutFeedNameCategoryInput = {
     create?: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput> | FeedStockCreateWithoutFeedNameCategoryInput[] | FeedStockUncheckedCreateWithoutFeedNameCategoryInput[]
     connectOrCreate?: FeedStockCreateOrConnectWithoutFeedNameCategoryInput | FeedStockCreateOrConnectWithoutFeedNameCategoryInput[]
     createMany?: FeedStockCreateManyFeedNameCategoryInputEnvelope
@@ -42826,18 +52848,32 @@ export namespace Prisma {
     connect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
   }
 
-  export type FeedStockUpdateManyWithoutFeedNameCategoryNestedInput = {
+  export type RetunFeedItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput = {
+    create?: XOR<RetunFeedItemCreateWithoutFeedNameCategoryInput, RetunFeedItemUncheckedCreateWithoutFeedNameCategoryInput> | RetunFeedItemCreateWithoutFeedNameCategoryInput[] | RetunFeedItemUncheckedCreateWithoutFeedNameCategoryInput[]
+    connectOrCreate?: RetunFeedItemCreateOrConnectWithoutFeedNameCategoryInput | RetunFeedItemCreateOrConnectWithoutFeedNameCategoryInput[]
+    createMany?: RetunFeedItemCreateManyFeedNameCategoryInputEnvelope
+    connect?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+  }
+
+  export type FeedStockHistoryUncheckedCreateNestedManyWithoutFeedInput = {
+    create?: XOR<FeedStockHistoryCreateWithoutFeedInput, FeedStockHistoryUncheckedCreateWithoutFeedInput> | FeedStockHistoryCreateWithoutFeedInput[] | FeedStockHistoryUncheckedCreateWithoutFeedInput[]
+    connectOrCreate?: FeedStockHistoryCreateOrConnectWithoutFeedInput | FeedStockHistoryCreateOrConnectWithoutFeedInput[]
+    createMany?: FeedStockHistoryCreateManyFeedInputEnvelope
+    connect?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+  }
+
+  export type AddStockItemUncheckedCreateNestedManyWithoutFeedInput = {
+    create?: XOR<AddStockItemCreateWithoutFeedInput, AddStockItemUncheckedCreateWithoutFeedInput> | AddStockItemCreateWithoutFeedInput[] | AddStockItemUncheckedCreateWithoutFeedInput[]
+    connectOrCreate?: AddStockItemCreateOrConnectWithoutFeedInput | AddStockItemCreateOrConnectWithoutFeedInput[]
+    createMany?: AddStockItemCreateManyFeedInputEnvelope
+    connect?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+  }
+
+  export type FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput = {
     create?: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput> | FeedStockCreateWithoutFeedNameCategoryInput[] | FeedStockUncheckedCreateWithoutFeedNameCategoryInput[]
     connectOrCreate?: FeedStockCreateOrConnectWithoutFeedNameCategoryInput | FeedStockCreateOrConnectWithoutFeedNameCategoryInput[]
-    upsert?: FeedStockUpsertWithWhereUniqueWithoutFeedNameCategoryInput | FeedStockUpsertWithWhereUniqueWithoutFeedNameCategoryInput[]
     createMany?: FeedStockCreateManyFeedNameCategoryInputEnvelope
-    set?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    disconnect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    delete?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
     connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
-    update?: FeedStockUpdateWithWhereUniqueWithoutFeedNameCategoryInput | FeedStockUpdateWithWhereUniqueWithoutFeedNameCategoryInput[]
-    updateMany?: FeedStockUpdateManyWithWhereWithoutFeedNameCategoryInput | FeedStockUpdateManyWithWhereWithoutFeedNameCategoryInput[]
-    deleteMany?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
   }
 
   export type TransferFeedItemUpdateManyWithoutFeedNestedInput = {
@@ -42868,7 +52904,49 @@ export namespace Prisma {
     deleteMany?: FeedSalesItemScalarWhereInput | FeedSalesItemScalarWhereInput[]
   }
 
-  export type FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput = {
+  export type RetunFeedItemUpdateManyWithoutFeedNameCategoryNestedInput = {
+    create?: XOR<RetunFeedItemCreateWithoutFeedNameCategoryInput, RetunFeedItemUncheckedCreateWithoutFeedNameCategoryInput> | RetunFeedItemCreateWithoutFeedNameCategoryInput[] | RetunFeedItemUncheckedCreateWithoutFeedNameCategoryInput[]
+    connectOrCreate?: RetunFeedItemCreateOrConnectWithoutFeedNameCategoryInput | RetunFeedItemCreateOrConnectWithoutFeedNameCategoryInput[]
+    upsert?: RetunFeedItemUpsertWithWhereUniqueWithoutFeedNameCategoryInput | RetunFeedItemUpsertWithWhereUniqueWithoutFeedNameCategoryInput[]
+    createMany?: RetunFeedItemCreateManyFeedNameCategoryInputEnvelope
+    set?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    disconnect?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    delete?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    connect?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    update?: RetunFeedItemUpdateWithWhereUniqueWithoutFeedNameCategoryInput | RetunFeedItemUpdateWithWhereUniqueWithoutFeedNameCategoryInput[]
+    updateMany?: RetunFeedItemUpdateManyWithWhereWithoutFeedNameCategoryInput | RetunFeedItemUpdateManyWithWhereWithoutFeedNameCategoryInput[]
+    deleteMany?: RetunFeedItemScalarWhereInput | RetunFeedItemScalarWhereInput[]
+  }
+
+  export type FeedStockHistoryUpdateManyWithoutFeedNestedInput = {
+    create?: XOR<FeedStockHistoryCreateWithoutFeedInput, FeedStockHistoryUncheckedCreateWithoutFeedInput> | FeedStockHistoryCreateWithoutFeedInput[] | FeedStockHistoryUncheckedCreateWithoutFeedInput[]
+    connectOrCreate?: FeedStockHistoryCreateOrConnectWithoutFeedInput | FeedStockHistoryCreateOrConnectWithoutFeedInput[]
+    upsert?: FeedStockHistoryUpsertWithWhereUniqueWithoutFeedInput | FeedStockHistoryUpsertWithWhereUniqueWithoutFeedInput[]
+    createMany?: FeedStockHistoryCreateManyFeedInputEnvelope
+    set?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    disconnect?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    delete?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    connect?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    update?: FeedStockHistoryUpdateWithWhereUniqueWithoutFeedInput | FeedStockHistoryUpdateWithWhereUniqueWithoutFeedInput[]
+    updateMany?: FeedStockHistoryUpdateManyWithWhereWithoutFeedInput | FeedStockHistoryUpdateManyWithWhereWithoutFeedInput[]
+    deleteMany?: FeedStockHistoryScalarWhereInput | FeedStockHistoryScalarWhereInput[]
+  }
+
+  export type AddStockItemUpdateManyWithoutFeedNestedInput = {
+    create?: XOR<AddStockItemCreateWithoutFeedInput, AddStockItemUncheckedCreateWithoutFeedInput> | AddStockItemCreateWithoutFeedInput[] | AddStockItemUncheckedCreateWithoutFeedInput[]
+    connectOrCreate?: AddStockItemCreateOrConnectWithoutFeedInput | AddStockItemCreateOrConnectWithoutFeedInput[]
+    upsert?: AddStockItemUpsertWithWhereUniqueWithoutFeedInput | AddStockItemUpsertWithWhereUniqueWithoutFeedInput[]
+    createMany?: AddStockItemCreateManyFeedInputEnvelope
+    set?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    disconnect?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    delete?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    connect?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    update?: AddStockItemUpdateWithWhereUniqueWithoutFeedInput | AddStockItemUpdateWithWhereUniqueWithoutFeedInput[]
+    updateMany?: AddStockItemUpdateManyWithWhereWithoutFeedInput | AddStockItemUpdateManyWithWhereWithoutFeedInput[]
+    deleteMany?: AddStockItemScalarWhereInput | AddStockItemScalarWhereInput[]
+  }
+
+  export type FeedStockUpdateManyWithoutFeedNameCategoryNestedInput = {
     create?: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput> | FeedStockCreateWithoutFeedNameCategoryInput[] | FeedStockUncheckedCreateWithoutFeedNameCategoryInput[]
     connectOrCreate?: FeedStockCreateOrConnectWithoutFeedNameCategoryInput | FeedStockCreateOrConnectWithoutFeedNameCategoryInput[]
     upsert?: FeedStockUpsertWithWhereUniqueWithoutFeedNameCategoryInput | FeedStockUpsertWithWhereUniqueWithoutFeedNameCategoryInput[]
@@ -42910,10 +52988,60 @@ export namespace Prisma {
     deleteMany?: FeedSalesItemScalarWhereInput | FeedSalesItemScalarWhereInput[]
   }
 
-  export type BranchCreateNestedOneWithoutFeedStockInput = {
-    create?: XOR<BranchCreateWithoutFeedStockInput, BranchUncheckedCreateWithoutFeedStockInput>
-    connectOrCreate?: BranchCreateOrConnectWithoutFeedStockInput
-    connect?: BranchWhereUniqueInput
+  export type RetunFeedItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput = {
+    create?: XOR<RetunFeedItemCreateWithoutFeedNameCategoryInput, RetunFeedItemUncheckedCreateWithoutFeedNameCategoryInput> | RetunFeedItemCreateWithoutFeedNameCategoryInput[] | RetunFeedItemUncheckedCreateWithoutFeedNameCategoryInput[]
+    connectOrCreate?: RetunFeedItemCreateOrConnectWithoutFeedNameCategoryInput | RetunFeedItemCreateOrConnectWithoutFeedNameCategoryInput[]
+    upsert?: RetunFeedItemUpsertWithWhereUniqueWithoutFeedNameCategoryInput | RetunFeedItemUpsertWithWhereUniqueWithoutFeedNameCategoryInput[]
+    createMany?: RetunFeedItemCreateManyFeedNameCategoryInputEnvelope
+    set?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    disconnect?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    delete?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    connect?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    update?: RetunFeedItemUpdateWithWhereUniqueWithoutFeedNameCategoryInput | RetunFeedItemUpdateWithWhereUniqueWithoutFeedNameCategoryInput[]
+    updateMany?: RetunFeedItemUpdateManyWithWhereWithoutFeedNameCategoryInput | RetunFeedItemUpdateManyWithWhereWithoutFeedNameCategoryInput[]
+    deleteMany?: RetunFeedItemScalarWhereInput | RetunFeedItemScalarWhereInput[]
+  }
+
+  export type FeedStockHistoryUncheckedUpdateManyWithoutFeedNestedInput = {
+    create?: XOR<FeedStockHistoryCreateWithoutFeedInput, FeedStockHistoryUncheckedCreateWithoutFeedInput> | FeedStockHistoryCreateWithoutFeedInput[] | FeedStockHistoryUncheckedCreateWithoutFeedInput[]
+    connectOrCreate?: FeedStockHistoryCreateOrConnectWithoutFeedInput | FeedStockHistoryCreateOrConnectWithoutFeedInput[]
+    upsert?: FeedStockHistoryUpsertWithWhereUniqueWithoutFeedInput | FeedStockHistoryUpsertWithWhereUniqueWithoutFeedInput[]
+    createMany?: FeedStockHistoryCreateManyFeedInputEnvelope
+    set?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    disconnect?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    delete?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    connect?: FeedStockHistoryWhereUniqueInput | FeedStockHistoryWhereUniqueInput[]
+    update?: FeedStockHistoryUpdateWithWhereUniqueWithoutFeedInput | FeedStockHistoryUpdateWithWhereUniqueWithoutFeedInput[]
+    updateMany?: FeedStockHistoryUpdateManyWithWhereWithoutFeedInput | FeedStockHistoryUpdateManyWithWhereWithoutFeedInput[]
+    deleteMany?: FeedStockHistoryScalarWhereInput | FeedStockHistoryScalarWhereInput[]
+  }
+
+  export type AddStockItemUncheckedUpdateManyWithoutFeedNestedInput = {
+    create?: XOR<AddStockItemCreateWithoutFeedInput, AddStockItemUncheckedCreateWithoutFeedInput> | AddStockItemCreateWithoutFeedInput[] | AddStockItemUncheckedCreateWithoutFeedInput[]
+    connectOrCreate?: AddStockItemCreateOrConnectWithoutFeedInput | AddStockItemCreateOrConnectWithoutFeedInput[]
+    upsert?: AddStockItemUpsertWithWhereUniqueWithoutFeedInput | AddStockItemUpsertWithWhereUniqueWithoutFeedInput[]
+    createMany?: AddStockItemCreateManyFeedInputEnvelope
+    set?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    disconnect?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    delete?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    connect?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    update?: AddStockItemUpdateWithWhereUniqueWithoutFeedInput | AddStockItemUpdateWithWhereUniqueWithoutFeedInput[]
+    updateMany?: AddStockItemUpdateManyWithWhereWithoutFeedInput | AddStockItemUpdateManyWithWhereWithoutFeedInput[]
+    deleteMany?: AddStockItemScalarWhereInput | AddStockItemScalarWhereInput[]
+  }
+
+  export type FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput = {
+    create?: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput> | FeedStockCreateWithoutFeedNameCategoryInput[] | FeedStockUncheckedCreateWithoutFeedNameCategoryInput[]
+    connectOrCreate?: FeedStockCreateOrConnectWithoutFeedNameCategoryInput | FeedStockCreateOrConnectWithoutFeedNameCategoryInput[]
+    upsert?: FeedStockUpsertWithWhereUniqueWithoutFeedNameCategoryInput | FeedStockUpsertWithWhereUniqueWithoutFeedNameCategoryInput[]
+    createMany?: FeedStockCreateManyFeedNameCategoryInputEnvelope
+    set?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    disconnect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    delete?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    connect?: FeedStockWhereUniqueInput | FeedStockWhereUniqueInput[]
+    update?: FeedStockUpdateWithWhereUniqueWithoutFeedNameCategoryInput | FeedStockUpdateWithWhereUniqueWithoutFeedNameCategoryInput[]
+    updateMany?: FeedStockUpdateManyWithWhereWithoutFeedNameCategoryInput | FeedStockUpdateManyWithWhereWithoutFeedNameCategoryInput[]
+    deleteMany?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
   }
 
   export type DepotCreateNestedOneWithoutFeedStockInput = {
@@ -42926,16 +53054,6 @@ export namespace Prisma {
     create?: XOR<FeedNameCategoryCreateWithoutFeedStockInput, FeedNameCategoryUncheckedCreateWithoutFeedStockInput>
     connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutFeedStockInput
     connect?: FeedNameCategoryWhereUniqueInput
-  }
-
-  export type BranchUpdateOneWithoutFeedStockNestedInput = {
-    create?: XOR<BranchCreateWithoutFeedStockInput, BranchUncheckedCreateWithoutFeedStockInput>
-    connectOrCreate?: BranchCreateOrConnectWithoutFeedStockInput
-    upsert?: BranchUpsertWithoutFeedStockInput
-    disconnect?: BranchWhereInput | boolean
-    delete?: BranchWhereInput | boolean
-    connect?: BranchWhereUniqueInput
-    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutFeedStockInput, BranchUpdateWithoutFeedStockInput>, BranchUncheckedUpdateWithoutFeedStockInput>
   }
 
   export type DepotUpdateOneRequiredWithoutFeedStockNestedInput = {
@@ -42952,6 +53070,144 @@ export namespace Prisma {
     upsert?: FeedNameCategoryUpsertWithoutFeedStockInput
     connect?: FeedNameCategoryWhereUniqueInput
     update?: XOR<XOR<FeedNameCategoryUpdateToOneWithWhereWithoutFeedStockInput, FeedNameCategoryUpdateWithoutFeedStockInput>, FeedNameCategoryUncheckedUpdateWithoutFeedStockInput>
+  }
+
+  export type DepotCreateNestedOneWithoutAddStockInput = {
+    create?: XOR<DepotCreateWithoutAddStockInput, DepotUncheckedCreateWithoutAddStockInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutAddStockInput
+    connect?: DepotWhereUniqueInput
+  }
+
+  export type AddStockItemCreateNestedManyWithoutAddStockInput = {
+    create?: XOR<AddStockItemCreateWithoutAddStockInput, AddStockItemUncheckedCreateWithoutAddStockInput> | AddStockItemCreateWithoutAddStockInput[] | AddStockItemUncheckedCreateWithoutAddStockInput[]
+    connectOrCreate?: AddStockItemCreateOrConnectWithoutAddStockInput | AddStockItemCreateOrConnectWithoutAddStockInput[]
+    createMany?: AddStockItemCreateManyAddStockInputEnvelope
+    connect?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+  }
+
+  export type AddStockItemUncheckedCreateNestedManyWithoutAddStockInput = {
+    create?: XOR<AddStockItemCreateWithoutAddStockInput, AddStockItemUncheckedCreateWithoutAddStockInput> | AddStockItemCreateWithoutAddStockInput[] | AddStockItemUncheckedCreateWithoutAddStockInput[]
+    connectOrCreate?: AddStockItemCreateOrConnectWithoutAddStockInput | AddStockItemCreateOrConnectWithoutAddStockInput[]
+    createMany?: AddStockItemCreateManyAddStockInputEnvelope
+    connect?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+  }
+
+  export type EnumSourceFieldUpdateOperationsInput = {
+    set?: $Enums.Source
+  }
+
+  export type EnumDeliveryStatusFieldUpdateOperationsInput = {
+    set?: $Enums.DeliveryStatus
+  }
+
+  export type DepotUpdateOneRequiredWithoutAddStockNestedInput = {
+    create?: XOR<DepotCreateWithoutAddStockInput, DepotUncheckedCreateWithoutAddStockInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutAddStockInput
+    upsert?: DepotUpsertWithoutAddStockInput
+    connect?: DepotWhereUniqueInput
+    update?: XOR<XOR<DepotUpdateToOneWithWhereWithoutAddStockInput, DepotUpdateWithoutAddStockInput>, DepotUncheckedUpdateWithoutAddStockInput>
+  }
+
+  export type AddStockItemUpdateManyWithoutAddStockNestedInput = {
+    create?: XOR<AddStockItemCreateWithoutAddStockInput, AddStockItemUncheckedCreateWithoutAddStockInput> | AddStockItemCreateWithoutAddStockInput[] | AddStockItemUncheckedCreateWithoutAddStockInput[]
+    connectOrCreate?: AddStockItemCreateOrConnectWithoutAddStockInput | AddStockItemCreateOrConnectWithoutAddStockInput[]
+    upsert?: AddStockItemUpsertWithWhereUniqueWithoutAddStockInput | AddStockItemUpsertWithWhereUniqueWithoutAddStockInput[]
+    createMany?: AddStockItemCreateManyAddStockInputEnvelope
+    set?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    disconnect?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    delete?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    connect?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    update?: AddStockItemUpdateWithWhereUniqueWithoutAddStockInput | AddStockItemUpdateWithWhereUniqueWithoutAddStockInput[]
+    updateMany?: AddStockItemUpdateManyWithWhereWithoutAddStockInput | AddStockItemUpdateManyWithWhereWithoutAddStockInput[]
+    deleteMany?: AddStockItemScalarWhereInput | AddStockItemScalarWhereInput[]
+  }
+
+  export type AddStockItemUncheckedUpdateManyWithoutAddStockNestedInput = {
+    create?: XOR<AddStockItemCreateWithoutAddStockInput, AddStockItemUncheckedCreateWithoutAddStockInput> | AddStockItemCreateWithoutAddStockInput[] | AddStockItemUncheckedCreateWithoutAddStockInput[]
+    connectOrCreate?: AddStockItemCreateOrConnectWithoutAddStockInput | AddStockItemCreateOrConnectWithoutAddStockInput[]
+    upsert?: AddStockItemUpsertWithWhereUniqueWithoutAddStockInput | AddStockItemUpsertWithWhereUniqueWithoutAddStockInput[]
+    createMany?: AddStockItemCreateManyAddStockInputEnvelope
+    set?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    disconnect?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    delete?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    connect?: AddStockItemWhereUniqueInput | AddStockItemWhereUniqueInput[]
+    update?: AddStockItemUpdateWithWhereUniqueWithoutAddStockInput | AddStockItemUpdateWithWhereUniqueWithoutAddStockInput[]
+    updateMany?: AddStockItemUpdateManyWithWhereWithoutAddStockInput | AddStockItemUpdateManyWithWhereWithoutAddStockInput[]
+    deleteMany?: AddStockItemScalarWhereInput | AddStockItemScalarWhereInput[]
+  }
+
+  export type FeedNameCategoryCreateNestedOneWithoutAddStockItemInput = {
+    create?: XOR<FeedNameCategoryCreateWithoutAddStockItemInput, FeedNameCategoryUncheckedCreateWithoutAddStockItemInput>
+    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutAddStockItemInput
+    connect?: FeedNameCategoryWhereUniqueInput
+  }
+
+  export type AddStockCreateNestedOneWithoutAddStockItemInput = {
+    create?: XOR<AddStockCreateWithoutAddStockItemInput, AddStockUncheckedCreateWithoutAddStockItemInput>
+    connectOrCreate?: AddStockCreateOrConnectWithoutAddStockItemInput
+    connect?: AddStockWhereUniqueInput
+  }
+
+  export type FeedNameCategoryUpdateOneRequiredWithoutAddStockItemNestedInput = {
+    create?: XOR<FeedNameCategoryCreateWithoutAddStockItemInput, FeedNameCategoryUncheckedCreateWithoutAddStockItemInput>
+    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutAddStockItemInput
+    upsert?: FeedNameCategoryUpsertWithoutAddStockItemInput
+    connect?: FeedNameCategoryWhereUniqueInput
+    update?: XOR<XOR<FeedNameCategoryUpdateToOneWithWhereWithoutAddStockItemInput, FeedNameCategoryUpdateWithoutAddStockItemInput>, FeedNameCategoryUncheckedUpdateWithoutAddStockItemInput>
+  }
+
+  export type AddStockUpdateOneRequiredWithoutAddStockItemNestedInput = {
+    create?: XOR<AddStockCreateWithoutAddStockItemInput, AddStockUncheckedCreateWithoutAddStockItemInput>
+    connectOrCreate?: AddStockCreateOrConnectWithoutAddStockItemInput
+    upsert?: AddStockUpsertWithoutAddStockItemInput
+    connect?: AddStockWhereUniqueInput
+    update?: XOR<XOR<AddStockUpdateToOneWithWhereWithoutAddStockItemInput, AddStockUpdateWithoutAddStockItemInput>, AddStockUncheckedUpdateWithoutAddStockItemInput>
+  }
+
+  export type FeedNameCategoryCreateNestedOneWithoutFeedStockHistoryInput = {
+    create?: XOR<FeedNameCategoryCreateWithoutFeedStockHistoryInput, FeedNameCategoryUncheckedCreateWithoutFeedStockHistoryInput>
+    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutFeedStockHistoryInput
+    connect?: FeedNameCategoryWhereUniqueInput
+  }
+
+  export type DepotCreateNestedOneWithoutFeedStockHistoryInput = {
+    create?: XOR<DepotCreateWithoutFeedStockHistoryInput, DepotUncheckedCreateWithoutFeedStockHistoryInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutFeedStockHistoryInput
+    connect?: DepotWhereUniqueInput
+  }
+
+  export type FeedNameCategoryUpdateOneRequiredWithoutFeedStockHistoryNestedInput = {
+    create?: XOR<FeedNameCategoryCreateWithoutFeedStockHistoryInput, FeedNameCategoryUncheckedCreateWithoutFeedStockHistoryInput>
+    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutFeedStockHistoryInput
+    upsert?: FeedNameCategoryUpsertWithoutFeedStockHistoryInput
+    connect?: FeedNameCategoryWhereUniqueInput
+    update?: XOR<XOR<FeedNameCategoryUpdateToOneWithWhereWithoutFeedStockHistoryInput, FeedNameCategoryUpdateWithoutFeedStockHistoryInput>, FeedNameCategoryUncheckedUpdateWithoutFeedStockHistoryInput>
+  }
+
+  export type DepotUpdateOneRequiredWithoutFeedStockHistoryNestedInput = {
+    create?: XOR<DepotCreateWithoutFeedStockHistoryInput, DepotUncheckedCreateWithoutFeedStockHistoryInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutFeedStockHistoryInput
+    upsert?: DepotUpsertWithoutFeedStockHistoryInput
+    connect?: DepotWhereUniqueInput
+    update?: XOR<XOR<DepotUpdateToOneWithWhereWithoutFeedStockHistoryInput, DepotUpdateWithoutFeedStockHistoryInput>, DepotUncheckedUpdateWithoutFeedStockHistoryInput>
+  }
+
+  export type DepotCreateNestedOneWithoutFeedTransActionHeaderInput = {
+    create?: XOR<DepotCreateWithoutFeedTransActionHeaderInput, DepotUncheckedCreateWithoutFeedTransActionHeaderInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutFeedTransActionHeaderInput
+    connect?: DepotWhereUniqueInput
+  }
+
+  export type EnumTransactionTypeFieldUpdateOperationsInput = {
+    set?: $Enums.TransactionType
+  }
+
+  export type DepotUpdateOneRequiredWithoutFeedTransActionHeaderNestedInput = {
+    create?: XOR<DepotCreateWithoutFeedTransActionHeaderInput, DepotUncheckedCreateWithoutFeedTransActionHeaderInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutFeedTransActionHeaderInput
+    upsert?: DepotUpsertWithoutFeedTransActionHeaderInput
+    connect?: DepotWhereUniqueInput
+    update?: XOR<XOR<DepotUpdateToOneWithWhereWithoutFeedTransActionHeaderInput, DepotUpdateWithoutFeedTransActionHeaderInput>, DepotUncheckedUpdateWithoutFeedTransActionHeaderInput>
   }
 
   export type DepotCreateNestedOneWithoutSentTransfersInput = {
@@ -43058,6 +53314,12 @@ export namespace Prisma {
     connect?: DepotWhereUniqueInput
   }
 
+  export type FlockCreateNestedOneWithoutFeedSalesOrderInput = {
+    create?: XOR<FlockCreateWithoutFeedSalesOrderInput, FlockUncheckedCreateWithoutFeedSalesOrderInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutFeedSalesOrderInput
+    connect?: FlockWhereUniqueInput
+  }
+
   export type FeedSalesItemCreateNestedManyWithoutSalesOrderInput = {
     create?: XOR<FeedSalesItemCreateWithoutSalesOrderInput, FeedSalesItemUncheckedCreateWithoutSalesOrderInput> | FeedSalesItemCreateWithoutSalesOrderInput[] | FeedSalesItemUncheckedCreateWithoutSalesOrderInput[]
     connectOrCreate?: FeedSalesItemCreateOrConnectWithoutSalesOrderInput | FeedSalesItemCreateOrConnectWithoutSalesOrderInput[]
@@ -43072,16 +53334,20 @@ export namespace Prisma {
     connect?: FeedSalesItemWhereUniqueInput | FeedSalesItemWhereUniqueInput[]
   }
 
-  export type EnumDeliveryStatusFieldUpdateOperationsInput = {
-    set?: $Enums.DeliveryStatus
-  }
-
   export type DepotUpdateOneRequiredWithoutFeedSalesOrderNestedInput = {
     create?: XOR<DepotCreateWithoutFeedSalesOrderInput, DepotUncheckedCreateWithoutFeedSalesOrderInput>
     connectOrCreate?: DepotCreateOrConnectWithoutFeedSalesOrderInput
     upsert?: DepotUpsertWithoutFeedSalesOrderInput
     connect?: DepotWhereUniqueInput
     update?: XOR<XOR<DepotUpdateToOneWithWhereWithoutFeedSalesOrderInput, DepotUpdateWithoutFeedSalesOrderInput>, DepotUncheckedUpdateWithoutFeedSalesOrderInput>
+  }
+
+  export type FlockUpdateOneRequiredWithoutFeedSalesOrderNestedInput = {
+    create?: XOR<FlockCreateWithoutFeedSalesOrderInput, FlockUncheckedCreateWithoutFeedSalesOrderInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutFeedSalesOrderInput
+    upsert?: FlockUpsertWithoutFeedSalesOrderInput
+    connect?: FlockWhereUniqueInput
+    update?: XOR<XOR<FlockUpdateToOneWithWhereWithoutFeedSalesOrderInput, FlockUpdateWithoutFeedSalesOrderInput>, FlockUncheckedUpdateWithoutFeedSalesOrderInput>
   }
 
   export type FeedSalesItemUpdateManyWithoutSalesOrderNestedInput = {
@@ -43138,6 +53404,118 @@ export namespace Prisma {
     upsert?: FeedNameCategoryUpsertWithoutFeedSalesItemInput
     connect?: FeedNameCategoryWhereUniqueInput
     update?: XOR<XOR<FeedNameCategoryUpdateToOneWithWhereWithoutFeedSalesItemInput, FeedNameCategoryUpdateWithoutFeedSalesItemInput>, FeedNameCategoryUncheckedUpdateWithoutFeedSalesItemInput>
+  }
+
+  export type FlockCreateNestedOneWithoutFeedRetunInput = {
+    create?: XOR<FlockCreateWithoutFeedRetunInput, FlockUncheckedCreateWithoutFeedRetunInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutFeedRetunInput
+    connect?: FlockWhereUniqueInput
+  }
+
+  export type FarmerCreateNestedOneWithoutFeedRetunInput = {
+    create?: XOR<FarmerCreateWithoutFeedRetunInput, FarmerUncheckedCreateWithoutFeedRetunInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutFeedRetunInput
+    connect?: FarmerWhereUniqueInput
+  }
+
+  export type DepotCreateNestedOneWithoutFeedRetunInput = {
+    create?: XOR<DepotCreateWithoutFeedRetunInput, DepotUncheckedCreateWithoutFeedRetunInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutFeedRetunInput
+    connect?: DepotWhereUniqueInput
+  }
+
+  export type RetunFeedItemCreateNestedManyWithoutFeedRetunInput = {
+    create?: XOR<RetunFeedItemCreateWithoutFeedRetunInput, RetunFeedItemUncheckedCreateWithoutFeedRetunInput> | RetunFeedItemCreateWithoutFeedRetunInput[] | RetunFeedItemUncheckedCreateWithoutFeedRetunInput[]
+    connectOrCreate?: RetunFeedItemCreateOrConnectWithoutFeedRetunInput | RetunFeedItemCreateOrConnectWithoutFeedRetunInput[]
+    createMany?: RetunFeedItemCreateManyFeedRetunInputEnvelope
+    connect?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+  }
+
+  export type RetunFeedItemUncheckedCreateNestedManyWithoutFeedRetunInput = {
+    create?: XOR<RetunFeedItemCreateWithoutFeedRetunInput, RetunFeedItemUncheckedCreateWithoutFeedRetunInput> | RetunFeedItemCreateWithoutFeedRetunInput[] | RetunFeedItemUncheckedCreateWithoutFeedRetunInput[]
+    connectOrCreate?: RetunFeedItemCreateOrConnectWithoutFeedRetunInput | RetunFeedItemCreateOrConnectWithoutFeedRetunInput[]
+    createMany?: RetunFeedItemCreateManyFeedRetunInputEnvelope
+    connect?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+  }
+
+  export type FlockUpdateOneRequiredWithoutFeedRetunNestedInput = {
+    create?: XOR<FlockCreateWithoutFeedRetunInput, FlockUncheckedCreateWithoutFeedRetunInput>
+    connectOrCreate?: FlockCreateOrConnectWithoutFeedRetunInput
+    upsert?: FlockUpsertWithoutFeedRetunInput
+    connect?: FlockWhereUniqueInput
+    update?: XOR<XOR<FlockUpdateToOneWithWhereWithoutFeedRetunInput, FlockUpdateWithoutFeedRetunInput>, FlockUncheckedUpdateWithoutFeedRetunInput>
+  }
+
+  export type FarmerUpdateOneRequiredWithoutFeedRetunNestedInput = {
+    create?: XOR<FarmerCreateWithoutFeedRetunInput, FarmerUncheckedCreateWithoutFeedRetunInput>
+    connectOrCreate?: FarmerCreateOrConnectWithoutFeedRetunInput
+    upsert?: FarmerUpsertWithoutFeedRetunInput
+    connect?: FarmerWhereUniqueInput
+    update?: XOR<XOR<FarmerUpdateToOneWithWhereWithoutFeedRetunInput, FarmerUpdateWithoutFeedRetunInput>, FarmerUncheckedUpdateWithoutFeedRetunInput>
+  }
+
+  export type DepotUpdateOneRequiredWithoutFeedRetunNestedInput = {
+    create?: XOR<DepotCreateWithoutFeedRetunInput, DepotUncheckedCreateWithoutFeedRetunInput>
+    connectOrCreate?: DepotCreateOrConnectWithoutFeedRetunInput
+    upsert?: DepotUpsertWithoutFeedRetunInput
+    connect?: DepotWhereUniqueInput
+    update?: XOR<XOR<DepotUpdateToOneWithWhereWithoutFeedRetunInput, DepotUpdateWithoutFeedRetunInput>, DepotUncheckedUpdateWithoutFeedRetunInput>
+  }
+
+  export type RetunFeedItemUpdateManyWithoutFeedRetunNestedInput = {
+    create?: XOR<RetunFeedItemCreateWithoutFeedRetunInput, RetunFeedItemUncheckedCreateWithoutFeedRetunInput> | RetunFeedItemCreateWithoutFeedRetunInput[] | RetunFeedItemUncheckedCreateWithoutFeedRetunInput[]
+    connectOrCreate?: RetunFeedItemCreateOrConnectWithoutFeedRetunInput | RetunFeedItemCreateOrConnectWithoutFeedRetunInput[]
+    upsert?: RetunFeedItemUpsertWithWhereUniqueWithoutFeedRetunInput | RetunFeedItemUpsertWithWhereUniqueWithoutFeedRetunInput[]
+    createMany?: RetunFeedItemCreateManyFeedRetunInputEnvelope
+    set?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    disconnect?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    delete?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    connect?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    update?: RetunFeedItemUpdateWithWhereUniqueWithoutFeedRetunInput | RetunFeedItemUpdateWithWhereUniqueWithoutFeedRetunInput[]
+    updateMany?: RetunFeedItemUpdateManyWithWhereWithoutFeedRetunInput | RetunFeedItemUpdateManyWithWhereWithoutFeedRetunInput[]
+    deleteMany?: RetunFeedItemScalarWhereInput | RetunFeedItemScalarWhereInput[]
+  }
+
+  export type RetunFeedItemUncheckedUpdateManyWithoutFeedRetunNestedInput = {
+    create?: XOR<RetunFeedItemCreateWithoutFeedRetunInput, RetunFeedItemUncheckedCreateWithoutFeedRetunInput> | RetunFeedItemCreateWithoutFeedRetunInput[] | RetunFeedItemUncheckedCreateWithoutFeedRetunInput[]
+    connectOrCreate?: RetunFeedItemCreateOrConnectWithoutFeedRetunInput | RetunFeedItemCreateOrConnectWithoutFeedRetunInput[]
+    upsert?: RetunFeedItemUpsertWithWhereUniqueWithoutFeedRetunInput | RetunFeedItemUpsertWithWhereUniqueWithoutFeedRetunInput[]
+    createMany?: RetunFeedItemCreateManyFeedRetunInputEnvelope
+    set?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    disconnect?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    delete?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    connect?: RetunFeedItemWhereUniqueInput | RetunFeedItemWhereUniqueInput[]
+    update?: RetunFeedItemUpdateWithWhereUniqueWithoutFeedRetunInput | RetunFeedItemUpdateWithWhereUniqueWithoutFeedRetunInput[]
+    updateMany?: RetunFeedItemUpdateManyWithWhereWithoutFeedRetunInput | RetunFeedItemUpdateManyWithWhereWithoutFeedRetunInput[]
+    deleteMany?: RetunFeedItemScalarWhereInput | RetunFeedItemScalarWhereInput[]
+  }
+
+  export type FeedRetunCreateNestedOneWithoutRetunFeedItemInput = {
+    create?: XOR<FeedRetunCreateWithoutRetunFeedItemInput, FeedRetunUncheckedCreateWithoutRetunFeedItemInput>
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutRetunFeedItemInput
+    connect?: FeedRetunWhereUniqueInput
+  }
+
+  export type FeedNameCategoryCreateNestedOneWithoutRetunFeedItemInput = {
+    create?: XOR<FeedNameCategoryCreateWithoutRetunFeedItemInput, FeedNameCategoryUncheckedCreateWithoutRetunFeedItemInput>
+    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutRetunFeedItemInput
+    connect?: FeedNameCategoryWhereUniqueInput
+  }
+
+  export type FeedRetunUpdateOneRequiredWithoutRetunFeedItemNestedInput = {
+    create?: XOR<FeedRetunCreateWithoutRetunFeedItemInput, FeedRetunUncheckedCreateWithoutRetunFeedItemInput>
+    connectOrCreate?: FeedRetunCreateOrConnectWithoutRetunFeedItemInput
+    upsert?: FeedRetunUpsertWithoutRetunFeedItemInput
+    connect?: FeedRetunWhereUniqueInput
+    update?: XOR<XOR<FeedRetunUpdateToOneWithWhereWithoutRetunFeedItemInput, FeedRetunUpdateWithoutRetunFeedItemInput>, FeedRetunUncheckedUpdateWithoutRetunFeedItemInput>
+  }
+
+  export type FeedNameCategoryUpdateOneRequiredWithoutRetunFeedItemNestedInput = {
+    create?: XOR<FeedNameCategoryCreateWithoutRetunFeedItemInput, FeedNameCategoryUncheckedCreateWithoutRetunFeedItemInput>
+    connectOrCreate?: FeedNameCategoryCreateOrConnectWithoutRetunFeedItemInput
+    upsert?: FeedNameCategoryUpsertWithoutRetunFeedItemInput
+    connect?: FeedNameCategoryWhereUniqueInput
+    update?: XOR<XOR<FeedNameCategoryUpdateToOneWithWhereWithoutRetunFeedItemInput, FeedNameCategoryUpdateWithoutRetunFeedItemInput>, FeedNameCategoryUncheckedUpdateWithoutRetunFeedItemInput>
   }
 
   export type MedicineNameAddCreateNestedManyWithoutMedicineCategoryInput = {
@@ -43862,11 +54240,28 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.Source | EnumSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.Source[] | ListEnumSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Source[] | ListEnumSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumSourceFilter<$PrismaModel> | $Enums.Source
+  }
+
   export type NestedEnumDeliveryStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.DeliveryStatus | EnumDeliveryStatusFieldRefInput<$PrismaModel>
     in?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.DeliveryStatus[] | ListEnumDeliveryStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumDeliveryStatusFilter<$PrismaModel> | $Enums.DeliveryStatus
+  }
+
+  export type NestedEnumSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Source | EnumSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.Source[] | ListEnumSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Source[] | ListEnumSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumSourceWithAggregatesFilter<$PrismaModel> | $Enums.Source
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSourceFilter<$PrismaModel>
+    _max?: NestedEnumSourceFilter<$PrismaModel>
   }
 
   export type NestedEnumDeliveryStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -43877,6 +54272,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumDeliveryStatusFilter<$PrismaModel>
     _max?: NestedEnumDeliveryStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumTransactionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.TransactionType | EnumTransactionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumTransactionTypeFilter<$PrismaModel> | $Enums.TransactionType
+  }
+
+  export type NestedEnumTransactionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TransactionType | EnumTransactionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumTransactionTypeWithAggregatesFilter<$PrismaModel> | $Enums.TransactionType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTransactionTypeFilter<$PrismaModel>
+    _max?: NestedEnumTransactionTypeFilter<$PrismaModel>
   }
 
   export type NestedEnumStoredFilter<$PrismaModel = never> = {
@@ -43898,8 +54310,8 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryCreateWithoutBranchInput = {
     id?: string
-    startDate: string
-    endDate?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string
@@ -43909,8 +54321,8 @@ export namespace Prisma {
   export type BranchEmployeeHistoryUncheckedCreateWithoutBranchInput = {
     id?: string
     employeeId: string
-    startDate: string
-    endDate?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string
@@ -43938,13 +54350,14 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     address?: AddressCreateNestedOneWithoutFarmerInput
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
     chicks?: ChicksCreateNestedManyWithoutFarmInput
     birdSell?: BirdSellCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateWithoutBranchInput = {
@@ -43960,12 +54373,13 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
     chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerCreateOrConnectWithoutBranchInput = {
@@ -43975,38 +54389,6 @@ export namespace Prisma {
 
   export type FarmerCreateManyBranchInputEnvelope = {
     data: FarmerCreateManyBranchInput | FarmerCreateManyBranchInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type FeedStockCreateWithoutBranchInput = {
-    id?: string
-    stock: number
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    unitPice?: number
-    createDate: string
-    depot: DepotCreateNestedOneWithoutFeedStockInput
-    feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedStockInput
-  }
-
-  export type FeedStockUncheckedCreateWithoutBranchInput = {
-    id?: string
-    feedName: string
-    stock: number
-    depotName: string
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    unitPice?: number
-    createDate: string
-  }
-
-  export type FeedStockCreateOrConnectWithoutBranchInput = {
-    where: FeedStockWhereUniqueInput
-    create: XOR<FeedStockCreateWithoutBranchInput, FeedStockUncheckedCreateWithoutBranchInput>
-  }
-
-  export type FeedStockCreateManyBranchInputEnvelope = {
-    data: FeedStockCreateManyBranchInput | FeedStockCreateManyBranchInput[]
     skipDuplicates?: boolean
   }
 
@@ -44034,6 +54416,8 @@ export namespace Prisma {
     chicks?: ChicksCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutBranchInput = {
@@ -44060,6 +54444,8 @@ export namespace Prisma {
     chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutBranchInput = {
@@ -44302,7 +54688,9 @@ export namespace Prisma {
 
   export type BirdSellCreateWithoutBranchInput = {
     id?: string
-    buyerId: string
+    buyerName: string
+    buyerPhoneNumber: string
+    buyerAddress: string
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -44317,7 +54705,9 @@ export namespace Prisma {
 
   export type BirdSellUncheckedCreateWithoutBranchInput = {
     id?: string
-    buyerId: string
+    buyerName: string
+    buyerPhoneNumber: string
+    buyerAddress: string
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -44404,8 +54794,8 @@ export namespace Prisma {
     NOT?: BranchEmployeeHistoryScalarWhereInput | BranchEmployeeHistoryScalarWhereInput[]
     id?: StringFilter<"BranchEmployeeHistory"> | string
     employeeId?: StringFilter<"BranchEmployeeHistory"> | string
-    startDate?: StringFilter<"BranchEmployeeHistory"> | string
-    endDate?: StringNullableFilter<"BranchEmployeeHistory"> | string | null
+    startDate?: DateTimeFilter<"BranchEmployeeHistory"> | Date | string
+    endDate?: DateTimeNullableFilter<"BranchEmployeeHistory"> | Date | string | null
     isActive?: BoolFilter<"BranchEmployeeHistory"> | boolean
     branchCode?: StringFilter<"BranchEmployeeHistory"> | string
     createdAt?: DateTimeNullableFilter<"BranchEmployeeHistory"> | Date | string | null
@@ -44445,38 +54835,7 @@ export namespace Prisma {
     nid?: StringFilter<"Farmer"> | string
     createdAt?: DateTimeNullableFilter<"Farmer"> | Date | string | null
     updatedAt?: DateTimeFilter<"Farmer"> | Date | string
-    createDate?: StringFilter<"Farmer"> | string
-  }
-
-  export type FeedStockUpsertWithWhereUniqueWithoutBranchInput = {
-    where: FeedStockWhereUniqueInput
-    update: XOR<FeedStockUpdateWithoutBranchInput, FeedStockUncheckedUpdateWithoutBranchInput>
-    create: XOR<FeedStockCreateWithoutBranchInput, FeedStockUncheckedCreateWithoutBranchInput>
-  }
-
-  export type FeedStockUpdateWithWhereUniqueWithoutBranchInput = {
-    where: FeedStockWhereUniqueInput
-    data: XOR<FeedStockUpdateWithoutBranchInput, FeedStockUncheckedUpdateWithoutBranchInput>
-  }
-
-  export type FeedStockUpdateManyWithWhereWithoutBranchInput = {
-    where: FeedStockScalarWhereInput
-    data: XOR<FeedStockUpdateManyMutationInput, FeedStockUncheckedUpdateManyWithoutBranchInput>
-  }
-
-  export type FeedStockScalarWhereInput = {
-    AND?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
-    OR?: FeedStockScalarWhereInput[]
-    NOT?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
-    id?: StringFilter<"FeedStock"> | string
-    feedName?: StringFilter<"FeedStock"> | string
-    stock?: IntFilter<"FeedStock"> | number
-    depotName?: StringFilter<"FeedStock"> | string
-    createdAt?: DateTimeNullableFilter<"FeedStock"> | Date | string | null
-    updatedAt?: DateTimeFilter<"FeedStock"> | Date | string
-    branchId?: StringNullableFilter<"FeedStock"> | string | null
-    unitPice?: IntFilter<"FeedStock"> | number
-    createDate?: StringFilter<"FeedStock"> | string
+    createDate?: DateTimeFilter<"Farmer"> | Date | string
   }
 
   export type FlockUpsertWithWhereUniqueWithoutBranchInput = {
@@ -44728,7 +55087,9 @@ export namespace Prisma {
     OR?: BirdSellScalarWhereInput[]
     NOT?: BirdSellScalarWhereInput | BirdSellScalarWhereInput[]
     id?: StringFilter<"BirdSell"> | string
-    buyerId?: StringFilter<"BirdSell"> | string
+    buyerName?: StringFilter<"BirdSell"> | string
+    buyerPhoneNumber?: StringFilter<"BirdSell"> | string
+    buyerAddress?: StringFilter<"BirdSell"> | string
     totalQantity?: IntFilter<"BirdSell"> | number
     totalWeight?: FloatFilter<"BirdSell"> | number
     avgWeight?: FloatFilter<"BirdSell"> | number
@@ -44778,48 +55139,15 @@ export namespace Prisma {
     updateAt?: DateTimeFilter<"Chicks"> | Date | string
   }
 
-  export type FeedStockCreateWithoutDepotInput = {
-    id?: string
-    stock: number
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    unitPice?: number
-    createDate: string
-    Branch?: BranchCreateNestedOneWithoutFeedStockInput
-    feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedStockInput
-  }
-
-  export type FeedStockUncheckedCreateWithoutDepotInput = {
-    id?: string
-    feedName: string
-    stock: number
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    branchId?: string | null
-    unitPice?: number
-    createDate: string
-  }
-
-  export type FeedStockCreateOrConnectWithoutDepotInput = {
-    where: FeedStockWhereUniqueInput
-    create: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput>
-  }
-
-  export type FeedStockCreateManyDepotInputEnvelope = {
-    data: FeedStockCreateManyDepotInput | FeedStockCreateManyDepotInput[]
-    skipDuplicates?: boolean
-  }
-
   export type FeedStockTransferCreateWithoutTransferDepotInput = {
     id?: string
-    transerFerDate: string
-    totalKg?: number
+    totalQuantity?: number
     totalPrice?: number
-    createDate: string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
     trnasferBill: string
-    createAt?: Date | string | null
+    createAt: Date | string
     updateAt?: Date | string
-    depotId?: string | null
     reciveDepot: DepotCreateNestedOneWithoutReceivedTransfersInput
     transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedStckTranferInput
   }
@@ -44827,14 +55155,13 @@ export namespace Prisma {
   export type FeedStockTransferUncheckedCreateWithoutTransferDepotInput = {
     id?: string
     toDepot: string
-    transerFerDate: string
-    totalKg?: number
+    totalQuantity?: number
     totalPrice?: number
-    createDate: string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
     trnasferBill: string
-    createAt?: Date | string | null
+    createAt: Date | string
     updateAt?: Date | string
-    depotId?: string | null
     transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedStckTranferInput
   }
 
@@ -44850,14 +55177,13 @@ export namespace Prisma {
 
   export type FeedStockTransferCreateWithoutReciveDepotInput = {
     id?: string
-    transerFerDate: string
-    totalKg?: number
+    totalQuantity?: number
     totalPrice?: number
-    createDate: string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
     trnasferBill: string
-    createAt?: Date | string | null
+    createAt: Date | string
     updateAt?: Date | string
-    depotId?: string | null
     transferDepot: DepotCreateNestedOneWithoutSentTransfersInput
     transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedStckTranferInput
   }
@@ -44865,14 +55191,13 @@ export namespace Prisma {
   export type FeedStockTransferUncheckedCreateWithoutReciveDepotInput = {
     id?: string
     fromDepot: string
-    transerFerDate: string
-    totalKg?: number
+    totalQuantity?: number
     totalPrice?: number
-    createDate: string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
     trnasferBill: string
-    createAt?: Date | string | null
+    createAt: Date | string
     updateAt?: Date | string
-    depotId?: string | null
     transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedStckTranferInput
   }
 
@@ -44892,15 +55217,15 @@ export namespace Prisma {
     saleInvoice: string
     farmNumber: number
     flockNumber: number
-    createDate: string
+    deliveryDate?: Date | string | null
     farmId: string
-    flockId: string
     totalPrice?: number
-    totalKg?: number
+    totalQuantity?: number
     description?: string | null
     status?: $Enums.DeliveryStatus
-    createdAt?: Date | string | null
+    createdAt: Date | string
     updateAt?: Date | string
+    flock: FlockCreateNestedOneWithoutFeedSalesOrderInput
     FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutSalesOrderInput
   }
 
@@ -44910,14 +55235,14 @@ export namespace Prisma {
     saleInvoice: string
     farmNumber: number
     flockNumber: number
-    createDate: string
+    deliveryDate?: Date | string | null
     farmId: string
     flockId: string
     totalPrice?: number
-    totalKg?: number
+    totalQuantity?: number
     description?: string | null
     status?: $Enums.DeliveryStatus
-    createdAt?: Date | string | null
+    createdAt: Date | string
     updateAt?: Date | string
     FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutSalesOrderInput
   }
@@ -44932,20 +55257,180 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type FeedStockUpsertWithWhereUniqueWithoutDepotInput = {
+  export type FeedRetunCreateWithoutDepotInput = {
+    id?: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
+    createAt?: Date | string
+    updateAt?: Date | string
+    flock: FlockCreateNestedOneWithoutFeedRetunInput
+    farm: FarmerCreateNestedOneWithoutFeedRetunInput
+    RetunFeedItem?: RetunFeedItemCreateNestedManyWithoutFeedRetunInput
+  }
+
+  export type FeedRetunUncheckedCreateWithoutDepotInput = {
+    id?: string
+    flockId: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    farmId: string
+    status?: $Enums.DeliveryStatus
+    createAt?: Date | string
+    updateAt?: Date | string
+    RetunFeedItem?: RetunFeedItemUncheckedCreateNestedManyWithoutFeedRetunInput
+  }
+
+  export type FeedRetunCreateOrConnectWithoutDepotInput = {
+    where: FeedRetunWhereUniqueInput
+    create: XOR<FeedRetunCreateWithoutDepotInput, FeedRetunUncheckedCreateWithoutDepotInput>
+  }
+
+  export type FeedRetunCreateManyDepotInputEnvelope = {
+    data: FeedRetunCreateManyDepotInput | FeedRetunCreateManyDepotInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeedStockHistoryCreateWithoutDepotInput = {
+    id?: string
+    opening?: number
+    sales?: number
+    return?: number
+    addStock?: number
+    delivary?: number
+    intialAdd?: number
+    transferIn?: number
+    transferOut?: number
+    recive?: number
+    closing?: number
+    createAt: Date | string
+    updateAt?: Date | string
+    feed: FeedNameCategoryCreateNestedOneWithoutFeedStockHistoryInput
+  }
+
+  export type FeedStockHistoryUncheckedCreateWithoutDepotInput = {
+    id?: string
+    feedName: string
+    opening?: number
+    sales?: number
+    return?: number
+    addStock?: number
+    delivary?: number
+    intialAdd?: number
+    transferIn?: number
+    transferOut?: number
+    recive?: number
+    closing?: number
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type FeedStockHistoryCreateOrConnectWithoutDepotInput = {
+    where: FeedStockHistoryWhereUniqueInput
+    create: XOR<FeedStockHistoryCreateWithoutDepotInput, FeedStockHistoryUncheckedCreateWithoutDepotInput>
+  }
+
+  export type FeedStockHistoryCreateManyDepotInputEnvelope = {
+    data: FeedStockHistoryCreateManyDepotInput | FeedStockHistoryCreateManyDepotInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type feedTransActionHeaderCreateWithoutDepotInput = {
+    id?: string
+    refId: string
+    transactionType: $Enums.TransactionType
+    status: $Enums.DeliveryStatus
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type feedTransActionHeaderUncheckedCreateWithoutDepotInput = {
+    id?: string
+    refId: string
+    transactionType: $Enums.TransactionType
+    status: $Enums.DeliveryStatus
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type feedTransActionHeaderCreateOrConnectWithoutDepotInput = {
+    where: feedTransActionHeaderWhereUniqueInput
+    create: XOR<feedTransActionHeaderCreateWithoutDepotInput, feedTransActionHeaderUncheckedCreateWithoutDepotInput>
+  }
+
+  export type feedTransActionHeaderCreateManyDepotInputEnvelope = {
+    data: feedTransActionHeaderCreateManyDepotInput | feedTransActionHeaderCreateManyDepotInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AddStockCreateWithoutDepotInput = {
+    id?: string
+    source?: $Enums.Source
+    status?: $Enums.DeliveryStatus
+    deliveryDate?: Date | string | null
+    quantity: number
+    price: number
+    createAt: Date | string
+    updateAt?: Date | string
+    AddStockItem?: AddStockItemCreateNestedManyWithoutAddStockInput
+  }
+
+  export type AddStockUncheckedCreateWithoutDepotInput = {
+    id?: string
+    source?: $Enums.Source
+    status?: $Enums.DeliveryStatus
+    deliveryDate?: Date | string | null
+    quantity: number
+    price: number
+    createAt: Date | string
+    updateAt?: Date | string
+    AddStockItem?: AddStockItemUncheckedCreateNestedManyWithoutAddStockInput
+  }
+
+  export type AddStockCreateOrConnectWithoutDepotInput = {
+    where: AddStockWhereUniqueInput
+    create: XOR<AddStockCreateWithoutDepotInput, AddStockUncheckedCreateWithoutDepotInput>
+  }
+
+  export type AddStockCreateManyDepotInputEnvelope = {
+    data: AddStockCreateManyDepotInput | AddStockCreateManyDepotInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeedStockCreateWithoutDepotInput = {
+    id?: string
+    stock: number
+    unitPrice?: number
+    createAt: Date | string
+    updateAt?: Date | string
+    feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedStockInput
+  }
+
+  export type FeedStockUncheckedCreateWithoutDepotInput = {
+    id?: string
+    feedName: string
+    stock: number
+    unitPrice?: number
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type FeedStockCreateOrConnectWithoutDepotInput = {
     where: FeedStockWhereUniqueInput
-    update: XOR<FeedStockUpdateWithoutDepotInput, FeedStockUncheckedUpdateWithoutDepotInput>
     create: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput>
   }
 
-  export type FeedStockUpdateWithWhereUniqueWithoutDepotInput = {
-    where: FeedStockWhereUniqueInput
-    data: XOR<FeedStockUpdateWithoutDepotInput, FeedStockUncheckedUpdateWithoutDepotInput>
-  }
-
-  export type FeedStockUpdateManyWithWhereWithoutDepotInput = {
-    where: FeedStockScalarWhereInput
-    data: XOR<FeedStockUpdateManyMutationInput, FeedStockUncheckedUpdateManyWithoutDepotInput>
+  export type FeedStockCreateManyDepotInputEnvelope = {
+    data: FeedStockCreateManyDepotInput | FeedStockCreateManyDepotInput[]
+    skipDuplicates?: boolean
   }
 
   export type FeedStockTransferUpsertWithWhereUniqueWithoutTransferDepotInput = {
@@ -44971,14 +55456,13 @@ export namespace Prisma {
     id?: StringFilter<"FeedStockTransfer"> | string
     fromDepot?: StringFilter<"FeedStockTransfer"> | string
     toDepot?: StringFilter<"FeedStockTransfer"> | string
-    transerFerDate?: StringFilter<"FeedStockTransfer"> | string
-    totalKg?: IntFilter<"FeedStockTransfer"> | number
+    totalQuantity?: IntFilter<"FeedStockTransfer"> | number
     totalPrice?: IntFilter<"FeedStockTransfer"> | number
-    createDate?: StringFilter<"FeedStockTransfer"> | string
+    deliveryDate?: DateTimeNullableFilter<"FeedStockTransfer"> | Date | string | null
+    status?: EnumDeliveryStatusFilter<"FeedStockTransfer"> | $Enums.DeliveryStatus
     trnasferBill?: StringFilter<"FeedStockTransfer"> | string
-    createAt?: DateTimeNullableFilter<"FeedStockTransfer"> | Date | string | null
+    createAt?: DateTimeFilter<"FeedStockTransfer"> | Date | string
     updateAt?: DateTimeFilter<"FeedStockTransfer"> | Date | string
-    depotId?: StringNullableFilter<"FeedStockTransfer"> | string | null
   }
 
   export type FeedStockTransferUpsertWithWhereUniqueWithoutReciveDepotInput = {
@@ -45023,15 +55507,176 @@ export namespace Prisma {
     saleInvoice?: StringFilter<"FeedSalesOrder"> | string
     farmNumber?: IntFilter<"FeedSalesOrder"> | number
     flockNumber?: IntFilter<"FeedSalesOrder"> | number
-    createDate?: StringFilter<"FeedSalesOrder"> | string
+    deliveryDate?: DateTimeNullableFilter<"FeedSalesOrder"> | Date | string | null
     farmId?: StringFilter<"FeedSalesOrder"> | string
     flockId?: StringFilter<"FeedSalesOrder"> | string
     totalPrice?: IntFilter<"FeedSalesOrder"> | number
-    totalKg?: IntFilter<"FeedSalesOrder"> | number
+    totalQuantity?: IntFilter<"FeedSalesOrder"> | number
     description?: StringNullableFilter<"FeedSalesOrder"> | string | null
     status?: EnumDeliveryStatusFilter<"FeedSalesOrder"> | $Enums.DeliveryStatus
-    createdAt?: DateTimeNullableFilter<"FeedSalesOrder"> | Date | string | null
+    createdAt?: DateTimeFilter<"FeedSalesOrder"> | Date | string
     updateAt?: DateTimeFilter<"FeedSalesOrder"> | Date | string
+  }
+
+  export type FeedRetunUpsertWithWhereUniqueWithoutDepotInput = {
+    where: FeedRetunWhereUniqueInput
+    update: XOR<FeedRetunUpdateWithoutDepotInput, FeedRetunUncheckedUpdateWithoutDepotInput>
+    create: XOR<FeedRetunCreateWithoutDepotInput, FeedRetunUncheckedCreateWithoutDepotInput>
+  }
+
+  export type FeedRetunUpdateWithWhereUniqueWithoutDepotInput = {
+    where: FeedRetunWhereUniqueInput
+    data: XOR<FeedRetunUpdateWithoutDepotInput, FeedRetunUncheckedUpdateWithoutDepotInput>
+  }
+
+  export type FeedRetunUpdateManyWithWhereWithoutDepotInput = {
+    where: FeedRetunScalarWhereInput
+    data: XOR<FeedRetunUpdateManyMutationInput, FeedRetunUncheckedUpdateManyWithoutDepotInput>
+  }
+
+  export type FeedRetunScalarWhereInput = {
+    AND?: FeedRetunScalarWhereInput | FeedRetunScalarWhereInput[]
+    OR?: FeedRetunScalarWhereInput[]
+    NOT?: FeedRetunScalarWhereInput | FeedRetunScalarWhereInput[]
+    id?: StringFilter<"FeedRetun"> | string
+    flockId?: StringFilter<"FeedRetun"> | string
+    branChCode?: StringFilter<"FeedRetun"> | string
+    farmCode?: IntFilter<"FeedRetun"> | number
+    flockNumber?: IntFilter<"FeedRetun"> | number
+    returnInvoice?: StringFilter<"FeedRetun"> | string
+    createDate?: DateTimeFilter<"FeedRetun"> | Date | string
+    deliveryDate?: DateTimeNullableFilter<"FeedRetun"> | Date | string | null
+    farmId?: StringFilter<"FeedRetun"> | string
+    status?: EnumDeliveryStatusFilter<"FeedRetun"> | $Enums.DeliveryStatus
+    depotName?: StringFilter<"FeedRetun"> | string
+    createAt?: DateTimeFilter<"FeedRetun"> | Date | string
+    updateAt?: DateTimeFilter<"FeedRetun"> | Date | string
+  }
+
+  export type FeedStockHistoryUpsertWithWhereUniqueWithoutDepotInput = {
+    where: FeedStockHistoryWhereUniqueInput
+    update: XOR<FeedStockHistoryUpdateWithoutDepotInput, FeedStockHistoryUncheckedUpdateWithoutDepotInput>
+    create: XOR<FeedStockHistoryCreateWithoutDepotInput, FeedStockHistoryUncheckedCreateWithoutDepotInput>
+  }
+
+  export type FeedStockHistoryUpdateWithWhereUniqueWithoutDepotInput = {
+    where: FeedStockHistoryWhereUniqueInput
+    data: XOR<FeedStockHistoryUpdateWithoutDepotInput, FeedStockHistoryUncheckedUpdateWithoutDepotInput>
+  }
+
+  export type FeedStockHistoryUpdateManyWithWhereWithoutDepotInput = {
+    where: FeedStockHistoryScalarWhereInput
+    data: XOR<FeedStockHistoryUpdateManyMutationInput, FeedStockHistoryUncheckedUpdateManyWithoutDepotInput>
+  }
+
+  export type FeedStockHistoryScalarWhereInput = {
+    AND?: FeedStockHistoryScalarWhereInput | FeedStockHistoryScalarWhereInput[]
+    OR?: FeedStockHistoryScalarWhereInput[]
+    NOT?: FeedStockHistoryScalarWhereInput | FeedStockHistoryScalarWhereInput[]
+    id?: StringFilter<"FeedStockHistory"> | string
+    feedName?: StringFilter<"FeedStockHistory"> | string
+    depotName?: StringFilter<"FeedStockHistory"> | string
+    opening?: IntFilter<"FeedStockHistory"> | number
+    sales?: IntFilter<"FeedStockHistory"> | number
+    return?: IntFilter<"FeedStockHistory"> | number
+    addStock?: IntFilter<"FeedStockHistory"> | number
+    delivary?: IntFilter<"FeedStockHistory"> | number
+    intialAdd?: IntFilter<"FeedStockHistory"> | number
+    transferIn?: IntFilter<"FeedStockHistory"> | number
+    transferOut?: IntFilter<"FeedStockHistory"> | number
+    recive?: IntFilter<"FeedStockHistory"> | number
+    closing?: IntFilter<"FeedStockHistory"> | number
+    createAt?: DateTimeFilter<"FeedStockHistory"> | Date | string
+    updateAt?: DateTimeFilter<"FeedStockHistory"> | Date | string
+  }
+
+  export type feedTransActionHeaderUpsertWithWhereUniqueWithoutDepotInput = {
+    where: feedTransActionHeaderWhereUniqueInput
+    update: XOR<feedTransActionHeaderUpdateWithoutDepotInput, feedTransActionHeaderUncheckedUpdateWithoutDepotInput>
+    create: XOR<feedTransActionHeaderCreateWithoutDepotInput, feedTransActionHeaderUncheckedCreateWithoutDepotInput>
+  }
+
+  export type feedTransActionHeaderUpdateWithWhereUniqueWithoutDepotInput = {
+    where: feedTransActionHeaderWhereUniqueInput
+    data: XOR<feedTransActionHeaderUpdateWithoutDepotInput, feedTransActionHeaderUncheckedUpdateWithoutDepotInput>
+  }
+
+  export type feedTransActionHeaderUpdateManyWithWhereWithoutDepotInput = {
+    where: feedTransActionHeaderScalarWhereInput
+    data: XOR<feedTransActionHeaderUpdateManyMutationInput, feedTransActionHeaderUncheckedUpdateManyWithoutDepotInput>
+  }
+
+  export type feedTransActionHeaderScalarWhereInput = {
+    AND?: feedTransActionHeaderScalarWhereInput | feedTransActionHeaderScalarWhereInput[]
+    OR?: feedTransActionHeaderScalarWhereInput[]
+    NOT?: feedTransActionHeaderScalarWhereInput | feedTransActionHeaderScalarWhereInput[]
+    id?: StringFilter<"feedTransActionHeader"> | string
+    depotName?: StringFilter<"feedTransActionHeader"> | string
+    refId?: StringFilter<"feedTransActionHeader"> | string
+    transactionType?: EnumTransactionTypeFilter<"feedTransActionHeader"> | $Enums.TransactionType
+    status?: EnumDeliveryStatusFilter<"feedTransActionHeader"> | $Enums.DeliveryStatus
+    createAt?: DateTimeFilter<"feedTransActionHeader"> | Date | string
+    updateAt?: DateTimeFilter<"feedTransActionHeader"> | Date | string
+  }
+
+  export type AddStockUpsertWithWhereUniqueWithoutDepotInput = {
+    where: AddStockWhereUniqueInput
+    update: XOR<AddStockUpdateWithoutDepotInput, AddStockUncheckedUpdateWithoutDepotInput>
+    create: XOR<AddStockCreateWithoutDepotInput, AddStockUncheckedCreateWithoutDepotInput>
+  }
+
+  export type AddStockUpdateWithWhereUniqueWithoutDepotInput = {
+    where: AddStockWhereUniqueInput
+    data: XOR<AddStockUpdateWithoutDepotInput, AddStockUncheckedUpdateWithoutDepotInput>
+  }
+
+  export type AddStockUpdateManyWithWhereWithoutDepotInput = {
+    where: AddStockScalarWhereInput
+    data: XOR<AddStockUpdateManyMutationInput, AddStockUncheckedUpdateManyWithoutDepotInput>
+  }
+
+  export type AddStockScalarWhereInput = {
+    AND?: AddStockScalarWhereInput | AddStockScalarWhereInput[]
+    OR?: AddStockScalarWhereInput[]
+    NOT?: AddStockScalarWhereInput | AddStockScalarWhereInput[]
+    id?: StringFilter<"AddStock"> | string
+    source?: EnumSourceFilter<"AddStock"> | $Enums.Source
+    depotName?: StringFilter<"AddStock"> | string
+    status?: EnumDeliveryStatusFilter<"AddStock"> | $Enums.DeliveryStatus
+    deliveryDate?: DateTimeNullableFilter<"AddStock"> | Date | string | null
+    quantity?: IntFilter<"AddStock"> | number
+    price?: IntFilter<"AddStock"> | number
+    createAt?: DateTimeFilter<"AddStock"> | Date | string
+    updateAt?: DateTimeFilter<"AddStock"> | Date | string
+  }
+
+  export type FeedStockUpsertWithWhereUniqueWithoutDepotInput = {
+    where: FeedStockWhereUniqueInput
+    update: XOR<FeedStockUpdateWithoutDepotInput, FeedStockUncheckedUpdateWithoutDepotInput>
+    create: XOR<FeedStockCreateWithoutDepotInput, FeedStockUncheckedCreateWithoutDepotInput>
+  }
+
+  export type FeedStockUpdateWithWhereUniqueWithoutDepotInput = {
+    where: FeedStockWhereUniqueInput
+    data: XOR<FeedStockUpdateWithoutDepotInput, FeedStockUncheckedUpdateWithoutDepotInput>
+  }
+
+  export type FeedStockUpdateManyWithWhereWithoutDepotInput = {
+    where: FeedStockScalarWhereInput
+    data: XOR<FeedStockUpdateManyMutationInput, FeedStockUncheckedUpdateManyWithoutDepotInput>
+  }
+
+  export type FeedStockScalarWhereInput = {
+    AND?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
+    OR?: FeedStockScalarWhereInput[]
+    NOT?: FeedStockScalarWhereInput | FeedStockScalarWhereInput[]
+    id?: StringFilter<"FeedStock"> | string
+    feedName?: StringFilter<"FeedStock"> | string
+    depotName?: StringFilter<"FeedStock"> | string
+    stock?: IntFilter<"FeedStock"> | number
+    unitPrice?: IntFilter<"FeedStock"> | number
+    createAt?: DateTimeFilter<"FeedStock"> | Date | string
+    updateAt?: DateTimeFilter<"FeedStock"> | Date | string
   }
 
   export type AddressCreateWithoutFarmerInput = {
@@ -45074,7 +55719,6 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
@@ -45094,7 +55738,6 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
@@ -45134,6 +55777,8 @@ export namespace Prisma {
     chicks?: ChicksCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutFarmerInput = {
@@ -45160,6 +55805,8 @@ export namespace Prisma {
     chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutFarmerInput = {
@@ -45336,7 +55983,9 @@ export namespace Prisma {
 
   export type BirdSellCreateWithoutFarmInput = {
     id?: string
-    buyerId: string
+    buyerName: string
+    buyerPhoneNumber: string
+    buyerAddress: string
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -45351,7 +56000,9 @@ export namespace Prisma {
 
   export type BirdSellUncheckedCreateWithoutFarmInput = {
     id?: string
-    buyerId: string
+    buyerName: string
+    buyerPhoneNumber: string
+    buyerAddress: string
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -45371,6 +56022,48 @@ export namespace Prisma {
 
   export type BirdSellCreateManyFarmInputEnvelope = {
     data: BirdSellCreateManyFarmInput | BirdSellCreateManyFarmInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeedRetunCreateWithoutFarmInput = {
+    id?: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
+    createAt?: Date | string
+    updateAt?: Date | string
+    flock: FlockCreateNestedOneWithoutFeedRetunInput
+    depot: DepotCreateNestedOneWithoutFeedRetunInput
+    RetunFeedItem?: RetunFeedItemCreateNestedManyWithoutFeedRetunInput
+  }
+
+  export type FeedRetunUncheckedCreateWithoutFarmInput = {
+    id?: string
+    flockId: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
+    depotName: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    RetunFeedItem?: RetunFeedItemUncheckedCreateNestedManyWithoutFeedRetunInput
+  }
+
+  export type FeedRetunCreateOrConnectWithoutFarmInput = {
+    where: FeedRetunWhereUniqueInput
+    create: XOR<FeedRetunCreateWithoutFarmInput, FeedRetunUncheckedCreateWithoutFarmInput>
+  }
+
+  export type FeedRetunCreateManyFarmInputEnvelope = {
+    data: FeedRetunCreateManyFarmInput | FeedRetunCreateManyFarmInput[]
     skipDuplicates?: boolean
   }
 
@@ -45431,7 +56124,6 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
@@ -45451,7 +56143,6 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
@@ -45542,6 +56233,22 @@ export namespace Prisma {
     data: XOR<BirdSellUpdateManyMutationInput, BirdSellUncheckedUpdateManyWithoutFarmInput>
   }
 
+  export type FeedRetunUpsertWithWhereUniqueWithoutFarmInput = {
+    where: FeedRetunWhereUniqueInput
+    update: XOR<FeedRetunUpdateWithoutFarmInput, FeedRetunUncheckedUpdateWithoutFarmInput>
+    create: XOR<FeedRetunCreateWithoutFarmInput, FeedRetunUncheckedCreateWithoutFarmInput>
+  }
+
+  export type FeedRetunUpdateWithWhereUniqueWithoutFarmInput = {
+    where: FeedRetunWhereUniqueInput
+    data: XOR<FeedRetunUpdateWithoutFarmInput, FeedRetunUncheckedUpdateWithoutFarmInput>
+  }
+
+  export type FeedRetunUpdateManyWithWhereWithoutFarmInput = {
+    where: FeedRetunScalarWhereInput
+    data: XOR<FeedRetunUpdateManyMutationInput, FeedRetunUncheckedUpdateManyWithoutFarmInput>
+  }
+
   export type EmployeeCreateWithoutAddressInput = {
     id?: string
     employeeId: string
@@ -45587,13 +56294,14 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     branch?: BranchCreateNestedOneWithoutFarmerInput
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
     chicks?: ChicksCreateNestedManyWithoutFarmInput
     birdSell?: BirdSellCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateWithoutAddressInput = {
@@ -45609,12 +56317,13 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
     chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerCreateOrConnectWithoutAddressInput = {
@@ -45684,13 +56393,14 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: BranchUpdateOneWithoutFarmerNestedInput
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUpdateManyWithoutFarmNestedInput
     birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutAddressInput = {
@@ -45706,12 +56416,13 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type BranchCreateWithoutBranchEmployeeHistoryInput = {
@@ -45723,7 +56434,6 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     farmer?: FarmerCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
@@ -45743,7 +56453,6 @@ export namespace Prisma {
     createdAt?: Date | string | null
     updatedAt?: Date | string
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
@@ -45812,7 +56521,6 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
@@ -45832,7 +56540,6 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
@@ -45884,8 +56591,8 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryCreateWithoutEmployeeInput = {
     id?: string
-    startDate: string
-    endDate?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string
@@ -45894,8 +56601,8 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryUncheckedCreateWithoutEmployeeInput = {
     id?: string
-    startDate: string
-    endDate?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
     isActive?: boolean
     branchCode: string
     createdAt?: Date | string | null
@@ -45967,6 +56674,8 @@ export namespace Prisma {
     chicks?: ChicksCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutEmployeeInput = {
@@ -45993,6 +56702,8 @@ export namespace Prisma {
     chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutEmployeeInput = {
@@ -46084,7 +56795,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
     farmer?: FarmerCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
@@ -46104,7 +56814,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
@@ -46164,13 +56873,14 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     address?: AddressCreateNestedOneWithoutFarmerInput
     branch?: BranchCreateNestedOneWithoutFarmerInput
     flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
     chicks?: ChicksCreateNestedManyWithoutFarmInput
     birdSell?: BirdSellCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateWithoutFlocksInput = {
@@ -46187,11 +56897,12 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
     chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerCreateOrConnectWithoutFlocksInput = {
@@ -46397,7 +57108,9 @@ export namespace Prisma {
 
   export type BirdSellCreateWithoutFlockInput = {
     id?: string
-    buyerId: string
+    buyerName: string
+    buyerPhoneNumber: string
+    buyerAddress: string
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -46412,7 +57125,9 @@ export namespace Prisma {
 
   export type BirdSellUncheckedCreateWithoutFlockInput = {
     id?: string
-    buyerId: string
+    buyerName: string
+    buyerPhoneNumber: string
+    buyerAddress: string
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -46461,6 +57176,94 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type FeedRetunCreateWithoutFlockInput = {
+    id?: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
+    createAt?: Date | string
+    updateAt?: Date | string
+    farm: FarmerCreateNestedOneWithoutFeedRetunInput
+    depot: DepotCreateNestedOneWithoutFeedRetunInput
+    RetunFeedItem?: RetunFeedItemCreateNestedManyWithoutFeedRetunInput
+  }
+
+  export type FeedRetunUncheckedCreateWithoutFlockInput = {
+    id?: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    farmId: string
+    status?: $Enums.DeliveryStatus
+    depotName: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    RetunFeedItem?: RetunFeedItemUncheckedCreateNestedManyWithoutFeedRetunInput
+  }
+
+  export type FeedRetunCreateOrConnectWithoutFlockInput = {
+    where: FeedRetunWhereUniqueInput
+    create: XOR<FeedRetunCreateWithoutFlockInput, FeedRetunUncheckedCreateWithoutFlockInput>
+  }
+
+  export type FeedRetunCreateManyFlockInputEnvelope = {
+    data: FeedRetunCreateManyFlockInput | FeedRetunCreateManyFlockInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeedSalesOrderCreateWithoutFlockInput = {
+    id?: string
+    branchCode: string
+    saleInvoice: string
+    farmNumber: number
+    flockNumber: number
+    deliveryDate?: Date | string | null
+    farmId: string
+    totalPrice?: number
+    totalQuantity?: number
+    description?: string | null
+    status?: $Enums.DeliveryStatus
+    createdAt: Date | string
+    updateAt?: Date | string
+    depot: DepotCreateNestedOneWithoutFeedSalesOrderInput
+    FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutSalesOrderInput
+  }
+
+  export type FeedSalesOrderUncheckedCreateWithoutFlockInput = {
+    id?: string
+    branchCode: string
+    depotName: string
+    saleInvoice: string
+    farmNumber: number
+    flockNumber: number
+    deliveryDate?: Date | string | null
+    farmId: string
+    totalPrice?: number
+    totalQuantity?: number
+    description?: string | null
+    status?: $Enums.DeliveryStatus
+    createdAt: Date | string
+    updateAt?: Date | string
+    FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutSalesOrderInput
+  }
+
+  export type FeedSalesOrderCreateOrConnectWithoutFlockInput = {
+    where: FeedSalesOrderWhereUniqueInput
+    create: XOR<FeedSalesOrderCreateWithoutFlockInput, FeedSalesOrderUncheckedCreateWithoutFlockInput>
+  }
+
+  export type FeedSalesOrderCreateManyFlockInputEnvelope = {
+    data: FeedSalesOrderCreateManyFlockInput | FeedSalesOrderCreateManyFlockInput[]
+    skipDuplicates?: boolean
+  }
+
   export type BranchUpsertWithoutFlocksInput = {
     update: XOR<BranchUpdateWithoutFlocksInput, BranchUncheckedUpdateWithoutFlocksInput>
     create: XOR<BranchCreateWithoutFlocksInput, BranchUncheckedCreateWithoutFlocksInput>
@@ -46482,7 +57285,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
@@ -46502,7 +57304,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
@@ -46574,13 +57375,14 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: AddressUpdateOneWithoutFarmerNestedInput
     branch?: BranchUpdateOneWithoutFarmerNestedInput
     flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUpdateManyWithoutFarmNestedInput
     birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutFlocksInput = {
@@ -46597,11 +57399,12 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type FlockReportUpsertWithWhereUniqueWithoutFlockInput = {
@@ -46712,6 +57515,38 @@ export namespace Prisma {
     updateAt?: DateTimeFilter<"FarmFeedStock"> | Date | string
   }
 
+  export type FeedRetunUpsertWithWhereUniqueWithoutFlockInput = {
+    where: FeedRetunWhereUniqueInput
+    update: XOR<FeedRetunUpdateWithoutFlockInput, FeedRetunUncheckedUpdateWithoutFlockInput>
+    create: XOR<FeedRetunCreateWithoutFlockInput, FeedRetunUncheckedCreateWithoutFlockInput>
+  }
+
+  export type FeedRetunUpdateWithWhereUniqueWithoutFlockInput = {
+    where: FeedRetunWhereUniqueInput
+    data: XOR<FeedRetunUpdateWithoutFlockInput, FeedRetunUncheckedUpdateWithoutFlockInput>
+  }
+
+  export type FeedRetunUpdateManyWithWhereWithoutFlockInput = {
+    where: FeedRetunScalarWhereInput
+    data: XOR<FeedRetunUpdateManyMutationInput, FeedRetunUncheckedUpdateManyWithoutFlockInput>
+  }
+
+  export type FeedSalesOrderUpsertWithWhereUniqueWithoutFlockInput = {
+    where: FeedSalesOrderWhereUniqueInput
+    update: XOR<FeedSalesOrderUpdateWithoutFlockInput, FeedSalesOrderUncheckedUpdateWithoutFlockInput>
+    create: XOR<FeedSalesOrderCreateWithoutFlockInput, FeedSalesOrderUncheckedCreateWithoutFlockInput>
+  }
+
+  export type FeedSalesOrderUpdateWithWhereUniqueWithoutFlockInput = {
+    where: FeedSalesOrderWhereUniqueInput
+    data: XOR<FeedSalesOrderUpdateWithoutFlockInput, FeedSalesOrderUncheckedUpdateWithoutFlockInput>
+  }
+
+  export type FeedSalesOrderUpdateManyWithWhereWithoutFlockInput = {
+    where: FeedSalesOrderScalarWhereInput
+    data: XOR<FeedSalesOrderUpdateManyMutationInput, FeedSalesOrderUncheckedUpdateManyWithoutFlockInput>
+  }
+
   export type FlockCreateWithoutFarmFeedStockInput = {
     id?: string
     flockNumber: number
@@ -46736,6 +57571,8 @@ export namespace Prisma {
     sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
     chicks?: ChicksCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutFarmFeedStockInput = {
@@ -46762,6 +57599,8 @@ export namespace Prisma {
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
     chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutFarmFeedStockInput = {
@@ -46804,6 +57643,8 @@ export namespace Prisma {
     sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
     chicks?: ChicksUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutFarmFeedStockInput = {
@@ -46830,6 +57671,8 @@ export namespace Prisma {
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
     chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockCreateWithoutChicksInput = {
@@ -46856,6 +57699,8 @@ export namespace Prisma {
     sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutChicksInput = {
@@ -46882,6 +57727,8 @@ export namespace Prisma {
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutChicksInput = {
@@ -46901,13 +57748,14 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     address?: AddressCreateNestedOneWithoutFarmerInput
     branch?: BranchCreateNestedOneWithoutFarmerInput
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
     birdSell?: BirdSellCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateWithoutChicksInput = {
@@ -46924,11 +57772,12 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerCreateOrConnectWithoutChicksInput = {
@@ -46946,7 +57795,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
     farmer?: FarmerCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
@@ -46966,7 +57814,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
@@ -47016,6 +57863,8 @@ export namespace Prisma {
     sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutChicksInput = {
@@ -47042,6 +57891,8 @@ export namespace Prisma {
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FarmerUpsertWithoutChicksInput = {
@@ -47067,13 +57918,14 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: AddressUpdateOneWithoutFarmerNestedInput
     branch?: BranchUpdateOneWithoutFarmerNestedInput
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
     birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutChicksInput = {
@@ -47090,11 +57942,12 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type BranchUpsertWithoutChicksInput = {
@@ -47118,7 +57971,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
@@ -47138,7 +57990,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
@@ -47160,13 +58011,14 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     address?: AddressCreateNestedOneWithoutFarmerInput
     branch?: BranchCreateNestedOneWithoutFarmerInput
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
     chicks?: ChicksCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateWithoutBirdSellInput = {
@@ -47183,11 +58035,12 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
     chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerCreateOrConnectWithoutBirdSellInput = {
@@ -47205,7 +58058,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
     farmer?: FarmerCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
@@ -47225,7 +58077,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
@@ -47264,6 +58115,8 @@ export namespace Prisma {
     sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
     chicks?: ChicksCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutBirdSellInput = {
@@ -47290,6 +58143,8 @@ export namespace Prisma {
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
     chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutBirdSellInput = {
@@ -47320,13 +58175,14 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: AddressUpdateOneWithoutFarmerNestedInput
     branch?: BranchUpdateOneWithoutFarmerNestedInput
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutBirdSellInput = {
@@ -47343,11 +58199,12 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type BranchUpsertWithoutBirdSellInput = {
@@ -47371,7 +58228,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
@@ -47391,7 +58247,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
@@ -47436,6 +58291,8 @@ export namespace Prisma {
     sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
     chicks?: ChicksUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutBirdSellInput = {
@@ -47462,6 +58319,8 @@ export namespace Prisma {
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
     chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type BranchCreateWithoutFlockReportInput = {
@@ -47474,7 +58333,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
     farmer?: FarmerCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
@@ -47494,7 +58352,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
@@ -47521,13 +58378,14 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     address?: AddressCreateNestedOneWithoutFarmerInput
     branch?: BranchCreateNestedOneWithoutFarmerInput
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
     chicks?: ChicksCreateNestedManyWithoutFarmInput
     birdSell?: BirdSellCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateWithoutFlockReportInput = {
@@ -47544,11 +58402,12 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
     chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerCreateOrConnectWithoutFlockReportInput = {
@@ -47580,6 +58439,8 @@ export namespace Prisma {
     chicks?: ChicksCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutFlockReportInput = {
@@ -47606,6 +58467,8 @@ export namespace Prisma {
     chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutFlockReportInput = {
@@ -47634,7 +58497,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
@@ -47654,7 +58516,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
@@ -47687,13 +58548,14 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: AddressUpdateOneWithoutFarmerNestedInput
     branch?: BranchUpdateOneWithoutFarmerNestedInput
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUpdateManyWithoutFarmNestedInput
     birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutFlockReportInput = {
@@ -47710,11 +58572,12 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type FlockUpsertWithoutFlockReportInput = {
@@ -47752,6 +58615,8 @@ export namespace Prisma {
     chicks?: ChicksUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutFlockReportInput = {
@@ -47778,45 +58643,17 @@ export namespace Prisma {
     chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
-  }
-
-  export type FeedStockCreateWithoutFeedNameCategoryInput = {
-    id?: string
-    stock: number
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    unitPice?: number
-    createDate: string
-    Branch?: BranchCreateNestedOneWithoutFeedStockInput
-    depot: DepotCreateNestedOneWithoutFeedStockInput
-  }
-
-  export type FeedStockUncheckedCreateWithoutFeedNameCategoryInput = {
-    id?: string
-    stock: number
-    depotName: string
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    branchId?: string | null
-    unitPice?: number
-    createDate: string
-  }
-
-  export type FeedStockCreateOrConnectWithoutFeedNameCategoryInput = {
-    where: FeedStockWhereUniqueInput
-    create: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput>
-  }
-
-  export type FeedStockCreateManyFeedNameCategoryInputEnvelope = {
-    data: FeedStockCreateManyFeedNameCategoryInput | FeedStockCreateManyFeedNameCategoryInput[]
-    skipDuplicates?: boolean
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type TransferFeedItemCreateWithoutFeedInput = {
     id?: string
-    createDate: string
-    quntity: string
+    createDate: Date | string
+    quantity: number
     price?: number
+    unitPrice?: number
+    status?: $Enums.DeliveryStatus
     createdAt?: Date | string
     updateAt?: Date | string
     feedStckTranfer: FeedStockTransferCreateNestedOneWithoutTransferFeedItemInput
@@ -47824,10 +58661,12 @@ export namespace Prisma {
 
   export type TransferFeedItemUncheckedCreateWithoutFeedInput = {
     id?: string
-    createDate: string
-    quntity: string
+    createDate: Date | string
+    quantity: number
     price?: number
+    unitPrice?: number
     tansferId: string
+    status?: $Enums.DeliveryStatus
     createdAt?: Date | string
     updateAt?: Date | string
   }
@@ -47845,9 +58684,9 @@ export namespace Prisma {
   export type FeedSalesItemCreateWithoutFeedNameCategoryInput = {
     id?: string
     quantity: number
-    createDate: string
-    totalPice: number
-    createdAt?: Date | string
+    unitPrice?: number
+    price: number
+    createdAt: Date | string
     updatedAt?: Date | string
     salesOrder: FeedSalesOrderCreateNestedOneWithoutFeedSalesItemInput
   }
@@ -47856,9 +58695,9 @@ export namespace Prisma {
     id?: string
     salesInvoice: string
     quantity: number
-    createDate: string
-    totalPice: number
-    createdAt?: Date | string
+    unitPrice?: number
+    price: number
+    createdAt: Date | string
     updatedAt?: Date | string
   }
 
@@ -47872,20 +58711,136 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type FeedStockUpsertWithWhereUniqueWithoutFeedNameCategoryInput = {
+  export type RetunFeedItemCreateWithoutFeedNameCategoryInput = {
+    id?: string
+    quantity: number
+    price: number
+    unitPrice?: number
+    createAt?: Date | string
+    updateAt?: Date | string
+    feedRetun: FeedRetunCreateNestedOneWithoutRetunFeedItemInput
+  }
+
+  export type RetunFeedItemUncheckedCreateWithoutFeedNameCategoryInput = {
+    id?: string
+    quantity: number
+    price: number
+    returnInvoice: string
+    unitPrice?: number
+    createAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type RetunFeedItemCreateOrConnectWithoutFeedNameCategoryInput = {
+    where: RetunFeedItemWhereUniqueInput
+    create: XOR<RetunFeedItemCreateWithoutFeedNameCategoryInput, RetunFeedItemUncheckedCreateWithoutFeedNameCategoryInput>
+  }
+
+  export type RetunFeedItemCreateManyFeedNameCategoryInputEnvelope = {
+    data: RetunFeedItemCreateManyFeedNameCategoryInput | RetunFeedItemCreateManyFeedNameCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeedStockHistoryCreateWithoutFeedInput = {
+    id?: string
+    opening?: number
+    sales?: number
+    return?: number
+    addStock?: number
+    delivary?: number
+    intialAdd?: number
+    transferIn?: number
+    transferOut?: number
+    recive?: number
+    closing?: number
+    createAt: Date | string
+    updateAt?: Date | string
+    depot: DepotCreateNestedOneWithoutFeedStockHistoryInput
+  }
+
+  export type FeedStockHistoryUncheckedCreateWithoutFeedInput = {
+    id?: string
+    depotName: string
+    opening?: number
+    sales?: number
+    return?: number
+    addStock?: number
+    delivary?: number
+    intialAdd?: number
+    transferIn?: number
+    transferOut?: number
+    recive?: number
+    closing?: number
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type FeedStockHistoryCreateOrConnectWithoutFeedInput = {
+    where: FeedStockHistoryWhereUniqueInput
+    create: XOR<FeedStockHistoryCreateWithoutFeedInput, FeedStockHistoryUncheckedCreateWithoutFeedInput>
+  }
+
+  export type FeedStockHistoryCreateManyFeedInputEnvelope = {
+    data: FeedStockHistoryCreateManyFeedInput | FeedStockHistoryCreateManyFeedInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AddStockItemCreateWithoutFeedInput = {
+    id?: string
+    quantity: number
+    unitPrice?: number
+    price: number
+    createAt: Date | string
+    updateAt?: Date | string
+    addStock: AddStockCreateNestedOneWithoutAddStockItemInput
+  }
+
+  export type AddStockItemUncheckedCreateWithoutFeedInput = {
+    id?: string
+    quantity: number
+    unitPrice?: number
+    price: number
+    addStockId: string
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type AddStockItemCreateOrConnectWithoutFeedInput = {
+    where: AddStockItemWhereUniqueInput
+    create: XOR<AddStockItemCreateWithoutFeedInput, AddStockItemUncheckedCreateWithoutFeedInput>
+  }
+
+  export type AddStockItemCreateManyFeedInputEnvelope = {
+    data: AddStockItemCreateManyFeedInput | AddStockItemCreateManyFeedInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeedStockCreateWithoutFeedNameCategoryInput = {
+    id?: string
+    stock: number
+    unitPrice?: number
+    createAt: Date | string
+    updateAt?: Date | string
+    depot: DepotCreateNestedOneWithoutFeedStockInput
+  }
+
+  export type FeedStockUncheckedCreateWithoutFeedNameCategoryInput = {
+    id?: string
+    depotName: string
+    stock: number
+    unitPrice?: number
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type FeedStockCreateOrConnectWithoutFeedNameCategoryInput = {
     where: FeedStockWhereUniqueInput
-    update: XOR<FeedStockUpdateWithoutFeedNameCategoryInput, FeedStockUncheckedUpdateWithoutFeedNameCategoryInput>
     create: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput>
   }
 
-  export type FeedStockUpdateWithWhereUniqueWithoutFeedNameCategoryInput = {
-    where: FeedStockWhereUniqueInput
-    data: XOR<FeedStockUpdateWithoutFeedNameCategoryInput, FeedStockUncheckedUpdateWithoutFeedNameCategoryInput>
-  }
-
-  export type FeedStockUpdateManyWithWhereWithoutFeedNameCategoryInput = {
-    where: FeedStockScalarWhereInput
-    data: XOR<FeedStockUpdateManyMutationInput, FeedStockUncheckedUpdateManyWithoutFeedNameCategoryInput>
+  export type FeedStockCreateManyFeedNameCategoryInputEnvelope = {
+    data: FeedStockCreateManyFeedNameCategoryInput | FeedStockCreateManyFeedNameCategoryInput[]
+    skipDuplicates?: boolean
   }
 
   export type TransferFeedItemUpsertWithWhereUniqueWithoutFeedInput = {
@@ -47910,10 +58865,12 @@ export namespace Prisma {
     NOT?: TransferFeedItemScalarWhereInput | TransferFeedItemScalarWhereInput[]
     id?: StringFilter<"TransferFeedItem"> | string
     feedName?: StringFilter<"TransferFeedItem"> | string
-    createDate?: StringFilter<"TransferFeedItem"> | string
-    quntity?: StringFilter<"TransferFeedItem"> | string
+    createDate?: DateTimeFilter<"TransferFeedItem"> | Date | string
+    quantity?: IntFilter<"TransferFeedItem"> | number
     price?: IntFilter<"TransferFeedItem"> | number
+    unitPrice?: IntFilter<"TransferFeedItem"> | number
     tansferId?: StringFilter<"TransferFeedItem"> | string
+    status?: EnumDeliveryStatusFilter<"TransferFeedItem"> | $Enums.DeliveryStatus
     createdAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
     updateAt?: DateTimeFilter<"TransferFeedItem"> | Date | string
   }
@@ -47942,79 +58899,134 @@ export namespace Prisma {
     feedName?: StringFilter<"FeedSalesItem"> | string
     salesInvoice?: StringFilter<"FeedSalesItem"> | string
     quantity?: IntFilter<"FeedSalesItem"> | number
-    createDate?: StringFilter<"FeedSalesItem"> | string
-    totalPice?: IntFilter<"FeedSalesItem"> | number
+    unitPrice?: IntFilter<"FeedSalesItem"> | number
+    price?: IntFilter<"FeedSalesItem"> | number
     createdAt?: DateTimeFilter<"FeedSalesItem"> | Date | string
     updatedAt?: DateTimeFilter<"FeedSalesItem"> | Date | string
   }
 
-  export type BranchCreateWithoutFeedStockInput = {
-    id?: string
-    locationName: string
-    type: $Enums.BranchType
-    branchCode: string
-    createDate: string
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
-    farmer?: FarmerCreateNestedManyWithoutBranchInput
-    flocks?: FlockCreateNestedManyWithoutBranchInput
-    flockReport?: FlockReportCreateNestedManyWithoutBranchInput
-    medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
-    medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
-    medicineTransfer?: MedicineTransferCreateNestedManyWithoutBaranchInput
-    sellMedicine?: SellMedicineCreateNestedManyWithoutBranchInput
-    birdSell?: BirdSellCreateNestedManyWithoutBranchInput
-    chicks?: ChicksCreateNestedManyWithoutBranchInput
+  export type RetunFeedItemUpsertWithWhereUniqueWithoutFeedNameCategoryInput = {
+    where: RetunFeedItemWhereUniqueInput
+    update: XOR<RetunFeedItemUpdateWithoutFeedNameCategoryInput, RetunFeedItemUncheckedUpdateWithoutFeedNameCategoryInput>
+    create: XOR<RetunFeedItemCreateWithoutFeedNameCategoryInput, RetunFeedItemUncheckedCreateWithoutFeedNameCategoryInput>
   }
 
-  export type BranchUncheckedCreateWithoutFeedStockInput = {
-    id?: string
-    locationName: string
-    type: $Enums.BranchType
-    branchCode: string
-    createDate: string
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
-    farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
-    flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
-    flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
-    medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
-    medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
-    medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutBaranchInput
-    sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutBranchInput
-    birdSell?: BirdSellUncheckedCreateNestedManyWithoutBranchInput
-    chicks?: ChicksUncheckedCreateNestedManyWithoutBranchInput
+  export type RetunFeedItemUpdateWithWhereUniqueWithoutFeedNameCategoryInput = {
+    where: RetunFeedItemWhereUniqueInput
+    data: XOR<RetunFeedItemUpdateWithoutFeedNameCategoryInput, RetunFeedItemUncheckedUpdateWithoutFeedNameCategoryInput>
   }
 
-  export type BranchCreateOrConnectWithoutFeedStockInput = {
-    where: BranchWhereUniqueInput
-    create: XOR<BranchCreateWithoutFeedStockInput, BranchUncheckedCreateWithoutFeedStockInput>
+  export type RetunFeedItemUpdateManyWithWhereWithoutFeedNameCategoryInput = {
+    where: RetunFeedItemScalarWhereInput
+    data: XOR<RetunFeedItemUpdateManyMutationInput, RetunFeedItemUncheckedUpdateManyWithoutFeedNameCategoryInput>
+  }
+
+  export type RetunFeedItemScalarWhereInput = {
+    AND?: RetunFeedItemScalarWhereInput | RetunFeedItemScalarWhereInput[]
+    OR?: RetunFeedItemScalarWhereInput[]
+    NOT?: RetunFeedItemScalarWhereInput | RetunFeedItemScalarWhereInput[]
+    id?: StringFilter<"RetunFeedItem"> | string
+    feedName?: StringFilter<"RetunFeedItem"> | string
+    quantity?: IntFilter<"RetunFeedItem"> | number
+    price?: IntFilter<"RetunFeedItem"> | number
+    returnInvoice?: StringFilter<"RetunFeedItem"> | string
+    unitPrice?: IntFilter<"RetunFeedItem"> | number
+    createAt?: DateTimeFilter<"RetunFeedItem"> | Date | string
+    updateAt?: DateTimeFilter<"RetunFeedItem"> | Date | string
+  }
+
+  export type FeedStockHistoryUpsertWithWhereUniqueWithoutFeedInput = {
+    where: FeedStockHistoryWhereUniqueInput
+    update: XOR<FeedStockHistoryUpdateWithoutFeedInput, FeedStockHistoryUncheckedUpdateWithoutFeedInput>
+    create: XOR<FeedStockHistoryCreateWithoutFeedInput, FeedStockHistoryUncheckedCreateWithoutFeedInput>
+  }
+
+  export type FeedStockHistoryUpdateWithWhereUniqueWithoutFeedInput = {
+    where: FeedStockHistoryWhereUniqueInput
+    data: XOR<FeedStockHistoryUpdateWithoutFeedInput, FeedStockHistoryUncheckedUpdateWithoutFeedInput>
+  }
+
+  export type FeedStockHistoryUpdateManyWithWhereWithoutFeedInput = {
+    where: FeedStockHistoryScalarWhereInput
+    data: XOR<FeedStockHistoryUpdateManyMutationInput, FeedStockHistoryUncheckedUpdateManyWithoutFeedInput>
+  }
+
+  export type AddStockItemUpsertWithWhereUniqueWithoutFeedInput = {
+    where: AddStockItemWhereUniqueInput
+    update: XOR<AddStockItemUpdateWithoutFeedInput, AddStockItemUncheckedUpdateWithoutFeedInput>
+    create: XOR<AddStockItemCreateWithoutFeedInput, AddStockItemUncheckedCreateWithoutFeedInput>
+  }
+
+  export type AddStockItemUpdateWithWhereUniqueWithoutFeedInput = {
+    where: AddStockItemWhereUniqueInput
+    data: XOR<AddStockItemUpdateWithoutFeedInput, AddStockItemUncheckedUpdateWithoutFeedInput>
+  }
+
+  export type AddStockItemUpdateManyWithWhereWithoutFeedInput = {
+    where: AddStockItemScalarWhereInput
+    data: XOR<AddStockItemUpdateManyMutationInput, AddStockItemUncheckedUpdateManyWithoutFeedInput>
+  }
+
+  export type AddStockItemScalarWhereInput = {
+    AND?: AddStockItemScalarWhereInput | AddStockItemScalarWhereInput[]
+    OR?: AddStockItemScalarWhereInput[]
+    NOT?: AddStockItemScalarWhereInput | AddStockItemScalarWhereInput[]
+    id?: StringFilter<"AddStockItem"> | string
+    feedName?: StringFilter<"AddStockItem"> | string
+    quantity?: IntFilter<"AddStockItem"> | number
+    unitPrice?: IntFilter<"AddStockItem"> | number
+    price?: IntFilter<"AddStockItem"> | number
+    addStockId?: StringFilter<"AddStockItem"> | string
+    createAt?: DateTimeFilter<"AddStockItem"> | Date | string
+    updateAt?: DateTimeFilter<"AddStockItem"> | Date | string
+  }
+
+  export type FeedStockUpsertWithWhereUniqueWithoutFeedNameCategoryInput = {
+    where: FeedStockWhereUniqueInput
+    update: XOR<FeedStockUpdateWithoutFeedNameCategoryInput, FeedStockUncheckedUpdateWithoutFeedNameCategoryInput>
+    create: XOR<FeedStockCreateWithoutFeedNameCategoryInput, FeedStockUncheckedCreateWithoutFeedNameCategoryInput>
+  }
+
+  export type FeedStockUpdateWithWhereUniqueWithoutFeedNameCategoryInput = {
+    where: FeedStockWhereUniqueInput
+    data: XOR<FeedStockUpdateWithoutFeedNameCategoryInput, FeedStockUncheckedUpdateWithoutFeedNameCategoryInput>
+  }
+
+  export type FeedStockUpdateManyWithWhereWithoutFeedNameCategoryInput = {
+    where: FeedStockScalarWhereInput
+    data: XOR<FeedStockUpdateManyMutationInput, FeedStockUncheckedUpdateManyWithoutFeedNameCategoryInput>
   }
 
   export type DepotCreateWithoutFeedStockInput = {
     id?: string
     locationName: string
     depotName: string
-    createDate: string
+    createDate: Date | string
     createAt?: Date | string | null
     updateAt?: Date | string
     sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
     receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
     FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockCreateNestedManyWithoutDepotInput
   }
 
   export type DepotUncheckedCreateWithoutFeedStockInput = {
     id?: string
     locationName: string
     depotName: string
-    createDate: string
+    createDate: Date | string
     createAt?: Date | string | null
     updateAt?: Date | string
     sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
     receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
     FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockUncheckedCreateNestedManyWithoutDepotInput
   }
 
   export type DepotCreateOrConnectWithoutFeedStockInput = {
@@ -48026,78 +59038,35 @@ export namespace Prisma {
     id?: string
     feedName: string
     feedCodeNumber: number
+    unitPrice: number
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedInput
     FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutFeedNameCategoryInput
+    RetunFeedItem?: RetunFeedItemCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutFeedInput
+    AddStockItem?: AddStockItemCreateNestedManyWithoutFeedInput
   }
 
   export type FeedNameCategoryUncheckedCreateWithoutFeedStockInput = {
     id?: string
     feedName: string
     feedCodeNumber: number
+    unitPrice: number
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedInput
     FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    RetunFeedItem?: RetunFeedItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutFeedInput
+    AddStockItem?: AddStockItemUncheckedCreateNestedManyWithoutFeedInput
   }
 
   export type FeedNameCategoryCreateOrConnectWithoutFeedStockInput = {
     where: FeedNameCategoryWhereUniqueInput
     create: XOR<FeedNameCategoryCreateWithoutFeedStockInput, FeedNameCategoryUncheckedCreateWithoutFeedStockInput>
-  }
-
-  export type BranchUpsertWithoutFeedStockInput = {
-    update: XOR<BranchUpdateWithoutFeedStockInput, BranchUncheckedUpdateWithoutFeedStockInput>
-    create: XOR<BranchCreateWithoutFeedStockInput, BranchUncheckedCreateWithoutFeedStockInput>
-    where?: BranchWhereInput
-  }
-
-  export type BranchUpdateToOneWithWhereWithoutFeedStockInput = {
-    where?: BranchWhereInput
-    data: XOR<BranchUpdateWithoutFeedStockInput, BranchUncheckedUpdateWithoutFeedStockInput>
-  }
-
-  export type BranchUpdateWithoutFeedStockInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    locationName?: StringFieldUpdateOperationsInput | string
-    type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
-    branchCode?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
-    farmer?: FarmerUpdateManyWithoutBranchNestedInput
-    flocks?: FlockUpdateManyWithoutBranchNestedInput
-    flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
-    medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
-    medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
-    medicineTransfer?: MedicineTransferUpdateManyWithoutBaranchNestedInput
-    sellMedicine?: SellMedicineUpdateManyWithoutBranchNestedInput
-    birdSell?: BirdSellUpdateManyWithoutBranchNestedInput
-    chicks?: ChicksUpdateManyWithoutBranchNestedInput
-  }
-
-  export type BranchUncheckedUpdateWithoutFeedStockInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    locationName?: StringFieldUpdateOperationsInput | string
-    type?: EnumBranchTypeFieldUpdateOperationsInput | $Enums.BranchType
-    branchCode?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
-    farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
-    flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
-    flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
-    medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
-    medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
-    medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutBaranchNestedInput
-    sellMedicine?: SellMedicineUncheckedUpdateManyWithoutBranchNestedInput
-    birdSell?: BirdSellUncheckedUpdateManyWithoutBranchNestedInput
-    chicks?: ChicksUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type DepotUpsertWithoutFeedStockInput = {
@@ -48115,24 +59084,32 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     depotName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
     receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
     FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotUncheckedUpdateWithoutFeedStockInput = {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     depotName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
     receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
     FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUncheckedUpdateManyWithoutDepotNestedInput
   }
 
   export type FeedNameCategoryUpsertWithoutFeedStockInput = {
@@ -48150,46 +59127,564 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedNestedInput
     FeedSalesItem?: FeedSalesItemUpdateManyWithoutFeedNameCategoryNestedInput
+    RetunFeedItem?: RetunFeedItemUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutFeedNestedInput
+    AddStockItem?: AddStockItemUpdateManyWithoutFeedNestedInput
   }
 
   export type FeedNameCategoryUncheckedUpdateWithoutFeedStockInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedNestedInput
     FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    RetunFeedItem?: RetunFeedItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutFeedNestedInput
+    AddStockItem?: AddStockItemUncheckedUpdateManyWithoutFeedNestedInput
+  }
+
+  export type DepotCreateWithoutAddStockInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: Date | string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockCreateNestedManyWithoutDepotInput
+  }
+
+  export type DepotUncheckedCreateWithoutAddStockInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: Date | string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
+  }
+
+  export type DepotCreateOrConnectWithoutAddStockInput = {
+    where: DepotWhereUniqueInput
+    create: XOR<DepotCreateWithoutAddStockInput, DepotUncheckedCreateWithoutAddStockInput>
+  }
+
+  export type AddStockItemCreateWithoutAddStockInput = {
+    id?: string
+    quantity: number
+    unitPrice?: number
+    price: number
+    createAt: Date | string
+    updateAt?: Date | string
+    feed: FeedNameCategoryCreateNestedOneWithoutAddStockItemInput
+  }
+
+  export type AddStockItemUncheckedCreateWithoutAddStockInput = {
+    id?: string
+    feedName: string
+    quantity: number
+    unitPrice?: number
+    price: number
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type AddStockItemCreateOrConnectWithoutAddStockInput = {
+    where: AddStockItemWhereUniqueInput
+    create: XOR<AddStockItemCreateWithoutAddStockInput, AddStockItemUncheckedCreateWithoutAddStockInput>
+  }
+
+  export type AddStockItemCreateManyAddStockInputEnvelope = {
+    data: AddStockItemCreateManyAddStockInput | AddStockItemCreateManyAddStockInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DepotUpsertWithoutAddStockInput = {
+    update: XOR<DepotUpdateWithoutAddStockInput, DepotUncheckedUpdateWithoutAddStockInput>
+    create: XOR<DepotCreateWithoutAddStockInput, DepotUncheckedCreateWithoutAddStockInput>
+    where?: DepotWhereInput
+  }
+
+  export type DepotUpdateToOneWithWhereWithoutAddStockInput = {
+    where?: DepotWhereInput
+    data: XOR<DepotUpdateWithoutAddStockInput, DepotUncheckedUpdateWithoutAddStockInput>
+  }
+
+  export type DepotUpdateWithoutAddStockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutDepotNestedInput
+  }
+
+  export type DepotUncheckedUpdateWithoutAddStockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
+  }
+
+  export type AddStockItemUpsertWithWhereUniqueWithoutAddStockInput = {
+    where: AddStockItemWhereUniqueInput
+    update: XOR<AddStockItemUpdateWithoutAddStockInput, AddStockItemUncheckedUpdateWithoutAddStockInput>
+    create: XOR<AddStockItemCreateWithoutAddStockInput, AddStockItemUncheckedCreateWithoutAddStockInput>
+  }
+
+  export type AddStockItemUpdateWithWhereUniqueWithoutAddStockInput = {
+    where: AddStockItemWhereUniqueInput
+    data: XOR<AddStockItemUpdateWithoutAddStockInput, AddStockItemUncheckedUpdateWithoutAddStockInput>
+  }
+
+  export type AddStockItemUpdateManyWithWhereWithoutAddStockInput = {
+    where: AddStockItemScalarWhereInput
+    data: XOR<AddStockItemUpdateManyMutationInput, AddStockItemUncheckedUpdateManyWithoutAddStockInput>
+  }
+
+  export type FeedNameCategoryCreateWithoutAddStockItemInput = {
+    id?: string
+    feedName: string
+    feedCodeNumber: number
+    unitPrice: number
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: Date | string
+    transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedInput
+    FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutFeedNameCategoryInput
+    RetunFeedItem?: RetunFeedItemCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutFeedInput
+    FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
+  }
+
+  export type FeedNameCategoryUncheckedCreateWithoutAddStockItemInput = {
+    id?: string
+    feedName: string
+    feedCodeNumber: number
+    unitPrice: number
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: Date | string
+    transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedInput
+    FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    RetunFeedItem?: RetunFeedItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutFeedInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+  }
+
+  export type FeedNameCategoryCreateOrConnectWithoutAddStockItemInput = {
+    where: FeedNameCategoryWhereUniqueInput
+    create: XOR<FeedNameCategoryCreateWithoutAddStockItemInput, FeedNameCategoryUncheckedCreateWithoutAddStockItemInput>
+  }
+
+  export type AddStockCreateWithoutAddStockItemInput = {
+    id?: string
+    source?: $Enums.Source
+    status?: $Enums.DeliveryStatus
+    deliveryDate?: Date | string | null
+    quantity: number
+    price: number
+    createAt: Date | string
+    updateAt?: Date | string
+    depot: DepotCreateNestedOneWithoutAddStockInput
+  }
+
+  export type AddStockUncheckedCreateWithoutAddStockItemInput = {
+    id?: string
+    source?: $Enums.Source
+    depotName: string
+    status?: $Enums.DeliveryStatus
+    deliveryDate?: Date | string | null
+    quantity: number
+    price: number
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type AddStockCreateOrConnectWithoutAddStockItemInput = {
+    where: AddStockWhereUniqueInput
+    create: XOR<AddStockCreateWithoutAddStockItemInput, AddStockUncheckedCreateWithoutAddStockItemInput>
+  }
+
+  export type FeedNameCategoryUpsertWithoutAddStockItemInput = {
+    update: XOR<FeedNameCategoryUpdateWithoutAddStockItemInput, FeedNameCategoryUncheckedUpdateWithoutAddStockItemInput>
+    create: XOR<FeedNameCategoryCreateWithoutAddStockItemInput, FeedNameCategoryUncheckedCreateWithoutAddStockItemInput>
+    where?: FeedNameCategoryWhereInput
+  }
+
+  export type FeedNameCategoryUpdateToOneWithWhereWithoutAddStockItemInput = {
+    where?: FeedNameCategoryWhereInput
+    data: XOR<FeedNameCategoryUpdateWithoutAddStockItemInput, FeedNameCategoryUncheckedUpdateWithoutAddStockItemInput>
+  }
+
+  export type FeedNameCategoryUpdateWithoutAddStockItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedNestedInput
+    FeedSalesItem?: FeedSalesItemUpdateManyWithoutFeedNameCategoryNestedInput
+    RetunFeedItem?: RetunFeedItemUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutFeedNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
+  }
+
+  export type FeedNameCategoryUncheckedUpdateWithoutAddStockItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedNestedInput
+    FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    RetunFeedItem?: RetunFeedItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutFeedNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+  }
+
+  export type AddStockUpsertWithoutAddStockItemInput = {
+    update: XOR<AddStockUpdateWithoutAddStockItemInput, AddStockUncheckedUpdateWithoutAddStockItemInput>
+    create: XOR<AddStockCreateWithoutAddStockItemInput, AddStockUncheckedCreateWithoutAddStockItemInput>
+    where?: AddStockWhereInput
+  }
+
+  export type AddStockUpdateToOneWithWhereWithoutAddStockItemInput = {
+    where?: AddStockWhereInput
+    data: XOR<AddStockUpdateWithoutAddStockItemInput, AddStockUncheckedUpdateWithoutAddStockItemInput>
+  }
+
+  export type AddStockUpdateWithoutAddStockItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumSourceFieldUpdateOperationsInput | $Enums.Source
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depot?: DepotUpdateOneRequiredWithoutAddStockNestedInput
+  }
+
+  export type AddStockUncheckedUpdateWithoutAddStockItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumSourceFieldUpdateOperationsInput | $Enums.Source
+    depotName?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedNameCategoryCreateWithoutFeedStockHistoryInput = {
+    id?: string
+    feedName: string
+    feedCodeNumber: number
+    unitPrice: number
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: Date | string
+    transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedInput
+    FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutFeedNameCategoryInput
+    RetunFeedItem?: RetunFeedItemCreateNestedManyWithoutFeedNameCategoryInput
+    AddStockItem?: AddStockItemCreateNestedManyWithoutFeedInput
+    FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
+  }
+
+  export type FeedNameCategoryUncheckedCreateWithoutFeedStockHistoryInput = {
+    id?: string
+    feedName: string
+    feedCodeNumber: number
+    unitPrice: number
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: Date | string
+    transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedInput
+    FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    RetunFeedItem?: RetunFeedItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    AddStockItem?: AddStockItemUncheckedCreateNestedManyWithoutFeedInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+  }
+
+  export type FeedNameCategoryCreateOrConnectWithoutFeedStockHistoryInput = {
+    where: FeedNameCategoryWhereUniqueInput
+    create: XOR<FeedNameCategoryCreateWithoutFeedStockHistoryInput, FeedNameCategoryUncheckedCreateWithoutFeedStockHistoryInput>
+  }
+
+  export type DepotCreateWithoutFeedStockHistoryInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: Date | string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockCreateNestedManyWithoutDepotInput
+  }
+
+  export type DepotUncheckedCreateWithoutFeedStockHistoryInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: Date | string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockUncheckedCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
+  }
+
+  export type DepotCreateOrConnectWithoutFeedStockHistoryInput = {
+    where: DepotWhereUniqueInput
+    create: XOR<DepotCreateWithoutFeedStockHistoryInput, DepotUncheckedCreateWithoutFeedStockHistoryInput>
+  }
+
+  export type FeedNameCategoryUpsertWithoutFeedStockHistoryInput = {
+    update: XOR<FeedNameCategoryUpdateWithoutFeedStockHistoryInput, FeedNameCategoryUncheckedUpdateWithoutFeedStockHistoryInput>
+    create: XOR<FeedNameCategoryCreateWithoutFeedStockHistoryInput, FeedNameCategoryUncheckedCreateWithoutFeedStockHistoryInput>
+    where?: FeedNameCategoryWhereInput
+  }
+
+  export type FeedNameCategoryUpdateToOneWithWhereWithoutFeedStockHistoryInput = {
+    where?: FeedNameCategoryWhereInput
+    data: XOR<FeedNameCategoryUpdateWithoutFeedStockHistoryInput, FeedNameCategoryUncheckedUpdateWithoutFeedStockHistoryInput>
+  }
+
+  export type FeedNameCategoryUpdateWithoutFeedStockHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedNestedInput
+    FeedSalesItem?: FeedSalesItemUpdateManyWithoutFeedNameCategoryNestedInput
+    RetunFeedItem?: RetunFeedItemUpdateManyWithoutFeedNameCategoryNestedInput
+    AddStockItem?: AddStockItemUpdateManyWithoutFeedNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
+  }
+
+  export type FeedNameCategoryUncheckedUpdateWithoutFeedStockHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedNestedInput
+    FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    RetunFeedItem?: RetunFeedItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    AddStockItem?: AddStockItemUncheckedUpdateManyWithoutFeedNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+  }
+
+  export type DepotUpsertWithoutFeedStockHistoryInput = {
+    update: XOR<DepotUpdateWithoutFeedStockHistoryInput, DepotUncheckedUpdateWithoutFeedStockHistoryInput>
+    create: XOR<DepotCreateWithoutFeedStockHistoryInput, DepotUncheckedCreateWithoutFeedStockHistoryInput>
+    where?: DepotWhereInput
+  }
+
+  export type DepotUpdateToOneWithWhereWithoutFeedStockHistoryInput = {
+    where?: DepotWhereInput
+    data: XOR<DepotUpdateWithoutFeedStockHistoryInput, DepotUncheckedUpdateWithoutFeedStockHistoryInput>
+  }
+
+  export type DepotUpdateWithoutFeedStockHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutDepotNestedInput
+  }
+
+  export type DepotUncheckedUpdateWithoutFeedStockHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
+  }
+
+  export type DepotCreateWithoutFeedTransActionHeaderInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: Date | string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockCreateNestedManyWithoutDepotInput
+  }
+
+  export type DepotUncheckedCreateWithoutFeedTransActionHeaderInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: Date | string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockUncheckedCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
+  }
+
+  export type DepotCreateOrConnectWithoutFeedTransActionHeaderInput = {
+    where: DepotWhereUniqueInput
+    create: XOR<DepotCreateWithoutFeedTransActionHeaderInput, DepotUncheckedCreateWithoutFeedTransActionHeaderInput>
+  }
+
+  export type DepotUpsertWithoutFeedTransActionHeaderInput = {
+    update: XOR<DepotUpdateWithoutFeedTransActionHeaderInput, DepotUncheckedUpdateWithoutFeedTransActionHeaderInput>
+    create: XOR<DepotCreateWithoutFeedTransActionHeaderInput, DepotUncheckedCreateWithoutFeedTransActionHeaderInput>
+    where?: DepotWhereInput
+  }
+
+  export type DepotUpdateToOneWithWhereWithoutFeedTransActionHeaderInput = {
+    where?: DepotWhereInput
+    data: XOR<DepotUpdateWithoutFeedTransActionHeaderInput, DepotUncheckedUpdateWithoutFeedTransActionHeaderInput>
+  }
+
+  export type DepotUpdateWithoutFeedTransActionHeaderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutDepotNestedInput
+  }
+
+  export type DepotUncheckedUpdateWithoutFeedTransActionHeaderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotCreateWithoutSentTransfersInput = {
     id?: string
     locationName: string
     depotName: string
-    createDate: string
+    createDate: Date | string
     createAt?: Date | string | null
     updateAt?: Date | string
-    feedStock?: FeedStockCreateNestedManyWithoutDepotInput
     receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
     FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockCreateNestedManyWithoutDepotInput
   }
 
   export type DepotUncheckedCreateWithoutSentTransfersInput = {
     id?: string
     locationName: string
     depotName: string
-    createDate: string
+    createDate: Date | string
     createAt?: Date | string | null
     updateAt?: Date | string
-    feedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
     receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
     FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockUncheckedCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
   }
 
   export type DepotCreateOrConnectWithoutSentTransfersInput = {
@@ -48201,24 +59696,32 @@ export namespace Prisma {
     id?: string
     locationName: string
     depotName: string
-    createDate: string
+    createDate: Date | string
     createAt?: Date | string | null
     updateAt?: Date | string
-    feedStock?: FeedStockCreateNestedManyWithoutDepotInput
     sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
     FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockCreateNestedManyWithoutDepotInput
   }
 
   export type DepotUncheckedCreateWithoutReceivedTransfersInput = {
     id?: string
     locationName: string
     depotName: string
-    createDate: string
+    createDate: Date | string
     createAt?: Date | string | null
     updateAt?: Date | string
-    feedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
     sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
     FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutDepotInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockUncheckedCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
   }
 
   export type DepotCreateOrConnectWithoutReceivedTransfersInput = {
@@ -48228,9 +59731,11 @@ export namespace Prisma {
 
   export type TransferFeedItemCreateWithoutFeedStckTranferInput = {
     id?: string
-    createDate: string
-    quntity: string
+    createDate: Date | string
+    quantity: number
     price?: number
+    unitPrice?: number
+    status?: $Enums.DeliveryStatus
     createdAt?: Date | string
     updateAt?: Date | string
     feed: FeedNameCategoryCreateNestedOneWithoutTransferFeedItemInput
@@ -48239,9 +59744,11 @@ export namespace Prisma {
   export type TransferFeedItemUncheckedCreateWithoutFeedStckTranferInput = {
     id?: string
     feedName: string
-    createDate: string
-    quntity: string
+    createDate: Date | string
+    quantity: number
     price?: number
+    unitPrice?: number
+    status?: $Enums.DeliveryStatus
     createdAt?: Date | string
     updateAt?: Date | string
   }
@@ -48271,24 +59778,32 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     depotName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    feedStock?: FeedStockUpdateManyWithoutDepotNestedInput
     receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
     FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotUncheckedUpdateWithoutSentTransfersInput = {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     depotName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    feedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
     receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
     FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotUpsertWithoutReceivedTransfersInput = {
@@ -48306,24 +59821,32 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     depotName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    feedStock?: FeedStockUpdateManyWithoutDepotNestedInput
     sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
     FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotUncheckedUpdateWithoutReceivedTransfersInput = {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     depotName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    feedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
     sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
     FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutDepotNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
   }
 
   export type TransferFeedItemUpsertWithWhereUniqueWithoutFeedStckTranferInput = {
@@ -48346,22 +59869,30 @@ export namespace Prisma {
     id?: string
     feedName: string
     feedCodeNumber: number
+    unitPrice: number
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
-    FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
+    createDate: Date | string
     FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutFeedNameCategoryInput
+    RetunFeedItem?: RetunFeedItemCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutFeedInput
+    AddStockItem?: AddStockItemCreateNestedManyWithoutFeedInput
+    FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
   }
 
   export type FeedNameCategoryUncheckedCreateWithoutTransferFeedItemInput = {
     id?: string
     feedName: string
     feedCodeNumber: number
+    unitPrice: number
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    createDate: Date | string
     FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    RetunFeedItem?: RetunFeedItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutFeedInput
+    AddStockItem?: AddStockItemUncheckedCreateNestedManyWithoutFeedInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
   }
 
   export type FeedNameCategoryCreateOrConnectWithoutTransferFeedItemInput = {
@@ -48371,14 +59902,13 @@ export namespace Prisma {
 
   export type FeedStockTransferCreateWithoutTransferFeedItemInput = {
     id?: string
-    transerFerDate: string
-    totalKg?: number
+    totalQuantity?: number
     totalPrice?: number
-    createDate: string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
     trnasferBill: string
-    createAt?: Date | string | null
+    createAt: Date | string
     updateAt?: Date | string
-    depotId?: string | null
     transferDepot: DepotCreateNestedOneWithoutSentTransfersInput
     reciveDepot: DepotCreateNestedOneWithoutReceivedTransfersInput
   }
@@ -48387,14 +59917,13 @@ export namespace Prisma {
     id?: string
     fromDepot: string
     toDepot: string
-    transerFerDate: string
-    totalKg?: number
+    totalQuantity?: number
     totalPrice?: number
-    createDate: string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
     trnasferBill: string
-    createAt?: Date | string | null
+    createAt: Date | string
     updateAt?: Date | string
-    depotId?: string | null
   }
 
   export type FeedStockTransferCreateOrConnectWithoutTransferFeedItemInput = {
@@ -48417,22 +59946,30 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     FeedSalesItem?: FeedSalesItemUpdateManyWithoutFeedNameCategoryNestedInput
+    RetunFeedItem?: RetunFeedItemUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutFeedNestedInput
+    AddStockItem?: AddStockItemUpdateManyWithoutFeedNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
   }
 
   export type FeedNameCategoryUncheckedUpdateWithoutTransferFeedItemInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    RetunFeedItem?: RetunFeedItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutFeedNestedInput
+    AddStockItem?: AddStockItemUncheckedUpdateManyWithoutFeedNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
   }
 
   export type FeedStockTransferUpsertWithoutTransferFeedItemInput = {
@@ -48448,14 +59985,13 @@ export namespace Prisma {
 
   export type FeedStockTransferUpdateWithoutTransferFeedItemInput = {
     id?: StringFieldUpdateOperationsInput | string
-    transerFerDate?: StringFieldUpdateOperationsInput | string
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     totalPrice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     trnasferBill?: StringFieldUpdateOperationsInput | string
-    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depotId?: NullableStringFieldUpdateOperationsInput | string | null
     transferDepot?: DepotUpdateOneRequiredWithoutSentTransfersNestedInput
     reciveDepot?: DepotUpdateOneRequiredWithoutReceivedTransfersNestedInput
   }
@@ -48464,38 +60000,45 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fromDepot?: StringFieldUpdateOperationsInput | string
     toDepot?: StringFieldUpdateOperationsInput | string
-    transerFerDate?: StringFieldUpdateOperationsInput | string
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     totalPrice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     trnasferBill?: StringFieldUpdateOperationsInput | string
-    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depotId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DepotCreateWithoutFeedSalesOrderInput = {
     id?: string
     locationName: string
     depotName: string
-    createDate: string
+    createDate: Date | string
     createAt?: Date | string | null
     updateAt?: Date | string
-    feedStock?: FeedStockCreateNestedManyWithoutDepotInput
     sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
     receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockCreateNestedManyWithoutDepotInput
   }
 
   export type DepotUncheckedCreateWithoutFeedSalesOrderInput = {
     id?: string
     locationName: string
     depotName: string
-    createDate: string
+    createDate: Date | string
     createAt?: Date | string | null
     updateAt?: Date | string
-    feedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
     sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
     receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockUncheckedCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
   }
 
   export type DepotCreateOrConnectWithoutFeedSalesOrderInput = {
@@ -48503,12 +60046,73 @@ export namespace Prisma {
     create: XOR<DepotCreateWithoutFeedSalesOrderInput, DepotUncheckedCreateWithoutFeedSalesOrderInput>
   }
 
+  export type FlockCreateWithoutFeedSalesOrderInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    branch: BranchCreateNestedOneWithoutFlocksInput
+    employee: EmployeeCreateNestedOneWithoutFlocksInput
+    farmer: FarmerCreateNestedOneWithoutFlocksInput
+    flockReport?: FlockReportCreateNestedManyWithoutFlockInput
+    medicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
+    sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    chicks?: ChicksCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockUncheckedCreateWithoutFeedSalesOrderInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    executiveId: string
+    farmId: string
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    branchCode: string
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    flockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
+    medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
+    sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockCreateOrConnectWithoutFeedSalesOrderInput = {
+    where: FlockWhereUniqueInput
+    create: XOR<FlockCreateWithoutFeedSalesOrderInput, FlockUncheckedCreateWithoutFeedSalesOrderInput>
+  }
+
   export type FeedSalesItemCreateWithoutSalesOrderInput = {
     id?: string
     quantity: number
-    createDate: string
-    totalPice: number
-    createdAt?: Date | string
+    unitPrice?: number
+    price: number
+    createdAt: Date | string
     updatedAt?: Date | string
     feedNameCategory: FeedNameCategoryCreateNestedOneWithoutFeedSalesItemInput
   }
@@ -48517,9 +60121,9 @@ export namespace Prisma {
     id?: string
     feedName: string
     quantity: number
-    createDate: string
-    totalPice: number
-    createdAt?: Date | string
+    unitPrice?: number
+    price: number
+    createdAt: Date | string
     updatedAt?: Date | string
   }
 
@@ -48548,24 +60152,99 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     depotName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    feedStock?: FeedStockUpdateManyWithoutDepotNestedInput
     sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
     receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutDepotNestedInput
   }
 
   export type DepotUncheckedUpdateWithoutFeedSalesOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
     locationName?: StringFieldUpdateOperationsInput | string
     depotName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    feedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
     sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
     receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
+  }
+
+  export type FlockUpsertWithoutFeedSalesOrderInput = {
+    update: XOR<FlockUpdateWithoutFeedSalesOrderInput, FlockUncheckedUpdateWithoutFeedSalesOrderInput>
+    create: XOR<FlockCreateWithoutFeedSalesOrderInput, FlockUncheckedCreateWithoutFeedSalesOrderInput>
+    where?: FlockWhereInput
+  }
+
+  export type FlockUpdateToOneWithWhereWithoutFeedSalesOrderInput = {
+    where?: FlockWhereInput
+    data: XOR<FlockUpdateWithoutFeedSalesOrderInput, FlockUncheckedUpdateWithoutFeedSalesOrderInput>
+  }
+
+  export type FlockUpdateWithoutFeedSalesOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
+    employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
+    flockReport?: FlockReportUpdateManyWithoutFlockNestedInput
+    medicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
+    sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FlockUncheckedUpdateWithoutFeedSalesOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    executiveId?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    branchCode?: StringFieldUpdateOperationsInput | string
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
+    medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+    sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FeedSalesItemUpsertWithWhereUniqueWithoutSalesOrderInput = {
@@ -48590,16 +60269,16 @@ export namespace Prisma {
     saleInvoice: string
     farmNumber: number
     flockNumber: number
-    createDate: string
+    deliveryDate?: Date | string | null
     farmId: string
-    flockId: string
     totalPrice?: number
-    totalKg?: number
+    totalQuantity?: number
     description?: string | null
     status?: $Enums.DeliveryStatus
-    createdAt?: Date | string | null
+    createdAt: Date | string
     updateAt?: Date | string
     depot: DepotCreateNestedOneWithoutFeedSalesOrderInput
+    flock: FlockCreateNestedOneWithoutFeedSalesOrderInput
   }
 
   export type FeedSalesOrderUncheckedCreateWithoutFeedSalesItemInput = {
@@ -48609,14 +60288,14 @@ export namespace Prisma {
     saleInvoice: string
     farmNumber: number
     flockNumber: number
-    createDate: string
+    deliveryDate?: Date | string | null
     farmId: string
     flockId: string
     totalPrice?: number
-    totalKg?: number
+    totalQuantity?: number
     description?: string | null
     status?: $Enums.DeliveryStatus
-    createdAt?: Date | string | null
+    createdAt: Date | string
     updateAt?: Date | string
   }
 
@@ -48629,22 +60308,30 @@ export namespace Prisma {
     id?: string
     feedName: string
     feedCodeNumber: number
+    unitPrice: number
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
-    FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
+    createDate: Date | string
     transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedInput
+    RetunFeedItem?: RetunFeedItemCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutFeedInput
+    AddStockItem?: AddStockItemCreateNestedManyWithoutFeedInput
+    FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
   }
 
   export type FeedNameCategoryUncheckedCreateWithoutFeedSalesItemInput = {
     id?: string
     feedName: string
     feedCodeNumber: number
+    unitPrice: number
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    createDate: Date | string
     transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedInput
+    RetunFeedItem?: RetunFeedItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutFeedInput
+    AddStockItem?: AddStockItemUncheckedCreateNestedManyWithoutFeedInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
   }
 
   export type FeedNameCategoryCreateOrConnectWithoutFeedSalesItemInput = {
@@ -48669,16 +60356,16 @@ export namespace Prisma {
     saleInvoice?: StringFieldUpdateOperationsInput | string
     farmNumber?: IntFieldUpdateOperationsInput | number
     flockNumber?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     farmId?: StringFieldUpdateOperationsInput | string
-    flockId?: StringFieldUpdateOperationsInput | string
     totalPrice?: IntFieldUpdateOperationsInput | number
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     depot?: DepotUpdateOneRequiredWithoutFeedSalesOrderNestedInput
+    flock?: FlockUpdateOneRequiredWithoutFeedSalesOrderNestedInput
   }
 
   export type FeedSalesOrderUncheckedUpdateWithoutFeedSalesItemInput = {
@@ -48688,14 +60375,14 @@ export namespace Prisma {
     saleInvoice?: StringFieldUpdateOperationsInput | string
     farmNumber?: IntFieldUpdateOperationsInput | number
     flockNumber?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     farmId?: StringFieldUpdateOperationsInput | string
     flockId?: StringFieldUpdateOperationsInput | string
     totalPrice?: IntFieldUpdateOperationsInput | number
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -48714,22 +60401,544 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedNestedInput
+    RetunFeedItem?: RetunFeedItemUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutFeedNestedInput
+    AddStockItem?: AddStockItemUpdateManyWithoutFeedNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
   }
 
   export type FeedNameCategoryUncheckedUpdateWithoutFeedSalesItemInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedNestedInput
+    RetunFeedItem?: RetunFeedItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutFeedNestedInput
+    AddStockItem?: AddStockItemUncheckedUpdateManyWithoutFeedNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+  }
+
+  export type FlockCreateWithoutFeedRetunInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    branch: BranchCreateNestedOneWithoutFlocksInput
+    employee: EmployeeCreateNestedOneWithoutFlocksInput
+    farmer: FarmerCreateNestedOneWithoutFlocksInput
+    flockReport?: FlockReportCreateNestedManyWithoutFlockInput
+    medicineTransfer?: MedicineTransferCreateNestedManyWithoutFlockInput
+    sellMedicine?: SellMedicineCreateNestedManyWithoutFlockInput
+    chicks?: ChicksCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockUncheckedCreateWithoutFeedRetunInput = {
+    id?: string
+    flockNumber: number
+    flockStatus?: $Enums.FlockStatus
+    startDate: Date | string
+    endDate?: Date | string | null
+    executiveId: string
+    farmId: string
+    docName: string
+    docQuantity?: number
+    approvedBy?: string | null
+    branchCode: string
+    totalFeedKg?: number
+    totalMedicine?: number
+    fcr?: number
+    totalSellBirds?: number
+    mortality?: number
+    createdAt: Date | string
+    updatedAt?: Date | string
+    flockReport?: FlockReportUncheckedCreateNestedManyWithoutFlockInput
+    medicineTransfer?: MedicineTransferUncheckedCreateNestedManyWithoutFlockInput
+    sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFlockInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
+    FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutFlockInput
+  }
+
+  export type FlockCreateOrConnectWithoutFeedRetunInput = {
+    where: FlockWhereUniqueInput
+    create: XOR<FlockCreateWithoutFeedRetunInput, FlockUncheckedCreateWithoutFeedRetunInput>
+  }
+
+  export type FarmerCreateWithoutFeedRetunInput = {
+    id?: string
+    farmCode: number
+    name: string
+    farmType: $Enums.Custtype
+    totalShed: number
+    totalSquare: number
+    phoneNumber: string
+    capacity: number
+    nid: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: Date | string
+    address?: AddressCreateNestedOneWithoutFarmerInput
+    branch?: BranchCreateNestedOneWithoutFarmerInput
+    flocks?: FlockCreateNestedManyWithoutFarmerInput
+    flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
+    sellMedicine?: SellMedicineCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellCreateNestedManyWithoutFarmInput
+  }
+
+  export type FarmerUncheckedCreateWithoutFeedRetunInput = {
+    id?: string
+    branchCode?: string | null
+    farmCode: number
+    name: string
+    farmType: $Enums.Custtype
+    totalShed: number
+    totalSquare: number
+    phoneNumber: string
+    capacity: number
+    addressId?: string | null
+    nid: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: Date | string
+    flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
+    flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
+    sellMedicine?: SellMedicineUncheckedCreateNestedManyWithoutFarmerInput
+    chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
+    birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
+  }
+
+  export type FarmerCreateOrConnectWithoutFeedRetunInput = {
+    where: FarmerWhereUniqueInput
+    create: XOR<FarmerCreateWithoutFeedRetunInput, FarmerUncheckedCreateWithoutFeedRetunInput>
+  }
+
+  export type DepotCreateWithoutFeedRetunInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: Date | string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    sentTransfers?: FeedStockTransferCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockCreateNestedManyWithoutDepotInput
+  }
+
+  export type DepotUncheckedCreateWithoutFeedRetunInput = {
+    id?: string
+    locationName: string
+    depotName: string
+    createDate: Date | string
+    createAt?: Date | string | null
+    updateAt?: Date | string
+    sentTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutTransferDepotInput
+    receivedTransfers?: FeedStockTransferUncheckedCreateNestedManyWithoutReciveDepotInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutDepotInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutDepotInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedCreateNestedManyWithoutDepotInput
+    AddStock?: AddStockUncheckedCreateNestedManyWithoutDepotInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutDepotInput
+  }
+
+  export type DepotCreateOrConnectWithoutFeedRetunInput = {
+    where: DepotWhereUniqueInput
+    create: XOR<DepotCreateWithoutFeedRetunInput, DepotUncheckedCreateWithoutFeedRetunInput>
+  }
+
+  export type RetunFeedItemCreateWithoutFeedRetunInput = {
+    id?: string
+    quantity: number
+    price: number
+    unitPrice?: number
+    createAt?: Date | string
+    updateAt?: Date | string
+    feedNameCategory: FeedNameCategoryCreateNestedOneWithoutRetunFeedItemInput
+  }
+
+  export type RetunFeedItemUncheckedCreateWithoutFeedRetunInput = {
+    id?: string
+    feedName: string
+    quantity: number
+    price: number
+    unitPrice?: number
+    createAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type RetunFeedItemCreateOrConnectWithoutFeedRetunInput = {
+    where: RetunFeedItemWhereUniqueInput
+    create: XOR<RetunFeedItemCreateWithoutFeedRetunInput, RetunFeedItemUncheckedCreateWithoutFeedRetunInput>
+  }
+
+  export type RetunFeedItemCreateManyFeedRetunInputEnvelope = {
+    data: RetunFeedItemCreateManyFeedRetunInput | RetunFeedItemCreateManyFeedRetunInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FlockUpsertWithoutFeedRetunInput = {
+    update: XOR<FlockUpdateWithoutFeedRetunInput, FlockUncheckedUpdateWithoutFeedRetunInput>
+    create: XOR<FlockCreateWithoutFeedRetunInput, FlockUncheckedCreateWithoutFeedRetunInput>
+    where?: FlockWhereInput
+  }
+
+  export type FlockUpdateToOneWithWhereWithoutFeedRetunInput = {
+    where?: FlockWhereInput
+    data: XOR<FlockUpdateWithoutFeedRetunInput, FlockUncheckedUpdateWithoutFeedRetunInput>
+  }
+
+  export type FlockUpdateWithoutFeedRetunInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: BranchUpdateOneRequiredWithoutFlocksNestedInput
+    employee?: EmployeeUpdateOneRequiredWithoutFlocksNestedInput
+    farmer?: FarmerUpdateOneRequiredWithoutFlocksNestedInput
+    flockReport?: FlockReportUpdateManyWithoutFlockNestedInput
+    medicineTransfer?: MedicineTransferUpdateManyWithoutFlockNestedInput
+    sellMedicine?: SellMedicineUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FlockUncheckedUpdateWithoutFeedRetunInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    flockStatus?: EnumFlockStatusFieldUpdateOperationsInput | $Enums.FlockStatus
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    executiveId?: StringFieldUpdateOperationsInput | string
+    farmId?: StringFieldUpdateOperationsInput | string
+    docName?: StringFieldUpdateOperationsInput | string
+    docQuantity?: IntFieldUpdateOperationsInput | number
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    branchCode?: StringFieldUpdateOperationsInput | string
+    totalFeedKg?: IntFieldUpdateOperationsInput | number
+    totalMedicine?: IntFieldUpdateOperationsInput | number
+    fcr?: FloatFieldUpdateOperationsInput | number
+    totalSellBirds?: IntFieldUpdateOperationsInput | number
+    mortality?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flockReport?: FlockReportUncheckedUpdateManyWithoutFlockNestedInput
+    medicineTransfer?: MedicineTransferUncheckedUpdateManyWithoutFlockNestedInput
+    sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFlockNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
+    FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutFlockNestedInput
+  }
+
+  export type FarmerUpsertWithoutFeedRetunInput = {
+    update: XOR<FarmerUpdateWithoutFeedRetunInput, FarmerUncheckedUpdateWithoutFeedRetunInput>
+    create: XOR<FarmerCreateWithoutFeedRetunInput, FarmerUncheckedCreateWithoutFeedRetunInput>
+    where?: FarmerWhereInput
+  }
+
+  export type FarmerUpdateToOneWithWhereWithoutFeedRetunInput = {
+    where?: FarmerWhereInput
+    data: XOR<FarmerUpdateWithoutFeedRetunInput, FarmerUncheckedUpdateWithoutFeedRetunInput>
+  }
+
+  export type FarmerUpdateWithoutFeedRetunInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
+    totalShed?: IntFieldUpdateOperationsInput | number
+    totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    nid?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: AddressUpdateOneWithoutFarmerNestedInput
+    branch?: BranchUpdateOneWithoutFarmerNestedInput
+    flocks?: FlockUpdateManyWithoutFarmerNestedInput
+    flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
+    sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
+  }
+
+  export type FarmerUncheckedUpdateWithoutFeedRetunInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: NullableStringFieldUpdateOperationsInput | string | null
+    farmCode?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    farmType?: EnumCusttypeFieldUpdateOperationsInput | $Enums.Custtype
+    totalShed?: IntFieldUpdateOperationsInput | number
+    totalSquare?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    addressId?: NullableStringFieldUpdateOperationsInput | string | null
+    nid?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
+    flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
+    sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
+    chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
+    birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
+  }
+
+  export type DepotUpsertWithoutFeedRetunInput = {
+    update: XOR<DepotUpdateWithoutFeedRetunInput, DepotUncheckedUpdateWithoutFeedRetunInput>
+    create: XOR<DepotCreateWithoutFeedRetunInput, DepotUncheckedCreateWithoutFeedRetunInput>
+    where?: DepotWhereInput
+  }
+
+  export type DepotUpdateToOneWithWhereWithoutFeedRetunInput = {
+    where?: DepotWhereInput
+    data: XOR<DepotUpdateWithoutFeedRetunInput, DepotUncheckedUpdateWithoutFeedRetunInput>
+  }
+
+  export type DepotUpdateWithoutFeedRetunInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sentTransfers?: FeedStockTransferUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutDepotNestedInput
+  }
+
+  export type DepotUncheckedUpdateWithoutFeedRetunInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locationName?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sentTransfers?: FeedStockTransferUncheckedUpdateManyWithoutTransferDepotNestedInput
+    receivedTransfers?: FeedStockTransferUncheckedUpdateManyWithoutReciveDepotNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutDepotNestedInput
+    feedTransActionHeader?: feedTransActionHeaderUncheckedUpdateManyWithoutDepotNestedInput
+    AddStock?: AddStockUncheckedUpdateManyWithoutDepotNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutDepotNestedInput
+  }
+
+  export type RetunFeedItemUpsertWithWhereUniqueWithoutFeedRetunInput = {
+    where: RetunFeedItemWhereUniqueInput
+    update: XOR<RetunFeedItemUpdateWithoutFeedRetunInput, RetunFeedItemUncheckedUpdateWithoutFeedRetunInput>
+    create: XOR<RetunFeedItemCreateWithoutFeedRetunInput, RetunFeedItemUncheckedCreateWithoutFeedRetunInput>
+  }
+
+  export type RetunFeedItemUpdateWithWhereUniqueWithoutFeedRetunInput = {
+    where: RetunFeedItemWhereUniqueInput
+    data: XOR<RetunFeedItemUpdateWithoutFeedRetunInput, RetunFeedItemUncheckedUpdateWithoutFeedRetunInput>
+  }
+
+  export type RetunFeedItemUpdateManyWithWhereWithoutFeedRetunInput = {
+    where: RetunFeedItemScalarWhereInput
+    data: XOR<RetunFeedItemUpdateManyMutationInput, RetunFeedItemUncheckedUpdateManyWithoutFeedRetunInput>
+  }
+
+  export type FeedRetunCreateWithoutRetunFeedItemInput = {
+    id?: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
+    createAt?: Date | string
+    updateAt?: Date | string
+    flock: FlockCreateNestedOneWithoutFeedRetunInput
+    farm: FarmerCreateNestedOneWithoutFeedRetunInput
+    depot: DepotCreateNestedOneWithoutFeedRetunInput
+  }
+
+  export type FeedRetunUncheckedCreateWithoutRetunFeedItemInput = {
+    id?: string
+    flockId: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    farmId: string
+    status?: $Enums.DeliveryStatus
+    depotName: string
+    createAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type FeedRetunCreateOrConnectWithoutRetunFeedItemInput = {
+    where: FeedRetunWhereUniqueInput
+    create: XOR<FeedRetunCreateWithoutRetunFeedItemInput, FeedRetunUncheckedCreateWithoutRetunFeedItemInput>
+  }
+
+  export type FeedNameCategoryCreateWithoutRetunFeedItemInput = {
+    id?: string
+    feedName: string
+    feedCodeNumber: number
+    unitPrice: number
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: Date | string
+    transferFeedItem?: TransferFeedItemCreateNestedManyWithoutFeedInput
+    FeedSalesItem?: FeedSalesItemCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStockHistory?: FeedStockHistoryCreateNestedManyWithoutFeedInput
+    AddStockItem?: AddStockItemCreateNestedManyWithoutFeedInput
+    FeedStock?: FeedStockCreateNestedManyWithoutFeedNameCategoryInput
+  }
+
+  export type FeedNameCategoryUncheckedCreateWithoutRetunFeedItemInput = {
+    id?: string
+    feedName: string
+    feedCodeNumber: number
+    unitPrice: number
+    createdAt?: Date | string | null
+    updatedAt?: Date | string
+    createDate: Date | string
+    transferFeedItem?: TransferFeedItemUncheckedCreateNestedManyWithoutFeedInput
+    FeedSalesItem?: FeedSalesItemUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+    FeedStockHistory?: FeedStockHistoryUncheckedCreateNestedManyWithoutFeedInput
+    AddStockItem?: AddStockItemUncheckedCreateNestedManyWithoutFeedInput
+    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutFeedNameCategoryInput
+  }
+
+  export type FeedNameCategoryCreateOrConnectWithoutRetunFeedItemInput = {
+    where: FeedNameCategoryWhereUniqueInput
+    create: XOR<FeedNameCategoryCreateWithoutRetunFeedItemInput, FeedNameCategoryUncheckedCreateWithoutRetunFeedItemInput>
+  }
+
+  export type FeedRetunUpsertWithoutRetunFeedItemInput = {
+    update: XOR<FeedRetunUpdateWithoutRetunFeedItemInput, FeedRetunUncheckedUpdateWithoutRetunFeedItemInput>
+    create: XOR<FeedRetunCreateWithoutRetunFeedItemInput, FeedRetunUncheckedCreateWithoutRetunFeedItemInput>
+    where?: FeedRetunWhereInput
+  }
+
+  export type FeedRetunUpdateToOneWithWhereWithoutRetunFeedItemInput = {
+    where?: FeedRetunWhereInput
+    data: XOR<FeedRetunUpdateWithoutRetunFeedItemInput, FeedRetunUncheckedUpdateWithoutRetunFeedItemInput>
+  }
+
+  export type FeedRetunUpdateWithoutRetunFeedItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flock?: FlockUpdateOneRequiredWithoutFeedRetunNestedInput
+    farm?: FarmerUpdateOneRequiredWithoutFeedRetunNestedInput
+    depot?: DepotUpdateOneRequiredWithoutFeedRetunNestedInput
+  }
+
+  export type FeedRetunUncheckedUpdateWithoutRetunFeedItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    farmId?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    depotName?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedNameCategoryUpsertWithoutRetunFeedItemInput = {
+    update: XOR<FeedNameCategoryUpdateWithoutRetunFeedItemInput, FeedNameCategoryUncheckedUpdateWithoutRetunFeedItemInput>
+    create: XOR<FeedNameCategoryCreateWithoutRetunFeedItemInput, FeedNameCategoryUncheckedCreateWithoutRetunFeedItemInput>
+    where?: FeedNameCategoryWhereInput
+  }
+
+  export type FeedNameCategoryUpdateToOneWithWhereWithoutRetunFeedItemInput = {
+    where?: FeedNameCategoryWhereInput
+    data: XOR<FeedNameCategoryUpdateWithoutRetunFeedItemInput, FeedNameCategoryUncheckedUpdateWithoutRetunFeedItemInput>
+  }
+
+  export type FeedNameCategoryUpdateWithoutRetunFeedItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedNestedInput
+    FeedSalesItem?: FeedSalesItemUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStockHistory?: FeedStockHistoryUpdateManyWithoutFeedNestedInput
+    AddStockItem?: AddStockItemUpdateManyWithoutFeedNestedInput
+    FeedStock?: FeedStockUpdateManyWithoutFeedNameCategoryNestedInput
+  }
+
+  export type FeedNameCategoryUncheckedUpdateWithoutRetunFeedItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    feedCodeNumber?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedNestedInput
+    FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
+    FeedStockHistory?: FeedStockHistoryUncheckedUpdateManyWithoutFeedNestedInput
+    AddStockItem?: AddStockItemUncheckedUpdateManyWithoutFeedNestedInput
+    FeedStock?: FeedStockUncheckedUpdateManyWithoutFeedNameCategoryNestedInput
   }
 
   export type MedicineNameAddCreateWithoutMedicineCategoryInput = {
@@ -49064,7 +61273,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
     farmer?: FarmerCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockCreateNestedManyWithoutBranchInput
@@ -49084,7 +61292,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     medicineStock?: MedicineStockUncheckedCreateNestedManyWithoutBranchInput
@@ -49168,7 +61375,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUpdateManyWithoutBranchNestedInput
@@ -49188,7 +61394,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     medicineStock?: MedicineStockUncheckedUpdateManyWithoutBranchNestedInput
@@ -49268,7 +61473,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
     farmer?: FarmerCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
@@ -49288,7 +61492,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
@@ -49372,7 +61575,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
@@ -49392,7 +61594,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
@@ -49566,7 +61767,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
     farmer?: FarmerCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
@@ -49586,7 +61786,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
@@ -49613,13 +61812,14 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     address?: AddressCreateNestedOneWithoutFarmerInput
     branch?: BranchCreateNestedOneWithoutFarmerInput
     flocks?: FlockCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportCreateNestedManyWithoutFarmerInput
     chicks?: ChicksCreateNestedManyWithoutFarmInput
     birdSell?: BirdSellCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerUncheckedCreateWithoutSellMedicineInput = {
@@ -49636,11 +61836,12 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
+    createDate: Date | string
     flocks?: FlockUncheckedCreateNestedManyWithoutFarmerInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutFarmerInput
     chicks?: ChicksUncheckedCreateNestedManyWithoutFarmInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFarmInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFarmInput
   }
 
   export type FarmerCreateOrConnectWithoutSellMedicineInput = {
@@ -49672,6 +61873,8 @@ export namespace Prisma {
     chicks?: ChicksCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutSellMedicineInput = {
@@ -49698,6 +61901,8 @@ export namespace Prisma {
     chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutSellMedicineInput = {
@@ -49752,7 +61957,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
@@ -49772,7 +61976,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
@@ -49805,13 +62008,14 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: AddressUpdateOneWithoutFarmerNestedInput
     branch?: BranchUpdateOneWithoutFarmerNestedInput
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUpdateManyWithoutFarmNestedInput
     birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutSellMedicineInput = {
@@ -49828,11 +62032,12 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type FlockUpsertWithoutSellMedicineInput = {
@@ -49870,6 +62075,8 @@ export namespace Prisma {
     chicks?: ChicksUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutSellMedicineInput = {
@@ -49896,6 +62103,8 @@ export namespace Prisma {
     chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type BranchCreateWithoutMedicineTransferInput = {
@@ -49908,7 +62117,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryCreateNestedManyWithoutBranchInput
     farmer?: FarmerCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockCreateNestedManyWithoutBranchInput
     flocks?: FlockCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessCreateNestedManyWithoutBranchInput
@@ -49928,7 +62136,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedCreateNestedManyWithoutBranchInput
     farmer?: FarmerUncheckedCreateNestedManyWithoutBranchInput
-    FeedStock?: FeedStockUncheckedCreateNestedManyWithoutBranchInput
     flocks?: FlockUncheckedCreateNestedManyWithoutBranchInput
     flockReport?: FlockReportUncheckedCreateNestedManyWithoutBranchInput
     medicinePurchess?: MedicinePurchessUncheckedCreateNestedManyWithoutBranchInput
@@ -49967,6 +62174,8 @@ export namespace Prisma {
     chicks?: ChicksCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderCreateNestedManyWithoutFlockInput
   }
 
   export type FlockUncheckedCreateWithoutMedicineTransferInput = {
@@ -49993,6 +62202,8 @@ export namespace Prisma {
     chicks?: ChicksUncheckedCreateNestedManyWithoutFlockInput
     birdSell?: BirdSellUncheckedCreateNestedManyWithoutFlockInput
     FarmFeedStock?: FarmFeedStockUncheckedCreateNestedManyWithoutFlockInput
+    FeedRetun?: FeedRetunUncheckedCreateNestedManyWithoutFlockInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedCreateNestedManyWithoutFlockInput
   }
 
   export type FlockCreateOrConnectWithoutMedicineTransferInput = {
@@ -50021,7 +62232,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUpdateManyWithoutBranchNestedInput
     flocks?: FlockUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUpdateManyWithoutBranchNestedInput
@@ -50041,7 +62251,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     branchEmployeeHistory?: BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchNestedInput
     farmer?: FarmerUncheckedUpdateManyWithoutBranchNestedInput
-    FeedStock?: FeedStockUncheckedUpdateManyWithoutBranchNestedInput
     flocks?: FlockUncheckedUpdateManyWithoutBranchNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutBranchNestedInput
     medicinePurchess?: MedicinePurchessUncheckedUpdateManyWithoutBranchNestedInput
@@ -50086,6 +62295,8 @@ export namespace Prisma {
     chicks?: ChicksUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutMedicineTransferInput = {
@@ -50112,13 +62323,15 @@ export namespace Prisma {
     chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type BranchEmployeeHistoryCreateManyBranchInput = {
     id?: string
     employeeId: string
-    startDate: string
-    endDate?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string
@@ -50137,18 +62350,7 @@ export namespace Prisma {
     nid: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
-    createDate: string
-  }
-
-  export type FeedStockCreateManyBranchInput = {
-    id?: string
-    feedName: string
-    stock: number
-    depotName: string
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    unitPice?: number
-    createDate: string
+    createDate: Date | string
   }
 
   export type FlockCreateManyBranchInput = {
@@ -50261,7 +62463,9 @@ export namespace Prisma {
 
   export type BirdSellCreateManyBranchInput = {
     id?: string
-    buyerId: string
+    buyerName: string
+    buyerPhoneNumber: string
+    buyerAddress: string
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -50292,8 +62496,8 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryUpdateWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    startDate?: StringFieldUpdateOperationsInput | string
-    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50303,8 +62507,8 @@ export namespace Prisma {
   export type BranchEmployeeHistoryUncheckedUpdateWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    startDate?: StringFieldUpdateOperationsInput | string
-    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50313,8 +62517,8 @@ export namespace Prisma {
   export type BranchEmployeeHistoryUncheckedUpdateManyWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    startDate?: StringFieldUpdateOperationsInput | string
-    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50332,13 +62536,14 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: AddressUpdateOneWithoutFarmerNestedInput
     flocks?: FlockUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUpdateManyWithoutFarmNestedInput
     birdSell?: BirdSellUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateWithoutBranchInput = {
@@ -50354,12 +62559,13 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
     flocks?: FlockUncheckedUpdateManyWithoutFarmerNestedInput
     flockReport?: FlockReportUncheckedUpdateManyWithoutFarmerNestedInput
     sellMedicine?: SellMedicineUncheckedUpdateManyWithoutFarmerNestedInput
     chicks?: ChicksUncheckedUpdateManyWithoutFarmNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFarmNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFarmNestedInput
   }
 
   export type FarmerUncheckedUpdateManyWithoutBranchInput = {
@@ -50375,40 +62581,7 @@ export namespace Prisma {
     nid?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createDate?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type FeedStockUpdateWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    unitPice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    depot?: DepotUpdateOneRequiredWithoutFeedStockNestedInput
-    feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedStockNestedInput
-  }
-
-  export type FeedStockUncheckedUpdateWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    feedName?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    depotName?: StringFieldUpdateOperationsInput | string
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    unitPice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type FeedStockUncheckedUpdateManyWithoutBranchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    feedName?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    depotName?: StringFieldUpdateOperationsInput | string
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    unitPice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FlockUpdateWithoutBranchInput = {
@@ -50435,6 +62608,8 @@ export namespace Prisma {
     chicks?: ChicksUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutBranchInput = {
@@ -50461,6 +62636,8 @@ export namespace Prisma {
     chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateManyWithoutBranchInput = {
@@ -50751,7 +62928,9 @@ export namespace Prisma {
 
   export type BirdSellUpdateWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    buyerId?: StringFieldUpdateOperationsInput | string
+    buyerName?: StringFieldUpdateOperationsInput | string
+    buyerPhoneNumber?: StringFieldUpdateOperationsInput | string
+    buyerAddress?: StringFieldUpdateOperationsInput | string
     totalQantity?: IntFieldUpdateOperationsInput | number
     totalWeight?: FloatFieldUpdateOperationsInput | number
     avgWeight?: FloatFieldUpdateOperationsInput | number
@@ -50766,7 +62945,9 @@ export namespace Prisma {
 
   export type BirdSellUncheckedUpdateWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    buyerId?: StringFieldUpdateOperationsInput | string
+    buyerName?: StringFieldUpdateOperationsInput | string
+    buyerPhoneNumber?: StringFieldUpdateOperationsInput | string
+    buyerAddress?: StringFieldUpdateOperationsInput | string
     totalQantity?: IntFieldUpdateOperationsInput | number
     totalWeight?: FloatFieldUpdateOperationsInput | number
     avgWeight?: FloatFieldUpdateOperationsInput | number
@@ -50781,7 +62962,9 @@ export namespace Prisma {
 
   export type BirdSellUncheckedUpdateManyWithoutBranchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    buyerId?: StringFieldUpdateOperationsInput | string
+    buyerName?: StringFieldUpdateOperationsInput | string
+    buyerPhoneNumber?: StringFieldUpdateOperationsInput | string
+    buyerAddress?: StringFieldUpdateOperationsInput | string
     totalQantity?: IntFieldUpdateOperationsInput | number
     totalWeight?: FloatFieldUpdateOperationsInput | number
     avgWeight?: FloatFieldUpdateOperationsInput | number
@@ -50842,41 +63025,28 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FeedStockCreateManyDepotInput = {
-    id?: string
-    feedName: string
-    stock: number
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    branchId?: string | null
-    unitPice?: number
-    createDate: string
-  }
-
   export type FeedStockTransferCreateManyTransferDepotInput = {
     id?: string
     toDepot: string
-    transerFerDate: string
-    totalKg?: number
+    totalQuantity?: number
     totalPrice?: number
-    createDate: string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
     trnasferBill: string
-    createAt?: Date | string | null
+    createAt: Date | string
     updateAt?: Date | string
-    depotId?: string | null
   }
 
   export type FeedStockTransferCreateManyReciveDepotInput = {
     id?: string
     fromDepot: string
-    transerFerDate: string
-    totalKg?: number
+    totalQuantity?: number
     totalPrice?: number
-    createDate: string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
     trnasferBill: string
-    createAt?: Date | string | null
+    createAt: Date | string
     updateAt?: Date | string
-    depotId?: string | null
   }
 
   export type FeedSalesOrderCreateManyDepotInput = {
@@ -50885,60 +63055,87 @@ export namespace Prisma {
     saleInvoice: string
     farmNumber: number
     flockNumber: number
-    createDate: string
+    deliveryDate?: Date | string | null
     farmId: string
     flockId: string
     totalPrice?: number
-    totalKg?: number
+    totalQuantity?: number
     description?: string | null
     status?: $Enums.DeliveryStatus
-    createdAt?: Date | string | null
+    createdAt: Date | string
     updateAt?: Date | string
   }
 
-  export type FeedStockUpdateWithoutDepotInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    unitPice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    Branch?: BranchUpdateOneWithoutFeedStockNestedInput
-    feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedStockNestedInput
+  export type FeedRetunCreateManyDepotInput = {
+    id?: string
+    flockId: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    farmId: string
+    status?: $Enums.DeliveryStatus
+    createAt?: Date | string
+    updateAt?: Date | string
   }
 
-  export type FeedStockUncheckedUpdateWithoutDepotInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    feedName?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
-    unitPice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+  export type FeedStockHistoryCreateManyDepotInput = {
+    id?: string
+    feedName: string
+    opening?: number
+    sales?: number
+    return?: number
+    addStock?: number
+    delivary?: number
+    intialAdd?: number
+    transferIn?: number
+    transferOut?: number
+    recive?: number
+    closing?: number
+    createAt: Date | string
+    updateAt?: Date | string
   }
 
-  export type FeedStockUncheckedUpdateManyWithoutDepotInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    feedName?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
-    unitPice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+  export type feedTransActionHeaderCreateManyDepotInput = {
+    id?: string
+    refId: string
+    transactionType: $Enums.TransactionType
+    status: $Enums.DeliveryStatus
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type AddStockCreateManyDepotInput = {
+    id?: string
+    source?: $Enums.Source
+    status?: $Enums.DeliveryStatus
+    deliveryDate?: Date | string | null
+    quantity: number
+    price: number
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type FeedStockCreateManyDepotInput = {
+    id?: string
+    feedName: string
+    stock: number
+    unitPrice?: number
+    createAt: Date | string
+    updateAt?: Date | string
   }
 
   export type FeedStockTransferUpdateWithoutTransferDepotInput = {
     id?: StringFieldUpdateOperationsInput | string
-    transerFerDate?: StringFieldUpdateOperationsInput | string
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     totalPrice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     trnasferBill?: StringFieldUpdateOperationsInput | string
-    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depotId?: NullableStringFieldUpdateOperationsInput | string | null
     reciveDepot?: DepotUpdateOneRequiredWithoutReceivedTransfersNestedInput
     transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedStckTranferNestedInput
   }
@@ -50946,40 +63143,37 @@ export namespace Prisma {
   export type FeedStockTransferUncheckedUpdateWithoutTransferDepotInput = {
     id?: StringFieldUpdateOperationsInput | string
     toDepot?: StringFieldUpdateOperationsInput | string
-    transerFerDate?: StringFieldUpdateOperationsInput | string
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     totalPrice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     trnasferBill?: StringFieldUpdateOperationsInput | string
-    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depotId?: NullableStringFieldUpdateOperationsInput | string | null
     transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedStckTranferNestedInput
   }
 
   export type FeedStockTransferUncheckedUpdateManyWithoutTransferDepotInput = {
     id?: StringFieldUpdateOperationsInput | string
     toDepot?: StringFieldUpdateOperationsInput | string
-    transerFerDate?: StringFieldUpdateOperationsInput | string
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     totalPrice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     trnasferBill?: StringFieldUpdateOperationsInput | string
-    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depotId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FeedStockTransferUpdateWithoutReciveDepotInput = {
     id?: StringFieldUpdateOperationsInput | string
-    transerFerDate?: StringFieldUpdateOperationsInput | string
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     totalPrice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     trnasferBill?: StringFieldUpdateOperationsInput | string
-    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depotId?: NullableStringFieldUpdateOperationsInput | string | null
     transferDepot?: DepotUpdateOneRequiredWithoutSentTransfersNestedInput
     transferFeedItem?: TransferFeedItemUpdateManyWithoutFeedStckTranferNestedInput
   }
@@ -50987,28 +63181,26 @@ export namespace Prisma {
   export type FeedStockTransferUncheckedUpdateWithoutReciveDepotInput = {
     id?: StringFieldUpdateOperationsInput | string
     fromDepot?: StringFieldUpdateOperationsInput | string
-    transerFerDate?: StringFieldUpdateOperationsInput | string
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     totalPrice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     trnasferBill?: StringFieldUpdateOperationsInput | string
-    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depotId?: NullableStringFieldUpdateOperationsInput | string | null
     transferFeedItem?: TransferFeedItemUncheckedUpdateManyWithoutFeedStckTranferNestedInput
   }
 
   export type FeedStockTransferUncheckedUpdateManyWithoutReciveDepotInput = {
     id?: StringFieldUpdateOperationsInput | string
     fromDepot?: StringFieldUpdateOperationsInput | string
-    transerFerDate?: StringFieldUpdateOperationsInput | string
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     totalPrice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     trnasferBill?: StringFieldUpdateOperationsInput | string
-    createAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depotId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FeedSalesOrderUpdateWithoutDepotInput = {
@@ -51017,15 +63209,15 @@ export namespace Prisma {
     saleInvoice?: StringFieldUpdateOperationsInput | string
     farmNumber?: IntFieldUpdateOperationsInput | number
     flockNumber?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     farmId?: StringFieldUpdateOperationsInput | string
-    flockId?: StringFieldUpdateOperationsInput | string
     totalPrice?: IntFieldUpdateOperationsInput | number
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flock?: FlockUpdateOneRequiredWithoutFeedSalesOrderNestedInput
     FeedSalesItem?: FeedSalesItemUpdateManyWithoutSalesOrderNestedInput
   }
 
@@ -51035,14 +63227,14 @@ export namespace Prisma {
     saleInvoice?: StringFieldUpdateOperationsInput | string
     farmNumber?: IntFieldUpdateOperationsInput | number
     flockNumber?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     farmId?: StringFieldUpdateOperationsInput | string
     flockId?: StringFieldUpdateOperationsInput | string
     totalPrice?: IntFieldUpdateOperationsInput | number
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutSalesOrderNestedInput
   }
@@ -51053,14 +63245,201 @@ export namespace Prisma {
     saleInvoice?: StringFieldUpdateOperationsInput | string
     farmNumber?: IntFieldUpdateOperationsInput | number
     flockNumber?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     farmId?: StringFieldUpdateOperationsInput | string
     flockId?: StringFieldUpdateOperationsInput | string
     totalPrice?: IntFieldUpdateOperationsInput | number
-    totalKg?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedRetunUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flock?: FlockUpdateOneRequiredWithoutFeedRetunNestedInput
+    farm?: FarmerUpdateOneRequiredWithoutFeedRetunNestedInput
+    RetunFeedItem?: RetunFeedItemUpdateManyWithoutFeedRetunNestedInput
+  }
+
+  export type FeedRetunUncheckedUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    farmId?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    RetunFeedItem?: RetunFeedItemUncheckedUpdateManyWithoutFeedRetunNestedInput
+  }
+
+  export type FeedRetunUncheckedUpdateManyWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    farmId?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockHistoryUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    opening?: IntFieldUpdateOperationsInput | number
+    sales?: IntFieldUpdateOperationsInput | number
+    return?: IntFieldUpdateOperationsInput | number
+    addStock?: IntFieldUpdateOperationsInput | number
+    delivary?: IntFieldUpdateOperationsInput | number
+    intialAdd?: IntFieldUpdateOperationsInput | number
+    transferIn?: IntFieldUpdateOperationsInput | number
+    transferOut?: IntFieldUpdateOperationsInput | number
+    recive?: IntFieldUpdateOperationsInput | number
+    closing?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feed?: FeedNameCategoryUpdateOneRequiredWithoutFeedStockHistoryNestedInput
+  }
+
+  export type FeedStockHistoryUncheckedUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    opening?: IntFieldUpdateOperationsInput | number
+    sales?: IntFieldUpdateOperationsInput | number
+    return?: IntFieldUpdateOperationsInput | number
+    addStock?: IntFieldUpdateOperationsInput | number
+    delivary?: IntFieldUpdateOperationsInput | number
+    intialAdd?: IntFieldUpdateOperationsInput | number
+    transferIn?: IntFieldUpdateOperationsInput | number
+    transferOut?: IntFieldUpdateOperationsInput | number
+    recive?: IntFieldUpdateOperationsInput | number
+    closing?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockHistoryUncheckedUpdateManyWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    opening?: IntFieldUpdateOperationsInput | number
+    sales?: IntFieldUpdateOperationsInput | number
+    return?: IntFieldUpdateOperationsInput | number
+    addStock?: IntFieldUpdateOperationsInput | number
+    delivary?: IntFieldUpdateOperationsInput | number
+    intialAdd?: IntFieldUpdateOperationsInput | number
+    transferIn?: IntFieldUpdateOperationsInput | number
+    transferOut?: IntFieldUpdateOperationsInput | number
+    recive?: IntFieldUpdateOperationsInput | number
+    closing?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type feedTransActionHeaderUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    refId?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type feedTransActionHeaderUncheckedUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    refId?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type feedTransActionHeaderUncheckedUpdateManyWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    refId?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddStockUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumSourceFieldUpdateOperationsInput | $Enums.Source
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    AddStockItem?: AddStockItemUpdateManyWithoutAddStockNestedInput
+  }
+
+  export type AddStockUncheckedUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumSourceFieldUpdateOperationsInput | $Enums.Source
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    AddStockItem?: AddStockItemUncheckedUpdateManyWithoutAddStockNestedInput
+  }
+
+  export type AddStockUncheckedUpdateManyWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumSourceFieldUpdateOperationsInput | $Enums.Source
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedStockNestedInput
+  }
+
+  export type FeedStockUncheckedUpdateWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockUncheckedUpdateManyWithoutDepotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -51151,7 +63530,9 @@ export namespace Prisma {
 
   export type BirdSellCreateManyFarmInput = {
     id?: string
-    buyerId: string
+    buyerName: string
+    buyerPhoneNumber: string
+    buyerAddress: string
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -51162,6 +63543,21 @@ export namespace Prisma {
     flockId: string
     createdAt?: Date | string | null
     updatedAt?: Date | string
+  }
+
+  export type FeedRetunCreateManyFarmInput = {
+    id?: string
+    flockId: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    status?: $Enums.DeliveryStatus
+    depotName: string
+    createAt?: Date | string
+    updateAt?: Date | string
   }
 
   export type FlockUpdateWithoutFarmerInput = {
@@ -51188,6 +63584,8 @@ export namespace Prisma {
     chicks?: ChicksUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutFarmerInput = {
@@ -51214,6 +63612,8 @@ export namespace Prisma {
     chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateManyWithoutFarmerInput = {
@@ -51435,7 +63835,9 @@ export namespace Prisma {
 
   export type BirdSellUpdateWithoutFarmInput = {
     id?: StringFieldUpdateOperationsInput | string
-    buyerId?: StringFieldUpdateOperationsInput | string
+    buyerName?: StringFieldUpdateOperationsInput | string
+    buyerPhoneNumber?: StringFieldUpdateOperationsInput | string
+    buyerAddress?: StringFieldUpdateOperationsInput | string
     totalQantity?: IntFieldUpdateOperationsInput | number
     totalWeight?: FloatFieldUpdateOperationsInput | number
     avgWeight?: FloatFieldUpdateOperationsInput | number
@@ -51450,7 +63852,9 @@ export namespace Prisma {
 
   export type BirdSellUncheckedUpdateWithoutFarmInput = {
     id?: StringFieldUpdateOperationsInput | string
-    buyerId?: StringFieldUpdateOperationsInput | string
+    buyerName?: StringFieldUpdateOperationsInput | string
+    buyerPhoneNumber?: StringFieldUpdateOperationsInput | string
+    buyerAddress?: StringFieldUpdateOperationsInput | string
     totalQantity?: IntFieldUpdateOperationsInput | number
     totalWeight?: FloatFieldUpdateOperationsInput | number
     avgWeight?: FloatFieldUpdateOperationsInput | number
@@ -51465,7 +63869,9 @@ export namespace Prisma {
 
   export type BirdSellUncheckedUpdateManyWithoutFarmInput = {
     id?: StringFieldUpdateOperationsInput | string
-    buyerId?: StringFieldUpdateOperationsInput | string
+    buyerName?: StringFieldUpdateOperationsInput | string
+    buyerPhoneNumber?: StringFieldUpdateOperationsInput | string
+    buyerAddress?: StringFieldUpdateOperationsInput | string
     totalQantity?: IntFieldUpdateOperationsInput | number
     totalWeight?: FloatFieldUpdateOperationsInput | number
     avgWeight?: FloatFieldUpdateOperationsInput | number
@@ -51478,10 +63884,57 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type FeedRetunUpdateWithoutFarmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flock?: FlockUpdateOneRequiredWithoutFeedRetunNestedInput
+    depot?: DepotUpdateOneRequiredWithoutFeedRetunNestedInput
+    RetunFeedItem?: RetunFeedItemUpdateManyWithoutFeedRetunNestedInput
+  }
+
+  export type FeedRetunUncheckedUpdateWithoutFarmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    depotName?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    RetunFeedItem?: RetunFeedItemUncheckedUpdateManyWithoutFeedRetunNestedInput
+  }
+
+  export type FeedRetunUncheckedUpdateManyWithoutFarmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    flockId?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    depotName?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type BranchEmployeeHistoryCreateManyEmployeeInput = {
     id?: string
-    startDate: string
-    endDate?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
     isActive?: boolean
     branchCode: string
     createdAt?: Date | string | null
@@ -51510,8 +63963,8 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    startDate?: StringFieldUpdateOperationsInput | string
-    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51520,8 +63973,8 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    startDate?: StringFieldUpdateOperationsInput | string
-    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     branchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -51530,8 +63983,8 @@ export namespace Prisma {
 
   export type BranchEmployeeHistoryUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    startDate?: StringFieldUpdateOperationsInput | string
-    endDate?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     branchCode?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -51562,6 +64015,8 @@ export namespace Prisma {
     chicks?: ChicksUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateWithoutEmployeeInput = {
@@ -51588,6 +64043,8 @@ export namespace Prisma {
     chicks?: ChicksUncheckedUpdateManyWithoutFlockNestedInput
     birdSell?: BirdSellUncheckedUpdateManyWithoutFlockNestedInput
     FarmFeedStock?: FarmFeedStockUncheckedUpdateManyWithoutFlockNestedInput
+    FeedRetun?: FeedRetunUncheckedUpdateManyWithoutFlockNestedInput
+    FeedSalesOrder?: FeedSalesOrderUncheckedUpdateManyWithoutFlockNestedInput
   }
 
   export type FlockUncheckedUpdateManyWithoutEmployeeInput = {
@@ -51689,7 +64146,9 @@ export namespace Prisma {
 
   export type BirdSellCreateManyFlockInput = {
     id?: string
-    buyerId: string
+    buyerName: string
+    buyerPhoneNumber: string
+    buyerAddress: string
     totalQantity: number
     totalWeight: number
     avgWeight: number
@@ -51707,6 +64166,38 @@ export namespace Prisma {
     feedName: string
     stock: number
     createdAt?: Date | string | null
+    updateAt?: Date | string
+  }
+
+  export type FeedRetunCreateManyFlockInput = {
+    id?: string
+    branChCode: string
+    farmCode: number
+    flockNumber: number
+    returnInvoice: string
+    createDate: Date | string
+    deliveryDate?: Date | string | null
+    farmId: string
+    status?: $Enums.DeliveryStatus
+    depotName: string
+    createAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type FeedSalesOrderCreateManyFlockInput = {
+    id?: string
+    branchCode: string
+    depotName: string
+    saleInvoice: string
+    farmNumber: number
+    flockNumber: number
+    deliveryDate?: Date | string | null
+    farmId: string
+    totalPrice?: number
+    totalQuantity?: number
+    description?: string | null
+    status?: $Enums.DeliveryStatus
+    createdAt: Date | string
     updateAt?: Date | string
   }
 
@@ -51945,7 +64436,9 @@ export namespace Prisma {
 
   export type BirdSellUpdateWithoutFlockInput = {
     id?: StringFieldUpdateOperationsInput | string
-    buyerId?: StringFieldUpdateOperationsInput | string
+    buyerName?: StringFieldUpdateOperationsInput | string
+    buyerPhoneNumber?: StringFieldUpdateOperationsInput | string
+    buyerAddress?: StringFieldUpdateOperationsInput | string
     totalQantity?: IntFieldUpdateOperationsInput | number
     totalWeight?: FloatFieldUpdateOperationsInput | number
     avgWeight?: FloatFieldUpdateOperationsInput | number
@@ -51960,7 +64453,9 @@ export namespace Prisma {
 
   export type BirdSellUncheckedUpdateWithoutFlockInput = {
     id?: StringFieldUpdateOperationsInput | string
-    buyerId?: StringFieldUpdateOperationsInput | string
+    buyerName?: StringFieldUpdateOperationsInput | string
+    buyerPhoneNumber?: StringFieldUpdateOperationsInput | string
+    buyerAddress?: StringFieldUpdateOperationsInput | string
     totalQantity?: IntFieldUpdateOperationsInput | number
     totalWeight?: FloatFieldUpdateOperationsInput | number
     avgWeight?: FloatFieldUpdateOperationsInput | number
@@ -51975,7 +64470,9 @@ export namespace Prisma {
 
   export type BirdSellUncheckedUpdateManyWithoutFlockInput = {
     id?: StringFieldUpdateOperationsInput | string
-    buyerId?: StringFieldUpdateOperationsInput | string
+    buyerName?: StringFieldUpdateOperationsInput | string
+    buyerPhoneNumber?: StringFieldUpdateOperationsInput | string
+    buyerAddress?: StringFieldUpdateOperationsInput | string
     totalQantity?: IntFieldUpdateOperationsInput | number
     totalWeight?: FloatFieldUpdateOperationsInput | number
     avgWeight?: FloatFieldUpdateOperationsInput | number
@@ -52012,23 +64509,114 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FeedStockCreateManyFeedNameCategoryInput = {
-    id?: string
-    stock: number
-    depotName: string
-    createdAt?: Date | string | null
-    updatedAt?: Date | string
-    branchId?: string | null
-    unitPice?: number
-    createDate: string
+  export type FeedRetunUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farm?: FarmerUpdateOneRequiredWithoutFeedRetunNestedInput
+    depot?: DepotUpdateOneRequiredWithoutFeedRetunNestedInput
+    RetunFeedItem?: RetunFeedItemUpdateManyWithoutFeedRetunNestedInput
+  }
+
+  export type FeedRetunUncheckedUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    farmId?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    depotName?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    RetunFeedItem?: RetunFeedItemUncheckedUpdateManyWithoutFeedRetunNestedInput
+  }
+
+  export type FeedRetunUncheckedUpdateManyWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branChCode?: StringFieldUpdateOperationsInput | string
+    farmCode?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    farmId?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    depotName?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedSalesOrderUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    saleInvoice?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    farmId?: StringFieldUpdateOperationsInput | string
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depot?: DepotUpdateOneRequiredWithoutFeedSalesOrderNestedInput
+    FeedSalesItem?: FeedSalesItemUpdateManyWithoutSalesOrderNestedInput
+  }
+
+  export type FeedSalesOrderUncheckedUpdateWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    saleInvoice?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    farmId?: StringFieldUpdateOperationsInput | string
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    FeedSalesItem?: FeedSalesItemUncheckedUpdateManyWithoutSalesOrderNestedInput
+  }
+
+  export type FeedSalesOrderUncheckedUpdateManyWithoutFlockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    branchCode?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    saleInvoice?: StringFieldUpdateOperationsInput | string
+    farmNumber?: IntFieldUpdateOperationsInput | number
+    flockNumber?: IntFieldUpdateOperationsInput | number
+    deliveryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    farmId?: StringFieldUpdateOperationsInput | string
+    totalPrice?: IntFieldUpdateOperationsInput | number
+    totalQuantity?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TransferFeedItemCreateManyFeedInput = {
     id?: string
-    createDate: string
-    quntity: string
+    createDate: Date | string
+    quantity: number
     price?: number
+    unitPrice?: number
     tansferId: string
+    status?: $Enums.DeliveryStatus
     createdAt?: Date | string
     updateAt?: Date | string
   }
@@ -52037,50 +64625,65 @@ export namespace Prisma {
     id?: string
     salesInvoice: string
     quantity: number
-    createDate: string
-    totalPice: number
-    createdAt?: Date | string
+    unitPrice?: number
+    price: number
+    createdAt: Date | string
     updatedAt?: Date | string
   }
 
-  export type FeedStockUpdateWithoutFeedNameCategoryInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    unitPice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    Branch?: BranchUpdateOneWithoutFeedStockNestedInput
-    depot?: DepotUpdateOneRequiredWithoutFeedStockNestedInput
+  export type RetunFeedItemCreateManyFeedNameCategoryInput = {
+    id?: string
+    quantity: number
+    price: number
+    returnInvoice: string
+    unitPrice?: number
+    createAt?: Date | string
+    updateAt?: Date | string
   }
 
-  export type FeedStockUncheckedUpdateWithoutFeedNameCategoryInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    depotName?: StringFieldUpdateOperationsInput | string
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
-    unitPice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+  export type FeedStockHistoryCreateManyFeedInput = {
+    id?: string
+    depotName: string
+    opening?: number
+    sales?: number
+    return?: number
+    addStock?: number
+    delivary?: number
+    intialAdd?: number
+    transferIn?: number
+    transferOut?: number
+    recive?: number
+    closing?: number
+    createAt: Date | string
+    updateAt?: Date | string
   }
 
-  export type FeedStockUncheckedUpdateManyWithoutFeedNameCategoryInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    depotName?: StringFieldUpdateOperationsInput | string
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    branchId?: NullableStringFieldUpdateOperationsInput | string | null
-    unitPice?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
+  export type AddStockItemCreateManyFeedInput = {
+    id?: string
+    quantity: number
+    unitPrice?: number
+    price: number
+    addStockId: string
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type FeedStockCreateManyFeedNameCategoryInput = {
+    id?: string
+    depotName: string
+    stock: number
+    unitPrice?: number
+    createAt: Date | string
+    updateAt?: Date | string
   }
 
   export type TransferFeedItemUpdateWithoutFeedInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    quntity?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    quantity?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     feedStckTranfer?: FeedStockTransferUpdateOneRequiredWithoutTransferFeedItemNestedInput
@@ -52088,20 +64691,24 @@ export namespace Prisma {
 
   export type TransferFeedItemUncheckedUpdateWithoutFeedInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    quntity?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    quantity?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     tansferId?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TransferFeedItemUncheckedUpdateManyWithoutFeedInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    quntity?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    quantity?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
     tansferId?: StringFieldUpdateOperationsInput | string
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -52109,8 +64716,8 @@ export namespace Prisma {
   export type FeedSalesItemUpdateWithoutFeedNameCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    totalPice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     salesOrder?: FeedSalesOrderUpdateOneRequiredWithoutFeedSalesItemNestedInput
@@ -52120,8 +64727,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     salesInvoice?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    totalPice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -52130,27 +64737,209 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     salesInvoice?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    totalPice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RetunFeedItemUpdateWithoutFeedNameCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedRetun?: FeedRetunUpdateOneRequiredWithoutRetunFeedItemNestedInput
+  }
+
+  export type RetunFeedItemUncheckedUpdateWithoutFeedNameCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RetunFeedItemUncheckedUpdateManyWithoutFeedNameCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    returnInvoice?: StringFieldUpdateOperationsInput | string
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockHistoryUpdateWithoutFeedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    opening?: IntFieldUpdateOperationsInput | number
+    sales?: IntFieldUpdateOperationsInput | number
+    return?: IntFieldUpdateOperationsInput | number
+    addStock?: IntFieldUpdateOperationsInput | number
+    delivary?: IntFieldUpdateOperationsInput | number
+    intialAdd?: IntFieldUpdateOperationsInput | number
+    transferIn?: IntFieldUpdateOperationsInput | number
+    transferOut?: IntFieldUpdateOperationsInput | number
+    recive?: IntFieldUpdateOperationsInput | number
+    closing?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depot?: DepotUpdateOneRequiredWithoutFeedStockHistoryNestedInput
+  }
+
+  export type FeedStockHistoryUncheckedUpdateWithoutFeedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    opening?: IntFieldUpdateOperationsInput | number
+    sales?: IntFieldUpdateOperationsInput | number
+    return?: IntFieldUpdateOperationsInput | number
+    addStock?: IntFieldUpdateOperationsInput | number
+    delivary?: IntFieldUpdateOperationsInput | number
+    intialAdd?: IntFieldUpdateOperationsInput | number
+    transferIn?: IntFieldUpdateOperationsInput | number
+    transferOut?: IntFieldUpdateOperationsInput | number
+    recive?: IntFieldUpdateOperationsInput | number
+    closing?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockHistoryUncheckedUpdateManyWithoutFeedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    opening?: IntFieldUpdateOperationsInput | number
+    sales?: IntFieldUpdateOperationsInput | number
+    return?: IntFieldUpdateOperationsInput | number
+    addStock?: IntFieldUpdateOperationsInput | number
+    delivary?: IntFieldUpdateOperationsInput | number
+    intialAdd?: IntFieldUpdateOperationsInput | number
+    transferIn?: IntFieldUpdateOperationsInput | number
+    transferOut?: IntFieldUpdateOperationsInput | number
+    recive?: IntFieldUpdateOperationsInput | number
+    closing?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddStockItemUpdateWithoutFeedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addStock?: AddStockUpdateOneRequiredWithoutAddStockItemNestedInput
+  }
+
+  export type AddStockItemUncheckedUpdateWithoutFeedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    addStockId?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddStockItemUncheckedUpdateManyWithoutFeedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    addStockId?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockUpdateWithoutFeedNameCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    depot?: DepotUpdateOneRequiredWithoutFeedStockNestedInput
+  }
+
+  export type FeedStockUncheckedUpdateWithoutFeedNameCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedStockUncheckedUpdateManyWithoutFeedNameCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    depotName?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddStockItemCreateManyAddStockInput = {
+    id?: string
+    feedName: string
+    quantity: number
+    unitPrice?: number
+    price: number
+    createAt: Date | string
+    updateAt?: Date | string
+  }
+
+  export type AddStockItemUpdateWithoutAddStockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feed?: FeedNameCategoryUpdateOneRequiredWithoutAddStockItemNestedInput
+  }
+
+  export type AddStockItemUncheckedUpdateWithoutAddStockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddStockItemUncheckedUpdateManyWithoutAddStockInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TransferFeedItemCreateManyFeedStckTranferInput = {
     id?: string
     feedName: string
-    createDate: string
-    quntity: string
+    createDate: Date | string
+    quantity: number
     price?: number
+    unitPrice?: number
+    status?: $Enums.DeliveryStatus
     createdAt?: Date | string
     updateAt?: Date | string
   }
 
   export type TransferFeedItemUpdateWithoutFeedStckTranferInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    quntity?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    quantity?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     feed?: FeedNameCategoryUpdateOneRequiredWithoutTransferFeedItemNestedInput
@@ -52159,9 +64948,11 @@ export namespace Prisma {
   export type TransferFeedItemUncheckedUpdateWithoutFeedStckTranferInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    quntity?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    quantity?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -52169,9 +64960,11 @@ export namespace Prisma {
   export type TransferFeedItemUncheckedUpdateManyWithoutFeedStckTranferInput = {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
-    createDate?: StringFieldUpdateOperationsInput | string
-    quntity?: StringFieldUpdateOperationsInput | string
+    createDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    quantity?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -52180,17 +64973,17 @@ export namespace Prisma {
     id?: string
     feedName: string
     quantity: number
-    createDate: string
-    totalPice: number
-    createdAt?: Date | string
+    unitPrice?: number
+    price: number
+    createdAt: Date | string
     updatedAt?: Date | string
   }
 
   export type FeedSalesItemUpdateWithoutSalesOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    totalPice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutFeedSalesItemNestedInput
@@ -52200,8 +64993,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    totalPice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -52210,10 +65003,50 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     feedName?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
-    createDate?: StringFieldUpdateOperationsInput | string
-    totalPice?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RetunFeedItemCreateManyFeedRetunInput = {
+    id?: string
+    feedName: string
+    quantity: number
+    price: number
+    unitPrice?: number
+    createAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type RetunFeedItemUpdateWithoutFeedRetunInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedNameCategory?: FeedNameCategoryUpdateOneRequiredWithoutRetunFeedItemNestedInput
+  }
+
+  export type RetunFeedItemUncheckedUpdateWithoutFeedRetunInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RetunFeedItemUncheckedUpdateManyWithoutFeedRetunInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feedName?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    unitPrice?: IntFieldUpdateOperationsInput | number
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MedicineNameAddCreateManyMedicineCategoryInput = {

@@ -25,8 +25,6 @@ const createFlock = async (payload: any) => {
   const newFlockNumber = lastFlock ? lastFlock.flockNumber + 1 : 1;
   payload.flockNumber = newFlockNumber;
 
-  console.log(payload);
-
   const result = await prismaClient.flock.create({
     data: payload,
   });

@@ -18,30 +18,35 @@ model Branch {
   updatedAt             DateTime                @default(now())
   branchEmployeeHistory BranchEmployeeHistory[]
   farmer                Farmer[]
-  FeedStock             FeedStock[]
-  flocks                Flock[]
-  flockReport           FlockReport[]
-  medicinePurchess      MedicinePurchess[]
-  medicineStock         MedicineStock[]
-  medicineTransfer      MedicineTransfer[]
-  sellMedicine          SellMedicine[]
-  birdSell              BirdSell[]
-  chicks                Chicks[]
+
+  flocks           Flock[]
+  flockReport      FlockReport[]
+  medicinePurchess MedicinePurchess[]
+  medicineStock    MedicineStock[]
+  medicineTransfer MedicineTransfer[]
+  sellMedicine     SellMedicine[]
+  birdSell         BirdSell[]
+  chicks           Chicks[]
 
   @@map("branch")
 }
 
 model Depot {
-  id                String              @id @default(uuid())
-  locationName      String
-  depotName         String              @unique
-  createDate        String
-  createAt          DateTime?           @default(now())
-  updateAt          DateTime            @default(now())
-  feedStock         FeedStock[]
-  sentTransfers     FeedStockTransfer[] @relation("FromDepot")
-  receivedTransfers FeedStockTransfer[] @relation("ToDepot")
-  FeedSalesOrder    FeedSalesOrder[]
+  id           String    @id @default(uuid())
+  locationName String
+  depotName    String    @unique
+  createDate   DateTime  @db.Date
+  createAt     DateTime? @default(now())
+  updateAt     DateTime  @default(now())
+
+  sentTransfers         FeedStockTransfer[]     @relation("FromDepot")
+  receivedTransfers     FeedStockTransfer[]     @relation("ToDepot")
+  FeedSalesOrder        FeedSalesOrder[]
+  FeedRetun             FeedRetun[]
+  FeedStockHistory      FeedStockHistory[]
+  feedTransActionHeader feedTransActionHeader[]
+  AddStock              AddStock[]
+  FeedStock             FeedStock[]
 
   @@index([depotName])
   @@map("depot")
@@ -61,7 +66,7 @@ model Farmer {
   nid          String
   createdAt    DateTime?      @default(now())
   updatedAt    DateTime       @default(now())
-  createDate   String
+  createDate   DateTime       @db.Date
   address      Address?       @relation(fields: [addressId], references: [id])
   branch       Branch?        @relation(fields: [branchCode], references: [branchCode])
   flocks       Flock[]
@@ -69,6 +74,7 @@ model Farmer {
   sellMedicine SellMedicine[]
   chicks       Chicks[]
   birdSell     BirdSell[]
+  FeedRetun    FeedRetun[]
 
   @@unique([branchCode, farmCode])
   @@index([farmCode])
@@ -94,8 +100,8 @@ model Address {
 model BranchEmployeeHistory {
   id         String    @id @default(uuid())
   employeeId String
-  startDate  String
-  endDate    String?
+  startDate  DateTime  @db.Date
+  endDate    DateTime? @db.Date
   isActive   Boolean   @default(true)
   branchCode String
   createdAt  DateTime? @default(now())
@@ -130,8 +136,8 @@ model Flock {
   id               String             @id @default(uuid())
   flockNumber      Int
   flockStatus      FlockStatus        @default(PENDING)
-  startDate        DateTime
-  endDate          DateTime?
+  startDate        DateTime           @db.Date
+  endDate          DateTime?          @db.Date
   executiveId      String
   farmId           String
   docName          String
@@ -154,6 +160,8 @@ model Flock {
   chicks           Chicks[]
   birdSell         BirdSell[]
   FarmFeedStock    FarmFeedStock[]
+  FeedRetun        FeedRetun[]
+  FeedSalesOrder   FeedSalesOrder[]
 
   @@index([flockNumber])
   @@map("flock")
@@ -196,22 +204,24 @@ model Chicks {
 }
 
 model BirdSell {
-  id           String    @id @default(uuid())
-  buyerId      String
-  totalQantity Int
-  totalWeight  Float
-  avgWeight    Float
-  pricePerkg   Int
-  totalPrice   Int
-  paid         Boolean   @default(true)
-  farmId       String
-  farm         Farmer    @relation(fields: [farmId], references: [id])
-  branchCode   String
-  branch       Branch    @relation(fields: [branchCode], references: [branchCode])
-  flockId      String
-  flock        Flock     @relation(fields: [flockId], references: [id])
-  createdAt    DateTime? @default(now())
-  updatedAt    DateTime  @default(now())
+  id               String    @id @default(uuid())
+  buyerName        String
+  buyerPhoneNumber String
+  buyerAddress     String
+  totalQantity     Int
+  totalWeight      Float
+  avgWeight        Float
+  pricePerkg       Int
+  totalPrice       Int
+  paid             Boolean   @default(true)
+  farmId           String
+  farm             Farmer    @relation(fields: [farmId], references: [id])
+  branchCode       String
+  branch           Branch    @relation(fields: [branchCode], references: [branchCode])
+  flockId          String
+  flock            Flock     @relation(fields: [flockId], references: [id])
+  createdAt        DateTime? @default(now())
+  updatedAt        DateTime  @default(now())
 
   @@map("birdSell")
 }
@@ -259,15 +269,20 @@ model FlockReport {
 }
 
 model FeedNameCategory {
-  id               String             @id @default(uuid())
-  feedName         String             @unique
-  feedCodeNumber   Int                @unique
-  createdAt        DateTime?          @default(now())
-  updatedAt        DateTime           @default(now())
-  createDate       String
-  FeedStock        FeedStock[]
+  id             String    @id @default(uuid())
+  feedName       String    @unique
+  feedCodeNumber Int       @unique
+  unitPrice      Int
+  createdAt      DateTime? @default(now())
+  updatedAt      DateTime  @default(now())
+  createDate     DateTime  @db.Date
+
   transferFeedItem TransferFeedItem[]
   FeedSalesItem    FeedSalesItem[]
+  RetunFeedItem    RetunFeedItem[]
+  FeedStockHistory FeedStockHistory[]
+  AddStockItem     AddStockItem[]
+  FeedStock        FeedStock[]
 
   @@map("feedNameCategory")
 }
@@ -275,33 +290,109 @@ model FeedNameCategory {
 model FeedStock {
   id               String           @id @default(uuid())
   feedName         String
-  stock            Int
   depotName        String
-  createdAt        DateTime?        @default(now())
-  updatedAt        DateTime         @default(now())
-  branchId         String?
-  unitPice         Int              @default(60)
-  createDate       String
-  Branch           Branch?          @relation(fields: [branchId], references: [id])
+  stock            Int
+  unitPrice        Int              @default(0)
   depot            Depot            @relation(fields: [depotName], references: [depotName])
   feedNameCategory FeedNameCategory @relation(fields: [feedName], references: [feedName])
+  createAt         DateTime
+  updateAt         DateTime         @default(now())
 
-  @@unique([feedName, depotName], name: "feedName_depotName")
-  @@map("feedStoc")
+  @@unique([depotName, feedName])
+  @@map("feedStock")
+}
+
+model AddStock {
+  id           String         @id @default(uuid())
+  source       Source         @default(FACTORY)
+  depotName    String
+  status       DeliveryStatus @default(PENDING)
+  deliveryDate DateTime?      @db.Date
+  depot        Depot          @relation(fields: [depotName], references: [depotName])
+  quantity     Int
+  price        Int
+  createAt     DateTime
+  updateAt     DateTime       @default(now())
+  AddStockItem AddStockItem[]
+
+  @@map("addStock")
+}
+
+model AddStockItem {
+  id         String           @id @default(uuid())
+  feedName   String
+  feed       FeedNameCategory @relation(fields: [feedName], references: [feedName])
+  quantity   Int
+  unitPrice  Int              @default(0)
+  price      Int
+  addStockId String
+  addStock   AddStock         @relation(fields: [addStockId], references: [id], onDelete: Cascade)
+  createAt   DateTime
+  updateAt   DateTime         @default(now())
+}
+
+enum Source {
+  FACTORY
+  PURCHESS
+}
+
+model FeedStockHistory {
+  id          String           @id @default(uuid())
+  feedName    String
+  depotName   String
+  opening     Int              @default(0)
+  sales       Int              @default(0)
+  return      Int              @default(0)
+  addStock    Int              @default(0)
+  delivary    Int              @default(0)
+  intialAdd   Int              @default(0)
+  transferIn  Int              @default(0)
+  transferOut Int              @default(0)
+  recive      Int              @default(0)
+  closing     Int              @default(0)
+  createAt    DateTime
+  updateAt    DateTime         @default(now())
+  feed        FeedNameCategory @relation(fields: [feedName], references: [feedName])
+  depot       Depot            @relation(fields: [depotName], references: [depotName])
+
+  @@unique([depotName, feedName, createAt])
+  @@map("feedStockHistory")
+}
+
+model feedTransActionHeader {
+  id              String          @id @default(uuid())
+  depotName       String
+  depot           Depot           @relation(fields: [depotName], references: [depotName])
+  refId           String
+  transactionType TransactionType
+  status          DeliveryStatus
+  createAt        DateTime
+  updateAt        DateTime        @default(now())
+
+  @@map("feedTransactionHeader")
+}
+
+enum TransactionType {
+  RETURN
+  SALES
+  TRANSFERIN
+  TRANSFEROUT
+  INITIAL
 }
 
 model FeedStockTransfer {
-  id               String             @id @default(uuid())
-  fromDepot        String
-  toDepot          String
-  transerFerDate   String
-  totalKg          Int                @default(0)
-  totalPrice       Int                @default(0)
-  createDate       String
-  trnasferBill     String             @unique
-  createAt         DateTime?          @default(now())
-  updateAt         DateTime           @default(now())
-  depotId          String?
+  id        String @id @default(uuid())
+  fromDepot String
+  toDepot   String
+
+  totalQuantity Int            @default(0)
+  totalPrice    Int            @default(0)
+  deliveryDate  DateTime?      @db.Date
+  status        DeliveryStatus @default(PENDING)
+  trnasferBill  String         @unique
+  createAt      DateTime
+  updateAt      DateTime       @default(now())
+
   transferDepot    Depot              @relation("FromDepot", fields: [fromDepot], references: [depotName])
   reciveDepot      Depot              @relation("ToDepot", fields: [toDepot], references: [depotName])
   transferFeedItem TransferFeedItem[]
@@ -313,14 +404,16 @@ model FeedStockTransfer {
 model TransferFeedItem {
   id              String            @id @default(uuid())
   feedName        String
-  createDate      String
-  quntity         String
+  createDate      DateTime          @db.Date
+  quantity        Int
   price           Int               @default(0)
+  unitPrice       Int               @default(0)
   tansferId       String
+  status          DeliveryStatus    @default(PENDING)
   createdAt       DateTime          @default(now())
   updateAt        DateTime          @default(now())
-  feed            FeedNameCategory  @relation(fields: [feedName], references: [feedName])
-  feedStckTranfer FeedStockTransfer @relation(fields: [tansferId], references: [trnasferBill])
+  feed            FeedNameCategory  @relation(fields: [feedName], references: [feedName], onDelete: Cascade)
+  feedStckTranfer FeedStockTransfer @relation(fields: [tansferId], references: [trnasferBill], onDelete: Cascade)
 
   @@map("transferFeedItem")
 }
@@ -332,15 +425,16 @@ model FeedSalesOrder {
   saleInvoice   String          @unique
   farmNumber    Int
   flockNumber   Int
-  createDate    String
+  deliveryDate  DateTime?       @db.Date
   farmId        String
   flockId       String
   totalPrice    Int             @default(0)
-  totalKg       Int             @default(0)
+  totalQuantity Int             @default(0)
   depot         Depot           @relation(fields: [depotName], references: [depotName])
+  flock         Flock           @relation(fields: [flockId], references: [id])
   description   String?
   status        DeliveryStatus  @default(PENDING)
-  createdAt     DateTime?       @default(now())
+  createdAt     DateTime
   updateAt      DateTime        @default(now())
   FeedSalesItem FeedSalesItem[]
 
@@ -353,15 +447,50 @@ model FeedSalesItem {
   feedName         String
   salesInvoice     String
   quantity         Int
-  createDate       String
-  totalPice        Int
+  unitPrice        Int              @default(0)
+  price            Int
   salesOrder       FeedSalesOrder   @relation(fields: [salesInvoice], references: [saleInvoice], onDelete: Cascade)
-  feedNameCategory FeedNameCategory @relation(fields: [feedName], references: [feedName])
-  createdAt        DateTime         @default(now())
+  feedNameCategory FeedNameCategory @relation(fields: [feedName], references: [feedName], onDelete: Cascade)
+  createdAt        DateTime
   updatedAt        DateTime         @default(now())
 
   @@index([salesInvoice])
   @@map("feedSalesItem")
+}
+
+model FeedRetun {
+  id            String          @id @default(uuid())
+  flockId       String
+  branChCode    String
+  farmCode      Int
+  flockNumber   Int
+  flock         Flock           @relation(fields: [flockId], references: [id])
+  returnInvoice String          @unique
+  createDate    DateTime        @db.Date
+  deliveryDate  DateTime?       @db.Date
+  farmId        String
+  status        DeliveryStatus  @default(PENDING)
+  farm          Farmer          @relation(fields: [farmId], references: [id])
+  depotName     String
+  depot         Depot           @relation(fields: [depotName], references: [depotName])
+  createAt      DateTime        @default(now())
+  updateAt      DateTime        @default(now())
+  RetunFeedItem RetunFeedItem[]
+
+  @@map("feedRetun")
+}
+
+model RetunFeedItem {
+  id               String           @id @default(uuid())
+  feedName         String
+  quantity         Int
+  price            Int
+  returnInvoice    String
+  unitPrice        Int              @default(0)
+  feedRetun        FeedRetun        @relation(fields: [returnInvoice], references: [returnInvoice], onDelete: Cascade)
+  feedNameCategory FeedNameCategory @relation(fields: [feedName], references: [feedName], onDelete: Cascade)
+  createAt         DateTime         @default(now())
+  updateAt         DateTime         @default(now())
 }
 
 model AllGenericMedicin {
@@ -516,4 +645,5 @@ enum Stored {
 enum DeliveryStatus {
   PENDING
   DELIVER
+  CANCEL
 }

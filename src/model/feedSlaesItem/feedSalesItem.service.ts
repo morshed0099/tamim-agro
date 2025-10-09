@@ -55,7 +55,7 @@ const createFeedSaleItem = async (payload: any) => {
     data: {
       createDate: payload.createDate,
       quantity: payload.quantity,
-      totalPice: payload.totalPice,
+      totalPrice: payload.totalPrice,
       feedName: payload.feedName,
       salesInvoice: payload.salesInvoice,
     },
